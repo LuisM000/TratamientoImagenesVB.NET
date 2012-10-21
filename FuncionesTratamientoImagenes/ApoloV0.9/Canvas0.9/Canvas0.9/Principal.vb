@@ -400,6 +400,9 @@ Public Class Principal
     Private Sub AbrirRecursoWebToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AbrirRecursoWebToolStripMenuItem1.Click
         AbrirRecursoWebToolStripMenuItem_Click(sender, e)
     End Sub
+    Private Sub BuscarImágenesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BuscarImágenesToolStripMenuItem1.Click
+        BuscarImágenesToolStripMenuItem_Click(sender, e)
+    End Sub
 
     Private Sub GuardarComoToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GuardarComoToolStripMenuItem1.Click
         GuardarToolStripMenuItem_Click(sender, e)
@@ -1416,9 +1419,37 @@ Public Class Principal
             escala = 1
         End If
         Panel2.Visible = False
+        RefrescarImagenToolStripMenuItem_Click(sender, e)
+    End Sub
+    Private Sub BuscarImágenesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuscarImágenesToolStripMenuItem.Click
+        BuscarIMagenesBing.ShowDialog()
+        If url <> "" Or IMGBing IsNot Nothing Then
+            If url <> "" Then
+                Dim objeto As New tratamiento
+                PictureBox1.Image = objeto.cargarrecursoweb(url)
+                copiaimagenZoom = PictureBox1.Image.Clone
+                escala = 1
+            Else
+                Dim objeto As New tratamiento
+                PictureBox1.Image = IMGBing
+                copiaimagenZoom = PictureBox1.Image.Clone
+                escala = 1
+            End If
+            Panel2.Visible = False
+            RefrescarImagenToolStripMenuItem_Click(sender, e)
+        End If
     End Sub
 
-
+    Private Sub BuscarImágenesEnFacebookToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnFacebookToolStripMenuItem.Click
+        facebook.ShowDialog()
+        If urlFB <> "" Then
+            PictureBox1.Image = objeto.cargarrecursoweb(urlFB)
+            copiaimagenZoom = PictureBox1.Image.Clone
+            escala = 1
+        End If
+        Panel2.Visible = False
+        RefrescarImagenToolStripMenuItem_Click(sender, e)
+    End Sub
 
     Private Sub ConfiguraciónToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConfiguraciónToolStripMenuItem1.Click
         configu.ShowDialog()
@@ -1586,7 +1617,8 @@ Public Class Principal
         Cuadricula.ShowDialog() 'Lanzamos nueva ventana
         If aceptar = True Then 'Si el usuario acepta
             Cargando.Show()
-            PictureBox1.Image = objeto.cuadriculaColor(bmp, colorh, colorv, valorH, valorV)
+            Dim hilo As Threading.Thread
+            hilo = PictureBox1.Image = objeto.cuadriculaColor(bmp, colorh, colorv, valorH, valorV)
             Cargando.Close()
         End If
         aceptar = False
@@ -3920,5 +3952,7 @@ Public Class Principal
     End Sub
 
    
+  
+
 End Class
 

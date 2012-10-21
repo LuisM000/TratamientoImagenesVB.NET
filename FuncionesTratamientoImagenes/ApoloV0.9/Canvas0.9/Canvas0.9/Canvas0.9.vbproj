@@ -71,6 +71,9 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Maps.NET\WindowsApplication1\WindowsApplication1\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -170,6 +173,18 @@
       <DependentUpon>Abriendo.vb</DependentUpon>
     </Compile>
     <Compile Include="bin\FOrmulariosSecundarios\FormularioSec\Abriendo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bin\FOrmulariosSecundarios\FormularioSec\BuscarIMagenesBing.Designer.vb">
+      <DependentUpon>BuscarIMagenesBing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="bin\FOrmulariosSecundarios\FormularioSec\BuscarIMagenesBing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bin\FOrmulariosSecundarios\FormularioSec\facebook.Designer.vb">
+      <DependentUpon>facebook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="bin\FOrmulariosSecundarios\FormularioSec\facebook.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="bin\FOrmulariosSecundarios\FormularioSec\MensajeRecortar.Designer.vb">
@@ -487,6 +502,12 @@
     <EmbeddedResource Include="bin\FOrmulariosSecundarios\FormularioSec\Abriendo.resx">
       <DependentUpon>Abriendo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\FOrmulariosSecundarios\FormularioSec\BuscarIMagenesBing.resx">
+      <DependentUpon>BuscarIMagenesBing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bin\FOrmulariosSecundarios\FormularioSec\facebook.resx">
+      <DependentUpon>facebook.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\FOrmulariosSecundarios\FormularioSec\MensajeRecortar.resx">
       <DependentUpon>MensajeRecortar.vb</DependentUpon>
     </EmbeddedResource>
@@ -660,6 +681,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\1336432183_Imagenes_min.ico" />
+    <None Include="Resources\bing_icon_1.png" />
+    <None Include="Resources\bing_icon.png" />
+    <None Include="Resources\powered.jpg" />
     <None Include="Resources\exit.ico" />
   </ItemGroup>
   <ItemGroup>

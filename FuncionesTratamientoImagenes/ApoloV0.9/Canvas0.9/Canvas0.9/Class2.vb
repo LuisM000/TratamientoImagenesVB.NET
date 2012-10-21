@@ -1,5 +1,7 @@
 ﻿Imports WindowsApplication1.Class1
 Imports System.IO
+Imports System.Xml
+Imports System.Net
 
 
 
@@ -123,7 +125,7 @@ Public Class Class2
                         VistaPrevia.PictureBox1.Image = objeto.pixelarX3interpolado(bmpaux) 'Lazamos vista previa y asignamos imagen
                     Case "oleo"
                         VistaPrevia.PictureBox1.Image = objeto.Oleo(bmpaux) 'Lazamos vista previa y asignamos imagen
-                    
+
                     Case "LOW9"
                         VistaPrevia.PictureBox1.Image = objetomas.LowPasscoef9(bmpaux) 'Lazamos vista previa y asignamos imagen
                     Case "LOW10"
@@ -899,54 +901,54 @@ Public Class Class2
         End Sub
 
 
-        Function PasarExcel(ByVal ElGrid As DataGridView) As Boolean  'Función disponible en http://programaciontotal.blogspot.com.es/2009/06/vbnet-exportar-datagridview-excel.html
+        'Function PasarExcel(ByVal ElGrid As DataGridView) As Boolean  'Función disponible en http://programaciontotal.blogspot.com.es/2009/06/vbnet-exportar-datagridview-excel.html
 
-            'Creamos las variables
-            Dim exApp As New Microsoft.Office.Interop.Excel.Application
-            Dim exLibro As Microsoft.Office.Interop.Excel.Workbook
-            Dim exHoja As Microsoft.Office.Interop.Excel.Worksheet
+        '    'Creamos las variables
+        '    Dim exApp As New Microsoft.Office.Interop.Excel.Application
+        '    Dim exLibro As Microsoft.Office.Interop.Excel.Workbook
+        '    Dim exHoja As Microsoft.Office.Interop.Excel.Worksheet
 
-            Try
-                'Añadimos el Libro al programa, y la hoja al libro
-                exLibro = exApp.Workbooks.Add
-                exHoja = exLibro.Worksheets.Add()
+        '    Try
+        '        'Añadimos el Libro al programa, y la hoja al libro
+        '        exLibro = exApp.Workbooks.Add
+        '        exHoja = exLibro.Worksheets.Add()
 
-                ' ¿Cuantas columnas y cuantas filas?
-                Dim NCol As Integer = ElGrid.ColumnCount
-                Dim NRow As Integer = ElGrid.RowCount
+        '        ' ¿Cuantas columnas y cuantas filas?
+        '        Dim NCol As Integer = ElGrid.ColumnCount
+        '        Dim NRow As Integer = ElGrid.RowCount
 
-                'Aqui recorremos todas las filas, y por cada fila todas las columnas y vamos escribiendo.
-                For i As Integer = 1 To NCol
-                    exHoja.Cells.Item(1, i) = ElGrid.Columns(i - 1).Name.ToString
-                    'exHoja.Cells.Item(1, i).HorizontalAlignment = 3
-                Next
+        '        'Aqui recorremos todas las filas, y por cada fila todas las columnas y vamos escribiendo.
+        '        For i As Integer = 1 To NCol
+        '            exHoja.Cells.Item(1, i) = ElGrid.Columns(i - 1).Name.ToString
+        '            'exHoja.Cells.Item(1, i).HorizontalAlignment = 3
+        '        Next
 
-                For Fila As Integer = 0 To NRow - 1
-                    For Col As Integer = 0 To NCol - 1
-                        exHoja.Cells.Item(Fila + 2, Col + 1) = ElGrid.Rows(Fila).Cells(Col).Value
-                    Next
-                Next
-                'Titulo en negrita, Alineado al centro y que el tamaño de la columna se ajuste al texto
-                exHoja.Rows.Item(1).Font.Bold = 1
-                exHoja.Rows.Item(1).HorizontalAlignment = 3
-                exHoja.Columns.AutoFit()
+        '        For Fila As Integer = 0 To NRow - 1
+        '            For Col As Integer = 0 To NCol - 1
+        '                exHoja.Cells.Item(Fila + 2, Col + 1) = ElGrid.Rows(Fila).Cells(Col).Value
+        '            Next
+        '        Next
+        '        'Titulo en negrita, Alineado al centro y que el tamaño de la columna se ajuste al texto
+        '        exHoja.Rows.Item(1).Font.Bold = 1
+        '        exHoja.Rows.Item(1).HorizontalAlignment = 3
+        '        exHoja.Columns.AutoFit()
 
 
-                'Aplicación visible
-                exApp.Application.Visible = True
+        '        'Aplicación visible
+        '        exApp.Application.Visible = True
 
-                exHoja = Nothing
-                exLibro = Nothing
-                exApp = Nothing
+        '        exHoja = Nothing
+        '        exLibro = Nothing
+        '        exApp = Nothing
 
-            Catch ex As Exception
-                MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al exportar a Excel")
-                Return False
-            End Try
+        '    Catch ex As Exception
+        '        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al exportar a Excel")
+        '        Return False
+        '    End Try
 
-            Return True
+        '    Return True
 
-        End Function
+        'End Function
 
         Function RecortarImagen(ByRef bmp As Bitmap, ByVal rectanguloR As Rectangle)
             Dim bmprecor As Bitmap
@@ -957,10 +959,129 @@ Public Class Class2
             End If
             Return bmprecor
         End Function
+        Public Function JsonToXml(json As String) As XmlDocument 'De JSON a XML
+            Dim newNode As XmlNode = Nothing
+            Dim appendToNode As XmlNode = Nothing
+            Dim returnXmlDoc As New XmlDocument()
+            returnXmlDoc.LoadXml("<Document />")
+            Dim rootNode As XmlNode = returnXmlDoc.SelectSingleNode("Document")
+            appendToNode = rootNode
 
-        
+            Dim arrElementData As String()
+            Dim arrElements As String() = json.Split(ControlChars.Cr)
+            For Each element As String In arrElements
+                Dim processElement As String = element.Replace(vbCr, "").Replace(vbLf, "").Replace(vbTab, "").Trim()
+                If (processElement.IndexOf("}") > -1 OrElse processElement.IndexOf("]") > -1) AndAlso appendToNode IsNot rootNode Then
+                    appendToNode = appendToNode.ParentNode
+                ElseIf processElement.IndexOf("[") > -1 Then
+                    processElement = processElement.Replace(":", "").Replace("[", "").Replace("""", "").Trim()
+                    newNode = returnXmlDoc.CreateElement(processElement)
+                    appendToNode.AppendChild(newNode)
+                    appendToNode = newNode
+                ElseIf processElement.IndexOf("{") > -1 AndAlso processElement.IndexOf(":") > -1 Then
+                    processElement = processElement.Replace(":", "").Replace("{", "").Replace("""", "").Trim()
+                    newNode = returnXmlDoc.CreateElement(processElement)
+                    appendToNode.AppendChild(newNode)
+                    appendToNode = newNode
+                Else
+                    If processElement.IndexOf(":") > -1 Then
+                        arrElementData = processElement.Replace(": """, ":").Replace(""",", "").Replace("""", "").Split(":"c)
+                        newNode = returnXmlDoc.CreateElement(arrElementData(0))
+                        For i As Integer = 1 To arrElementData.Length - 1
+                            newNode.InnerText += arrElementData(i)
+                        Next
+                        appendToNode.AppendChild(newNode)
+                    End If
+                End If
+            Next
+
+            Return returnXmlDoc
+        End Function
+
+
+        'Buscar imágenes con el API de Bing
+        'Con el API de Google search se crea:
+        'https://www.googleapis.com/customsearch/v1?key=AIzaSyCzWaJYw_MW87ganzyaVlxB9igfGMTTrW8&cx=013036536707430787589:_pqjad5hr1a&&q=ponferrada&imgType=photo&alt=atom
+        Public Function BuscarImagenes(ByVal texto As String, Optional ByVal numeroImagenes As Integer = 10, Optional ByVal tamaño As String = "", Optional Precarga As Boolean = False)
+            Dim datos As New ArrayList
+            Try
+                If tamaño <> "" Then
+                    tamaño = "&ImageFilters=%27Size%3a" & tamaño & "%27"
+                End If
+                Dim accountKey As String = "URndltgY4xIFqjJOhdozXaBilXhSo76PIW7YWedDkJI="
+                Dim serviceRoot As String = "https://api.datamarket.azure.com/Bing/Search/"
+                Dim imageQueryRoot As String = serviceRoot + "Image?"
+                Dim imageQuery As String = imageQueryRoot + "Query=%27" + texto + "%27" + "&$top=" & numeroImagenes & tamaño
+
+                'XmlDocument que usaremos para leer los resultados
+                Dim document As XmlDocument = New XmlDocument()
+
+                'Las siguientes cuatro líneas configurar el XmlDocument para utilizar las credenciales 
+                Dim accountCredential As New NetworkCredential(accountKey, accountKey)
+                Dim resolver As New XmlUrlResolver()
+                resolver.Credentials = accountCredential
+                document.XmlResolver = resolver
+
+                ' Con las credenciales configuradas, cargamos el archivo
+                document.Load(imageQuery)
+
+                'Creamos nameespace para configurar resultados
+                Dim namespaceManager As XmlNamespaceManager = New XmlNamespaceManager(document.NameTable)
+
+                namespaceManager.AddNamespace("atom", "http://www.w3.org/2005/Atom")
+
+                namespaceManager.AddNamespace("m", "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata")
+
+                namespaceManager.AddNamespace("d", "http://schemas.microsoft.com/ado/2007/08/dataservices")
+
+
+                Dim nextResultSet As String = document.SelectSingleNode(
+                                                  "/atom:feed/atom:link[@rel='next']/@href",
+                                                  namespaceManager).Value
+
+
+                Dim imageResultsReducida As XmlNodeList = document.SelectNodes("/atom:feed/atom:entry/atom:content/m:properties/d:Thumbnail", namespaceManager)
+                Dim imageResults As XmlNodeList = document.SelectNodes("/atom:feed/atom:entry/atom:content/m:properties", namespaceManager)
+
+                If Precarga = True Then
+                    For Each imageResult As XmlNode In imageResults
+                        Dim title As String = imageResult.SelectSingleNode(".//d:MediaUrl", namespaceManager).InnerText
+                        datos.Add(title)
+                    Next
+
+                    datos2.Clear()
+
+                    For Each imageResult As XmlNode In imageResultsReducida
+                        Dim title As String = imageResult.SelectSingleNode(".//d:MediaUrl", namespaceManager).InnerText
+                        datos2.Add(title)
+                    Next
+                Else
+                    For Each imageResult As XmlNode In imageResultsReducida
+                        Dim title As String = imageResult.SelectSingleNode(".//d:MediaUrl", namespaceManager).InnerText
+                        datos.Add(title)
+                    Next
+
+                    datos2.Clear()
+
+                    For Each imageResult As XmlNode In imageResults
+                        Dim title As String = imageResult.SelectSingleNode(".//d:MediaUrl", namespaceManager).InnerText
+                        datos2.Add(title)
+                    Next
+                End If
+
+            Catch
+                datos.Add("Se ha producido un error")
+                datos.Add("Se ha producido un error")
+            End Try
+
+            Return datos
+        End Function
+
     End Class
-    
+
+   
+
+
 
     Public Class RectanguloRecortar
 
@@ -2928,6 +3049,10 @@ Public Class Class2
 
 
         End Sub
+
+
+
+
     End Class
 
 End Class

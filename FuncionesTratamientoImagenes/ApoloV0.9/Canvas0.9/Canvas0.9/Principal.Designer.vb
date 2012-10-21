@@ -227,6 +227,7 @@ Partial Class Principal
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AbrirToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AbrirRecursoWebToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BuscarImágenesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuardarComoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -260,6 +261,7 @@ Partial Class Principal
         Me.ArchivoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AbrirToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AbrirRecursoWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BuscarImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuardarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImagenPngToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImagenJpgToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -635,6 +637,13 @@ Partial Class Principal
         Me.ToolStripStatusLabel9 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.TabControlModificado2 = New WindowsApplication1.TabControlModificado()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
+        Me.MenuStrip3 = New System.Windows.Forms.MenuStrip()
+        Me.IrAWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.PictureBox15 = New System.Windows.Forms.PictureBox()
         Me.PictureBox14 = New System.Windows.Forms.PictureBox()
@@ -714,18 +723,16 @@ Partial Class Principal
         Me.WebBrowser11 = New System.Windows.Forms.WebBrowser()
         Me.MenuStrip2 = New System.Windows.Forms.MenuStrip()
         Me.ToolStripMenuItem21 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TabControlModificado2 = New WindowsApplication1.TabControlModificado()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
-        Me.MenuStrip3 = New System.Windows.Forms.MenuStrip()
-        Me.IrAWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BuscarImágenesEnFacebookToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        Me.TabControlModificado2.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        Me.MenuStrip3.SuspendLayout()
         CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -749,10 +756,6 @@ Partial Class Principal
         Me.TabPage3.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         Me.MenuStrip2.SuspendLayout()
-        Me.TabControlModificado2.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
-        Me.MenuStrip3.SuspendLayout()
         Me.SuspendLayout()
         '
         'BottomToolStripPanel
@@ -2005,9 +2008,9 @@ Partial Class Principal
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirToolStripMenuItem1, Me.AbrirRecursoWebToolStripMenuItem1, Me.GuardarComoToolStripMenuItem1, Me.ToolStripMenuItem1, Me.ZoomToolStripMenuItem, Me.ZoomToolStripMenuItem1, Me.DeshacerZoomToolStripMenuItem1, Me.ToolStripMenuItem10, Me.ImagenOriginalToolStripMenuItem1, Me.AtrásToolStripMenuItem1, Me.ToolStripMenuItem8, Me.CopiarToolStripMenuItem1, Me.PegarToolStripMenuItem1, Me.EstablecerComoToolStripMenuItem1, Me.ToolStripMenuItem9, Me.AjustarAPantallaToolStripMenuItem, Me.RefrescarImagenToolStripMenuItem1, Me.ToolStripMenuItem2, Me.PropiedadesDeLaImagenToolStripMenuItem1, Me.ToolStripMenuItem25, Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirToolStripMenuItem1, Me.AbrirRecursoWebToolStripMenuItem1, Me.BuscarImágenesToolStripMenuItem1, Me.GuardarComoToolStripMenuItem1, Me.ToolStripMenuItem1, Me.ZoomToolStripMenuItem, Me.ZoomToolStripMenuItem1, Me.DeshacerZoomToolStripMenuItem1, Me.ToolStripMenuItem10, Me.ImagenOriginalToolStripMenuItem1, Me.AtrásToolStripMenuItem1, Me.ToolStripMenuItem8, Me.CopiarToolStripMenuItem1, Me.PegarToolStripMenuItem1, Me.EstablecerComoToolStripMenuItem1, Me.ToolStripMenuItem9, Me.AjustarAPantallaToolStripMenuItem, Me.RefrescarImagenToolStripMenuItem1, Me.ToolStripMenuItem2, Me.PropiedadesDeLaImagenToolStripMenuItem1, Me.ToolStripMenuItem25, Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(269, 370)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(269, 392)
         '
         'AbrirToolStripMenuItem1
         '
@@ -2022,6 +2025,13 @@ Partial Class Principal
         Me.AbrirRecursoWebToolStripMenuItem1.Name = "AbrirRecursoWebToolStripMenuItem1"
         Me.AbrirRecursoWebToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
         Me.AbrirRecursoWebToolStripMenuItem1.Text = "Abrir recurso web"
+        '
+        'BuscarImágenesToolStripMenuItem1
+        '
+        Me.BuscarImágenesToolStripMenuItem1.Image = Global.WindowsApplication1.My.Resources.Resources.bing_icon_1
+        Me.BuscarImágenesToolStripMenuItem1.Name = "BuscarImágenesToolStripMenuItem1"
+        Me.BuscarImágenesToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.BuscarImágenesToolStripMenuItem1.Text = "Buscar imágenes"
         '
         'GuardarComoToolStripMenuItem1
         '
@@ -2217,7 +2227,7 @@ Partial Class Principal
         '
         'ArchivoToolStripMenuItem1
         '
-        Me.ArchivoToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirToolStripMenuItem2, Me.AbrirRecursoWebToolStripMenuItem, Me.GuardarToolStripMenuItem, Me.ToolStripMenuItem3, Me.SalirToolStripMenuItem1})
+        Me.ArchivoToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirToolStripMenuItem2, Me.AbrirRecursoWebToolStripMenuItem, Me.BuscarImágenesToolStripMenuItem, Me.BuscarImágenesEnFacebookToolStripMenuItem, Me.GuardarToolStripMenuItem, Me.ToolStripMenuItem3, Me.SalirToolStripMenuItem1})
         Me.ArchivoToolStripMenuItem1.Name = "ArchivoToolStripMenuItem1"
         Me.ArchivoToolStripMenuItem1.Size = New System.Drawing.Size(60, 20)
         Me.ArchivoToolStripMenuItem1.Text = "Archivo"
@@ -2227,7 +2237,7 @@ Partial Class Principal
         Me.AbrirToolStripMenuItem2.Image = CType(resources.GetObject("AbrirToolStripMenuItem2.Image"), System.Drawing.Image)
         Me.AbrirToolStripMenuItem2.Name = "AbrirToolStripMenuItem2"
         Me.AbrirToolStripMenuItem2.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.AbrirToolStripMenuItem2.Size = New System.Drawing.Size(229, 22)
+        Me.AbrirToolStripMenuItem2.Size = New System.Drawing.Size(233, 22)
         Me.AbrirToolStripMenuItem2.Text = "Abrir..."
         '
         'AbrirRecursoWebToolStripMenuItem
@@ -2235,15 +2245,22 @@ Partial Class Principal
         Me.AbrirRecursoWebToolStripMenuItem.Image = CType(resources.GetObject("AbrirRecursoWebToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AbrirRecursoWebToolStripMenuItem.Name = "AbrirRecursoWebToolStripMenuItem"
         Me.AbrirRecursoWebToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.AbrirRecursoWebToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.AbrirRecursoWebToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.AbrirRecursoWebToolStripMenuItem.Text = "Abrir recurso web       "
+        '
+        'BuscarImágenesToolStripMenuItem
+        '
+        Me.BuscarImágenesToolStripMenuItem.Image = Global.WindowsApplication1.My.Resources.Resources.bing_icon_1
+        Me.BuscarImágenesToolStripMenuItem.Name = "BuscarImágenesToolStripMenuItem"
+        Me.BuscarImágenesToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.BuscarImágenesToolStripMenuItem.Text = "Buscar imágenes"
         '
         'GuardarToolStripMenuItem
         '
         Me.GuardarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImagenPngToolStripMenuItem, Me.ImagenJpgToolStripMenuItem, Me.ImagenBmpToolStripMenuItem, Me.ImagenGIFToolStripMenuItem, Me.OtrosFormatosToolStripMenuItem})
         Me.GuardarToolStripMenuItem.Image = CType(resources.GetObject("GuardarToolStripMenuItem.Image"), System.Drawing.Image)
         Me.GuardarToolStripMenuItem.Name = "GuardarToolStripMenuItem"
-        Me.GuardarToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.GuardarToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.GuardarToolStripMenuItem.Text = "Guardar como..."
         '
         'ImagenPngToolStripMenuItem
@@ -2284,14 +2301,14 @@ Partial Class Principal
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(226, 6)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(230, 6)
         '
         'SalirToolStripMenuItem1
         '
         Me.SalirToolStripMenuItem1.Image = CType(resources.GetObject("SalirToolStripMenuItem1.Image"), System.Drawing.Image)
         Me.SalirToolStripMenuItem1.Name = "SalirToolStripMenuItem1"
         Me.SalirToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.SalirToolStripMenuItem1.Size = New System.Drawing.Size(229, 22)
+        Me.SalirToolStripMenuItem1.Size = New System.Drawing.Size(233, 22)
         Me.SalirToolStripMenuItem1.Text = "Salir"
         '
         'EditarToolStripMenuItem1
@@ -4683,6 +4700,73 @@ Partial Class Principal
         Me.Panel2.Size = New System.Drawing.Size(978, 735)
         Me.Panel2.TabIndex = 9
         '
+        'TabControlModificado2
+        '
+        Me.TabControlModificado2.Controls.Add(Me.TabPage1)
+        Me.TabControlModificado2.Controls.Add(Me.TabPage2)
+        Me.TabControlModificado2.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed
+        Me.TabControlModificado2.Location = New System.Drawing.Point(566, 307)
+        Me.TabControlModificado2.Name = "TabControlModificado2"
+        Me.TabControlModificado2.SelectedIndex = 0
+        Me.TabControlModificado2.Size = New System.Drawing.Size(268, 163)
+        Me.TabControlModificado2.TabIndex = 30
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.RichTextBox1)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(260, 134)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Sugerencias"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RichTextBox1.Location = New System.Drawing.Point(3, 3)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(254, 128)
+        Me.RichTextBox1.TabIndex = 0
+        Me.RichTextBox1.Text = ""
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.WebBrowser1)
+        Me.TabPage2.Controls.Add(Me.MenuStrip3)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(260, 134)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Web"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'WebBrowser1
+        '
+        Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WebBrowser1.Location = New System.Drawing.Point(3, 27)
+        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.WebBrowser1.Name = "WebBrowser1"
+        Me.WebBrowser1.Size = New System.Drawing.Size(254, 104)
+        Me.WebBrowser1.TabIndex = 0
+        '
+        'MenuStrip3
+        '
+        Me.MenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IrAWebToolStripMenuItem})
+        Me.MenuStrip3.Location = New System.Drawing.Point(3, 3)
+        Me.MenuStrip3.Name = "MenuStrip3"
+        Me.MenuStrip3.Size = New System.Drawing.Size(254, 24)
+        Me.MenuStrip3.TabIndex = 1
+        Me.MenuStrip3.Text = "MenuStrip3"
+        '
+        'IrAWebToolStripMenuItem
+        '
+        Me.IrAWebToolStripMenuItem.Name = "IrAWebToolStripMenuItem"
+        Me.IrAWebToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
+        Me.IrAWebToolStripMenuItem.Text = "Ir a web"
+        '
         'Label18
         '
         Me.Label18.AutoSize = True
@@ -4987,10 +5071,10 @@ Partial Class Principal
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Mistral", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(40, 25)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(348, 57)
+        Me.Label4.Size = New System.Drawing.Size(454, 55)
         Me.Label4.TabIndex = 1
         Me.Label4.Text = "Apolo versión 0.9.0"
         '
@@ -5379,7 +5463,7 @@ Partial Class Principal
         Me.RichTextBox11.BackColor = System.Drawing.SystemColors.Control
         Me.RichTextBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.RichTextBox11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RichTextBox11.Font = New System.Drawing.Font("Arial Unicode MS", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox11.Location = New System.Drawing.Point(3, 3)
         Me.RichTextBox11.Name = "RichTextBox11"
         Me.RichTextBox11.ReadOnly = True
@@ -5423,72 +5507,11 @@ Partial Class Principal
         Me.ToolStripMenuItem21.Size = New System.Drawing.Size(60, 20)
         Me.ToolStripMenuItem21.Text = "Ir a web"
         '
-        'TabControlModificado2
+        'BuscarImágenesEnFacebookToolStripMenuItem
         '
-        Me.TabControlModificado2.Controls.Add(Me.TabPage1)
-        Me.TabControlModificado2.Controls.Add(Me.TabPage2)
-        Me.TabControlModificado2.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed
-        Me.TabControlModificado2.Location = New System.Drawing.Point(566, 307)
-        Me.TabControlModificado2.Name = "TabControlModificado2"
-        Me.TabControlModificado2.SelectedIndex = 0
-        Me.TabControlModificado2.Size = New System.Drawing.Size(268, 163)
-        Me.TabControlModificado2.TabIndex = 30
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.RichTextBox1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(260, 134)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Sugerencias"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RichTextBox1.Location = New System.Drawing.Point(3, 3)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(254, 128)
-        Me.RichTextBox1.TabIndex = 0
-        Me.RichTextBox1.Text = ""
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.WebBrowser1)
-        Me.TabPage2.Controls.Add(Me.MenuStrip3)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(260, 134)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Web"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'WebBrowser1
-        '
-        Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WebBrowser1.Location = New System.Drawing.Point(3, 27)
-        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.Size = New System.Drawing.Size(254, 104)
-        Me.WebBrowser1.TabIndex = 0
-        '
-        'MenuStrip3
-        '
-        Me.MenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IrAWebToolStripMenuItem})
-        Me.MenuStrip3.Location = New System.Drawing.Point(3, 3)
-        Me.MenuStrip3.Name = "MenuStrip3"
-        Me.MenuStrip3.Size = New System.Drawing.Size(254, 24)
-        Me.MenuStrip3.TabIndex = 1
-        Me.MenuStrip3.Text = "MenuStrip3"
-        '
-        'IrAWebToolStripMenuItem
-        '
-        Me.IrAWebToolStripMenuItem.Name = "IrAWebToolStripMenuItem"
-        Me.IrAWebToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
-        Me.IrAWebToolStripMenuItem.Text = "Ir a web"
+        Me.BuscarImágenesEnFacebookToolStripMenuItem.Name = "BuscarImágenesEnFacebookToolStripMenuItem"
+        Me.BuscarImágenesEnFacebookToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
+        Me.BuscarImágenesEnFacebookToolStripMenuItem.Text = "Buscar imágenes en Facebook"
         '
         'Principal
         '
@@ -5514,6 +5537,12 @@ Partial Class Principal
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.TabControlModificado2.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        Me.MenuStrip3.ResumeLayout(False)
+        Me.MenuStrip3.PerformLayout()
         CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
@@ -5541,12 +5570,6 @@ Partial Class Principal
         Me.TabPage4.PerformLayout()
         Me.MenuStrip2.ResumeLayout(False)
         Me.MenuStrip2.PerformLayout()
-        Me.TabControlModificado2.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
-        Me.MenuStrip3.ResumeLayout(False)
-        Me.MenuStrip3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -6250,5 +6273,8 @@ Partial Class Principal
     Friend WithEvents LápizToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SesgarImagenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EnviarFeedbackToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents BuscarImágenesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents BuscarImágenesToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents BuscarImágenesEnFacebookToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

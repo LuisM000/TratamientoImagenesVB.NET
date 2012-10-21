@@ -72,4 +72,9 @@
     Public bmpAfinRetorno, bmpAfinRetornoPer As Bitmap
     Public afinImagen, afinImagenper As Boolean
     Public interpolar As Byte
+    Public datos2 As New ArrayList
+    Public url As String
+    Public IMGBing As Bitmap
+    Public urlFB As String
+    Public fotos As New ArrayList 'Contenedor de los enlaces
 End Module
