@@ -63,6 +63,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property animacion_cargando1() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("animacion-cargando1", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property bing_icon() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("bing_icon", resourceCulture)
@@ -106,6 +116,16 @@ Namespace My.Resources
         Friend ReadOnly Property Canvas2() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Canvas2", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property cargando() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("cargando", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

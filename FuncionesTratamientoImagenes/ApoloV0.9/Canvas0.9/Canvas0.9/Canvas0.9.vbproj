@@ -681,6 +681,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\1336432183_Imagenes_min.ico" />
+    <None Include="Resources\cargando.gif" />
+    <None Include="Resources\animacion-cargando1.gif" />
     <None Include="Resources\bing_icon_1.png" />
     <None Include="Resources\bing_icon.png" />
     <None Include="Resources\powered.jpg" />

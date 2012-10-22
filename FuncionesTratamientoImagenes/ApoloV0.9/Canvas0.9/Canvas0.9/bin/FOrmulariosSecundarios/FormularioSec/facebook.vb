@@ -9,8 +9,10 @@ Public Class facebook
     Dim contador As Integer
     Dim numAbrir As Integer
     Dim fotos As New ArrayList 'Contenedor de los enlaces
+    Public thIMG As Threading.Thread
 
     Private Sub facebook_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Control.CheckForIllegalCrossThreadCalls = False
         urlFB = ""
         limpiarPic()
         For Each c As Object In Panel1.Controls
@@ -56,19 +58,20 @@ Public Class facebook
         Me.Cursor = Cursors.Default
     End Sub
 
-  
+
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If WebBrowser1.Url IsNot Nothing Then
             If WebBrowser1.Url.ToString.Contains("access_token") = True Then
-                Timer1.Enabled = False
                 mostrarImagenes()
+                Timer1.Enabled = False
             End If
         End If
     End Sub
 
     Sub mostrarImagenes()
+
         Dim objetoTra As New trataformu
         Dim objeto As New tratamiento
         Dim datos = WebBrowser1.Url.ToString
@@ -77,6 +80,7 @@ Public Class facebook
         datos = aux(0)
 
         Try
+
             Dim web As New WebClient, obj As Object
             Dim link As String = "https://graph.facebook.com/me?access_token=" & datos
 
@@ -111,6 +115,7 @@ Public Class facebook
             For i = 0 To fotos.Count - 1
                 fotos(i) = fotos(i).ToString.Replace("http//", "http://")
             Next
+            Timer2.Enabled = True
             PictureBox1.Visible = True
             PictureBox2.Visible = True
             PictureBox3.Visible = True
@@ -127,7 +132,7 @@ Public Class facebook
             Button2.Visible = True
             Button3.Visible = True
             WebBrowser1.Visible = False
-            Timer2.Enabled = True
+
 
             PictureBox1.Image = objeto.cargarrecursoweb(fotos(7 + contador))
             PictureBox2.Image = objeto.cargarrecursoweb(fotos(17 + contador))
@@ -141,28 +146,63 @@ Public Class facebook
             PictureBox10.Image = objeto.cargarrecursoweb(fotos(97 + contador))
             PictureBox11.Image = objeto.cargarrecursoweb(fotos(107 + contador))
             PictureBox12.Image = objeto.cargarrecursoweb(fotos(117 + contador))
-            
+
         Catch ex As Exception
             Button1.Enabled = False
+
         End Try
+
+        thIMG = Nothing
 
     End Sub
 
+    Sub actualizarImagenes()
+        Try
+            Dim objeto As New tratamiento
+           
+            PictureBox1.Image = objeto.cargarrecursoweb(fotos(7 + contador))
+            PictureBox2.Image = objeto.cargarrecursoweb(fotos(17 + contador))
+            PictureBox3.Image = objeto.cargarrecursoweb(fotos(27 + contador))
+            PictureBox4.Image = objeto.cargarrecursoweb(fotos(37 + contador))
+            PictureBox5.Image = objeto.cargarrecursoweb(fotos(47 + contador))
+            PictureBox6.Image = objeto.cargarrecursoweb(fotos(57 + contador))
+            PictureBox7.Image = objeto.cargarrecursoweb(fotos(67 + contador))
+            PictureBox8.Image = objeto.cargarrecursoweb(fotos(77 + contador))
+            PictureBox9.Image = objeto.cargarrecursoweb(fotos(87 + contador))
+            PictureBox10.Image = objeto.cargarrecursoweb(fotos(97 + contador))
+            PictureBox11.Image = objeto.cargarrecursoweb(fotos(107 + contador))
+            PictureBox12.Image = objeto.cargarrecursoweb(fotos(117 + contador))
+           
+        Catch ex As Exception
+            Button1.Enabled = False
+
+        End Try
+        thIMG = Nothing
+    End Sub
+
+
+
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        contador += 60
-        mostrarImagenes()
+        contador += 100
+        thIMG = New Threading.Thread(AddressOf actualizarImagenes)
+        If thIMG.ThreadState <> Threading.ThreadState.Running Then
+            thIMG.Start()
+        End If
 
     End Sub
 
     Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
         contador = 0
-        mostrarImagenes()
+        thIMG = New Threading.Thread(AddressOf actualizarImagenes)
+        If thIMG.ThreadState <> Threading.ThreadState.Running Then
+            thIMG.Start()
+        End If
         Button1.Enabled = True
     End Sub
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         If Panel1.Location.Y > 15 Then
-            Panel1.Location = New Size(Panel1.Location.X, Panel1.Location.Y - 15)
+            Panel1.Location = New Size(Panel1.Location.X, Panel1.Location.Y - 50)
 
         End If
     End Sub
@@ -185,6 +225,7 @@ Public Class facebook
         PictureBox12.BorderStyle = BorderStyle.None
 
     End Sub
+
 
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
@@ -320,4 +361,6 @@ Public Class facebook
             MessageBox.Show(ex.ToString)
         End Try
     End Sub
+
+
 End Class

@@ -200,8 +200,8 @@ Public Class BuscarIMagenesBing
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        If Me.Height < 495 Then
-            Me.Height = Me.Height + 15
+        If Me.Height < 490 Then
+            Me.Height = Me.Height + 50
         Else
             Timer1.Enabled = False
         End If

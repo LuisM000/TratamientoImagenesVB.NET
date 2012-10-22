@@ -63,7 +63,7 @@ Partial Class facebook
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
         Me.WebBrowser1.ScrollBarsEnabled = False
-        Me.WebBrowser1.Size = New System.Drawing.Size(1054, 321)
+        Me.WebBrowser1.Size = New System.Drawing.Size(1054, 334)
         Me.WebBrowser1.TabIndex = 0
         '
         'Timer1
@@ -250,7 +250,7 @@ Partial Class facebook
         Me.AcceptButton = Me.Button1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1078, 369)
+        Me.ClientSize = New System.Drawing.Size(1078, 361)
         Me.Controls.Add(Me.WebBrowser1)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog

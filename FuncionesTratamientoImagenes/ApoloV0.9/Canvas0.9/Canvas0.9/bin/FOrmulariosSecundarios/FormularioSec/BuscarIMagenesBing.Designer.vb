@@ -89,7 +89,7 @@ Partial Class BuscarIMagenesBing
         '
         'PictureBox8
         '
-        Me.PictureBox8.Location = New System.Drawing.Point(681, 295)
+        Me.PictureBox8.Location = New System.Drawing.Point(681, 306)
         Me.PictureBox8.Name = "PictureBox8"
         Me.PictureBox8.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -98,7 +98,7 @@ Partial Class BuscarIMagenesBing
         '
         'PictureBox7
         '
-        Me.PictureBox7.Location = New System.Drawing.Point(477, 295)
+        Me.PictureBox7.Location = New System.Drawing.Point(477, 306)
         Me.PictureBox7.Name = "PictureBox7"
         Me.PictureBox7.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -107,7 +107,7 @@ Partial Class BuscarIMagenesBing
         '
         'PictureBox6
         '
-        Me.PictureBox6.Location = New System.Drawing.Point(267, 295)
+        Me.PictureBox6.Location = New System.Drawing.Point(267, 306)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -116,7 +116,7 @@ Partial Class BuscarIMagenesBing
         '
         'PictureBox5
         '
-        Me.PictureBox5.Location = New System.Drawing.Point(60, 295)
+        Me.PictureBox5.Location = New System.Drawing.Point(60, 306)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -125,7 +125,7 @@ Partial Class BuscarIMagenesBing
         '
         'PictureBox4
         '
-        Me.PictureBox4.Location = New System.Drawing.Point(681, 100)
+        Me.PictureBox4.Location = New System.Drawing.Point(681, 111)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -134,7 +134,7 @@ Partial Class BuscarIMagenesBing
         '
         'PictureBox3
         '
-        Me.PictureBox3.Location = New System.Drawing.Point(477, 100)
+        Me.PictureBox3.Location = New System.Drawing.Point(477, 111)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -143,7 +143,7 @@ Partial Class BuscarIMagenesBing
         '
         'PictureBox2
         '
-        Me.PictureBox2.Location = New System.Drawing.Point(267, 100)
+        Me.PictureBox2.Location = New System.Drawing.Point(267, 111)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -152,7 +152,7 @@ Partial Class BuscarIMagenesBing
         '
         'PictureBox1
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(60, 100)
+        Me.PictureBox1.Location = New System.Drawing.Point(60, 111)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -161,7 +161,7 @@ Partial Class BuscarIMagenesBing
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(848, 374)
+        Me.Button1.Location = New System.Drawing.Point(848, 385)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(93, 26)
         Me.Button1.TabIndex = 29
@@ -171,7 +171,7 @@ Partial Class BuscarIMagenesBing
         'Button2
         '
         Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(848, 419)
+        Me.Button2.Location = New System.Drawing.Point(848, 430)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(93, 26)
         Me.Button2.TabIndex = 38
