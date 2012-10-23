@@ -26,6 +26,14 @@ Partial Class BuscarIMagenesBing
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.PictureBox10 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
         Me.PictureBox9 = New System.Windows.Forms.PictureBox()
         Me.PictureBox8 = New System.Windows.Forms.PictureBox()
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
@@ -35,12 +43,8 @@ Partial Class BuscarIMagenesBing
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,91 +81,9 @@ Partial Class BuscarIMagenesBing
         Me.Button3.Text = "Buscar"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'PictureBox9
-        '
-        Me.PictureBox9.Image = Global.WindowsApplication1.My.Resources.Resources.powered
-        Me.PictureBox9.Location = New System.Drawing.Point(816, 34)
-        Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(113, 23)
-        Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureBox9.TabIndex = 28
-        Me.PictureBox9.TabStop = False
-        '
-        'PictureBox8
-        '
-        Me.PictureBox8.Location = New System.Drawing.Point(681, 306)
-        Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(150, 150)
-        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox8.TabIndex = 27
-        Me.PictureBox8.TabStop = False
-        '
-        'PictureBox7
-        '
-        Me.PictureBox7.Location = New System.Drawing.Point(477, 306)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(150, 150)
-        Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox7.TabIndex = 26
-        Me.PictureBox7.TabStop = False
-        '
-        'PictureBox6
-        '
-        Me.PictureBox6.Location = New System.Drawing.Point(267, 306)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(150, 150)
-        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox6.TabIndex = 25
-        Me.PictureBox6.TabStop = False
-        '
-        'PictureBox5
-        '
-        Me.PictureBox5.Location = New System.Drawing.Point(60, 306)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(150, 150)
-        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox5.TabIndex = 24
-        Me.PictureBox5.TabStop = False
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.Location = New System.Drawing.Point(681, 111)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(150, 150)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox4.TabIndex = 23
-        Me.PictureBox4.TabStop = False
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.Location = New System.Drawing.Point(477, 111)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(150, 150)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox3.TabIndex = 22
-        Me.PictureBox3.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Location = New System.Drawing.Point(267, 111)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(150, 150)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 21
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Location = New System.Drawing.Point(60, 111)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(150, 150)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 20
-        Me.PictureBox1.TabStop = False
-        '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(848, 385)
+        Me.Button1.Location = New System.Drawing.Point(848, 386)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(93, 26)
         Me.Button1.TabIndex = 29
@@ -171,7 +93,7 @@ Partial Class BuscarIMagenesBing
         'Button2
         '
         Me.Button2.Enabled = False
-        Me.Button2.Location = New System.Drawing.Point(848, 430)
+        Me.Button2.Location = New System.Drawing.Point(848, 431)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(93, 26)
         Me.Button2.TabIndex = 38
@@ -206,12 +128,124 @@ Partial Class BuscarIMagenesBing
         '
         Me.Timer2.Interval = 10
         '
+        'PictureBox10
+        '
+        Me.PictureBox10.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox10.Location = New System.Drawing.Point(519, 305)
+        Me.PictureBox10.Name = "PictureBox10"
+        Me.PictureBox10.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox10.TabIndex = 42
+        Me.PictureBox10.TabStop = False
+        '
+        'PictureBox11
+        '
+        Me.PictureBox11.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox11.Location = New System.Drawing.Point(675, 305)
+        Me.PictureBox11.Name = "PictureBox11"
+        Me.PictureBox11.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox11.TabIndex = 41
+        Me.PictureBox11.TabStop = False
+        '
+        'PictureBox9
+        '
+        Me.PictureBox9.Image = Global.WindowsApplication1.My.Resources.Resources.powered
+        Me.PictureBox9.Location = New System.Drawing.Point(816, 34)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(113, 23)
+        Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox9.TabIndex = 28
+        Me.PictureBox9.TabStop = False
+        '
+        'PictureBox8
+        '
+        Me.PictureBox8.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox8.Location = New System.Drawing.Point(363, 307)
+        Me.PictureBox8.Name = "PictureBox8"
+        Me.PictureBox8.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox8.TabIndex = 27
+        Me.PictureBox8.TabStop = False
+        '
+        'PictureBox7
+        '
+        Me.PictureBox7.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox7.Location = New System.Drawing.Point(207, 307)
+        Me.PictureBox7.Name = "PictureBox7"
+        Me.PictureBox7.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox7.TabIndex = 26
+        Me.PictureBox7.TabStop = False
+        '
+        'PictureBox6
+        '
+        Me.PictureBox6.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox6.Location = New System.Drawing.Point(51, 305)
+        Me.PictureBox6.Name = "PictureBox6"
+        Me.PictureBox6.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox6.TabIndex = 25
+        Me.PictureBox6.TabStop = False
+        '
+        'PictureBox5
+        '
+        Me.PictureBox5.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox5.Location = New System.Drawing.Point(675, 109)
+        Me.PictureBox5.Name = "PictureBox5"
+        Me.PictureBox5.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox5.TabIndex = 24
+        Me.PictureBox5.TabStop = False
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox4.Location = New System.Drawing.Point(519, 109)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 23
+        Me.PictureBox4.TabStop = False
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox3.Location = New System.Drawing.Point(363, 109)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox3.TabIndex = 22
+        Me.PictureBox3.TabStop = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox2.Location = New System.Drawing.Point(207, 109)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 21
+        Me.PictureBox2.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.WindowsApplication1.My.Resources.Resources.cargando1
+        Me.PictureBox1.Location = New System.Drawing.Point(51, 109)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 20
+        Me.PictureBox1.TabStop = False
+        '
         'BuscarIMagenesBing
         '
         Me.AcceptButton = Me.Button3
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(953, 91)
+        Me.ClientSize = New System.Drawing.Size(953, 95)
+        Me.Controls.Add(Me.PictureBox10)
+        Me.Controls.Add(Me.PictureBox11)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.Button2)
@@ -234,6 +268,8 @@ Partial Class BuscarIMagenesBing
         Me.Name = "BuscarIMagenesBing"
         Me.ShowInTaskbar = False
         Me.Text = " Buscador de imágenes"
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
@@ -265,4 +301,6 @@ Partial Class BuscarIMagenesBing
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
+    Friend WithEvents PictureBox10 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox11 As System.Windows.Forms.PictureBox
 End Class

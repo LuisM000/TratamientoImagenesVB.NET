@@ -403,6 +403,9 @@ Public Class Principal
     Private Sub BuscarImágenesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BuscarImágenesToolStripMenuItem1.Click
         BuscarImágenesToolStripMenuItem_Click(sender, e)
     End Sub
+    Private Sub BuscarImágenesEnFacebookToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnFacebookToolStripMenuItem1.Click
+        BuscarImágenesEnFacebookToolStripMenuItem_Click(sender, e)
+    End Sub
 
     Private Sub GuardarComoToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GuardarComoToolStripMenuItem1.Click
         GuardarToolStripMenuItem_Click(sender, e)
@@ -3954,5 +3957,6 @@ Public Class Principal
    
   
 
+   
 End Class
 

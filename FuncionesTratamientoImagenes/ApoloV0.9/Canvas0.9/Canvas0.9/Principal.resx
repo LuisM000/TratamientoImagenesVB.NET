@@ -199,6 +199,17 @@
         zRED5asAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="BuscarImágenesEnFacebookToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8k
+        KDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3
+        Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAQABADASIAAhEBAxEB/8QA
+        FQABAQAAAAAAAAAAAAAAAAAABQb/xAAjEAACAgEDAwUAAAAAAAAAAAABAgMEBQASIREUMQYiI0Fx/8QA
+        FQEBAQAAAAAAAAAAAAAAAAAABAX/xAAaEQACAgMAAAAAAAAAAAAAAAAAAQIRITFB/9oADAMBAAIRAxEA
+        PwAImW3PH8QsWZwhJMQd5HYA/YJJJOqPO4OLAYmjZSC7HkpIRO0/brHFC21m2BgAwkBUcdfHXQi1u3ki
+        LXUrWYVQMrOEeJ1AB8kEEEaf9UX1zEWOr1Mr3bJjkiaBZS5ksbWU+3ryx3Dnn91Vk1itBF0//9k=
+</value>
+  </data>
   <data name="GuardarComoToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -2925,6 +2936,17 @@
         5JzFhEuWnqq9Wvr+KmNTrLQomTtcqPLtf76mPwtVrFRE1JuM2jeVPM9S9fUWjhj0gbZkmrWWpZJshiSn
         jtJWfWpM5ihxlWcv/G/pRaEWVE+lQjtW+GykVFv1qTE15zcXfwIVUrWvKrmejZRqqz419kzYNe3fcPOf
         zRED5asAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="BuscarImágenesEnFacebookToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8k
+        KDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3
+        Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAQABADASIAAhEBAxEB/8QA
+        FQABAQAAAAAAAAAAAAAAAAAABQb/xAAjEAACAgEDAwUAAAAAAAAAAAABAgMEBQASIREUMQYiI0Fx/8QA
+        FQEBAQAAAAAAAAAAAAAAAAAABAX/xAAaEQACAgMAAAAAAAAAAAAAAAAAAQIRITFB/9oADAMBAAIRAxEA
+        PwAImW3PH8QsWZwhJMQd5HYA/YJJJOqPO4OLAYmjZSC7HkpIRO0/brHFC21m2BgAwkBUcdfHXQi1u3ki
+        LXUrWYVQMrOEeJ1AB8kEEEaf9UX1zEWOr1Mr3bJjkiaBZS5ksbWU+3ryx3Dnn91Vk1itBF0//9k=
 </value>
   </data>
   <data name="ImagenPngToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -5,16 +5,21 @@ Public Class BuscarIMagenesBing
     Dim contador = 0
     Dim numeroAbrir As Integer = 0
     Dim datos As New ArrayList
+    Public thIMG As Threading.Thread
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         contador = 0
-        resultados()
-
+        comprobar()
+        thIMG = New Threading.Thread(AddressOf resultados)
+        If thIMG.ThreadState <> Threading.ThreadState.Running Then
+            thIMG.Start()
+        End If
     End Sub
 
-    Sub resultados()
+    Sub comprobar()
         If TextBox1.Text <> "" Then
             Me.Cursor = Cursors.AppStarting
+            Timer1.Enabled = True
             Dim objeto As New trataformu
             Dim objeto2 As New tratamiento
             Dim precarga = False
@@ -23,45 +28,53 @@ Public Class BuscarIMagenesBing
             Else
                 precarga = False
             End If
-            Try
-                Button2.Enabled = True
-                Select Case ComboBox1.SelectedIndex
-                    Case -1
-                        datos = objeto.BuscarImagenes(TextBox1.Text, 50, , precarga)
-                    Case 0
-                        datos = objeto.BuscarImagenes(TextBox1.Text, 50, , precarga)
-                    Case 1
-                        datos = objeto.BuscarImagenes(TextBox1.Text, 50, "Small", precarga)
-                    Case 2
-                        datos = objeto.BuscarImagenes(TextBox1.Text, 50, "Medium", precarga)
-                    Case 3
-                        datos = objeto.BuscarImagenes(TextBox1.Text, 50, "Large", precarga)
-                    Case Else
-                        datos = objeto.BuscarImagenes(TextBox1.Text, 50, , precarga)
-                End Select
-
-
-
-                PictureBox1.Image = objeto2.cargarrecursoweb(datos(0 + contador).ToString)
-                PictureBox2.Image = objeto2.cargarrecursoweb(datos(1 + contador).ToString)
-                PictureBox3.Image = objeto2.cargarrecursoweb(datos(2 + contador).ToString)
-                PictureBox4.Image = objeto2.cargarrecursoweb(datos(3 + contador).ToString)
-                PictureBox5.Image = objeto2.cargarrecursoweb(datos(4 + contador).ToString)
-                PictureBox6.Image = objeto2.cargarrecursoweb(datos(5 + contador).ToString)
-                PictureBox7.Image = objeto2.cargarrecursoweb(datos(6 + contador).ToString)
-                PictureBox8.Image = objeto2.cargarrecursoweb(datos(7 + contador).ToString)
-
-                Timer1.Enabled = True
-                Me.Cursor = Cursors.Default
-            Catch
-            End Try
+            Button2.Enabled = True
+            Select Case ComboBox1.SelectedIndex
+                Case -1
+                    datos = objeto.BuscarImagenes(TextBox1.Text, 50, , precarga)
+                Case 0
+                    datos = objeto.BuscarImagenes(TextBox1.Text, 50, , precarga)
+                Case 1
+                    datos = objeto.BuscarImagenes(TextBox1.Text, 50, "Small", precarga)
+                Case 2
+                    datos = objeto.BuscarImagenes(TextBox1.Text, 50, "Medium", precarga)
+                Case 3
+                    datos = objeto.BuscarImagenes(TextBox1.Text, 50, "Large", precarga)
+                Case Else
+                    datos = objeto.BuscarImagenes(TextBox1.Text, 50, , precarga)
+            End Select
         End If
+        Me.Cursor = Cursors.AppStarting
+    End Sub
+
+    Sub resultados()
+
+        Try
+            Dim objeto2 As New tratamiento
+            PictureBox1.Image = objeto2.cargarrecursoweb(datos(0 + contador).ToString)
+            PictureBox2.Image = objeto2.cargarrecursoweb(datos(1 + contador).ToString)
+            PictureBox3.Image = objeto2.cargarrecursoweb(datos(2 + contador).ToString)
+            PictureBox4.Image = objeto2.cargarrecursoweb(datos(3 + contador).ToString)
+            PictureBox5.Image = objeto2.cargarrecursoweb(datos(4 + contador).ToString)
+            PictureBox6.Image = objeto2.cargarrecursoweb(datos(5 + contador).ToString)
+            PictureBox7.Image = objeto2.cargarrecursoweb(datos(6 + contador).ToString)
+            PictureBox8.Image = objeto2.cargarrecursoweb(datos(7 + contador).ToString)
+            PictureBox10.Image = objeto2.cargarrecursoweb(datos(8 + contador).ToString)
+            PictureBox11.Image = objeto2.cargarrecursoweb(datos(9 + contador).ToString)
+        Catch
+            contador -= 10
+        End Try
+        thIMG = Nothing
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        contador += 8
+        contador += 10
         limpiar()
-        resultados()
+        thIMG = New Threading.Thread(AddressOf resultados)
+        If thIMG.ThreadState <> Threading.ThreadState.Running Then
+            thIMG.Start()
+        End If
     End Sub
 
     Private Sub BuscarIMagenesBing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -98,6 +111,8 @@ Public Class BuscarIMagenesBing
         PictureBox6.BorderStyle = BorderStyle.None
         PictureBox7.BorderStyle = BorderStyle.None
         PictureBox8.BorderStyle = BorderStyle.None
+        PictureBox10.BorderStyle = BorderStyle.None
+        PictureBox11.BorderStyle = BorderStyle.None
 
     End Sub
 
@@ -149,7 +164,17 @@ Public Class BuscarIMagenesBing
         PictureBox4.BorderStyle = BorderStyle.FixedSingle
         numeroAbrir = 4
     End Sub
+    Private Sub PictureBox11_Click(sender As Object, e As EventArgs) Handles PictureBox11.Click
+        limpiar()
+        PictureBox11.BorderStyle = BorderStyle.FixedSingle
+        numeroAbrir = 10
+    End Sub
 
+    Private Sub PictureBox10_Click(sender As Object, e As EventArgs) Handles PictureBox10.Click
+        limpiar()
+        PictureBox10.BorderStyle = BorderStyle.FixedSingle
+        numeroAbrir = 9
+    End Sub
 
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -174,6 +199,10 @@ Public Class BuscarIMagenesBing
                         url = datos2(6 + contador)
                     Case 8
                         url = datos2(7 + contador)
+                    Case 9
+                        url = datos2(8 + contador)
+                    Case 10
+                        url = datos2(9 + contador)
                 End Select
             Else
                 Select Case numeroAbrir
@@ -193,6 +222,10 @@ Public Class BuscarIMagenesBing
                         IMGBing = PictureBox7.Image
                     Case 8
                         IMGBing = PictureBox8.Image
+                    Case 9
+                        IMGBing = PictureBox10.Image
+                    Case 10
+                        IMGBing = PictureBox11.Image
                 End Select
             End If
             Me.Close()
@@ -212,7 +245,13 @@ Public Class BuscarIMagenesBing
     End Sub
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        resultados()
+        comprobar()
+        thIMG = New Threading.Thread(AddressOf resultados)
+        If thIMG.ThreadState <> Threading.ThreadState.Running Then
+            thIMG.Start()
+        End If
         Timer2.Enabled = False
     End Sub
+
+  
 End Class
