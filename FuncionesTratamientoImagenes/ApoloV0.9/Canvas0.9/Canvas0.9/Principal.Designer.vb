@@ -225,29 +225,13 @@ Partial Class Principal
         Me.LeftToolStripPanel = New System.Windows.Forms.ToolStripPanel()
         Me.ContentPanel = New System.Windows.Forms.ToolStripContentPanel()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.AbrirToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AbrirRecursoWebToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BuscarImágenesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GuardarComoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ZoomToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DeshacerZoomToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem10 = New System.Windows.Forms.ToolStripSeparator()
         Me.ImagenOriginalToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AtrásToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem8 = New System.Windows.Forms.ToolStripSeparator()
-        Me.CopiarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PegarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EstablecerComoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FondoDePantallaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem9 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AjustarAPantallaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RefrescarImagenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.PropiedadesDeLaImagenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem25 = New System.Windows.Forms.ToolStripSeparator()
-        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReducirImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AnchoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -259,6 +243,133 @@ Partial Class Principal
         Me.AmbosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.EditarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImagenOriginalToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripMenuItem11 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DibujarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem17 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripMenuItem23 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TratamientoPíxelToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EfectosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EfectosLocalesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MarcosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SegmentaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TransformaciónAfínToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HerramientasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PropiedadesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel4 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel5 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel6 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel7 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel8 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel9 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripTextBox3 = New System.Windows.Forms.ToolStripTextBox()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripTextBox2 = New System.Windows.Forms.ToolStripTextBox()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripTextBox4 = New System.Windows.Forms.ToolStripTextBox()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripSplitButton1 = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.ToolStripTextBox6 = New System.Windows.Forms.ToolStripTextBox()
+        Me.ToolStripTextBox7 = New System.Windows.Forms.ToolStripTextBox()
+        Me.ToolStripTextBox1 = New System.Windows.Forms.ToolStripTextBox()
+        Me.ToolStripTextBox8 = New System.Windows.Forms.ToolStripTextBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.FontDialog1 = New System.Windows.Forms.FontDialog()
+        Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.RichTextBox11 = New System.Windows.Forms.RichTextBox()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.WebBrowser11 = New System.Windows.Forms.WebBrowser()
+        Me.MenuStrip2 = New System.Windows.Forms.MenuStrip()
+        Me.ToolStripMenuItem21 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AsdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Marco2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Marco3ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AbrirToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AbrirRecursoWebToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BuscarImágenesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BuscarImágenesEnFacebookToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GuardarComoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ZoomToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeshacerZoomToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AtrásToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopiarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PegarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EstablecerComoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FondoDePantallaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AjustarAPantallaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RefrescarImagenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PropiedadesDeLaImagenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Puntero = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton10 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
+        Me.Atrás = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton8 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton11 = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton9 = New System.Windows.Forms.ToolStripButton()
+        Me.LápizToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PolilíneaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CuadradoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem18 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripButton12 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.PropiedadesDelTextoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox14 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox10 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.AbrirToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AbrirRecursoWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BuscarImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -269,25 +380,18 @@ Partial Class Principal
         Me.ImagenBmpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImagenGIFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OtrosFormatosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.SalirToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AtrásToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImagenOriginalToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.SsssToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ZoomToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeshacerZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem11 = New System.Windows.Forms.ToolStripSeparator()
         Me.RecortarImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopiarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PegarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EstablecerComoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FondoDePantallaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripSeparator()
         Me.AjustarAPantallaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.RefrescarImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
         Me.TamañoDeLaImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Reducir50ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AnchoToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
@@ -314,7 +418,6 @@ Partial Class Principal
         Me.RedimensionarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VolteadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SesgarImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DibujarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PunteroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LápizToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LíneaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -324,10 +427,8 @@ Partial Class Principal
         Me.CírculoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ElipseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropiedadesDelTrazoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem17 = New System.Windows.Forms.ToolStripSeparator()
         Me.TextoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropiedadesDelTextoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem23 = New System.Windows.Forms.ToolStripSeparator()
         Me.BorrarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LápizToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.LíneaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -340,7 +441,6 @@ Partial Class Principal
         Me.TextoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem24 = New System.Windows.Forms.ToolStripSeparator()
         Me.BorrarTodoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TratamientoPíxelToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.FiltrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BlanconegroToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AutomáticoToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
@@ -543,7 +643,6 @@ Partial Class Principal
         Me.AutomáticoToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManualToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.HistogramaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EfectosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DesenfocarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.HorizontalToolStripMenuItem26 = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerticalToolStripMenuItem26 = New System.Windows.Forms.ToolStripMenuItem()
@@ -574,7 +673,6 @@ Partial Class Principal
         Me.DegradadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VeranoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DesiertoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EfectosLocalesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClonarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmpezarAClonarToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropiedadesToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
@@ -613,111 +711,18 @@ Partial Class Principal
         Me.BorrarZonaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmpezarABorrarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropiedadesToolStripMenuItem6 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SegmentaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SegmentaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropiedadesToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TransformaciónAfínToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AbrirMóduloTransformaciónAfínToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HerramientasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConfiguraciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConfiguraciónRápidaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PropiedadesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PropiedadesDeLaImagenToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerTablaImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TiposDeMáscarasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BuscarActualizacionesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AcercaDeCanvasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EnviarFeedbackToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel4 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel5 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel6 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel7 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel8 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel9 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox14 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox10 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.ToolStrip2 = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
-        Me.ToolStripTextBox3 = New System.Windows.Forms.ToolStripTextBox()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.Puntero = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripTextBox2 = New System.Windows.Forms.ToolStripTextBox()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton10 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
-        Me.Atrás = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripTextBox4 = New System.Windows.Forms.ToolStripTextBox()
-        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripButton8 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton11 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton9 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSplitButton1 = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.LápizToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PolilíneaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CuadradoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem18 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripButton12 = New System.Windows.Forms.ToolStripSplitButton()
-        Me.PropiedadesDelTextoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripTextBox6 = New System.Windows.Forms.ToolStripTextBox()
-        Me.ToolStripTextBox7 = New System.Windows.Forms.ToolStripTextBox()
-        Me.ToolStripTextBox1 = New System.Windows.Forms.ToolStripTextBox()
-        Me.ToolStripTextBox8 = New System.Windows.Forms.ToolStripTextBox()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.FontDialog1 = New System.Windows.Forms.FontDialog()
-        Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.RichTextBox11 = New System.Windows.Forms.RichTextBox()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.WebBrowser11 = New System.Windows.Forms.WebBrowser()
-        Me.MenuStrip2 = New System.Windows.Forms.MenuStrip()
-        Me.ToolStripMenuItem21 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BuscarImágenesEnFacebookToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControlModificado2 = New WindowsApplication1.TabControlModificado()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
@@ -725,11 +730,22 @@ Partial Class Principal
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.MenuStrip3 = New System.Windows.Forms.MenuStrip()
         Me.IrAWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Marco4ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
+        Me.ToolStrip2.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        Me.MenuStrip2.SuspendLayout()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -743,16 +759,6 @@ Partial Class Principal
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ToolStrip2.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
-        Me.TabPage4.SuspendLayout()
-        Me.MenuStrip2.SuspendLayout()
         Me.TabControlModificado2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -2011,61 +2017,12 @@ Partial Class Principal
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirToolStripMenuItem1, Me.AbrirRecursoWebToolStripMenuItem1, Me.BuscarImágenesToolStripMenuItem1, Me.BuscarImágenesEnFacebookToolStripMenuItem1, Me.GuardarComoToolStripMenuItem1, Me.ToolStripMenuItem1, Me.ZoomToolStripMenuItem, Me.ZoomToolStripMenuItem1, Me.DeshacerZoomToolStripMenuItem1, Me.ToolStripMenuItem10, Me.ImagenOriginalToolStripMenuItem1, Me.AtrásToolStripMenuItem1, Me.ToolStripMenuItem8, Me.CopiarToolStripMenuItem1, Me.PegarToolStripMenuItem1, Me.EstablecerComoToolStripMenuItem1, Me.ToolStripMenuItem9, Me.AjustarAPantallaToolStripMenuItem, Me.RefrescarImagenToolStripMenuItem1, Me.ToolStripMenuItem2, Me.PropiedadesDeLaImagenToolStripMenuItem1, Me.ToolStripMenuItem25, Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(269, 436)
-        '
-        'AbrirToolStripMenuItem1
-        '
-        Me.AbrirToolStripMenuItem1.Image = CType(resources.GetObject("AbrirToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.AbrirToolStripMenuItem1.Name = "AbrirToolStripMenuItem1"
-        Me.AbrirToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.AbrirToolStripMenuItem1.Text = "Abrir"
-        '
-        'AbrirRecursoWebToolStripMenuItem1
-        '
-        Me.AbrirRecursoWebToolStripMenuItem1.Image = CType(resources.GetObject("AbrirRecursoWebToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.AbrirRecursoWebToolStripMenuItem1.Name = "AbrirRecursoWebToolStripMenuItem1"
-        Me.AbrirRecursoWebToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.AbrirRecursoWebToolStripMenuItem1.Text = "Abrir recurso web"
-        '
-        'BuscarImágenesToolStripMenuItem1
-        '
-        Me.BuscarImágenesToolStripMenuItem1.Image = Global.WindowsApplication1.My.Resources.Resources.bing_icon_1
-        Me.BuscarImágenesToolStripMenuItem1.Name = "BuscarImágenesToolStripMenuItem1"
-        Me.BuscarImágenesToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.BuscarImágenesToolStripMenuItem1.Text = "Buscar imágenes"
-        '
-        'GuardarComoToolStripMenuItem1
-        '
-        Me.GuardarComoToolStripMenuItem1.Image = CType(resources.GetObject("GuardarComoToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.GuardarComoToolStripMenuItem1.Name = "GuardarComoToolStripMenuItem1"
-        Me.GuardarComoToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.GuardarComoToolStripMenuItem1.Text = "Guardar como..."
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(269, 414)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(265, 6)
-        '
-        'ZoomToolStripMenuItem
-        '
-        Me.ZoomToolStripMenuItem.Image = CType(resources.GetObject("ZoomToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ZoomToolStripMenuItem.Name = "ZoomToolStripMenuItem"
-        Me.ZoomToolStripMenuItem.Size = New System.Drawing.Size(268, 22)
-        Me.ZoomToolStripMenuItem.Text = "Zoom +"
-        '
-        'ZoomToolStripMenuItem1
-        '
-        Me.ZoomToolStripMenuItem1.Image = CType(resources.GetObject("ZoomToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.ZoomToolStripMenuItem1.Name = "ZoomToolStripMenuItem1"
-        Me.ZoomToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.ZoomToolStripMenuItem1.Text = "Zoom -"
-        '
-        'DeshacerZoomToolStripMenuItem1
-        '
-        Me.DeshacerZoomToolStripMenuItem1.Image = CType(resources.GetObject("DeshacerZoomToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.DeshacerZoomToolStripMenuItem1.Name = "DeshacerZoomToolStripMenuItem1"
-        Me.DeshacerZoomToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.DeshacerZoomToolStripMenuItem1.Text = "Deshacer zoom"
         '
         'ToolStripMenuItem10
         '
@@ -2078,88 +2035,25 @@ Partial Class Principal
         Me.ImagenOriginalToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
         Me.ImagenOriginalToolStripMenuItem1.Text = "Imagen original"
         '
-        'AtrásToolStripMenuItem1
-        '
-        Me.AtrásToolStripMenuItem1.Image = CType(resources.GetObject("AtrásToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.AtrásToolStripMenuItem1.Name = "AtrásToolStripMenuItem1"
-        Me.AtrásToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.AtrásToolStripMenuItem1.Text = "Atrás"
-        '
         'ToolStripMenuItem8
         '
         Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
         Me.ToolStripMenuItem8.Size = New System.Drawing.Size(265, 6)
-        '
-        'CopiarToolStripMenuItem1
-        '
-        Me.CopiarToolStripMenuItem1.Image = CType(resources.GetObject("CopiarToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.CopiarToolStripMenuItem1.Name = "CopiarToolStripMenuItem1"
-        Me.CopiarToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.CopiarToolStripMenuItem1.Text = "Copiar"
-        '
-        'PegarToolStripMenuItem1
-        '
-        Me.PegarToolStripMenuItem1.Image = CType(resources.GetObject("PegarToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.PegarToolStripMenuItem1.Name = "PegarToolStripMenuItem1"
-        Me.PegarToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.PegarToolStripMenuItem1.Text = "Pegar"
-        '
-        'EstablecerComoToolStripMenuItem1
-        '
-        Me.EstablecerComoToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FondoDePantallaToolStripMenuItem1})
-        Me.EstablecerComoToolStripMenuItem1.Image = CType(resources.GetObject("EstablecerComoToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.EstablecerComoToolStripMenuItem1.Name = "EstablecerComoToolStripMenuItem1"
-        Me.EstablecerComoToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.EstablecerComoToolStripMenuItem1.Text = "Establecer como"
-        '
-        'FondoDePantallaToolStripMenuItem1
-        '
-        Me.FondoDePantallaToolStripMenuItem1.Name = "FondoDePantallaToolStripMenuItem1"
-        Me.FondoDePantallaToolStripMenuItem1.Size = New System.Drawing.Size(169, 22)
-        Me.FondoDePantallaToolStripMenuItem1.Text = "Fondo de pantalla"
         '
         'ToolStripMenuItem9
         '
         Me.ToolStripMenuItem9.Name = "ToolStripMenuItem9"
         Me.ToolStripMenuItem9.Size = New System.Drawing.Size(265, 6)
         '
-        'AjustarAPantallaToolStripMenuItem
-        '
-        Me.AjustarAPantallaToolStripMenuItem.Image = CType(resources.GetObject("AjustarAPantallaToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.AjustarAPantallaToolStripMenuItem.Name = "AjustarAPantallaToolStripMenuItem"
-        Me.AjustarAPantallaToolStripMenuItem.Size = New System.Drawing.Size(268, 22)
-        Me.AjustarAPantallaToolStripMenuItem.Text = "Ajustar a pantalla"
-        '
-        'RefrescarImagenToolStripMenuItem1
-        '
-        Me.RefrescarImagenToolStripMenuItem1.Image = CType(resources.GetObject("RefrescarImagenToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.RefrescarImagenToolStripMenuItem1.Name = "RefrescarImagenToolStripMenuItem1"
-        Me.RefrescarImagenToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.RefrescarImagenToolStripMenuItem1.Text = "Refrescar imagen"
-        '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(265, 6)
         '
-        'PropiedadesDeLaImagenToolStripMenuItem1
-        '
-        Me.PropiedadesDeLaImagenToolStripMenuItem1.Image = CType(resources.GetObject("PropiedadesDeLaImagenToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.PropiedadesDeLaImagenToolStripMenuItem1.Name = "PropiedadesDeLaImagenToolStripMenuItem1"
-        Me.PropiedadesDeLaImagenToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.PropiedadesDeLaImagenToolStripMenuItem1.Text = "Propiedades de la imagen"
-        '
         'ToolStripMenuItem25
         '
         Me.ToolStripMenuItem25.Name = "ToolStripMenuItem25"
         Me.ToolStripMenuItem25.Size = New System.Drawing.Size(265, 6)
-        '
-        'AbrirMóduloDeTransformaciónAfínToolStripMenuItem
-        '
-        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Image = CType(resources.GetObject("AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Name = "AbrirMóduloDeTransformaciónAfínToolStripMenuItem"
-        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Size = New System.Drawing.Size(268, 22)
-        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Text = "Abrir módulo de transformación afín"
         '
         'ReducirImagenToolStripMenuItem
         '
@@ -2218,7 +2112,7 @@ Partial Class Principal
         'MenuStrip1
         '
         Me.MenuStrip1.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem1, Me.EditarToolStripMenuItem1, Me.DibujarToolStripMenuItem, Me.TratamientoPíxelToolStripMenuItem1, Me.EfectosToolStripMenuItem, Me.EfectosLocalesToolStripMenuItem, Me.SegmentaciónToolStripMenuItem, Me.TransformaciónAfínToolStripMenuItem, Me.HerramientasToolStripMenuItem1, Me.PropiedadesToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem1, Me.EditarToolStripMenuItem1, Me.DibujarToolStripMenuItem, Me.TratamientoPíxelToolStripMenuItem1, Me.EfectosToolStripMenuItem, Me.EfectosLocalesToolStripMenuItem, Me.MarcosToolStripMenuItem, Me.SegmentaciónToolStripMenuItem, Me.TransformaciónAfínToolStripMenuItem, Me.HerramientasToolStripMenuItem1, Me.PropiedadesToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
@@ -2232,6 +2126,1094 @@ Partial Class Principal
         Me.ArchivoToolStripMenuItem1.Name = "ArchivoToolStripMenuItem1"
         Me.ArchivoToolStripMenuItem1.Size = New System.Drawing.Size(60, 20)
         Me.ArchivoToolStripMenuItem1.Text = "Archivo"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(230, 6)
+        '
+        'EditarToolStripMenuItem1
+        '
+        Me.EditarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AtrásToolStripMenuItem2, Me.ImagenOriginalToolStripMenuItem2, Me.ToolStripMenuItem5, Me.SsssToolStripMenuItem, Me.ZoomToolStripMenuItem2, Me.DeshacerZoomToolStripMenuItem, Me.ToolStripMenuItem11, Me.RecortarImagenToolStripMenuItem, Me.CopiarToolStripMenuItem, Me.PegarToolStripMenuItem, Me.EstablecerComoToolStripMenuItem, Me.ToolStripMenuItem7, Me.AjustarAPantallaToolStripMenuItem1, Me.RefrescarImagenToolStripMenuItem, Me.ToolStripMenuItem6, Me.TamañoDeLaImagenToolStripMenuItem, Me.VolteadoToolStripMenuItem, Me.SesgarImagenToolStripMenuItem})
+        Me.EditarToolStripMenuItem1.Name = "EditarToolStripMenuItem1"
+        Me.EditarToolStripMenuItem1.Size = New System.Drawing.Size(49, 20)
+        Me.EditarToolStripMenuItem1.Text = "Editar"
+        '
+        'ImagenOriginalToolStripMenuItem2
+        '
+        Me.ImagenOriginalToolStripMenuItem2.Name = "ImagenOriginalToolStripMenuItem2"
+        Me.ImagenOriginalToolStripMenuItem2.Size = New System.Drawing.Size(239, 22)
+        Me.ImagenOriginalToolStripMenuItem2.Text = "Imagen original"
+        '
+        'ToolStripMenuItem5
+        '
+        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(236, 6)
+        '
+        'ToolStripMenuItem11
+        '
+        Me.ToolStripMenuItem11.Name = "ToolStripMenuItem11"
+        Me.ToolStripMenuItem11.Size = New System.Drawing.Size(236, 6)
+        '
+        'ToolStripMenuItem7
+        '
+        Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
+        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(236, 6)
+        '
+        'ToolStripMenuItem6
+        '
+        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(236, 6)
+        '
+        'DibujarToolStripMenuItem
+        '
+        Me.DibujarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PunteroToolStripMenuItem, Me.LápizToolStripMenuItem3, Me.LíneaToolStripMenuItem, Me.POlilineaToolStripMenuItem, Me.CuadradoToolStripMenuItem, Me.RectánguloToolStripMenuItem, Me.CírculoToolStripMenuItem, Me.ElipseToolStripMenuItem, Me.PropiedadesDelTrazoToolStripMenuItem, Me.ToolStripMenuItem17, Me.TextoToolStripMenuItem, Me.PropiedadesDelTextoToolStripMenuItem, Me.ToolStripMenuItem23, Me.BorrarToolStripMenuItem})
+        Me.DibujarToolStripMenuItem.Name = "DibujarToolStripMenuItem"
+        Me.DibujarToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
+        Me.DibujarToolStripMenuItem.Text = "Dibujar"
+        '
+        'ToolStripMenuItem17
+        '
+        Me.ToolStripMenuItem17.Name = "ToolStripMenuItem17"
+        Me.ToolStripMenuItem17.Size = New System.Drawing.Size(184, 6)
+        '
+        'ToolStripMenuItem23
+        '
+        Me.ToolStripMenuItem23.Name = "ToolStripMenuItem23"
+        Me.ToolStripMenuItem23.Size = New System.Drawing.Size(184, 6)
+        '
+        'TratamientoPíxelToolStripMenuItem1
+        '
+        Me.TratamientoPíxelToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FiltrosToolStripMenuItem, Me.MáscaraToolStripMenuItem, Me.MáscaraManualToolStripMenuItem, Me.MatrizToolStripMenuItem, Me.ContornosToolStripMenuItem1, Me.HistogramaToolStripMenuItem})
+        Me.TratamientoPíxelToolStripMenuItem1.Name = "TratamientoPíxelToolStripMenuItem1"
+        Me.TratamientoPíxelToolStripMenuItem1.Size = New System.Drawing.Size(111, 20)
+        Me.TratamientoPíxelToolStripMenuItem1.Text = "Tratamiento píxel"
+        '
+        'EfectosToolStripMenuItem
+        '
+        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfocarToolStripMenuItem1, Me.CuadrículaToolStripMenuItem2, Me.UnirImágenesToolStripMenuItem, Me.SepiaToolStripMenuItem2, Me.ReducirColoresToolStripMenuItem, Me.AplicarRuidoToolStripMenuItem, Me.PolaroidToolStripMenuItem, Me.PixelarToolStripMenuItem, Me.HieloToolStripMenuItem, Me.MosaicoToolStripMenuItem, Me.ResaltarPaisajesNaturalesToolStripMenuItem, Me.TexturaToolStripMenuItem, Me.ÓleoToolStripMenuItem, Me.DegradadoToolStripMenuItem, Me.VeranoToolStripMenuItem, Me.DesiertoToolStripMenuItem})
+        Me.EfectosToolStripMenuItem.Name = "EfectosToolStripMenuItem"
+        Me.EfectosToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
+        Me.EfectosToolStripMenuItem.Text = "Efectos"
+        '
+        'EfectosLocalesToolStripMenuItem
+        '
+        Me.EfectosLocalesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClonarToolStripMenuItem1, Me.ClonadoParcialToolStripMenuItem, Me.FiltroToolStripMenuItem, Me.FiltroGrisToolStripMenuItem, Me.BorrarZonaToolStripMenuItem})
+        Me.EfectosLocalesToolStripMenuItem.Name = "EfectosLocalesToolStripMenuItem"
+        Me.EfectosLocalesToolStripMenuItem.Size = New System.Drawing.Size(96, 20)
+        Me.EfectosLocalesToolStripMenuItem.Text = "Efectos locales"
+        '
+        'MarcosToolStripMenuItem
+        '
+        Me.MarcosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CineToolStripMenuItem, Me.AsdToolStripMenuItem, Me.Marco2ToolStripMenuItem, Me.Marco3ToolStripMenuItem, Me.Marco4ToolStripMenuItem})
+        Me.MarcosToolStripMenuItem.Name = "MarcosToolStripMenuItem"
+        Me.MarcosToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
+        Me.MarcosToolStripMenuItem.Text = "Marcos"
+        '
+        'SegmentaciónToolStripMenuItem
+        '
+        Me.SegmentaciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SegmentaciónToolStripMenuItem1, Me.PropiedadesToolStripMenuItem2})
+        Me.SegmentaciónToolStripMenuItem.Name = "SegmentaciónToolStripMenuItem"
+        Me.SegmentaciónToolStripMenuItem.Size = New System.Drawing.Size(134, 20)
+        Me.SegmentaciónToolStripMenuItem.Text = "Segmentación (BETA)"
+        '
+        'TransformaciónAfínToolStripMenuItem
+        '
+        Me.TransformaciónAfínToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirMóduloTransformaciónAfínToolStripMenuItem})
+        Me.TransformaciónAfínToolStripMenuItem.Name = "TransformaciónAfínToolStripMenuItem"
+        Me.TransformaciónAfínToolStripMenuItem.Size = New System.Drawing.Size(126, 20)
+        Me.TransformaciónAfínToolStripMenuItem.Text = "Transformación afín"
+        '
+        'HerramientasToolStripMenuItem1
+        '
+        Me.HerramientasToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraciónToolStripMenuItem1, Me.ConfiguraciónRápidaToolStripMenuItem})
+        Me.HerramientasToolStripMenuItem1.Name = "HerramientasToolStripMenuItem1"
+        Me.HerramientasToolStripMenuItem1.Size = New System.Drawing.Size(90, 20)
+        Me.HerramientasToolStripMenuItem1.Text = "Herramientas"
+        '
+        'PropiedadesToolStripMenuItem
+        '
+        Me.PropiedadesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropiedadesDeLaImagenToolStripMenuItem3, Me.VerTablaImagenToolStripMenuItem, Me.TiposDeMáscarasToolStripMenuItem})
+        Me.PropiedadesToolStripMenuItem.Name = "PropiedadesToolStripMenuItem"
+        Me.PropiedadesToolStripMenuItem.Size = New System.Drawing.Size(84, 20)
+        Me.PropiedadesToolStripMenuItem.Text = "Propiedades"
+        '
+        'AyudaToolStripMenuItem
+        '
+        Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BuscarActualizacionesToolStripMenuItem1, Me.AcercaDeCanvasToolStripMenuItem, Me.EnviarFeedbackToolStripMenuItem})
+        Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
+        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
+        Me.AyudaToolStripMenuItem.Text = "Ayuda"
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel4, Me.ToolStripStatusLabel5, Me.ToolStripStatusLabel6, Me.ToolStripStatusLabel7, Me.ToolStripStatusLabel8, Me.ToolStripStatusLabel9})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 759)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(1284, 22)
+        Me.StatusStrip1.TabIndex = 1
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel4
+        '
+        Me.ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
+        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(121, 17)
+        Me.ToolStripStatusLabel4.Text = "ToolStripStatusLabel4"
+        '
+        'ToolStripStatusLabel5
+        '
+        Me.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5"
+        Me.ToolStripStatusLabel5.Size = New System.Drawing.Size(121, 17)
+        Me.ToolStripStatusLabel5.Text = "ToolStripStatusLabel5"
+        '
+        'ToolStripStatusLabel6
+        '
+        Me.ToolStripStatusLabel6.Name = "ToolStripStatusLabel6"
+        Me.ToolStripStatusLabel6.Size = New System.Drawing.Size(12, 17)
+        Me.ToolStripStatusLabel6.Text = "-"
+        '
+        'ToolStripStatusLabel7
+        '
+        Me.ToolStripStatusLabel7.Name = "ToolStripStatusLabel7"
+        Me.ToolStripStatusLabel7.Size = New System.Drawing.Size(121, 17)
+        Me.ToolStripStatusLabel7.Text = "ToolStripStatusLabel7"
+        '
+        'ToolStripStatusLabel8
+        '
+        Me.ToolStripStatusLabel8.Name = "ToolStripStatusLabel8"
+        Me.ToolStripStatusLabel8.Size = New System.Drawing.Size(16, 17)
+        Me.ToolStripStatusLabel8.Text = "   "
+        '
+        'ToolStripStatusLabel9
+        '
+        Me.ToolStripStatusLabel9.Name = "ToolStripStatusLabel9"
+        Me.ToolStripStatusLabel9.Size = New System.Drawing.Size(0, 17)
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Controls.Add(Me.PictureBox1)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(978, 735)
+        Me.Panel1.TabIndex = 0
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.Silver
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.TabControlModificado2)
+        Me.Panel2.Controls.Add(Me.Label18)
+        Me.Panel2.Controls.Add(Me.PictureBox15)
+        Me.Panel2.Controls.Add(Me.PictureBox14)
+        Me.Panel2.Controls.Add(Me.PictureBox13)
+        Me.Panel2.Controls.Add(Me.PictureBox12)
+        Me.Panel2.Controls.Add(Me.PictureBox11)
+        Me.Panel2.Controls.Add(Me.PictureBox10)
+        Me.Panel2.Controls.Add(Me.PictureBox9)
+        Me.Panel2.Controls.Add(Me.PictureBox8)
+        Me.Panel2.Controls.Add(Me.Label17)
+        Me.Panel2.Controls.Add(Me.PictureBox7)
+        Me.Panel2.Controls.Add(Me.Label16)
+        Me.Panel2.Controls.Add(Me.Label15)
+        Me.Panel2.Controls.Add(Me.Label14)
+        Me.Panel2.Controls.Add(Me.Label13)
+        Me.Panel2.Controls.Add(Me.Label12)
+        Me.Panel2.Controls.Add(Me.Label11)
+        Me.Panel2.Controls.Add(Me.PictureBox6)
+        Me.Panel2.Controls.Add(Me.Label10)
+        Me.Panel2.Controls.Add(Me.PictureBox5)
+        Me.Panel2.Controls.Add(Me.Label9)
+        Me.Panel2.Controls.Add(Me.Label8)
+        Me.Panel2.Controls.Add(Me.Label7)
+        Me.Panel2.Controls.Add(Me.CheckBox1)
+        Me.Panel2.Controls.Add(Me.Label6)
+        Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.PictureBox4)
+        Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(978, 735)
+        Me.Panel2.TabIndex = 9
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.BackColor = System.Drawing.Color.Transparent
+        Me.Label18.Font = New System.Drawing.Font("Segoe Print", 12.0!)
+        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label18.Location = New System.Drawing.Point(338, 241)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(181, 28)
+        Me.Label18.TabIndex = 29
+        Me.Label18.Text = "Configuración rápida"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.BackColor = System.Drawing.Color.Transparent
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(59, 229)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(133, 15)
+        Me.Label17.TabIndex = 19
+        Me.Label17.Text = "Imágenes recientes"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
+        Me.Label16.Font = New System.Drawing.Font("Segoe Print", 9.75!)
+        Me.Label16.Location = New System.Drawing.Point(83, 389)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(0, 23)
+        Me.Label16.TabIndex = 17
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.BackColor = System.Drawing.Color.Transparent
+        Me.Label15.Font = New System.Drawing.Font("Segoe Print", 9.75!)
+        Me.Label15.Location = New System.Drawing.Point(83, 362)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(0, 23)
+        Me.Label15.TabIndex = 16
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.Transparent
+        Me.Label14.Font = New System.Drawing.Font("Segoe Print", 9.75!)
+        Me.Label14.Location = New System.Drawing.Point(83, 336)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(0, 23)
+        Me.Label14.TabIndex = 15
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.BackColor = System.Drawing.Color.Transparent
+        Me.Label13.Font = New System.Drawing.Font("Segoe Print", 9.75!)
+        Me.Label13.Location = New System.Drawing.Point(83, 307)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(0, 23)
+        Me.Label13.TabIndex = 14
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.BackColor = System.Drawing.Color.Transparent
+        Me.Label12.Font = New System.Drawing.Font("Segoe Print", 9.75!)
+        Me.Label12.Location = New System.Drawing.Point(83, 272)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(0, 23)
+        Me.Label12.TabIndex = 13
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Font = New System.Drawing.Font("Segoe Print", 9.75!)
+        Me.Label11.Location = New System.Drawing.Point(83, 245)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(0, 23)
+        Me.Label11.TabIndex = 12
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Segoe Print", 9.75!)
+        Me.Label10.Location = New System.Drawing.Point(64, 163)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(131, 23)
+        Me.Label10.TabIndex = 10
+        Me.Label10.Text = "Abrir recurso web"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Segoe Print", 12.0!)
+        Me.Label9.ForeColor = System.Drawing.Color.Black
+        Me.Label9.Location = New System.Drawing.Point(508, 222)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(229, 28)
+        Me.Label9.TabIndex = 8
+        Me.Label9.Text = "Salir pantalla presentación"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Font = New System.Drawing.Font("Segoe Print", 9.75!)
+        Me.Label8.Location = New System.Drawing.Point(47, 109)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(143, 23)
+        Me.Label8.TabIndex = 7
+        Me.Label8.Text = "Abrir nueva imagen"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Segoe Print", 12.0!)
+        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label7.Location = New System.Drawing.Point(508, 178)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(141, 28)
+        Me.Label7.TabIndex = 6
+        Me.Label7.Text = "Acerca de Apolo"
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.BackColor = System.Drawing.Color.Transparent
+        Me.CheckBox1.Location = New System.Drawing.Point(50, 202)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(204, 17)
+        Me.CheckBox1.TabIndex = 5
+        Me.CheckBox1.Text = "Mostrar siempre pantalla presentación"
+        Me.CheckBox1.UseVisualStyleBackColor = False
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("Segoe Print", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label6.Location = New System.Drawing.Point(508, 135)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(187, 28)
+        Me.Label6.TabIndex = 4
+        Me.Label6.Text = "Configuración general"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Segoe Print", 12.0!)
+        Me.Label5.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.Label5.Location = New System.Drawing.Point(508, 92)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(191, 28)
+        Me.Label5.TabIndex = 3
+        Me.Label5.Text = "Buscar actualizaciones"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(40, 25)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(454, 55)
+        Me.Label4.TabIndex = 1
+        Me.Label4.Text = "Apolo versión 0.9.0"
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.IsSplitterFixed = True
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 24)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.PictureBox3)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label3)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label2)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Label1)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.PictureBox2)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.ToolStrip2)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Panel1)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1284, 735)
+        Me.SplitContainer1.SplitterDistance = 305
+        Me.SplitContainer1.SplitterWidth = 1
+        Me.SplitContainer1.TabIndex = 2
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Label3.Location = New System.Drawing.Point(-2, 499)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(0, 13)
+        Me.Label3.TabIndex = 18
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Label2.Location = New System.Drawing.Point(-3, 306)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(0, 13)
+        Me.Label2.TabIndex = 17
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Label1.Location = New System.Drawing.Point(38, 319)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(0, 13)
+        Me.Label1.TabIndex = 16
+        '
+        'ToolStrip2
+        '
+        Me.ToolStrip2.AutoSize = False
+        Me.ToolStrip2.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripTextBox3, Me.ToolStripSeparator1, Me.Puntero, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator2, Me.ToolStripTextBox2, Me.ToolStripSeparator3, Me.ToolStripButton10, Me.ToolStripButton5, Me.Atrás, Me.ToolStripButton7, Me.ToolStripButton6, Me.ToolStripButton1, Me.ToolStripSeparator4, Me.ToolStripTextBox4, Me.ToolStripSeparator5, Me.ToolStripButton8, Me.ToolStripButton11, Me.ToolStripButton9, Me.ToolStripSplitButton1, Me.ToolStripButton12, Me.ToolStripTextBox6, Me.ToolStripTextBox7, Me.ToolStripTextBox1, Me.ToolStripTextBox8})
+        Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip2.Name = "ToolStrip2"
+        Me.ToolStrip2.Size = New System.Drawing.Size(163, 735)
+        Me.ToolStrip2.Stretch = True
+        Me.ToolStrip2.TabIndex = 14
+        Me.ToolStrip2.Text = "ToolStrip2"
+        '
+        'ToolStripLabel1
+        '
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(161, 0)
+        '
+        'ToolStripTextBox3
+        '
+        Me.ToolStripTextBox3.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.ToolStripTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ToolStripTextBox3.Enabled = False
+        Me.ToolStripTextBox3.Name = "ToolStripTextBox3"
+        Me.ToolStripTextBox3.Size = New System.Drawing.Size(159, 16)
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(161, 6)
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(161, 6)
+        '
+        'ToolStripTextBox2
+        '
+        Me.ToolStripTextBox2.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.ToolStripTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ToolStripTextBox2.Enabled = False
+        Me.ToolStripTextBox2.Name = "ToolStripTextBox2"
+        Me.ToolStripTextBox2.Size = New System.Drawing.Size(159, 16)
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(161, 6)
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(161, 6)
+        '
+        'ToolStripTextBox4
+        '
+        Me.ToolStripTextBox4.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.ToolStripTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ToolStripTextBox4.Enabled = False
+        Me.ToolStripTextBox4.Name = "ToolStripTextBox4"
+        Me.ToolStripTextBox4.Size = New System.Drawing.Size(159, 16)
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(161, 6)
+        '
+        'ToolStripSplitButton1
+        '
+        Me.ToolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripSplitButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LápizToolStripMenuItem1, Me.PolilíneaToolStripMenuItem, Me.CuadradoToolStripMenuItem1, Me.ToolStripMenuItem18})
+        Me.ToolStripSplitButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
+        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(161, 19)
+        Me.ToolStripSplitButton1.Text = "Más formas"
+        '
+        'ToolStripTextBox6
+        '
+        Me.ToolStripTextBox6.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.ToolStripTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ToolStripTextBox6.Enabled = False
+        Me.ToolStripTextBox6.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.ToolStripTextBox6.Name = "ToolStripTextBox6"
+        Me.ToolStripTextBox6.Size = New System.Drawing.Size(159, 16)
+        Me.ToolStripTextBox6.Text = "|---------Tipo de trazo------|"
+        Me.ToolStripTextBox6.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'ToolStripTextBox7
+        '
+        Me.ToolStripTextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ToolStripTextBox7.Enabled = False
+        Me.ToolStripTextBox7.Name = "ToolStripTextBox7"
+        Me.ToolStripTextBox7.Size = New System.Drawing.Size(159, 16)
+        '
+        'ToolStripTextBox1
+        '
+        Me.ToolStripTextBox1.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.ToolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ToolStripTextBox1.Enabled = False
+        Me.ToolStripTextBox1.Name = "ToolStripTextBox1"
+        Me.ToolStripTextBox1.Size = New System.Drawing.Size(159, 16)
+        '
+        'ToolStripTextBox8
+        '
+        Me.ToolStripTextBox8.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.ToolStripTextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ToolStripTextBox8.Enabled = False
+        Me.ToolStripTextBox8.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.ToolStripTextBox8.Name = "ToolStripTextBox8"
+        Me.ToolStripTextBox8.Size = New System.Drawing.Size(159, 16)
+        Me.ToolStripTextBox8.Text = "|-----------------------------|"
+        Me.ToolStripTextBox8.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1000
+        '
+        'Timer2
+        '
+        Me.Timer2.Enabled = True
+        Me.Timer2.Interval = 2000
+        '
+        'FontDialog1
+        '
+        Me.FontDialog1.Color = System.Drawing.SystemColors.ControlText
+        '
+        'Timer3
+        '
+        Me.Timer3.Interval = 3000
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.RichTextBox11)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(208, 104)
+        Me.TabPage3.TabIndex = 0
+        Me.TabPage3.Text = "Sugerencias"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'RichTextBox11
+        '
+        Me.RichTextBox11.BackColor = System.Drawing.SystemColors.Control
+        Me.RichTextBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.RichTextBox11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RichTextBox11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox11.Location = New System.Drawing.Point(3, 3)
+        Me.RichTextBox11.Name = "RichTextBox11"
+        Me.RichTextBox11.ReadOnly = True
+        Me.RichTextBox11.Size = New System.Drawing.Size(202, 98)
+        Me.RichTextBox11.TabIndex = 1
+        Me.RichTextBox11.Text = ""
+        '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.WebBrowser11)
+        Me.TabPage4.Controls.Add(Me.MenuStrip2)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(208, 104)
+        Me.TabPage4.TabIndex = 1
+        Me.TabPage4.Text = "Últimas novedades"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'WebBrowser11
+        '
+        Me.WebBrowser11.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.WebBrowser11.Location = New System.Drawing.Point(3, 27)
+        Me.WebBrowser11.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.WebBrowser11.Name = "WebBrowser11"
+        Me.WebBrowser11.Size = New System.Drawing.Size(202, 74)
+        Me.WebBrowser11.TabIndex = 0
+        '
+        'MenuStrip2
+        '
+        Me.MenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem21})
+        Me.MenuStrip2.Location = New System.Drawing.Point(3, 3)
+        Me.MenuStrip2.Name = "MenuStrip2"
+        Me.MenuStrip2.Size = New System.Drawing.Size(202, 24)
+        Me.MenuStrip2.TabIndex = 1
+        Me.MenuStrip2.Text = "MenuStrip2"
+        '
+        'ToolStripMenuItem21
+        '
+        Me.ToolStripMenuItem21.Name = "ToolStripMenuItem21"
+        Me.ToolStripMenuItem21.Size = New System.Drawing.Size(60, 20)
+        Me.ToolStripMenuItem21.Text = "Ir a web"
+        '
+        'AsdToolStripMenuItem
+        '
+        Me.AsdToolStripMenuItem.Name = "AsdToolStripMenuItem"
+        Me.AsdToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AsdToolStripMenuItem.Text = "marco1"
+        '
+        'Marco2ToolStripMenuItem
+        '
+        Me.Marco2ToolStripMenuItem.Name = "Marco2ToolStripMenuItem"
+        Me.Marco2ToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.Marco2ToolStripMenuItem.Text = "marco2"
+        '
+        'Marco3ToolStripMenuItem
+        '
+        Me.Marco3ToolStripMenuItem.Name = "Marco3ToolStripMenuItem"
+        Me.Marco3ToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.Marco3ToolStripMenuItem.Text = "marco3"
+        '
+        'AbrirToolStripMenuItem1
+        '
+        Me.AbrirToolStripMenuItem1.Image = CType(resources.GetObject("AbrirToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.AbrirToolStripMenuItem1.Name = "AbrirToolStripMenuItem1"
+        Me.AbrirToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.AbrirToolStripMenuItem1.Text = "Abrir"
+        '
+        'AbrirRecursoWebToolStripMenuItem1
+        '
+        Me.AbrirRecursoWebToolStripMenuItem1.Image = CType(resources.GetObject("AbrirRecursoWebToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.AbrirRecursoWebToolStripMenuItem1.Name = "AbrirRecursoWebToolStripMenuItem1"
+        Me.AbrirRecursoWebToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.AbrirRecursoWebToolStripMenuItem1.Text = "Abrir recurso web"
+        '
+        'BuscarImágenesToolStripMenuItem1
+        '
+        Me.BuscarImágenesToolStripMenuItem1.Image = Global.WindowsApplication1.My.Resources.Resources.bing_icon_1
+        Me.BuscarImágenesToolStripMenuItem1.Name = "BuscarImágenesToolStripMenuItem1"
+        Me.BuscarImágenesToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.BuscarImágenesToolStripMenuItem1.Text = "Buscar imágenes"
+        '
+        'BuscarImágenesEnFacebookToolStripMenuItem1
+        '
+        Me.BuscarImágenesEnFacebookToolStripMenuItem1.Image = CType(resources.GetObject("BuscarImágenesEnFacebookToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.BuscarImágenesEnFacebookToolStripMenuItem1.Name = "BuscarImágenesEnFacebookToolStripMenuItem1"
+        Me.BuscarImágenesEnFacebookToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.BuscarImágenesEnFacebookToolStripMenuItem1.Text = "Buscar imágenes en Facebook"
+        '
+        'GuardarComoToolStripMenuItem1
+        '
+        Me.GuardarComoToolStripMenuItem1.Image = CType(resources.GetObject("GuardarComoToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.GuardarComoToolStripMenuItem1.Name = "GuardarComoToolStripMenuItem1"
+        Me.GuardarComoToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.GuardarComoToolStripMenuItem1.Text = "Guardar como..."
+        '
+        'ZoomToolStripMenuItem
+        '
+        Me.ZoomToolStripMenuItem.Image = CType(resources.GetObject("ZoomToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ZoomToolStripMenuItem.Name = "ZoomToolStripMenuItem"
+        Me.ZoomToolStripMenuItem.Size = New System.Drawing.Size(268, 22)
+        Me.ZoomToolStripMenuItem.Text = "Zoom +"
+        '
+        'ZoomToolStripMenuItem1
+        '
+        Me.ZoomToolStripMenuItem1.Image = CType(resources.GetObject("ZoomToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.ZoomToolStripMenuItem1.Name = "ZoomToolStripMenuItem1"
+        Me.ZoomToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.ZoomToolStripMenuItem1.Text = "Zoom -"
+        '
+        'DeshacerZoomToolStripMenuItem1
+        '
+        Me.DeshacerZoomToolStripMenuItem1.Image = CType(resources.GetObject("DeshacerZoomToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.DeshacerZoomToolStripMenuItem1.Name = "DeshacerZoomToolStripMenuItem1"
+        Me.DeshacerZoomToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.DeshacerZoomToolStripMenuItem1.Text = "Deshacer zoom"
+        '
+        'AtrásToolStripMenuItem1
+        '
+        Me.AtrásToolStripMenuItem1.Image = CType(resources.GetObject("AtrásToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.AtrásToolStripMenuItem1.Name = "AtrásToolStripMenuItem1"
+        Me.AtrásToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.AtrásToolStripMenuItem1.Text = "Atrás"
+        '
+        'CopiarToolStripMenuItem1
+        '
+        Me.CopiarToolStripMenuItem1.Image = CType(resources.GetObject("CopiarToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.CopiarToolStripMenuItem1.Name = "CopiarToolStripMenuItem1"
+        Me.CopiarToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.CopiarToolStripMenuItem1.Text = "Copiar"
+        '
+        'PegarToolStripMenuItem1
+        '
+        Me.PegarToolStripMenuItem1.Image = CType(resources.GetObject("PegarToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.PegarToolStripMenuItem1.Name = "PegarToolStripMenuItem1"
+        Me.PegarToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.PegarToolStripMenuItem1.Text = "Pegar"
+        '
+        'EstablecerComoToolStripMenuItem1
+        '
+        Me.EstablecerComoToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FondoDePantallaToolStripMenuItem1})
+        Me.EstablecerComoToolStripMenuItem1.Image = CType(resources.GetObject("EstablecerComoToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.EstablecerComoToolStripMenuItem1.Name = "EstablecerComoToolStripMenuItem1"
+        Me.EstablecerComoToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.EstablecerComoToolStripMenuItem1.Text = "Establecer como"
+        '
+        'FondoDePantallaToolStripMenuItem1
+        '
+        Me.FondoDePantallaToolStripMenuItem1.Name = "FondoDePantallaToolStripMenuItem1"
+        Me.FondoDePantallaToolStripMenuItem1.Size = New System.Drawing.Size(169, 22)
+        Me.FondoDePantallaToolStripMenuItem1.Text = "Fondo de pantalla"
+        '
+        'AjustarAPantallaToolStripMenuItem
+        '
+        Me.AjustarAPantallaToolStripMenuItem.Image = CType(resources.GetObject("AjustarAPantallaToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.AjustarAPantallaToolStripMenuItem.Name = "AjustarAPantallaToolStripMenuItem"
+        Me.AjustarAPantallaToolStripMenuItem.Size = New System.Drawing.Size(268, 22)
+        Me.AjustarAPantallaToolStripMenuItem.Text = "Ajustar a pantalla"
+        '
+        'RefrescarImagenToolStripMenuItem1
+        '
+        Me.RefrescarImagenToolStripMenuItem1.Image = CType(resources.GetObject("RefrescarImagenToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.RefrescarImagenToolStripMenuItem1.Name = "RefrescarImagenToolStripMenuItem1"
+        Me.RefrescarImagenToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.RefrescarImagenToolStripMenuItem1.Text = "Refrescar imagen"
+        '
+        'PropiedadesDeLaImagenToolStripMenuItem1
+        '
+        Me.PropiedadesDeLaImagenToolStripMenuItem1.Image = CType(resources.GetObject("PropiedadesDeLaImagenToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.PropiedadesDeLaImagenToolStripMenuItem1.Name = "PropiedadesDeLaImagenToolStripMenuItem1"
+        Me.PropiedadesDeLaImagenToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
+        Me.PropiedadesDeLaImagenToolStripMenuItem1.Text = "Propiedades de la imagen"
+        '
+        'AbrirMóduloDeTransformaciónAfínToolStripMenuItem
+        '
+        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Image = CType(resources.GetObject("AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Name = "AbrirMóduloDeTransformaciónAfínToolStripMenuItem"
+        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Size = New System.Drawing.Size(268, 22)
+        Me.AbrirMóduloDeTransformaciónAfínToolStripMenuItem.Text = "Abrir módulo de transformación afín"
+        '
+        'PictureBox3
+        '
+        Me.PictureBox3.AccessibleDescription = ""
+        Me.PictureBox3.AccessibleName = ""
+        Me.PictureBox3.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.PictureBox3.Location = New System.Drawing.Point(7, 420)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(146, 31)
+        Me.PictureBox3.TabIndex = 19
+        Me.PictureBox3.TabStop = False
+        Me.PictureBox3.Tag = ""
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.PictureBox2.Location = New System.Drawing.Point(12, 473)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(140, 140)
+        Me.PictureBox2.TabIndex = 15
+        Me.PictureBox2.TabStop = False
+        '
+        'Puntero
+        '
+        Me.Puntero.Image = CType(resources.GetObject("Puntero.Image"), System.Drawing.Image)
+        Me.Puntero.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Puntero.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Puntero.Name = "Puntero"
+        Me.Puntero.Size = New System.Drawing.Size(161, 20)
+        Me.Puntero.Text = "Puntero"
+        '
+        'ToolStripButton3
+        '
+        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
+        Me.ToolStripButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton3.Name = "ToolStripButton3"
+        Me.ToolStripButton3.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton3.Text = "Zoom más"
+        '
+        'ToolStripButton4
+        '
+        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
+        Me.ToolStripButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton4.Name = "ToolStripButton4"
+        Me.ToolStripButton4.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton4.Text = "Zoom menos"
+        '
+        'ToolStripButton10
+        '
+        Me.ToolStripButton10.Image = CType(resources.GetObject("ToolStripButton10.Image"), System.Drawing.Image)
+        Me.ToolStripButton10.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton10.Name = "ToolStripButton10"
+        Me.ToolStripButton10.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton10.Text = "Recortar"
+        '
+        'ToolStripButton5
+        '
+        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
+        Me.ToolStripButton5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton5.Name = "ToolStripButton5"
+        Me.ToolStripButton5.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton5.Text = "Pegar"
+        '
+        'Atrás
+        '
+        Me.Atrás.Image = CType(resources.GetObject("Atrás.Image"), System.Drawing.Image)
+        Me.Atrás.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Atrás.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Atrás.Name = "Atrás"
+        Me.Atrás.Size = New System.Drawing.Size(161, 20)
+        Me.Atrás.Text = "Atrás"
+        '
+        'ToolStripButton7
+        '
+        Me.ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), System.Drawing.Image)
+        Me.ToolStripButton7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton7.Name = "ToolStripButton7"
+        Me.ToolStripButton7.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton7.Text = "Imagen original"
+        '
+        'ToolStripButton6
+        '
+        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
+        Me.ToolStripButton6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton6.Name = "ToolStripButton6"
+        Me.ToolStripButton6.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton6.Text = "Ajustar a pantalla"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton1.Text = "Refrescar"
+        '
+        'ToolStripButton8
+        '
+        Me.ToolStripButton8.Image = CType(resources.GetObject("ToolStripButton8.Image"), System.Drawing.Image)
+        Me.ToolStripButton8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton8.Name = "ToolStripButton8"
+        Me.ToolStripButton8.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton8.Text = "Línea"
+        '
+        'ToolStripButton11
+        '
+        Me.ToolStripButton11.Image = CType(resources.GetObject("ToolStripButton11.Image"), System.Drawing.Image)
+        Me.ToolStripButton11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton11.Name = "ToolStripButton11"
+        Me.ToolStripButton11.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton11.Text = "Rectángulo"
+        '
+        'ToolStripButton9
+        '
+        Me.ToolStripButton9.Image = CType(resources.GetObject("ToolStripButton9.Image"), System.Drawing.Image)
+        Me.ToolStripButton9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton9.Name = "ToolStripButton9"
+        Me.ToolStripButton9.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton9.Text = "Elipse"
+        '
+        'LápizToolStripMenuItem1
+        '
+        Me.LápizToolStripMenuItem1.Image = CType(resources.GetObject("LápizToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.LápizToolStripMenuItem1.Name = "LápizToolStripMenuItem1"
+        Me.LápizToolStripMenuItem1.Size = New System.Drawing.Size(126, 22)
+        Me.LápizToolStripMenuItem1.Text = "Lápiz"
+        '
+        'PolilíneaToolStripMenuItem
+        '
+        Me.PolilíneaToolStripMenuItem.Image = CType(resources.GetObject("PolilíneaToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.PolilíneaToolStripMenuItem.Name = "PolilíneaToolStripMenuItem"
+        Me.PolilíneaToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
+        Me.PolilíneaToolStripMenuItem.Text = "Polilínea"
+        '
+        'CuadradoToolStripMenuItem1
+        '
+        Me.CuadradoToolStripMenuItem1.Image = CType(resources.GetObject("CuadradoToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.CuadradoToolStripMenuItem1.Name = "CuadradoToolStripMenuItem1"
+        Me.CuadradoToolStripMenuItem1.Size = New System.Drawing.Size(126, 22)
+        Me.CuadradoToolStripMenuItem1.Text = "Cuadrado"
+        '
+        'ToolStripMenuItem18
+        '
+        Me.ToolStripMenuItem18.Image = CType(resources.GetObject("ToolStripMenuItem18.Image"), System.Drawing.Image)
+        Me.ToolStripMenuItem18.Name = "ToolStripMenuItem18"
+        Me.ToolStripMenuItem18.Size = New System.Drawing.Size(126, 22)
+        Me.ToolStripMenuItem18.Text = "Círculo"
+        '
+        'ToolStripButton12
+        '
+        Me.ToolStripButton12.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropiedadesDelTextoToolStripMenuItem1})
+        Me.ToolStripButton12.Image = CType(resources.GetObject("ToolStripButton12.Image"), System.Drawing.Image)
+        Me.ToolStripButton12.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ToolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton12.Name = "ToolStripButton12"
+        Me.ToolStripButton12.Size = New System.Drawing.Size(161, 20)
+        Me.ToolStripButton12.Text = "Texto"
+        '
+        'PropiedadesDelTextoToolStripMenuItem1
+        '
+        Me.PropiedadesDelTextoToolStripMenuItem1.Image = CType(resources.GetObject("PropiedadesDelTextoToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.PropiedadesDelTextoToolStripMenuItem1.Name = "PropiedadesDelTextoToolStripMenuItem1"
+        Me.PropiedadesDelTextoToolStripMenuItem1.Size = New System.Drawing.Size(187, 22)
+        Me.PropiedadesDelTextoToolStripMenuItem1.Text = "Propiedades del texto"
+        '
+        'PictureBox15
+        '
+        Me.PictureBox15.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox15.Location = New System.Drawing.Point(134, 319)
+        Me.PictureBox15.Name = "PictureBox15"
+        Me.PictureBox15.Size = New System.Drawing.Size(37, 33)
+        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox15.TabIndex = 27
+        Me.PictureBox15.TabStop = False
+        '
+        'PictureBox14
+        '
+        Me.PictureBox14.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox14.Location = New System.Drawing.Point(134, 279)
+        Me.PictureBox14.Name = "PictureBox14"
+        Me.PictureBox14.Size = New System.Drawing.Size(37, 33)
+        Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox14.TabIndex = 26
+        Me.PictureBox14.TabStop = False
+        '
+        'PictureBox13
+        '
+        Me.PictureBox13.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox13.Location = New System.Drawing.Point(50, 362)
+        Me.PictureBox13.Name = "PictureBox13"
+        Me.PictureBox13.Size = New System.Drawing.Size(37, 33)
+        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox13.TabIndex = 25
+        Me.PictureBox13.TabStop = False
+        '
+        'PictureBox12
+        '
+        Me.PictureBox12.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox12.Location = New System.Drawing.Point(3, 372)
+        Me.PictureBox12.Name = "PictureBox12"
+        Me.PictureBox12.Size = New System.Drawing.Size(37, 33)
+        Me.PictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox12.TabIndex = 24
+        Me.PictureBox12.TabStop = False
+        '
+        'PictureBox11
+        '
+        Me.PictureBox11.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox11.Location = New System.Drawing.Point(18, 318)
+        Me.PictureBox11.Name = "PictureBox11"
+        Me.PictureBox11.Size = New System.Drawing.Size(37, 33)
+        Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox11.TabIndex = 23
+        Me.PictureBox11.TabStop = False
+        '
+        'PictureBox10
+        '
+        Me.PictureBox10.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox10.Location = New System.Drawing.Point(18, 279)
+        Me.PictureBox10.Name = "PictureBox10"
+        Me.PictureBox10.Size = New System.Drawing.Size(37, 33)
+        Me.PictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox10.TabIndex = 22
+        Me.PictureBox10.TabStop = False
+        '
+        'PictureBox9
+        '
+        Me.PictureBox9.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox9.ErrorImage = CType(resources.GetObject("PictureBox9.ErrorImage"), System.Drawing.Image)
+        Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
+        Me.PictureBox9.Location = New System.Drawing.Point(40, 104)
+        Me.PictureBox9.Name = "PictureBox9"
+        Me.PictureBox9.Size = New System.Drawing.Size(589, 2)
+        Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox9.TabIndex = 21
+        Me.PictureBox9.TabStop = False
+        '
+        'PictureBox8
+        '
+        Me.PictureBox8.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox8.ErrorImage = CType(resources.GetObject("PictureBox8.ErrorImage"), System.Drawing.Image)
+        Me.PictureBox8.Image = CType(resources.GetObject("PictureBox8.Image"), System.Drawing.Image)
+        Me.PictureBox8.Location = New System.Drawing.Point(105, 208)
+        Me.PictureBox8.Name = "PictureBox8"
+        Me.PictureBox8.Size = New System.Drawing.Size(589, 2)
+        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox8.TabIndex = 20
+        Me.PictureBox8.TabStop = False
+        '
+        'PictureBox7
+        '
+        Me.PictureBox7.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox7.ErrorImage = CType(resources.GetObject("PictureBox7.ErrorImage"), System.Drawing.Image)
+        Me.PictureBox7.Image = CType(resources.GetObject("PictureBox7.Image"), System.Drawing.Image)
+        Me.PictureBox7.Location = New System.Drawing.Point(45, 79)
+        Me.PictureBox7.Name = "PictureBox7"
+        Me.PictureBox7.Size = New System.Drawing.Size(589, 2)
+        Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox7.TabIndex = 18
+        Me.PictureBox7.TabStop = False
+        '
+        'PictureBox6
+        '
+        Me.PictureBox6.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
+        Me.PictureBox6.Location = New System.Drawing.Point(40, 178)
+        Me.PictureBox6.Name = "PictureBox6"
+        Me.PictureBox6.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox6.TabIndex = 11
+        Me.PictureBox6.TabStop = False
+        '
+        'PictureBox5
+        '
+        Me.PictureBox5.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
+        Me.PictureBox5.Location = New System.Drawing.Point(67, 128)
+        Me.PictureBox5.Name = "PictureBox5"
+        Me.PictureBox5.Size = New System.Drawing.Size(32, 32)
+        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox5.TabIndex = 9
+        Me.PictureBox5.TabStop = False
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
+        Me.PictureBox4.Location = New System.Drawing.Point(411, 80)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(2, 655)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 2
+        Me.PictureBox4.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(978, 735)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.PictureBox1.TabIndex = 6
+        Me.PictureBox1.TabStop = False
         '
         'AbrirToolStripMenuItem2
         '
@@ -2306,11 +3288,6 @@ Partial Class Principal
         Me.OtrosFormatosToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.OtrosFormatosToolStripMenuItem.Text = "Otros formatos"
         '
-        'ToolStripMenuItem3
-        '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(230, 6)
-        '
         'SalirToolStripMenuItem1
         '
         Me.SalirToolStripMenuItem1.Image = CType(resources.GetObject("SalirToolStripMenuItem1.Image"), System.Drawing.Image)
@@ -2319,13 +3296,6 @@ Partial Class Principal
         Me.SalirToolStripMenuItem1.Size = New System.Drawing.Size(233, 22)
         Me.SalirToolStripMenuItem1.Text = "Salir"
         '
-        'EditarToolStripMenuItem1
-        '
-        Me.EditarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AtrásToolStripMenuItem2, Me.ImagenOriginalToolStripMenuItem2, Me.ToolStripMenuItem5, Me.SsssToolStripMenuItem, Me.ZoomToolStripMenuItem2, Me.DeshacerZoomToolStripMenuItem, Me.ToolStripMenuItem11, Me.RecortarImagenToolStripMenuItem, Me.CopiarToolStripMenuItem, Me.PegarToolStripMenuItem, Me.EstablecerComoToolStripMenuItem, Me.ToolStripMenuItem7, Me.AjustarAPantallaToolStripMenuItem1, Me.RefrescarImagenToolStripMenuItem, Me.ToolStripMenuItem6, Me.TamañoDeLaImagenToolStripMenuItem, Me.VolteadoToolStripMenuItem, Me.SesgarImagenToolStripMenuItem})
-        Me.EditarToolStripMenuItem1.Name = "EditarToolStripMenuItem1"
-        Me.EditarToolStripMenuItem1.Size = New System.Drawing.Size(49, 20)
-        Me.EditarToolStripMenuItem1.Text = "Editar"
-        '
         'AtrásToolStripMenuItem2
         '
         Me.AtrásToolStripMenuItem2.Image = CType(resources.GetObject("AtrásToolStripMenuItem2.Image"), System.Drawing.Image)
@@ -2333,17 +3303,6 @@ Partial Class Principal
         Me.AtrásToolStripMenuItem2.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
         Me.AtrásToolStripMenuItem2.Size = New System.Drawing.Size(239, 22)
         Me.AtrásToolStripMenuItem2.Text = "Atrás"
-        '
-        'ImagenOriginalToolStripMenuItem2
-        '
-        Me.ImagenOriginalToolStripMenuItem2.Name = "ImagenOriginalToolStripMenuItem2"
-        Me.ImagenOriginalToolStripMenuItem2.Size = New System.Drawing.Size(239, 22)
-        Me.ImagenOriginalToolStripMenuItem2.Text = "Imagen original"
-        '
-        'ToolStripMenuItem5
-        '
-        Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(236, 6)
         '
         'SsssToolStripMenuItem
         '
@@ -2368,11 +3327,6 @@ Partial Class Principal
         Me.DeshacerZoomToolStripMenuItem.Name = "DeshacerZoomToolStripMenuItem"
         Me.DeshacerZoomToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.DeshacerZoomToolStripMenuItem.Text = "Deshacer zoom"
-        '
-        'ToolStripMenuItem11
-        '
-        Me.ToolStripMenuItem11.Name = "ToolStripMenuItem11"
-        Me.ToolStripMenuItem11.Size = New System.Drawing.Size(236, 6)
         '
         'RecortarImagenToolStripMenuItem
         '
@@ -2411,11 +3365,6 @@ Partial Class Principal
         Me.FondoDePantallaToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.FondoDePantallaToolStripMenuItem.Text = "Fondo de pantalla"
         '
-        'ToolStripMenuItem7
-        '
-        Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
-        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(236, 6)
-        '
         'AjustarAPantallaToolStripMenuItem1
         '
         Me.AjustarAPantallaToolStripMenuItem1.Image = CType(resources.GetObject("AjustarAPantallaToolStripMenuItem1.Image"), System.Drawing.Image)
@@ -2431,11 +3380,6 @@ Partial Class Principal
         Me.RefrescarImagenToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F), System.Windows.Forms.Keys)
         Me.RefrescarImagenToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.RefrescarImagenToolStripMenuItem.Text = "Refrescar imagen"
-        '
-        'ToolStripMenuItem6
-        '
-        Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(236, 6)
         '
         'TamañoDeLaImagenToolStripMenuItem
         '
@@ -2602,13 +3546,6 @@ Partial Class Principal
         Me.SesgarImagenToolStripMenuItem.Size = New System.Drawing.Size(239, 22)
         Me.SesgarImagenToolStripMenuItem.Text = "Sesgar imagen"
         '
-        'DibujarToolStripMenuItem
-        '
-        Me.DibujarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PunteroToolStripMenuItem, Me.LápizToolStripMenuItem3, Me.LíneaToolStripMenuItem, Me.POlilineaToolStripMenuItem, Me.CuadradoToolStripMenuItem, Me.RectánguloToolStripMenuItem, Me.CírculoToolStripMenuItem, Me.ElipseToolStripMenuItem, Me.PropiedadesDelTrazoToolStripMenuItem, Me.ToolStripMenuItem17, Me.TextoToolStripMenuItem, Me.PropiedadesDelTextoToolStripMenuItem, Me.ToolStripMenuItem23, Me.BorrarToolStripMenuItem})
-        Me.DibujarToolStripMenuItem.Name = "DibujarToolStripMenuItem"
-        Me.DibujarToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
-        Me.DibujarToolStripMenuItem.Text = "Dibujar"
-        '
         'PunteroToolStripMenuItem
         '
         Me.PunteroToolStripMenuItem.Image = CType(resources.GetObject("PunteroToolStripMenuItem.Image"), System.Drawing.Image)
@@ -2672,11 +3609,6 @@ Partial Class Principal
         Me.PropiedadesDelTrazoToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.PropiedadesDelTrazoToolStripMenuItem.Text = "Propiedades del trazo"
         '
-        'ToolStripMenuItem17
-        '
-        Me.ToolStripMenuItem17.Name = "ToolStripMenuItem17"
-        Me.ToolStripMenuItem17.Size = New System.Drawing.Size(184, 6)
-        '
         'TextoToolStripMenuItem
         '
         Me.TextoToolStripMenuItem.Image = CType(resources.GetObject("TextoToolStripMenuItem.Image"), System.Drawing.Image)
@@ -2690,11 +3622,6 @@ Partial Class Principal
         Me.PropiedadesDelTextoToolStripMenuItem.Name = "PropiedadesDelTextoToolStripMenuItem"
         Me.PropiedadesDelTextoToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.PropiedadesDelTextoToolStripMenuItem.Text = "Propiedades del texto"
-        '
-        'ToolStripMenuItem23
-        '
-        Me.ToolStripMenuItem23.Name = "ToolStripMenuItem23"
-        Me.ToolStripMenuItem23.Size = New System.Drawing.Size(184, 6)
         '
         'BorrarToolStripMenuItem
         '
@@ -2767,13 +3694,6 @@ Partial Class Principal
         Me.BorrarTodoToolStripMenuItem1.Name = "BorrarTodoToolStripMenuItem1"
         Me.BorrarTodoToolStripMenuItem1.Size = New System.Drawing.Size(134, 22)
         Me.BorrarTodoToolStripMenuItem1.Text = "Borrar todo"
-        '
-        'TratamientoPíxelToolStripMenuItem1
-        '
-        Me.TratamientoPíxelToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FiltrosToolStripMenuItem, Me.MáscaraToolStripMenuItem, Me.MáscaraManualToolStripMenuItem, Me.MatrizToolStripMenuItem, Me.ContornosToolStripMenuItem1, Me.HistogramaToolStripMenuItem})
-        Me.TratamientoPíxelToolStripMenuItem1.Name = "TratamientoPíxelToolStripMenuItem1"
-        Me.TratamientoPíxelToolStripMenuItem1.Size = New System.Drawing.Size(111, 20)
-        Me.TratamientoPíxelToolStripMenuItem1.Text = "Tratamiento píxel"
         '
         'FiltrosToolStripMenuItem
         '
@@ -4047,13 +4967,6 @@ Partial Class Principal
         Me.HistogramaToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.HistogramaToolStripMenuItem.Text = "Histograma"
         '
-        'EfectosToolStripMenuItem
-        '
-        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfocarToolStripMenuItem1, Me.CuadrículaToolStripMenuItem2, Me.UnirImágenesToolStripMenuItem, Me.SepiaToolStripMenuItem2, Me.ReducirColoresToolStripMenuItem, Me.AplicarRuidoToolStripMenuItem, Me.PolaroidToolStripMenuItem, Me.PixelarToolStripMenuItem, Me.HieloToolStripMenuItem, Me.MosaicoToolStripMenuItem, Me.ResaltarPaisajesNaturalesToolStripMenuItem, Me.TexturaToolStripMenuItem, Me.ÓleoToolStripMenuItem, Me.DegradadoToolStripMenuItem, Me.VeranoToolStripMenuItem, Me.DesiertoToolStripMenuItem})
-        Me.EfectosToolStripMenuItem.Name = "EfectosToolStripMenuItem"
-        Me.EfectosToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
-        Me.EfectosToolStripMenuItem.Text = "Efectos"
-        '
         'DesenfocarToolStripMenuItem1
         '
         Me.DesenfocarToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HorizontalToolStripMenuItem26, Me.VerticalToolStripMenuItem26, Me.HorizontaverticalToolStripMenuItem})
@@ -4254,13 +5167,6 @@ Partial Class Principal
         Me.DesiertoToolStripMenuItem.Name = "DesiertoToolStripMenuItem"
         Me.DesiertoToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
         Me.DesiertoToolStripMenuItem.Text = "Desierto"
-        '
-        'EfectosLocalesToolStripMenuItem
-        '
-        Me.EfectosLocalesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClonarToolStripMenuItem1, Me.ClonadoParcialToolStripMenuItem, Me.FiltroToolStripMenuItem, Me.FiltroGrisToolStripMenuItem, Me.BorrarZonaToolStripMenuItem})
-        Me.EfectosLocalesToolStripMenuItem.Name = "EfectosLocalesToolStripMenuItem"
-        Me.EfectosLocalesToolStripMenuItem.Size = New System.Drawing.Size(96, 20)
-        Me.EfectosLocalesToolStripMenuItem.Text = "Efectos locales"
         '
         'ClonarToolStripMenuItem1
         '
@@ -4502,12 +5408,12 @@ Partial Class Principal
         Me.PropiedadesToolStripMenuItem6.Size = New System.Drawing.Size(163, 22)
         Me.PropiedadesToolStripMenuItem6.Text = "Propiedades"
         '
-        'SegmentaciónToolStripMenuItem
+        'CineToolStripMenuItem
         '
-        Me.SegmentaciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SegmentaciónToolStripMenuItem1, Me.PropiedadesToolStripMenuItem2})
-        Me.SegmentaciónToolStripMenuItem.Name = "SegmentaciónToolStripMenuItem"
-        Me.SegmentaciónToolStripMenuItem.Size = New System.Drawing.Size(134, 20)
-        Me.SegmentaciónToolStripMenuItem.Text = "Segmentación (BETA)"
+        Me.CineToolStripMenuItem.Image = CType(resources.GetObject("CineToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.CineToolStripMenuItem.Name = "CineToolStripMenuItem"
+        Me.CineToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CineToolStripMenuItem.Text = "Cine"
         '
         'SegmentaciónToolStripMenuItem1
         '
@@ -4523,26 +5429,12 @@ Partial Class Principal
         Me.PropiedadesToolStripMenuItem2.Size = New System.Drawing.Size(187, 22)
         Me.PropiedadesToolStripMenuItem2.Text = "Propiedades"
         '
-        'TransformaciónAfínToolStripMenuItem
-        '
-        Me.TransformaciónAfínToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirMóduloTransformaciónAfínToolStripMenuItem})
-        Me.TransformaciónAfínToolStripMenuItem.Name = "TransformaciónAfínToolStripMenuItem"
-        Me.TransformaciónAfínToolStripMenuItem.Size = New System.Drawing.Size(126, 20)
-        Me.TransformaciónAfínToolStripMenuItem.Text = "Transformación afín"
-        '
         'AbrirMóduloTransformaciónAfínToolStripMenuItem
         '
         Me.AbrirMóduloTransformaciónAfínToolStripMenuItem.Image = CType(resources.GetObject("AbrirMóduloTransformaciónAfínToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AbrirMóduloTransformaciónAfínToolStripMenuItem.Name = "AbrirMóduloTransformaciónAfínToolStripMenuItem"
         Me.AbrirMóduloTransformaciónAfínToolStripMenuItem.Size = New System.Drawing.Size(252, 22)
         Me.AbrirMóduloTransformaciónAfínToolStripMenuItem.Text = "Abrir módulo transformación afín"
-        '
-        'HerramientasToolStripMenuItem1
-        '
-        Me.HerramientasToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConfiguraciónToolStripMenuItem1, Me.ConfiguraciónRápidaToolStripMenuItem})
-        Me.HerramientasToolStripMenuItem1.Name = "HerramientasToolStripMenuItem1"
-        Me.HerramientasToolStripMenuItem1.Size = New System.Drawing.Size(90, 20)
-        Me.HerramientasToolStripMenuItem1.Text = "Herramientas"
         '
         'ConfiguraciónToolStripMenuItem1
         '
@@ -4557,13 +5449,6 @@ Partial Class Principal
         Me.ConfiguraciónRápidaToolStripMenuItem.Name = "ConfiguraciónRápidaToolStripMenuItem"
         Me.ConfiguraciónRápidaToolStripMenuItem.Size = New System.Drawing.Size(186, 22)
         Me.ConfiguraciónRápidaToolStripMenuItem.Text = "Configuración rápida"
-        '
-        'PropiedadesToolStripMenuItem
-        '
-        Me.PropiedadesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropiedadesDeLaImagenToolStripMenuItem3, Me.VerTablaImagenToolStripMenuItem, Me.TiposDeMáscarasToolStripMenuItem})
-        Me.PropiedadesToolStripMenuItem.Name = "PropiedadesToolStripMenuItem"
-        Me.PropiedadesToolStripMenuItem.Size = New System.Drawing.Size(84, 20)
-        Me.PropiedadesToolStripMenuItem.Text = "Propiedades"
         '
         'PropiedadesDeLaImagenToolStripMenuItem3
         '
@@ -4587,13 +5472,6 @@ Partial Class Principal
         Me.TiposDeMáscarasToolStripMenuItem.Size = New System.Drawing.Size(251, 22)
         Me.TiposDeMáscarasToolStripMenuItem.Text = "Tipos de máscaras"
         '
-        'AyudaToolStripMenuItem
-        '
-        Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BuscarActualizacionesToolStripMenuItem1, Me.AcercaDeCanvasToolStripMenuItem, Me.EnviarFeedbackToolStripMenuItem})
-        Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
-        Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
-        Me.AyudaToolStripMenuItem.Text = "Ayuda"
-        '
         'BuscarActualizacionesToolStripMenuItem1
         '
         Me.BuscarActualizacionesToolStripMenuItem1.Image = CType(resources.GetObject("BuscarActualizacionesToolStripMenuItem1.Image"), System.Drawing.Image)
@@ -4614,846 +5492,6 @@ Partial Class Principal
         Me.EnviarFeedbackToolStripMenuItem.Name = "EnviarFeedbackToolStripMenuItem"
         Me.EnviarFeedbackToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
         Me.EnviarFeedbackToolStripMenuItem.Text = "Feedback"
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel4, Me.ToolStripStatusLabel5, Me.ToolStripStatusLabel6, Me.ToolStripStatusLabel7, Me.ToolStripStatusLabel8, Me.ToolStripStatusLabel9})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 759)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1284, 22)
-        Me.StatusStrip1.TabIndex = 1
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'ToolStripStatusLabel4
-        '
-        Me.ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
-        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(121, 17)
-        Me.ToolStripStatusLabel4.Text = "ToolStripStatusLabel4"
-        '
-        'ToolStripStatusLabel5
-        '
-        Me.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5"
-        Me.ToolStripStatusLabel5.Size = New System.Drawing.Size(121, 17)
-        Me.ToolStripStatusLabel5.Text = "ToolStripStatusLabel5"
-        '
-        'ToolStripStatusLabel6
-        '
-        Me.ToolStripStatusLabel6.Name = "ToolStripStatusLabel6"
-        Me.ToolStripStatusLabel6.Size = New System.Drawing.Size(12, 17)
-        Me.ToolStripStatusLabel6.Text = "-"
-        '
-        'ToolStripStatusLabel7
-        '
-        Me.ToolStripStatusLabel7.Name = "ToolStripStatusLabel7"
-        Me.ToolStripStatusLabel7.Size = New System.Drawing.Size(121, 17)
-        Me.ToolStripStatusLabel7.Text = "ToolStripStatusLabel7"
-        '
-        'ToolStripStatusLabel8
-        '
-        Me.ToolStripStatusLabel8.Name = "ToolStripStatusLabel8"
-        Me.ToolStripStatusLabel8.Size = New System.Drawing.Size(16, 17)
-        Me.ToolStripStatusLabel8.Text = "   "
-        '
-        'ToolStripStatusLabel9
-        '
-        Me.ToolStripStatusLabel9.Name = "ToolStripStatusLabel9"
-        Me.ToolStripStatusLabel9.Size = New System.Drawing.Size(0, 17)
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Controls.Add(Me.PictureBox1)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(978, 735)
-        Me.Panel1.TabIndex = 0
-        '
-        'Panel2
-        '
-        Me.Panel2.BackColor = System.Drawing.Color.Silver
-        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel2.Controls.Add(Me.TabControlModificado2)
-        Me.Panel2.Controls.Add(Me.Label18)
-        Me.Panel2.Controls.Add(Me.PictureBox15)
-        Me.Panel2.Controls.Add(Me.PictureBox14)
-        Me.Panel2.Controls.Add(Me.PictureBox13)
-        Me.Panel2.Controls.Add(Me.PictureBox12)
-        Me.Panel2.Controls.Add(Me.PictureBox11)
-        Me.Panel2.Controls.Add(Me.PictureBox10)
-        Me.Panel2.Controls.Add(Me.PictureBox9)
-        Me.Panel2.Controls.Add(Me.PictureBox8)
-        Me.Panel2.Controls.Add(Me.Label17)
-        Me.Panel2.Controls.Add(Me.PictureBox7)
-        Me.Panel2.Controls.Add(Me.Label16)
-        Me.Panel2.Controls.Add(Me.Label15)
-        Me.Panel2.Controls.Add(Me.Label14)
-        Me.Panel2.Controls.Add(Me.Label13)
-        Me.Panel2.Controls.Add(Me.Label12)
-        Me.Panel2.Controls.Add(Me.Label11)
-        Me.Panel2.Controls.Add(Me.PictureBox6)
-        Me.Panel2.Controls.Add(Me.Label10)
-        Me.Panel2.Controls.Add(Me.PictureBox5)
-        Me.Panel2.Controls.Add(Me.Label9)
-        Me.Panel2.Controls.Add(Me.Label8)
-        Me.Panel2.Controls.Add(Me.Label7)
-        Me.Panel2.Controls.Add(Me.CheckBox1)
-        Me.Panel2.Controls.Add(Me.Label6)
-        Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Controls.Add(Me.PictureBox4)
-        Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(978, 735)
-        Me.Panel2.TabIndex = 9
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.BackColor = System.Drawing.Color.Transparent
-        Me.Label18.Font = New System.Drawing.Font("Segoe Print", 12.0!)
-        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label18.Location = New System.Drawing.Point(338, 241)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(181, 28)
-        Me.Label18.TabIndex = 29
-        Me.Label18.Text = "Configuración rápida"
-        '
-        'PictureBox15
-        '
-        Me.PictureBox15.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox15.Location = New System.Drawing.Point(134, 319)
-        Me.PictureBox15.Name = "PictureBox15"
-        Me.PictureBox15.Size = New System.Drawing.Size(37, 33)
-        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox15.TabIndex = 27
-        Me.PictureBox15.TabStop = False
-        '
-        'PictureBox14
-        '
-        Me.PictureBox14.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox14.Location = New System.Drawing.Point(134, 279)
-        Me.PictureBox14.Name = "PictureBox14"
-        Me.PictureBox14.Size = New System.Drawing.Size(37, 33)
-        Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox14.TabIndex = 26
-        Me.PictureBox14.TabStop = False
-        '
-        'PictureBox13
-        '
-        Me.PictureBox13.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox13.Location = New System.Drawing.Point(50, 362)
-        Me.PictureBox13.Name = "PictureBox13"
-        Me.PictureBox13.Size = New System.Drawing.Size(37, 33)
-        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox13.TabIndex = 25
-        Me.PictureBox13.TabStop = False
-        '
-        'PictureBox12
-        '
-        Me.PictureBox12.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox12.Location = New System.Drawing.Point(3, 372)
-        Me.PictureBox12.Name = "PictureBox12"
-        Me.PictureBox12.Size = New System.Drawing.Size(37, 33)
-        Me.PictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox12.TabIndex = 24
-        Me.PictureBox12.TabStop = False
-        '
-        'PictureBox11
-        '
-        Me.PictureBox11.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox11.Location = New System.Drawing.Point(18, 318)
-        Me.PictureBox11.Name = "PictureBox11"
-        Me.PictureBox11.Size = New System.Drawing.Size(37, 33)
-        Me.PictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox11.TabIndex = 23
-        Me.PictureBox11.TabStop = False
-        '
-        'PictureBox10
-        '
-        Me.PictureBox10.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox10.Location = New System.Drawing.Point(18, 279)
-        Me.PictureBox10.Name = "PictureBox10"
-        Me.PictureBox10.Size = New System.Drawing.Size(37, 33)
-        Me.PictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox10.TabIndex = 22
-        Me.PictureBox10.TabStop = False
-        '
-        'PictureBox9
-        '
-        Me.PictureBox9.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox9.ErrorImage = CType(resources.GetObject("PictureBox9.ErrorImage"), System.Drawing.Image)
-        Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
-        Me.PictureBox9.Location = New System.Drawing.Point(40, 104)
-        Me.PictureBox9.Name = "PictureBox9"
-        Me.PictureBox9.Size = New System.Drawing.Size(589, 2)
-        Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox9.TabIndex = 21
-        Me.PictureBox9.TabStop = False
-        '
-        'PictureBox8
-        '
-        Me.PictureBox8.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox8.ErrorImage = CType(resources.GetObject("PictureBox8.ErrorImage"), System.Drawing.Image)
-        Me.PictureBox8.Image = CType(resources.GetObject("PictureBox8.Image"), System.Drawing.Image)
-        Me.PictureBox8.Location = New System.Drawing.Point(105, 208)
-        Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(589, 2)
-        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox8.TabIndex = 20
-        Me.PictureBox8.TabStop = False
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.BackColor = System.Drawing.Color.Transparent
-        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(59, 229)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(133, 15)
-        Me.Label17.TabIndex = 19
-        Me.Label17.Text = "Imágenes recientes"
-        '
-        'PictureBox7
-        '
-        Me.PictureBox7.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox7.ErrorImage = CType(resources.GetObject("PictureBox7.ErrorImage"), System.Drawing.Image)
-        Me.PictureBox7.Image = CType(resources.GetObject("PictureBox7.Image"), System.Drawing.Image)
-        Me.PictureBox7.Location = New System.Drawing.Point(45, 79)
-        Me.PictureBox7.Name = "PictureBox7"
-        Me.PictureBox7.Size = New System.Drawing.Size(589, 2)
-        Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox7.TabIndex = 18
-        Me.PictureBox7.TabStop = False
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.BackColor = System.Drawing.Color.Transparent
-        Me.Label16.Font = New System.Drawing.Font("Segoe Print", 9.75!)
-        Me.Label16.Location = New System.Drawing.Point(83, 389)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(0, 23)
-        Me.Label16.TabIndex = 17
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.BackColor = System.Drawing.Color.Transparent
-        Me.Label15.Font = New System.Drawing.Font("Segoe Print", 9.75!)
-        Me.Label15.Location = New System.Drawing.Point(83, 362)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(0, 23)
-        Me.Label15.TabIndex = 16
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.BackColor = System.Drawing.Color.Transparent
-        Me.Label14.Font = New System.Drawing.Font("Segoe Print", 9.75!)
-        Me.Label14.Location = New System.Drawing.Point(83, 336)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(0, 23)
-        Me.Label14.TabIndex = 15
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.BackColor = System.Drawing.Color.Transparent
-        Me.Label13.Font = New System.Drawing.Font("Segoe Print", 9.75!)
-        Me.Label13.Location = New System.Drawing.Point(83, 307)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(0, 23)
-        Me.Label13.TabIndex = 14
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.BackColor = System.Drawing.Color.Transparent
-        Me.Label12.Font = New System.Drawing.Font("Segoe Print", 9.75!)
-        Me.Label12.Location = New System.Drawing.Point(83, 272)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(0, 23)
-        Me.Label12.TabIndex = 13
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Segoe Print", 9.75!)
-        Me.Label11.Location = New System.Drawing.Point(83, 245)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(0, 23)
-        Me.Label11.TabIndex = 12
-        '
-        'PictureBox6
-        '
-        Me.PictureBox6.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox6.Image = CType(resources.GetObject("PictureBox6.Image"), System.Drawing.Image)
-        Me.PictureBox6.Location = New System.Drawing.Point(40, 178)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureBox6.TabIndex = 11
-        Me.PictureBox6.TabStop = False
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Font = New System.Drawing.Font("Segoe Print", 9.75!)
-        Me.Label10.Location = New System.Drawing.Point(64, 163)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(131, 23)
-        Me.Label10.TabIndex = 10
-        Me.Label10.Text = "Abrir recurso web"
-        '
-        'PictureBox5
-        '
-        Me.PictureBox5.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
-        Me.PictureBox5.Location = New System.Drawing.Point(67, 128)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(32, 32)
-        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.PictureBox5.TabIndex = 9
-        Me.PictureBox5.TabStop = False
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Segoe Print", 12.0!)
-        Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(508, 222)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(229, 28)
-        Me.Label9.TabIndex = 8
-        Me.Label9.Text = "Salir pantalla presentación"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Segoe Print", 9.75!)
-        Me.Label8.Location = New System.Drawing.Point(47, 109)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(143, 23)
-        Me.Label8.TabIndex = 7
-        Me.Label8.Text = "Abrir nueva imagen"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Segoe Print", 12.0!)
-        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(508, 178)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(141, 28)
-        Me.Label7.TabIndex = 6
-        Me.Label7.Text = "Acerca de Apolo"
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.BackColor = System.Drawing.Color.Transparent
-        Me.CheckBox1.Location = New System.Drawing.Point(50, 202)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(204, 17)
-        Me.CheckBox1.TabIndex = 5
-        Me.CheckBox1.Text = "Mostrar siempre pantalla presentación"
-        Me.CheckBox1.UseVisualStyleBackColor = False
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Font = New System.Drawing.Font("Segoe Print", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(508, 135)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(187, 28)
-        Me.Label6.TabIndex = 4
-        Me.Label6.Text = "Configuración general"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Segoe Print", 12.0!)
-        Me.Label5.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.Label5.Location = New System.Drawing.Point(508, 92)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(191, 28)
-        Me.Label5.TabIndex = 3
-        Me.Label5.Text = "Buscar actualizaciones"
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox4.Image = CType(resources.GetObject("PictureBox4.Image"), System.Drawing.Image)
-        Me.PictureBox4.Location = New System.Drawing.Point(411, 80)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(2, 655)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox4.TabIndex = 2
-        Me.PictureBox4.TabStop = False
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(40, 25)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(454, 55)
-        Me.Label4.TabIndex = 1
-        Me.Label4.Text = "Apolo versión 0.9.0"
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(978, 735)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox1.TabIndex = 6
-        Me.PictureBox1.TabStop = False
-        '
-        'SplitContainer1
-        '
-        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.IsSplitterFixed = True
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 24)
-        Me.SplitContainer1.Name = "SplitContainer1"
-        '
-        'SplitContainer1.Panel1
-        '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.PictureBox3)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label3)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label2)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.Label1)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.PictureBox2)
-        Me.SplitContainer1.Panel1.Controls.Add(Me.ToolStrip2)
-        '
-        'SplitContainer1.Panel2
-        '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.Panel1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1284, 735)
-        Me.SplitContainer1.SplitterDistance = 305
-        Me.SplitContainer1.SplitterWidth = 1
-        Me.SplitContainer1.TabIndex = 2
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.AccessibleDescription = ""
-        Me.PictureBox3.AccessibleName = ""
-        Me.PictureBox3.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.PictureBox3.Location = New System.Drawing.Point(7, 420)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(146, 31)
-        Me.PictureBox3.TabIndex = 19
-        Me.PictureBox3.TabStop = False
-        Me.PictureBox3.Tag = ""
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Label3.Location = New System.Drawing.Point(-2, 499)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(0, 13)
-        Me.Label3.TabIndex = 18
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Label2.Location = New System.Drawing.Point(-3, 306)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(0, 13)
-        Me.Label2.TabIndex = 17
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Label1.Location = New System.Drawing.Point(38, 319)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(0, 13)
-        Me.Label1.TabIndex = 16
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.PictureBox2.Location = New System.Drawing.Point(12, 473)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(140, 140)
-        Me.PictureBox2.TabIndex = 15
-        Me.PictureBox2.TabStop = False
-        '
-        'ToolStrip2
-        '
-        Me.ToolStrip2.AutoSize = False
-        Me.ToolStrip2.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ToolStrip2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ToolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.ToolStripTextBox3, Me.ToolStripSeparator1, Me.Puntero, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripSeparator2, Me.ToolStripTextBox2, Me.ToolStripSeparator3, Me.ToolStripButton10, Me.ToolStripButton5, Me.Atrás, Me.ToolStripButton7, Me.ToolStripButton6, Me.ToolStripButton1, Me.ToolStripSeparator4, Me.ToolStripTextBox4, Me.ToolStripSeparator5, Me.ToolStripButton8, Me.ToolStripButton11, Me.ToolStripButton9, Me.ToolStripSplitButton1, Me.ToolStripButton12, Me.ToolStripTextBox6, Me.ToolStripTextBox7, Me.ToolStripTextBox1, Me.ToolStripTextBox8})
-        Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(163, 735)
-        Me.ToolStrip2.Stretch = True
-        Me.ToolStrip2.TabIndex = 14
-        Me.ToolStrip2.Text = "ToolStrip2"
-        '
-        'ToolStripLabel1
-        '
-        Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(161, 0)
-        '
-        'ToolStripTextBox3
-        '
-        Me.ToolStripTextBox3.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ToolStripTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ToolStripTextBox3.Enabled = False
-        Me.ToolStripTextBox3.Name = "ToolStripTextBox3"
-        Me.ToolStripTextBox3.Size = New System.Drawing.Size(159, 16)
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(161, 6)
-        '
-        'Puntero
-        '
-        Me.Puntero.Image = CType(resources.GetObject("Puntero.Image"), System.Drawing.Image)
-        Me.Puntero.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Puntero.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Puntero.Name = "Puntero"
-        Me.Puntero.Size = New System.Drawing.Size(161, 20)
-        Me.Puntero.Text = "Puntero"
-        '
-        'ToolStripButton3
-        '
-        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
-        Me.ToolStripButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.ToolStripButton3.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton3.Text = "Zoom más"
-        '
-        'ToolStripButton4
-        '
-        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
-        Me.ToolStripButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton4.Name = "ToolStripButton4"
-        Me.ToolStripButton4.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton4.Text = "Zoom menos"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(161, 6)
-        '
-        'ToolStripTextBox2
-        '
-        Me.ToolStripTextBox2.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ToolStripTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ToolStripTextBox2.Enabled = False
-        Me.ToolStripTextBox2.Name = "ToolStripTextBox2"
-        Me.ToolStripTextBox2.Size = New System.Drawing.Size(159, 16)
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(161, 6)
-        '
-        'ToolStripButton10
-        '
-        Me.ToolStripButton10.Image = CType(resources.GetObject("ToolStripButton10.Image"), System.Drawing.Image)
-        Me.ToolStripButton10.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton10.Name = "ToolStripButton10"
-        Me.ToolStripButton10.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton10.Text = "Recortar"
-        '
-        'ToolStripButton5
-        '
-        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
-        Me.ToolStripButton5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton5.Text = "Pegar"
-        '
-        'Atrás
-        '
-        Me.Atrás.Image = CType(resources.GetObject("Atrás.Image"), System.Drawing.Image)
-        Me.Atrás.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Atrás.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Atrás.Name = "Atrás"
-        Me.Atrás.Size = New System.Drawing.Size(161, 20)
-        Me.Atrás.Text = "Atrás"
-        '
-        'ToolStripButton7
-        '
-        Me.ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), System.Drawing.Image)
-        Me.ToolStripButton7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton7.Name = "ToolStripButton7"
-        Me.ToolStripButton7.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton7.Text = "Imagen original"
-        '
-        'ToolStripButton6
-        '
-        Me.ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), System.Drawing.Image)
-        Me.ToolStripButton6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton6.Name = "ToolStripButton6"
-        Me.ToolStripButton6.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton6.Text = "Ajustar a pantalla"
-        '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton1.Text = "Refrescar"
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(161, 6)
-        '
-        'ToolStripTextBox4
-        '
-        Me.ToolStripTextBox4.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ToolStripTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ToolStripTextBox4.Enabled = False
-        Me.ToolStripTextBox4.Name = "ToolStripTextBox4"
-        Me.ToolStripTextBox4.Size = New System.Drawing.Size(159, 16)
-        '
-        'ToolStripSeparator5
-        '
-        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(161, 6)
-        '
-        'ToolStripButton8
-        '
-        Me.ToolStripButton8.Image = CType(resources.GetObject("ToolStripButton8.Image"), System.Drawing.Image)
-        Me.ToolStripButton8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton8.Name = "ToolStripButton8"
-        Me.ToolStripButton8.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton8.Text = "Línea"
-        '
-        'ToolStripButton11
-        '
-        Me.ToolStripButton11.Image = CType(resources.GetObject("ToolStripButton11.Image"), System.Drawing.Image)
-        Me.ToolStripButton11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton11.Name = "ToolStripButton11"
-        Me.ToolStripButton11.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton11.Text = "Rectángulo"
-        '
-        'ToolStripButton9
-        '
-        Me.ToolStripButton9.Image = CType(resources.GetObject("ToolStripButton9.Image"), System.Drawing.Image)
-        Me.ToolStripButton9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton9.Name = "ToolStripButton9"
-        Me.ToolStripButton9.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton9.Text = "Elipse"
-        '
-        'ToolStripSplitButton1
-        '
-        Me.ToolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripSplitButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LápizToolStripMenuItem1, Me.PolilíneaToolStripMenuItem, Me.CuadradoToolStripMenuItem1, Me.ToolStripMenuItem18})
-        Me.ToolStripSplitButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
-        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(161, 19)
-        Me.ToolStripSplitButton1.Text = "Más formas"
-        '
-        'LápizToolStripMenuItem1
-        '
-        Me.LápizToolStripMenuItem1.Image = CType(resources.GetObject("LápizToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.LápizToolStripMenuItem1.Name = "LápizToolStripMenuItem1"
-        Me.LápizToolStripMenuItem1.Size = New System.Drawing.Size(126, 22)
-        Me.LápizToolStripMenuItem1.Text = "Lápiz"
-        '
-        'PolilíneaToolStripMenuItem
-        '
-        Me.PolilíneaToolStripMenuItem.Image = CType(resources.GetObject("PolilíneaToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.PolilíneaToolStripMenuItem.Name = "PolilíneaToolStripMenuItem"
-        Me.PolilíneaToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
-        Me.PolilíneaToolStripMenuItem.Text = "Polilínea"
-        '
-        'CuadradoToolStripMenuItem1
-        '
-        Me.CuadradoToolStripMenuItem1.Image = CType(resources.GetObject("CuadradoToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.CuadradoToolStripMenuItem1.Name = "CuadradoToolStripMenuItem1"
-        Me.CuadradoToolStripMenuItem1.Size = New System.Drawing.Size(126, 22)
-        Me.CuadradoToolStripMenuItem1.Text = "Cuadrado"
-        '
-        'ToolStripMenuItem18
-        '
-        Me.ToolStripMenuItem18.Image = CType(resources.GetObject("ToolStripMenuItem18.Image"), System.Drawing.Image)
-        Me.ToolStripMenuItem18.Name = "ToolStripMenuItem18"
-        Me.ToolStripMenuItem18.Size = New System.Drawing.Size(126, 22)
-        Me.ToolStripMenuItem18.Text = "Círculo"
-        '
-        'ToolStripButton12
-        '
-        Me.ToolStripButton12.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PropiedadesDelTextoToolStripMenuItem1})
-        Me.ToolStripButton12.Image = CType(resources.GetObject("ToolStripButton12.Image"), System.Drawing.Image)
-        Me.ToolStripButton12.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ToolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton12.Name = "ToolStripButton12"
-        Me.ToolStripButton12.Size = New System.Drawing.Size(161, 20)
-        Me.ToolStripButton12.Text = "Texto"
-        '
-        'PropiedadesDelTextoToolStripMenuItem1
-        '
-        Me.PropiedadesDelTextoToolStripMenuItem1.Image = CType(resources.GetObject("PropiedadesDelTextoToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.PropiedadesDelTextoToolStripMenuItem1.Name = "PropiedadesDelTextoToolStripMenuItem1"
-        Me.PropiedadesDelTextoToolStripMenuItem1.Size = New System.Drawing.Size(187, 22)
-        Me.PropiedadesDelTextoToolStripMenuItem1.Text = "Propiedades del texto"
-        '
-        'ToolStripTextBox6
-        '
-        Me.ToolStripTextBox6.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ToolStripTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ToolStripTextBox6.Enabled = False
-        Me.ToolStripTextBox6.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.ToolStripTextBox6.Name = "ToolStripTextBox6"
-        Me.ToolStripTextBox6.Size = New System.Drawing.Size(159, 16)
-        Me.ToolStripTextBox6.Text = "|---------Tipo de trazo------|"
-        Me.ToolStripTextBox6.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'ToolStripTextBox7
-        '
-        Me.ToolStripTextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ToolStripTextBox7.Enabled = False
-        Me.ToolStripTextBox7.Name = "ToolStripTextBox7"
-        Me.ToolStripTextBox7.Size = New System.Drawing.Size(159, 16)
-        '
-        'ToolStripTextBox1
-        '
-        Me.ToolStripTextBox1.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ToolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ToolStripTextBox1.Enabled = False
-        Me.ToolStripTextBox1.Name = "ToolStripTextBox1"
-        Me.ToolStripTextBox1.Size = New System.Drawing.Size(159, 16)
-        '
-        'ToolStripTextBox8
-        '
-        Me.ToolStripTextBox8.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ToolStripTextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ToolStripTextBox8.Enabled = False
-        Me.ToolStripTextBox8.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.ToolStripTextBox8.Name = "ToolStripTextBox8"
-        Me.ToolStripTextBox8.Size = New System.Drawing.Size(159, 16)
-        Me.ToolStripTextBox8.Text = "|-----------------------------|"
-        Me.ToolStripTextBox8.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Timer1
-        '
-        Me.Timer1.Interval = 1000
-        '
-        'Timer2
-        '
-        Me.Timer2.Enabled = True
-        Me.Timer2.Interval = 2000
-        '
-        'FontDialog1
-        '
-        Me.FontDialog1.Color = System.Drawing.SystemColors.ControlText
-        '
-        'Timer3
-        '
-        Me.Timer3.Interval = 3000
-        '
-        'TabPage3
-        '
-        Me.TabPage3.Controls.Add(Me.RichTextBox11)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(208, 104)
-        Me.TabPage3.TabIndex = 0
-        Me.TabPage3.Text = "Sugerencias"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'RichTextBox11
-        '
-        Me.RichTextBox11.BackColor = System.Drawing.SystemColors.Control
-        Me.RichTextBox11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.RichTextBox11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RichTextBox11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RichTextBox11.Location = New System.Drawing.Point(3, 3)
-        Me.RichTextBox11.Name = "RichTextBox11"
-        Me.RichTextBox11.ReadOnly = True
-        Me.RichTextBox11.Size = New System.Drawing.Size(202, 98)
-        Me.RichTextBox11.TabIndex = 1
-        Me.RichTextBox11.Text = ""
-        '
-        'TabPage4
-        '
-        Me.TabPage4.Controls.Add(Me.WebBrowser11)
-        Me.TabPage4.Controls.Add(Me.MenuStrip2)
-        Me.TabPage4.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(208, 104)
-        Me.TabPage4.TabIndex = 1
-        Me.TabPage4.Text = "Últimas novedades"
-        Me.TabPage4.UseVisualStyleBackColor = True
-        '
-        'WebBrowser11
-        '
-        Me.WebBrowser11.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.WebBrowser11.Location = New System.Drawing.Point(3, 27)
-        Me.WebBrowser11.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.WebBrowser11.Name = "WebBrowser11"
-        Me.WebBrowser11.Size = New System.Drawing.Size(202, 74)
-        Me.WebBrowser11.TabIndex = 0
-        '
-        'MenuStrip2
-        '
-        Me.MenuStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem21})
-        Me.MenuStrip2.Location = New System.Drawing.Point(3, 3)
-        Me.MenuStrip2.Name = "MenuStrip2"
-        Me.MenuStrip2.Size = New System.Drawing.Size(202, 24)
-        Me.MenuStrip2.TabIndex = 1
-        Me.MenuStrip2.Text = "MenuStrip2"
-        '
-        'ToolStripMenuItem21
-        '
-        Me.ToolStripMenuItem21.Name = "ToolStripMenuItem21"
-        Me.ToolStripMenuItem21.Size = New System.Drawing.Size(60, 20)
-        Me.ToolStripMenuItem21.Text = "Ir a web"
-        '
-        'BuscarImágenesEnFacebookToolStripMenuItem1
-        '
-        Me.BuscarImágenesEnFacebookToolStripMenuItem1.Image = CType(resources.GetObject("BuscarImágenesEnFacebookToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.BuscarImágenesEnFacebookToolStripMenuItem1.Name = "BuscarImágenesEnFacebookToolStripMenuItem1"
-        Me.BuscarImágenesEnFacebookToolStripMenuItem1.Size = New System.Drawing.Size(268, 22)
-        Me.BuscarImágenesEnFacebookToolStripMenuItem1.Text = "Buscar imágenes en Facebook"
         '
         'TabControlModificado2
         '
@@ -5522,6 +5560,12 @@ Partial Class Principal
         Me.IrAWebToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.IrAWebToolStripMenuItem.Text = "Ir a web"
         '
+        'Marco4ToolStripMenuItem
+        '
+        Me.Marco4ToolStripMenuItem.Name = "Marco4ToolStripMenuItem"
+        Me.Marco4ToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.Marco4ToolStripMenuItem.Text = "marco4"
+        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -5546,6 +5590,20 @@ Partial Class Principal
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.PerformLayout()
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        Me.ToolStrip2.ResumeLayout(False)
+        Me.ToolStrip2.PerformLayout()
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
+        Me.MenuStrip2.ResumeLayout(False)
+        Me.MenuStrip2.PerformLayout()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
@@ -5559,20 +5617,6 @@ Partial Class Principal
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.PerformLayout()
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ToolStrip2.ResumeLayout(False)
-        Me.ToolStrip2.PerformLayout()
-        Me.TabPage3.ResumeLayout(False)
-        Me.TabPage4.ResumeLayout(False)
-        Me.TabPage4.PerformLayout()
-        Me.MenuStrip2.ResumeLayout(False)
-        Me.MenuStrip2.PerformLayout()
         Me.TabControlModificado2.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
@@ -6286,5 +6330,11 @@ Partial Class Principal
     Friend WithEvents BuscarImágenesToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BuscarImágenesEnFacebookToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BuscarImágenesEnFacebookToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MarcosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CineToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AsdToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Marco2ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Marco3ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Marco4ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

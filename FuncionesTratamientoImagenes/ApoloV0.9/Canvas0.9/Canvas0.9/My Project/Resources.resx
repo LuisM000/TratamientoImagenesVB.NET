@@ -121,28 +121,49 @@
   <data name="Canvas2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Canvas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Canvas1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\Canvas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="negativoMarco" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\negativoMarco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bing_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bing_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="marco" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bing_icon_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bing_icon_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="powered" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\powered.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bing_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bing_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Canvas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\Canvas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cargando" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cargando.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Canvas1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Debug\Canvas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CineFotos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CineFotos.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marco_5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marco_51.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marco_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marco_41.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="powered" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\powered.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="marcoBronce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\marcoBronce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cargando1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cargando1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="animacion-cargando1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\animacion-cargando1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cargando1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cargando1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cargando" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cargando.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MarcoOndul" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MarcoOndul.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

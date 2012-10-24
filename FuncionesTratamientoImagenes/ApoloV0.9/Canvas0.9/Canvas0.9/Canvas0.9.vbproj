@@ -391,6 +391,12 @@
     <Compile Include="bin\FOrmulariosSecundarios\FormularioSec\Unir.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="bin\FOrmulariosSecundarios\Marcos\Cine.Designer.vb">
+      <DependentUpon>Cine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="bin\FOrmulariosSecundarios\Marcos\Cine.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="bin\FOrmulariosSecundarios\Segmentacion\PpiedadesSegmentacion.Designer.vb">
       <DependentUpon>PpiedadesSegmentacion.vb</DependentUpon>
     </Compile>
@@ -610,6 +616,9 @@
     <EmbeddedResource Include="bin\FOrmulariosSecundarios\FormularioSec\Unir.resx">
       <DependentUpon>Unir.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\FOrmulariosSecundarios\Marcos\Cine.resx">
+      <DependentUpon>Cine.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\FOrmulariosSecundarios\Segmentacion\PpiedadesSegmentacion.resx">
       <DependentUpon>PpiedadesSegmentacion.vb</DependentUpon>
     </EmbeddedResource>
@@ -681,6 +690,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\1336432183_Imagenes_min.ico" />
+    <None Include="Resources\negativoMarco.png" />
+    <None Include="Resources\CineFotos.png" />
+    <None Include="Resources\marco.png" />
+    <None Include="Resources\marcoBronce.png" />
+    <None Include="Resources\MarcoOndul.gif" />
+    <Content Include="Resources\marco_4.png" />
+    <None Include="Resources\marco_41.png" />
+    <Content Include="Resources\marco_5.png" />
+    <None Include="Resources\marco_51.png" />
     <None Include="Resources\cargando1.gif" />
     <None Include="Resources\cargando.gif" />
     <None Include="Resources\animacion-cargando1.gif" />

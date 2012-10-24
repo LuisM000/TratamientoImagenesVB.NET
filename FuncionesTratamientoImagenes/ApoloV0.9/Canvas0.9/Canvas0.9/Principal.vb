@@ -2422,7 +2422,7 @@ Public Class Principal
             BorrarInicio = True
         End If
 
-         
+
 
     End Sub
 
@@ -2567,7 +2567,7 @@ Public Class Principal
                 If tipoPuntero = "segmentacion" Then
                     bmpsegmentacion = PictureBox1.Image
                     PictureBox1.Image = objeto.segmentacion(bmpsegmentacion, e.Location, My.Settings.RojoSe, My.Settings.VerdeSe, My.Settings.AzulSe, My.Settings.AlfaSe, My.Settings.AnchoSe, My.Settings.AltoSe)
-                    
+
                 End If
             End If
 
@@ -2911,7 +2911,7 @@ Public Class Principal
         Me.Cursor = Windows.Forms.Cursors.Cross
         tipoPuntero = "lapiz"
     End Sub
-  
+
     Private Sub LíneaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LíneaToolStripMenuItem.Click
         Me.Cursor = Windows.Forms.Cursors.Cross
         tipoPuntero = "linea"
@@ -3716,8 +3716,8 @@ Public Class Principal
         End With
     End Sub
 
-   
- 
+
+
     Private Sub SegmentaciónToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SegmentaciónToolStripMenuItem1.Click
         anchoClonar = PictureBox1.Image.Width
         altoCLonar = PictureBox1.Image.Height
@@ -3737,7 +3737,7 @@ Public Class Principal
         PpiedadesSegmentacion.ShowDialog()
     End Sub
 
-    
+
     Private Sub LápizToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LápizToolStripMenuItem2.Click
         m_lstOflapiz.Clear()
         Me.WindowState = FormWindowState.Normal
@@ -3932,7 +3932,7 @@ Public Class Principal
         AbrirMóduloTransformaciónAfínToolStripMenuItem_Click(sender, e)
     End Sub
 
-    
+
     Private Sub SesgarImagenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SesgarImagenToolStripMenuItem.Click
         bmpAfin = PictureBox1.Image
         Afin.ShowDialog()
@@ -3941,11 +3941,11 @@ Public Class Principal
             PictureBox1.Image = bmpAfinRetorno
         End If
         afinImagen = False
-        
+
         objetoform.refrescar(PictureBox1, Panel1)
     End Sub
 
-    
+
     Private Sub EnviarFeedbackToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EnviarFeedbackToolStripMenuItem.Click
         Dim proceso As New System.Diagnostics.Process
         With proceso
@@ -3954,9 +3954,41 @@ Public Class Principal
         End With
     End Sub
 
-   
-  
+    Private Sub CineToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CineToolStripMenuItem.Click
+        ImgCINE = PictureBox1.Image
+        Cine.ShowDialog()
+        If ImgCINEtrasf IsNot Nothing Then
+            PictureBox1.Image = ImgCINEtrasf
+        End If
+        objetoform.refrescar(PictureBox1, Panel1)
+    End Sub
 
-   
+    Private Sub AsdToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AsdToolStripMenuItem.Click
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 0)
+        objetoform.refrescar(PictureBox1, Panel1)
+    End Sub
+
+    Private Sub Marco2ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco2ToolStripMenuItem.Click
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 1)
+        objetoform.refrescar(PictureBox1, Panel1)
+    End Sub
+
+    Private Sub Marco3ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco3ToolStripMenuItem.Click
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 2)
+        objetoform.refrescar(PictureBox1, Panel1)
+    End Sub
+
+    Private Sub Marco4ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco4ToolStripMenuItem.Click
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 3)
+        objetoform.refrescar(PictureBox1, Panel1)
+    End Sub
 End Class
 

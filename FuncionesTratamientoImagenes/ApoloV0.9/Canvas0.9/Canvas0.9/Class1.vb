@@ -12,7 +12,7 @@ Public Class Class1
         Public NivelesFiltro(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
         Public NivelesEsp(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
         Public NivelesEspaux(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-      
+
 
         Private Sub nivel(ByVal bmp As Bitmap)
             System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
@@ -556,7 +556,7 @@ Public Class Class1
                     Verdeuax = Niveles(i, j).G + 5 'Realizamos la inversión de los colores
                     Azulaux = Niveles(i, j).B + 35    'Realizamos la inversión de los colores
                     If Azulaux > 150 Then
-                        Azulaux=Azulaux+35
+                        Azulaux = Azulaux + 35
                     End If
                     If Rojoaux > 255 Then Rojoaux = 255
                     If Verdeuax > 255 Then Verdeuax = 255
@@ -3381,7 +3381,7 @@ Public Class Class1
 
         End Function
 
-       
+
 
         'Efectos
         Function polaroid(ByVal bmp As Bitmap)
@@ -4137,6 +4137,8 @@ Public Class Class1
             FiltroBNN = False
             Return bmp
         End Function
+
+        
         Public Function segmentacion(ByVal bmp As Bitmap, ByVal punto As Point, Optional ByVal rojoF As Byte = 0, Optional ByVal verdeF As Byte = 0, Optional ByVal azulF As Byte = 0, Optional ByVal alfaF As Byte = 0, Optional ByVal ancho As Byte = 10, Optional ByVal alto As Byte = 10)
             nivel(bmp)
             Dim bmp2 As New Bitmap(31, 31)
@@ -4192,6 +4194,235 @@ Public Class Class1
             Return bmp
 
 
+        End Function
+
+        Public Function marco(ByVal bmp As Bitmap, Optional numeroMarco As Integer = 0)
+
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
+            Dim PicColor1, PicColor2 As Color
+            Dim r, g, b, a As Integer
+            Dim x As Integer
+            Dim y As Integer
+            Dim x1, x2, y1, y2 As Integer
+            Dim bmp3 As New Bitmap(bmp, 1127, 908)
+            Dim bmp2 As New Bitmap(My.Resources.marco)
+
+            If numeroMarco = 0 Then
+                x1 = 185 : x2 = 1308
+                y1 = 185 : y2 = 1090
+                Dim bmp3aux As New Bitmap(bmp, 1127, 908)
+                bmp3 = bmp3aux
+                bmp2 = (My.Resources.marco)
+            End If
+
+            If numeroMarco = 1 Then
+                x1 = 625 : x2 = 985
+                y1 = 173 : y2 = 675
+                Dim bmp3aux As New Bitmap(bmp, 360, 502)
+                bmp3 = bmp3aux
+                bmp2 = (My.Resources.marcoBronce)
+            End If
+
+            If numeroMarco = 2 Then
+                x1 = 54 : x2 = 1295
+                y1 = 94 : y2 = 700
+                Dim bmp3aux As New Bitmap(bmp, 1241, 606)
+                bmp3 = bmp3aux
+                bmp2 = (My.Resources.negativoMarco)
+            End If
+
+            If numeroMarco = 3 Then
+                x1 = 51 : x2 = 281
+                y1 = 51 : y2 = 281
+                Dim bmp3aux As New Bitmap(bmp, 230, 230)
+                bmp3 = bmp3aux
+                bmp2 = (My.Resources.MarcoOndul)
+            End If
+
+
+            Dim imgtemp2 As New Bitmap(bmp2.Width, bmp2.Height)
+
+            For x = 0 To bmp2.Width - 1
+                For y = 0 To bmp2.Height - 1
+                    PicColor1 = bmp2.GetPixel(x, y)
+
+                    If (x > x1 And x < x2) And (y > y1 And y < y2) Then
+                        PicColor2 = bmp3.GetPixel(x - x1, y - y1)
+                        r = PicColor2.R
+                        g = PicColor2.G
+                        b = PicColor2.B
+                        a = PicColor2.A
+
+                    Else
+                        r = PicColor1.R
+                        g = PicColor1.G
+                        b = PicColor1.B
+                        a = PicColor1.A
+                    End If
+
+
+
+                    imgtemp2.SetPixel(x, y, Color.FromArgb(a, r, g, b))
+
+                Next
+            Next
+
+            undo(imgtemp2)
+            Return imgtemp2
+
+        End Function
+
+        Public Function cine(ByVal bmpP0 As Bitmap, ByVal bmpP1 As Bitmap, ByVal bmpP2 As Bitmap, ByVal bmpP3 As Bitmap, ByVal bmpP4 As Bitmap, ByVal bmpP5 As Bitmap, Optional modificacion0 As Integer = 0, Optional modificacion1 As Integer = 0, Optional modificacion2 As Integer = 0, Optional modificacion3 As Integer = 0, Optional modificacion4 As Integer = 0, Optional modificacion5 As Integer = 0, Optional tamañoImagen As Integer = 2)
+
+            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
+            Dim PicColor1, PicColor2, PicColor3, PicColor4, PicColor5, PicColor6, PicColor7 As Color
+            Dim r, g, b, a As Integer
+            Dim x As Integer
+            Dim y As Integer
+            Dim bmp3 As New Bitmap(bmpP0)
+
+            Dim bmp2 As New Bitmap(My.Resources.CineFotos)
+
+            Dim imgtemp1 As New Bitmap(bmpP0)
+            Dim imgtemp2 As New Bitmap(bmp2)
+
+
+            Dim imgtemp4 As New Bitmap(bmp2)
+
+            Dim imgtemp5 As New Bitmap(bmpP0, 690, 520)
+            imgtemp5 = Me.Modificarimagen(imgtemp5, modificacion0)
+            Dim imgtemp6 As New Bitmap(bmpP1, 690, 520)
+            imgtemp6 = Me.Modificarimagen(imgtemp6, modificacion1)
+            Dim imgtemp7 As New Bitmap(bmpP2, 690, 520)
+            imgtemp7 = Me.Modificarimagen(imgtemp7, modificacion2)
+            Dim imgtemp8 As New Bitmap(bmpP3, 690, 520)
+            imgtemp8 = Me.Modificarimagen(imgtemp8, modificacion3)
+            Dim imgtemp9 As New Bitmap(bmpP4, 690, 520)
+            imgtemp9 = Me.Modificarimagen(imgtemp9, modificacion4)
+            Dim imgtemp10 As New Bitmap(bmpP5, 690, 520)
+            imgtemp10 = Me.Modificarimagen(imgtemp10, modificacion5)
+
+
+            For x = 0 To bmp2.Width - 1
+                For y = 0 To bmp2.Height - 1
+                    PicColor1 = imgtemp4.GetPixel(x, y)
+
+                    If (x > 68 And x < 754) And (y > 342 And y < 857) Then
+                        PicColor2 = imgtemp5.GetPixel(x - 68, y - 342)
+                        r = PicColor2.R
+                        g = PicColor2.G
+                        b = PicColor2.B
+                        a = PicColor2.A
+
+                    Else
+                        r = PicColor1.R
+                        g = PicColor1.G
+                        b = PicColor1.B
+                        a = PicColor1.A
+                    End If
+
+                    If (x > 819 And x < 1505) And (y > 342 And y < 857) Then
+                        PicColor3 = imgtemp6.GetPixel(x - 819, y - 342)
+                        r = PicColor3.R
+                        g = PicColor3.G
+                        b = PicColor3.B
+                        a = PicColor3.A
+                    End If
+
+                    If (x > 1570 And x < 2257) And (y > 342 And y < 857) Then
+                        PicColor4 = imgtemp7.GetPixel(x - 1570, y - 342)
+                        r = PicColor4.R
+                        g = PicColor4.G
+                        b = PicColor4.B
+                        a = PicColor4.A
+                    End If
+
+
+                    If (x > 2320 And x < 3008) And (y > 342 And y < 857) Then
+                        PicColor5 = imgtemp8.GetPixel(x - 2320, y - 342)
+                        r = PicColor5.R
+                        g = PicColor5.G
+                        b = PicColor5.B
+                        a = PicColor5.A
+                    End If
+
+                    If (x > 3071 And x < 3760) And (y > 342 And y < 857) Then
+                        PicColor6 = imgtemp9.GetPixel(x - 3071, y - 342)
+                        r = PicColor6.R
+                        g = PicColor6.G
+                        b = PicColor6.B
+                        a = PicColor6.A
+                    End If
+
+                    If (x > 3821) And (y > 342 And y < 861) Then
+                        PicColor7 = imgtemp10.GetPixel(x - 3821, y - 342)
+                        r = PicColor7.R
+                        g = PicColor7.G
+                        b = PicColor7.B
+                        a = PicColor7.A
+
+                    End If
+
+
+
+
+                    imgtemp2.SetPixel(x, y, Color.FromArgb(a, r, g, b))
+
+                Next
+            Next
+
+            If tamañoImagen = 0 Then imgtemp2 = Me.reducirX2bitmap(imgtemp2, True, True) : imgtemp2 = Me.reducirX2bitmap(imgtemp2, True, True)
+            If tamañoImagen = 1 Then imgtemp2 = Me.reducirX2bitmap(imgtemp2, True, True)
+            undo(imgtemp2)
+            Return imgtemp2
+
+        End Function
+
+        Private Function Modificarimagen(ByVal bitm As Bitmap, ByVal num As Integer)
+
+            Dim btmSalida As New Bitmap(bitm)
+            Select Case num
+                Case 0
+                    btmSalida = bitm
+                Case 1
+                    btmSalida = Me.blanconegro(bitm)
+                Case 2
+                    btmSalida = Me.grises(bitm)
+                Case 3
+                    btmSalida = Me.invertir(bitm)
+                Case 4
+                    btmSalida = Me.sepia(bitm)
+                Case 5
+                    btmSalida = Me.etiopia(bitm, True)
+                Case 6
+                    btmSalida = Me.etiopia(bitm, False)
+                Case 7
+                    btmSalida = Me.filtrorojo(bitm)
+                Case 8
+                    btmSalida = Me.filtroverde(bitm)
+                Case 9
+                    btmSalida = Me.filtroazul(bitm)
+                Case 10
+                    btmSalida = Me.RGBtoBGR(bitm)
+                Case 11
+                    btmSalida = Me.RGBtoGRB(bitm)
+                Case 12
+                    btmSalida = Me.RGBtoRBG(bitm)
+                Case 13
+                    btmSalida = Me.contornos(bitm, 15)
+                Case 14
+                    btmSalida = Me.reducircolores(bitm, 60)
+                Case 15
+                    btmSalida = Me.Oleo(bitm, 15, 180)
+                Case 16
+                    btmSalida = Me.pixelarX5(bitm)
+                Case 17
+                    btmSalida = Me.pixelarX7(bitm)
+                Case else
+                    btmSalida = bitm
+            End Select
+
+            Return btmSalida
         End Function
 
         Public Function Borrar(ByVal bmp As Bitmap, ByVal PuntoI As Point, Optional ByVal ancho As Integer = 3, Optional ByVal alto As Integer = 3, Optional ByVal valorRojo As Integer = 50, Optional ByVal valorVerde As Integer = 50, Optional ByVal valorAzul As Integer = 50, Optional ByVal valorAlfa As Integer = 255)
@@ -4481,5 +4712,5 @@ Public Class Class1
 
     End Class
 
-    
+
 End Class
