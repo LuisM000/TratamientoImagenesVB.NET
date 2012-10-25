@@ -4206,7 +4206,7 @@ Public Class Class1
             Dim x1, x2, y1, y2 As Integer
             Dim bmp3 As New Bitmap(bmp, 1127, 908)
             Dim bmp2 As New Bitmap(My.Resources.marco)
-
+            undo(bmp)
             If numeroMarco = 0 Then
                 x1 = 185 : x2 = 1308
                 y1 = 185 : y2 = 1090
@@ -4216,14 +4216,6 @@ Public Class Class1
             End If
 
             If numeroMarco = 1 Then
-                x1 = 625 : x2 = 985
-                y1 = 173 : y2 = 675
-                Dim bmp3aux As New Bitmap(bmp, 360, 502)
-                bmp3 = bmp3aux
-                bmp2 = (My.Resources.marcoBronce)
-            End If
-
-            If numeroMarco = 2 Then
                 x1 = 54 : x2 = 1295
                 y1 = 94 : y2 = 700
                 Dim bmp3aux As New Bitmap(bmp, 1241, 606)
@@ -4231,12 +4223,20 @@ Public Class Class1
                 bmp2 = (My.Resources.negativoMarco)
             End If
 
-            If numeroMarco = 3 Then
+            If numeroMarco = 2 Then
                 x1 = 51 : x2 = 281
                 y1 = 51 : y2 = 281
                 Dim bmp3aux As New Bitmap(bmp, 230, 230)
                 bmp3 = bmp3aux
                 bmp2 = (My.Resources.MarcoOndul)
+            End If
+
+            If numeroMarco = 3 Then
+                x1 = 285 : x2 = 2795
+                y1 = 285 : y2 = 2194
+                Dim bmp3aux As New Bitmap(bmp, 2510, 1909)
+                bmp3 = bmp3aux
+                bmp2 = (My.Resources.marcoNegro)
             End If
 
 
@@ -4267,7 +4267,7 @@ Public Class Class1
                 Next
             Next
 
-            undo(imgtemp2)
+
             Return imgtemp2
 
         End Function
@@ -4280,7 +4280,7 @@ Public Class Class1
             Dim x As Integer
             Dim y As Integer
             Dim bmp3 As New Bitmap(bmpP0)
-
+            undo(bmpP0)
             Dim bmp2 As New Bitmap(My.Resources.CineFotos)
 
             Dim imgtemp1 As New Bitmap(bmpP0)
@@ -4373,7 +4373,7 @@ Public Class Class1
 
             If tamañoImagen = 0 Then imgtemp2 = Me.reducirX2bitmap(imgtemp2, True, True) : imgtemp2 = Me.reducirX2bitmap(imgtemp2, True, True)
             If tamañoImagen = 1 Then imgtemp2 = Me.reducirX2bitmap(imgtemp2, True, True)
-            undo(imgtemp2)
+
             Return imgtemp2
 
         End Function

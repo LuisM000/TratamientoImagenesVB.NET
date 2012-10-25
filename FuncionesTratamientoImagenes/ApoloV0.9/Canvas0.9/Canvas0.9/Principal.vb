@@ -3954,7 +3954,9 @@ Public Class Principal
         End With
     End Sub
 
-    Private Sub CineToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CineToolStripMenuItem.Click
+  
+
+    Private Sub CineToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CineToolStripMenuItem1.Click
         ImgCINE = PictureBox1.Image
         Cine.ShowDialog()
         If ImgCINEtrasf IsNot Nothing Then
@@ -3963,32 +3965,126 @@ Public Class Principal
         objetoform.refrescar(PictureBox1, Panel1)
     End Sub
 
-    Private Sub AsdToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AsdToolStripMenuItem.Click
+    Private Sub VerMarcoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerMarcoToolStripMenuItem.Click
+        tipoMarco = 0
+        VerMarco.ShowDialog()
+    End Sub
+
+    Private Sub VerMarcoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles VerMarcoToolStripMenuItem1.Click
+        tipoMarco = 1
+        VerMarco.ShowDialog()
+    End Sub
+
+    Private Sub VerMarcoToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles VerMarcoToolStripMenuItem2.Click
+        tipoMarco = 2
+        VerMarco.ShowDialog()
+    End Sub
+
+    Private Sub VerMarcoToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles VerMarcoToolStripMenuItem3.Click
+        tipoMarco = 3
+        VerMarco.ShowDialog()
+    End Sub
+
+    'MARCO 1**********************
+    Private Sub GrandeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GrandeToolStripMenuItem.Click
+        Cargando.Show()
         Dim bmp = PictureBox1.Image
         Dim objeto As New tratamiento
         PictureBox1.Image = objeto.marco(bmp, 0)
         objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
+    End Sub
+    Private Sub PequeñoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PequeñoToolStripMenuItem.Click
+        Cargando.Show()
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 0)
+        PictureBox1.Image = objeto.reducirX2bitmap(PictureBox1.Image, True, True)
+        PictureBox1.Image = objeto.reducirX2bitmap(PictureBox1.Image, True, True)
+        objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
     End Sub
 
-    Private Sub Marco2ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco2ToolStripMenuItem.Click
+    Private Sub MedianoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MedianoToolStripMenuItem.Click
+        Cargando.Show()
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 0)
+        PictureBox1.Image = objeto.reducirX2bitmap(PictureBox1.Image, True, True)
+        objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
+    End Sub
+
+    'MARCO 2*********************
+    Private Sub GrandeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GrandeToolStripMenuItem1.Click
+        Cargando.Show()
         Dim bmp = PictureBox1.Image
         Dim objeto As New tratamiento
         PictureBox1.Image = objeto.marco(bmp, 1)
         objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
+    End Sub
+    Private Sub PequeñoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PequeñoToolStripMenuItem1.Click
+        Cargando.Show()
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 1)
+        PictureBox1.Image = objeto.reducirX2bitmap(PictureBox1.Image, True, True)
+        PictureBox1.Image = objeto.reducirX2bitmap(PictureBox1.Image, True, True)
+        objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
     End Sub
 
-    Private Sub Marco3ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco3ToolStripMenuItem.Click
+    Private Sub MedianoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles MedianoToolStripMenuItem1.Click
+        Cargando.Show()
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 1)
+        PictureBox1.Image = objeto.reducirX2bitmap(PictureBox1.Image, True, True)
+        objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
+    End Sub
+
+
+    'MARCO 3**********************
+    Private Sub PequeñoToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles PequeñoToolStripMenuItem2.Click
+        Cargando.Show()
         Dim bmp = PictureBox1.Image
         Dim objeto As New tratamiento
         PictureBox1.Image = objeto.marco(bmp, 2)
         objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
     End Sub
 
-    Private Sub Marco4ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco4ToolStripMenuItem.Click
+
+    'MARCO 4**********************
+    Private Sub GrandeToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles GrandeToolStripMenuItem3.Click
+        Cargando.Show()
         Dim bmp = PictureBox1.Image
         Dim objeto As New tratamiento
         PictureBox1.Image = objeto.marco(bmp, 3)
         objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
+    End Sub
+    Private Sub PequeñoToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles PequeñoToolStripMenuItem3.Click
+        Cargando.Show()
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 3)
+        PictureBox1.Image = objeto.reducirX2bitmap(PictureBox1.Image, True, True)
+        PictureBox1.Image = objeto.reducirX2bitmap(PictureBox1.Image, True, True)
+        objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
+    End Sub
+
+    Private Sub MedianoToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles MedianoToolStripMenuItem3.Click
+        Cargando.Show()
+        Dim bmp = PictureBox1.Image
+        Dim objeto As New tratamiento
+        PictureBox1.Image = objeto.marco(bmp, 3)
+        PictureBox1.Image = objeto.reducirX2bitmap(PictureBox1.Image, True, True)
+        objetoform.refrescar(PictureBox1, Panel1)
+        Cargando.Close()
     End Sub
 End Class
 

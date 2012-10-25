@@ -397,6 +397,12 @@
     <Compile Include="bin\FOrmulariosSecundarios\Marcos\Cine.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="bin\FOrmulariosSecundarios\Marcos\VerMarco.Designer.vb">
+      <DependentUpon>VerMarco.vb</DependentUpon>
+    </Compile>
+    <Compile Include="bin\FOrmulariosSecundarios\Marcos\VerMarco.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="bin\FOrmulariosSecundarios\Segmentacion\PpiedadesSegmentacion.Designer.vb">
       <DependentUpon>PpiedadesSegmentacion.vb</DependentUpon>
     </Compile>
@@ -619,6 +625,9 @@
     <EmbeddedResource Include="bin\FOrmulariosSecundarios\Marcos\Cine.resx">
       <DependentUpon>Cine.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="bin\FOrmulariosSecundarios\Marcos\VerMarco.resx">
+      <DependentUpon>VerMarco.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bin\FOrmulariosSecundarios\Segmentacion\PpiedadesSegmentacion.resx">
       <DependentUpon>PpiedadesSegmentacion.vb</DependentUpon>
     </EmbeddedResource>
@@ -695,6 +704,7 @@
     <None Include="Resources\marco.png" />
     <None Include="Resources\marcoBronce.png" />
     <None Include="Resources\MarcoOndul.gif" />
+    <None Include="Resources\marcoNegro.jpg" />
     <Content Include="Resources\marco_4.png" />
     <None Include="Resources\marco_41.png" />
     <Content Include="Resources\marco_5.png" />

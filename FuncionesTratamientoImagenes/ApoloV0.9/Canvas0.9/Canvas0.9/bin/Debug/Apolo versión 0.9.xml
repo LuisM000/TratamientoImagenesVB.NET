@@ -67,6 +67,10 @@ Apoloversión0.9
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:WindowsApplication1.My.Resources.Resources.marcoNegro">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:WindowsApplication1.My.Resources.Resources.MarcoOndul">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.

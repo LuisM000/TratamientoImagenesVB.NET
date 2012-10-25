@@ -79,4 +79,5 @@
     Public fotos As New ArrayList 'Contenedor de los enlaces
     Public ImgCINE As Bitmap
     Public ImgCINEtrasf As Bitmap
+    Public tipoMarco As Integer
 End Module

@@ -59,7 +59,7 @@ Partial Class Cuadricula
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Button1, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Button2, 0, 0)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(126, 388)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(126, 383)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -175,7 +175,7 @@ Partial Class Cuadricula
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Button1
-        Me.ClientSize = New System.Drawing.Size(383, 429)
+        Me.ClientSize = New System.Drawing.Size(373, 419)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button5)
