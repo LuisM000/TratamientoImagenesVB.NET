@@ -1,0 +1,20 @@
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\bin\Debug\ClaseImagenes.exe.config
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\bin\Debug\ClaseImagenes.exe
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\bin\Debug\ClaseImagenes.pdb
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\bin\Debug\ClaseImagenes.xml
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.Resources.resources
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.vbproj.GenerateResource.Cache
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.exe
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.xml
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.pdb
+c:\users\luis\documents\visual studio 2012\Projects\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.Form1.resources
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\bin\Debug\ClaseImagenes.exe.config
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.exe
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.xml
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.pdb
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\bin\Debug\ClaseImagenes.exe
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\bin\Debug\ClaseImagenes.pdb
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\bin\Debug\ClaseImagenes.xml
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.Form1.resources
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.Resources.resources
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.vbproj.GenerateResource.Cache
