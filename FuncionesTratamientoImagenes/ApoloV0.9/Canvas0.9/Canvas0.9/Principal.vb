@@ -1620,8 +1620,7 @@ Public Class Principal
         Cuadricula.ShowDialog() 'Lanzamos nueva ventana
         If aceptar = True Then 'Si el usuario acepta
             Cargando.Show()
-            Dim hilo As Threading.Thread
-            hilo = PictureBox1.Image = objeto.cuadriculaColor(bmp, colorh, colorv, valorH, valorV)
+            PictureBox1.Image = objeto.cuadriculaColor(bmp, colorh, colorv, valorH, valorV)
             Cargando.Close()
         End If
         aceptar = False
