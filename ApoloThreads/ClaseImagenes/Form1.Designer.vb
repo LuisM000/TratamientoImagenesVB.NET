@@ -40,18 +40,12 @@ Partial Class Form1
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
-        Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
-        Me.BackgroundWorker4 = New System.ComponentModel.BackgroundWorker()
-        Me.BackgroundWorker5 = New System.ComponentModel.BackgroundWorker()
-        Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
-        Me.BackgroundWorker7 = New System.ComponentModel.BackgroundWorker()
-        Me.BackgroundWorker8 = New System.ComponentModel.BackgroundWorker()
-        Me.BackgroundWorker9 = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker10 = New System.ComponentModel.BackgroundWorker()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureBox2
@@ -59,7 +53,7 @@ Partial Class Form1
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
         Me.PictureBox2.Location = New System.Drawing.Point(291, 108)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(438, 248)
+        Me.PictureBox2.Size = New System.Drawing.Size(598, 393)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 1
         Me.PictureBox2.TabStop = False
@@ -171,9 +165,9 @@ Partial Class Form1
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(355, 68)
+        Me.ProgressBar1.Location = New System.Drawing.Point(50, 41)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(268, 21)
+        Me.ProgressBar1.Size = New System.Drawing.Size(839, 21)
         Me.ProgressBar1.TabIndex = 20
         '
         'Label2
@@ -185,52 +179,30 @@ Partial Class Form1
         Me.Label2.TabIndex = 21
         Me.Label2.Text = "Label2"
         '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 1
-        '
-        'BackgroundWorker2
-        '
-        Me.BackgroundWorker2.WorkerReportsProgress = True
-        '
-        'BackgroundWorker3
-        '
-        Me.BackgroundWorker3.WorkerReportsProgress = True
-        '
-        'BackgroundWorker4
-        '
-        Me.BackgroundWorker4.WorkerReportsProgress = True
-        '
-        'BackgroundWorker5
-        '
-        Me.BackgroundWorker5.WorkerReportsProgress = True
-        '
-        'BackgroundWorker6
-        '
-        Me.BackgroundWorker6.WorkerReportsProgress = True
-        '
-        'BackgroundWorker7
-        '
-        Me.BackgroundWorker7.WorkerReportsProgress = True
-        '
-        'BackgroundWorker8
-        '
-        Me.BackgroundWorker8.WorkerReportsProgress = True
-        '
-        'BackgroundWorker9
-        '
-        Me.BackgroundWorker9.WorkerReportsProgress = True
-        '
         'BackgroundWorker10
         '
         Me.BackgroundWorker10.WorkerReportsProgress = True
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(12, 477)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(205, 180)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 22
+        Me.PictureBox1.TabStop = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 10
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1284, 720)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.Button7)
@@ -251,6 +223,7 @@ Partial Class Form1
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -271,15 +244,8 @@ Partial Class Form1
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Timer1 As System.Windows.Forms.Timer
-    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents BackgroundWorker3 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents BackgroundWorker4 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents BackgroundWorker5 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents BackgroundWorker6 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents BackgroundWorker7 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents BackgroundWorker8 As System.ComponentModel.BackgroundWorker
-    Friend WithEvents BackgroundWorker9 As System.ComponentModel.BackgroundWorker
     Friend WithEvents BackgroundWorker10 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
 
 End Class

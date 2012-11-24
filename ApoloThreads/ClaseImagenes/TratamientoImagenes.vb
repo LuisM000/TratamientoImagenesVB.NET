@@ -1,6 +1,10 @@
-﻿Namespace Apolo
+﻿
+Namespace Apolo
+
+    Public Delegate Sub ActualizamosImagen(ByVal bmp As Bitmap) 'Definimos el Tipo de evento
 
     Public Class TratamientoImagenes
+
 
         'Variables para controlar atrás/adelante 
         Public Shared imagenesGuardadas As New ArrayList 'Para ir atrás y adelante, Lo creamos como
@@ -8,13 +12,20 @@
         Private contadorImagenes As Integer 'Para saber en qué índice de las imágenesGUardadas estamos
         Private Informacion As New ArrayList 'Para saber qué se hizo
         '************************************
-        'Almacenamos los niveles
+
+        'Almacenamos los niveles digitales
         Private Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
         '********************************************
 
         'Estado hilo
         Public porcentaje(2) As String
- 
+
+        'Evento de tipo ActualizamosImagen
+        Event actualizaBMP As ActualizamosImagen
+
+
+        'Evento de tipo Porcentaje
+        Event actulizaPorcentaje As ActualizamosImagen
 
 
 #Region "Hacer/deshacerImagenes"
@@ -22,6 +33,7 @@
             Get
                 Try
                     contadorImagenes -= 1
+                    RaiseEvent actualizaBMP(imagenesGuardadas.Item(contadorImagenes - 1))
                     Return imagenesGuardadas.Item(contadorImagenes - 1)
                 Catch e As System.ArgumentOutOfRangeException
                     contadorImagenes += 1
@@ -34,6 +46,7 @@
             Get
                 Try
                     contadorImagenes += 1
+                    RaiseEvent actualizaBMP(imagenesGuardadas.Item(contadorImagenes - 1))
                     Return imagenesGuardadas.Item(contadorImagenes - 1)
                 Catch e As System.ArgumentOutOfRangeException
                     contadorImagenes -= 1
@@ -84,31 +97,33 @@
 
         Public ReadOnly Property estadoCarga() As Array 'Propiedad con el estado de la carga
             Get
+                'Serán dos valores, el porcentaje de carga y quién está realizando la acción
                 Return porcentaje
             End Get
         End Property
 
+
+#Region "funcionesTratamiento"
+
+        'Obtenemos los niveles de la imagen
         Private Sub nivel(ByVal bmp As Bitmap)
             porcentaje(0) = 0 'Actualizamos el estado
             porcentaje(1) = "Cargando imagen" 'Actualizamos el estado
-            System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.WaitCursor
             'Este primer bloque, guarda los niveles digitales de la imagen en la variable Niveles
             Dim i, j As Long
             ReDim Niveles(bmp.Width - 1, bmp.Height - 1)  'Asignamos a la matriz las dimensiones de la imagen -1 *
             For i = 0 To bmp.Width - 1 'Recorremos la matriz a lo ancho
                 For j = 0 To bmp.Height - 1 'Recorremos la matriz a lo largo
                     Niveles(i, j) = bmp.GetPixel(i, j) 'Con el método GetPixel, asignamos para cada celda de la matriz el color con sus valores RGB.
-                    porcentaje(0) = ((i * 100) / bmp.Width)
+                    porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
                 Next
             Next
         End Sub
 
 
-#Region "funcionesTratamiento"
-
         Public Function EscalaGrises(ByVal bmp As Bitmap) As Bitmap
-            guardarImagen(bmp, "Escala de grises")
-            nivel(bmp)
+            guardarImagen(bmp, "Escala de grises") 'Guardamos la imagen para poder hacer retroceso
+            nivel(bmp) 'Obtenemos valores
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Transformando a escala de grises" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
@@ -119,48 +134,50 @@
                     rojoaux = Niveles(i, j).R
                     verdeaux = Niveles(i, j).G
                     azulaux = Niveles(i, j).B
-                    media = CInt((rojoaux + verdeaux + azulaux) / 3)
+                    media = CInt((rojoaux + verdeaux + azulaux) / 3) 'Hacemos la media
                     Rojo = media
                     Verde = media
                     Azul = media
-                    alfa = Niveles(i, j).A
-                    bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
-                Next
-                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
-            Next
-            porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            Return bmp
-        End Function
-        Public Function Invertir(ByVal bmp As Bitmap) As Bitmap
-            guardarImagen(bmp, "Invertir")
-            nivel(bmp)
-            porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Inviertiendo colores" 'Actualizar el estado
-            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
-
-            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
-                For j = 0 To Niveles.GetUpperBound(1)
-                    Rojo = 255 - (Niveles(i, j).R) 'Realizamos la inversión de los colores
-                    Verde = 255 - (Niveles(i, j).G) 'Realizamos la inversión de los colores
-                    Azul = 255 - (Niveles(i, j).B) 'Realizamos la inversión de los colores
                     alfa = Niveles(i, j).A
                     bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
                 Next
                 porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp) 'generamos el evento
+            Return bmp
+        End Function
+        Public Function Invertir(ByVal bmp As Bitmap) As Bitmap
+            guardarImagen(bmp, "Invertir") 'Guardamos la imagen para poder hacer retroceso
+            nivel(bmp) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Inviertiendo colores" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = 255 - (Niveles(i, j).R) 'Realizamos la inversión de los colores
+                    Verde = 255 - (Niveles(i, j).G)
+                    Azul = 255 - (Niveles(i, j).B)
+                    alfa = Niveles(i, j).A
+                    bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp) 'generamos el evento
             Return bmp
         End Function
 
         Public Function BlancoNegro(ByVal bmp As Bitmap) As Bitmap
-            guardarImagen(bmp, "Blanco y negro")
-            nivel(bmp)
+            guardarImagen(bmp, "Blanco y negro") 'Guardamos la imagen para poder hacer retroceso
+            nivel(bmp) 'Obtenemos valores
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Transformando a blanco y negro" 'Actualizar el estado
-            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
-            Dim media As Double 'Variable para calcular la media
-            Dim rojoaux, verdeaux, azulaux As Double 'Variables auxiliares
-            'para que no se desborde
+            Dim Rojo, Verde, Azul, alfa As Byte
+            Dim media As Double
+            Dim rojoaux, verdeaux, azulaux As Double
+
             For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
                 For j = 0 To Niveles.GetUpperBound(1)
                     rojoaux = Niveles(i, j).R
@@ -186,6 +203,7 @@
                 porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp) 'generamos el evento
             Return bmp
         End Function
 #End Region
@@ -208,6 +226,7 @@
                     abrirImagen = Image.FromFile(.FileName)
                     guardarImagen(abrirImagen, "Imagen original") 'Almacenamos info y bitmap
                     contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+                    RaiseEvent actualizaBMP(abrirImagen) 'Generamos evento
                     Return abrirImagen
                 Else
                     abrirImagen = Nothing

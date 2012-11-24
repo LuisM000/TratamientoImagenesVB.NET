@@ -18,3 +18,13 @@ C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\bin\D
 C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.Form1.resources
 C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.Resources.resources
 C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ClaseImagenes\ClaseImagenes\obj\Debug\ClaseImagenes.vbproj.GenerateResource.Cache
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\bin\Debug\ClaseImagenes.exe.config
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.exe
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.xml
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.pdb
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\bin\Debug\ClaseImagenes.exe
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\bin\Debug\ClaseImagenes.pdb
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\bin\Debug\ClaseImagenes.xml
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Form1.resources
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Resources.resources
+C:\Users\Luis\Desktop\SkyDrive\ApoloCompartido\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.vbproj.GenerateResource.Cache
