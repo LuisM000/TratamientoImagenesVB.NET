@@ -5,6 +5,18 @@ Public Class Form1
     Dim WithEvents objetoTratamiento As New TratamientoImagenes 'Objeto para todo el formulario así no se inicializan las variables de la clase en cada instancia
     Dim transformacion As String 'Transformación a aplicar
 
+
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Habilitamos el arrastre para el control PictureBox2 (No lo tiene permitido en tiempo de diseño)
+        PictureBox2.AllowDrop = True
+        'Asignamos el gestor que controle cuando sale imagen
+        AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf actualizarPicture)
+        'Asignamos el gestor que controle cuando se abre una imagen nueva
+        AddHandler objetoTratamiento.actualizaNombreImagen, New ActualizamosNombreImagen(AddressOf actualizarNombrePicture)
+    End Sub
+
+
     Private Sub Atras_Click(sender As Object, e As EventArgs) Handles Atras.Click
         PictureBox2.Image = objetoTratamiento.ListadoImagenesAtras
         TextBox1.Text = objetoTratamiento.ListadoInfoAtras
@@ -49,6 +61,14 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        Dim bmp As Bitmap
+        bmp = objetoTratamiento.abrirRecursoWeb(TextBox4.Text)
+        If bmp IsNot Nothing Then
+            PictureBox2.Image = bmp
+        End If
+    End Sub
+
 
 #Region "Crear proceso con thread"
     'ACtualizamos el estado del proceso
@@ -70,7 +90,7 @@ Public Class Form1
         'Obtener el objeto BackgroundWorker que provocó este evento
         Dim worker As BackgroundWorker = CType(sender, BackgroundWorker)
         Dim bmp As New Bitmap(PictureBox2.Image)
-
+       
         Select Case transformacion
             Case "escalaGrises"
                 PictureBox2.Image = objetoTratamiento.EscalaGrises(bmp)
@@ -84,21 +104,48 @@ Public Class Form1
     
 #End Region
 
+
+
 #Region "Actualizar imagen secundaria"
-
-    '******************Actualizar imagen secundaria
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Asignamos el gestor que controle cuando sale imagen
-        AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf actualizarPicture)
-    End Sub
-
     'Realizamos esto cuando recibimos el evento
     Sub actualizarPicture(ByVal bmp As Bitmap)
         PictureBox1.Image = bmp
     End Sub
-
     'FIN de actualizar imagen secundaria
 #End Region
 
+#Region "Actualizar nombre imagen"
+    'Realizamos esto cuando recibimos el evento
+    Sub actualizarNombrePicture(ByVal nombre As String)
+        TextBox3.Text = nombre
+    End Sub
+    'FIN de actualizar imagen secundaria
+#End Region
+
+
+
+#Region "DRAG&DROP"
+    Private Sub PictureBox2_DragEnter(sender As Object, e As DragEventArgs) Handles PictureBox2.DragEnter
+        'DataFormats.FileDrop nos devuelve el array de rutas de archivos
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            'Los archivos son externos a nuestra aplicación por lo que de indicaremos All ya que dará lo mismo.
+            e.Effect = DragDropEffects.All
+        End If
+    End Sub
+    Private Sub PictureBox2_DragDrop(sender As Object, e As DragEventArgs) Handles PictureBox2.DragDrop
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            Dim rutaImagen As String
+            'Asignamos la primera posición del array de ruta de archivos a la variable de tipo string
+            'declarada anteriormente ya que en este caso sólo mostraremos una imagen en el control.
+            rutaImagen = e.Data.GetData(DataFormats.FileDrop)(0)
+            'La cargamos al control
+            Dim bmp As Bitmap
+            bmp = objetoTratamiento.abrirDragDrop(rutaImagen)
+            If bmp IsNot Nothing Then
+                PictureBox2.Image = bmp
+            End If
+        End If
+    End Sub
+#End Region
 
 End Class

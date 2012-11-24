@@ -40,9 +40,11 @@ Partial Class Form1
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.BackgroundWorker10 = New System.ComponentModel.BackgroundWorker()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Button8 = New System.Windows.Forms.Button()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,6 +164,7 @@ Partial Class Form1
         'BackgroundWorker1
         '
         Me.BackgroundWorker1.WorkerReportsProgress = True
+        Me.BackgroundWorker1.WorkerSupportsCancellation = True
         '
         'ProgressBar1
         '
@@ -179,10 +182,6 @@ Partial Class Form1
         Me.Label2.TabIndex = 21
         Me.Label2.Text = "Label2"
         '
-        'BackgroundWorker10
-        '
-        Me.BackgroundWorker10.WorkerReportsProgress = True
-        '
         'PictureBox1
         '
         Me.PictureBox1.Location = New System.Drawing.Point(12, 477)
@@ -197,11 +196,38 @@ Partial Class Form1
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 10
         '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(980, 366)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(219, 20)
+        Me.TextBox3.TabIndex = 24
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(689, 543)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(510, 20)
+        Me.TextBox4.TabIndex = 25
+        Me.TextBox4.Text = "http://www.foroswebgratis.com/imagenes_foros/3/0/1/6/1/1113433tmpnoIlwJ.jpg"
+        '
+        'Button8
+        '
+        Me.Button8.Location = New System.Drawing.Point(1211, 526)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(61, 52)
+        Me.Button8.TabIndex = 26
+        Me.Button8.Text = "Abrir"
+        Me.Button8.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1284, 720)
+        Me.Controls.Add(Me.Button8)
+        Me.Controls.Add(Me.TextBox4)
+        Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.ProgressBar1)
@@ -244,8 +270,10 @@ Partial Class Form1
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents BackgroundWorker10 As System.ComponentModel.BackgroundWorker
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents Button8 As System.Windows.Forms.Button
 
 End Class

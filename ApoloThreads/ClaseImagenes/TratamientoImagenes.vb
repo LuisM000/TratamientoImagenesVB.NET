@@ -1,7 +1,9 @@
-﻿
+﻿Imports System.ComponentModel
+
 Namespace Apolo
 
     Public Delegate Sub ActualizamosImagen(ByVal bmp As Bitmap) 'Definimos el Tipo de evento
+    Public Delegate Sub ActualizamosNombreImagen(ByVal NombreImagen As String) 'Definimos el Tipo de evento
 
     Public Class TratamientoImagenes
 
@@ -13,19 +15,15 @@ Namespace Apolo
         Private Informacion As New ArrayList 'Para saber qué se hizo
         '************************************
 
-        'Almacenamos los niveles digitales
-        Private Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-        '********************************************
-
         'Estado hilo
         Public porcentaje(2) As String
 
         'Evento de tipo ActualizamosImagen
         Event actualizaBMP As ActualizamosImagen
 
+        'Evento de tipo ActualizamosImagen
+        Event actualizaNombreImagen As ActualizamosNombreImagen
 
-        'Evento de tipo Porcentaje
-        Event actulizaPorcentaje As ActualizamosImagen
 
 
 #Region "Hacer/deshacerImagenes"
@@ -106,7 +104,8 @@ Namespace Apolo
 #Region "funcionesTratamiento"
 
         'Obtenemos los niveles de la imagen
-        Private Sub nivel(ByVal bmp As Bitmap)
+        Private Function nivel(ByVal bmp As Bitmap)
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             porcentaje(0) = 0 'Actualizamos el estado
             porcentaje(1) = "Cargando imagen" 'Actualizamos el estado
             'Este primer bloque, guarda los niveles digitales de la imagen en la variable Niveles
@@ -118,14 +117,18 @@ Namespace Apolo
                     porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
                 Next
             Next
-        End Sub
+            Return Niveles
+        End Function
 
 
         Public Function EscalaGrises(ByVal bmp As Bitmap) As Bitmap
             guardarImagen(bmp, "Escala de grises") 'Guardamos la imagen para poder hacer retroceso
-            nivel(bmp) 'Obtenemos valores
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp) 'Obtenemos valores
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Transformando a escala de grises" 'Actualizar el estado
+
+
             Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
             Dim media As Double 'Variable para calcular la media
             Dim rojoaux, verdeaux, azulaux As Double 'Variables auxiliares
@@ -149,7 +152,8 @@ Namespace Apolo
         End Function
         Public Function Invertir(ByVal bmp As Bitmap) As Bitmap
             guardarImagen(bmp, "Invertir") 'Guardamos la imagen para poder hacer retroceso
-            nivel(bmp) 'Obtenemos valores
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp) 'Obtenemos valores
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Inviertiendo colores" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte
@@ -171,7 +175,8 @@ Namespace Apolo
 
         Public Function BlancoNegro(ByVal bmp As Bitmap) As Bitmap
             guardarImagen(bmp, "Blanco y negro") 'Guardamos la imagen para poder hacer retroceso
-            nivel(bmp) 'Obtenemos valores
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp) 'Obtenemos valores
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Transformando a blanco y negro" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte
@@ -210,31 +215,95 @@ Namespace Apolo
 
 #Region "FuncionesAbrir"
         Function abrirImagen(Optional filtrado As Integer = 1) As Bitmap
+            Try
+                Dim dialogo As New OpenFileDialog
 
-            Dim dialogo As New OpenFileDialog
-
-            With dialogo
-                .Filter = "Todos los formatos compatibles|*.bmp;*.jpg;*.jpeg;*.gif;*.png;*.tif" & _
-                          "|Ficheros BMP|*.bmp" & _
-                          "|Ficheros GIF|*.gif" & _
-                          "|Ficheros JPG o JPEG|*.jpg;*.jpeg" & _
-                          "|Ficheros PNG|*.png" & _
-                          "|Ficheros TIFF|*.tif" & _
-                          "|Todos los archivos|*.*"
-                .FilterIndex = filtrado
-                If (.ShowDialog() = Windows.Forms.DialogResult.OK) Then
-                    abrirImagen = Image.FromFile(.FileName)
-                    guardarImagen(abrirImagen, "Imagen original") 'Almacenamos info y bitmap
-                    contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
-                    RaiseEvent actualizaBMP(abrirImagen) 'Generamos evento
-                    Return abrirImagen
-                Else
-                    abrirImagen = Nothing
-                    Return abrirImagen
-                End If
-            End With
+                With dialogo
+                    .Filter = "Todos los formatos compatibles|*.bmp;*.jpg;*.jpeg;*.gif;*.png;*.tif" & _
+                              "|Ficheros BMP|*.bmp" & _
+                              "|Ficheros GIF|*.gif" & _
+                              "|Ficheros JPG o JPEG|*.jpg;*.jpeg" & _
+                              "|Ficheros PNG|*.png" & _
+                              "|Ficheros TIFF|*.tif" & _
+                              "|Todos los archivos|*.*"
+                    .FilterIndex = filtrado
+                    If (.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+                        abrirImagen = Image.FromFile(.FileName)
+                        guardarImagen(abrirImagen, "Imagen original desde archivo") 'Almacenamos info y bitmap
+                        contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+                        RaiseEvent actualizaBMP(abrirImagen) 'Generamos evento
+                        RaiseEvent actualizaNombreImagen(nombreImagen(.FileName)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+                        Return abrirImagen
+                    Else
+                        abrirImagen = Nothing
+                        Return abrirImagen
+                    End If
+                End With
+            Catch
+                abrirImagen = Nothing
+                Return abrirImagen
+            End Try
         End Function
+
+        Function abrirRecursoWeb(ByVal enlace As String) As Bitmap
+            Try
+                Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
+                Dim response As System.Net.WebResponse = request.GetResponse()
+                Dim responseStream As System.IO.Stream = response.GetResponseStream()
+                Dim bmp As New Bitmap(responseStream)
+                guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
+                contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+                RaiseEvent actualizaBMP(bmp) 'Generamos evento
+                RaiseEvent actualizaNombreImagen(nombreRecursoWeb(enlace)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+                Return bmp
+            Catch
+                Dim bmp As Bitmap
+                bmp = Nothing
+                Return bmp
+            End Try
+        End Function
+
+        Function abrirDragDrop(ByVal ruta As String) As Bitmap
+            Try
+                Dim bmp As New Bitmap(ruta)
+                abrirDragDrop = bmp
+                guardarImagen(abrirDragDrop, "Imagen original arrastrada") 'Almacenamos info y bitmap
+                contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+                RaiseEvent actualizaBMP(abrirDragDrop) 'Generamos evento
+                RaiseEvent actualizaNombreImagen(nombreImagen(ruta)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+                Return abrirDragDrop
+            Catch
+                Dim bmp As Bitmap
+                bmp = Nothing
+                Return bmp
+            End Try
+        End Function
+
 #End Region
+   
+#Region "Funciones extra"
+        Function nombreImagen(ByVal rutaImagen As String)
+            Dim auxiliar, auxiliar2, nombre_imagen As String
+            Dim nombre_imagen2() As String
+            auxiliar = rutaimagen
+            nombre_imagen2 = Split(auxiliar, "\")
+            auxiliar2 = UBound(nombre_imagen2)
+            nombre_imagen = nombre_imagen2(auxiliar2)
+            Return nombre_imagen
+        End Function
+
+        Function nombreRecursoWeb(ByVal url As String)
+            Dim auxiliar, auxiliar2, nombre_imagen As String
+            Dim nombre_imagen2() As String
+            auxiliar = url
+            nombre_imagen2 = Split(auxiliar, "/")
+            auxiliar2 = UBound(nombre_imagen2)
+            nombre_imagen = nombre_imagen2(auxiliar2)
+            Return nombre_imagen
+        End Function
+
+#End Region
+
     End Class
 
 End Namespace
