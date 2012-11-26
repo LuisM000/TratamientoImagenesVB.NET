@@ -1,4 +1,7 @@
-﻿Imports System.ComponentModel
+﻿Imports System.Xml
+Imports System.Net
+
+
 
 Namespace Apolo
 
@@ -11,8 +14,8 @@ Namespace Apolo
         'Variables para controlar atrás/adelante 
         Public Shared imagenesGuardadas As New ArrayList 'Para ir atrás y adelante, Lo creamos como
         'Se crea como shared para que no se cree de nuevo en cada instancia
-        Private contadorImagenes As Integer 'Para saber en qué índice de las imágenesGUardadas estamos
-        Private Informacion As New ArrayList 'Para saber qué se hizo
+        Private Shared contadorImagenes As Integer 'Para saber en qué índice de las imágenesGUardadas estamos
+        Private Shared Informacion As New ArrayList 'Para saber qué se hizo
         '************************************
 
         'Estado hilo
@@ -214,6 +217,7 @@ Namespace Apolo
 #End Region
 
 #Region "FuncionesAbrir"
+        'Se abre desde archivo
         Function abrirImagen(Optional filtrado As Integer = 1) As Bitmap
             Try
                 Dim dialogo As New OpenFileDialog
@@ -239,12 +243,14 @@ Namespace Apolo
                         Return abrirImagen
                     End If
                 End With
-            Catch
+            Catch e As Exception
+                MessageBox.Show(e.ToString)
                 abrirImagen = Nothing
                 Return abrirImagen
             End Try
         End Function
 
+        'Se abre desde una URL
         Function abrirRecursoWeb(ByVal enlace As String) As Bitmap
             Try
                 Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
@@ -262,6 +268,92 @@ Namespace Apolo
                 Return bmp
             End Try
         End Function
+
+        'Se buscan imágenes en Bing
+        Public Function BuscarImagenesBing(ByVal texto As String, Optional ByVal numeroImagenes As Integer = 10, Optional ByVal tamaño As String = "", Optional Precarga As Boolean = False)
+            Dim datosVuelta(50, 50) As String
+            Try
+                If tamaño <> "" Then
+                    tamaño = "&ImageFilters=%27Size%3a" & tamaño & "%27"
+                End If
+                Dim accountKey As String = "URndltgY4xIFqjJOhdozXaBilXhSo76PIW7YWedDkJI="
+                Dim serviceRoot As String = "https://api.datamarket.azure.com/Bing/Search/"
+                Dim imageQueryRoot As String = serviceRoot + "Image?"
+                Dim imageQuery As String = imageQueryRoot + "Query=%27" + texto + "%27" + "&$top=" & numeroImagenes & tamaño
+
+                'XmlDocument que usaremos para leer los resultados
+                Dim document As XmlDocument = New XmlDocument()
+
+                'Las siguientes cuatro líneas configurar el XmlDocument para utilizar las credenciales 
+                Dim accountCredential As New NetworkCredential(accountKey, accountKey)
+                Dim resolver As New XmlUrlResolver()
+                resolver.Credentials = accountCredential
+                document.XmlResolver = resolver
+
+                ' Con las credenciales configuradas, cargamos el archivo
+                document.Load(imageQuery)
+
+                'Creamos nameespace para configurar resultados
+                Dim namespaceManager As XmlNamespaceManager = New XmlNamespaceManager(document.NameTable)
+
+                namespaceManager.AddNamespace("atom", "http://www.w3.org/2005/Atom")
+
+                namespaceManager.AddNamespace("m", "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata")
+
+                namespaceManager.AddNamespace("d", "http://schemas.microsoft.com/ado/2007/08/dataservices")
+
+
+                Dim nextResultSet As String = document.SelectSingleNode(
+                                                  "/atom:feed/atom:link[@rel='next']/@href",
+                                                  namespaceManager).Value
+
+
+                Dim imageResultsReducida As XmlNodeList = document.SelectNodes("/atom:feed/atom:entry/atom:content/m:properties/d:Thumbnail", namespaceManager)
+                Dim imageResults As XmlNodeList = document.SelectNodes("/atom:feed/atom:entry/atom:content/m:properties", namespaceManager)
+
+                Dim i = 0
+                If Precarga = True Then
+                    For Each imageResult As XmlNode In imageResults
+                        Dim title As String = imageResult.SelectSingleNode(".//d:MediaUrl", namespaceManager).InnerText
+                        datosVuelta(i, 0) = title
+                        i += 1
+                    Next
+
+                    i = 0
+                    For Each imageResult As XmlNode In imageResultsReducida
+                        Dim title As String = imageResult.SelectSingleNode(".//d:MediaUrl", namespaceManager).InnerText
+                        datosVuelta(i, 1) = title
+                        i += 1
+                    Next
+                Else
+
+                    i = 0
+                    For Each imageResult As XmlNode In imageResultsReducida
+                        Dim title As String = imageResult.SelectSingleNode(".//d:MediaUrl", namespaceManager).InnerText
+                        datosVuelta(i, 0) = title
+                        i += 1
+                    Next
+
+                    i = 0
+                    For Each imageResult As XmlNode In imageResults
+                        Dim title As String = imageResult.SelectSingleNode(".//d:MediaUrl", namespaceManager).InnerText
+                        datosVuelta(i, 1) = title
+                        i += 1
+                    Next
+                End If
+
+            Catch
+            End Try
+
+            Return datosVuelta
+        End Function
+
+        Public Sub InfoImagenPrecarga(ByVal bmp As Bitmap, ByVal direccionURL As String) 'Con esto guardamos los datos si el usuario ha activado precarga
+            guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
+            contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+            RaiseEvent actualizaBMP(bmp) 'Generamos evento
+            RaiseEvent actualizaNombreImagen(nombreRecursoWeb(direccionURL)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+        End Sub
 
         Function abrirDragDrop(ByVal ruta As String) As Bitmap
             Try

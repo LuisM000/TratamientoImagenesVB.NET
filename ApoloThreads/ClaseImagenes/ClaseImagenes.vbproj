@@ -70,11 +70,23 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.vb">
+    <Compile Include="Abrir\AbrirBing.Designer.vb">
+      <DependentUpon>AbrirBing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Abrir\AbrirBing.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Abrir\AbrirRecurso.Designer.vb">
+      <DependentUpon>AbrirRecurso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Abrir\AbrirRecurso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.Designer.vb">
+      <DependentUpon>Principal.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -95,8 +107,14 @@
     <Compile Include="TratamientoImagenes.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="Abrir\AbrirBing.resx">
+      <DependentUpon>AbrirBing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abrir\AbrirRecurso.resx">
+      <DependentUpon>AbrirRecurso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -116,6 +134,12 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\powered.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cargando1.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
