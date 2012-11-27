@@ -6,7 +6,7 @@ Imports System.Net
 Namespace Apolo
 
     Public Delegate Sub ActualizamosImagen(ByVal bmp As Bitmap) 'Definimos el Tipo de evento
-    Public Delegate Sub ActualizamosNombreImagen(ByVal NombreImagen As String) 'Definimos el Tipo de evento
+    Public Delegate Sub ActualizamosNombreImagen(ByVal NombreImagen() As String) 'Definimos el Tipo de evento
 
     Public Class TratamientoImagenes
 
@@ -19,7 +19,7 @@ Namespace Apolo
         '************************************
 
         'Estado hilo
-        Public porcentaje(2) As String
+        Public Shared porcentaje(2) As String
 
         'Evento de tipo ActualizamosImagen
         Event actualizaBMP As ActualizamosImagen
@@ -214,6 +214,44 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp) 'generamos el evento
             Return bmp
         End Function
+
+        Public Function sepia(ByVal bmp As Bitmap)
+            Return filtroponderado(bmp, 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131)
+        End Function
+
+        Public Function filtroponderado(ByVal bmp As Bitmap, Optional ByVal Rr As Double = 1, Optional ByVal Rg As Double = 0, Optional ByVal Rb As Double = 0, Optional ByVal Gr As Double = 0, Optional ByVal Gg As Double = 1, Optional ByVal Gb As Double = 0, Optional ByVal Br As Double = 0, Optional ByVal Bg As Double = 0, Optional ByVal Bb As Double = 1)
+            guardarImagen(bmp, "Filtro ponderado") 'Guardamos la imagen para poder hacer retroceso
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Aplicando filtro ponderado" 'Actualizar el estado
+
+            Dim Rojo, Verde, Azul, alfa As Byte
+            Dim Rojoaux, Verdeaux, Azulaux As UInteger
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = (Niveles(i, j).R)
+                    Verde = (Niveles(i, j).G)
+                    Azul = (Niveles(i, j).B)
+                    'Ponderamos los valores
+                    Rojoaux = CInt(Rojo * Rr + Verde * Rg + Azul * Rb)
+                    Verdeaux = CInt(Rojo * Gr + Verde * Gg + Azul * Gb)
+                    Azulaux = CInt(Rojo * Br + Verde * Bg + Azul * Bb)
+                    'Eliminamos excesos
+                    If Rojoaux > 255 Then Rojoaux = 255
+                    If Verdeaux > 255 Then Verdeaux = 255
+                    If Azulaux > 255 Then Azulaux = 255
+                    Rojo = Rojoaux : Verde = Verdeaux : Azul = Azulaux
+                    alfa = Niveles(i, j).A
+                    bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp) 'generamos el evento
+            Return bmp
+        End Function
 #End Region
 
 #Region "FuncionesAbrir"
@@ -236,7 +274,7 @@ Namespace Apolo
                         guardarImagen(abrirImagen, "Imagen original desde archivo") 'Almacenamos info y bitmap
                         contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
                         RaiseEvent actualizaBMP(abrirImagen) 'Generamos evento
-                        RaiseEvent actualizaNombreImagen(nombreImagen(.FileName)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+                        RaiseEvent actualizaNombreImagen({nombreImagen(.FileName), abrirImagen.Width, abrirImagen.Height, "Desde archivo"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
                         Return abrirImagen
                     Else
                         abrirImagen = Nothing
@@ -260,13 +298,60 @@ Namespace Apolo
                 guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
                 contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
                 RaiseEvent actualizaBMP(bmp) 'Generamos evento
-                RaiseEvent actualizaNombreImagen(nombreRecursoWeb(enlace)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+                RaiseEvent actualizaNombreImagen({nombreRecursoWeb(enlace), bmp.Width, bmp.Height, "Recurso web"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
                 Return bmp
             Catch
                 Dim bmp As Bitmap
                 bmp = Nothing
                 Return bmp
             End Try
+        End Function
+
+
+        Public Sub InfoImagenPrecarga(ByVal bmp As Bitmap, ByVal direccionURL As String) 'Con esto guardamos los datos si el usuario ha activado precarga
+            guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
+            contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+            RaiseEvent actualizaBMP(bmp) 'Generamos evento
+            RaiseEvent actualizaNombreImagen({nombreRecursoWeb(direccionURL), bmp.Width, bmp.Height, "Recurso web"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+        End Sub
+
+        Function abrirDragDrop(ByVal ruta As String) As Bitmap
+            Try
+                Dim bmp As New Bitmap(ruta)
+                abrirDragDrop = bmp
+                guardarImagen(abrirDragDrop, "Imagen original arrastrada") 'Almacenamos info y bitmap
+                contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+                RaiseEvent actualizaBMP(abrirDragDrop) 'Generamos evento
+                RaiseEvent actualizaNombreImagen(nombreImagen(ruta)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+                Return abrirDragDrop
+            Catch
+                Dim bmp As Bitmap
+                bmp = Nothing
+                Return bmp
+            End Try
+        End Function
+
+#End Region
+   
+#Region "Funciones extra"
+        Function nombreImagen(ByVal rutaImagen As String)
+            Dim auxiliar, auxiliar2, nombre_imagen As String
+            Dim nombre_imagen2() As String
+            auxiliar = rutaimagen
+            nombre_imagen2 = Split(auxiliar, "\")
+            auxiliar2 = UBound(nombre_imagen2)
+            nombre_imagen = nombre_imagen2(auxiliar2)
+            Return nombre_imagen
+        End Function
+
+        Function nombreRecursoWeb(ByVal url As String)
+            Dim auxiliar, auxiliar2, nombre_imagen As String
+            Dim nombre_imagen2() As String
+            auxiliar = url
+            nombre_imagen2 = Split(auxiliar, "/")
+            auxiliar2 = UBound(nombre_imagen2)
+            nombre_imagen = nombre_imagen2(auxiliar2)
+            Return nombre_imagen
         End Function
 
         'Se buscan imágenes en Bing
@@ -347,53 +432,6 @@ Namespace Apolo
 
             Return datosVuelta
         End Function
-
-        Public Sub InfoImagenPrecarga(ByVal bmp As Bitmap, ByVal direccionURL As String) 'Con esto guardamos los datos si el usuario ha activado precarga
-            guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
-            contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
-            RaiseEvent actualizaBMP(bmp) 'Generamos evento
-            RaiseEvent actualizaNombreImagen(nombreRecursoWeb(direccionURL)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
-        End Sub
-
-        Function abrirDragDrop(ByVal ruta As String) As Bitmap
-            Try
-                Dim bmp As New Bitmap(ruta)
-                abrirDragDrop = bmp
-                guardarImagen(abrirDragDrop, "Imagen original arrastrada") 'Almacenamos info y bitmap
-                contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
-                RaiseEvent actualizaBMP(abrirDragDrop) 'Generamos evento
-                RaiseEvent actualizaNombreImagen(nombreImagen(ruta)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
-                Return abrirDragDrop
-            Catch
-                Dim bmp As Bitmap
-                bmp = Nothing
-                Return bmp
-            End Try
-        End Function
-
-#End Region
-   
-#Region "Funciones extra"
-        Function nombreImagen(ByVal rutaImagen As String)
-            Dim auxiliar, auxiliar2, nombre_imagen As String
-            Dim nombre_imagen2() As String
-            auxiliar = rutaimagen
-            nombre_imagen2 = Split(auxiliar, "\")
-            auxiliar2 = UBound(nombre_imagen2)
-            nombre_imagen = nombre_imagen2(auxiliar2)
-            Return nombre_imagen
-        End Function
-
-        Function nombreRecursoWeb(ByVal url As String)
-            Dim auxiliar, auxiliar2, nombre_imagen As String
-            Dim nombre_imagen2() As String
-            auxiliar = url
-            nombre_imagen2 = Split(auxiliar, "/")
-            auxiliar2 = UBound(nombre_imagen2)
-            nombre_imagen = nombre_imagen2(auxiliar2)
-            Return nombre_imagen
-        End Function
-
 #End Region
 
     End Class

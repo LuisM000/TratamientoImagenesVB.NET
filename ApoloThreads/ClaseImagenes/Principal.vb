@@ -16,7 +16,7 @@ Public Class Principal
         AddHandler objetoTratamiento.actualizaNombreImagen, New ActualizamosNombreImagen(AddressOf actualizarNombrePicture)
     End Sub
 
-    '**************BArra superior (MenuStrip)
+
 #Region "Archivo"
     'Abrir imagen desde archivo
     Private Sub AbrirImagenToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AbrirImagenToolStripMenuItem1.Click
@@ -37,56 +37,64 @@ Public Class Principal
         AbrirBing.Show()
     End Sub
 #End Region
-    '*****************************
 
-    Private Sub Atras_Click(sender As Object, e As EventArgs) Handles Atras.Click
-        PictureBox1.Image = objetoTratamiento.ListadoImagenesAtras
-        TextBox1.Text = objetoTratamiento.ListadoInfoAtras
-        TextBox2.Text = objetoTratamiento.ListadoInfoAdelante
+#Region "Editar"
+    Private Sub RefrescarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefrescarToolStripMenuItem.Click
+        'Actualizamos el Panel1
+        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScroll = True
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        PictureBox1.Image = objetoTratamiento.ListadoImagenesAdelante
-        TextBox1.Text = objetoTratamiento.ListadoInfoAtras
-        TextBox2.Text = objetoTratamiento.ListadoInfoAdelante
+    'Deshacer
+    Private Sub DeshacerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeshacerToolStripMenuItem.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ListadoImagenesAtras
+        End If
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        TextBox1.Text = objetoTratamiento.ListadoInfoAtras
-        TextBox2.Text = objetoTratamiento.ListadoInfoAdelante
+    'Rehacer
+    Private Sub RehacerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RehacerToolStripMenuItem.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ListadoImagenesAdelante
+        End If
     End Sub
 
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
+#End Region
+
+#Region "OperacionesBasicas"
+    Private Sub EscalaDeGrisesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EscalaDeGrisesToolStripMenuItem.Click
         Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "blancoNegro"
         transformar()
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
-        transformacion = "invertir"
-        transformar()
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub EscalaDeGrisesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EscalaDeGrisesToolStripMenuItem1.Click
         Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "escalaGrises"
         transformar()
     End Sub
 
-
-
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        PictureBox1.LoadAsync(TextBox4.Text)
+    Private Sub InvertirColoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InvertirColoresToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "invertir"
+        transformar()
     End Sub
+
+    Private Sub SepiaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SepiaToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "sepia"
+        transformar()
+    End Sub
+#End Region
 
 
 #Region "Crear proceso con thread"
     'ACtualizamos el estado del proceso
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick
-        BarraEstado.Value = CInt(objetoTratamiento.porcentaje(0))
-        EstadoActual.Text = objetoTratamiento.porcentaje(1)
-        PorcentajeActual.Text = CInt(objetoTratamiento.porcentaje(0)) & " %"
+        BarraEstado.Value = CInt(TratamientoImagenes.porcentaje(0))
+        EstadoActual.Text = TratamientoImagenes.porcentaje(1)
+        PorcentajeActual.Text = CInt(TratamientoImagenes.porcentaje(0)) & " %"
     End Sub
 
 
@@ -110,6 +118,8 @@ Public Class Principal
                 PictureBox1.Image = objetoTratamiento.BlancoNegro(bmp)
             Case "invertir"
                 PictureBox1.Image = objetoTratamiento.Invertir(bmp)
+            Case "sepia"
+                PictureBox1.Image = objetoTratamiento.sepia(bmp)
         End Select
 
     End Sub
@@ -124,21 +134,26 @@ Public Class Principal
 #End Region
 
 
-
-#Region "Actualizar imagen secundaria"
+#Region "Actualizar imagen secundaria/ actualizar hacer y deshacer"
     'Realizamos esto cuando recibimos el evento
     Sub actualizarPicture(ByVal bmp As Bitmap)
         PictureBox2.Image = bmp
+        Timer2.Enabled = True
+    End Sub
+    'Actualizar deshacer/hacer
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        DeshacerToolStripMenuItem.Text = "Deshacer - " & objetoTratamiento.ListadoInfoAtras
+        RehacerToolStripMenuItem.Text = "Rehacer - " & objetoTratamiento.ListadoInfoAdelante
     End Sub
     'FIN de actualizar imagen secundaria
 #End Region
 
 #Region "Actualizar nombre imagen"
     'Realizamos esto cuando recibimos el evento
-    Sub actualizarNombrePicture(ByVal nombre As String)
-        TextBox3.Text = nombre
-        ImagenActual.Text = nombre
-        Me.Text = nombre
+    Sub actualizarNombrePicture(ByVal nombre() As String)
+        ImagenActual.Text = nombre(0)
+        Me.Text = "[" & nombre(0) & "]  " & "(" & nombre(1) & " x " & nombre(2) & ")   " & nombre(3)
+
     End Sub
     'FIN de actualizar imagen secundaria
 #End Region
@@ -170,9 +185,6 @@ Public Class Principal
 #End Region
 
 
-    Private Sub RefrescarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefrescarToolStripMenuItem.Click
-        'Actualizamos el Panel1
-        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
-        Panel1.AutoScroll = True
-    End Sub
+
+ 
 End Class
