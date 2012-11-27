@@ -39,6 +39,10 @@ Partial Class Principal
         Me.EscalaDeGrisesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EscalaDeGrisesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.InvertirColoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RGBToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RojoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VerdeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AzulToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SepiaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
@@ -52,6 +56,7 @@ Partial Class Principal
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.BrilloToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -139,7 +144,7 @@ Partial Class Principal
         '
         'OperacionesBásicosToolStripMenuItem
         '
-        Me.OperacionesBásicosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EscalaDeGrisesToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem1, Me.InvertirColoresToolStripMenuItem, Me.SepiaToolStripMenuItem})
+        Me.OperacionesBásicosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EscalaDeGrisesToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem1, Me.InvertirColoresToolStripMenuItem, Me.SepiaToolStripMenuItem, Me.BrilloToolStripMenuItem})
         Me.OperacionesBásicosToolStripMenuItem.Name = "OperacionesBásicosToolStripMenuItem"
         Me.OperacionesBásicosToolStripMenuItem.Size = New System.Drawing.Size(127, 20)
         Me.OperacionesBásicosToolStripMenuItem.Text = "Operaciones básicos"
@@ -158,9 +163,34 @@ Partial Class Principal
         '
         'InvertirColoresToolStripMenuItem
         '
+        Me.InvertirColoresToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RGBToolStripMenuItem, Me.RojoToolStripMenuItem, Me.VerdeToolStripMenuItem, Me.AzulToolStripMenuItem})
         Me.InvertirColoresToolStripMenuItem.Name = "InvertirColoresToolStripMenuItem"
         Me.InvertirColoresToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.InvertirColoresToolStripMenuItem.Text = "Invertir colores"
+        '
+        'RGBToolStripMenuItem
+        '
+        Me.RGBToolStripMenuItem.Name = "RGBToolStripMenuItem"
+        Me.RGBToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RGBToolStripMenuItem.Text = "RGB"
+        '
+        'RojoToolStripMenuItem
+        '
+        Me.RojoToolStripMenuItem.Name = "RojoToolStripMenuItem"
+        Me.RojoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RojoToolStripMenuItem.Text = "Rojo"
+        '
+        'VerdeToolStripMenuItem
+        '
+        Me.VerdeToolStripMenuItem.Name = "VerdeToolStripMenuItem"
+        Me.VerdeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.VerdeToolStripMenuItem.Text = "Verde"
+        '
+        'AzulToolStripMenuItem
+        '
+        Me.AzulToolStripMenuItem.Name = "AzulToolStripMenuItem"
+        Me.AzulToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AzulToolStripMenuItem.Text = "Azul"
         '
         'SepiaToolStripMenuItem
         '
@@ -217,7 +247,7 @@ Partial Class Principal
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Location = New System.Drawing.Point(243, 27)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(565, 563)
+        Me.Panel1.Size = New System.Drawing.Size(1029, 651)
         Me.Panel1.TabIndex = 29
         '
         'PictureBox1
@@ -226,7 +256,7 @@ Partial Class Principal
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(565, 563)
+        Me.PictureBox1.Size = New System.Drawing.Size(1029, 651)
         Me.PictureBox1.TabIndex = 28
         Me.PictureBox1.TabStop = False
         '
@@ -247,7 +277,13 @@ Partial Class Principal
         'Timer2
         '
         Me.Timer2.Enabled = True
-        Me.Timer2.Interval = 500
+        Me.Timer2.Interval = 300
+        '
+        'BrilloToolStripMenuItem
+        '
+        Me.BrilloToolStripMenuItem.Name = "BrilloToolStripMenuItem"
+        Me.BrilloToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.BrilloToolStripMenuItem.Text = "Brillo"
         '
         'Principal
         '
@@ -304,5 +340,10 @@ Partial Class Principal
     Friend WithEvents DeshacerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RehacerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
+    Friend WithEvents RGBToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RojoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VerdeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AzulToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents BrilloToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

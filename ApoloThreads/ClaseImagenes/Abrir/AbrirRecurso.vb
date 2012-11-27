@@ -13,6 +13,9 @@ Public Class AbrirRecurso
         bmp = objetoTratamiento.abrirRecursoWeb(Me.TextBox1.Text)
         If bmp IsNot Nothing Then 'Si realmente se abre alguna imagen la asignamos al Picture pricipal
             Principal.PictureBox1.Image = bmp
+            'Aprovechamos y actualizamos el Panel1
+            Principal.Panel1.AutoScrollMinSize = Principal.PictureBox1.Image.Size
+            Principal.Panel1.AutoScroll = True
         End If
     End Sub
 

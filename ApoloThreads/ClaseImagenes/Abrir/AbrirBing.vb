@@ -17,10 +17,8 @@ Public Class AbrirBing
         'Recorremos los Picturebox y al entrar dentro o salir se cambia el cursor 
         For Each c As Object In Me.Controls
             If c.GetType Is GetType(PictureBox) Then
-
                 AddHandler DirectCast(c, PictureBox).MouseEnter, AddressOf dentroP
                 AddHandler DirectCast(c, PictureBox).MouseLeave, AddressOf fueraP
-
             End If
         Next
     End Sub
@@ -238,7 +236,7 @@ Public Class AbrirBing
                 End Select
             End If
             'Actualizamos el Panel1
-            Principal.Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Principal.Panel1.AutoScrollMinSize = PictureBox1.Image.Size
             Principal.Panel1.AutoScroll = True
         End If
     End Sub

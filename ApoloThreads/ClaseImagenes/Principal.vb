@@ -24,6 +24,8 @@ Public Class Principal
         bmp = objetoTratamiento.abrirImagen()
         If bmp IsNot Nothing Then
             PictureBox1.Image = bmp
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
         End If
     End Sub
 
@@ -75,9 +77,28 @@ Public Class Principal
         transformar()
     End Sub
 
-    Private Sub InvertirColoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InvertirColoresToolStripMenuItem.Click
+
+    Private Sub RGBToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RGBToolStripMenuItem.Click
         Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "invertir"
+        transformar()
+    End Sub
+
+    Private Sub RojoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RojoToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "invertirRojo"
+        transformar()
+    End Sub
+
+    Private Sub VerdeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerdeToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "invertirVerde"
+        transformar()
+    End Sub
+
+    Private Sub AzulToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AzulToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "invertirAzul"
         transformar()
     End Sub
 
@@ -85,6 +106,10 @@ Public Class Principal
         Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "sepia"
         transformar()
+    End Sub
+
+    Private Sub BrilloToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BrilloToolStripMenuItem.Click
+        Brillo.Show()
     End Sub
 #End Region
 
@@ -118,17 +143,23 @@ Public Class Principal
                 PictureBox1.Image = objetoTratamiento.BlancoNegro(bmp)
             Case "invertir"
                 PictureBox1.Image = objetoTratamiento.Invertir(bmp)
+            Case "invertirRojo"
+                PictureBox1.Image = objetoTratamiento.Invertir(bmp, True, False, False)
+            Case "invertirVerde"
+                PictureBox1.Image = objetoTratamiento.Invertir(bmp, False, True, False)
+            Case "invertirAzul"
+                PictureBox1.Image = objetoTratamiento.Invertir(bmp, False, False, True)
             Case "sepia"
                 PictureBox1.Image = objetoTratamiento.sepia(bmp)
         End Select
-
     End Sub
 
-
+    'Cuando acaba el hilo..
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         'Aprovechamos y actualizamos el Panel1
-        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScrollMinSize = PictureBox1.Image.Size
         Panel1.AutoScroll = True
+        BackgroundWorker1.Dispose()
     End Sub
 
 #End Region
@@ -137,8 +168,12 @@ Public Class Principal
 #Region "Actualizar imagen secundaria/ actualizar hacer y deshacer"
     'Realizamos esto cuando recibimos el evento
     Sub actualizarPicture(ByVal bmp As Bitmap)
-        PictureBox2.Image = bmp
-        Timer2.Enabled = True
+        Try
+            PictureBox1.Image = bmp
+            PictureBox2.Image = bmp
+            Timer2.Enabled = True
+        Catch
+        End Try
     End Sub
     'Actualizar deshacer/hacer
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
@@ -185,6 +220,4 @@ Public Class Principal
 #End Region
 
 
-
- 
 End Class
