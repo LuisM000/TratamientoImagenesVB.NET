@@ -448,3 +448,8 @@ C:\Users\Luis.LuisSobremesa\Desktop\LuisM000-TratamientoImagenesVB.NET-1e86531\F
 C:\Users\Luis.LuisSobremesa\Desktop\LuisM000-TratamientoImagenesVB.NET-1e86531\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Canvas0.9.vbproj.ResolveComReference.cache
 C:\Users\Luis.LuisSobremesa\Desktop\ApoloVB\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Cine.resources
 C:\Users\Luis.LuisSobremesa\Desktop\ApoloVB\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.VerMarco.resources
+C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\bin\Debug\Apolo versión 0.9.exe.config
+C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Canvas0.9.vbproj.ResolveComReference.cache
+C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Apolo versión 0.9.exe
+C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Apolo versión 0.9.xml
+C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Apolo versión 0.9.pdb
