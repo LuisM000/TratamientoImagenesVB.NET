@@ -108,12 +108,58 @@ Public Class Principal
         transformar()
     End Sub
 
-    Private Sub BrilloToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BrilloToolStripMenuItem.Click
-        Brillo.Show()
+    Private Sub FiltroAzulToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FiltroAzulToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "FiltroAzul"
+        transformar()
+    End Sub
+    Private Sub FiltroVerdeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FiltroVerdeToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "FiltroVerde"
+        transformar()
+    End Sub
+    Private Sub FiltroRojoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FiltroRojoToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "FiltroRojo"
+        transformar()
+    End Sub
+
+    Private Sub BGRToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BGRToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "RGBtoBGR"
+        transformar()
+    End Sub
+
+    Private Sub GRBToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GRBToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "RGBtoGRB"
+        transformar()
+    End Sub
+
+    Private Sub RBGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RBGToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "RGBtoRBG"
+        transformar()
     End Sub
 #End Region
 
+#Region "Operaciones básicos personalizadas"
+    Private Sub BlancoYNegroToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BlancoYNegroToolStripMenuItem.Click
+        BlancoYnegro.Show()
+    End Sub
 
+    Private Sub BrilloToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BrilloToolStripMenuItem1.Click
+        Brillo.Show()
+    End Sub
+
+    Private Sub ExposiciónToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ExposiciónToolStripMenuItem1.Click
+        Exposicion.Show()
+    End Sub
+
+    Private Sub ModificarCanalesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ModificarCanalesToolStripMenuItem1.Click
+        Canales.Show()
+    End Sub
+#End Region
 #Region "Crear proceso con thread"
     'ACtualizamos el estado del proceso
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -151,6 +197,18 @@ Public Class Principal
                 PictureBox1.Image = objetoTratamiento.Invertir(bmp, False, False, True)
             Case "sepia"
                 PictureBox1.Image = objetoTratamiento.sepia(bmp)
+            Case "FiltroRojo"
+                PictureBox1.Image = objetoTratamiento.filtrosBasicos(bmp, True, False, False)
+            Case "FiltroVerde"
+                PictureBox1.Image = objetoTratamiento.filtrosBasicos(bmp, False, True, False)
+            Case "FiltroAzul"
+                PictureBox1.Image = objetoTratamiento.filtrosBasicos(bmp, False, False, True)
+            Case "RGBtoBGR"
+                PictureBox1.Image = objetoTratamiento.RGBto(bmp, True, False, False)
+            Case "RGBtoGRB"
+                PictureBox1.Image = objetoTratamiento.RGBto(bmp, False, True, False)
+            Case "RGBtoRBG"
+                PictureBox1.Image = objetoTratamiento.RGBto(bmp, False, False, True)
         End Select
     End Sub
 
@@ -220,4 +278,7 @@ Public Class Principal
 #End Region
 
 
+ 
+    
+   
 End Class

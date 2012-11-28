@@ -156,8 +156,12 @@ Namespace Apolo
         Public Function Invertir(ByVal bmp As Bitmap, Optional ByVal Irojo As Boolean = True, Optional ByVal Iverde As Boolean = True, Optional ByVal Iazul As Boolean = True) As Bitmap
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp) 'Obtenemos valores
+            Dim TipoEstado As String = "Invertir"
+            'Creamos el estado
+            If Irojo = True Then TipoEstado = "Invertir rojo" Else If Iverde = True Then TipoEstado = "Invertir verde" Else If Iazul = True Then TipoEstado = "Invertir azul"
+            If Irojo = True And Iverde = True And Iazul = True Then TipoEstado = "Invertir RGB"
             porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Inviertiendo colores" 'Actualizar el estado
+            porcentaje(1) = TipoEstado 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte
 
             For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
@@ -182,16 +186,18 @@ Namespace Apolo
                 Next
                 porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
             Next
-            guardarImagen(bmp, "Invertir") 'Guardamos la imagen para poder hacer retroceso
+            guardarImagen(bmp, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp) 'generamos el evento
             Return bmp
         End Function
-        Public Function BlancoNegro(ByVal bmp As Bitmap) As Bitmap
+        Public Function BlancoNegro(ByVal bmp As Bitmap, Optional ByVal valortope As Byte = 128) As Bitmap
+            Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-            Niveles = nivel(bmp) 'Obtenemos valores
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
             porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Transformando a blanco y negro" 'Actualizar el estado
+            porcentaje(1) = "Transformando a blanco y negro (" & valortope & ")" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte
             Dim media As Double
             Dim rojoaux, verdeaux, azulaux As Double
@@ -206,7 +212,7 @@ Namespace Apolo
                     media = (rojoaux + verdeaux + azulaux) / 3
                     'En función de si el valor es mayor o menor de 128 (mitad aproximada
                     'de 255), lo convertimos en blanco o negro
-                    If media >= 128 Then
+                    If media >= valortope Then
                         Rojo = 255
                         Verde = 255
                         Azul = 255
@@ -216,14 +222,14 @@ Namespace Apolo
                         Azul = 0
                     End If
                     alfa = Niveles(i, j).A
-                    bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
                 Next
                 porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            guardarImagen(bmp, "Blanco y negro") 'Guardamos la imagen para poder hacer retroceso
-            RaiseEvent actualizaBMP(bmp) 'generamos el evento
-            Return bmp
+            guardarImagen(bmp3, "Blanco y negro (" & valortope & ")") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
         End Function
         Public Function sepia(ByVal bmp As Bitmap)
             Return filtroponderado(bmp, 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131)
@@ -261,7 +267,7 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp) 'generamos el evento
             Return bmp
         End Function
-        Function modificarbrillo(ByVal bmp As Bitmap, ByVal cantidad As Integer)
+        Function Brillo(ByVal bmp As Bitmap, ByVal cantidad As Integer)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2)
@@ -296,7 +302,7 @@ Namespace Apolo
                     Verde = AuxiliarG
                     Azul = AuxiliarB
                     alfa = Niveles(i, j).A
-                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
                 Next
                 porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
             Next
@@ -304,6 +310,136 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             guardarImagen(bmp3, "Modificar brillo") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
+        End Function
+        Function Exposicion(ByVal bmp As Bitmap, ByVal valorSobreexposicion As Double)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2)
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Width)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Modificando exposición" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
+            If valorSobreexposicion = 0 Then valorSobreexposicion = 0.001
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R / valorSobreexposicion 'Ajustamos la exposición
+                    Verde = Niveles(i, j).G / valorSobreexposicion
+                    Azul = Niveles(i, j).B / valorSobreexposicion
+                    If Rojo > 255 Then Rojo = 255
+                    If Verde > 255 Then Verde = 255
+                    If Azul > 255 Then Azul = 255
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Modificar exposición") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+        Function Canales(ByVal bmp As Bitmap, Optional ByVal canalrojo As Integer = 0, Optional ByVal canalverde As Integer = 0, Optional ByVal canalazul As Integer = 0, Optional ByVal canaalfa As Integer = 0)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2)
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Width)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Modificando canales" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
+            Dim Rojoaux, Verdeuax, Azulaux, Alfaaux As Double 'Declaramos tres variables que almacenarán los colores
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojoaux = Niveles(i, j).R + canalrojo 'Aumentamos/disminuimos por canal
+                    Verdeuax = Niveles(i, j).G + canalverde 'Realizamos la inversión de los colores
+                    Azulaux = Niveles(i, j).B + canalazul 'Realizamos la inversión de los colores
+                    Alfaaux = Niveles(i, j).A + canaalfa 'Realizamos la inversión de los colores
+                    If Rojoaux > 255 Then Rojoaux = 255
+                    If Verdeuax > 255 Then Verdeuax = 255
+                    If Azulaux > 255 Then Azulaux = 255
+                    If Alfaaux > 255 Then Alfaaux = 255
+                    If Rojoaux < 0 Then Rojoaux = 0
+                    If Verdeuax < 0 Then Verdeuax = 0
+                    If Azulaux < 0 Then Azulaux = 0
+                    If Alfaaux < 0 Then Alfaaux = 0
+                    Rojo = Rojoaux : Verde = Verdeuax : Azul = Azulaux : alfa = Alfaaux
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Modificar canales") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+        Function filtrosBasicos(ByVal bmp As Bitmap, Optional ByVal FRojo As Boolean = False, Optional ByVal FVerde As Boolean = False, Optional ByVal Fazul As Boolean = False)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2)
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Width)
+            Dim TipoEstado As String = "Filtro básico"
+            'Creamos el estado
+            If FRojo = True Then TipoEstado = "Filtro básico rojo" Else If FVerde = True Then TipoEstado = "Filtro básico verde" Else If Fazul = True Then TipoEstado = "Filtro básico azul"
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = TipoEstado 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
+            Dim Rojoaux, Verdeaux, Azulaux As Double 'Declaramos tres variables que almacenarán los colores
+            'Calculamos la media, y asignamos el color al rojo (por ejemplo) y al resto 0
+            Dim media As Double 'Variable para calcular la media
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojoaux = Niveles(i, j).R
+                    Verdeaux = Niveles(i, j).G
+                    Azulaux = Niveles(i, j).B
+                    'Calculamos la media conviertiendo el resultado en un integer (CInt)
+                    media = CInt((Rojoaux + Verdeaux + Azulaux) / 3)
+                    If FRojo = True Then
+                        Rojo = media
+                        Verde = 0
+                        Azul = 0
+                    ElseIf FVerde = True Then
+                        Rojo = 0
+                        Verde = media
+                        Azul = 0
+                    ElseIf Fazul = True Then
+                        Rojo = 0
+                        Verde = 0
+                        Azul = media
+                    End If
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+        Function RGBto(ByVal bmp As Bitmap, Optional ByVal BGR As Boolean = False, Optional ByVal GRB As Boolean = True, Optional ByVal RBG As Boolean = False)
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            Dim TipoEstado As String = "RGB a"
+            'Creamos el estado
+            If BGR = True Then TipoEstado = "RGB a BGR" Else If GRB = True Then TipoEstado = "RGB a GRB" Else If RBG = True Then TipoEstado = "RGB a RBG"
+            porcentaje(1) = TipoEstado
+            Dim Rojo, Verde, Azul, alfa As Byte
+           
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).B 'Realizamos la inversión de los colores
+                    Verde = Niveles(i, j).G 'Realizamos la inversión de los colores
+                    Azul = Niveles(i, j).R 'Realizamos la inversión de los colores
+                    alfa = Niveles(i, j).A
+                    bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp) 'generamos el evento
+            guardarImagen(bmp, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
+            Return bmp
         End Function
 #End Region
 
@@ -375,7 +511,7 @@ Namespace Apolo
                 guardarImagen(abrirDragDrop, "Imagen original arrastrada") 'Almacenamos info y bitmap
                 contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
                 RaiseEvent actualizaBMP(abrirDragDrop) 'Generamos evento
-                RaiseEvent actualizaNombreImagen(nombreImagen(ruta)) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+                RaiseEvent actualizaNombreImagen({nombreImagen(ruta), abrirDragDrop.Width, abrirDragDrop.Height, "Desde archivo (arrastrada)"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
                 Return abrirDragDrop
             Catch
                 Dim bmp As Bitmap

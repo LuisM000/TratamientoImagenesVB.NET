@@ -82,10 +82,28 @@
     <Compile Include="Abrir\AbrirRecurso.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OperacionesBasicas\Brillo.Designer.vb">
+    <Compile Include="OperacionesBasicasPersonalizadas\BlancoYnegro.Designer.vb">
+      <DependentUpon>BlancoYnegro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\BlancoYnegro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Brillo.Designer.vb">
       <DependentUpon>Brillo.vb</DependentUpon>
     </Compile>
-    <Compile Include="OperacionesBasicas\Brillo.vb">
+    <Compile Include="OperacionesBasicasPersonalizadas\Brillo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Exposicion.Designer.vb">
+      <DependentUpon>Exposicion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Exposicion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Canales.Designer.vb">
+      <DependentUpon>Canales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Canales.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Principal.vb">
@@ -119,8 +137,17 @@
     <EmbeddedResource Include="Abrir\AbrirRecurso.resx">
       <DependentUpon>AbrirRecurso.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OperacionesBasicas\Brillo.resx">
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\BlancoYnegro.resx">
+      <DependentUpon>BlancoYnegro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Brillo.resx">
       <DependentUpon>Brillo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Exposicion.resx">
+      <DependentUpon>Exposicion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Canales.resx">
+      <DependentUpon>Canales.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
