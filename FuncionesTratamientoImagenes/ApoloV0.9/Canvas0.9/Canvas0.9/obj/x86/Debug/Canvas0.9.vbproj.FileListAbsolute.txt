@@ -448,8 +448,81 @@ C:\Users\Luis.LuisSobremesa\Desktop\LuisM000-TratamientoImagenesVB.NET-1e86531\F
 C:\Users\Luis.LuisSobremesa\Desktop\LuisM000-TratamientoImagenesVB.NET-1e86531\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Canvas0.9.vbproj.ResolveComReference.cache
 C:\Users\Luis.LuisSobremesa\Desktop\ApoloVB\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Cine.resources
 C:\Users\Luis.LuisSobremesa\Desktop\ApoloVB\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.VerMarco.resources
+<<<<<<< HEAD
 C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\bin\Debug\Apolo versión 0.9.exe.config
 C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Canvas0.9.vbproj.ResolveComReference.cache
 C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Apolo versión 0.9.exe
 C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Apolo versión 0.9.xml
 C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Apolo versión 0.9.pdb
+=======
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\bin\Debug\Apolo versión 0.9.exe.config
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Canvas0.9.vbproj.ResolveComReference.cache
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Apolo versión 0.9.exe
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Apolo versión 0.9.xml
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Apolo versión 0.9.pdb
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\bin\Debug\Apolo versión 0.9.exe
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\bin\Debug\Apolo versión 0.9.pdb
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\bin\Debug\Apolo versión 0.9.xml
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Canvas0.9.vbprojResolveAssemblyReference.cache
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.MensajeBorrar.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.PropiedadesBorrar.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Dialog1ClonParc.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.PropiedadesClonParcial.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.ConfPaso1.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.ConfPaso2.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.DialogFiltro.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.PropiedadesFiltrL1.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.DialogFiltroPar.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Filtrpersonal.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.PpiedadesParcilaFiltro.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Abriendo.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.BuscarIMagenesBing.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.facebook.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.MensajeRecortar.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.RecogerColor.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Rotar.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.AboutBox1.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.BlancoNegroM.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Cargando.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Brillo.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Contornos.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Cuadricula.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.configu.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.DialogoClon.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.PropiedadesClon.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Filtro.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Filtrorango.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Exposicion.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Degradador.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.MascaraManual.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Matriz.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Textura.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.TipoTrazo.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Histograma.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Mascaras.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.ModificarCanales.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Mosaico.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Oleo.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.PropiedadesImagen.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Recurso.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Redimensionar.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Reducircolores.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.ruido.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Juego.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.SplashScreen1.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Tabla.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Unir.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Cine.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.VerMarco.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.PpiedadesSegmentacion.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Segmentacion.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Afin.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.ReconPPp.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.SeleccionAfin.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.TAfinPers.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Principal.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.Resources.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\WindowsApplication1.VistaPrevia.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\FuncionesTratamientoImagenes\ApoloV0.9\Canvas0.9\Canvas0.9\obj\x86\Debug\Canvas0.9.vbproj.GenerateResource.Cache
+>>>>>>> cbcd4639ecf60e0c030754eed7114fa0764825ff
