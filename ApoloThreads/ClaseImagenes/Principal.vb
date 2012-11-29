@@ -61,6 +61,10 @@ Public Class Principal
         End If
     End Sub
 
+    Private Sub RegistroDeCambiosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RegistroDeCambiosToolStripMenuItem.Click
+        RegistroCambio.Show()
+    End Sub
+
 
 #End Region
 
@@ -148,6 +152,10 @@ Public Class Principal
         BlancoYnegro.Show()
     End Sub
 
+    Private Sub EscalaDeGrisesToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles EscalaDeGrisesToolStripMenuItem2.Click
+        EscalaDeGrises.Show()
+    End Sub
+
     Private Sub BrilloToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BrilloToolStripMenuItem1.Click
         Brillo.Show()
     End Sub
@@ -158,6 +166,13 @@ Public Class Principal
 
     Private Sub ModificarCanalesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ModificarCanalesToolStripMenuItem1.Click
         Canales.Show()
+    End Sub
+    Private Sub ReducirColoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReducirColoresToolStripMenuItem.Click
+        ReducirColores.Show()
+    End Sub
+
+    Private Sub FiltrarColoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FiltrarColoresToolStripMenuItem.Click
+        FiltrarColores.Show()
     End Sub
 #End Region
 #Region "Crear proceso con thread"
@@ -246,7 +261,6 @@ Public Class Principal
     Sub actualizarNombrePicture(ByVal nombre() As String)
         ImagenActual.Text = nombre(0)
         Me.Text = "[" & nombre(0) & "]  " & "(" & nombre(1) & " x " & nombre(2) & ")   " & nombre(3)
-
     End Sub
     'FIN de actualizar imagen secundaria
 #End Region
@@ -254,14 +268,14 @@ Public Class Principal
 
 
 #Region "DRAG&DROP"
-    Private Sub PictureBox1_DragEnter(sender As Object, e As DragEventArgs) Handles PictureBox1.DragEnter
+    Private Sub PictureBox1_DragEnter(sender As Object, e As DragEventArgs)
         'DataFormats.FileDrop nos devuelve el array de rutas de archivos
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             'Los archivos son externos a nuestra aplicación por lo que de indicaremos All ya que dará lo mismo.
             e.Effect = DragDropEffects.All
         End If
     End Sub
-    Private Sub PictureBox1_DragDrop(sender As Object, e As DragEventArgs) Handles PictureBox1.DragDrop
+    Private Sub PictureBox1_DragDrop(sender As Object, e As DragEventArgs)
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             Dim rutaImagen As String
             'Asignamos la primera posición del array de ruta de archivos a la variable de tipo string
@@ -278,7 +292,5 @@ Public Class Principal
 #End Region
 
 
- 
-    
-   
+
 End Class

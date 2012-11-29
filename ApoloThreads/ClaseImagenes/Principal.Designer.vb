@@ -23,10 +23,14 @@ Partial Class Principal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ImagenActual = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.BarraEstado = New System.Windows.Forms.ToolStripProgressBar()
+        Me.PorcentajeActual = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.EstadoActual = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.AbrirImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AbrirImagenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CargarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -34,6 +38,7 @@ Partial Class Principal
         Me.EdiciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeshacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RehacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RegistroDeCambiosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RefrescarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesBásicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EscalaDeGrisesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -54,54 +59,75 @@ Partial Class Principal
         Me.RBGToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BlancoYNegroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EscalaDeGrisesToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.BrilloToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExposiciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ModificarCanalesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ImagenActual = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.BarraEstado = New System.Windows.Forms.ToolStripProgressBar()
-        Me.PorcentajeActual = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.EstadoActual = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ReducirColoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.MenuStrip1.SuspendLayout()
+        Me.FiltrarColoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
+        Me.MenuStrip1.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'TextBox2
+        'Timer1
         '
-        Me.TextBox2.Location = New System.Drawing.Point(1305, 90)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(168, 23)
-        Me.TextBox2.TabIndex = 8
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 50
         '
-        'Button2
+        'StatusStrip1
         '
-        Me.Button2.Location = New System.Drawing.Point(1361, 155)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(71, 60)
-        Me.Button2.TabIndex = 9
-        Me.Button2.Text = "Actualizar"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImagenActual, Me.BarraEstado, Me.PorcentajeActual, Me.EstadoActual})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 692)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 16, 0)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1284, 24)
+        Me.StatusStrip1.TabIndex = 27
+        Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'MenuStrip1
+        'ImagenActual
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
-        Me.MenuStrip1.ShowItemToolTips = True
-        Me.MenuStrip1.Size = New System.Drawing.Size(1284, 24)
-        Me.MenuStrip1.TabIndex = 18
-        Me.MenuStrip1.Text = "MenuStrip1"
+        Me.ImagenActual.Name = "ImagenActual"
+        Me.ImagenActual.Size = New System.Drawing.Size(121, 19)
+        Me.ImagenActual.Text = "ToolStripStatusLabel2"
+        '
+        'BarraEstado
+        '
+        Me.BarraEstado.Name = "BarraEstado"
+        Me.BarraEstado.Size = New System.Drawing.Size(583, 18)
+        '
+        'PorcentajeActual
+        '
+        Me.PorcentajeActual.Name = "PorcentajeActual"
+        Me.PorcentajeActual.Size = New System.Drawing.Size(35, 19)
+        Me.PorcentajeActual.Text = "100%"
+        '
+        'EstadoActual
+        '
+        Me.EstadoActual.Name = "EstadoActual"
+        Me.EstadoActual.Size = New System.Drawing.Size(60, 19)
+        Me.EstadoActual.Text = "Finalizado"
+        '
+        'BackgroundWorker1
+        '
+        Me.BackgroundWorker1.WorkerReportsProgress = True
+        Me.BackgroundWorker1.WorkerSupportsCancellation = True
+        '
+        'Timer2
+        '
+        Me.Timer2.Enabled = True
+        Me.Timer2.Interval = 300
         '
         'AbrirImagenToolStripMenuItem
         '
@@ -130,7 +156,7 @@ Partial Class Principal
         '
         'EdiciónToolStripMenuItem
         '
-        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.RefrescarToolStripMenuItem})
+        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.RegistroDeCambiosToolStripMenuItem, Me.RefrescarToolStripMenuItem})
         Me.EdiciónToolStripMenuItem.Name = "EdiciónToolStripMenuItem"
         Me.EdiciónToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.EdiciónToolStripMenuItem.Text = "Edición"
@@ -139,7 +165,7 @@ Partial Class Principal
         '
         Me.DeshacerToolStripMenuItem.Name = "DeshacerToolStripMenuItem"
         Me.DeshacerToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-        Me.DeshacerToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.DeshacerToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.DeshacerToolStripMenuItem.Text = "Deshacer"
         '
         'RehacerToolStripMenuItem
@@ -147,13 +173,19 @@ Partial Class Principal
         Me.RehacerToolStripMenuItem.Name = "RehacerToolStripMenuItem"
         Me.RehacerToolStripMenuItem.ShortcutKeyDisplayString = ""
         Me.RehacerToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Y), System.Windows.Forms.Keys)
-        Me.RehacerToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.RehacerToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.RehacerToolStripMenuItem.Text = "Rehacer"
+        '
+        'RegistroDeCambiosToolStripMenuItem
+        '
+        Me.RegistroDeCambiosToolStripMenuItem.Name = "RegistroDeCambiosToolStripMenuItem"
+        Me.RegistroDeCambiosToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.RegistroDeCambiosToolStripMenuItem.Text = "Registro de cambios"
         '
         'RefrescarToolStripMenuItem
         '
         Me.RefrescarToolStripMenuItem.Name = "RefrescarToolStripMenuItem"
-        Me.RefrescarToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.RefrescarToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.RefrescarToolStripMenuItem.Text = "Refrescar"
         '
         'OperacionesBásicosToolStripMenuItem
@@ -222,19 +254,19 @@ Partial Class Principal
         'FiltroRojoToolStripMenuItem
         '
         Me.FiltroRojoToolStripMenuItem.Name = "FiltroRojoToolStripMenuItem"
-        Me.FiltroRojoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FiltroRojoToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
         Me.FiltroRojoToolStripMenuItem.Text = "Filtro rojo"
         '
         'FiltroVerdeToolStripMenuItem
         '
         Me.FiltroVerdeToolStripMenuItem.Name = "FiltroVerdeToolStripMenuItem"
-        Me.FiltroVerdeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FiltroVerdeToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
         Me.FiltroVerdeToolStripMenuItem.Text = "Filtro verde"
         '
         'FiltroAzulToolStripMenuItem
         '
         Me.FiltroAzulToolStripMenuItem.Name = "FiltroAzulToolStripMenuItem"
-        Me.FiltroAzulToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FiltroAzulToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
         Me.FiltroAzulToolStripMenuItem.Text = "Filtro azul"
         '
         'RGBAToolStripMenuItem
@@ -247,24 +279,24 @@ Partial Class Principal
         'BGRToolStripMenuItem
         '
         Me.BGRToolStripMenuItem.Name = "BGRToolStripMenuItem"
-        Me.BGRToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.BGRToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.BGRToolStripMenuItem.Text = "BGR"
         '
         'GRBToolStripMenuItem
         '
         Me.GRBToolStripMenuItem.Name = "GRBToolStripMenuItem"
-        Me.GRBToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.GRBToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.GRBToolStripMenuItem.Text = "GRB"
         '
         'RBGToolStripMenuItem
         '
         Me.RBGToolStripMenuItem.Name = "RBGToolStripMenuItem"
-        Me.RBGToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RBGToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.RBGToolStripMenuItem.Text = "RBG"
         '
         'OperacionesBásicosPersonalizadasToolStripMenuItem
         '
-        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlancoYNegroToolStripMenuItem, Me.BrilloToolStripMenuItem1, Me.ExposiciónToolStripMenuItem1, Me.ModificarCanalesToolStripMenuItem1})
+        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlancoYNegroToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem2, Me.BrilloToolStripMenuItem1, Me.ExposiciónToolStripMenuItem1, Me.ModificarCanalesToolStripMenuItem1, Me.ReducirColoresToolStripMenuItem, Me.FiltrarColoresToolStripMenuItem})
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Name = "OperacionesBásicosPersonalizadasToolStripMenuItem"
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Size = New System.Drawing.Size(207, 20)
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Text = "Operaciones básicos personalizadas"
@@ -274,6 +306,12 @@ Partial Class Principal
         Me.BlancoYNegroToolStripMenuItem.Name = "BlancoYNegroToolStripMenuItem"
         Me.BlancoYNegroToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.BlancoYNegroToolStripMenuItem.Text = "Blanco y negro"
+        '
+        'EscalaDeGrisesToolStripMenuItem2
+        '
+        Me.EscalaDeGrisesToolStripMenuItem2.Name = "EscalaDeGrisesToolStripMenuItem2"
+        Me.EscalaDeGrisesToolStripMenuItem2.Size = New System.Drawing.Size(167, 22)
+        Me.EscalaDeGrisesToolStripMenuItem2.Text = "Escala de grises"
         '
         'BrilloToolStripMenuItem1
         '
@@ -293,97 +331,84 @@ Partial Class Principal
         Me.ModificarCanalesToolStripMenuItem1.Size = New System.Drawing.Size(167, 22)
         Me.ModificarCanalesToolStripMenuItem1.Text = "Modificar canales"
         '
-        'Timer1
+        'ReducirColoresToolStripMenuItem
         '
-        Me.Timer1.Enabled = True
-        Me.Timer1.Interval = 50
+        Me.ReducirColoresToolStripMenuItem.Name = "ReducirColoresToolStripMenuItem"
+        Me.ReducirColoresToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.ReducirColoresToolStripMenuItem.Text = "Reducir colores"
         '
-        'StatusStrip1
+        'MenuStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImagenActual, Me.ToolStripStatusLabel1, Me.BarraEstado, Me.PorcentajeActual, Me.EstadoActual})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 692)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 16, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(1284, 24)
-        Me.StatusStrip1.TabIndex = 27
-        Me.StatusStrip1.Text = "StatusStrip1"
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
+        Me.MenuStrip1.ShowItemToolTips = True
+        Me.MenuStrip1.Size = New System.Drawing.Size(1284, 24)
+        Me.MenuStrip1.TabIndex = 18
+        Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'ImagenActual
+        'SplitContainer1
         '
-        Me.ImagenActual.Name = "ImagenActual"
-        Me.ImagenActual.Size = New System.Drawing.Size(121, 19)
-        Me.ImagenActual.Text = "ToolStripStatusLabel2"
+        Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 24)
+        Me.SplitContainer1.Name = "SplitContainer1"
         '
-        'ToolStripStatusLabel1
+        'SplitContainer1.Panel1
         '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(115, 19)
-        Me.ToolStripStatusLabel1.Text = "                                    "
+        Me.SplitContainer1.Panel1.Controls.Add(Me.Panel1)
         '
-        'BarraEstado
+        'SplitContainer1.Panel2
         '
-        Me.BarraEstado.Name = "BarraEstado"
-        Me.BarraEstado.Size = New System.Drawing.Size(583, 18)
-        '
-        'PorcentajeActual
-        '
-        Me.PorcentajeActual.Name = "PorcentajeActual"
-        Me.PorcentajeActual.Size = New System.Drawing.Size(35, 19)
-        Me.PorcentajeActual.Text = "100%"
-        '
-        'EstadoActual
-        '
-        Me.EstadoActual.Name = "EstadoActual"
-        Me.EstadoActual.Size = New System.Drawing.Size(60, 19)
-        Me.EstadoActual.Text = "Finalizado"
+        Me.SplitContainer1.Panel2.Controls.Add(Me.PictureBox2)
+        Me.SplitContainer1.Panel2.Padding = New System.Windows.Forms.Padding(5)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1284, 668)
+        Me.SplitContainer1.SplitterDistance = 1124
+        Me.SplitContainer1.TabIndex = 28
         '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.PictureBox1)
-        Me.Panel1.Location = New System.Drawing.Point(243, 27)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1029, 651)
-        Me.Panel1.TabIndex = 29
+        Me.Panel1.Size = New System.Drawing.Size(1122, 666)
+        Me.Panel1.TabIndex = 0
         '
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(1029, 651)
-        Me.PictureBox1.TabIndex = 28
+        Me.PictureBox1.Padding = New System.Windows.Forms.Padding(5)
+        Me.PictureBox1.Size = New System.Drawing.Size(1122, 666)
+        Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
-        '
-        'BackgroundWorker1
-        '
-        Me.BackgroundWorker1.WorkerReportsProgress = True
-        Me.BackgroundWorker1.WorkerSupportsCancellation = True
-        '
-        'Timer2
-        '
-        Me.Timer2.Enabled = True
-        Me.Timer2.Interval = 300
         '
         'PictureBox2
         '
-        Me.PictureBox2.Location = New System.Drawing.Point(12, 337)
+        Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox2.Location = New System.Drawing.Point(3, 515)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(225, 238)
+        Me.PictureBox2.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 1
+        Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
+        '
+        'FiltrarColoresToolStripMenuItem
+        '
+        Me.FiltrarColoresToolStripMenuItem.Name = "FiltrarColoresToolStripMenuItem"
+        Me.FiltrarColoresToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.FiltrarColoresToolStripMenuItem.Text = "Filtrar colores"
         '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1284, 716)
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MainMenuStrip = Me.MenuStrip1
@@ -391,10 +416,14 @@ Partial Class Principal
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Apolo thread"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.MenuStrip1.ResumeLayout(False)
+        Me.MenuStrip1.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -402,38 +431,31 @@ Partial Class Principal
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
-    Friend WithEvents AbrirImagenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents BarraEstado As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents PorcentajeActual As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents EstadoActual As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ImagenActual As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Timer2 As System.Windows.Forms.Timer
+    Friend WithEvents AbrirImagenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AbrirImagenToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CargarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents BuscarImágenesEnLaWebToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents EdiciónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DeshacerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RehacerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RefrescarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OperacionesBásicosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EscalaDeGrisesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EscalaDeGrisesToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InvertirColoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SepiaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DeshacerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents RehacerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Timer2 As System.Windows.Forms.Timer
     Friend WithEvents RGBToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RojoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents VerdeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AzulToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SepiaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FiltrosBásicosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FiltroRojoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FiltroVerdeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -447,5 +469,14 @@ Partial Class Principal
     Friend WithEvents BrilloToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExposiciónToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ModificarCanalesToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+    Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents RegistroDeCambiosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EscalaDeGrisesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReducirColoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FiltrarColoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

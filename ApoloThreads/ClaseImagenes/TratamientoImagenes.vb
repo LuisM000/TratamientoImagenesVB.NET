@@ -77,8 +77,20 @@ Namespace Apolo
             End Get
         End Property
 
+        Public ReadOnly Property ListadoTotalDeInfo() As ArrayList 'Imagen hacia delante
+            Get
+                Return Informacion
+            End Get
+        End Property
+
+        Public ReadOnly Property ListadoTotalDeImagenes() As ArrayList 'Imagen hacia delante
+            Get
+                Return imagenesGuardadas
+            End Get
+        End Property
+
         'Almacenamos la imagen
-        Private Sub guardarImagen(ByVal bmp As Bitmap, ByVal info As String) 'Para almacenar el bitmap y la información
+        Protected Friend Sub guardarImagen(ByVal bmp As Bitmap, ByVal info As String) 'Para almacenar el bitmap y la información
             'Almacenamos la imagen con su información y añadimos +1 al contador
             If imagenesGuardadas.Count < 40 Then
                 contadorImagenes += 1
@@ -123,14 +135,16 @@ Namespace Apolo
             Return Niveles
         End Function
 
-
-        Public Function EscalaGrises(ByVal bmp As Bitmap) As Bitmap
+        Public Function EscalaGrises(ByVal bmp As Bitmap, Optional ByVal valorcontraste As Byte = 0) As Bitmap
+            Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-            Niveles = nivel(bmp) 'Obtenemos valores
+            Niveles = nivel(bmp2) 'Obtenemos valores
             porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Transformando a escala de grises" 'Actualizar el estado
-
-
+            porcentaje(1) = "Transformando a escala de grises (" & valorcontraste & ")" 'Actualizar el estado
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            Dim valoralto, valorbajo As Byte
+            valorbajo = 128 - valorcontraste
+            valoralto = 128 + valorcontraste
             Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
             Dim media As Double 'Variable para calcular la media
             Dim rojoaux, verdeaux, azulaux As Double 'Variables auxiliares
@@ -140,18 +154,25 @@ Namespace Apolo
                     verdeaux = Niveles(i, j).G
                     azulaux = Niveles(i, j).B
                     media = CInt((rojoaux + verdeaux + azulaux) / 3) 'Hacemos la media
+                    If media >= valorbajo And media <= valoralto Then 'Calculamos a qué valor lo asignamos
+                        If (media - valorbajo) <= (valoralto - media) Then
+                            media = valorbajo
+                        Else
+                            media = valoralto
+                        End If
+                    End If
                     Rojo = media
                     Verde = media
                     Azul = media
                     alfa = Niveles(i, j).A
-                    bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
                 Next
                 porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            guardarImagen(bmp, "Escala de grises") 'Guardamos la imagen para poder hacer retroceso
-            RaiseEvent actualizaBMP(bmp) 'generamos el evento
-            Return bmp
+            guardarImagen(bmp3, "Escala de grises (" & valorcontraste & ")") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
         End Function
         Public Function Invertir(ByVal bmp As Bitmap, Optional ByVal Irojo As Boolean = True, Optional ByVal Iverde As Boolean = True, Optional ByVal Iazul As Boolean = True) As Bitmap
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -315,7 +336,7 @@ Namespace Apolo
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2)
-            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Width)
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Modificando exposición" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
@@ -342,7 +363,7 @@ Namespace Apolo
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2)
-            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Width)
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Modificando canales" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
@@ -441,6 +462,93 @@ Namespace Apolo
             guardarImagen(bmp, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
             Return bmp
         End Function
+        Public Function reducircolores(ByVal bmp As Bitmap, ByVal valorcontraste As Byte)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Reduciendo colores (" & valorcontraste & ")" 'Actualizar el estado
+            Dim valoralto, valorbajo As Byte
+            valorbajo = 128 - valorcontraste
+            valoralto = 128 + valorcontraste
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    If Rojo >= valorbajo And Rojo <= valoralto Then
+                        If (Rojo - valorbajo) <= (valoralto - Rojo) Then
+                            Rojo = valorbajo
+                        Else
+                            Rojo = valoralto
+                        End If
+                    End If
+
+                    If Verde >= valorbajo And Verde <= valoralto Then
+                        If (Verde - valorbajo) <= (valoralto - Verde) Then
+                            Verde = valorbajo
+                        Else
+                            Verde = valoralto
+                        End If
+                    End If
+
+                    If Azul >= valorbajo And Azul <= valoralto Then
+                        If (Azul - valorbajo) <= (valoralto - Azul) Then
+                            Azul = valorbajo
+                        Else
+                            Azul = valoralto
+                        End If
+                    End If
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Reducir colores (" & valorcontraste & ")")
+            Return bmp3
+        End Function
+        Function filtroColoresRango(ByVal bmp As Bitmap, Optional ByVal valorRojoinf As Byte = 0, Optional ByVal valorRojosup As Byte = 0, Optional ByVal salidaRojo As Byte = 0, Optional ByVal valorVerdeinf As Byte = 0, Optional ByVal valorVerdesup As Byte = 0, Optional ByVal salidaVerde As Byte = 0, Optional ByVal valorAzulinf As Byte = 0, Optional ByVal valorAzulsup As Byte = 0, Optional ByVal salidaAzul As Byte = 0)
+            If valorRojoinf > valorRojosup Or valorVerdeinf > valorVerdesup Or valorAzulinf > valorAzulsup Then
+                MessageBox.Show("El valor inferior debe ser mayor que el superior.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return bmp
+            Else
+                Dim bmp2 = bmp
+                Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+                Niveles = nivel(bmp2) 'Obtenemos valores
+                Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+                porcentaje(0) = 0 'Actualizar el estado
+                porcentaje(1) = "Filtrando colores" 'Actualizar el estado
+                Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+                For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                    For j = 0 To Niveles.GetUpperBound(1)
+                        Rojo = Niveles(i, j).R
+                        If Rojo >= valorRojoinf And Rojo <= valorRojosup Then 'Comprobamos el color
+                            Rojo = salidaRojo
+                        End If
+                        Verde = Niveles(i, j).G
+                        If Verde >= valorVerdeinf And Verde <= valorVerdesup Then 'Comprobamos el color
+                            Verde = salidaVerde
+                        End If
+
+                        Azul = Niveles(i, j).B
+                        If Azul >= valorAzulinf And Azul <= valorAzulsup Then 'Comprobamos el color
+                            Azul = salidaAzul
+                        End If
+                        alfa = Niveles(i, j).A
+                        bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
+                    Next
+                    porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+                Next
+                porcentaje(1) = "Finalizado" 'Actualizamos el estado
+                RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+                guardarImagen(bmp3, "Filtrado de colores")
+                Return bmp3
+            End If
+        End Function
 #End Region
 
 #Region "FuncionesAbrir"
@@ -497,6 +605,20 @@ Namespace Apolo
         End Function
 
 
+        Function abrirRecursoWebAxu(ByVal enlace As String) As Bitmap 'Duplicamos esta función porque hay un error con la opción de abrir desde archivo
+            Try
+                Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
+                Dim response As System.Net.WebResponse = request.GetResponse()
+                Dim responseStream As System.IO.Stream = response.GetResponseStream()
+                Dim bmp As New Bitmap(responseStream)
+                Return bmp
+            Catch
+                Dim bmp As Bitmap
+                bmp = Nothing
+                Return bmp
+            End Try
+        End Function
+
         Public Sub InfoImagenPrecarga(ByVal bmp As Bitmap, ByVal direccionURL As String) 'Con esto guardamos los datos si el usuario ha activado precarga
             guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
             contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
@@ -511,7 +633,7 @@ Namespace Apolo
                 guardarImagen(abrirDragDrop, "Imagen original arrastrada") 'Almacenamos info y bitmap
                 contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
                 RaiseEvent actualizaBMP(abrirDragDrop) 'Generamos evento
-                RaiseEvent actualizaNombreImagen({nombreImagen(ruta), abrirDragDrop.Width, abrirDragDrop.Height, "Desde archivo (arrastrada)"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+                RaiseEvent actualizaNombreImagen({nombreRecursoWeb(ruta), abrirDragDrop.Width, abrirDragDrop.Height, "Desde archivo (arrastrada)"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
                 Return abrirDragDrop
             Catch
                 Dim bmp As Bitmap
@@ -521,12 +643,12 @@ Namespace Apolo
         End Function
 
 #End Region
-   
+
 #Region "Funciones extra"
         Function nombreImagen(ByVal rutaImagen As String)
             Dim auxiliar, auxiliar2, nombre_imagen As String
             Dim nombre_imagen2() As String
-            auxiliar = rutaimagen
+            auxiliar = rutaImagen
             nombre_imagen2 = Split(auxiliar, "\")
             auxiliar2 = UBound(nombre_imagen2)
             nombre_imagen = nombre_imagen2(auxiliar2)
