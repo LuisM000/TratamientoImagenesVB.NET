@@ -90,7 +90,7 @@ Namespace Apolo
         End Property
 
         'Almacenamos la imagen
-        Protected Friend Sub guardarImagen(ByVal bmp As Bitmap, ByVal info As String) 'Para almacenar el bitmap y la información
+        Private Sub guardarImagen(ByVal bmp As Bitmap, ByVal info As String) 'Para almacenar el bitmap y la información
             'Almacenamos la imagen con su información y añadimos +1 al contador
             If imagenesGuardadas.Count < 40 Then
                 contadorImagenes += 1
@@ -549,6 +549,447 @@ Namespace Apolo
                 Return bmp3
             End If
         End Function
+        Function mascara3x3RGB(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+
+            'Creamos el estado*****
+            Dim tipoEstado As String = "("
+            For Each item In matrizMascara
+                tipoEstado = tipoEstado & item & ","
+            Next
+            tipoEstado = tipoEstado.Remove(tipoEstado.Count - 1) 'Eliminamos la última coma
+            tipoEstado = tipoEstado & ")" 'Ponemos el último cierre de paréntesis
+            '*****
+            porcentaje(1) = "Aplicando máscara 3x3 RGB " & tipoEstado 'Actualizar el estado
+            Dim SumaRojo, SumaVerde, SumaAzul, SumaMascara As Long
+            Dim Rojo, verde, azul, alfa As Integer
+           
+            For mi = -1 To 1
+                For mj = -1 To 1
+                    SumaMascara = SumaMascara + matrizMascara(mi + 1, mj + 1)
+                Next
+            Next
+
+            If SumaMascara = 0 Then SumaMascara = 1
+
+            For i = 1 To Niveles.GetUpperBound(0) - 1
+                For j = 1 To Niveles.GetUpperBound(1) - 1
+                    SumaRojo = 0
+                    For mi = -1 To 1
+                        For mj = -1 To 1
+
+                            SumaRojo = SumaRojo + Niveles(i + mi, j + mj).R * matrizMascara(mi + 1, mj + 1)
+                        Next
+                    Next
+
+                    SumaVerde = 0
+                    For mi = -1 To 1
+                        For mj = -1 To 1
+                            SumaVerde = SumaVerde + Niveles(i + mi, j + mj).G * matrizMascara(mi + 1, mj + 1)
+
+                        Next
+                    Next
+
+                    SumaAzul = 0
+                    For mi = -1 To 1
+                        For mj = -1 To 1
+                            SumaAzul = SumaAzul + Niveles(i + mi, j + mj).B * matrizMascara(mi + 1, mj + 1)
+                        Next
+                    Next
+
+                    If factor + desviacion = 0 Then factor = 1 : desviacion = 0
+                    Rojo = Math.Abs((SumaRojo / SumaMascara) / (factor + desviacion))
+                    verde = Math.Abs((SumaVerde / SumaMascara) / (factor + desviacion))
+                    azul = Math.Abs((SumaAzul / SumaMascara) / (factor + desviacion))
+                    If Rojo > 255 Then Rojo = 255
+                    If verde > 255 Then verde = 255
+                    If azul > 255 Then azul = 255
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, verde, azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Máscara 3x3 RGB " & tipoEstado)
+            Return bmp3
+        End Function
+        Function mascara3x3Grises(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+
+            'Creamos el estado*****
+            Dim tipoEstado As String = "("
+            For Each item In matrizMascara
+                tipoEstado = tipoEstado & item & ","
+            Next
+            tipoEstado = tipoEstado.Remove(tipoEstado.Count - 1) 'Eliminamos la última coma
+            tipoEstado = tipoEstado & ")" 'Ponemos el último cierre de paréntesis
+            '*****
+            porcentaje(1) = "Aplicando máscara 3x3 Gris " & tipoEstado 'Actualizar el estado
+            Dim SumaRojo, SumaVerde, SumaAzul, SumaMascara As Long
+            Dim Rojo, verde, azul, alfa, grises As Integer
+
+            For mi = -1 To 1
+                For mj = -1 To 1
+                    SumaMascara = SumaMascara + matrizMascara(mi + 1, mj + 1)
+                Next
+            Next
+
+            If SumaMascara = 0 Then SumaMascara = 1
+
+            For i = 1 To Niveles.GetUpperBound(0) - 1
+                For j = 1 To Niveles.GetUpperBound(1) - 1
+                    SumaRojo = 0
+                    For mi = -1 To 1
+                        For mj = -1 To 1
+
+                            SumaRojo = SumaRojo + Niveles(i + mi, j + mj).R * matrizMascara(mi + 1, mj + 1)
+                        Next
+                    Next
+
+                    SumaVerde = 0
+                    For mi = -1 To 1
+                        For mj = -1 To 1
+                            SumaVerde = SumaVerde + Niveles(i + mi, j + mj).G * matrizMascara(mi + 1, mj + 1)
+
+                        Next
+                    Next
+
+                    SumaAzul = 0
+                    For mi = -1 To 1
+                        For mj = -1 To 1
+                            SumaAzul = SumaAzul + Niveles(i + mi, j + mj).B * matrizMascara(mi + 1, mj + 1)
+                        Next
+                    Next
+
+                    If factor + desviacion = 0 Then factor = 1 : desviacion = 0
+                    Rojo = Math.Abs((SumaRojo / SumaMascara) / (factor + desviacion))
+                    verde = Math.Abs((SumaVerde / SumaMascara) / (factor + desviacion))
+                    azul = Math.Abs((SumaAzul / SumaMascara) / (factor + desviacion))
+                    If Rojo > 255 Then Rojo = 255
+                    If verde > 255 Then verde = 255
+                    If azul > 255 Then azul = 255
+                    grises = CInt(Rojo + azul + verde) / 3
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, grises, grises, grises))
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Máscara 3x3 Gris " & tipoEstado)
+            Return bmp3
+        End Function
+#End Region
+
+#Region "ClaseConMáscaras"
+
+
+        Public Class mascaras
+            Private coefmascara(2, 2) As Double
+#Region "Paso bajo"
+            Public Function LOW9()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function LOW10()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+
+                Return coefmascara
+            End Function
+            Public Function LOW12()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+#End Region
+#Region "Paso alto"
+            Public Function HIGH1a()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 9 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function HIGH1b()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 5 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function HIGH16()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 20 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+#End Region
+            'Public Function Rest1()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Rest2()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Rest3()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Lap1()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Lap2()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Lap3()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Lap4()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Lap5()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Lap6()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Lap7()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function GradEste()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function GradSudeste()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function GradSur()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function GradOeste()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function GradNoroe()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function GradNorte()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function EmbEste()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function GradOEmbSudeste()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function EmbSur()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function EmbOeste()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function EmbNoreste()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function EmbNorte()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function SobelV()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function SobelH()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function SobelDiagonal1()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function PrewittV()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function PrewittH()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function PrewittDiag1()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function PrewittDiag2()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Verticales()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Horizontales()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Repujado()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Kirsch0()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Kirsch45()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Kirsch90()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Kirsch135()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Kirsch180()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Kirsch225()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Kirsch270()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function Kirsch315()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function FRH()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+            'Public Function FRV()
+            '    coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+            '    coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+            '    coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+            '    Return coefmascara
+            'End Function
+        End Class
 #End Region
 
 #Region "FuncionesAbrir"

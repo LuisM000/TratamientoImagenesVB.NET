@@ -88,6 +88,18 @@
     <Compile Include="Edición\RegistroCambio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Máscaras\PasoAlto.Designer.vb">
+      <DependentUpon>PasoAlto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Máscaras\PasoAlto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Máscaras\PasoBajo.Designer.vb">
+      <DependentUpon>PasoBajo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Máscaras\PasoBajo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OperacionesBasicasPersonalizadas\BlancoYnegro.Designer.vb">
       <DependentUpon>BlancoYnegro.vb</DependentUpon>
     </Compile>
@@ -163,6 +175,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Edición\RegistroCambio.resx">
       <DependentUpon>RegistroCambio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Máscaras\PasoAlto.resx">
+      <DependentUpon>PasoAlto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Máscaras\PasoBajo.resx">
+      <DependentUpon>PasoBajo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\BlancoYnegro.resx">
       <DependentUpon>BlancoYnegro.vb</DependentUpon>

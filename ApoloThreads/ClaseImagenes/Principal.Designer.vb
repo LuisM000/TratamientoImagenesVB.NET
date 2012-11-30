@@ -64,12 +64,16 @@ Partial Class Principal
         Me.ExposiciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ModificarCanalesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReducirColoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FiltrarColoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.FiltrarColoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MáscarasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PasoAltoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PasoBajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BordesYContornosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -337,9 +341,15 @@ Partial Class Principal
         Me.ReducirColoresToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.ReducirColoresToolStripMenuItem.Text = "Reducir colores"
         '
+        'FiltrarColoresToolStripMenuItem
+        '
+        Me.FiltrarColoresToolStripMenuItem.Name = "FiltrarColoresToolStripMenuItem"
+        Me.FiltrarColoresToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.FiltrarColoresToolStripMenuItem.Text = "Filtrar colores"
+        '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem, Me.MáscarasToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -396,11 +406,30 @@ Partial Class Principal
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
         '
-        'FiltrarColoresToolStripMenuItem
+        'MáscarasToolStripMenuItem
         '
-        Me.FiltrarColoresToolStripMenuItem.Name = "FiltrarColoresToolStripMenuItem"
-        Me.FiltrarColoresToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
-        Me.FiltrarColoresToolStripMenuItem.Text = "Filtrar colores"
+        Me.MáscarasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasoAltoToolStripMenuItem, Me.PasoBajoToolStripMenuItem, Me.BordesYContornosToolStripMenuItem})
+        Me.MáscarasToolStripMenuItem.Name = "MáscarasToolStripMenuItem"
+        Me.MáscarasToolStripMenuItem.Size = New System.Drawing.Size(68, 20)
+        Me.MáscarasToolStripMenuItem.Text = "Máscaras"
+        '
+        'PasoAltoToolStripMenuItem
+        '
+        Me.PasoAltoToolStripMenuItem.Name = "PasoAltoToolStripMenuItem"
+        Me.PasoAltoToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.PasoAltoToolStripMenuItem.Text = "Paso alto"
+        '
+        'PasoBajoToolStripMenuItem
+        '
+        Me.PasoBajoToolStripMenuItem.Name = "PasoBajoToolStripMenuItem"
+        Me.PasoBajoToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.PasoBajoToolStripMenuItem.Text = "Paso bajo"
+        '
+        'BordesYContornosToolStripMenuItem
+        '
+        Me.BordesYContornosToolStripMenuItem.Name = "BordesYContornosToolStripMenuItem"
+        Me.BordesYContornosToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.BordesYContornosToolStripMenuItem.Text = "Bordes y contornos"
         '
         'Principal
         '
@@ -478,5 +507,9 @@ Partial Class Principal
     Friend WithEvents EscalaDeGrisesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReducirColoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FiltrarColoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MáscarasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PasoAltoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PasoBajoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents BordesYContornosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

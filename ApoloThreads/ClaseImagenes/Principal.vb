@@ -175,6 +175,20 @@ Public Class Principal
         FiltrarColores.Show()
     End Sub
 #End Region
+
+#Region "Máscaras"
+    Private Sub PasoAltoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PasoAltoToolStripMenuItem.Click
+        PasoAlto.Show()
+    End Sub
+
+    Private Sub PasoBajoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PasoBajoToolStripMenuItem.Click
+        PasoBajo.Show()
+    End Sub
+
+    Private Sub BordesYContornosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BordesYContornosToolStripMenuItem.Click
+
+    End Sub
+#End Region
 #Region "Crear proceso con thread"
     'ACtualizamos el estado del proceso
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -290,6 +304,7 @@ Public Class Principal
         End If
     End Sub
 #End Region
+
 
 
 
