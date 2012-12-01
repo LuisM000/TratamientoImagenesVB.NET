@@ -46,6 +46,12 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Referencias externas\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Silverlight">
+      <HintPath>Referencias externas\Newtonsoft.Json.Silverlight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -76,16 +82,29 @@
     <Compile Include="Abrir\AbrirBing.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Abrir\AbrirFacebook.Designer.vb">
+      <DependentUpon>AbrirFacebook.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Abrir\AbrirFacebook.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Abrir\AbrirRecurso.designer.vb">
       <DependentUpon>AbrirRecurso.vb</DependentUpon>
     </Compile>
     <Compile Include="Abrir\AbrirRecurso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Abrir\JsonConvert.vb" />
     <Compile Include="Edición\RegistroCambio.Designer.vb">
       <DependentUpon>RegistroCambio.vb</DependentUpon>
     </Compile>
     <Compile Include="Edición\RegistroCambio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Máscaras\BordesYContornos.Designer.vb">
+      <DependentUpon>BordesYContornos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Máscaras\BordesYContornos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Máscaras\PasoAlto.Designer.vb">
@@ -170,11 +189,17 @@
     <EmbeddedResource Include="Abrir\AbrirBing.resx">
       <DependentUpon>AbrirBing.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abrir\AbrirFacebook.resx">
+      <DependentUpon>AbrirFacebook.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abrir\AbrirRecurso.resx">
       <DependentUpon>AbrirRecurso.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edición\RegistroCambio.resx">
       <DependentUpon>RegistroCambio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Máscaras\BordesYContornos.resx">
+      <DependentUpon>BordesYContornos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Máscaras\PasoAlto.resx">
       <DependentUpon>PasoAlto.vb</DependentUpon>

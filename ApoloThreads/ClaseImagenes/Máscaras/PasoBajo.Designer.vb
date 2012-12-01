@@ -55,10 +55,10 @@ Partial Class PasoBajo
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(431, 24)
+        Me.TextBox1.Location = New System.Drawing.Point(431, 26)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(175, 70)
+        Me.TextBox1.Size = New System.Drawing.Size(158, 61)
         Me.TextBox1.TabIndex = 9
         '
         'GroupBox2

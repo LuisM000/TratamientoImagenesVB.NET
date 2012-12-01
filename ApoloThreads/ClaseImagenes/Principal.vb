@@ -38,6 +38,10 @@ Public Class Principal
     Private Sub BuscarImágenesEnLaWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnLaWebToolStripMenuItem.Click
         AbrirBing.Show()
     End Sub
+    'Abrir imágenes con FB
+    Private Sub BuscarImágenesEnFacebookToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnFacebookToolStripMenuItem.Click
+        AbrirFacebook.Show()
+    End Sub
 #End Region
 
 #Region "Editar"
@@ -186,7 +190,7 @@ Public Class Principal
     End Sub
 
     Private Sub BordesYContornosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BordesYContornosToolStripMenuItem.Click
-
+        BordesYContornos.Show()
     End Sub
 #End Region
 #Region "Crear proceso con thread"
@@ -308,4 +312,5 @@ Public Class Principal
 
 
 
+ 
 End Class

@@ -114,7 +114,8 @@ Public Class AbrirBing
         PictureBox11.BorderStyle = BorderStyle.None
 
     End Sub
-
+#End Region
+#Region "PintarBordesPict"
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         limpiar()
         PictureBox1.BorderStyle = BorderStyle.FixedSingle

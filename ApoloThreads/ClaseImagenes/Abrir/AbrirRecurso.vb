@@ -57,7 +57,7 @@ Public Class AbrirRecurso
         ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
         ToolStripProgressBar1.Value = 100
     End Sub
- 
+
     Sub cargadoError()
         ToolStripStatusLabel1.Text = "Recurso no encontrado"
         ToolStripProgressBar1.Size = New Size(100, ToolStripProgressBar1.Size.Height)
@@ -65,5 +65,5 @@ Public Class AbrirRecurso
         ToolStripProgressBar1.Value = 0
     End Sub
 
-  
+
 End Class

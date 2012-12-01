@@ -27,10 +27,10 @@ Partial Class PasoAlto
         Me.RbRGB = New System.Windows.Forms.RadioButton()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -95,14 +95,6 @@ Partial Class PasoAlto
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Seleccione el tipo de máscara"
         '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(431, 24)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(175, 70)
-        Me.TextBox1.TabIndex = 3
-        '
         'Button2
         '
         Me.Button2.Location = New System.Drawing.Point(430, 118)
@@ -124,15 +116,23 @@ Partial Class PasoAlto
         'BackgroundWorker1
         '
         '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(431, 26)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(158, 61)
+        Me.TextBox1.TabIndex = 10
+        '
         'PasoAlto
         '
         Me.AcceptButton = Me.Button1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(618, 160)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -151,8 +151,8 @@ Partial Class PasoAlto
     Friend WithEvents RbRGB As System.Windows.Forms.RadioButton
     Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 End Class
