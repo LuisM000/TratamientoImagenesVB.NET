@@ -107,6 +107,18 @@
     <Compile Include="Máscaras\BordesYContornos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Máscaras\ImportarMascara.Designer.vb">
+      <DependentUpon>ImportarMascara.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Máscaras\ImportarMascara.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Máscaras\MascaraManual.Designer.vb">
+      <DependentUpon>MascaraManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Máscaras\MascaraManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Máscaras\PasoAlto.Designer.vb">
       <DependentUpon>PasoAlto.vb</DependentUpon>
     </Compile>
@@ -200,6 +212,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Máscaras\BordesYContornos.resx">
       <DependentUpon>BordesYContornos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Máscaras\ImportarMascara.resx">
+      <DependentUpon>ImportarMascara.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Máscaras\MascaraManual.resx">
+      <DependentUpon>MascaraManual.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Máscaras\PasoAlto.resx">
       <DependentUpon>PasoAlto.vb</DependentUpon>

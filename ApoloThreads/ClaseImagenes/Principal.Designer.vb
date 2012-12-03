@@ -75,6 +75,7 @@ Partial Class Principal
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.MáscaraManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -367,7 +368,7 @@ Partial Class Principal
         '
         'MáscarasToolStripMenuItem
         '
-        Me.MáscarasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasoAltoToolStripMenuItem, Me.PasoBajoToolStripMenuItem, Me.BordesYContornosToolStripMenuItem})
+        Me.MáscarasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasoAltoToolStripMenuItem, Me.PasoBajoToolStripMenuItem, Me.BordesYContornosToolStripMenuItem, Me.MáscaraManualToolStripMenuItem})
         Me.MáscarasToolStripMenuItem.Name = "MáscarasToolStripMenuItem"
         Me.MáscarasToolStripMenuItem.Size = New System.Drawing.Size(68, 20)
         Me.MáscarasToolStripMenuItem.Text = "Máscaras"
@@ -437,6 +438,12 @@ Partial Class Principal
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
+        '
+        'MáscaraManualToolStripMenuItem
+        '
+        Me.MáscaraManualToolStripMenuItem.Name = "MáscaraManualToolStripMenuItem"
+        Me.MáscaraManualToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.MáscaraManualToolStripMenuItem.Text = "Máscara manual"
         '
         'Principal
         '
@@ -519,5 +526,6 @@ Partial Class Principal
     Friend WithEvents PasoBajoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BordesYContornosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BuscarImágenesEnFacebookToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MáscaraManualToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

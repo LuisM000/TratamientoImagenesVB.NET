@@ -192,6 +192,10 @@ Public Class Principal
     Private Sub BordesYContornosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BordesYContornosToolStripMenuItem.Click
         BordesYContornos.Show()
     End Sub
+
+    Private Sub MáscaraManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MáscaraManualToolStripMenuItem.Click
+        MascaraManual.Show()
+    End Sub
 #End Region
 #Region "Crear proceso con thread"
     'ACtualizamos el estado del proceso
@@ -286,14 +290,14 @@ Public Class Principal
 
 
 #Region "DRAG&DROP"
-    Private Sub PictureBox1_DragEnter(sender As Object, e As DragEventArgs)
+    Private Sub PictureBox1_DragEnter1(sender As Object, e As DragEventArgs) Handles PictureBox1.DragEnter
         'DataFormats.FileDrop nos devuelve el array de rutas de archivos
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             'Los archivos son externos a nuestra aplicación por lo que de indicaremos All ya que dará lo mismo.
             e.Effect = DragDropEffects.All
         End If
     End Sub
-    Private Sub PictureBox1_DragDrop(sender As Object, e As DragEventArgs)
+    Private Sub PictureBox1_DragDrop1(sender As Object, e As DragEventArgs) Handles PictureBox1.DragDrop
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             Dim rutaImagen As String
             'Asignamos la primera posición del array de ruta de archivos a la variable de tipo string
@@ -309,8 +313,14 @@ Public Class Principal
     End Sub
 #End Region
 
+   
 
 
 
+
+
+
+
+   
  
 End Class

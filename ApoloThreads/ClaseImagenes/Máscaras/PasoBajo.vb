@@ -3,7 +3,7 @@ Public Class PasoBajo
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
     Dim objetoMascaras As New TratamientoImagenes.mascaras 'Instancia a la clase TratamientoImagenes.mascaras
     Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
-    Dim coefmascara(3, 3) As Double 'Máscara
+    Dim coefmascara(2, 2) As Double 'Máscara
 
     Private Sub PasoBajo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         RbRGB.Checked = True
@@ -17,6 +17,7 @@ Public Class PasoBajo
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If BackgroundWorker1.IsBusy = False Then
+            ListBox1.Enabled = False
             BackgroundWorker1.RunWorkerAsync()
         End If
     End Sub

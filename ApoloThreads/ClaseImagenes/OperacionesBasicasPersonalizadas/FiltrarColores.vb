@@ -31,4 +31,8 @@ Public Class FiltrarColores
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Principal.PictureBox1.Image = objetoTratamiento.filtroColoresRango(bmpP, NumericUpDown1.Value, NumericUpDown2.Value, NumericUpDown3.Value, NumericUpDown4.Value, NumericUpDown5.Value, NumericUpDown6.Value, NumericUpDown7.Value, NumericUpDown8.Value, NumericUpDown9.Value)
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
+    End Sub
 End Class

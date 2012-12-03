@@ -4,7 +4,7 @@ Public Class PasoAlto
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
     Dim objetoMascaras As New TratamientoImagenes.mascaras 'Instancia a la clase TratamientoImagenes.mascaras
     Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
-    Dim coefmascara(3, 3) As Double 'Máscara
+    Dim coefmascara(2, 2) As Double 'Máscara
 
 
     Private Sub PasoAlto_Load(sender As Object, e As EventArgs) Handles MyBase.Load

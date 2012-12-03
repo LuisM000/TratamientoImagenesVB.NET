@@ -31,6 +31,7 @@ Partial Class BordesYContornos
         Me.RbRGB = New System.Windows.Forms.RadioButton()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -129,6 +130,9 @@ Partial Class BordesYContornos
         Me.TextBox1.Size = New System.Drawing.Size(158, 61)
         Me.TextBox1.TabIndex = 18
         '
+        'BackgroundWorker1
+        '
+        '
         'BordesYContornos
         '
         Me.AcceptButton = Me.Button1
@@ -161,4 +165,5 @@ Partial Class BordesYContornos
     Friend WithEvents RbRGB As System.Windows.Forms.RadioButton
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class

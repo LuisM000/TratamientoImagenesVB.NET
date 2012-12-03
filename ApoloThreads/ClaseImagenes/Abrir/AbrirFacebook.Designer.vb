@@ -69,7 +69,7 @@ Partial Class AbrirFacebook
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
         Me.WebBrowser1.ScrollBarsEnabled = False
-        Me.WebBrowser1.Size = New System.Drawing.Size(1054, 334)
+        Me.WebBrowser1.Size = New System.Drawing.Size(1054, 354)
         Me.WebBrowser1.TabIndex = 1
         '
         'Timer1
@@ -253,11 +253,12 @@ Partial Class AbrirFacebook
         '
         'BackgroundWorker1
         '
+        Me.BackgroundWorker1.WorkerSupportsCancellation = True
         '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 352)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 376)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(1076, 22)
         Me.StatusStrip1.TabIndex = 31
@@ -275,12 +276,13 @@ Partial Class AbrirFacebook
         '
         'BackgroundWorker2
         '
+        Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
         'AbrirFacebook
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1076, 374)
+        Me.ClientSize = New System.Drawing.Size(1076, 398)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.WebBrowser1)

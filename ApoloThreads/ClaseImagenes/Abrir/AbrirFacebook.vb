@@ -25,7 +25,21 @@ Public Class AbrirFacebook
         PictureBox11.BorderStyle = BorderStyle.None
         PictureBox12.BorderStyle = BorderStyle.None
     End Sub
-
+    Sub limpiar()
+        PictureBox1.Image = Nothing
+        PictureBox2.Image = Nothing
+        PictureBox3.Image = Nothing
+        PictureBox4.Image = Nothing
+        PictureBox5.Image = Nothing
+        PictureBox6.Image = Nothing
+        PictureBox7.Image = Nothing
+        PictureBox8.Image = Nothing
+        PictureBox9.Image = Nothing
+        PictureBox10.Image = Nothing
+        PictureBox11.Image = Nothing
+        PictureBox12.Image = Nothing
+    End Sub
+   
     Private Sub dentroP(ByVal sender As Object, ByVal e As System.EventArgs)
         Me.Cursor = Cursors.Hand
     End Sub
@@ -41,10 +55,13 @@ Public Class AbrirFacebook
         ToolStripProgressBar1.MarqueeAnimationSpeed = 30
     End Sub
     Sub cargado()
-        ToolStripStatusLabel1.Text = "Imágenes cargadas"
-        ToolStripProgressBar1.Size = New Size(100, ToolStripProgressBar1.Size.Height)
-        ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
-        ToolStripProgressBar1.Value = 100
+        Try
+            ToolStripStatusLabel1.Text = "Imágenes cargadas"
+            ToolStripProgressBar1.Size = New Size(100, ToolStripProgressBar1.Size.Height)
+            ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
+            ToolStripProgressBar1.Value = 100
+        Catch
+        End Try
     End Sub
 
     Sub abriendo()
@@ -60,6 +77,7 @@ Public Class AbrirFacebook
         ToolStripProgressBar1.Value = 100
     End Sub
 #End Region
+
 
     Private Sub AbrirFacebook_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Asignamos el gestor que controle cuando sale imagen
@@ -352,6 +370,8 @@ Public Class AbrirFacebook
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If BackgroundWorker1.IsBusy = False Then
+            limpiarPic() 'Quitamos el border style
+            limpiar() 'Lo dejamos sin imagen
             contador += 100
             cargando()
             BackgroundWorker1.RunWorkerAsync()
@@ -441,4 +461,14 @@ Public Class AbrirFacebook
         End Select
 
     End Sub
+
+    Private Sub AbrirFacebook_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        BackgroundWorker1.CancelAsync()
+        BackgroundWorker2.CancelAsync()
+    End Sub
+    Private Sub AbrirFacebook_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        BackgroundWorker1.CancelAsync()
+        BackgroundWorker2.CancelAsync()
+    End Sub
+
 End Class
