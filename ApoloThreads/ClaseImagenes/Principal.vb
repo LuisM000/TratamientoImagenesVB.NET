@@ -178,6 +178,10 @@ Public Class Principal
     Private Sub FiltrarColoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FiltrarColoresToolStripMenuItem.Click
         FiltrarColores.Show()
     End Sub
+
+    Private Sub MatrizToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MatrizToolStripMenuItem.Click
+        Matriz.Show()
+    End Sub
 #End Region
 
 #Region "Máscaras"
@@ -195,6 +199,11 @@ Public Class Principal
 
     Private Sub MáscaraManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MáscaraManualToolStripMenuItem.Click
         MascaraManual.Show()
+    End Sub
+    Private Sub SobelTotalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SobelTotalToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "SobelTotal"
+        transformar()
     End Sub
 #End Region
 #Region "Crear proceso con thread"
@@ -246,6 +255,8 @@ Public Class Principal
                 PictureBox1.Image = objetoTratamiento.RGBto(bmp, False, True, False)
             Case "RGBtoRBG"
                 PictureBox1.Image = objetoTratamiento.RGBto(bmp, False, False, True)
+            Case "SobelTotal"
+                PictureBox1.Image = objetoTratamiento.sobelTotal(bmp)
         End Select
     End Sub
 
@@ -313,14 +324,5 @@ Public Class Principal
     End Sub
 #End Region
 
-   
-
-
-
-
-
-
-
-   
  
 End Class

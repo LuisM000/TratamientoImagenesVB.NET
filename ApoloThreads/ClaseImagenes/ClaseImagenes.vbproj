@@ -167,6 +167,18 @@
     <Compile Include="OperacionesBasicasPersonalizadas\FiltrarColores.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\ImportarMatriz.Designer.vb">
+      <DependentUpon>ImportarMatriz.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\ImportarMatriz.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Matriz.Designer.vb">
+      <DependentUpon>Matriz.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Matriz.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OperacionesBasicasPersonalizadas\ReducirColores.Designer.vb">
       <DependentUpon>ReducirColores.vb</DependentUpon>
     </Compile>
@@ -242,6 +254,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\FiltrarColores.resx">
       <DependentUpon>FiltrarColores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\ImportarMatriz.resx">
+      <DependentUpon>ImportarMatriz.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Matriz.resx">
+      <DependentUpon>Matriz.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\ReducirColores.resx">
       <DependentUpon>ReducirColores.vb</DependentUpon>

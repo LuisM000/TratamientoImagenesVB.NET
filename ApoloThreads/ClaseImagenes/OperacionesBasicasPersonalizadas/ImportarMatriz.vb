@@ -1,7 +1,6 @@
 ﻿Imports System.IO
 Imports System.Xml.XPath
-
-Public Class ImportarMascara
+Public Class ImportarMatriz
 
     Function listaXML(ByVal rutaDirectorio As String) 'Listar los archivos xml de un directorio
         Dim folder As New DirectoryInfo(rutaDirectorio) 'Directorio
@@ -13,14 +12,14 @@ Public Class ImportarMascara
         Next
         Return listaDearchivos
     End Function
-    Function comprobarMascara(ByVal rutaArchivo As String)
+    Function comprobarMatriz(ByVal rutaArchivo As String)
         Try
             'Preparamos el archivo xml
             Dim NodeIter As XPathNodeIterator
             Dim docNav As New XPathDocument(rutaArchivo)
             Dim nav = docNav.CreateNavigator
             Dim ExBuscar As String
-            ExBuscar = "Mascara"
+            ExBuscar = "Matriz"
 
             Dim buscar As New ArrayList
             'Recorremos el xml
@@ -38,7 +37,8 @@ Public Class ImportarMascara
             Return False
         End Try
     End Function
-    Private Sub ImportarMascara_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    Private Sub ImportarMatriz_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim listaDearchivos As New ArrayList
         'listamos los archivos xml del directorio(le enviamos el directorio actual)
         listaDearchivos = listaXML(System.IO.Directory.GetCurrentDirectory())
@@ -46,7 +46,7 @@ Public Class ImportarMascara
         ListBox1.Items.Clear() 'Borramos lo que había en el listbox
 
         For Each item In listaDearchivos
-            If comprobarMascara(System.IO.Directory.GetCurrentDirectory() & "\" & item) = True Then
+            If comprobarMatriz(System.IO.Directory.GetCurrentDirectory() & "\" & item) = True Then
                 ListBox1.Items.Add(item)
             End If
         Next
@@ -65,41 +65,37 @@ Public Class ImportarMascara
                         'No hacemos nada
                 End Select
                 'Recargamos el listbox
-                ImportarMascara_Load(sender, e)
+                ImportarMatriz_Load(sender, e)
             Catch
                 MessageBox.Show("Algo ha fallado... inténtelo más tarde", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'Recargamos el listbox
-                ImportarMascara_Load(sender, e)
+                ImportarMatriz_Load(sender, e)
             End Try
         End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If ListBox1.SelectedIndex <> -1 Then 'Si hay algún ítem seleccionado
-            Dim mascara = valoresMascara()
+            Dim mascara = valoresMatriz()
             Try
-                MascaraManual.TextBox1.Text = mascara(0)
-                MascaraManual.TextBox2.Text = mascara(1)
-                MascaraManual.TextBox3.Text = mascara(2)
-                MascaraManual.TextBox4.Text = mascara(3)
-                MascaraManual.TextBox5.Text = mascara(4)
-                MascaraManual.TextBox6.Text = mascara(5)
-                MascaraManual.TextBox7.Text = mascara(6)
-                MascaraManual.TextBox8.Text = mascara(7)
-                MascaraManual.TextBox9.Text = mascara(8)
-                MascaraManual.TextBox10.Text = mascara(9)
-                MascaraManual.TextBox11.Text = mascara(10)
-                MascaraManual.CheckBox1.Checked = True : MascaraManual.CheckBox2.Checked = True
-                MascaraManual.TextBox10.Enabled = True
-                MascaraManual.TextBox11.Enabled = True
+                Matriz.TextBox1.Text = mascara(0)
+                Matriz.TextBox2.Text = mascara(1)
+                Matriz.TextBox3.Text = mascara(2)
+                Matriz.TextBox4.Text = mascara(3)
+                Matriz.TextBox5.Text = mascara(4)
+                Matriz.TextBox6.Text = mascara(5)
+                Matriz.TextBox7.Text = mascara(6)
+                Matriz.TextBox8.Text = mascara(7)
+                Matriz.TextBox9.Text = mascara(8)
             Catch
             End Try
         Else
             Me.Close()
         End If
     End Sub
-    Function valoresMascara()
-        Dim mascara As New ArrayList
+
+    Function valoresMatriz()
+        Dim matriz As New ArrayList
         Try
             Dim rutaArchivoimportar As String = System.IO.Directory.GetCurrentDirectory() & "\" & ListBox1.SelectedItem
             'Preparamos el xml
@@ -107,68 +103,56 @@ Public Class ImportarMascara
             Dim docNav As New XPathDocument(rutaArchivoimportar)
             Dim nav = docNav.CreateNavigator
 
-            Dim Ex00, Ex01, Ex02, Ex10, Ex11, Ex12, Ex20, Ex21, Ex22, Exdesv, Exfac As String
+            Dim Ex00, Ex01, Ex02, Ex10, Ex11, Ex12, Ex20, Ex21, Ex22 As String
 
-            Ex00 = "Mascara/ValoresMatriz/Mat00"
-            Ex01 = "Mascara/ValoresMatriz/Mat01"
-            Ex02 = "Mascara/ValoresMatriz/Mat02"
-            Ex10 = "Mascara/ValoresMatriz/Mat10"
-            Ex11 = "Mascara/ValoresMatriz/Mat11"
-            Ex12 = "Mascara/ValoresMatriz/Mat12"
-            Ex20 = "Mascara/ValoresMatriz/Mat20"
-            Ex21 = "Mascara/ValoresMatriz/Mat21"
-            Ex22 = "Mascara/ValoresMatriz/Mat22"
-
-            Exdesv = "Mascara/Desviacion"
-            Exfac = "Mascara/Factor"
-
-
+            Ex00 = "Matriz/Mat00"
+            Ex01 = "Matriz/Mat01"
+            Ex02 = "Matriz/Mat02"
+            Ex10 = "Matriz/Mat10"
+            Ex11 = "Matriz/Mat11"
+            Ex12 = "Matriz/Mat12"
+            Ex20 = "Matriz/Mat20"
+            Ex21 = "Matriz/Mat21"
+            Ex22 = "Matriz/Mat22"
 
             'Recorremos el xml
             NodeIter = nav.Select(Ex00)
             While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
+                matriz.Add(NodeIter.Current.Value)
             End While
             NodeIter = nav.Select(Ex01)
             While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
+                matriz.Add(NodeIter.Current.Value)
             End While
             NodeIter = nav.Select(Ex02)
             While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
+                matriz.Add(NodeIter.Current.Value)
             End While
             NodeIter = nav.Select(Ex10)
             While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
+                matriz.Add(NodeIter.Current.Value)
             End While
             NodeIter = nav.Select(Ex11)
             While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
+                matriz.Add(NodeIter.Current.Value)
             End While
             NodeIter = nav.Select(Ex12)
             While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
+                matriz.Add(NodeIter.Current.Value)
             End While
             NodeIter = nav.Select(Ex20)
             While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
+                matriz.Add(NodeIter.Current.Value)
             End While
             NodeIter = nav.Select(Ex21)
             While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
+                matriz.Add(NodeIter.Current.Value)
             End While
             NodeIter = nav.Select(Ex22)
             While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
+                matriz.Add(NodeIter.Current.Value)
             End While
-            NodeIter = nav.Select(Exdesv)
-            While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
-            End While
-            NodeIter = nav.Select(Exfac)
-            While (NodeIter.MoveNext())
-                mascara.Add(NodeIter.Current.Value)
-            End While
+          
 
         Catch ex As System.IO.FileNotFoundException
             MessageBox.Show("El archivo no se ha encontrado. Es posible que no haya activado la opción de guardar todas las peticiones HTTP de las diferentes sesiones." & vbCrLf & "Si desea activarlo, acceda al menú Configuración/Opciones/Registro y reinicie el programa.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -176,6 +160,6 @@ Public Class ImportarMascara
             MessageBox.Show("Algo ha ocurrido, por favor, inténtelo más tarde.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
 
         End Try
-        Return mascara
+        Return matriz
     End Function
 End Class

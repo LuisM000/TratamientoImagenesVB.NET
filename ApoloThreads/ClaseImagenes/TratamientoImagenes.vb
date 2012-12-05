@@ -30,6 +30,7 @@ Namespace Apolo
 
 
 #Region "Hacer/deshacerImagenes"
+
         Public ReadOnly Property ListadoImagenesAtras() As Bitmap 'Imagen hacia atrás
             Get
                 Try
@@ -256,8 +257,10 @@ Namespace Apolo
             Return filtroponderado(bmp, 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131)
         End Function
         Public Function filtroponderado(ByVal bmp As Bitmap, Optional ByVal Rr As Double = 1, Optional ByVal Rg As Double = 0, Optional ByVal Rb As Double = 0, Optional ByVal Gr As Double = 0, Optional ByVal Gg As Double = 1, Optional ByVal Gb As Double = 0, Optional ByVal Br As Double = 0, Optional ByVal Bg As Double = 0, Optional ByVal Bb As Double = 1)
+            Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-            Niveles = nivel(bmp) 'Obtenemos valores
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Aplicando filtro ponderado" 'Actualizar el estado
 
@@ -279,14 +282,14 @@ Namespace Apolo
                     If Azulaux > 255 Then Azulaux = 255
                     Rojo = Rojoaux : Verde = Verdeaux : Azul = Azulaux
                     alfa = Niveles(i, j).A
-                    bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
                 Next
                 porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            guardarImagen(bmp, "Filtro ponderado") 'Guardamos la imagen para poder hacer retroceso
-            RaiseEvent actualizaBMP(bmp) 'generamos el evento
-            Return bmp
+            guardarImagen(bmp3, "Filtro ponderado") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
         End Function
         Function Brillo(ByVal bmp As Bitmap, ByVal cantidad As Integer)
             Dim bmp2 = bmp
@@ -689,6 +692,97 @@ Namespace Apolo
             guardarImagen(bmp3, "Máscara 3x3 Gris " & tipoEstado)
             Return bmp3
         End Function
+
+        Function sobelTotal(ByVal bmp As Bitmap)
+            Dim bmp2 = bmp
+            Dim bmp3 = bmp
+            Dim bmp4 = bmp
+            Dim bmp5 = bmp
+
+            Dim objetoMascaras As New mascaras
+            Dim MatrizMascara(2, 2) As Double
+
+            'Sobel horizontal
+            MatrizMascara = objetoMascaras.SobelH
+            bmp2 = mascara3x3Grises(bmp2, MatrizMascara, 0, 4)
+            'Sobel vertical
+            MatrizMascara = objetoMascaras.SobelV
+            bmp3 = mascara3x3Grises(bmp3, MatrizMascara, 0, 4)
+            'Sobel diagonal 1
+            MatrizMascara = objetoMascaras.SobelDiagonal1
+            bmp4 = mascara3x3Grises(bmp4, MatrizMascara, 0, 4)
+            'Sobel diagonal 2
+            MatrizMascara = objetoMascaras.SobelDiagonal2
+            bmp5 = mascara3x3Grises(bmp5, MatrizMascara, 0, 4)
+
+            Dim bmpTotal As New ArrayList
+            bmpTotal.Add(bmp2)
+            bmpTotal.Add(bmp3)
+            bmpTotal.Add(bmp4)
+            bmpTotal.Add(bmp5)
+
+            Return Me.Unir4(bmpTotal)
+
+        End Function
+        Private Function Unir4(ByVal bmp As ArrayList)
+            Dim bmp2 As New ArrayList(bmp)
+
+            'Almacenará los niveles digitales de la imagen
+            Dim Niveles1(,) As System.Drawing.Color
+            Dim Niveles2(,) As System.Drawing.Color
+            Dim Niveles3(,) As System.Drawing.Color
+            Dim Niveles4(,) As System.Drawing.Color
+
+            Niveles1 = nivel((bmp2(0))) 'Obtenemos valores
+            Niveles2 = nivel((bmp2(1)))
+            Niveles3 = nivel((bmp2(2)))
+            Niveles4 = nivel((bmp2(3)))
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Uniendo imágenes" 'Actualizar el estado
+            Dim bmp3 As Bitmap
+            bmp3 = bmp(0)
+
+            Dim media1, media2, media3, media4 As Double 'Variable para calcular la media
+            Dim rojoaux1, verdeaux1, azulaux1, rojoaux2, verdeaux2, azulaux2, rojoaux3, verdeaux3, azulaux3, rojoaux4, verdeaux4, azulaux4 As Double 'Variables auxiliares
+
+            For i = 0 To Niveles1.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles1.GetUpperBound(1)
+
+                    'Calculamos la media
+                    rojoaux1 = Niveles1(i, j).R
+                    verdeaux1 = Niveles1(i, j).G
+                    azulaux1 = Niveles1(i, j).B
+                    media1 = CInt((rojoaux1 + verdeaux1 + azulaux1) / 3) 'Hacemos la media
+
+                    rojoaux2 = Niveles2(i, j).R
+                    verdeaux2 = Niveles2(i, j).G
+                    azulaux2 = Niveles2(i, j).B
+                    media2 = CInt((rojoaux2 + verdeaux2 + azulaux2) / 3) 'Hacemos la media
+
+                    rojoaux3 = Niveles3(i, j).R
+                    verdeaux3 = Niveles3(i, j).G
+                    azulaux3 = Niveles3(i, j).B
+                    media3 = CInt((rojoaux3 + verdeaux3 + azulaux3) / 3) 'Hacemos la media
+
+                    rojoaux4 = Niveles4(i, j).R
+                    verdeaux4 = Niveles4(i, j).G
+                    azulaux4 = Niveles4(i, j).B
+                    media4 = CInt((rojoaux4 + verdeaux4 + azulaux4) / 3) 'Hacemos la media
+
+                    Dim mediaTo = CInt((media1 + media2 + media3 + media4) / 4)
+                    bmp3.SetPixel(i, j, Color.FromArgb(255, mediaTo, mediaTo, mediaTo))
+
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            guardarImagen(bmp3, "Sobel total") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+
+
 #End Region
 
 #Region "ClaseConMáscaras"

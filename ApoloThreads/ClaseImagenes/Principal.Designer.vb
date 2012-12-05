@@ -66,16 +66,19 @@ Partial Class Principal
         Me.ModificarCanalesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReducirColoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FiltrarColoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MatrizToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.MáscarasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasoAltoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasoBajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BordesYContornosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MáscaraManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SobelTotalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.MáscaraManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -308,7 +311,7 @@ Partial Class Principal
         '
         'OperacionesBásicosPersonalizadasToolStripMenuItem
         '
-        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlancoYNegroToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem2, Me.BrilloToolStripMenuItem1, Me.ExposiciónToolStripMenuItem1, Me.ModificarCanalesToolStripMenuItem1, Me.ReducirColoresToolStripMenuItem, Me.FiltrarColoresToolStripMenuItem})
+        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlancoYNegroToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem2, Me.BrilloToolStripMenuItem1, Me.ExposiciónToolStripMenuItem1, Me.ModificarCanalesToolStripMenuItem1, Me.ReducirColoresToolStripMenuItem, Me.FiltrarColoresToolStripMenuItem, Me.MatrizToolStripMenuItem})
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Name = "OperacionesBásicosPersonalizadasToolStripMenuItem"
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Size = New System.Drawing.Size(207, 20)
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Text = "Operaciones básicos personalizadas"
@@ -355,9 +358,15 @@ Partial Class Principal
         Me.FiltrarColoresToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.FiltrarColoresToolStripMenuItem.Text = "Filtrar colores"
         '
+        'MatrizToolStripMenuItem
+        '
+        Me.MatrizToolStripMenuItem.Name = "MatrizToolStripMenuItem"
+        Me.MatrizToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.MatrizToolStripMenuItem.Text = "Matriz"
+        '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem, Me.MáscarasToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem, Me.MáscarasToolStripMenuItem, Me.ToolStripMenuItem1})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -368,7 +377,7 @@ Partial Class Principal
         '
         'MáscarasToolStripMenuItem
         '
-        Me.MáscarasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasoAltoToolStripMenuItem, Me.PasoBajoToolStripMenuItem, Me.BordesYContornosToolStripMenuItem, Me.MáscaraManualToolStripMenuItem})
+        Me.MáscarasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasoAltoToolStripMenuItem, Me.PasoBajoToolStripMenuItem, Me.BordesYContornosToolStripMenuItem, Me.MáscaraManualToolStripMenuItem, Me.SobelTotalToolStripMenuItem})
         Me.MáscarasToolStripMenuItem.Name = "MáscarasToolStripMenuItem"
         Me.MáscarasToolStripMenuItem.Size = New System.Drawing.Size(68, 20)
         Me.MáscarasToolStripMenuItem.Text = "Máscaras"
@@ -390,6 +399,23 @@ Partial Class Principal
         Me.BordesYContornosToolStripMenuItem.Name = "BordesYContornosToolStripMenuItem"
         Me.BordesYContornosToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.BordesYContornosToolStripMenuItem.Text = "Bordes y contornos"
+        '
+        'MáscaraManualToolStripMenuItem
+        '
+        Me.MáscaraManualToolStripMenuItem.Name = "MáscaraManualToolStripMenuItem"
+        Me.MáscaraManualToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.MáscaraManualToolStripMenuItem.Text = "Máscara manual"
+        '
+        'SobelTotalToolStripMenuItem
+        '
+        Me.SobelTotalToolStripMenuItem.Name = "SobelTotalToolStripMenuItem"
+        Me.SobelTotalToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.SobelTotalToolStripMenuItem.Text = "Sobel total"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(12, 20)
         '
         'SplitContainer1
         '
@@ -438,12 +464,6 @@ Partial Class Principal
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
-        '
-        'MáscaraManualToolStripMenuItem
-        '
-        Me.MáscaraManualToolStripMenuItem.Name = "MáscaraManualToolStripMenuItem"
-        Me.MáscaraManualToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
-        Me.MáscaraManualToolStripMenuItem.Text = "Máscara manual"
         '
         'Principal
         '
@@ -527,5 +547,8 @@ Partial Class Principal
     Friend WithEvents BordesYContornosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BuscarImágenesEnFacebookToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MáscaraManualToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MatrizToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SobelTotalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
