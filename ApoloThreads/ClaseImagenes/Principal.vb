@@ -8,6 +8,10 @@ Public Class Principal
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Colocamos la imagen secundaria en la parte inferior
+        PictureBox2.Location = New Size(PictureBox2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 5))
+        'Colocamos label imagen general
+        Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
         'Habilitamos el arrastre para el control PictureBox1 (No lo tiene permitido en tiempo de diseño)
         PictureBox1.AllowDrop = True
         'Asignamos el gestor que controle cuando sale imagen
@@ -206,6 +210,13 @@ Public Class Principal
         transformar()
     End Sub
 #End Region
+
+#Region "Efectos"
+    Private Sub DesenfocarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesenfocarToolStripMenuItem.Click
+        Desenfocar.Show()
+    End Sub
+#End Region
+
 #Region "Crear proceso con thread"
     'ACtualizamos el estado del proceso
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -324,5 +335,16 @@ Public Class Principal
     End Sub
 #End Region
 
+ 
+  
+#Region "Adaptar panel secundario"
+    Private Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainer1.SplitterMoved
+        PictureBox2.Width = SplitContainer1.Panel2.Width - 5
+        Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20) 'Adaptamos label
+    End Sub
+#End Region
+
+    
+   
  
 End Class

@@ -75,10 +75,14 @@ Partial Class Principal
         Me.MáscaraManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SobelTotalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EfectosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DesenfocarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.SfsdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -366,7 +370,7 @@ Partial Class Principal
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem, Me.MáscarasToolStripMenuItem, Me.ToolStripMenuItem1})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem, Me.MáscarasToolStripMenuItem, Me.ToolStripMenuItem1, Me.EfectosToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -417,6 +421,19 @@ Partial Class Principal
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(12, 20)
         '
+        'EfectosToolStripMenuItem
+        '
+        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfocarToolStripMenuItem, Me.SfsdToolStripMenuItem})
+        Me.EfectosToolStripMenuItem.Name = "EfectosToolStripMenuItem"
+        Me.EfectosToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
+        Me.EfectosToolStripMenuItem.Text = "Efectos"
+        '
+        'DesenfocarToolStripMenuItem
+        '
+        Me.DesenfocarToolStripMenuItem.Name = "DesenfocarToolStripMenuItem"
+        Me.DesenfocarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DesenfocarToolStripMenuItem.Text = "Desenfocar"
+        '
         'SplitContainer1
         '
         Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -430,10 +447,12 @@ Partial Class Principal
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Label1)
         Me.SplitContainer1.Panel2.Controls.Add(Me.PictureBox2)
         Me.SplitContainer1.Panel2.Padding = New System.Windows.Forms.Padding(5)
+        Me.SplitContainer1.Panel2MinSize = 165
         Me.SplitContainer1.Size = New System.Drawing.Size(1284, 668)
-        Me.SplitContainer1.SplitterDistance = 1124
+        Me.SplitContainer1.SplitterDistance = 1115
         Me.SplitContainer1.TabIndex = 28
         '
         'Panel1
@@ -442,7 +461,7 @@ Partial Class Principal
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1122, 666)
+        Me.Panel1.Size = New System.Drawing.Size(1113, 666)
         Me.Panel1.TabIndex = 0
         '
         'PictureBox1
@@ -451,19 +470,34 @@ Partial Class Principal
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Padding = New System.Windows.Forms.Padding(5)
-        Me.PictureBox1.Size = New System.Drawing.Size(1122, 666)
+        Me.PictureBox1.Size = New System.Drawing.Size(1113, 666)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(29, 497)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(100, 15)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "-- Vista general --"
         '
         'PictureBox2
         '
         Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox2.Location = New System.Drawing.Point(3, 515)
+        Me.PictureBox2.Location = New System.Drawing.Point(2, 514)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(150, 150)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
+        '
+        'SfsdToolStripMenuItem
+        '
+        Me.SfsdToolStripMenuItem.Name = "SfsdToolStripMenuItem"
+        Me.SfsdToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SfsdToolStripMenuItem.Text = "sfsd"
         '
         'Principal
         '
@@ -485,6 +519,7 @@ Partial Class Principal
         Me.MenuStrip1.PerformLayout()
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
@@ -550,5 +585,9 @@ Partial Class Principal
     Friend WithEvents MatrizToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SobelTotalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents EfectosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DesenfocarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SfsdToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

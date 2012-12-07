@@ -692,7 +692,6 @@ Namespace Apolo
             guardarImagen(bmp3, "Máscara 3x3 Gris " & tipoEstado)
             Return bmp3
         End Function
-
         Function sobelTotal(ByVal bmp As Bitmap)
             Dim bmp2 = bmp
             Dim bmp3 = bmp
@@ -781,6 +780,66 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+#Region "Efectos"
+        Function desenfoque(ByVal bmp As Bitmap, Optional ByVal desenfoqueHor As Short = 0, Optional ByVal desenfoqueVer As Short = 0)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp.Width, bmp.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Desenfocando imagen. Etapa 1/2" 'Actualizar el estado
+
+            'Esto lo hacemos para asignar lo del bmp al bmp3
+            Dim Rojo3, Verde3, Azul3, alfa3 As Byte
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo3 = Niveles(i, j).R
+                    Verde3 = Niveles(i, j).G
+                    Azul3 = Niveles(i, j).B
+                    alfa3 = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa3, Rojo3, Verde3, Azul3)) 'Asignamos a bmp los colores invertidos
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+
+           
+
+            Dim desenfoquePos, desenfoqueNeg As Short
+            If desenfoqueHor > 0 Then desenfoquePos = desenfoqueHor : desenfoqueNeg = 0 Else desenfoqueNeg = desenfoqueHor : desenfoquePos = 0
+
+            Dim desenfoquePos1, desenfoqueNeg1 As Short
+            If desenfoqueVer > 0 Then desenfoquePos1 = desenfoqueVer : desenfoqueNeg1 = 0 Else desenfoqueNeg1 = desenfoqueVer : desenfoquePos1 = 0
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Desenfocando imagen. Etapa 2/2" 'Actualizar el estado
+
+            Dim Rojoaux, Verdeaux, Azulaux As UInteger 'Declaramos tres variables que almacenarán los colores
+            Dim Rojoaux1, Verdeaux1, Azulaux1 As UInteger 'Declaramos tres variables que almacenarán los colores
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+            For i = 0 - desenfoqueNeg To Niveles.GetUpperBound(0) - desenfoquePos   'Recorremos la matriz
+                For j = 0 - desenfoqueNeg1 To Niveles.GetUpperBound(1) - desenfoquePos1
+                    Rojoaux = Niveles(i, j).R
+                    Rojoaux1 = Niveles(i + desenfoqueHor, j + desenfoqueVer).R ' 
+                    Verdeaux = Niveles(i, j).G
+                    Verdeaux1 = Niveles(i + desenfoqueHor, j + desenfoqueVer).G
+                    Azulaux = Niveles(i, j).B
+                    Azulaux1 = Niveles(i + desenfoqueHor, j + desenfoqueVer).B
+                    Rojoaux = CInt(Rojoaux + Rojoaux1) / 2
+                    Verdeaux = CInt(Verdeaux + Verdeaux1) / 2
+                    Azulaux = CInt(Azulaux + Azulaux1) / 2
+                    Rojo = Rojoaux : Verde = Verdeaux : Azul = Azulaux
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Desenfoque") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+#End Region
 
 
 #End Region
