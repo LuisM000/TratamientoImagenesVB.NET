@@ -46,6 +46,10 @@ Public Class Principal
     Private Sub BuscarImágenesEnFacebookToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnFacebookToolStripMenuItem.Click
         AbrirFacebook.Show()
     End Sub
+    'Creamos nuevo tapiz
+    Private Sub CrearTapizToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrearTapizToolStripMenuItem.Click
+        Tapiz.Show()
+    End Sub
 #End Region
 
 #Region "Editar"
@@ -153,6 +157,18 @@ Public Class Principal
         transformacion = "RGBtoRBG"
         transformar()
     End Sub
+
+    Private Sub HorizontalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HorizontalToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "ReflexionHori"
+        transformar()
+    End Sub
+
+    Private Sub VerticalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerticalToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "ReflexionVert"
+        transformar()
+    End Sub
 #End Region
 
 #Region "Operaciones básicos personalizadas"
@@ -215,6 +231,9 @@ Public Class Principal
     Private Sub DesenfocarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesenfocarToolStripMenuItem.Click
         Desenfocar.Show()
     End Sub
+    Private Sub CuadrículaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CuadrículaToolStripMenuItem.Click
+        Cuadricula.Show()
+    End Sub
 #End Region
 
 #Region "Crear proceso con thread"
@@ -268,6 +287,10 @@ Public Class Principal
                 PictureBox1.Image = objetoTratamiento.RGBto(bmp, False, False, True)
             Case "SobelTotal"
                 PictureBox1.Image = objetoTratamiento.sobelTotal(bmp)
+            Case "ReflexionHori"
+                PictureBox1.Image = objetoTratamiento.Reflexion(bmp, True, False)
+            Case "ReflexionVert"
+                PictureBox1.Image = objetoTratamiento.Reflexion(bmp, False, True)
         End Select
     End Sub
 
@@ -305,6 +328,12 @@ Public Class Principal
     Sub actualizarNombrePicture(ByVal nombre() As String)
         ImagenActual.Text = nombre(0)
         Me.Text = "[" & nombre(0) & "]  " & "(" & nombre(1) & " x " & nombre(2) & ")   " & nombre(3)
+        Try 'Actualizamos panel
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
+        Catch ex As Exception
+
+        End Try
     End Sub
     'FIN de actualizar imagen secundaria
 #End Region
@@ -344,7 +373,10 @@ Public Class Principal
     End Sub
 #End Region
 
-    
    
  
+    Private Sub DasdToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DasdToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        PictureBox1.Image = objetoTratamiento.SombraVidrio(bmp, bmp.Height / 3, True)
+    End Sub
 End Class

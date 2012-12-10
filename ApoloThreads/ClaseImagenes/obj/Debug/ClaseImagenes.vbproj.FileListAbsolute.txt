@@ -64,3 +64,5 @@ C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Matriz.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.ImportarMatriz.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Desenfocar.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Cuadricula.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Tapiz.resources

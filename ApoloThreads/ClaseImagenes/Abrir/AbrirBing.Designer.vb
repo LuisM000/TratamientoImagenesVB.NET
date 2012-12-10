@@ -43,6 +43,10 @@ Partial Class AbrirBing
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +58,7 @@ Partial Class AbrirBing
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'ComboBox1
@@ -244,12 +249,35 @@ Partial Class AbrirBing
         '
         Me.Timer2.Interval = 10
         '
+        'BackgroundWorker1
+        '
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 96)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(825, 22)
+        Me.StatusStrip1.TabIndex = 62
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(0, 17)
+        '
+        'ToolStripProgressBar1
+        '
+        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
+        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(0, 16)
+        '
         'AbrirBing
         '
         Me.AcceptButton = Me.Button3
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(825, 94)
+        Me.ClientSize = New System.Drawing.Size(825, 118)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.PictureBox10)
         Me.Controls.Add(Me.PictureBox11)
@@ -271,18 +299,20 @@ Partial Class AbrirBing
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "AbrirBing"
         Me.Text = "Buscar imágenes con Bing"
-        CType(Me.PictureBox10,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox11,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox9,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox8,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox7,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox6,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox5,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox4,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox3,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox2,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
+        Me.ResumeLayout(False)
         Me.PerformLayout
 
 End Sub
@@ -306,4 +336,8 @@ End Sub
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents Timer2 As System.Windows.Forms.Timer
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ToolStripProgressBar1 As System.Windows.Forms.ToolStripProgressBar
 End Class

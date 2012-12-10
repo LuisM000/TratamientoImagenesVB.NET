@@ -29,6 +29,7 @@ Namespace Apolo
 
 
 
+
 #Region "Hacer/deshacerImagenes"
 
         Public ReadOnly Property ListadoImagenesAtras() As Bitmap 'Imagen hacia atrás
@@ -108,7 +109,6 @@ Namespace Apolo
         End Sub
 
 #End Region
-
         Public ReadOnly Property estadoCarga() As Array 'Propiedad con el estado de la carga
             Get
                 'Serán dos valores, el porcentaje de carga y quién está realizando la acción
@@ -780,7 +780,36 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+        Public Function Reflexion(ByVal bmp As Bitmap, Optional ByVal horizontal As Boolean = True, Optional ByVal vertical As Boolean = False) As Bitmap
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            Dim tipoEstado As String = ""
+            If horizontal = True Then tipoEstado = " horizontal" Else tipoEstado = " vertical"
+            porcentaje(1) = "Aplicando reflexión" & tipoEstado 'Actualizar el estado
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
 
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    alfa = Niveles(i, j).A
+                    If horizontal = True Then
+                        bmp3.SetPixel(Niveles.GetUpperBound(0) - i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
+                    Else
+                        bmp3.SetPixel(i, Niveles.GetUpperBound(1) - j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
+                    End If
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Reflexión" & tipoEstado) 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
 #Region "Efectos"
         Function desenfoque(ByVal bmp As Bitmap, Optional ByVal desenfoqueHor As Short = 0, Optional ByVal desenfoqueVer As Short = 0)
             Dim bmp2 = bmp
@@ -803,7 +832,7 @@ Namespace Apolo
                 porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
             Next
 
-           
+
 
             Dim desenfoquePos, desenfoqueNeg As Short
             If desenfoqueHor > 0 Then desenfoquePos = desenfoqueHor : desenfoqueNeg = 0 Else desenfoqueNeg = desenfoqueHor : desenfoquePos = 0
@@ -836,6 +865,101 @@ Namespace Apolo
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             guardarImagen(bmp3, "Desenfoque") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Function cuadricula(ByVal bmp As Bitmap, ByVal colorHorizontal As Color, ByVal colorVertical As Color, ByVal horizontal As Integer, Optional ByVal vertical As Integer = 20)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Creando cuadrícula. Etapa 1/2" 'Actualizar el estado
+
+            If horizontal = 0 Or vertical = 0 Then MessageBox.Show("El valor no puede ser 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) : Return bmp2
+
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Creando cuadrícula. Etapa 2/2" 'Actualizar el estado
+
+            For i = 0 To Niveles.GetUpperBound(0) Step horizontal   'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    bmp3.SetPixel(i, j, colorHorizontal)
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1) Step vertical
+                    bmp3.SetPixel(i, j, colorVertical)
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Cuadrícula") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+
+        Public Function SombraVidrio(ByVal bmp As Bitmap, ByVal altoSombra As Integer, Optional ByVal atenuarSombra As Boolean = True) As Bitmap
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Aplicando efecto sombre de vidrio" 'Actualizar el estado
+            Dim bmpRota = bmp
+            bmpRota.RotateFlip(RotateFlipType.RotateNoneFlipY)
+            Dim NivelesRota(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            NivelesRota = nivel(bmpRota) 'Obtenemos valores
+
+            Dim bmp3 As New Bitmap(bmp2.Width, CInt(bmp2.Height + altoSombra))
+
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+            Dim alfaaxu As Double
+            Dim contadorAlfa As Double = 0
+            Dim cuentaAux As Double = 255 / (altoSombra)
+            Dim i, j As Integer
+            For j = 0 To bmp3.Height - 1
+                If j > Niveles.GetUpperBound(1) And atenuarSombra = True Then
+                    contadorAlfa += cuentaAux 'Restamos una "unidad" al canal alfa
+                End If
+                For i = 0 To bmp3.Width - 1  'Recorremos la matriz
+                    If j < Niveles.GetUpperBound(1) Then 'Si es menor que el alto de la imagen original
+                        Rojo = Niveles(i, j).R
+                        Verde = Niveles(i, j).G
+                        Azul = Niveles(i, j).B
+                        alfa = Niveles(i, j).A
+                        bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
+                    Else
+                        Rojo = NivelesRota(i, j - Niveles.GetUpperBound(1)).R
+                        Verde = NivelesRota(i, j - Niveles.GetUpperBound(1)).G
+                        Azul = NivelesRota(i, j - Niveles.GetUpperBound(1)).B
+                        alfaaxu = NivelesRota(i, j - Niveles.GetUpperBound(1)).A - contadorAlfa
+                        If alfaaxu < 0 Then
+                            alfaaxu = 0 'Para evitar que el último píxel sea menor de 0
+                        End If
+
+                        alfa = alfaaxu
+                        bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
+                    End If
+
+                Next
+                porcentaje(0) = CInt(((j * 100) / (bmp3.Height + altoSombra))) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Efecto sombra de vidrio") 'Guardamos la imagen para poder hacer retroceso
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
@@ -1160,6 +1284,28 @@ Namespace Apolo
 #End Region
 
 #Region "FuncionesAbrir"
+
+        Function tapiz(ByVal ancho As Integer, ByVal alto As Integer, ByVal color As Color, Optional ByVal nombreTapiz As String = "Nuevo tapiz")
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Creando tapiz" 'Actualizar el estado
+            Dim bmp As New Bitmap(ancho, alto)
+
+            For i = 0 To ancho - 1  'Recorremos la matriz
+                For j = 0 To alto - 1
+                    bmp.SetPixel(i, j, color) 'Asignamos a bmp los colores 
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp, "Imagen original como tapiz") 'Almacenamos info y bitmap
+            contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+            RaiseEvent actualizaBMP(bmp) 'Generamos evento
+            Return bmp
+        End Function
+        Sub actualizarNombreTapiz(ByVal nombre As String, ByVal ancho As Integer, ByVal alto As Integer)
+            RaiseEvent actualizaNombreImagen({nombre, ancho, alto, "Imagen tapiz"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+        End Sub
+
         'Se abre desde archivo
         Function abrirImagen(Optional filtrado As Integer = 1) As Bitmap
             Try
@@ -1228,10 +1374,13 @@ Namespace Apolo
         End Function
 
         Public Sub InfoImagenPrecarga(ByVal bmp As Bitmap, ByVal direccionURL As String) 'Con esto guardamos los datos si el usuario ha activado precarga
-            guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
-            contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
-            RaiseEvent actualizaBMP(bmp) 'Generamos evento
-            RaiseEvent actualizaNombreImagen({nombreRecursoWeb(direccionURL), bmp.Width, bmp.Height, "Recurso web"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+            Try
+                guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
+                contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+                RaiseEvent actualizaBMP(bmp) 'Generamos evento
+                RaiseEvent actualizaNombreImagen({nombreRecursoWeb(direccionURL), bmp.Width, bmp.Height, "Recurso web"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+            Catch
+            End Try
         End Sub
 
         Function abrirDragDrop(ByVal ruta As String) As Bitmap

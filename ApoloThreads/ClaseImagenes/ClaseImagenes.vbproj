@@ -101,6 +101,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abrir\JsonConvert.vb" />
+    <Compile Include="Abrir\Tapiz.Designer.vb">
+      <DependentUpon>Tapiz.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Abrir\Tapiz.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Efectos\Cuadricula.Designer.vb">
+      <DependentUpon>Cuadricula.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Efectos\Cuadricula.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Efectos\Desenfocar.Designer.vb">
       <DependentUpon>Desenfocar.vb</DependentUpon>
     </Compile>
@@ -230,6 +242,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abrir\AbrirRecurso.resx">
       <DependentUpon>AbrirRecurso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abrir\Tapiz.resx">
+      <DependentUpon>Tapiz.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Efectos\Cuadricula.resx">
+      <DependentUpon>Cuadricula.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Desenfocar.resx">
       <DependentUpon>Desenfocar.vb</DependentUpon>

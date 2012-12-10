@@ -177,31 +177,65 @@ Public Class AbrirBing
 
 #End Region
 
+ 
+
+
+    'no lo incluimos en la clase para que no altere las imagenes guardadas
+    Function abrirRecursoWeb(ByVal enlace As String) As Bitmap
+        Try
+            Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
+            Dim response As System.Net.WebResponse = request.GetResponse()
+            Dim responseStream As System.IO.Stream = response.GetResponseStream()
+            Dim bmp As New Bitmap(responseStream)
+            Return bmp
+        Catch
+            Dim bmp As Bitmap
+            bmp = Nothing
+            Return bmp
+        End Try
+    End Function
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If Me.Height < 489 Then
+            Me.Height = Me.Height + 39
+        Else
+            Timer1.Enabled = False
+        End If
+    End Sub
+
+
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        comprobar()
+        thIMG = New Threading.Thread(AddressOf resultados)
+        If thIMG.ThreadState <> Threading.ThreadState.Running Then
+            cargando()
+            thIMG.Start()
+        End If
+        Timer2.Enabled = False
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        Timer2.Enabled = True 'Para que se marque la casilla
+    End Sub
+
+    Sub cargando()
+        PictureBox1.Image = My.Resources.cargando1
+        PictureBox2.Image = My.Resources.cargando1
+        PictureBox3.Image = My.Resources.cargando1
+        PictureBox4.Image = My.Resources.cargando1
+        PictureBox5.Image = My.Resources.cargando1
+        PictureBox6.Image = My.Resources.cargando1
+        PictureBox7.Image = My.Resources.cargando1
+        PictureBox8.Image = My.Resources.cargando1
+        PictureBox10.Image = My.Resources.cargando1
+        PictureBox11.Image = My.Resources.cargando1
+    End Sub
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If numeroAbrir <> 0 Then
             If CheckBox1.Checked = False Then
-                Select Case numeroAbrir
-                    Case 1
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(0 + contador, 1).ToString) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
-                    Case 2
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(1 + contador, 1).ToString)
-                    Case 3
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(2 + contador, 1).ToString)
-                    Case 4
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(3 + contador, 1).ToString)
-                    Case 5
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(4 + contador, 1).ToString)
-                    Case 6
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(5 + contador, 1).ToString)
-                    Case 7
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(6 + contador, 1).ToString)
-                    Case 8
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(7 + contador, 1).ToString)
-                    Case 9
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(8 + contador, 1).ToString)
-                    Case 10
-                        Principal.PictureBox1.Image = objetoTratamiento.abrirRecursoWeb(datos(9 + contador, 1).ToString)
-                End Select
+                abriendo()
+                BackgroundWorker1.RunWorkerAsync()
             Else
                 Select Case numeroAbrir
                     Case 1
@@ -242,54 +276,79 @@ Public Class AbrirBing
         End If
     End Sub
 
-    'no lo incluimos en la clase para que no altere las imagenes guardadas
-    Function abrirRecursoWeb(ByVal enlace As String) As Bitmap
+    Dim bmpt As Bitmap 'Variable global con imagen
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Try
-            Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
-            Dim response As System.Net.WebResponse = request.GetResponse()
-            Dim responseStream As System.IO.Stream = response.GetResponseStream()
-            Dim bmp As New Bitmap(responseStream)
-            Return bmp
-        Catch
-            Dim bmp As Bitmap
-            bmp = Nothing
-            Return bmp
+            Select Case numeroAbrir
+                Case 1
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(0 + contador, 1).ToString) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+                Case 2
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(1 + contador, 1).ToString)
+                Case 3
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(2 + contador, 1).ToString)
+                Case 4
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(3 + contador, 1).ToString)
+                Case 5
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(4 + contador, 1).ToString)
+                Case 6
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(5 + contador, 1).ToString)
+                Case 7
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(6 + contador, 1).ToString)
+                Case 8
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(7 + contador, 1).ToString)
+                Case 9
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(8 + contador, 1).ToString)
+                Case 10
+                    bmpt = objetoTratamiento.abrirRecursoWebAxu(datos(9 + contador, 1).ToString)
+            End Select
+
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
         End Try
-    End Function
+    End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        If Me.Height < 475 Then
-            Me.Height = Me.Height + 40
-        Else
-            Timer1.Enabled = False
-        End If
+    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
+        abierto()
+        Select Case numeroAbrir
+            Case 1
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(0 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 2
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(1 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 3
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(2 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 4
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(3 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 5
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(4 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 6
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(5 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 7
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(6 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 8
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(7 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 9
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(8 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 10
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(9 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 11
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(10 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+            Case 12
+                objetoTratamiento.InfoImagenPrecarga(bmpt, (datos(11 + contador, 1).ToString)) 'Abrimos el vínculo de la imagen a tamaño completo en el PictureBox Principal
+        End Select
+
     End Sub
 
 
-    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        comprobar()
-        thIMG = New Threading.Thread(AddressOf resultados)
-        If thIMG.ThreadState <> Threading.ThreadState.Running Then
-            cargando()
-            thIMG.Start()
-        End If
-        Timer2.Enabled = False
+    Sub abriendo()
+        ToolStripProgressBar1.Style = ProgressBarStyle.Marquee
+        ToolStripStatusLabel1.Text = "Abriendo  imagen"
+        ToolStripProgressBar1.Size = New Size(100, ToolStripProgressBar1.Size.Height)
+        ToolStripProgressBar1.MarqueeAnimationSpeed = 30
     End Sub
-
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        Timer2.Enabled = True 'Para que se marque la casilla
-    End Sub
-
-    Sub cargando()
-        PictureBox1.Image = My.Resources.cargando1
-        PictureBox2.Image = My.Resources.cargando1
-        PictureBox3.Image = My.Resources.cargando1
-        PictureBox4.Image = My.Resources.cargando1
-        PictureBox5.Image = My.Resources.cargando1
-        PictureBox6.Image = My.Resources.cargando1
-        PictureBox7.Image = My.Resources.cargando1
-        PictureBox8.Image = My.Resources.cargando1
-        PictureBox10.Image = My.Resources.cargando1
-        PictureBox11.Image = My.Resources.cargando1
+    Sub abierto()
+        ToolStripStatusLabel1.Text = "Imagen abierta"
+        ToolStripProgressBar1.Size = New Size(100, ToolStripProgressBar1.Size.Height)
+        ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
+        ToolStripProgressBar1.Value = 100
     End Sub
 End Class
