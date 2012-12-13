@@ -125,6 +125,24 @@
     <Compile Include="Edición\RegistroCambio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Efectos\Distorsion.Designer.vb">
+      <DependentUpon>Distorsion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Efectos\Distorsion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Efectos\Ruido.Designer.vb">
+      <DependentUpon>Ruido.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Efectos\Ruido.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Efectos\SombraVidrio.Designer.vb">
+      <DependentUpon>SombraVidrio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Efectos\SombraVidrio.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Máscaras\BordesYContornos.Designer.vb">
       <DependentUpon>BordesYContornos.vb</DependentUpon>
     </Compile>
@@ -254,6 +272,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Edición\RegistroCambio.resx">
       <DependentUpon>RegistroCambio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Efectos\Distorsion.resx">
+      <DependentUpon>Distorsion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Efectos\Ruido.resx">
+      <DependentUpon>Ruido.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Efectos\SombraVidrio.resx">
+      <DependentUpon>SombraVidrio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Máscaras\BordesYContornos.resx">
       <DependentUpon>BordesYContornos.vb</DependentUpon>

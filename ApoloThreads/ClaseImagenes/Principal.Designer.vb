@@ -37,7 +37,6 @@ Partial Class Principal
         Me.BuscarImágenesEnLaWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BuscarImágenesEnFacebookToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CrearTapizToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DasdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EdiciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeshacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RehacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -82,6 +81,12 @@ Partial Class Principal
         Me.EfectosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DesenfocarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CuadrículaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SombraDeVidrioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SdaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TresPartesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SeisPartesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RadmiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DesenFOQUEEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -148,7 +153,7 @@ Partial Class Principal
         '
         'AbrirImagenToolStripMenuItem
         '
-        Me.AbrirImagenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem1, Me.CargarToolStripMenuItem, Me.BuscarImágenesEnLaWebToolStripMenuItem, Me.BuscarImágenesEnFacebookToolStripMenuItem, Me.CrearTapizToolStripMenuItem, Me.DasdToolStripMenuItem})
+        Me.AbrirImagenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem1, Me.CargarToolStripMenuItem, Me.BuscarImágenesEnLaWebToolStripMenuItem, Me.BuscarImágenesEnFacebookToolStripMenuItem, Me.CrearTapizToolStripMenuItem})
         Me.AbrirImagenToolStripMenuItem.Name = "AbrirImagenToolStripMenuItem"
         Me.AbrirImagenToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.AbrirImagenToolStripMenuItem.Text = "Archivo"
@@ -182,12 +187,6 @@ Partial Class Principal
         Me.CrearTapizToolStripMenuItem.Name = "CrearTapizToolStripMenuItem"
         Me.CrearTapizToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
         Me.CrearTapizToolStripMenuItem.Text = "Crear tapiz"
-        '
-        'DasdToolStripMenuItem
-        '
-        Me.DasdToolStripMenuItem.Name = "DasdToolStripMenuItem"
-        Me.DasdToolStripMenuItem.Size = New System.Drawing.Size(233, 22)
-        Me.DasdToolStripMenuItem.Text = "dasd"
         '
         'EdiciónToolStripMenuItem
         '
@@ -314,19 +313,19 @@ Partial Class Principal
         'BGRToolStripMenuItem
         '
         Me.BGRToolStripMenuItem.Name = "BGRToolStripMenuItem"
-        Me.BGRToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.BGRToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.BGRToolStripMenuItem.Text = "BGR"
         '
         'GRBToolStripMenuItem
         '
         Me.GRBToolStripMenuItem.Name = "GRBToolStripMenuItem"
-        Me.GRBToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.GRBToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.GRBToolStripMenuItem.Text = "GRB"
         '
         'RBGToolStripMenuItem
         '
         Me.RBGToolStripMenuItem.Name = "RBGToolStripMenuItem"
-        Me.RBGToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RBGToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.RBGToolStripMenuItem.Text = "RBG"
         '
         'ReflexiónToolStripMenuItem
@@ -453,7 +452,7 @@ Partial Class Principal
         '
         'EfectosToolStripMenuItem
         '
-        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfocarToolStripMenuItem, Me.CuadrículaToolStripMenuItem})
+        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenFOQUEEToolStripMenuItem, Me.DesenfocarToolStripMenuItem, Me.CuadrículaToolStripMenuItem, Me.SombraDeVidrioToolStripMenuItem, Me.SdaToolStripMenuItem, Me.RadmiToolStripMenuItem})
         Me.EfectosToolStripMenuItem.Name = "EfectosToolStripMenuItem"
         Me.EfectosToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
         Me.EfectosToolStripMenuItem.Text = "Efectos"
@@ -461,14 +460,51 @@ Partial Class Principal
         'DesenfocarToolStripMenuItem
         '
         Me.DesenfocarToolStripMenuItem.Name = "DesenfocarToolStripMenuItem"
-        Me.DesenfocarToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.DesenfocarToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
         Me.DesenfocarToolStripMenuItem.Text = "Desenfocar"
         '
         'CuadrículaToolStripMenuItem
         '
         Me.CuadrículaToolStripMenuItem.Name = "CuadrículaToolStripMenuItem"
-        Me.CuadrículaToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.CuadrículaToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
         Me.CuadrículaToolStripMenuItem.Text = "Cuadrícula"
+        '
+        'SombraDeVidrioToolStripMenuItem
+        '
+        Me.SombraDeVidrioToolStripMenuItem.Name = "SombraDeVidrioToolStripMenuItem"
+        Me.SombraDeVidrioToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.SombraDeVidrioToolStripMenuItem.Text = "Sombra de vidrio"
+        '
+        'SdaToolStripMenuItem
+        '
+        Me.SdaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TresPartesToolStripMenuItem, Me.SeisPartesToolStripMenuItem})
+        Me.SdaToolStripMenuItem.Name = "SdaToolStripMenuItem"
+        Me.SdaToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.SdaToolStripMenuItem.Text = "Trocear imagen"
+        '
+        'TresPartesToolStripMenuItem
+        '
+        Me.TresPartesToolStripMenuItem.Name = "TresPartesToolStripMenuItem"
+        Me.TresPartesToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
+        Me.TresPartesToolStripMenuItem.Text = "Tres partes"
+        '
+        'SeisPartesToolStripMenuItem
+        '
+        Me.SeisPartesToolStripMenuItem.Name = "SeisPartesToolStripMenuItem"
+        Me.SeisPartesToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
+        Me.SeisPartesToolStripMenuItem.Text = "Seis partes"
+        '
+        'RadmiToolStripMenuItem
+        '
+        Me.RadmiToolStripMenuItem.Name = "RadmiToolStripMenuItem"
+        Me.RadmiToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.RadmiToolStripMenuItem.Text = "Ruido"
+        '
+        'DesenFOQUEEToolStripMenuItem
+        '
+        Me.DesenFOQUEEToolStripMenuItem.Name = "DesenFOQUEEToolStripMenuItem"
+        Me.DesenFOQUEEToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.DesenFOQUEEToolStripMenuItem.Text = "Distorsión"
         '
         'SplitContainer1
         '
@@ -619,9 +655,14 @@ Partial Class Principal
     Friend WithEvents DesenfocarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CuadrículaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CrearTapizToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DasdToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReflexiónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents VerticalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SombraDeVidrioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SdaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TresPartesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SeisPartesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RadmiToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DesenFOQUEEToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

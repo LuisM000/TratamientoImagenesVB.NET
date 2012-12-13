@@ -234,6 +234,28 @@ Public Class Principal
     Private Sub CuadrículaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CuadrículaToolStripMenuItem.Click
         Cuadricula.Show()
     End Sub
+
+    Private Sub SombraDeVidrioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SombraDeVidrioToolStripMenuItem.Click
+        SombraVidrio.show()
+    End Sub
+    Private Sub TresPartesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TresPartesToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "3partes"
+        transformar()
+    End Sub
+
+    Private Sub SeisPartesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeisPartesToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "6partes"
+        transformar()
+    End Sub
+    Private Sub RadmiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RadmiToolStripMenuItem.Click
+        Ruido.Show()
+    End Sub
+
+    Private Sub DesenFOQUEEToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesenFOQUEEToolStripMenuItem.Click
+        Distorsion.Show()
+    End Sub
 #End Region
 
 #Region "Crear proceso con thread"
@@ -291,6 +313,10 @@ Public Class Principal
                 PictureBox1.Image = objetoTratamiento.Reflexion(bmp, True, False)
             Case "ReflexionVert"
                 PictureBox1.Image = objetoTratamiento.Reflexion(bmp, False, True)
+            Case "3partes"
+                PictureBox1.Image = objetoTratamiento.ImagenTresPartes(bmp)
+            Case "6partes"
+                PictureBox1.Image = objetoTratamiento.ImagenSeisPartes(bmp)
         End Select
     End Sub
 
@@ -372,11 +398,5 @@ Public Class Principal
         Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20) 'Adaptamos label
     End Sub
 #End Region
-
-   
  
-    Private Sub DasdToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DasdToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
-        PictureBox1.Image = objetoTratamiento.SombraVidrio(bmp, bmp.Height / 3, True)
-    End Sub
 End Class

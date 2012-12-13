@@ -912,19 +912,21 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
-
         Public Function SombraVidrio(ByVal bmp As Bitmap, ByVal altoSombra As Integer, Optional ByVal atenuarSombra As Boolean = True) As Bitmap
             Dim bmp2 = bmp
+
+            Dim bmpRota As Bitmap = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2) 'Obtenemos valores
-            porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Aplicando efecto sombre de vidrio" 'Actualizar el estado
-            Dim bmpRota = bmp
+
             bmpRota.RotateFlip(RotateFlipType.RotateNoneFlipY)
             Dim NivelesRota(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             NivelesRota = nivel(bmpRota) 'Obtenemos valores
 
             Dim bmp3 As New Bitmap(bmp2.Width, CInt(bmp2.Height + altoSombra))
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Aplicando efecto sombre de vidrio" 'Actualizar el estado
 
             Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
             Dim alfaaxu As Double
@@ -956,10 +958,223 @@ Namespace Apolo
                     End If
 
                 Next
-                porcentaje(0) = CInt(((j * 100) / (bmp3.Height + altoSombra))) 'Actualizamos el estado
+                porcentaje(0) = CInt(((j * 100) / (bmp3.Height))) 'Actualizamos el estado
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             guardarImagen(bmp3, "Efecto sombra de vidrio") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Public Function ImagenTresPartes(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 = bmp
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Creando partes" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+            porcentaje(1) = "Creando partes. Etapa 1/3" 'Actualizar el estado
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1) / 3
+                    Rojo = Niveles(i, j + (Niveles.GetUpperBound(1) / 3 * 2)).R
+                    Verde = Niveles(i, j + (Niveles.GetUpperBound(1) / 3 * 2)).G
+                    Azul = Niveles(i, j + (Niveles.GetUpperBound(1) / 3 * 2)).B
+                    alfa = Niveles(i, j + (Niveles.GetUpperBound(1) / 3 * 2)).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores  
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Creando partes. Etapa 2/3" 'Actualizar el estado
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = Niveles.GetUpperBound(1) / 3 To Niveles.GetUpperBound(1) / 3 * 2
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores  
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Creando partes. Etapa 3/3" 'Actualizar el estado
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = Niveles.GetUpperBound(1) / 3 * 2 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j - (Niveles.GetUpperBound(1) / 3 * 2)).R
+                    Verde = Niveles(i, j - (Niveles.GetUpperBound(1) / 3 * 2)).G
+                    Azul = Niveles(i, j - (Niveles.GetUpperBound(1) / 3 * 2)).B
+                    alfa = Niveles(i, j - (Niveles.GetUpperBound(1) / 3 * 2)).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores  
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Imagen en tres partes") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Public Function ImagenSeisPartes(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp.Width, bmp.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Creando partes" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+
+            porcentaje(1) = "Creando partes. Etapa 1/6" 'Actualizar el estado
+            For i = 0 To Niveles.GetUpperBound(0) / 3  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1) / 2
+                    Rojo = Niveles(i + (Niveles.GetUpperBound(0) / 3 * 2), j).R
+                    Verde = Niveles(i + (Niveles.GetUpperBound(0) / 3 * 2), j).G
+                    Azul = Niveles(i + (Niveles.GetUpperBound(0) / 3 * 2), j).B
+                    alfa = Niveles(i + (Niveles.GetUpperBound(0) / 3 * 2), j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores  
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width)  'Actualizamos el estado
+            Next
+            porcentaje(1) = "Creando partes. Etapa 2/6" 'Actualizar el estado
+            For i = Niveles.GetUpperBound(0) / 3 To Niveles.GetUpperBound(0) / 3 * 2  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1) / 2
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores  
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width)  'Actualizamos el estado
+            Next
+            porcentaje(1) = "Creando partes. Etapa 3/6" 'Actualizar el estado
+            For i = Niveles.GetUpperBound(0) / 3 * 2 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1) / 2
+                    Rojo = Niveles(i - (Niveles.GetUpperBound(0) / 3 * 2), j).R
+                    Verde = Niveles(i - (Niveles.GetUpperBound(0) / 3 * 2), j).G
+                    Azul = Niveles(i - (Niveles.GetUpperBound(0) / 3 * 2), j).B
+                    alfa = Niveles(i - (Niveles.GetUpperBound(0) / 3 * 2), j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores  
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width)  'Actualizamos el estado
+            Next
+
+            porcentaje(1) = "Creando partes. Etapa 4/6" 'Actualizar el estado
+            For i = 0 To Niveles.GetUpperBound(0) / 3  'Recorremos la matriz
+                For j = CInt(Niveles.GetUpperBound(1) / 2) To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i + (Niveles.GetUpperBound(0) / 3), j).R
+                    Verde = Niveles(i + (Niveles.GetUpperBound(0) / 3), j).G
+                    Azul = Niveles(i + (Niveles.GetUpperBound(0) / 3), j).B
+                    alfa = Niveles(i + (Niveles.GetUpperBound(0) / 3), j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores  
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width)  'Actualizamos el estado
+            Next
+            porcentaje(1) = "Creando partes. Etapa 5/6" 'Actualizar el estado
+            For i = Niveles.GetUpperBound(0) / 3 To Niveles.GetUpperBound(0) / 3 * 2  'Recorremos la matriz
+                For j = CInt(Niveles.GetUpperBound(1) / 2) To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i - (Niveles.GetUpperBound(0) / 3), j).R
+                    Verde = Niveles(i - (Niveles.GetUpperBound(0) / 3), j).G
+                    Azul = Niveles(i - (Niveles.GetUpperBound(0) / 3), j).B
+                    alfa = Niveles(i - (Niveles.GetUpperBound(0) / 3), j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores  
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width)  'Actualizamos el estado
+            Next
+            porcentaje(1) = "Creando partes. Etapa 6/6" 'Actualizar el estado
+            For i = Niveles.GetUpperBound(0) / 3 * 2 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = CInt(Niveles.GetUpperBound(1) / 2) To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores  
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width)  'Actualizamos el estado
+            Next
+
+
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Imagen en seis partes") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Function Ruido(ByVal bmp As Bitmap, ByVal valorRuido As Byte)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Generando ruido" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte
+
+            'Inicializar la clase Random  
+            Dim Random As New Random()
+
+            Dim numeroHo, numeroVert As Integer
+            For i = 0 To Niveles.GetUpperBound(0)   'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    If j Mod valorRuido <> 0 And i Mod valorRuido <> 0 Then
+                        numeroHo = Random.Next(0, bmp2.Width - 1)
+                        numeroVert = Random.Next(0, bmp2.Height - 1)
+                        Rojo = Niveles(numeroHo, numeroVert).R
+                        Verde = Niveles(numeroHo, numeroVert).G
+                        Azul = Niveles(numeroHo, numeroVert).B
+                        alfa = Niveles(numeroHo, numeroVert).A
+                    Else
+                        Rojo = Niveles(i, j).R
+                        Verde = Niveles(i, j).G
+                        Azul = Niveles(i, j).B
+                        alfa = Niveles(i, j).A
+                    End If
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            guardarImagen(bmp3, "Imagen con ruido") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Function Distorsion(ByVal bmp As Bitmap, ByVal valorDesenfoque As Byte)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Distorsionando imagen" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte
+
+            'Inicializar la clase Random  
+            Dim Random As New Random()
+
+            Dim numeroRandom As Integer
+            For i = 0 To Niveles.GetUpperBound(0)   'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    numeroRandom = Random.Next(valorDesenfoque + 1)
+                    If j < Niveles.GetUpperBound(1) - valorDesenfoque And i < Niveles.GetUpperBound(0) - valorDesenfoque Then
+                        Rojo = Niveles(i + numeroRandom, j + numeroRandom).R
+                        Verde = Niveles(i + numeroRandom, j + numeroRandom).G
+                        Azul = Niveles(i + numeroRandom, j + numeroRandom).B
+                        alfa = Niveles(i + numeroRandom, j + numeroRandom).A
+                    ElseIf j > Niveles.GetUpperBound(1) - valorDesenfoque And i < Niveles.GetUpperBound(0) - valorDesenfoque Then
+                        Rojo = Niveles(i + numeroRandom, j - numeroRandom).R
+                        Verde = Niveles(i + numeroRandom, j - numeroRandom).G
+                        Azul = Niveles(i + numeroRandom, j - numeroRandom).B
+                        alfa = Niveles(i + numeroRandom, j - numeroRandom).A
+                    ElseIf j < Niveles.GetUpperBound(1) - valorDesenfoque And i > Niveles.GetUpperBound(0) - valorDesenfoque Then
+                        Rojo = Niveles(i - numeroRandom, j + numeroRandom).R
+                        Verde = Niveles(i - numeroRandom, j + numeroRandom).G
+                        Azul = Niveles(i - numeroRandom, j + numeroRandom).B
+                        alfa = Niveles(i - numeroRandom, j + numeroRandom).A
+                    Else
+                        Rojo = Niveles(i, j).R
+                        Verde = Niveles(i, j).G
+                        Azul = Niveles(i, j).B
+                        alfa = Niveles(i, j).A
+                    End If
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            guardarImagen(bmp3, "Imagen distorsionada") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
