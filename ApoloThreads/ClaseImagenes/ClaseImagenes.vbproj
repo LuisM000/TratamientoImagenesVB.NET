@@ -131,10 +131,22 @@
     <Compile Include="Efectos\Distorsion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Efectos\Pixelar.Designer.vb">
+      <DependentUpon>Pixelar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Efectos\Pixelar.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Efectos\Ruido.Designer.vb">
       <DependentUpon>Ruido.vb</DependentUpon>
     </Compile>
     <Compile Include="Efectos\Ruido.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Efectos\RuidoDe.Designer.vb">
+      <DependentUpon>RuidoDe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Efectos\RuidoDe.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Efectos\SombraVidrio.Designer.vb">
@@ -276,8 +288,14 @@
     <EmbeddedResource Include="Efectos\Distorsion.resx">
       <DependentUpon>Distorsion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Efectos\Pixelar.resx">
+      <DependentUpon>Pixelar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Ruido.resx">
       <DependentUpon>Ruido.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Efectos\RuidoDe.resx">
+      <DependentUpon>RuidoDe.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Efectos\SombraVidrio.resx">
       <DependentUpon>SombraVidrio.vb</DependentUpon>

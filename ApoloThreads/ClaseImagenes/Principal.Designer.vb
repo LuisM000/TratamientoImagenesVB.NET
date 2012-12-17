@@ -79,19 +79,24 @@ Partial Class Principal
         Me.MáscaraManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SobelTotalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EfectosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DesenfocarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DesenfoqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DesenfonqueDistorsiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DesenfoqueMovimientoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DesenfoqueBLURToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PixeladoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CuadrículaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SombraDeVidrioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SdaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TresPartesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SeisPartesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RadmiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DesenFOQUEEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PonerLosDosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.SadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -452,16 +457,41 @@ Partial Class Principal
         '
         'EfectosToolStripMenuItem
         '
-        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenFOQUEEToolStripMenuItem, Me.DesenfocarToolStripMenuItem, Me.CuadrículaToolStripMenuItem, Me.SombraDeVidrioToolStripMenuItem, Me.SdaToolStripMenuItem, Me.RadmiToolStripMenuItem})
+        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfoqueToolStripMenuItem, Me.CuadrículaToolStripMenuItem, Me.SombraDeVidrioToolStripMenuItem, Me.SdaToolStripMenuItem, Me.RadmiToolStripMenuItem})
         Me.EfectosToolStripMenuItem.Name = "EfectosToolStripMenuItem"
         Me.EfectosToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
         Me.EfectosToolStripMenuItem.Text = "Efectos"
         '
-        'DesenfocarToolStripMenuItem
+        'DesenfoqueToolStripMenuItem
         '
-        Me.DesenfocarToolStripMenuItem.Name = "DesenfocarToolStripMenuItem"
-        Me.DesenfocarToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
-        Me.DesenfocarToolStripMenuItem.Text = "Desenfocar"
+        Me.DesenfoqueToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfonqueDistorsiónToolStripMenuItem, Me.DesenfoqueMovimientoToolStripMenuItem, Me.DesenfoqueBLURToolStripMenuItem, Me.PixeladoToolStripMenuItem})
+        Me.DesenfoqueToolStripMenuItem.Name = "DesenfoqueToolStripMenuItem"
+        Me.DesenfoqueToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.DesenfoqueToolStripMenuItem.Text = "Desenfoque"
+        '
+        'DesenfonqueDistorsiónToolStripMenuItem
+        '
+        Me.DesenfonqueDistorsiónToolStripMenuItem.Name = "DesenfonqueDistorsiónToolStripMenuItem"
+        Me.DesenfonqueDistorsiónToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.DesenfonqueDistorsiónToolStripMenuItem.Text = "Desenfonque distorsión"
+        '
+        'DesenfoqueMovimientoToolStripMenuItem
+        '
+        Me.DesenfoqueMovimientoToolStripMenuItem.Name = "DesenfoqueMovimientoToolStripMenuItem"
+        Me.DesenfoqueMovimientoToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.DesenfoqueMovimientoToolStripMenuItem.Text = "Desenfoque movimiento"
+        '
+        'DesenfoqueBLURToolStripMenuItem
+        '
+        Me.DesenfoqueBLURToolStripMenuItem.Name = "DesenfoqueBLURToolStripMenuItem"
+        Me.DesenfoqueBLURToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.DesenfoqueBLURToolStripMenuItem.Text = "Desenfoque (Blur)"
+        '
+        'PixeladoToolStripMenuItem
+        '
+        Me.PixeladoToolStripMenuItem.Name = "PixeladoToolStripMenuItem"
+        Me.PixeladoToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PixeladoToolStripMenuItem.Text = "Pixelado"
         '
         'CuadrículaToolStripMenuItem
         '
@@ -496,15 +526,16 @@ Partial Class Principal
         '
         'RadmiToolStripMenuItem
         '
+        Me.RadmiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PonerLosDosToolStripMenuItem, Me.SadToolStripMenuItem})
         Me.RadmiToolStripMenuItem.Name = "RadmiToolStripMenuItem"
         Me.RadmiToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
         Me.RadmiToolStripMenuItem.Text = "Ruido"
         '
-        'DesenFOQUEEToolStripMenuItem
+        'PonerLosDosToolStripMenuItem
         '
-        Me.DesenFOQUEEToolStripMenuItem.Name = "DesenFOQUEEToolStripMenuItem"
-        Me.DesenFOQUEEToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
-        Me.DesenFOQUEEToolStripMenuItem.Text = "Distorsión"
+        Me.PonerLosDosToolStripMenuItem.Name = "PonerLosDosToolStripMenuItem"
+        Me.PonerLosDosToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.PonerLosDosToolStripMenuItem.Text = "Ruido aleatorio"
         '
         'SplitContainer1
         '
@@ -564,6 +595,12 @@ Partial Class Principal
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
+        '
+        'SadToolStripMenuItem
+        '
+        Me.SadToolStripMenuItem.Name = "SadToolStripMenuItem"
+        Me.SadToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.SadToolStripMenuItem.Text = "Ruido desplazado"
         '
         'Principal
         '
@@ -652,7 +689,6 @@ Partial Class Principal
     Friend WithEvents SobelTotalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents EfectosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DesenfocarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CuadrículaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CrearTapizToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReflexiónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -663,6 +699,12 @@ Partial Class Principal
     Friend WithEvents TresPartesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SeisPartesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RadmiToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DesenFOQUEEToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DesenfoqueToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DesenfoqueMovimientoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DesenfonqueDistorsiónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DesenfoqueBLURToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PonerLosDosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PixeladoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SadToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

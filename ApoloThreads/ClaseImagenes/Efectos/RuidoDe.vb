@@ -1,18 +1,14 @@
 ﻿Imports ClaseImagenes.Apolo
 
-Public Class SombraVidrio
-
+Public Class RuidoDe
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
     Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
-
-    Private Sub SombraVidrio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Configuramos el hscrollbar
+    Private Sub Ruido_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CheckBox1.Checked = False
         HScrollBar1.Minimum = 1
-        HScrollBar1.Maximum = bmpP.Height
-        HScrollBar1.Value = bmpP.Height / 3
+        HScrollBar1.Maximum = 500
+        HScrollBar1.Value = 100
         Label1.Text = HScrollBar1.Value
-        'Activamos check
-        CheckBox1.Checked = True
         'Asignamos el gestor que controle cuando sale imagen
         AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf Principal.actualizarPicture)
         'Asignamos el gestor que controle cuando se abre una imagen nueva
@@ -31,13 +27,9 @@ Public Class SombraVidrio
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         If CheckBox1.Checked = True Then
-            Principal.PictureBox1.Image = objetoTratamiento.SombraVidrio(bmpP, HScrollBar1.Value, True)
+            Principal.PictureBox1.Image = objetoTratamiento.RuidoProgresivo(bmpP, HScrollBar1.Value, True)
         Else
-            Principal.PictureBox1.Image=objetoTratamiento.SombraVidrio(bmpP,HScrollBar1.Value,False)
+            Principal.PictureBox1.Image = objetoTratamiento.RuidoProgresivo(bmpP, HScrollBar1.Value, False)
         End If
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Me.Close()
     End Sub
 End Class

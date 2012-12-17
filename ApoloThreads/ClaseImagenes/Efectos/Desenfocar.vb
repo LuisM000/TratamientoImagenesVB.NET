@@ -5,10 +5,10 @@ Public Class Desenfocar
     Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
 
     Private Sub Desenfocar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        HScrollBar1.Maximum = bmpP.Width 'Asignamos el máximo y mínimo como el ancho de la imagen
-        HScrollBar1.Minimum = -bmpP.Width
-        HScrollBar2.Maximum = bmpP.Height 'Asignamos el máximo y mínimo como el alto de la imagen
-        HScrollBar2.Minimum = -bmpP.Height
+        HScrollBar1.Maximum = bmpP.Width / 3 'Asignamos el máximo y mínimo como el ancho de la imagen
+        HScrollBar1.Minimum = -bmpP.Width / 3
+        HScrollBar2.Maximum = bmpP.Height / 3 'Asignamos el máximo y mínimo como el alto de la imagen
+        HScrollBar2.Minimum = -bmpP.Height / 3
         HScrollBar1.Value = 0
         Label1.Text = HScrollBar1.Value
         HScrollBar2.Value = 0
@@ -43,5 +43,9 @@ Public Class Desenfocar
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Principal.PictureBox1.Image = objetoTratamiento.desenfoque(bmpP, -HScrollBar1.Value, -HScrollBar2.Value)
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
     End Sub
 End Class

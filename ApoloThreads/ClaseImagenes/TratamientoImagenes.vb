@@ -94,7 +94,7 @@ Namespace Apolo
         'Almacenamos la imagen
         Private Sub guardarImagen(ByVal bmp As Bitmap, ByVal info As String) 'Para almacenar el bitmap y la información
             'Almacenamos la imagen con su información y añadimos +1 al contador
-            If imagenesGuardadas.Count < 40 Then
+            If imagenesGuardadas.Count < 100 Then
                 imagenesGuardadas.Add(bmp)
                 contadorImagenes = imagenesGuardadas.Count
                 Informacion.Add(info)
@@ -291,7 +291,7 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
-        Function Brillo(ByVal bmp As Bitmap, ByVal cantidad As Integer)
+        Public Function Brillo(ByVal bmp As Bitmap, ByVal cantidad As Integer)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2)
@@ -335,7 +335,7 @@ Namespace Apolo
             guardarImagen(bmp3, "Modificar brillo") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
-        Function Exposicion(ByVal bmp As Bitmap, ByVal valorSobreexposicion As Double)
+        Public Function Exposicion(ByVal bmp As Bitmap, ByVal valorSobreexposicion As Double)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2)
@@ -362,7 +362,7 @@ Namespace Apolo
             guardarImagen(bmp3, "Modificar exposición") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
-        Function Canales(ByVal bmp As Bitmap, Optional ByVal canalrojo As Integer = 0, Optional ByVal canalverde As Integer = 0, Optional ByVal canalazul As Integer = 0, Optional ByVal canaalfa As Integer = 0)
+        Public Function Canales(ByVal bmp As Bitmap, Optional ByVal canalrojo As Integer = 0, Optional ByVal canalverde As Integer = 0, Optional ByVal canalazul As Integer = 0, Optional ByVal canaalfa As Integer = 0)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2)
@@ -396,7 +396,7 @@ Namespace Apolo
             guardarImagen(bmp3, "Modificar canales") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
-        Function filtrosBasicos(ByVal bmp As Bitmap, Optional ByVal FRojo As Boolean = False, Optional ByVal FVerde As Boolean = False, Optional ByVal Fazul As Boolean = False)
+        Public Function filtrosBasicos(ByVal bmp As Bitmap, Optional ByVal FRojo As Boolean = False, Optional ByVal FVerde As Boolean = False, Optional ByVal Fazul As Boolean = False)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2)
@@ -440,7 +440,7 @@ Namespace Apolo
             guardarImagen(bmp3, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
-        Function RGBto(ByVal bmp As Bitmap, Optional ByVal BGR As Boolean = False, Optional ByVal GRB As Boolean = True, Optional ByVal RBG As Boolean = False)
+        Public Function RGBto(ByVal bmp As Bitmap, Optional ByVal BGR As Boolean = False, Optional ByVal GRB As Boolean = True, Optional ByVal RBG As Boolean = False)
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp) 'Obtenemos valores
             porcentaje(0) = 0 'Actualizar el estado
@@ -449,7 +449,7 @@ Namespace Apolo
             If BGR = True Then TipoEstado = "RGB a BGR" Else If GRB = True Then TipoEstado = "RGB a GRB" Else If RBG = True Then TipoEstado = "RGB a RBG"
             porcentaje(1) = TipoEstado
             Dim Rojo, Verde, Azul, alfa As Byte
-           
+
             For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
                 For j = 0 To Niveles.GetUpperBound(1)
                     Rojo = Niveles(i, j).B 'Realizamos la inversión de los colores
@@ -514,7 +514,7 @@ Namespace Apolo
             guardarImagen(bmp3, "Reducir colores (" & valorcontraste & ")")
             Return bmp3
         End Function
-        Function filtroColoresRango(ByVal bmp As Bitmap, Optional ByVal valorRojoinf As Byte = 0, Optional ByVal valorRojosup As Byte = 0, Optional ByVal salidaRojo As Byte = 0, Optional ByVal valorVerdeinf As Byte = 0, Optional ByVal valorVerdesup As Byte = 0, Optional ByVal salidaVerde As Byte = 0, Optional ByVal valorAzulinf As Byte = 0, Optional ByVal valorAzulsup As Byte = 0, Optional ByVal salidaAzul As Byte = 0)
+        Public Function filtroColoresRango(ByVal bmp As Bitmap, Optional ByVal valorRojoinf As Byte = 0, Optional ByVal valorRojosup As Byte = 0, Optional ByVal salidaRojo As Byte = 0, Optional ByVal valorVerdeinf As Byte = 0, Optional ByVal valorVerdesup As Byte = 0, Optional ByVal salidaVerde As Byte = 0, Optional ByVal valorAzulinf As Byte = 0, Optional ByVal valorAzulsup As Byte = 0, Optional ByVal salidaAzul As Byte = 0)
             If valorRojoinf > valorRojosup Or valorVerdeinf > valorVerdesup Or valorAzulinf > valorAzulsup Then
                 MessageBox.Show("El valor inferior debe ser mayor que el superior.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return bmp
@@ -552,7 +552,7 @@ Namespace Apolo
                 Return bmp3
             End If
         End Function
-        Function mascara3x3RGB(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
+        Public Function mascara3x3RGB(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2) 'Obtenemos valores
@@ -570,7 +570,7 @@ Namespace Apolo
             porcentaje(1) = "Aplicando máscara 3x3 RGB " & tipoEstado 'Actualizar el estado
             Dim SumaRojo, SumaVerde, SumaAzul, SumaMascara As Long
             Dim Rojo, verde, azul, alfa As Integer
-           
+
             For mi = -1 To 1
                 For mj = -1 To 1
                     SumaMascara = SumaMascara + matrizMascara(mi + 1, mj + 1)
@@ -621,7 +621,7 @@ Namespace Apolo
             guardarImagen(bmp3, "Máscara 3x3 RGB " & tipoEstado)
             Return bmp3
         End Function
-        Function mascara3x3Grises(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
+        Public Function mascara3x3Grises(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2) 'Obtenemos valores
@@ -692,7 +692,7 @@ Namespace Apolo
             guardarImagen(bmp3, "Máscara 3x3 Gris " & tipoEstado)
             Return bmp3
         End Function
-        Function sobelTotal(ByVal bmp As Bitmap)
+        Public Function sobelTotal(ByVal bmp As Bitmap)
             Dim bmp2 = bmp
             Dim bmp3 = bmp
             Dim bmp4 = bmp
@@ -811,7 +811,7 @@ Namespace Apolo
             Return bmp3
         End Function
 #Region "Efectos"
-        Function desenfoque(ByVal bmp As Bitmap, Optional ByVal desenfoqueHor As Short = 0, Optional ByVal desenfoqueVer As Short = 0)
+        Public Function desenfoque(ByVal bmp As Bitmap, Optional ByVal desenfoqueHor As Short = 0, Optional ByVal desenfoqueVer As Short = 0)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2) 'Obtenemos valores
@@ -868,7 +868,7 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
-        Function cuadricula(ByVal bmp As Bitmap, ByVal colorHorizontal As Color, ByVal colorVertical As Color, ByVal horizontal As Integer, Optional ByVal vertical As Integer = 20)
+        Public Function cuadricula(ByVal bmp As Bitmap, ByVal colorHorizontal As Color, ByVal colorVertical As Color, ByVal horizontal As Integer, Optional ByVal vertical As Integer = 20)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2) 'Obtenemos valores
@@ -1095,13 +1095,13 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
-        Function Ruido(ByVal bmp As Bitmap, ByVal valorRuido As Byte)
+        Public Function RuidoAleatorio(ByVal bmp As Bitmap, ByVal valorRuido As Byte)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2) 'Obtenemos valores
             Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
             porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Generando ruido" 'Actualizar el estado
+            porcentaje(1) = "Generando ruido aleatorio" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte
 
             'Inicializar la clase Random  
@@ -1127,12 +1127,58 @@ Namespace Apolo
                 Next
                 porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
             Next
-            guardarImagen(bmp3, "Imagen con ruido") 'Guardamos la imagen para poder hacer retroceso
+            guardarImagen(bmp3, "Imagen con ruido aleatorio") 'Guardamos la imagen para poder hacer retroceso
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
-        Function Distorsion(ByVal bmp As Bitmap, ByVal valorDesenfoque As Byte)
+        Public Function RuidoProgresivo(ByVal bmp As Bitmap, ByVal valorRuido As Integer, Optional blancoNegro As Boolean = False)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Generando ruido progresivo" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte
+            Dim Rojoaux, Verdeaux, Azulaux As Integer
+            'Inicializar la clase Random  
+            Dim Random As New Random()
+
+            Dim ValorRandomRuido As Integer
+            For i = 0 To Niveles.GetUpperBound(0)   'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    ValorRandomRuido = Random.Next(-(valorRuido - 1), valorRuido + 1)
+                    Rojoaux = Niveles(i, j).R + ValorRandomRuido
+                    If blancoNegro = False Then
+                        ValorRandomRuido = Random.Next(-(valorRuido - 1), valorRuido + 1)
+                    End If
+                    Verdeaux = Niveles(i, j).G + ValorRandomRuido
+
+                    If blancoNegro = False Then
+                        ValorRandomRuido = Random.Next(-(valorRuido - 1), valorRuido + 1)
+                    End If
+                    Azulaux = Niveles(i, j).B + ValorRandomRuido
+
+                    If Rojoaux < 0 Then Rojoaux = 0
+                    If Rojoaux > 255 Then Rojoaux = 255
+                    If Verdeaux < 0 Then Verdeaux = 0
+                    If Verdeaux > 255 Then Verdeaux = 255
+                    If Azulaux < 0 Then Azulaux = 0
+                    If Azulaux > 255 Then Azulaux = 255
+                    Rojo = Rojoaux
+                    Verde = Verdeaux
+                    Azul = Azulaux
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            guardarImagen(bmp3, "Imagen con ruido progresivo") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Public Function Distorsion(ByVal bmp As Bitmap, ByVal valorDesenfoque As Byte)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2) 'Obtenemos valores
@@ -1177,6 +1223,54 @@ Namespace Apolo
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
+        End Function
+        Public Function Pixelar(ByVal bmp As Bitmap, ByVal numeroPixeles As Integer)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width - Niveles.GetUpperBound(0) Mod numeroPixeles, bmp2.Height - Niveles.GetUpperBound(1) Mod numeroPixeles) 'Al tamaño se le quita el excedente
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Pixelando imagen x" & numeroPixeles 'Actualizar el estado
+            Dim almacenAux(3) As Byte
+
+            For i = 0 To Niveles.GetUpperBound(0) - numeroPixeles Step numeroPixeles   'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1) - numeroPixeles Step numeroPixeles
+                    almacenAux = calculaValorInterpolado(Niveles, {(i), (j)}, numeroPixeles) 'Calculamos el valor medio de los píxeles
+                    For mi = i To i + numeroPixeles
+                        For mj = j To j + numeroPixeles
+                            bmp3.SetPixel(mi, mj, Color.FromArgb(almacenAux(3), almacenAux(0), almacenAux(1), almacenAux(2))) 'Asignamos a bmp los colores 
+                        Next
+                    Next
+                Next
+                porcentaje(0) = ((i * 100) / (bmp3.Width - numeroPixeles)) 'Actualizamos el estado
+            Next
+            guardarImagen(bmp3, "Imagen pixelada x" & numeroPixeles) 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Private Function calculaValorInterpolado(ByVal valorniveles(,) As System.Drawing.Color, ByVal anchoAlto() As Integer, ByVal numeroPixeles As Integer)
+            Dim rojo, verde, azul, alfa As Integer
+            Dim contador = 0
+            For mi = anchoAlto(0) To anchoAlto(0) + numeroPixeles
+                For mj = anchoAlto(1) To anchoAlto(1) + numeroPixeles
+                    rojo += valorniveles(mi, mj).R
+                    verde += valorniveles(mi, mj).G
+                    azul += valorniveles(mi, mj).B
+                    alfa += valorniveles(mi, mj).A
+                    contador += 1
+                Next
+            Next
+            rojo = rojo / contador
+            verde = verde / contador
+            azul = azul / contador
+            alfa = alfa / contador
+            Dim nivelesCalculado(3) As Byte
+            nivelesCalculado(0) = CInt(rojo)
+            nivelesCalculado(1) = CInt(verde)
+            nivelesCalculado(2) = CInt(azul)
+            nivelesCalculado(3) = CInt(alfa)
+            Return nivelesCalculado
         End Function
 #End Region
 

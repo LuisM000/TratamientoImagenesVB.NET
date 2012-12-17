@@ -92,7 +92,7 @@ Partial Class Distorsion
         Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "Distorsion"
-        Me.Text = "Distorsion"
+        Me.Text = "Desenfocar - distorsión"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -6,7 +6,7 @@ Public Class Ruido
     Private Sub Ruido_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         HScrollBar1.Minimum = 1
         HScrollBar1.Maximum = 29
-        HScrollBar1.Value = 1
+        HScrollBar1.Value = 2
         Label1.Text = HScrollBar1.Value
         'Asignamos el gestor que controle cuando sale imagen
         AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf Principal.actualizarPicture)
@@ -25,6 +25,6 @@ Public Class Ruido
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        Principal.PictureBox1.Image = objetoTratamiento.Ruido(bmpP, HScrollBar1.Value)
+        Principal.PictureBox1.Image = objetoTratamiento.RuidoAleatorio(bmpP, HScrollBar1.Value)
     End Sub
 End Class

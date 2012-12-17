@@ -228,15 +228,29 @@ Public Class Principal
 #End Region
 
 #Region "Efectos"
-    Private Sub DesenfocarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesenfocarToolStripMenuItem.Click
+
+    Private Sub DesenfoqueMovimientoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesenfoqueMovimientoToolStripMenuItem.Click
         Desenfocar.Show()
     End Sub
+    Private Sub DesenfonqueDistorsiónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesenfonqueDistorsiónToolStripMenuItem.Click
+        Distorsion.Show()
+    End Sub
+    Private Sub DesenfoqueBLURToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesenfoqueBLURToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "blur"
+        transformar()
+    End Sub
+
+    Private Sub PixeladoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PixeladoToolStripMenuItem.Click
+        pixelar.show()
+    End Sub
+
     Private Sub CuadrículaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CuadrículaToolStripMenuItem.Click
         Cuadricula.Show()
     End Sub
 
     Private Sub SombraDeVidrioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SombraDeVidrioToolStripMenuItem.Click
-        SombraVidrio.show()
+        SombraVidrio.Show()
     End Sub
     Private Sub TresPartesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TresPartesToolStripMenuItem.Click
         Dim bmp As New Bitmap(PictureBox1.Image)
@@ -249,13 +263,14 @@ Public Class Principal
         transformacion = "6partes"
         transformar()
     End Sub
-    Private Sub RadmiToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RadmiToolStripMenuItem.Click
+    Private Sub PonerLosDosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PonerLosDosToolStripMenuItem.Click
         Ruido.Show()
     End Sub
 
-    Private Sub DesenFOQUEEToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesenFOQUEEToolStripMenuItem.Click
-        Distorsion.Show()
+    Private Sub SadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SadToolStripMenuItem.Click
+        RuidoDe.Show()
     End Sub
+
 #End Region
 
 #Region "Crear proceso con thread"
@@ -317,6 +332,10 @@ Public Class Principal
                 PictureBox1.Image = objetoTratamiento.ImagenTresPartes(bmp)
             Case "6partes"
                 PictureBox1.Image = objetoTratamiento.ImagenSeisPartes(bmp)
+            Case "blur"
+                Dim objetoMascara As New TratamientoImagenes.mascaras
+                Dim mascara = objetoMascara.LOW9
+                PictureBox1.Image = objetoTratamiento.mascara3x3RGB(bmp, mascara, , )
         End Select
     End Sub
 
@@ -399,4 +418,6 @@ Public Class Principal
     End Sub
 #End Region
  
+  
+   
 End Class
