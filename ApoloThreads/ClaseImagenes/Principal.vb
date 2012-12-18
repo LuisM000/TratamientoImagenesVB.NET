@@ -278,6 +278,12 @@ Public Class Principal
 
 #End Region
 
+#Region "Operaciones con dos imágenes"
+    Private Sub SumaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SumaToolStripMenuItem.Click
+        OperacionesAritmeticasDosImagenes.Show()
+    End Sub
+#End Region
+
 #Region "Crear proceso con thread"
     'ACtualizamos el estado del proceso
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -426,5 +432,6 @@ Public Class Principal
  
   
    
+    
     
 End Class

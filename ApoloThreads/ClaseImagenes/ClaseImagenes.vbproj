@@ -239,6 +239,12 @@
     <Compile Include="OperacionesBasicasPersonalizadas\ReducirColores.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="OperacionesDosImagenes\OperacionesAritmeticasDosImagenes.Designer.vb">
+      <DependentUpon>OperacionesAritmeticasDosImagenes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesDosImagenes\OperacionesAritmeticasDosImagenes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -341,6 +347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\ReducirColores.resx">
       <DependentUpon>ReducirColores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesDosImagenes\OperacionesAritmeticasDosImagenes.resx">
+      <DependentUpon>OperacionesAritmeticasDosImagenes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
