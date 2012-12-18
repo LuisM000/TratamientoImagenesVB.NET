@@ -77,7 +77,12 @@ Public Class Principal
         RegistroCambio.Show()
     End Sub
 
-
+    'Deshacer imagen original
+    Private Sub ImagenOriginalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImagenOriginalToolStripMenuItem.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ImagenOriginalGuardada
+        End If
+    End Sub
 #End Region
 
 #Region "OperacionesBasicas"
@@ -364,6 +369,7 @@ Public Class Principal
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         DeshacerToolStripMenuItem.Text = "Deshacer - " & objetoTratamiento.ListadoInfoAtras
         RehacerToolStripMenuItem.Text = "Rehacer - " & objetoTratamiento.ListadoInfoAdelante
+        ImagenOriginalToolStripMenuItem.Text = objetoTratamiento.imagenOriginalInfo
     End Sub
     'FIN de actualizar imagen secundaria
 #End Region
@@ -420,4 +426,5 @@ Public Class Principal
  
   
    
+    
 End Class

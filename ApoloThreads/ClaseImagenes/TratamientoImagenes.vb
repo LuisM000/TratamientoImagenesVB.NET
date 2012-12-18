@@ -18,6 +18,13 @@ Namespace Apolo
         Private Shared Informacion As New ArrayList 'Para saber qué se hizo
         '************************************
 
+        'Variables para controlar atrás/adelante imágenes originales
+        Public Shared imagenOriginal As Bitmap 'Imagen original guardada
+        'Se crea como shared para que no se cree de nuevo en cada instancia
+        Private Shared InformacionOrig As String 'Para saber qué se hizo
+        '************************************
+
+
         'Estado hilo
         Public Shared porcentaje(2) As String
 
@@ -109,6 +116,33 @@ Namespace Apolo
         End Sub
 
 #End Region
+
+#Region "Hacer/deshacer imagenes originales"
+        Public Property ImagenOriginalGuardada() As Bitmap 'Imagen original hacia atrás
+            Get
+                RaiseEvent actualizaBMP(imagenOriginal) 'generamos el evento
+                guardarImagen(imagenOriginal, InformacionOrig)
+                Return imagenOriginal
+            End Get
+
+            Set(value As Bitmap)
+                imagenOriginal = value
+            End Set
+        End Property
+
+
+        Public Property imagenOriginalInfo() As String 'Imagen hacia atrás
+            Get
+                Return InformacionOrig
+            End Get
+            Set(value As String)
+                InformacionOrig = value
+            End Set
+        End Property
+
+       
+#End Region
+
         Public ReadOnly Property estadoCarga() As Array 'Propiedad con el estado de la carga
             Get
                 'Serán dos valores, el porcentaje de carga y quién está realizando la acción
@@ -1609,8 +1643,13 @@ Namespace Apolo
             guardarImagen(bmp, "Imagen original como tapiz") 'Almacenamos info y bitmap
             contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
             RaiseEvent actualizaBMP(bmp) 'Generamos evento
+            'Guardamos la imagen original
+            ImagenOriginalGuardada = bmp
+            imagenOriginalInfo = "Imagen original como tapiz"
+
             Return bmp
         End Function
+
         Sub actualizarNombreTapiz(ByVal nombre As String, ByVal ancho As Integer, ByVal alto As Integer)
             RaiseEvent actualizaNombreImagen({nombre, ancho, alto, "Imagen tapiz"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
         End Sub
@@ -1635,6 +1674,11 @@ Namespace Apolo
                         contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
                         RaiseEvent actualizaBMP(abrirImagen) 'Generamos evento
                         RaiseEvent actualizaNombreImagen({nombreImagen(.FileName), abrirImagen.Width, abrirImagen.Height, "Desde archivo"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+
+                        'Guardamos la imagen original
+                        ImagenOriginalGuardada = abrirImagen
+                        imagenOriginalInfo = "Imagen original desde archivo"
+
                         Return abrirImagen
                     Else
                         abrirImagen = Nothing
@@ -1659,6 +1703,10 @@ Namespace Apolo
                 contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
                 RaiseEvent actualizaBMP(bmp) 'Generamos evento
                 RaiseEvent actualizaNombreImagen({nombreRecursoWeb(enlace), bmp.Width, bmp.Height, "Recurso web"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+
+                'Guardamos la imagen original
+                ImagenOriginalGuardada = bmp
+                imagenOriginalInfo = "Imagen original como recurso web"
                 Return bmp
             Catch
                 Dim bmp As Bitmap
@@ -1686,6 +1734,9 @@ Namespace Apolo
             Try
                 guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
                 contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+                'Guardamos la imagen original
+                ImagenOriginalGuardada = bmp
+                imagenOriginalInfo = "Imagen original como recurso web"
                 RaiseEvent actualizaBMP(bmp) 'Generamos evento
                 RaiseEvent actualizaNombreImagen({nombreRecursoWeb(direccionURL), bmp.Width, bmp.Height, "Recurso web"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
             Catch
@@ -1698,6 +1749,11 @@ Namespace Apolo
                 abrirDragDrop = bmp
                 guardarImagen(abrirDragDrop, "Imagen original arrastrada") 'Almacenamos info y bitmap
                 contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+
+                'Guardamos la imagen original
+                ImagenOriginalGuardada = abrirDragDrop
+                imagenOriginalInfo = "Imagen original arrastrada"
+
                 RaiseEvent actualizaBMP(abrirDragDrop) 'Generamos evento
                 RaiseEvent actualizaNombreImagen({nombreRecursoWeb(ruta), abrirDragDrop.Width, abrirDragDrop.Height, "Desde archivo (arrastrada)"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
                 Return abrirDragDrop

@@ -42,6 +42,8 @@ Partial Class Principal
         Me.RehacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RegistroDeCambiosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RefrescarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ImagenOriginalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesBásicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EscalaDeGrisesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EscalaDeGrisesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -91,12 +93,12 @@ Partial Class Principal
         Me.SeisPartesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RadmiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PonerLosDosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.SadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -195,7 +197,7 @@ Partial Class Principal
         '
         'EdiciónToolStripMenuItem
         '
-        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.RegistroDeCambiosToolStripMenuItem, Me.RefrescarToolStripMenuItem})
+        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.RegistroDeCambiosToolStripMenuItem, Me.RefrescarToolStripMenuItem, Me.ToolStripMenuItem1, Me.ImagenOriginalToolStripMenuItem})
         Me.EdiciónToolStripMenuItem.Name = "EdiciónToolStripMenuItem"
         Me.EdiciónToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.EdiciónToolStripMenuItem.Text = "Edición"
@@ -226,6 +228,17 @@ Partial Class Principal
         Me.RefrescarToolStripMenuItem.Name = "RefrescarToolStripMenuItem"
         Me.RefrescarToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.RefrescarToolStripMenuItem.Text = "Refrescar"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(178, 6)
+        '
+        'ImagenOriginalToolStripMenuItem
+        '
+        Me.ImagenOriginalToolStripMenuItem.Name = "ImagenOriginalToolStripMenuItem"
+        Me.ImagenOriginalToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.ImagenOriginalToolStripMenuItem.Text = "Imagen original"
         '
         'OperacionesBásicosToolStripMenuItem
         '
@@ -537,6 +550,12 @@ Partial Class Principal
         Me.PonerLosDosToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.PonerLosDosToolStripMenuItem.Text = "Ruido aleatorio"
         '
+        'SadToolStripMenuItem
+        '
+        Me.SadToolStripMenuItem.Name = "SadToolStripMenuItem"
+        Me.SadToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.SadToolStripMenuItem.Text = "Ruido desplazado"
+        '
         'SplitContainer1
         '
         Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -595,12 +614,6 @@ Partial Class Principal
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
-        '
-        'SadToolStripMenuItem
-        '
-        Me.SadToolStripMenuItem.Name = "SadToolStripMenuItem"
-        Me.SadToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
-        Me.SadToolStripMenuItem.Text = "Ruido desplazado"
         '
         'Principal
         '
@@ -706,5 +719,7 @@ Partial Class Principal
     Friend WithEvents PonerLosDosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PixeladoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SadToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ImagenOriginalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
