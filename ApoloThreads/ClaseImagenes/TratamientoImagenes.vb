@@ -1307,6 +1307,153 @@ Namespace Apolo
             Return nivelesCalculado
         End Function
 #End Region
+#Region "operaciones con dos imágenes"
+        Public Function OperacionSuma(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
+            Dim bmpAux1 = bmp1
+            Dim bmpAux2 = bmp2
+
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmpAux1)
+
+            Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles2 = nivel(bmpAux2)
+
+            Dim bmp3 As New Bitmap(bmpAux1.Width, bmpAux1.Height)
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Sumando imágenes" 'Actualizar el estado
+            Dim Rojoaux, Verdeaux, Azulaux, alfaaux As Integer
+            Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojoaux = Niveles(i, j).R    'Sumamos los valores
+                    Rojoaux += Niveles2(i, j).R
+                    Verdeaux = Niveles(i, j).G
+                    Verdeaux += +Niveles2(i, j).G
+                    Azulaux = Niveles(i, j).B
+                    Azulaux += Niveles2(i, j).B
+                    alfaaux = Niveles(i, j).A
+                    alfaaux += Niveles2(i, j).A
+                    If Rojoaux > 255 Then Rojoaux = 255
+                    If Verdeaux > 255 Then Verdeaux = 255
+                    If Azulaux > 255 Then Azulaux = 255
+                    If alfaaux > 255 Then alfaaux = 255
+                    Rojo = CInt(Rojoaux)
+                    Verde = CInt(Verdeaux)
+                    Azul = CInt(Azulaux)
+                    alfa = CInt(alfaaux)
+                    If omitirAlfa = True Then
+                        alfa = 255
+                    End If
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Suma de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+        Public Function OperacionResta(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
+            Dim bmpAux1 = bmp1
+            Dim bmpAux2 = bmp2
+
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmpAux1)
+
+            Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles2 = nivel(bmpAux2)
+
+            Dim bmp3 As New Bitmap(bmpAux1.Width, bmpAux1.Height)
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Restando imágenes" 'Actualizar el estado
+            Dim Rojoaux, Verdeaux, Azulaux, alfaaux As Integer
+            Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojoaux = Niveles(i, j).R    'Sumamos los valores
+                    Rojoaux -= Niveles2(i, j).R
+                    Verdeaux = Niveles(i, j).G
+                    Verdeaux -= +Niveles2(i, j).G
+                    Azulaux = Niveles(i, j).B
+                    Azulaux -= Niveles2(i, j).B
+                    alfaaux = Niveles(i, j).A
+                    alfaaux -= Niveles2(i, j).A
+                    If Rojoaux < 0 Then Rojoaux = 0
+                    If Verdeaux < 0 Then Verdeaux = 0
+                    If Azulaux < 0 Then Azulaux = 0
+                    If alfaaux < 0 Then alfaaux = 0
+                    Rojo = CInt(Rojoaux)
+                    Verde = CInt(Verdeaux)
+                    Azul = CInt(Azulaux)
+                    alfa = CInt(alfaaux)
+                    If omitirAlfa = True Then
+                        alfa = 255
+                    End If
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Resta de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+        Public Function OperacionMultiplicacion(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
+            Dim bmpAux1 = bmp1
+            Dim bmpAux2 = bmp2
+
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmpAux1)
+
+            Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles2 = nivel(bmpAux2)
+
+            Dim bmp3 As New Bitmap(bmpAux1.Width, bmpAux1.Height)
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Multiplicando imágenes" 'Actualizar el estado
+            Dim Rojoaux, Verdeaux, Azulaux, alfaaux As Integer
+            Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojoaux = Niveles(i, j).R    'Sumamos los valores
+                    Rojoaux *= Niveles2(i, j).R
+                    Verdeaux = Niveles(i, j).G
+                    Verdeaux *= +Niveles2(i, j).G
+                    Azulaux = Niveles(i, j).B
+                    Azulaux *= Niveles2(i, j).B
+                    alfaaux = Niveles(i, j).A
+                    alfaaux *= Niveles2(i, j).A
+                    If Rojoaux < 0 Then Rojoaux = 0
+                    If Verdeaux < 0 Then Verdeaux = 0
+                    If Azulaux < 0 Then Azulaux = 0
+                    If alfaaux < 0 Then alfaaux = 0
+                    If Rojoaux > 255 Then Rojoaux = 255
+                    If Verdeaux > 255 Then Verdeaux = 255
+                    If Azulaux > 255 Then Azulaux = 255
+                    If alfaaux > 255 Then alfaaux = 255
+                    Rojo = CInt(Rojoaux)
+                    Verde = CInt(Verdeaux)
+                    Azul = CInt(Azulaux)
+                    alfa = CInt(alfaaux)
+                    If omitirAlfa = True Then
+                        alfa = 255
+                    End If
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Multiplicación de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+#End Region
 
 
 #End Region
