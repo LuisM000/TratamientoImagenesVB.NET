@@ -60,4 +60,8 @@ Public Class Tapiz
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         objetoTratamiento.actualizarNombreTapiz(TextBox3.Text, TextBox1.Text, TextBox2.Text) 'Lo hacemos en dos pasos para controlar la excepción del evento (delegado)
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
+    End Sub
 End Class

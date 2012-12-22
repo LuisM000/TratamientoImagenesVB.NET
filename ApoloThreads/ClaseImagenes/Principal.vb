@@ -18,6 +18,7 @@ Public Class Principal
         AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf actualizarPicture)
         'Asignamos el gestor que controle cuando se abre una imagen nueva
         AddHandler objetoTratamiento.actualizaNombreImagen, New ActualizamosNombreImagen(AddressOf actualizarNombrePicture)
+
     End Sub
 
 
@@ -188,7 +189,13 @@ Public Class Principal
     Private Sub BrilloToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BrilloToolStripMenuItem1.Click
         Brillo.Show()
     End Sub
+    Private Sub Contraste1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Contraste1ToolStripMenuItem.Click
+        Contraste1.show()
+    End Sub
 
+    Private Sub Contraste2ToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles Contraste2ToolStripMenuItem.Click
+        Contraste2.Show()
+    End Sub
     Private Sub ExposiciónToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ExposiciónToolStripMenuItem1.Click
         Exposicion.Show()
     End Sub
@@ -430,8 +437,6 @@ Public Class Principal
     End Sub
 #End Region
  
-  
-   
-    
+
     
 End Class

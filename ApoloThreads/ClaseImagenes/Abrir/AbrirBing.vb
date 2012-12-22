@@ -235,7 +235,9 @@ Public Class AbrirBing
         If numeroAbrir <> 0 Then
             If CheckBox1.Checked = False Then
                 abriendo()
-                BackgroundWorker1.RunWorkerAsync()
+                If BackgroundWorker1.IsBusy = False Then
+                    BackgroundWorker1.RunWorkerAsync()
+                End If
             Else
                 Select Case numeroAbrir
                     Case 1
@@ -346,9 +348,12 @@ Public Class AbrirBing
         ToolStripProgressBar1.MarqueeAnimationSpeed = 30
     End Sub
     Sub abierto()
-        ToolStripStatusLabel1.Text = "Imagen abierta"
-        ToolStripProgressBar1.Size = New Size(100, ToolStripProgressBar1.Size.Height)
-        ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
-        ToolStripProgressBar1.Value = 100
+        Try
+            ToolStripStatusLabel1.Text = "Imagen abierta"
+            ToolStripProgressBar1.Size = New Size(100, ToolStripProgressBar1.Size.Height)
+            ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
+            ToolStripProgressBar1.Value = 100
+        Catch
+        End Try
     End Sub
 End Class

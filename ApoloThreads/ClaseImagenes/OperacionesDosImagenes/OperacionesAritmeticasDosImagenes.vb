@@ -66,7 +66,7 @@ Public Class OperacionesAritmeticasDosImagenes
             alfa = False
         End If
         If RadioButton1.Checked = True Then 'Unión
-
+            Principal.PictureBox1.Image = objetoTratamiento.OperacionUnir(PictureBox1.Image, PictureBox2.Image, alfa)
         End If
         If RadioButton2.Checked = True Then 'Suma 
             Principal.PictureBox1.Image = objetoTratamiento.OperacionSuma(PictureBox1.Image, PictureBox2.Image, alfa)
@@ -75,7 +75,7 @@ Public Class OperacionesAritmeticasDosImagenes
             Principal.PictureBox1.Image = objetoTratamiento.OperacionResta(PictureBox1.Image, PictureBox2.Image, alfa)
         End If
         If RadioButton4.Checked = True Then 'División
-
+            Principal.PictureBox1.Image = objetoTratamiento.OperacionDivision(PictureBox1.Image, PictureBox2.Image, alfa)
         End If
         If RadioButton5.Checked = True Then 'multiplicación
             Principal.PictureBox1.Image = objetoTratamiento.OperacionMultiplicacion(PictureBox1.Image, PictureBox2.Image, alfa)

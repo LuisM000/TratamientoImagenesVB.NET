@@ -74,10 +74,11 @@ Partial Class AbrirFacebook
         '
         'Timer1
         '
+        Me.Timer1.Interval = 200
         '
         'Timer2
         '
-        Me.Timer2.Interval = 10
+        Me.Timer2.Interval = 1
         '
         'Panel1
         '

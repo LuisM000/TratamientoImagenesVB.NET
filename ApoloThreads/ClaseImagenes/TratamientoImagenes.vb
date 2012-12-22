@@ -287,6 +287,97 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+        Public Function ContrasteEstirar(ByVal bmp As Bitmap, ByVal valorContrasteMax As Byte, ByVal valorContrasteMin As Byte) As Bitmap
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+
+            'Creamos el estado
+            porcentaje(0) = 0 'Actualizar el estado
+
+            Dim RojoMax, VerdeMax, AzulMax As Byte
+            Dim RojoMin, VerdeMin, AzulMin As Byte
+            RojoMax = 0 : VerdeMax = 0 : AzulMax = 0
+            RojoMin = 255 : VerdeMin = 255 : AzulMin = 255
+            porcentaje(1) = "Calculando extremos" 'Actualizar el estado
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz para calcular valor mínimo y máximo
+                For j = 0 To Niveles.GetUpperBound(1)
+                    If Niveles(i, j).R > RojoMax Then RojoMax = Niveles(i, j).R
+                    If Niveles(i, j).G > VerdeMax Then VerdeMax = Niveles(i, j).G
+                    If Niveles(i, j).B > AzulMax Then AzulMax = Niveles(i, j).A
+                    If Niveles(i, j).R < RojoMin Then RojoMin = Niveles(i, j).R
+                    If Niveles(i, j).G < VerdeMin Then VerdeMin = Niveles(i, j).G
+                    If Niveles(i, j).B < AzulMin Then AzulMin = Niveles(i, j).B
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+
+            porcentaje(1) = "Modificando contraste estirado" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz para calcular valor mínimo y máximo
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = CByte((valorContrasteMax - valorContrasteMin) * ((Niveles(i, j).R - RojoMin) / (RojoMax - RojoMin)) + valorContrasteMin)
+                    Verde = CByte((valorContrasteMax - valorContrasteMin) * ((Niveles(i, j).G - VerdeMin) / (VerdeMax - VerdeMin)) + valorContrasteMin)
+                    Azul = CByte((valorContrasteMax - valorContrasteMin) * ((Niveles(i, j).B - AzulMin) / (AzulMax - AzulMin)) + valorContrasteMin)
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+
+            guardarImagen(bmp3, "Contraste modificado estirado") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Public Function Contraste(ByVal bmp As Bitmap, ByVal valorContraste As Double) As Bitmap
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+
+
+            'Creamos el estado
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Modificando contraste" 'Actualizar el estado
+
+            Dim Rojo, Verde, Azul, alfa As Byte
+            Dim Rojoaxu, Verdeaux, Azulaux As Double
+            Dim calculo, calculoAux As Double
+            calculoAux = (1 / ((Math.PI) / 4)) 'Con esto hacemos que si recibimos 0 (valorcontraste) no haya modificación en la imagen
+            calculo = (valorContraste + 1) * (Math.PI / 4) 'Pi/4
+            calculo *= calculoAux
+
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz para calcular valor mínimo y máximo
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojoaxu = ((Niveles(i, j).R - 128) * calculo) + 128
+                    Verdeaux = ((Niveles(i, j).G - 128) * calculo) + 128
+                    Azulaux = ((Niveles(i, j).B - 128) * calculo) + 128
+                    If Rojoaxu > 255 Then Rojoaxu = 255
+                    If Verdeaux > 255 Then Verdeaux = 255
+                    If Azulaux > 255 Then Azulaux = 255
+
+                    If Rojoaxu < 0 Then Rojoaxu = 0
+                    If Verdeaux < 0 Then Verdeaux = 0
+                    If Azulaux < 0 Then Azulaux = 0
+
+                    Rojo = Rojoaxu
+                    Verde = Verdeaux
+                    Azul = Azulaux
+
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+
+            guardarImagen(bmp3, "Contraste modificado") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
         Public Function sepia(ByVal bmp As Bitmap)
             Return filtroponderado(bmp, 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131)
         End Function
@@ -1306,11 +1397,27 @@ Namespace Apolo
             nivelesCalculado(3) = CInt(alfa)
             Return nivelesCalculado
         End Function
+
 #End Region
 #Region "operaciones con dos imágenes"
+        Private Function CuadrarImagenes(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap)
+            Dim alto, ancho As Integer
+            If bmp1.Height >= bmp2.Height Then alto = bmp2.Height Else alto = bmp1.Height
+            If bmp1.Width >= bmp2.Width Then ancho = bmp2.Width Else ancho = bmp1.Width
+            Dim bmpAjustado1 As New Bitmap(bmp1, ancho, alto)
+            Dim bmpAjustado2 As New Bitmap(bmp2, ancho, alto)
+            Dim bmpRetorno(1) As Bitmap
+            bmpRetorno(0) = bmpAjustado1
+            bmpRetorno(1) = bmpAjustado2
+            Return bmpRetorno
+        End Function
         Public Function OperacionSuma(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
+            Dim bmpCuadrados = CuadrarImagenes(bmpAux1, bmpAux2)
+
+            bmpAux1 = bmpCuadrados(0)
+            bmpAux2 = bmpCuadrados(1)
 
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmpAux1)
@@ -1358,7 +1465,10 @@ Namespace Apolo
         Public Function OperacionResta(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
+            Dim bmpCuadrados = CuadrarImagenes(bmpAux1, bmpAux2) 'Cuadramos las imágenes
 
+            bmpAux1 = bmpCuadrados(0)
+            bmpAux2 = bmpCuadrados(1)
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmpAux1)
 
@@ -1374,7 +1484,7 @@ Namespace Apolo
 
             For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
                 For j = 0 To Niveles.GetUpperBound(1)
-                    Rojoaux = Niveles(i, j).R    'Sumamos los valores
+                    Rojoaux = Niveles(i, j).R    'Restando los valores
                     Rojoaux -= Niveles2(i, j).R
                     Verdeaux = Niveles(i, j).G
                     Verdeaux -= +Niveles2(i, j).G
@@ -1405,7 +1515,10 @@ Namespace Apolo
         Public Function OperacionMultiplicacion(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
+            Dim bmpCuadrados = CuadrarImagenes(bmpAux1, bmpAux2) 'Cuadramos las imágenes
 
+            bmpAux1 = bmpCuadrados(0)
+            bmpAux2 = bmpCuadrados(1)
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmpAux1)
 
@@ -1421,7 +1534,7 @@ Namespace Apolo
 
             For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
                 For j = 0 To Niveles.GetUpperBound(1)
-                    Rojoaux = Niveles(i, j).R    'Sumamos los valores
+                    Rojoaux = Niveles(i, j).R    'ultiplicando los valores
                     Rojoaux *= Niveles2(i, j).R
                     Verdeaux = Niveles(i, j).G
                     Verdeaux *= +Niveles2(i, j).G
@@ -1437,6 +1550,107 @@ Namespace Apolo
                     If Verdeaux > 255 Then Verdeaux = 255
                     If Azulaux > 255 Then Azulaux = 255
                     If alfaaux > 255 Then alfaaux = 255
+                    Rojo = CInt(Rojoaux)
+                    Verde = CInt(Verdeaux)
+                    Azul = CInt(Azulaux)
+                    alfa = CInt(alfaaux)
+                    If omitirAlfa = True Then
+                        alfa = 255
+                    End If
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Multiplicación de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+        Public Function OperacionDivision(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
+            Dim bmpAux1 = bmp1
+            Dim bmpAux2 = bmp2
+            Dim bmpCuadrados = CuadrarImagenes(bmpAux1, bmpAux2) 'Cuadramos las imágenes
+
+            bmpAux1 = bmpCuadrados(0)
+            bmpAux2 = bmpCuadrados(1)
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmpAux1)
+
+            Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles2 = nivel(bmpAux2)
+
+            Dim bmp3 As New Bitmap(bmpAux1.Width, bmpAux1.Height)
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Dividiendo imágenes" 'Actualizar el estado
+            Dim Rojoaux, Verdeaux, Azulaux, alfaaux As Integer
+            Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
+            Dim nivelAux As Double = 0
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojoaux = Niveles(i, j).R    'Dividimos los valores
+                    If Niveles2(i, j).R = 0 Then nivelAux = 1 Else nivelAux = Niveles2(i, j).R 'Controlamos que no haya 0 en el denominador
+                    Rojoaux /= nivelAux
+                    Verdeaux = Niveles(i, j).G
+                    If Niveles2(i, j).G = 0 Then nivelAux = 1 Else nivelAux = Niveles2(i, j).G
+                    Verdeaux /= nivelAux
+                    Azulaux = Niveles(i, j).B
+                    If Niveles2(i, j).B = 0 Then nivelAux = 1 Else nivelAux = Niveles2(i, j).B
+                    Azulaux /= nivelAux
+                    alfaaux = Niveles(i, j).A
+                    If Niveles2(i, j).A = 0 Then nivelAux = 1 Else nivelAux = Niveles2(i, j).A
+                    alfaaux /= nivelAux
+                    If Rojoaux < 0 Then Rojoaux = 0
+                    If Verdeaux < 0 Then Verdeaux = 0
+                    If Azulaux < 0 Then Azulaux = 0
+                    If alfaaux < 0 Then alfaaux = 0
+                    Rojo = CInt(Rojoaux)
+                    Verde = CInt(Verdeaux)
+                    Azul = CInt(Azulaux)
+                    alfa = CInt(alfaaux)
+                    If omitirAlfa = True Then
+                        alfa = 255
+                    End If
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "División de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+        Public Function OperacionUnir(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
+            Dim bmpAux1 = bmp1
+            Dim bmpAux2 = bmp2
+            Dim bmpCuadrados = CuadrarImagenes(bmpAux1, bmpAux2) 'Cuadramos las imágenes
+
+            bmpAux1 = bmpCuadrados(0)
+            bmpAux2 = bmpCuadrados(1)
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmpAux1)
+
+            Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles2 = nivel(bmpAux2)
+
+            Dim bmp3 As New Bitmap(bmpAux1.Width, bmpAux1.Height)
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Uniendo imágenes" 'Actualizar el estado
+            Dim Rojoaux, Verdeaux, Azulaux, alfaaux As Integer
+            Dim Rojo, Verde, Azul, alfa As Integer 'Declaramos tres variables que almacenarán los colores
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojoaux = Niveles(i, j).R    'Uniendo los valores
+                    Rojoaux = (Rojoaux + Niveles2(i, j).R) / 2
+                    Verdeaux = Niveles(i, j).G
+                    Verdeaux = (Verdeaux + Niveles2(i, j).G) / 2
+                    Azulaux = Niveles(i, j).B
+                    Azulaux = (Azulaux + Niveles2(i, j).B) / 2
+                    alfaaux = Niveles(i, j).A
+                    alfaaux = (alfaaux + Niveles2(i, j).A) / 2
+
                     Rojo = CInt(Rojoaux)
                     Verde = CInt(Verdeaux)
                     Azul = CInt(Azulaux)

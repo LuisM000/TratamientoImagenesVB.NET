@@ -148,7 +148,6 @@ Public Class AbrirFacebook
             For i = 0 To fotos.Count - 1
                 fotos(i) = fotos(i).ToString.Replace("http//", "http://")
             Next
-            Timer2.Enabled = True
             PictureBox1.Visible = True
             PictureBox2.Visible = True
             PictureBox3.Visible = True
@@ -169,6 +168,7 @@ Public Class AbrirFacebook
             If BackgroundWorker1.IsBusy = False Then
                 cargando()
                 BackgroundWorker1.RunWorkerAsync() 'Cargamos las imágenes en otro hilo
+                Timer2.Enabled = True
             End If
         Catch ex As Exception
             Button1.Enabled = False
@@ -219,7 +219,7 @@ Public Class AbrirFacebook
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         If Panel1.Location.Y > 15 Then
-            Panel1.Location = New Size(Panel1.Location.X, Panel1.Location.Y - 50)
+            Panel1.Location = New Size(Panel1.Location.X, Panel1.Location.Y - 20)
 
         End If
     End Sub

@@ -197,6 +197,18 @@
     <Compile Include="OperacionesBasicasPersonalizadas\Brillo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Contraste1.Designer.vb">
+      <DependentUpon>Contraste1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Contraste1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Contraste2.Designer.vb">
+      <DependentUpon>Contraste2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Contraste2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OperacionesBasicasPersonalizadas\EscalaDeGrises.Designer.vb">
       <DependentUpon>EscalaDeGrises.vb</DependentUpon>
     </Compile>
@@ -326,6 +338,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Brillo.resx">
       <DependentUpon>Brillo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Contraste1.resx">
+      <DependentUpon>Contraste1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Contraste2.resx">
+      <DependentUpon>Contraste2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\EscalaDeGrises.resx">
       <DependentUpon>EscalaDeGrises.vb</DependentUpon>
