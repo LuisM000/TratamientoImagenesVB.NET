@@ -185,6 +185,18 @@
     <Compile Include="Máscaras\PasoBajo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.Designer.vb">
+      <DependentUpon>OperacionesLogicasDosImagenes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\OperacionesAritmeticas.Designer.vb">
+      <DependentUpon>OperacionesAritmeticas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\OperacionesAritmeticas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OperacionesBasicasPersonalizadas\BlancoYnegro.Designer.vb">
       <DependentUpon>BlancoYnegro.vb</DependentUpon>
     </Compile>
@@ -195,6 +207,12 @@
       <DependentUpon>Brillo.vb</DependentUpon>
     </Compile>
     <Compile Include="OperacionesBasicasPersonalizadas\Brillo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Contornos.Designer.vb">
+      <DependentUpon>Contornos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Contornos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OperacionesBasicasPersonalizadas\Contraste1.Designer.vb">
@@ -255,6 +273,12 @@
       <DependentUpon>OperacionesAritmeticasDosImagenes.vb</DependentUpon>
     </Compile>
     <Compile Include="OperacionesDosImagenes\OperacionesAritmeticasDosImagenes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\OperacionesLogicas.Designer.vb">
+      <DependentUpon>OperacionesLogicas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\OperacionesLogicas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Principal.vb">
@@ -333,11 +357,20 @@
     <EmbeddedResource Include="Máscaras\PasoBajo.resx">
       <DependentUpon>PasoBajo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.resx">
+      <DependentUpon>OperacionesLogicasDosImagenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\OperacionesAritmeticas.resx">
+      <DependentUpon>OperacionesAritmeticas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\BlancoYnegro.resx">
       <DependentUpon>BlancoYnegro.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Brillo.resx">
       <DependentUpon>Brillo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Contornos.resx">
+      <DependentUpon>Contornos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Contraste1.resx">
       <DependentUpon>Contraste1.vb</DependentUpon>
@@ -368,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\OperacionesAritmeticasDosImagenes.resx">
       <DependentUpon>OperacionesAritmeticasDosImagenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\OperacionesLogicas.resx">
+      <DependentUpon>OperacionesLogicas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>

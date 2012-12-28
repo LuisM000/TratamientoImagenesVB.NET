@@ -214,6 +214,20 @@ Public Class Principal
     Private Sub MatrizToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MatrizToolStripMenuItem.Click
         Matriz.Show()
     End Sub
+
+    Private Sub DetectarContornosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DetectarContornosToolStripMenuItem.Click
+        Contornos.Show()
+    End Sub
+#End Region
+
+#Region "Operaciones aritmeticas 1 imagen"
+
+    Private Sub OperacionesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperacionesToolStripMenuItem.Click
+        OperacionesAritmeticas.Show()
+    End Sub
+    Private Sub OperacionesLógicasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperacionesLógicasToolStripMenuItem.Click
+        OperacionesLogicas.Show()
+    End Sub
 #End Region
 
 #Region "Máscaras"
@@ -288,6 +302,10 @@ Public Class Principal
 #Region "Operaciones con dos imágenes"
     Private Sub SumaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SumaToolStripMenuItem.Click
         OperacionesAritmeticasDosImagenes.Show()
+    End Sub
+
+    Private Sub OperacionesLógicasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OperacionesLógicasToolStripMenuItem1.Click
+        OperacionesLogicasDosImagenes.Show()
     End Sub
 #End Region
 
@@ -438,5 +456,6 @@ Public Class Principal
 #End Region
  
 
-    
+  
+ 
 End Class
