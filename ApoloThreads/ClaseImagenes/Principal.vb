@@ -374,8 +374,9 @@ Public Class Principal
                 PictureBox1.Image = objetoTratamiento.mascara3x3RGB(bmp, mascara, , )
             Case "pruebaLoco"
                 Dim objetoEstru As New TratamientoImagenes.ElementoEstructural
-                Dim masca = objetoEstru.Diamante9x9
-                PictureBox1.Image = objetoTratamiento.MorfologicasDilatacion(bmp, masca)
+                Dim masca = objetoEstru.Cuadrado3x3
+                PictureBox1.Image = objetoTratamiento.MorfologicasApertura(bmp, masca)
+
         End Select
     End Sub
 
