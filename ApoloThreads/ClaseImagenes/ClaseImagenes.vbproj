@@ -100,7 +100,6 @@
     <Compile Include="Abrir\AbrirRecurso.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abrir\JsonConvert.vb" />
     <Compile Include="Abrir\Tapiz.Designer.vb">
       <DependentUpon>Tapiz.vb</DependentUpon>
     </Compile>

@@ -260,4 +260,8 @@ Public Class MascaraManual
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         ImportarMascara.Show()
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
+    End Sub
 End Class
