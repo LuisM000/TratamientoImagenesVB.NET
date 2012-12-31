@@ -27,4 +27,8 @@ Public Class Ruido
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Principal.PictureBox1.Image = objetoTratamiento.RuidoAleatorio(bmpP, HScrollBar1.Value)
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
+    End Sub
 End Class

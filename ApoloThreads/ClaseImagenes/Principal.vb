@@ -458,4 +458,8 @@ Public Class Principal
 
   
  
+    Private Sub OperadoresMorfológicosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperadoresMorfológicosToolStripMenuItem.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        PictureBox1.Image = objetoTratamiento.Dilatacion(bmp)
+    End Sub
 End Class

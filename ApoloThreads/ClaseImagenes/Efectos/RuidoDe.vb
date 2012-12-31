@@ -32,4 +32,8 @@ Public Class RuidoDe
             Principal.PictureBox1.Image = objetoTratamiento.RuidoProgresivo(bmpP, HScrollBar1.Value, False)
         End If
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
+    End Sub
 End Class

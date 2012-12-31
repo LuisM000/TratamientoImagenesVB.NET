@@ -1,8 +1,5 @@
 ﻿Imports System.Xml
 Imports System.Net
-
-
-
 Namespace Apolo
 
     Public Delegate Sub ActualizamosImagen(ByVal bmp As Bitmap) 'Definimos el Tipo de evento
@@ -35,8 +32,15 @@ Namespace Apolo
         Event actualizaNombreImagen As ActualizamosNombreImagen
 
 
+        'Propiedad con el estado de la carga
+        Public ReadOnly Property estadoCarga() As Array 'Propiedad con el estado de la carga
+            Get
+                'Serán dos valores, el porcentaje de carga y quién está realizando la acción
+                Return porcentaje
+            End Get
+        End Property
 
-
+        'Propiedades y métodos para hacer y rehacer el conjunto de imágenes
 #Region "Hacer/deshacerImagenes"
 
         Public ReadOnly Property ListadoImagenesAtras() As Bitmap 'Imagen hacia atrás
@@ -117,6 +121,8 @@ Namespace Apolo
 
 #End Region
 
+
+        'Gestionar la imagen original actual
 #Region "Hacer/deshacer imagenes originales"
         Public Property ImagenOriginalGuardada() As Bitmap 'Imagen original hacia atrás
             Get
@@ -140,20 +146,15 @@ Namespace Apolo
             End Set
         End Property
 
-       
+
 #End Region
 
-        Public ReadOnly Property estadoCarga() As Array 'Propiedad con el estado de la carga
-            Get
-                'Serán dos valores, el porcentaje de carga y quién está realizando la acción
-                Return porcentaje
-            End Get
-        End Property
+  
 
+        'Contiene el conjunto de funciones para tratamiento de imágenes digitales
+#Region "FuncionesTratamiento"
 
-#Region "funcionesTratamiento"
-
-        'Obtenemos los niveles de la imagen
+        'Función para obtener los niveles digitales de la imagen
         Private Function nivel(ByVal bmp As Bitmap)
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             porcentaje(0) = 0 'Actualizamos el estado
@@ -170,6 +171,12 @@ Namespace Apolo
             Return Niveles
         End Function
 
+
+        'Contiene todas las funciones con operaciones básicas (devuelven un Bitmap)
+        'Escala de grises// invertir// Blanco y negro// contraste// sepia// Filtro ponderado// Brillo// Exposición
+        'Modificar canales// Filtros básicos// RGBto// Reducir colores//Filtrar colores por rango//
+        'Detectar contornos// reflexión
+#Region "OperacionesBasicas"
         Public Function EscalaGrises(ByVal bmp As Bitmap, Optional ByVal valorcontraste As Byte = 0) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -677,6 +684,77 @@ Namespace Apolo
                 Return bmp3
             End If
         End Function
+        Public Function Reflexion(ByVal bmp As Bitmap, Optional ByVal horizontal As Boolean = True, Optional ByVal vertical As Boolean = False) As Bitmap
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            Dim tipoEstado As String = ""
+            If horizontal = True Then tipoEstado = " horizontal" Else tipoEstado = " vertical"
+            porcentaje(1) = "Aplicando reflexión" & tipoEstado 'Actualizar el estado
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    alfa = Niveles(i, j).A
+                    If horizontal = True Then
+                        bmp3.SetPixel(Niveles.GetUpperBound(0) - i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
+                    Else
+                        bmp3.SetPixel(i, Niveles.GetUpperBound(1) - j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
+                    End If
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Reflexión" & tipoEstado) 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Public Function contornos(ByVal bmp As Bitmap, ByVal contorno As Integer, ByVal valorrojo As UInteger, ByVal valorverde As UInteger, ByVal valorazul As UInteger)
+            Dim bmp2 = bmp
+            Dim color1 As Color
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Cargando imagen" 'Actualizar el estado
+            Dim almacen(,) As Integer
+            ReDim almacen(bmp2.Width, bmp2.Height)
+            'para que no se desborde
+            For i = 0 To bmp2.Width - 1 'Recorremos la matriz
+                For j = 0 To bmp2.Height - 1
+                    color1 = bmp2.GetPixel(i, j)
+                    almacen(i, j) = (color1.R * valorrojo + color1.G * valorverde + color1.B * valorazul) / 256
+                Next
+                porcentaje(0) = ((i * 100) / bmp2.Width) 'Actualizamos el estado
+            Next
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Detectando contornos" 'Actualizar el estado
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            For i = 1 To bmp3.Width - 1
+                For j = 1 To bmp3.Height - 1
+                    If Math.Abs(almacen(i, j) - almacen(i, j - 1)) > contorno Or Math.Abs(almacen(i, j) - almacen(i - 1, j)) > contorno Then
+                        bmp3.SetPixel(i, j, Color.Black)
+                    Else
+                        bmp3.SetPixel(i, j, Color.White)
+                    End If
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Contornos") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+
+        End Function
+#End Region
+
+
+        'Contiene las funciones para aplicar máscaras a Bitmaps.
+        'Además incluye una subclase con el conjunto de máscaras disponibles (sobel, repujado, etc)
+        'Incluye una función (sobelTotal) que aplica la máscara de sobel en 4 direcciones y une las imágenes
+#Region "Máscaras"
         Public Function mascara3x3RGB(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -778,7 +856,6 @@ Namespace Apolo
                     SumaRojo = 0
                     For mi = -1 To 1
                         For mj = -1 To 1
-
                             SumaRojo = SumaRojo + Niveles(i + mi, j + mj).R * matrizMascara(mi + 1, mj + 1)
                         Next
                     Next
@@ -817,6 +894,317 @@ Namespace Apolo
             guardarImagen(bmp3, "Máscara 3x3 Gris " & tipoEstado)
             Return bmp3
         End Function
+#Region "Subclase con conjunto de máscaras"
+        Public Class mascaras
+            Private coefmascara(2, 2) As Double
+
+#Region "Paso bajo"
+            Public Function LOW9()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function LOW10()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+
+                Return coefmascara
+            End Function
+            Public Function LOW12()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+#End Region 'Máscaras de paso bajo
+#Region "Paso alto"
+            Public Function HIGH1a()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 9 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function HIGH1b()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 5 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function HIGH16()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 20 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+#End Region 'Máscaras de paso alto
+#Region "Bordes y contornos"
+            Public Function Resta1()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function Resta2()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function Resta3()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function Laplaciana1()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -4 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function Laplaciana2()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function Laplaciana3()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 8 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function Laplaciana4()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = -2 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = -2 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = -2
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = -2 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function LaplacianaDiagonal()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function LaplacianaHorizont()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function LaplacianaVertical()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function GradienteEste()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function GradienteSudeste()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function GradienteSur()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function GradienteOeste()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function GradienteNoreste()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function GradienteNorte()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function EmbossingEste()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function EmbossingSudeste()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function EmbossingSur()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function EmbossingOeste()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function EmbossingNoreste()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function EmbossingNorte()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function SobelV()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 2 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -2 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function SobelH()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 2 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -2
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function SobelDiagonal1()
+                coefmascara(0, 0) = -2 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 2
+                Return coefmascara
+            End Function
+            Public Function SobelDiagonal2()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 2
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = -2 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function PrewittVert()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function PrewittHoriz()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function PrewittDiag1()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+            Public Function PrewittDiag2()
+                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
+                Return coefmascara
+            End Function
+            Public Function LineasVerticales()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 2 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 2
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function LineasHorizontales()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 2 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = -1
+                coefmascara(2, 0) = -1 : coefmascara(2, 1) = 2 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function Repujado()
+                coefmascara(0, 0) = -2 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
+                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
+                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 2
+                Return coefmascara
+            End Function
+            Public Function Kirsch0()
+                coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = 5
+                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 5
+                coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = 5
+                Return coefmascara
+            End Function
+            Public Function Kirsch45()
+                coefmascara(0, 0) = -3 : coefmascara(0, 1) = 5 : coefmascara(0, 2) = 5
+                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 5
+                coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
+                Return coefmascara
+            End Function
+            Public Function Kirsch90()
+                coefmascara(0, 0) = 5 : coefmascara(0, 1) = 5 : coefmascara(0, 2) = 5
+                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
+                coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
+                Return coefmascara
+            End Function
+            Public Function Kirsch135()
+                coefmascara(0, 0) = 5 : coefmascara(0, 1) = 5 : coefmascara(0, 2) = 5
+                coefmascara(1, 0) = 5 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
+                coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
+                Return coefmascara
+            End Function
+            Public Function Kirsch180()
+                coefmascara(0, 0) = 5 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
+                coefmascara(1, 0) = 5 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
+                coefmascara(2, 0) = 5 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
+                Return coefmascara
+            End Function
+            Public Function Kirsch225()
+                coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
+                coefmascara(1, 0) = 5 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
+                coefmascara(2, 0) = 5 : coefmascara(2, 1) = 5 : coefmascara(2, 2) = -3
+                Return coefmascara
+            End Function
+            Public Function Kirsch270()
+                coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
+                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
+                coefmascara(2, 0) = 5 : coefmascara(2, 1) = 5 : coefmascara(2, 2) = 5
+                Return coefmascara
+            End Function
+            Public Function Kirsch315()
+                coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
+                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 5
+                coefmascara(2, 0) = -3 : coefmascara(2, 1) = 5 : coefmascara(2, 2) = 5
+                Return coefmascara
+            End Function
+            Public Function FreichenHori()
+                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = Math.Sqrt(2) : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -Math.Sqrt(2)
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
+                Return coefmascara
+            End Function
+            Public Function FreichenVert()
+                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -Math.Sqrt(2) : coefmascara(0, 2) = -1
+                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 0
+                coefmascara(2, 0) = 1 : coefmascara(2, 1) = Math.Sqrt(2) : coefmascara(2, 2) = 1
+                Return coefmascara
+            End Function
+#End Region 'Máscaras para detectar bordes y contornos
+
+        End Class
+
+#End Region 'Contiene todas las máscaras disponibles
+
+        'Funciones para crear Sobel total
         Public Function sobelTotal(ByVal bmp As Bitmap)
             Dim bmp2 = bmp
             Dim bmp3 = bmp
@@ -905,71 +1293,10 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
-        Public Function Reflexion(ByVal bmp As Bitmap, Optional ByVal horizontal As Boolean = True, Optional ByVal vertical As Boolean = False) As Bitmap
-            Dim bmp2 = bmp
-            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-            Niveles = nivel(bmp2) 'Obtenemos valores
-            porcentaje(0) = 0 'Actualizar el estado
-            Dim tipoEstado As String = ""
-            If horizontal = True Then tipoEstado = " horizontal" Else tipoEstado = " vertical"
-            porcentaje(1) = "Aplicando reflexión" & tipoEstado 'Actualizar el estado
-            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
-            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+#End Region
 
-            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
-                For j = 0 To Niveles.GetUpperBound(1)
-                    Rojo = Niveles(i, j).R
-                    Verde = Niveles(i, j).G
-                    Azul = Niveles(i, j).B
-                    alfa = Niveles(i, j).A
-                    If horizontal = True Then
-                        bmp3.SetPixel(Niveles.GetUpperBound(0) - i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
-                    Else
-                        bmp3.SetPixel(i, Niveles.GetUpperBound(1) - j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
-                    End If
-                Next
-                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
-            Next
-            porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            guardarImagen(bmp3, "Reflexión" & tipoEstado) 'Guardamos la imagen para poder hacer retroceso
-            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
-            Return bmp3
-        End Function
-        Function contornos(ByVal bmp As Bitmap, ByVal contorno As Integer, ByVal valorrojo As UInteger, ByVal valorverde As UInteger, ByVal valorazul As UInteger)
-            Dim bmp2 = bmp
-            Dim color1 As Color
-            porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Cargando imagen" 'Actualizar el estado
-            Dim almacen(,) As Integer
-            ReDim almacen(bmp2.Width, bmp2.Height)
-            'para que no se desborde
-            For i = 0 To bmp2.Width - 1 'Recorremos la matriz
-                For j = 0 To bmp2.Height - 1
-                    color1 = bmp2.GetPixel(i, j)
-                    almacen(i, j) = (color1.R * valorrojo + color1.G * valorverde + color1.B * valorazul) / 256
-                Next
-                porcentaje(0) = ((i * 100) / bmp2.Width) 'Actualizamos el estado
-            Next
-            porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Detectando contornos" 'Actualizar el estado
-            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
-            For i = 1 To bmp3.Width - 1
-                For j = 1 To bmp3.Height - 1
-                    If Math.Abs(almacen(i, j) - almacen(i, j - 1)) > contorno Or Math.Abs(almacen(i, j) - almacen(i - 1, j)) > contorno Then
-                        bmp3.SetPixel(i, j, Color.Black)
-                    Else
-                        bmp3.SetPixel(i, j, Color.White)
-                    End If
-                Next
-                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
-            Next
-            porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            guardarImagen(bmp3, "Contornos") 'Guardamos la imagen para poder hacer retroceso
-            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
-            Return bmp3
 
-        End Function
-
+        'Funciones para realizar suma/resta/multiplicación/división sobre píxeles de una imagen
 #Region "Operaciones aritméticas"
         Public Function Suma(ByVal bmp As Bitmap, ByVal Sumarojo As Integer, ByVal Sumaverde As Integer, ByVal Sumaazul As Integer, ByVal sumaAlfa As Integer, Optional ByVal omitirAlfa As Boolean = True) As Bitmap
             Dim bmp2 = bmp
@@ -1105,6 +1432,7 @@ Namespace Apolo
         End Function
 #End Region
 
+        'Funciones para realizar and/or/xor sobre píxeles de una imagen
 #Region "Operaciones lógicas"
         Public Function OperAND(ByVal bmp As Bitmap, ByVal Arojo As Integer, ByVal Averde As Integer, ByVal Aazul As Integer, ByVal AAlfa As Integer, Optional ByVal omitirAlfa As Boolean = True) As Bitmap
             Dim bmp2 = bmp
@@ -1204,6 +1532,7 @@ Namespace Apolo
         End Function
 #End Region
 
+        'Principales efectos sobre imágenes. Contiene funciones que devuelven bitmaps
 #Region "Efectos"
         Public Function desenfoque(ByVal bmp As Bitmap, Optional ByVal desenfoqueHor As Short = 0, Optional ByVal desenfoqueVer As Short = 0)
             Dim bmp2 = bmp
@@ -1669,6 +1998,7 @@ Namespace Apolo
 
 #End Region
 
+        'Suma/Resta/multip/división/Unión/AND/OR/XOR de DOS imágenes. Devuelve un bitmap con el alto/ancho del bitmap más pequeño
 #Region "operaciones con dos imágenes"
         Private Function CuadrarImagenes(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap)
             Dim alto, ancho As Integer
@@ -2071,326 +2401,13 @@ Namespace Apolo
         End Function
 #End Region
 
-
 #End Region
 
-#Region "ClaseConMáscaras"
 
-
-        Public Class mascaras
-            Private coefmascara(2, 2) As Double
-#Region "Paso bajo"
-            Public Function LOW9()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function LOW10()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-
-                Return coefmascara
-            End Function
-            Public Function LOW12()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-#End Region
-#Region "Paso alto"
-            Public Function HIGH1a()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 9 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function HIGH1b()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 5 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-            Public Function HIGH16()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 20 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-#End Region
-#Region "Bordes y contornos"
-            Public Function Resta1()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-            Public Function Resta2()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-            Public Function Resta3()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-            Public Function Laplaciana1()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -4 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-            Public Function Laplaciana2()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-            Public Function Laplaciana3()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 8 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function Laplaciana4()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = -2 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = -2 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = -2
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = -2 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function LaplacianaDiagonal()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function LaplacianaHorizont()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-            Public Function LaplacianaVertical()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-
-            Public Function GradienteEste()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function GradienteSudeste()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function GradienteSur()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function GradienteOeste()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function GradienteNoreste()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function GradienteNorte()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-
-            Public Function EmbossingEste()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function EmbossingSudeste()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function EmbossingSur()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function EmbossingOeste()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function EmbossingNoreste()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function EmbossingNorte()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-
-            Public Function SobelV()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 2 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -2 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function SobelH()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 2 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -2
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function SobelDiagonal1()
-                coefmascara(0, 0) = -2 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 2
-                Return coefmascara
-            End Function
-            Public Function SobelDiagonal2()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 2
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = -2 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-
-            Public Function PrewittVert()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function PrewittHoriz()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function PrewittDiag1()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-            Public Function PrewittDiag2()
-                coefmascara(0, 0) = 0 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
-                Return coefmascara
-            End Function
-            Public Function LineasVerticales()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 2 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 2
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function LineasHorizontales()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = 2 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = -1
-                coefmascara(2, 0) = -1 : coefmascara(2, 1) = 2 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function Repujado()
-                coefmascara(0, 0) = -2 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
-                coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
-                coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 2
-                Return coefmascara
-            End Function
-
-            Public Function Kirsch0()
-                coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = 5
-                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 5
-                coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = 5
-                Return coefmascara
-            End Function
-            Public Function Kirsch45()
-                coefmascara(0, 0) = -3 : coefmascara(0, 1) = 5 : coefmascara(0, 2) = 5
-                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 5
-                coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
-                Return coefmascara
-            End Function
-            Public Function Kirsch90()
-                coefmascara(0, 0) = 5 : coefmascara(0, 1) = 5 : coefmascara(0, 2) = 5
-                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
-                coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
-                Return coefmascara
-            End Function
-            Public Function Kirsch135()
-                coefmascara(0, 0) = 5 : coefmascara(0, 1) = 5 : coefmascara(0, 2) = 5
-                coefmascara(1, 0) = 5 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
-                coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
-                Return coefmascara
-            End Function
-            Public Function Kirsch180()
-                coefmascara(0, 0) = 5 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
-                coefmascara(1, 0) = 5 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
-                coefmascara(2, 0) = 5 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
-                Return coefmascara
-            End Function
-            Public Function Kirsch225()
-                coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
-                coefmascara(1, 0) = 5 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
-                coefmascara(2, 0) = 5 : coefmascara(2, 1) = 5 : coefmascara(2, 2) = -3
-                Return coefmascara
-            End Function
-            Public Function Kirsch270()
-                coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
-                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
-                coefmascara(2, 0) = 5 : coefmascara(2, 1) = 5 : coefmascara(2, 2) = 5
-                Return coefmascara
-            End Function
-            Public Function Kirsch315()
-                coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
-                coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 5
-                coefmascara(2, 0) = -3 : coefmascara(2, 1) = 5 : coefmascara(2, 2) = 5
-                Return coefmascara
-            End Function
-
-            Public Function FreichenHori()
-                coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = Math.Sqrt(2) : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -Math.Sqrt(2)
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
-                Return coefmascara
-            End Function
-            Public Function FreichenVert()
-                coefmascara(0, 0) = -1 : coefmascara(0, 1) = -Math.Sqrt(2) : coefmascara(0, 2) = -1
-                coefmascara(1, 0) = 0 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 0
-                coefmascara(2, 0) = 1 : coefmascara(2, 1) = Math.Sqrt(2) : coefmascara(2, 2) = 1
-                Return coefmascara
-            End Function
-#End Region
-        End Class
-#End Region
-
+        'Contiene el conjunto de funciones para abrir imágenes desde archivo, URL, BING, FB, etc
 #Region "FuncionesAbrir"
 
+        'Función para crear tapiz con alto/ancho y color
         Function tapiz(ByVal ancho As Integer, ByVal alto As Integer, ByVal color As Color, Optional ByVal nombreTapiz As String = "Nuevo tapiz")
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Creando tapiz" 'Actualizar el estado
@@ -2412,12 +2429,12 @@ Namespace Apolo
 
             Return bmp
         End Function
-
+        'Procedimiento auxiliar para gestionar evento de nombre tapiz (sirve para evitar problemas al llamar desde un proceso en segundo plano
         Sub actualizarNombreTapiz(ByVal nombre As String, ByVal ancho As Integer, ByVal alto As Integer)
             RaiseEvent actualizaNombreImagen({nombre, ancho, alto, "Imagen tapiz"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
         End Sub
 
-        'Se abre desde archivo
+        'Se abre imagen desde archivo
         Function abrirImagen(Optional filtrado As Integer = 1) As Bitmap
             Try
                 Dim dialogo As New OpenFileDialog
@@ -2455,7 +2472,7 @@ Namespace Apolo
             End Try
         End Function
 
-        'Se abre desde una URL
+        'Se abre imagen desde una URL
         Function abrirRecursoWeb(ByVal enlace As String) As Bitmap
             Try
                 Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
@@ -2478,34 +2495,7 @@ Namespace Apolo
             End Try
         End Function
 
-
-        Function abrirRecursoWebAxu(ByVal enlace As String) As Bitmap 'Duplicamos esta función porque hay un error con la opción de abrir desde archivo
-            Try
-                Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
-                Dim response As System.Net.WebResponse = request.GetResponse()
-                Dim responseStream As System.IO.Stream = response.GetResponseStream()
-                Dim bmp As New Bitmap(responseStream)
-                Return bmp
-            Catch
-                Dim bmp As Bitmap
-                bmp = Nothing
-                Return bmp
-            End Try
-        End Function
-
-        Public Sub InfoImagenPrecarga(ByVal bmp As Bitmap, ByVal direccionURL As String) 'Con esto guardamos los datos si el usuario ha activado precarga
-            Try
-                guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
-                contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
-                'Guardamos la imagen original
-                ImagenOriginalGuardada = bmp
-                imagenOriginalInfo = "Imagen original como recurso web"
-                RaiseEvent actualizaBMP(bmp) 'Generamos evento
-                RaiseEvent actualizaNombreImagen({nombreRecursoWeb(direccionURL), bmp.Width, bmp.Height, "Recurso web"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
-            Catch
-            End Try
-        End Sub
-
+        'Se abre imagen desde archivo arrastrándola al picturebox principal
         Function abrirDragDrop(ByVal ruta As String) As Bitmap
             Try
                 Dim bmp As New Bitmap(ruta)
@@ -2527,8 +2517,38 @@ Namespace Apolo
             End Try
         End Function
 
+        'Funciones auxiliares para procesos en segundo plano problemáticos
+        Function abrirRecursoWebAxu(ByVal enlace As String) As Bitmap 'Duplicamos esta función porque hay un error con la opción de abrir desde archivo
+            Try
+                Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
+                Dim response As System.Net.WebResponse = request.GetResponse()
+                Dim responseStream As System.IO.Stream = response.GetResponseStream()
+                Dim bmp As New Bitmap(responseStream)
+                Return bmp
+            Catch
+                Dim bmp As Bitmap
+                bmp = Nothing
+                Return bmp
+            End Try
+        End Function
+        Public Sub InfoImagenPrecarga(ByVal bmp As Bitmap, ByVal direccionURL As String) 'Con esto guardamos los datos si el usuario ha activado precarga
+            Try
+                guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
+                contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+                'Guardamos la imagen original
+                ImagenOriginalGuardada = bmp
+                imagenOriginalInfo = "Imagen original como recurso web"
+                RaiseEvent actualizaBMP(bmp) 'Generamos evento
+                RaiseEvent actualizaNombreImagen({nombreRecursoWeb(direccionURL), bmp.Width, bmp.Height, "Recurso web"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+            Catch
+            End Try
+        End Sub
+
 #End Region
 
+        'Contiene funciones no relacionadas directamente con el tratamiento de imágenes.
+        'Obtener nombre de una imagen a partir de su ruta// Nombre de un recurso web a partir de su URL
+        'Obtener URL de imágenes desde BING imágenes.
 #Region "Funciones extra"
         Function nombreImagen(ByVal rutaImagen As String)
             Dim auxiliar, auxiliar2, nombre_imagen As String
@@ -2538,8 +2558,7 @@ Namespace Apolo
             auxiliar2 = UBound(nombre_imagen2)
             nombre_imagen = nombre_imagen2(auxiliar2)
             Return nombre_imagen
-        End Function
-
+        End Function 'Nombre desde archivo
         Function nombreRecursoWeb(ByVal url As String)
             Dim auxiliar, auxiliar2, nombre_imagen As String
             Dim nombre_imagen2() As String
@@ -2548,8 +2567,7 @@ Namespace Apolo
             auxiliar2 = UBound(nombre_imagen2)
             nombre_imagen = nombre_imagen2(auxiliar2)
             Return nombre_imagen
-        End Function
-
+        End Function 'Nombre desde URL
         'Se buscan imágenes en Bing
         Public Function BuscarImagenesBing(ByVal texto As String, Optional ByVal numeroImagenes As Integer = 10, Optional ByVal tamaño As String = "", Optional Precarga As Boolean = False)
             Dim datosVuelta(50, 50) As String
@@ -2629,6 +2647,72 @@ Namespace Apolo
             Return datosVuelta
         End Function
 #End Region
+
+
+
+        Public Function Dilatacion(ByVal bmp As Bitmap)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+
+            'Creamos el estado*****
+            Dim tipoEstado As String = "("
+
+            tipoEstado = tipoEstado.Remove(tipoEstado.Count - 1) 'Eliminamos la última coma
+            tipoEstado = tipoEstado & ")" 'Ponemos el último cierre de paréntesis
+            '*****
+            porcentaje(1) = "Aplicando máscara 3x3 Gris " & tipoEstado 'Actualizar el estado
+            Dim SumaRojo, SumaVerde, SumaAzul, SumaMascara As Long
+            Dim Rojo, verde, azul, alfa, grises As Integer
+
+
+            If SumaMascara = 0 Then SumaMascara = 1
+
+            For i = 2 To Niveles.GetUpperBound(0) - 2
+                For j = 2 To Niveles.GetUpperBound(1) - 2
+                    'SumaRojo = 255
+                    SumaRojo = 0
+                    For mi = -1 To 1
+                        For mj = -1 To 1
+                            If Niveles(i + mi, j + mj).R > SumaRojo Then
+                                SumaRojo = Niveles(i + mi, j + mj).R
+                            End If
+                        Next
+                    Next
+                    'SumaVerde = 255
+                    SumaVerde = 0
+                    For mi = -1 To 1
+                        For mj = -1 To 1
+                            If Niveles(i + mi, j + mj).R > SumaVerde Then
+                                SumaVerde = Niveles(i + mi, j + mj).G
+                            End If
+                        Next
+                    Next
+                    'SumaAzul = 255
+                    SumaAzul = 0
+                    For mi = -1 To 1
+                        For mj = -1 To 1
+                            If Niveles(i + mi, j + mj).R > SumaAzul Then
+                                SumaAzul = Niveles(i + mi, j + mj).B
+                            End If
+                        Next
+                    Next
+
+
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, SumaRojo, SumaVerde, SumaAzul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Máscara 3x3 Gris " & tipoEstado)
+            Return bmp3
+        End Function
+
 
     End Class
 

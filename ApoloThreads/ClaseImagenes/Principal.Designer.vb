@@ -103,6 +103,7 @@ Partial Class Principal
         Me.SadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesConDosImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SumaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OperacionesLógicasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransformacionesGeométricasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReflexiónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TraslaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -112,7 +113,7 @@ Partial Class Principal
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.OperacionesLógicasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OperadoresMorfológicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,7 +136,7 @@ Partial Class Principal
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 692)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 16, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(1284, 24)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1276, 24)
         Me.StatusStrip1.TabIndex = 27
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -466,7 +467,7 @@ Partial Class Principal
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
         Me.MenuStrip1.ShowItemToolTips = True
-        Me.MenuStrip1.Size = New System.Drawing.Size(1284, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1276, 24)
         Me.MenuStrip1.TabIndex = 18
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -616,7 +617,7 @@ Partial Class Principal
         '
         'OperacionesConDosImágenesToolStripMenuItem
         '
-        Me.OperacionesConDosImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SumaToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem1})
+        Me.OperacionesConDosImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SumaToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem1, Me.OperadoresMorfológicosToolStripMenuItem})
         Me.OperacionesConDosImágenesToolStripMenuItem.Name = "OperacionesConDosImágenesToolStripMenuItem"
         Me.OperacionesConDosImágenesToolStripMenuItem.Size = New System.Drawing.Size(184, 20)
         Me.OperacionesConDosImágenesToolStripMenuItem.Text = "Operaciones con dos imágenes"
@@ -626,6 +627,12 @@ Partial Class Principal
         Me.SumaToolStripMenuItem.Name = "SumaToolStripMenuItem"
         Me.SumaToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
         Me.SumaToolStripMenuItem.Text = "Operaciones aritméticas"
+        '
+        'OperacionesLógicasToolStripMenuItem1
+        '
+        Me.OperacionesLógicasToolStripMenuItem1.Name = "OperacionesLógicasToolStripMenuItem1"
+        Me.OperacionesLógicasToolStripMenuItem1.Size = New System.Drawing.Size(201, 22)
+        Me.OperacionesLógicasToolStripMenuItem1.Text = "Operaciones lógicas"
         '
         'TransformacionesGeométricasToolStripMenuItem
         '
@@ -669,8 +676,8 @@ Partial Class Principal
         Me.SplitContainer1.Panel2.Controls.Add(Me.PictureBox2)
         Me.SplitContainer1.Panel2.Padding = New System.Windows.Forms.Padding(5)
         Me.SplitContainer1.Panel2MinSize = 165
-        Me.SplitContainer1.Size = New System.Drawing.Size(1284, 668)
-        Me.SplitContainer1.SplitterDistance = 1115
+        Me.SplitContainer1.Size = New System.Drawing.Size(1276, 668)
+        Me.SplitContainer1.SplitterDistance = 1107
         Me.SplitContainer1.TabIndex = 28
         '
         'Panel1
@@ -679,7 +686,7 @@ Partial Class Principal
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1113, 666)
+        Me.Panel1.Size = New System.Drawing.Size(1105, 666)
         Me.Panel1.TabIndex = 0
         '
         'PictureBox1
@@ -688,7 +695,7 @@ Partial Class Principal
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Padding = New System.Windows.Forms.Padding(5)
-        Me.PictureBox1.Size = New System.Drawing.Size(1113, 666)
+        Me.PictureBox1.Size = New System.Drawing.Size(1105, 666)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
@@ -711,17 +718,17 @@ Partial Class Principal
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
         '
-        'OperacionesLógicasToolStripMenuItem1
+        'OperadoresMorfológicosToolStripMenuItem
         '
-        Me.OperacionesLógicasToolStripMenuItem1.Name = "OperacionesLógicasToolStripMenuItem1"
-        Me.OperacionesLógicasToolStripMenuItem1.Size = New System.Drawing.Size(201, 22)
-        Me.OperacionesLógicasToolStripMenuItem1.Text = "Operaciones lógicas"
+        Me.OperadoresMorfológicosToolStripMenuItem.Name = "OperadoresMorfológicosToolStripMenuItem"
+        Me.OperadoresMorfológicosToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
+        Me.OperadoresMorfológicosToolStripMenuItem.Text = "Operadores morfológicos"
         '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1284, 716)
+        Me.ClientSize = New System.Drawing.Size(1276, 716)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -837,5 +844,6 @@ Partial Class Principal
     Friend WithEvents OperacionesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OperacionesLógicasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OperacionesLógicasToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OperadoresMorfológicosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

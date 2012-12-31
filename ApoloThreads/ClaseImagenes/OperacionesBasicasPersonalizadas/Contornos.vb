@@ -36,4 +36,8 @@ Public Class Contornos
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         Principal.PictureBox1.Image = objetoTratamiento.contornos(bmpP, NumericUpDown1.Value, HScrollBar1.Value, HScrollBar2.Value, HScrollBar3.Value)
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Close()
+    End Sub
 End Class
