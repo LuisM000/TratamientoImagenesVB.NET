@@ -372,6 +372,10 @@ Public Class Principal
                 Dim objetoMascara As New TratamientoImagenes.mascaras
                 Dim mascara = objetoMascara.LOW9
                 PictureBox1.Image = objetoTratamiento.mascara3x3RGB(bmp, mascara, , )
+            Case "pruebaLoco"
+                Dim objetoEstru As New TratamientoImagenes.ElementoEstructural
+                Dim masca = objetoEstru.Diamante9x9
+                PictureBox1.Image = objetoTratamiento.MorfologicasDilatacion(bmp, masca)
         End Select
     End Sub
 
@@ -460,6 +464,7 @@ Public Class Principal
  
     Private Sub OperadoresMorfológicosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperadoresMorfológicosToolStripMenuItem.Click
         Dim bmp As New Bitmap(PictureBox1.Image)
-        PictureBox1.Image = objetoTratamiento.Dilatacion(bmp)
+        transformacion = "pruebaLoco"
+        transformar()
     End Sub
 End Class

@@ -2650,70 +2650,226 @@ Namespace Apolo
 
 
 
-        Public Function Dilatacion(ByVal bmp As Bitmap)
+        Public Function MorfologicasDilatacion(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2) 'Obtenemos valores
-            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            Dim tamañoMascara = ElementoEstructural.GetUpperBound(0) \ 2 'División entera
+
+            Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
+
             porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Aplicando operador morfológico. Dilatación" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte
 
-            'Creamos el estado*****
-            Dim tipoEstado As String = "("
-
-            tipoEstado = tipoEstado.Remove(tipoEstado.Count - 1) 'Eliminamos la última coma
-            tipoEstado = tipoEstado & ")" 'Ponemos el último cierre de paréntesis
-            '*****
-            porcentaje(1) = "Aplicando máscara 3x3 Gris " & tipoEstado 'Actualizar el estado
-            Dim SumaRojo, SumaVerde, SumaAzul, SumaMascara As Long
-            Dim Rojo, verde, azul, alfa, grises As Integer
-
-
-            If SumaMascara = 0 Then SumaMascara = 1
-
-            For i = 2 To Niveles.GetUpperBound(0) - 2
-                For j = 2 To Niveles.GetUpperBound(1) - 2
-                    'SumaRojo = 255
-                    SumaRojo = 0
-                    For mi = -1 To 1
-                        For mj = -1 To 1
-                            If Niveles(i + mi, j + mj).R > SumaRojo Then
-                                SumaRojo = Niveles(i + mi, j + mj).R
-                            End If
-                        Next
-                    Next
-                    'SumaVerde = 255
-                    SumaVerde = 0
-                    For mi = -1 To 1
-                        For mj = -1 To 1
-                            If Niveles(i + mi, j + mj).R > SumaVerde Then
-                                SumaVerde = Niveles(i + mi, j + mj).G
-                            End If
-                        Next
-                    Next
-                    'SumaAzul = 255
-                    SumaAzul = 0
-                    For mi = -1 To 1
-                        For mj = -1 To 1
-                            If Niveles(i + mi, j + mj).R > SumaAzul Then
-                                SumaAzul = Niveles(i + mi, j + mj).B
+            For i = tamañoMascara To Niveles.GetUpperBound(0) - tamañoMascara
+                For j = tamañoMascara To Niveles.GetUpperBound(1) - tamañoMascara
+                    Rojo = 0
+                    For mi = -tamañoMascara To tamañoMascara
+                        For mj = -tamañoMascara To tamañoMascara
+                            If Rojo < ElementoEstructural(mi + tamañoMascara, mj + tamañoMascara) * Niveles(i + mi, j + mj).R Then 'Buscamos el valor más alto dentro de la unidad estrucutural (máscara)
+                                Rojo = Niveles(i + mi, j + mj).R
                             End If
                         Next
                     Next
 
+                    Verde = 0
+                    For mi = -tamañoMascara To tamañoMascara
+                        For mj = -tamañoMascara To tamañoMascara
+                            If Verde < ElementoEstructural(mi + tamañoMascara, mj + tamañoMascara) * Niveles(i + mi, j + mj).G Then 'Buscamos el valor más alto dentro de la unidad estrucutural (máscara)
+                                Verde = Niveles(i + mi, j + mj).G
+                            End If
+                        Next
+                    Next
+
+                    Azul = 0
+                    For mi = -tamañoMascara To tamañoMascara
+                        For mj = -tamañoMascara To tamañoMascara
+                            If Azul < ElementoEstructural(mi + tamañoMascara, mj + tamañoMascara) * Niveles(i + mi, j + mj).B Then 'Buscamos el valor más alto dentro de la unidad estrucutural (máscara)
+                                Azul = Niveles(i + mi, j + mj).B
+                            End If
+                        Next
+                    Next
 
                     alfa = Niveles(i, j).A
-                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, SumaRojo, SumaVerde, SumaAzul))
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
                 Next
                 porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
             Next
 
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
-            guardarImagen(bmp3, "Máscara 3x3 Gris " & tipoEstado)
+            guardarImagen(bmp3, "Operador morfológico. Dilatación") 'Actualizar el estado
+            Return bmp3
+        End Function
+        Public Function MorfologicasErosion(ByVal bmp As Bitmap, Optional ByVal tamañoMascara As Integer = 1)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Aplicando operador morfológico. Erosión" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte
+
+            For i = tamañoMascara To Niveles.GetUpperBound(0) - tamañoMascara
+                For j = tamañoMascara To Niveles.GetUpperBound(1) - tamañoMascara
+                    Rojo = 255
+                    For mi = -tamañoMascara To tamañoMascara
+                        For mj = -tamañoMascara To tamañoMascara
+                            If Niveles(i + mi, j + mj).R < Rojo Then 'Buscamos el valor más bajo dentro de la unidad estrucutural (máscara)
+                                Rojo = Niveles(i + mi, j + mj).R
+                            End If
+                        Next
+                    Next
+
+                    Verde = 255
+                    For mi = -tamañoMascara To tamañoMascara
+                        For mj = -tamañoMascara To tamañoMascara
+                            If Niveles(i + mi, j + mj).G < Verde Then
+                                Verde = Niveles(i + mi, j + mj).G
+                            End If
+                        Next
+                    Next
+
+                    Azul = 255
+                    For mi = -tamañoMascara To tamañoMascara
+                        For mj = -tamañoMascara To tamañoMascara
+                            If Niveles(i + mi, j + mj).B < Azul Then
+                                Azul = Niveles(i + mi, j + mj).B
+                            End If
+                        Next
+                    Next
+
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Operador morfológico. Erosión") 'Actualizar el estado
             Return bmp3
         End Function
 
+        Public Class ElementoEstructural
+            Private Estructura(,) As Integer
+            Public Function Cuadrado3x3()
+                ReDim Estructura(2, 2)
+                For i = 0 To Estructura.GetUpperBound(0)
+                    For j = 0 To Estructura.GetUpperBound(0)
+                        Estructura(i, j) = 1
+                    Next
+                Next
+                Return Estructura
+            End Function
+            Public Function Cuadrado5x5()
+                ReDim Estructura(4, 4)
+                For i = 0 To Estructura.GetUpperBound(0)
+                    For j = 0 To Estructura.GetUpperBound(0)
+                        Estructura(i, j) = 1
+                    Next
+                Next
+                Return Estructura
+            End Function
+            Public Function Cuadrado7x7()
+                ReDim Estructura(6, 6)
+                  For i = 0 To Estructura.GetUpperBound(0)
+                    For j = 0 To Estructura.GetUpperBound(0)
+                        Estructura(i, j) = 1
+                    Next
+                Next
+                Return Estructura
+            End Function
+            Public Function Cuadrado9x9()
+                ReDim Estructura(8, 8)
+                For i = 0 To Estructura.GetUpperBound(0)
+                    For j = 0 To Estructura.GetUpperBound(0)
+                        Estructura(i, j) = 1
+                    Next
+                Next
+                Return Estructura
+            End Function
 
+            Public Function Diamante3x3()
+                ReDim Estructura(2, 2)
+                Estructura(0, 0) = 0 : Estructura(0, 1) = 1 : Estructura(0, 2) = 0
+                Estructura(1, 0) = 1 : Estructura(1, 1) = 1 : Estructura(1, 2) = 1
+                Estructura(2, 0) = 0 : Estructura(2, 1) = 1 : Estructura(2, 2) = 0
+                Return Estructura
+            End Function
+            Public Function Diamante5x5()
+                ReDim Estructura(4, 4)
+                Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 1 : Estructura(0, 3) = 0 : Estructura(0, 4) = 0
+                Estructura(1, 0) = 0 : Estructura(1, 1) = 1 : Estructura(1, 2) = 1 : Estructura(1, 3) = 1 : Estructura(1, 4) = 0
+                Estructura(2, 0) = 1 : Estructura(2, 1) = 1 : Estructura(2, 2) = 1 : Estructura(2, 3) = 1 : Estructura(2, 4) = 1
+                Estructura(3, 0) = 0 : Estructura(3, 1) = 1 : Estructura(3, 2) = 1 : Estructura(3, 3) = 1 : Estructura(3, 4) = 0
+                Estructura(4, 0) = 0 : Estructura(4, 1) = 0 : Estructura(4, 2) = 1 : Estructura(4, 3) = 0 : Estructura(4, 4) = 0
+                Return Estructura
+            End Function
+            Public Function Diamante7x7()
+                ReDim Estructura(6, 6)
+                Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 1 : Estructura(0, 4) = 0 : Estructura(0, 5) = 0 : Estructura(0, 6) = 0
+                Estructura(1, 0) = 0 : Estructura(1, 1) = 0 : Estructura(1, 2) = 1 : Estructura(1, 3) = 1 : Estructura(1, 4) = 1 : Estructura(1, 5) = 0 : Estructura(1, 6) = 0
+                Estructura(2, 0) = 0 : Estructura(2, 1) = 1 : Estructura(2, 2) = 1 : Estructura(2, 3) = 1 : Estructura(2, 4) = 1 : Estructura(2, 5) = 1 : Estructura(2, 6) = 0
+                Estructura(3, 0) = 1 : Estructura(3, 1) = 1 : Estructura(3, 2) = 1 : Estructura(3, 3) = 1 : Estructura(3, 4) = 1 : Estructura(3, 5) = 1 : Estructura(3, 6) = 1
+                Estructura(4, 0) = 0 : Estructura(4, 1) = 1 : Estructura(4, 2) = 1 : Estructura(4, 3) = 1 : Estructura(4, 4) = 1 : Estructura(4, 5) = 1 : Estructura(4, 6) = 0
+                Estructura(5, 0) = 0 : Estructura(5, 1) = 0 : Estructura(5, 2) = 1 : Estructura(5, 3) = 1 : Estructura(5, 4) = 1 : Estructura(5, 5) = 0 : Estructura(5, 6) = 0
+                Estructura(6, 0) = 0 : Estructura(6, 1) = 0 : Estructura(6, 2) = 0 : Estructura(6, 3) = 1 : Estructura(6, 4) = 0 : Estructura(6, 5) = 0 : Estructura(6, 6) = 0
+                Return Estructura
+
+            End Function
+            Public Function Diamante9x9()
+                ReDim Estructura(8, 8)
+                Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 0 : Estructura(0, 4) = 1 : Estructura(0, 5) = 0 : Estructura(0, 6) = 0 : Estructura(0, 7) = 0 : Estructura(0, 8) = 0
+                Estructura(1, 0) = 0 : Estructura(1, 1) = 0 : Estructura(1, 2) = 0 : Estructura(1, 3) = 1 : Estructura(1, 4) = 1 : Estructura(1, 5) = 1 : Estructura(1, 6) = 0 : Estructura(1, 7) = 0 : Estructura(1, 8) = 0
+                Estructura(2, 0) = 0 : Estructura(2, 1) = 0 : Estructura(2, 2) = 1 : Estructura(2, 3) = 1 : Estructura(2, 4) = 1 : Estructura(2, 5) = 1 : Estructura(2, 6) = 1 : Estructura(2, 7) = 0 : Estructura(2, 8) = 0
+                Estructura(3, 0) = 0 : Estructura(3, 1) = 1 : Estructura(3, 2) = 1 : Estructura(3, 3) = 1 : Estructura(3, 4) = 1 : Estructura(3, 5) = 1 : Estructura(3, 6) = 1 : Estructura(3, 7) = 1 : Estructura(3, 8) = 0
+                Estructura(4, 0) = 1 : Estructura(4, 1) = 1 : Estructura(4, 2) = 1 : Estructura(4, 3) = 1 : Estructura(4, 4) = 1 : Estructura(4, 5) = 1 : Estructura(4, 6) = 1 : Estructura(4, 7) = 1 : Estructura(4, 8) = 1
+                Estructura(5, 0) = 0 : Estructura(5, 1) = 1 : Estructura(5, 2) = 1 : Estructura(5, 3) = 1 : Estructura(5, 4) = 1 : Estructura(5, 5) = 1 : Estructura(5, 6) = 1 : Estructura(5, 7) = 1 : Estructura(5, 8) = 0
+                Estructura(6, 0) = 0 : Estructura(6, 1) = 0 : Estructura(6, 2) = 1 : Estructura(6, 3) = 1 : Estructura(6, 4) = 1 : Estructura(6, 5) = 1 : Estructura(6, 6) = 1 : Estructura(6, 7) = 0 : Estructura(6, 8) = 0
+                Estructura(7, 0) = 0 : Estructura(7, 1) = 0 : Estructura(7, 2) = 0 : Estructura(7, 3) = 1 : Estructura(7, 4) = 1 : Estructura(7, 5) = 1 : Estructura(7, 6) = 0 : Estructura(7, 7) = 0 : Estructura(7, 8) = 0
+                Estructura(8, 0) = 0 : Estructura(8, 1) = 0 : Estructura(8, 2) = 0 : Estructura(8, 3) = 0 : Estructura(8, 4) = 1 : Estructura(8, 5) = 0 : Estructura(8, 6) = 0 : Estructura(8, 7) = 0 : Estructura(8, 8) = 0
+                Return Estructura
+
+            End Function
+
+            Public Function Disco5x5()
+                ReDim Estructura(4, 4)
+                Estructura(0, 0) = 0 : Estructura(0, 1) = 1 : Estructura(0, 2) = 1 : Estructura(0, 3) = 1 : Estructura(0, 4) = 0
+                Estructura(1, 0) = 1 : Estructura(1, 1) = 1 : Estructura(1, 2) = 1 : Estructura(1, 3) = 1 : Estructura(1, 4) = 1
+                Estructura(2, 0) = 1 : Estructura(2, 1) = 1 : Estructura(2, 2) = 1 : Estructura(2, 3) = 1 : Estructura(2, 4) = 1
+                Estructura(3, 0) = 1 : Estructura(3, 1) = 1 : Estructura(3, 2) = 1 : Estructura(3, 3) = 1 : Estructura(3, 4) = 1
+                Estructura(4, 0) = 0 : Estructura(4, 1) = 1 : Estructura(4, 2) = 1 : Estructura(4, 3) = 1 : Estructura(4, 4) = 0
+                Return Estructura
+            End Function
+            Public Function Disco7x7()
+                ReDim Estructura(6, 6)
+                Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 1 : Estructura(0, 3) = 1 : Estructura(0, 4) = 1 : Estructura(0, 5) = 0 : Estructura(0, 6) = 0
+                Estructura(1, 0) = 0 : Estructura(1, 1) = 1 : Estructura(1, 2) = 1 : Estructura(1, 3) = 1 : Estructura(1, 4) = 1 : Estructura(1, 5) = 1 : Estructura(1, 6) = 0
+                Estructura(2, 0) = 1 : Estructura(2, 1) = 1 : Estructura(2, 2) = 1 : Estructura(2, 3) = 1 : Estructura(2, 4) = 1 : Estructura(2, 5) = 1 : Estructura(2, 6) = 1
+                Estructura(3, 0) = 1 : Estructura(3, 1) = 1 : Estructura(3, 2) = 1 : Estructura(3, 3) = 1 : Estructura(3, 4) = 1 : Estructura(3, 5) = 1 : Estructura(3, 6) = 1
+                Estructura(4, 0) = 1 : Estructura(4, 1) = 1 : Estructura(4, 2) = 1 : Estructura(4, 3) = 1 : Estructura(4, 4) = 1 : Estructura(4, 5) = 1 : Estructura(4, 6) = 1
+                Estructura(5, 0) = 0 : Estructura(5, 1) = 1 : Estructura(5, 2) = 1 : Estructura(5, 3) = 1 : Estructura(5, 4) = 1 : Estructura(5, 5) = 1 : Estructura(5, 6) = 0
+                Estructura(6, 0) = 0 : Estructura(6, 1) = 0 : Estructura(6, 2) = 1 : Estructura(6, 3) = 1 : Estructura(6, 4) = 1 : Estructura(6, 5) = 0 : Estructura(6, 6) = 0
+                Return Estructura
+
+            End Function
+            Public Function Disco9x9()
+                ReDim Estructura(8, 8)
+                Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 1 : Estructura(0, 4) = 1 : Estructura(0, 5) = 1 : Estructura(0, 6) = 0 : Estructura(0, 7) = 0 : Estructura(0, 8) = 0
+                Estructura(1, 0) = 0 : Estructura(1, 1) = 1 : Estructura(1, 2) = 1 : Estructura(1, 3) = 1 : Estructura(1, 4) = 1 : Estructura(1, 5) = 1 : Estructura(1, 6) = 1 : Estructura(1, 7) = 1 : Estructura(1, 8) = 0
+                Estructura(2, 0) = 0 : Estructura(2, 1) = 1 : Estructura(2, 2) = 1 : Estructura(2, 3) = 1 : Estructura(2, 4) = 1 : Estructura(2, 5) = 1 : Estructura(2, 6) = 1 : Estructura(2, 7) = 1 : Estructura(2, 8) = 0
+                Estructura(3, 0) = 1 : Estructura(3, 1) = 1 : Estructura(3, 2) = 1 : Estructura(3, 3) = 1 : Estructura(3, 4) = 1 : Estructura(3, 5) = 1 : Estructura(3, 6) = 1 : Estructura(3, 7) = 1 : Estructura(3, 8) = 1
+                Estructura(4, 0) = 1 : Estructura(4, 1) = 1 : Estructura(4, 2) = 1 : Estructura(4, 3) = 1 : Estructura(4, 4) = 1 : Estructura(4, 5) = 1 : Estructura(4, 6) = 1 : Estructura(4, 7) = 1 : Estructura(4, 8) = 1
+                Estructura(5, 0) = 1 : Estructura(5, 1) = 1 : Estructura(5, 2) = 1 : Estructura(5, 3) = 1 : Estructura(5, 4) = 1 : Estructura(5, 5) = 1 : Estructura(5, 6) = 1 : Estructura(5, 7) = 1 : Estructura(5, 8) = 1
+                Estructura(6, 0) = 0 : Estructura(6, 1) = 1 : Estructura(6, 2) = 1 : Estructura(6, 3) = 1 : Estructura(6, 4) = 1 : Estructura(6, 5) = 1 : Estructura(6, 6) = 1 : Estructura(6, 7) = 1 : Estructura(6, 8) = 0
+                Estructura(7, 0) = 0 : Estructura(7, 1) = 1 : Estructura(7, 2) = 1 : Estructura(7, 3) = 1 : Estructura(7, 4) = 1 : Estructura(7, 5) = 1 : Estructura(7, 6) = 1 : Estructura(7, 7) = 1 : Estructura(7, 8) = 0
+                Estructura(8, 0) = 0 : Estructura(8, 1) = 0 : Estructura(8, 2) = 0 : Estructura(8, 3) = 1 : Estructura(8, 4) = 1 : Estructura(8, 5) = 1 : Estructura(8, 6) = 0 : Estructura(8, 7) = 0 : Estructura(8, 8) = 0
+                Return Estructura
+
+            End Function
+        End Class
     End Class
-
 End Namespace
