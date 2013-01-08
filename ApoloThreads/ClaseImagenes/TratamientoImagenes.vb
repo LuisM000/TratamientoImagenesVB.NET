@@ -2759,7 +2759,7 @@ Namespace Apolo
             Dim objeto As New TratamientoImagenes
             Dim bmp3 = objeto.MorfologicasErosion(bmp2, ElementoEstructural)
             Dim bmp4 = objeto.MorfologicasDilatacion(bmp3, ElementoEstructural)
-
+            porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp4) 'generamos el evento
             guardarImagen(bmp3, "Operador morfológico. Apertura") 'Actualizar el estado
@@ -2770,12 +2770,86 @@ Namespace Apolo
             Dim objeto As New TratamientoImagenes
             Dim bmp3 = objeto.MorfologicasDilatacion(bmp2, ElementoEstructural)
             Dim bmp4 = objeto.MorfologicasErosion(bmp3, ElementoEstructural)
-
+            porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp4) 'generamos el evento
-            guardarImagen(bmp3, "Operador morfológico. Apertura") 'Actualizar el estado
+            guardarImagen(bmp3, "Operador morfológico. Cerradura") 'Actualizar el estado
             Return bmp4
         End Function
+        'Public Function MorfologicasGanaciaPerdida(ByVal bmp As Bitmap, ByVal ElementoEstructural1(,) As Integer, ByVal ElementoEstructural2(,) As Integer)
+        '    Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+        '    Dim bmp3 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+        '    Dim objeto As New TratamientoImagenes
+        '    Dim bmp4 = objeto.MorfologicasErosion(bmp2, ElementoEstructural1)
+        '    Dim bmp5 = objeto.Invertir(bmp3)
+        '    Dim bmp6 = objeto.MorfologicasErosion(bmp5, ElementoEstructural2)
+        '    Dim bmpSalida = objeto.OperacionAND(bmp4, bmp6, True)
+        '    porcentaje(0) = 100 'Actualizamos el estado
+        '    porcentaje(1) = "Finalizado" 'Actualizamos el estado
+        '    RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+        '    guardarImagen(bmpSalida, "Operador morfológico. Transformada de ganancia o pérdida") 'Actualizar el estado
+        '    Return bmpSalida
+        'End Function
+        Public Function MorfologicasPerimetroDilatEros(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
+            Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim bmp3 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim objeto As New TratamientoImagenes
+            Dim bmp4 = objeto.MorfologicasErosion(bmp2, ElementoEstructural)
+            Dim bmp5 = objeto.MorfologicasDilatacion(bmp3, ElementoEstructural)
+            Dim bmp6 = objeto.OperacionResta(bmp5, bmp4)
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp6) 'generamos el evento
+            guardarImagen(bmp6, "Operador morfológico. Perímetro (Dilatación-Erosión)") 'Actualizar el estado
+            Return bmp6
+        End Function
+        Public Function MorfologicasPerimetroOrigEros(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
+            Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim objeto As New TratamientoImagenes
+            Dim bmp4 = objeto.MorfologicasErosion(bmp2, ElementoEstructural)
+            Dim bmp6 = objeto.OperacionResta(bmp2, bmp4)
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp6) 'generamos el evento
+            guardarImagen(bmp6, "Operador morfológico. Perímetro (Original-Erosión)") 'Actualizar el estado
+            Return bmp6
+        End Function
+        Public Function MorfologicasPerimetroDilatOrigin(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
+            Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim objeto As New TratamientoImagenes
+            Dim bmp4 = objeto.MorfologicasDilatacion(bmp2, ElementoEstructural)
+            Dim bmp6 = objeto.OperacionResta(bmp4, bmp2)
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp6) 'generamos el evento
+            guardarImagen(bmp6, "Operador morfológico. Perímetro (Dilatación-Original)") 'Actualizar el estado
+            Return bmp6
+        End Function
+        Public Function MorfologicasTopHat(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
+            Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim bmp3 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim objeto As New TratamientoImagenes
+            Dim bmp4 = objeto.MorfologicasApertura(bmp2, ElementoEstructural)
+            Dim bmp6 = objeto.OperacionResta(bmp3, bmp4)
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp6) 'generamos el evento
+            guardarImagen(bmp6, "Operador morfológico. Top Hat") 'Actualizar el estado
+            Return bmp6
+        End Function
+        Public Function MorfologicasBottomHat(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
+            Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim bmp3 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim objeto As New TratamientoImagenes
+            Dim bmp4 = objeto.MorfologicasCerradura(bmp2, ElementoEstructural)
+            Dim bmp6 = objeto.OperacionResta(bmp3, bmp4)
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp6) 'generamos el evento
+            guardarImagen(bmp6, "Operador morfológico. Top Hat") 'Actualizar el estado
+            Return bmp6
+        End Function
+
         Public Class ElementoEstructural
             Private Estructura(,) As Integer
             Public Function Cuadrado3x3()
@@ -2798,7 +2872,7 @@ Namespace Apolo
             End Function
             Public Function Cuadrado7x7()
                 ReDim Estructura(6, 6)
-                  For i = 0 To Estructura.GetUpperBound(0)
+                For i = 0 To Estructura.GetUpperBound(0)
                     For j = 0 To Estructura.GetUpperBound(0)
                         Estructura(i, j) = 1
                     Next
@@ -2807,6 +2881,15 @@ Namespace Apolo
             End Function
             Public Function Cuadrado9x9()
                 ReDim Estructura(8, 8)
+                For i = 0 To Estructura.GetUpperBound(0)
+                    For j = 0 To Estructura.GetUpperBound(0)
+                        Estructura(i, j) = 1
+                    Next
+                Next
+                Return Estructura
+            End Function
+            Public Function CuadradoPersonal(ByVal tamañoLado As Integer)
+                ReDim Estructura(tamañoLado - 1, tamañoLado - 1)
                 For i = 0 To Estructura.GetUpperBound(0)
                     For j = 0 To Estructura.GetUpperBound(0)
                         Estructura(i, j) = 1

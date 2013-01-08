@@ -104,6 +104,8 @@ Partial Class Principal
         Me.OperacionesConDosImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SumaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesLógicasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OperadoresMorfológicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AsdaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransformacionesGeométricasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReflexiónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TraslaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -113,7 +115,7 @@ Partial Class Principal
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.OperadoresMorfológicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OperacionesMorfológicasbetaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -473,7 +475,7 @@ Partial Class Principal
         '
         'OperacionesAritméticasToolStripMenuItem
         '
-        Me.OperacionesAritméticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OperacionesToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem})
+        Me.OperacionesAritméticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OperacionesToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem, Me.OperacionesMorfológicasbetaToolStripMenuItem})
         Me.OperacionesAritméticasToolStripMenuItem.Name = "OperacionesAritméticasToolStripMenuItem"
         Me.OperacionesAritméticasToolStripMenuItem.Size = New System.Drawing.Size(85, 20)
         Me.OperacionesAritméticasToolStripMenuItem.Text = "Operaciones"
@@ -481,13 +483,13 @@ Partial Class Principal
         'OperacionesToolStripMenuItem
         '
         Me.OperacionesToolStripMenuItem.Name = "OperacionesToolStripMenuItem"
-        Me.OperacionesToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.OperacionesToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
         Me.OperacionesToolStripMenuItem.Text = "Operaciones aritméticas"
         '
         'OperacionesLógicasToolStripMenuItem
         '
         Me.OperacionesLógicasToolStripMenuItem.Name = "OperacionesLógicasToolStripMenuItem"
-        Me.OperacionesLógicasToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.OperacionesLógicasToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
         Me.OperacionesLógicasToolStripMenuItem.Text = "Operaciones lógicas"
         '
         'MáscarasToolStripMenuItem
@@ -617,7 +619,7 @@ Partial Class Principal
         '
         'OperacionesConDosImágenesToolStripMenuItem
         '
-        Me.OperacionesConDosImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SumaToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem1, Me.OperadoresMorfológicosToolStripMenuItem})
+        Me.OperacionesConDosImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SumaToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem1, Me.OperadoresMorfológicosToolStripMenuItem, Me.AsdaToolStripMenuItem})
         Me.OperacionesConDosImágenesToolStripMenuItem.Name = "OperacionesConDosImágenesToolStripMenuItem"
         Me.OperacionesConDosImágenesToolStripMenuItem.Size = New System.Drawing.Size(184, 20)
         Me.OperacionesConDosImágenesToolStripMenuItem.Text = "Operaciones con dos imágenes"
@@ -633,6 +635,18 @@ Partial Class Principal
         Me.OperacionesLógicasToolStripMenuItem1.Name = "OperacionesLógicasToolStripMenuItem1"
         Me.OperacionesLógicasToolStripMenuItem1.Size = New System.Drawing.Size(201, 22)
         Me.OperacionesLógicasToolStripMenuItem1.Text = "Operaciones lógicas"
+        '
+        'OperadoresMorfológicosToolStripMenuItem
+        '
+        Me.OperadoresMorfológicosToolStripMenuItem.Name = "OperadoresMorfológicosToolStripMenuItem"
+        Me.OperadoresMorfológicosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.OperadoresMorfológicosToolStripMenuItem.Text = "Eros"
+        '
+        'AsdaToolStripMenuItem
+        '
+        Me.AsdaToolStripMenuItem.Name = "AsdaToolStripMenuItem"
+        Me.AsdaToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.AsdaToolStripMenuItem.Text = "Dila"
         '
         'TransformacionesGeométricasToolStripMenuItem
         '
@@ -718,11 +732,11 @@ Partial Class Principal
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
         '
-        'OperadoresMorfológicosToolStripMenuItem
+        'OperacionesMorfológicasbetaToolStripMenuItem
         '
-        Me.OperadoresMorfológicosToolStripMenuItem.Name = "OperadoresMorfológicosToolStripMenuItem"
-        Me.OperadoresMorfológicosToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
-        Me.OperadoresMorfológicosToolStripMenuItem.Text = "Operadores morfológicos"
+        Me.OperacionesMorfológicasbetaToolStripMenuItem.Name = "OperacionesMorfológicasbetaToolStripMenuItem"
+        Me.OperacionesMorfológicasbetaToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
+        Me.OperacionesMorfológicasbetaToolStripMenuItem.Text = "Operaciones morfológicas (beta)"
         '
         'Principal
         '
@@ -845,5 +859,7 @@ Partial Class Principal
     Friend WithEvents OperacionesLógicasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OperacionesLógicasToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OperadoresMorfológicosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AsdaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OperacionesMorfológicasbetaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
