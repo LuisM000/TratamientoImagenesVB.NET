@@ -89,6 +89,93 @@ Public Class MascaraManual
         End If
         Return desviFac
     End Function
+    Private Function verificarNombreArchivo(ByVal nombreArchivo As String) As Boolean
+        verificarNombreArchivo = True
+
+        Dim folder As New DirectoryInfo(System.IO.Directory.GetCurrentDirectory()) 'Directorio
+        For Each file As FileInfo In folder.GetFiles() 'Comprobamos si hay un archivo igual
+            If file.ToString = nombreArchivo & ".xml" Then
+                verificarNombreArchivo = False
+            End If
+        Next
+
+    End Function
+    Sub guardarMascara(ByVal nombreArchivo As String, ByVal mascara(,) As Double, ByVal desviacion As Double, ByVal factor As Double)
+        Try
+            Dim myXmlTextWriter As XmlTextWriter = New XmlTextWriter(nombreArchivo & ".xml", System.Text.Encoding.UTF8)
+            myXmlTextWriter.Formatting = System.Xml.Formatting.Indented
+            myXmlTextWriter.WriteStartDocument(False)
+            'Crear el elemento de documento principal.
+            myXmlTextWriter.WriteStartElement("Mascara")
+            'Crear el elemento de documento principal.
+            myXmlTextWriter.WriteStartElement("ValoresMatriz")
+
+
+            'Crear un elemento llamado 'Mat(0,0)' con un nodo de texto
+            ' y cerrar el elemento.
+            myXmlTextWriter.WriteStartElement("Mat00")
+            myXmlTextWriter.WriteString(mascara(0, 0))
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.WriteStartElement("Mat01")
+            myXmlTextWriter.WriteString(mascara(0, 1))
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.WriteStartElement("Mat02")
+            myXmlTextWriter.WriteString(mascara(0, 2))
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.WriteStartElement("Mat10")
+            myXmlTextWriter.WriteString(mascara(1, 0))
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.WriteStartElement("Mat11")
+            myXmlTextWriter.WriteString(mascara(1, 1))
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.WriteStartElement("Mat12")
+            myXmlTextWriter.WriteString(mascara(1, 2))
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.WriteStartElement("Mat20")
+            myXmlTextWriter.WriteString(mascara(2, 0))
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.WriteStartElement("Mat21")
+            myXmlTextWriter.WriteString(mascara(2, 1))
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.WriteStartElement("Mat22")
+            myXmlTextWriter.WriteString(mascara(2, 2))
+            myXmlTextWriter.WriteEndElement()
+
+            'Cerrar el elemento Valores Matriz.
+            myXmlTextWriter.WriteEndElement()
+
+
+            'Crear un elemento llamado 'Desviacion y otro factor' con un nodo de texto
+            ' y cerrar el elemento.
+            myXmlTextWriter.WriteStartElement("Desviacion")
+            myXmlTextWriter.WriteString(desviacion)
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.WriteStartElement("Factor")
+            myXmlTextWriter.WriteString(factor)
+            myXmlTextWriter.WriteEndElement()
+
+            'Cerrar el elemento Mascara.
+            myXmlTextWriter.WriteEndElement()
+
+            myXmlTextWriter.Flush()
+            myXmlTextWriter.Close()
+
+        Catch e As System.ArgumentException
+            MessageBox.Show("Caraceteres no válidos en el nombre del archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+
 
     Private Sub MascaraManual_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         RbRGB.Checked = True
@@ -170,93 +257,7 @@ Public Class MascaraManual
         End If
     End Sub
 
-    Private Function verificarNombreArchivo(ByVal nombreArchivo As String) As Boolean
-        verificarNombreArchivo = True
-
-        Dim folder As New DirectoryInfo(System.IO.Directory.GetCurrentDirectory()) 'Directorio
-        For Each file As FileInfo In folder.GetFiles() 'Comprobamos si hay un archivo igual
-            If file.ToString = nombreArchivo & ".xml" Then
-                verificarNombreArchivo = False
-            End If
-        Next
-
-    End Function
-    Sub guardarMascara(ByVal nombreArchivo As String, ByVal mascara(,) As Double, ByVal desviacion As Double, ByVal factor As Double)
-        Try
-            Dim myXmlTextWriter As XmlTextWriter = New XmlTextWriter(nombreArchivo & ".xml", System.Text.Encoding.UTF8)
-            myXmlTextWriter.Formatting = System.Xml.Formatting.Indented
-            myXmlTextWriter.WriteStartDocument(False)
-            'Crear el elemento de documento principal.
-            myXmlTextWriter.WriteStartElement("Mascara")
-            'Crear el elemento de documento principal.
-            myXmlTextWriter.WriteStartElement("ValoresMatriz")
-
-
-            'Crear un elemento llamado 'Mat(0,0)' con un nodo de texto
-            ' y cerrar el elemento.
-            myXmlTextWriter.WriteStartElement("Mat00")
-            myXmlTextWriter.WriteString(mascara(0, 0))
-            myXmlTextWriter.WriteEndElement()
-
-            myXmlTextWriter.WriteStartElement("Mat01")
-            myXmlTextWriter.WriteString(mascara(0, 1))
-            myXmlTextWriter.WriteEndElement()
-
-            myXmlTextWriter.WriteStartElement("Mat02")
-            myXmlTextWriter.WriteString(mascara(0, 2))
-            myXmlTextWriter.WriteEndElement()
-
-            myXmlTextWriter.WriteStartElement("Mat10")
-            myXmlTextWriter.WriteString(mascara(1, 0))
-            myXmlTextWriter.WriteEndElement()
-
-            myXmlTextWriter.WriteStartElement("Mat11")
-            myXmlTextWriter.WriteString(mascara(1, 1))
-            myXmlTextWriter.WriteEndElement()
-
-            myXmlTextWriter.WriteStartElement("Mat12")
-            myXmlTextWriter.WriteString(mascara(1, 2))
-            myXmlTextWriter.WriteEndElement()
-
-            myXmlTextWriter.WriteStartElement("Mat20")
-            myXmlTextWriter.WriteString(mascara(2, 0))
-            myXmlTextWriter.WriteEndElement()
-
-            myXmlTextWriter.WriteStartElement("Mat21")
-            myXmlTextWriter.WriteString(mascara(2, 1))
-            myXmlTextWriter.WriteEndElement()
-
-            myXmlTextWriter.WriteStartElement("Mat22")
-            myXmlTextWriter.WriteString(mascara(2, 2))
-            myXmlTextWriter.WriteEndElement()
-
-            'Cerrar el elemento Valores Matriz.
-            myXmlTextWriter.WriteEndElement()
-
-
-            'Crear un elemento llamado 'Desviacion y otro factor' con un nodo de texto
-            ' y cerrar el elemento.
-            myXmlTextWriter.WriteStartElement("Desviacion")
-            myXmlTextWriter.WriteString(desviacion)
-            myXmlTextWriter.WriteEndElement()
-
-            myXmlTextWriter.WriteStartElement("Factor")
-            myXmlTextWriter.WriteString(factor)
-            myXmlTextWriter.WriteEndElement()
-
-            'Cerrar el elemento Mascara.
-            myXmlTextWriter.WriteEndElement()
-        
-            myXmlTextWriter.Flush()
-            myXmlTextWriter.Close()
-
-        Catch e As System.ArgumentException
-            MessageBox.Show("Caraceteres no válidos en el nombre del archivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-    End Sub
-
-
+  
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         ImportarMascara.Show()
     End Sub

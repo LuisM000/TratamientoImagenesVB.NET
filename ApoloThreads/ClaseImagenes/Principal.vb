@@ -228,6 +228,9 @@ Public Class Principal
     Private Sub OperacionesLógicasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperacionesLógicasToolStripMenuItem.Click
         OperacionesLogicas.Show()
     End Sub
+    Private Sub OperacionesMorfológicasbetaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperacionesMorfológicasbetaToolStripMenuItem.Click
+        OperadoresMorfologicos.Show()
+    End Sub
 #End Region
 
 #Region "Máscaras"
@@ -457,4 +460,5 @@ Public Class Principal
  
 
   
+   
 End Class

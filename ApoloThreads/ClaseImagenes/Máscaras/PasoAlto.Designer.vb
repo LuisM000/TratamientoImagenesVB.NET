@@ -74,14 +74,13 @@ Partial Class PasoAlto
         'ListBox1
         '
         Me.ListBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ListBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 15
         Me.ListBox1.Items.AddRange(New Object() {"Coeficiente 1 (opción A)", "Coeficiente 1 (opción B)", "Coeficiente 16 "})
         Me.ListBox1.Location = New System.Drawing.Point(6, 25)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(244, 45)
+        Me.ListBox1.Size = New System.Drawing.Size(244, 49)
         Me.ListBox1.TabIndex = 1
         '
         'GroupBox2

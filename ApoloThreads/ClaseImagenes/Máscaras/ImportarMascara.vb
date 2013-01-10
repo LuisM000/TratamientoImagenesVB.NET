@@ -55,7 +55,7 @@ Public Class ImportarMascara
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         If ListBox1.SelectedIndex <> -1 Then 'Si hay algún ítem seleccionado
             Try
-                Dim respuesta As DialogResult = MessageBox.Show("¿Realmente desea eliminar de forma permanente el archivo?", "Maps.NET", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                Dim respuesta As DialogResult = MessageBox.Show("¿Realmente desea eliminar de forma permanente el archivo?", "Apolo threads", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                 Select Case respuesta
                     Case Windows.Forms.DialogResult.Yes 'Borramos el archivo
                         Dim ruta As String
@@ -178,4 +178,6 @@ Public Class ImportarMascara
         End Try
         Return mascara
     End Function
+
+
 End Class

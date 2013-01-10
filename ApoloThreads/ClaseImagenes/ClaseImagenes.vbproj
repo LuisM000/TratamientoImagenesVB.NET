@@ -190,6 +190,12 @@
     <Compile Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Operaciones\ImportarExportarElementoEstructural.Designer.vb">
+      <DependentUpon>ImportarExportarElementoEstructural.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\ImportarExportarElementoEstructural.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Operaciones\OperacionesAritmeticas.Designer.vb">
       <DependentUpon>OperacionesAritmeticas.vb</DependentUpon>
     </Compile>
@@ -280,6 +286,12 @@
     <Compile Include="Operaciones\OperacionesLogicas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Operaciones\OperadoresMorfologicos.Designer.vb">
+      <DependentUpon>OperadoresMorfologicos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\OperadoresMorfologicos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -359,6 +371,9 @@
     <EmbeddedResource Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.resx">
       <DependentUpon>OperacionesLogicasDosImagenes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\ImportarExportarElementoEstructural.resx">
+      <DependentUpon>ImportarExportarElementoEstructural.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\OperacionesAritmeticas.resx">
       <DependentUpon>OperacionesAritmeticas.vb</DependentUpon>
     </EmbeddedResource>
@@ -404,6 +419,9 @@
     <EmbeddedResource Include="Operaciones\OperacionesLogicas.resx">
       <DependentUpon>OperacionesLogicas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\OperadoresMorfologicos.resx">
+      <DependentUpon>OperadoresMorfologicos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
     </EmbeddedResource>
@@ -431,6 +449,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cargando1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

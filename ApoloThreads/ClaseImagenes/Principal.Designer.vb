@@ -81,6 +81,7 @@ Partial Class Principal
         Me.OperacionesAritméticasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesLógicasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OperacionesMorfológicasbetaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MáscarasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasoAltoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasoBajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -112,10 +113,9 @@ Partial Class Principal
         Me.RotaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.OperacionesMorfológicasbetaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -492,6 +492,12 @@ Partial Class Principal
         Me.OperacionesLógicasToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
         Me.OperacionesLógicasToolStripMenuItem.Text = "Operaciones lógicas"
         '
+        'OperacionesMorfológicasbetaToolStripMenuItem
+        '
+        Me.OperacionesMorfológicasbetaToolStripMenuItem.Name = "OperacionesMorfológicasbetaToolStripMenuItem"
+        Me.OperacionesMorfológicasbetaToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
+        Me.OperacionesMorfológicasbetaToolStripMenuItem.Text = "Operaciones morfológicas (beta)"
+        '
         'MáscarasToolStripMenuItem
         '
         Me.MáscarasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasoAltoToolStripMenuItem, Me.PasoBajoToolStripMenuItem, Me.BordesYContornosToolStripMenuItem, Me.MáscaraManualToolStripMenuItem, Me.SobelTotalToolStripMenuItem})
@@ -703,6 +709,15 @@ Partial Class Principal
         Me.Panel1.Size = New System.Drawing.Size(1105, 666)
         Me.Panel1.TabIndex = 0
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(29, 497)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(100, 15)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "-- Vista general --"
+        '
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -713,15 +728,6 @@ Partial Class Principal
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(29, 497)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(100, 15)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "-- Vista general --"
-        '
         'PictureBox2
         '
         Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -731,12 +737,6 @@ Partial Class Principal
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
-        '
-        'OperacionesMorfológicasbetaToolStripMenuItem
-        '
-        Me.OperacionesMorfológicasbetaToolStripMenuItem.Name = "OperacionesMorfológicasbetaToolStripMenuItem"
-        Me.OperacionesMorfológicasbetaToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
-        Me.OperacionesMorfológicasbetaToolStripMenuItem.Text = "Operaciones morfológicas (beta)"
         '
         'Principal
         '
