@@ -41,6 +41,7 @@ Partial Class Principal
         Me.DeshacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RehacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RegistroDeCambiosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActualizarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RefrescarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ImagenOriginalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -105,16 +106,14 @@ Partial Class Principal
         Me.OperacionesConDosImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SumaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesLógicasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OperadoresMorfológicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AsdaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransformacionesGeométricasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReflexiónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TraslaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RotaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -214,7 +213,7 @@ Partial Class Principal
         '
         'EdiciónToolStripMenuItem
         '
-        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.RegistroDeCambiosToolStripMenuItem, Me.RefrescarToolStripMenuItem, Me.ToolStripMenuItem1, Me.ImagenOriginalToolStripMenuItem})
+        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.RegistroDeCambiosToolStripMenuItem, Me.ActualizarToolStripMenuItem, Me.RefrescarToolStripMenuItem, Me.ToolStripMenuItem1, Me.ImagenOriginalToolStripMenuItem})
         Me.EdiciónToolStripMenuItem.Name = "EdiciónToolStripMenuItem"
         Me.EdiciónToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.EdiciónToolStripMenuItem.Text = "Edición"
@@ -239,6 +238,13 @@ Partial Class Principal
         Me.RegistroDeCambiosToolStripMenuItem.Name = "RegistroDeCambiosToolStripMenuItem"
         Me.RegistroDeCambiosToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
         Me.RegistroDeCambiosToolStripMenuItem.Text = "Registro de cambios"
+        '
+        'ActualizarToolStripMenuItem
+        '
+        Me.ActualizarToolStripMenuItem.Name = "ActualizarToolStripMenuItem"
+        Me.ActualizarToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
+        Me.ActualizarToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.ActualizarToolStripMenuItem.Text = "Actualizar"
         '
         'RefrescarToolStripMenuItem
         '
@@ -625,7 +631,7 @@ Partial Class Principal
         '
         'OperacionesConDosImágenesToolStripMenuItem
         '
-        Me.OperacionesConDosImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SumaToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem1, Me.OperadoresMorfológicosToolStripMenuItem, Me.AsdaToolStripMenuItem})
+        Me.OperacionesConDosImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SumaToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem1})
         Me.OperacionesConDosImágenesToolStripMenuItem.Name = "OperacionesConDosImágenesToolStripMenuItem"
         Me.OperacionesConDosImágenesToolStripMenuItem.Size = New System.Drawing.Size(184, 20)
         Me.OperacionesConDosImágenesToolStripMenuItem.Text = "Operaciones con dos imágenes"
@@ -641,18 +647,6 @@ Partial Class Principal
         Me.OperacionesLógicasToolStripMenuItem1.Name = "OperacionesLógicasToolStripMenuItem1"
         Me.OperacionesLógicasToolStripMenuItem1.Size = New System.Drawing.Size(201, 22)
         Me.OperacionesLógicasToolStripMenuItem1.Text = "Operaciones lógicas"
-        '
-        'OperadoresMorfológicosToolStripMenuItem
-        '
-        Me.OperadoresMorfológicosToolStripMenuItem.Name = "OperadoresMorfológicosToolStripMenuItem"
-        Me.OperadoresMorfológicosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.OperadoresMorfológicosToolStripMenuItem.Text = "Eros"
-        '
-        'AsdaToolStripMenuItem
-        '
-        Me.AsdaToolStripMenuItem.Name = "AsdaToolStripMenuItem"
-        Me.AsdaToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.AsdaToolStripMenuItem.Text = "Dila"
         '
         'TransformacionesGeométricasToolStripMenuItem
         '
@@ -709,15 +703,6 @@ Partial Class Principal
         Me.Panel1.Size = New System.Drawing.Size(1105, 666)
         Me.Panel1.TabIndex = 0
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(29, 497)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(100, 15)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "-- Vista general --"
-        '
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -727,6 +712,15 @@ Partial Class Principal
         Me.PictureBox1.Size = New System.Drawing.Size(1105, 666)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(29, 497)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(100, 15)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "-- Vista general --"
         '
         'PictureBox2
         '
@@ -858,8 +852,7 @@ Partial Class Principal
     Friend WithEvents OperacionesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OperacionesLógicasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OperacionesLógicasToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OperadoresMorfológicosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AsdaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OperacionesMorfológicasbetaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ActualizarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

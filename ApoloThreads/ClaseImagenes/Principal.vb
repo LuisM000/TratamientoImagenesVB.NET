@@ -78,6 +78,15 @@ Public Class Principal
         RegistroCambio.Show()
     End Sub
 
+    'Actualizar imagen
+    Private Sub ActualizarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActualizarToolStripMenuItem.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
+        'Actualizamos el Panel1
+        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScroll = True
+    End Sub
+
     'Deshacer imagen original
     Private Sub ImagenOriginalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImagenOriginalToolStripMenuItem.Click
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
@@ -459,6 +468,5 @@ Public Class Principal
 #End Region
  
 
-  
-   
+
 End Class

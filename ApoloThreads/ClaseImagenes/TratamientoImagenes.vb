@@ -171,8 +171,9 @@ Namespace Apolo
             Return Niveles
         End Function
 
+        'Hace que la imagen enviada se guarde
         Public Function ActualizarImagen(ByVal bmp As Bitmap) As Bitmap
-            porcentaje(0) = 0 'Actualizamos el estado
+            porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             guardarImagen(bmp, "Actualizar imagen") 'Guardamos la imagen para poder hacer retroceso
             RaiseEvent actualizaBMP(bmp) 'generamos el evento

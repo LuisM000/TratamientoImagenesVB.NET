@@ -163,7 +163,7 @@ Partial Class OperadoresMorfologicos
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.ClaseImagenes.My.Resources.Resources.help
-        Me.PictureBox1.Location = New System.Drawing.Point(279, 151)
+        Me.PictureBox1.Location = New System.Drawing.Point(279, 164)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(16, 16)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -183,7 +183,7 @@ Partial Class OperadoresMorfologicos
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(242, 148)
+        Me.Button10.Location = New System.Drawing.Point(242, 161)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(31, 22)
         Me.Button10.TabIndex = 24
@@ -192,7 +192,7 @@ Partial Class OperadoresMorfologicos
         '
         'txtalto
         '
-        Me.txtalto.Location = New System.Drawing.Point(207, 149)
+        Me.txtalto.Location = New System.Drawing.Point(207, 162)
         Me.txtalto.Multiline = True
         Me.txtalto.Name = "txtalto"
         Me.txtalto.Size = New System.Drawing.Size(29, 20)
@@ -201,7 +201,7 @@ Partial Class OperadoresMorfologicos
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(189, 152)
+        Me.Label2.Location = New System.Drawing.Point(189, 165)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(12, 15)
         Me.Label2.TabIndex = 22
@@ -209,7 +209,7 @@ Partial Class OperadoresMorfologicos
         '
         'txtancho
         '
-        Me.txtancho.Location = New System.Drawing.Point(154, 149)
+        Me.txtancho.Location = New System.Drawing.Point(154, 162)
         Me.txtancho.Multiline = True
         Me.txtancho.Name = "txtancho"
         Me.txtancho.Size = New System.Drawing.Size(29, 20)
@@ -218,7 +218,7 @@ Partial Class OperadoresMorfologicos
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 152)
+        Me.Label1.Location = New System.Drawing.Point(13, 165)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(135, 15)
         Me.Label1.TabIndex = 20
