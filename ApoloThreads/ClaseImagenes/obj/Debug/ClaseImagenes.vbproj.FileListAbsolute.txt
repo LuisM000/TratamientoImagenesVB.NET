@@ -130,3 +130,5 @@ C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\Cla
 C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.OperacionesLogicas.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.OperadoresMorfologicos.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.ImportarExportarElementoEstructural.resources
+C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.ImportarExportarElementoEstructural.resources
+C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.OperadoresMorfologicos.resources

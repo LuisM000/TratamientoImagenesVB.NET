@@ -1549,8 +1549,8 @@ Namespace Apolo
             Niveles = nivel(bmp2) 'Obtenemos valores
             Dim tamañoMascara = ElementoEstructural.GetUpperBound(0) \ 2 'División entera
 
-            Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
-
+            'Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height) 'Redmiensionamos  
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Aplicando operador morfológico. Dilatación" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte
@@ -1601,8 +1601,8 @@ Namespace Apolo
             Niveles = nivel(bmp2) 'Obtenemos valores
             Dim tamañoMascara = ElementoEstructural.GetUpperBound(0) \ 2 'División entera
 
-            Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
-
+            'Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Aplicando operador morfológico. Erosión" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte
@@ -1699,7 +1699,7 @@ Namespace Apolo
         Public Function MorfologicasPerimetroOrigEros(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim objeto As New TratamientoImagenes
-            Dim bmp4 = objeto.MorfologicasErosion(bmp2, ElementoEstructural)
+            Dim bmp4 As Bitmap = objeto.MorfologicasErosion(bmp2, ElementoEstructural)
             Dim bmp6 = objeto.OperacionResta(bmp2, bmp4)
             porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
@@ -2693,7 +2693,7 @@ Namespace Apolo
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
-            guardarImagen(bmp3, "Multiplicación de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            guardarImagen(bmp3, "Unión de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
         Public Function OperacionAND(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
@@ -2834,7 +2834,7 @@ Namespace Apolo
 
 
         'Contiene el conjunto de funciones para abrir imágenes desde archivo, URL, BING, FB, etc
-#Region "FuncionesAbrir"
+#Region "FuncionesAbrirGuardar"
 
         'Función para crear tapiz con alto/ancho y color
         Function tapiz(ByVal ancho As Integer, ByVal alto As Integer, ByVal color As Color, Optional ByVal nombreTapiz As String = "Nuevo tapiz")
@@ -2971,6 +2971,50 @@ Namespace Apolo
                 RaiseEvent actualizaNombreImagen({nombreRecursoWeb(direccionURL), bmp.Width, bmp.Height, "Recurso web"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
             Catch
             End Try
+        End Sub
+
+        'Función para guardar imagen
+        Sub guardarcomo(ByVal bmp As Bitmap, Optional ByVal filtrado As Integer = 4)
+            Dim salvar As New SaveFileDialog
+            With salvar
+                .Filter = "Ficheros BMP|*.bmp" & _
+                          "|Ficheros GIF|*.gif" & _
+                          "|Ficheros JPG o JPEG|*.jpg;*.jpeg" & _
+                          "|Ficheros PNG|*.png" & _
+                          "|Ficheros TIFF|*.tif"
+                .FilterIndex = filtrado
+                .FileName = "Nueva_imagen"
+                If (.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+
+                    If salvar.FileName <> "" Then
+                        Dim fs As System.IO.FileStream = CType(salvar.OpenFile(), System.IO.FileStream)
+                        Dim formato As String = ""
+                        Select Case salvar.FilterIndex
+                            Case 1
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Bmp)
+                                formato = "bmp"
+                            Case 2
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Gif)
+                                formato = "gif"
+                            Case 3
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                formato = "jpeg"
+                            Case 4
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Png)
+                                formato = "png"
+                            Case 5
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Tiff)
+                                formato = "tiff"
+                        End Select
+                        'Guardamos la imagen para que quede en el registro (aunque se duplique)
+                        porcentaje(0) = 100 'Actualizamos el estado
+                        porcentaje(1) = "Finalizado" 'Actualizamos el estado
+                        guardarImagen(bmp, "Imagen guardada como " & formato) 'Guardamos la imagen para poder hacer retroceso
+                        RaiseEvent actualizaBMP(bmp) 'generamos el evento
+                        fs.Close()
+                    End If
+                End If
+            End With
         End Sub
 
 #End Region

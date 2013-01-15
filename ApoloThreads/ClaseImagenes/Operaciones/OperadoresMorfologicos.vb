@@ -291,4 +291,6 @@ Public Class OperadoresMorfologicos
             actualizarTexto()
         End If
     End Sub
+
+  
 End Class

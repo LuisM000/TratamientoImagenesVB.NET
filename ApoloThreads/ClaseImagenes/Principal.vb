@@ -8,6 +8,8 @@ Public Class Principal
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Establecemos el control del botón derecho  
+        Me.ContextMenuStrip = ContextMenuStrip1
         'Colocamos la imagen secundaria en la parte inferior
         PictureBox2.Location = New Size(PictureBox2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 5))
         'Colocamos label imagen general
@@ -51,13 +53,20 @@ Public Class Principal
     Private Sub CrearTapizToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrearTapizToolStripMenuItem.Click
         Tapiz.Show()
     End Sub
+    'Guardamos imagen
+    Private Sub GuardarComoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardarComoToolStripMenuItem.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        objetoTratamiento.guardarcomo(bmp, 4)
+    End Sub
 #End Region
 
 #Region "Editar"
     Private Sub RefrescarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefrescarToolStripMenuItem.Click
-        'Actualizamos el Panel1
-        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
-        Panel1.AutoScroll = True
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
+        End If
     End Sub
 
     'Deshacer
@@ -435,14 +444,14 @@ Public Class Principal
 
 
 #Region "DRAG&DROP"
-    Private Sub PictureBox1_DragEnter1(sender As Object, e As DragEventArgs) Handles PictureBox1.DragEnter
+    Private Sub PictureBox1_DragEnter1(sender As Object, e As DragEventArgs)
         'DataFormats.FileDrop nos devuelve el array de rutas de archivos
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             'Los archivos son externos a nuestra aplicación por lo que de indicaremos All ya que dará lo mismo.
             e.Effect = DragDropEffects.All
         End If
     End Sub
-    Private Sub PictureBox1_DragDrop1(sender As Object, e As DragEventArgs) Handles PictureBox1.DragDrop
+    Private Sub PictureBox1_DragDrop1(sender As Object, e As DragEventArgs)
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             Dim rutaImagen As String
             'Asignamos la primera posición del array de ruta de archivos a la variable de tipo string
@@ -467,6 +476,88 @@ Public Class Principal
     End Sub
 #End Region
  
+#Region "Barra de herramientas con imágenes"
+    'ABrir imagen
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Dim bmp As Bitmap
+        bmp = objetoTratamiento.abrirImagen()
+        If bmp IsNot Nothing Then
+            PictureBox1.Image = bmp
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+    'ABrir imagen (como recurso)
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        AbrirRecurso.Show()
+    End Sub
+    'Guardar como...
+    Private Sub ToolStripButton8_Click(sender As Object, e As EventArgs) Handles ToolStripButton8.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        objetoTratamiento.guardarcomo(bmp, 4)
+    End Sub
+    'ABrir imagen desde bing
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        AbrirBing.Show()
+    End Sub
+    'ABrir imagen desde facebook
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        AbrirFacebook.Show()
+    End Sub
+    'Deshacer
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ListadoImagenesAtras
+        End If
+    End Sub
+    'Rehacer
+    Private Sub ToolStripButton6_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ListadoImagenesAdelante
+        End If
+    End Sub
+    'Refrescar
+    Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+#End Region
 
+#Region "ContextMenuStrip (Botón derecho)"
+
+    Private Sub AbrirImagenToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles AbrirImagenToolStripMenuItem3.Click
+        Dim bmp As Bitmap
+        bmp = objetoTratamiento.abrirImagen()
+        If bmp IsNot Nothing Then
+            PictureBox1.Image = bmp
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+
+    Private Sub GuardarImagenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardarImagenToolStripMenuItem.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        objetoTratamiento.guardarcomo(bmp, 4)
+    End Sub
+
+    Private Sub RefrescarToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles RefrescarToolStripMenuItem2.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+
+    Private Sub ActualizarToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ActualizarToolStripMenuItem2.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
+        'Actualizamos el Panel1
+        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScroll = True
+    End Sub
+#End Region
 
 End Class
