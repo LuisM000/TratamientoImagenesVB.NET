@@ -6,8 +6,6 @@ Namespace Apolo
     Public Delegate Sub ActualizamosNombreImagen(ByVal NombreImagen() As String) 'Definimos el Tipo de evento
 
     Public Class TratamientoImagenes
-
-
         'Variables para controlar atrás/adelante 
         Public Shared imagenesGuardadas As New ArrayList 'Para ir atrás y adelante, Lo creamos como
         'Se crea como shared para que no se cree de nuevo en cada instancia
@@ -3118,6 +3116,32 @@ Namespace Apolo
             End Try
 
             Return datosVuelta
+        End Function
+        Public Function histogramaAcumulado(ByVal bmp As Bitmap)
+            Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim NivelesHist(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Dim i, j As Long
+            ReDim NivelesHist(bmp2.Width - 1, bmp2.Height - 1)  'Asignamos a la matriz las dimensiones de la imagen -1 *
+            For i = 0 To bmp2.Width - 1 'Recorremos la matriz a lo ancho
+                For j = 0 To bmp2.Height - 1 'Recorremos la matriz a lo largo
+                    NivelesHist(i, j) = bmp2.GetPixel(i, j) 'Con el método GetPixel, asignamos para cada celda de la matriz el color con sus valores RGB.
+                Next
+            Next
+
+            Dim Rojo, Verde, Azul As Byte 'Declaramos tres variables que almacenarán los colores
+            Dim matrizAcumulada(255, 2) As ULong
+            For i = 0 To NivelesHist.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To NivelesHist.GetUpperBound(1)
+                    Rojo = NivelesHist(i, j).R 'ASignamos el color
+                    Verde = NivelesHist(i, j).G
+                    Azul = NivelesHist(i, j).B
+                    'ACumulamos los valores
+                    matrizAcumulada(Rojo, 0) += 1
+                    matrizAcumulada(Verde, 1) += 1
+                    matrizAcumulada(Azul, 2) += 1
+                Next
+            Next
+            Return matrizAcumulada
         End Function
 #End Region
 

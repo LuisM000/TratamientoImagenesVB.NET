@@ -14,6 +14,12 @@ Public Class Principal
         PictureBox2.Location = New Size(PictureBox2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 5))
         'Colocamos label imagen general
         Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
+        'Colocamos los chart y el botón
+        Chart1.Location = New Size(Chart1.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + Chart1.Size.Height + 100))
+        Chart2.Location = New Size(Chart2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 2) + 100))
+        Chart3.Location = New Size(Chart3.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 3) + 100))
+        Button1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Button1.Width / 2), SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 90))
+
         'Habilitamos el arrastre para el control PictureBox1 (No lo tiene permitido en tiempo de diseño)
         PictureBox1.AllowDrop = True
         'Asignamos el gestor que controle cuando sale imagen
@@ -23,7 +29,7 @@ Public Class Principal
 
     End Sub
 
-
+   
 #Region "Archivo"
     'Abrir imagen desde archivo
     Private Sub AbrirImagenToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AbrirImagenToolStripMenuItem1.Click
@@ -406,23 +412,65 @@ Public Class Principal
 
 #End Region
 
+#Region "Actualizar histograma"
+    Dim tiempo As Integer = 3 'Variable que controla el tiempo de actualización
 
-#Region "Actualizar imagen secundaria/ actualizar hacer y deshacer"
+    Sub actualizarHistrograma() 'Función que recibe y dibuja el histograma
+        'Los ponesmos del colores correspondiente
+        Chart1.Series("Rojo").Color = Color.Red
+        Chart2.Series("Verde").Color = Color.Green
+        Chart3.Series("Azul").Color = Color.Blue
+        'Borramos el contenido
+        Chart1.Series("Rojo").Points.Clear()
+        Chart2.Series("Verde").Points.Clear()
+        Chart3.Series("Azul").Points.Clear()
+        Dim bmp As New Bitmap(PictureBox1.Image, New Size(New Point(100, 100)))
+        Dim histoAcumulado = objetoTratamiento.histogramaAcumulado(bmp)
+        For i = 0 To UBound(histoAcumulado)
+            Chart1.Series("Rojo").Points.AddXY(i + 1, histoAcumulado(i, 0))
+            Chart2.Series("Verde").Points.AddXY(i + 1, histoAcumulado(i, 1))
+            Chart3.Series("Azul").Points.AddXY(i + 1, histoAcumulado(i, 2))
+        Next
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        actualizarHistrograma()
+        tiempo = 1 'Para que el contador se pare
+        Button1.Text = "Actualizar histograma"
+    End Sub 'Botón para actualizar histograma manualmente
+    Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
+        If tiempo <> 1 Then
+            tiempo -= 1
+            Button1.Text = "Actualizando en (" & tiempo & ")"
+        Else
+            Button1.Text = "Actualizar histograma"
+            actualizarHistrograma()
+        End If
+    End Sub
+#End Region
+
+#Region "Actualizar imagen secundaria/ actualizar hacer y deshacer. Actualizar histogramas"
     'Realizamos esto cuando recibimos el evento
     Sub actualizarPicture(ByVal bmp As Bitmap)
         Try
             PictureBox1.Image = bmp
             PictureBox2.Image = bmp
             Timer2.Enabled = True
+            'Con esto actualizamos el histograma
+            tiempo = 3 '3 segundos para actualización
+            Timer3.Enabled = True
         Catch
         End Try
     End Sub
+
     'Actualizar deshacer/hacer
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         DeshacerToolStripMenuItem.Text = "Deshacer - " & objetoTratamiento.ListadoInfoAtras
         RehacerToolStripMenuItem.Text = "Rehacer - " & objetoTratamiento.ListadoInfoAdelante
         ImagenOriginalToolStripMenuItem.Text = objetoTratamiento.imagenOriginalInfo
     End Sub
+
+
     'FIN de actualizar imagen secundaria
 #End Region
 
@@ -467,15 +515,19 @@ Public Class Principal
     End Sub
 #End Region
 
- 
-  
+
+
 #Region "Adaptar panel secundario"
     Private Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainer1.SplitterMoved
         PictureBox2.Width = SplitContainer1.Panel2.Width - 5
+        Chart1.Width = SplitContainer1.Panel2.Width
+        Chart2.Width = SplitContainer1.Panel2.Width
+        Chart3.Width = SplitContainer1.Panel2.Width
+        Button1.Width = SplitContainer1.Panel2.Width - 10
         Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20) 'Adaptamos label
     End Sub
 #End Region
- 
+
 #Region "Barra de herramientas con imágenes"
     'ABrir imagen
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
@@ -524,6 +576,26 @@ Public Class Principal
             Panel1.AutoScroll = True
         End If
     End Sub
+    'Actualizar
+    Private Sub ToolStripButton9_Click(sender As Object, e As EventArgs) Handles ToolStripButton9.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
+        'Actualizamos el Panel1
+        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScroll = True
+    End Sub
+    'Blanco y negro
+    Private Sub ToolStripButton10_Click(sender As Object, e As EventArgs) Handles ToolStripButton10.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "blancoNegro"
+        transformar()
+    End Sub
+    'Escala de grises
+    Private Sub ToolStripButton11_Click(sender As Object, e As EventArgs) Handles ToolStripButton11.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "escalaGrises"
+        transformar()
+    End Sub
 #End Region
 
 #Region "ContextMenuStrip (Botón derecho)"
@@ -559,5 +631,7 @@ Public Class Principal
         Panel1.AutoScroll = True
     End Sub
 #End Region
+
+
 
 End Class

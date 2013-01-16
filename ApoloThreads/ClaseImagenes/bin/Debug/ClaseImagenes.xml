@@ -55,11 +55,27 @@ ClaseImagenes
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.LENAblanconegro">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.lenagrises">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.lenagrises1">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.picture_save">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.powered">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.system_software_update">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
