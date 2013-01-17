@@ -6,8 +6,6 @@ Namespace Apolo
     Public Delegate Sub ActualizamosNombreImagen(ByVal NombreImagen() As String) 'Definimos el Tipo de evento
 
     Public Class TratamientoImagenes
-
-
         'Variables para controlar atrás/adelante 
         Public Shared imagenesGuardadas As New ArrayList 'Para ir atrás y adelante, Lo creamos como
         'Se crea como shared para que no se cree de nuevo en cada instancia
@@ -280,7 +278,7 @@ Namespace Apolo
                     azulaux = Niveles(i, j).B
 
                     'Calculamos la media 
-                    media = (rojoaux + verdeaux + azulaux) / 3
+                    media = CInt((rojoaux + verdeaux + azulaux) / 3)
                     'En función de si el valor es mayor o menor de 128 (mitad aproximada
                     'de 255), lo convertimos en blanco o negro
                     If media >= valortope Then
@@ -1549,8 +1547,8 @@ Namespace Apolo
             Niveles = nivel(bmp2) 'Obtenemos valores
             Dim tamañoMascara = ElementoEstructural.GetUpperBound(0) \ 2 'División entera
 
-            Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
-
+            'Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height) 'Redmiensionamos  
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Aplicando operador morfológico. Dilatación" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte
@@ -1601,8 +1599,8 @@ Namespace Apolo
             Niveles = nivel(bmp2) 'Obtenemos valores
             Dim tamañoMascara = ElementoEstructural.GetUpperBound(0) \ 2 'División entera
 
-            Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
-
+            'Dim bmp3 As New Bitmap(bmp2.Width - tamañoMascara, bmp2.Height - tamañoMascara) 'Redmiensionamos menos el tamaño de la máscara
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Aplicando operador morfológico. Erosión" 'Actualizar el estado
             Dim Rojo, Verde, Azul, alfa As Byte
@@ -1699,7 +1697,7 @@ Namespace Apolo
         Public Function MorfologicasPerimetroOrigEros(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim objeto As New TratamientoImagenes
-            Dim bmp4 = objeto.MorfologicasErosion(bmp2, ElementoEstructural)
+            Dim bmp4 As Bitmap = objeto.MorfologicasErosion(bmp2, ElementoEstructural)
             Dim bmp6 = objeto.OperacionResta(bmp2, bmp4)
             porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
@@ -2693,7 +2691,7 @@ Namespace Apolo
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
-            guardarImagen(bmp3, "Multiplicación de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            guardarImagen(bmp3, "Unión de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
         Public Function OperacionAND(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
@@ -2834,7 +2832,7 @@ Namespace Apolo
 
 
         'Contiene el conjunto de funciones para abrir imágenes desde archivo, URL, BING, FB, etc
-#Region "FuncionesAbrir"
+#Region "FuncionesAbrirGuardar"
 
         'Función para crear tapiz con alto/ancho y color
         Function tapiz(ByVal ancho As Integer, ByVal alto As Integer, ByVal color As Color, Optional ByVal nombreTapiz As String = "Nuevo tapiz")
@@ -2973,6 +2971,50 @@ Namespace Apolo
             End Try
         End Sub
 
+        'Función para guardar imagen
+        Sub guardarcomo(ByVal bmp As Bitmap, Optional ByVal filtrado As Integer = 4)
+            Dim salvar As New SaveFileDialog
+            With salvar
+                .Filter = "Ficheros BMP|*.bmp" & _
+                          "|Ficheros GIF|*.gif" & _
+                          "|Ficheros JPG o JPEG|*.jpg;*.jpeg" & _
+                          "|Ficheros PNG|*.png" & _
+                          "|Ficheros TIFF|*.tif"
+                .FilterIndex = filtrado
+                .FileName = "Nueva_imagen"
+                If (.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+
+                    If salvar.FileName <> "" Then
+                        Dim fs As System.IO.FileStream = CType(salvar.OpenFile(), System.IO.FileStream)
+                        Dim formato As String = ""
+                        Select Case salvar.FilterIndex
+                            Case 1
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Bmp)
+                                formato = "bmp"
+                            Case 2
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Gif)
+                                formato = "gif"
+                            Case 3
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg)
+                                formato = "jpeg"
+                            Case 4
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Png)
+                                formato = "png"
+                            Case 5
+                                bmp.Save(fs, System.Drawing.Imaging.ImageFormat.Tiff)
+                                formato = "tiff"
+                        End Select
+                        'Guardamos la imagen para que quede en el registro (aunque se duplique)
+                        porcentaje(0) = 100 'Actualizamos el estado
+                        porcentaje(1) = "Finalizado" 'Actualizamos el estado
+                        guardarImagen(bmp, "Imagen guardada como " & formato) 'Guardamos la imagen para poder hacer retroceso
+                        RaiseEvent actualizaBMP(bmp) 'generamos el evento
+                        fs.Close()
+                    End If
+                End If
+            End With
+        End Sub
+
 #End Region
 
         'Contiene funciones no relacionadas directamente con el tratamiento de imágenes.
@@ -3074,6 +3116,32 @@ Namespace Apolo
             End Try
 
             Return datosVuelta
+        End Function
+        Public Function histogramaAcumulado(ByVal bmp As Bitmap)
+            Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim NivelesHist(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Dim i, j As Long
+            ReDim NivelesHist(bmp2.Width - 1, bmp2.Height - 1)  'Asignamos a la matriz las dimensiones de la imagen -1 *
+            For i = 0 To bmp2.Width - 1 'Recorremos la matriz a lo ancho
+                For j = 0 To bmp2.Height - 1 'Recorremos la matriz a lo largo
+                    NivelesHist(i, j) = bmp2.GetPixel(i, j) 'Con el método GetPixel, asignamos para cada celda de la matriz el color con sus valores RGB.
+                Next
+            Next
+
+            Dim Rojo, Verde, Azul As Byte 'Declaramos tres variables que almacenarán los colores
+            Dim matrizAcumulada(255, 2) As ULong
+            For i = 0 To NivelesHist.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To NivelesHist.GetUpperBound(1)
+                    Rojo = NivelesHist(i, j).R 'ASignamos el color
+                    Verde = NivelesHist(i, j).G
+                    Azul = NivelesHist(i, j).B
+                    'ACumulamos los valores
+                    matrizAcumulada(Rojo, 0) += 1
+                    matrizAcumulada(Verde, 1) += 1
+                    matrizAcumulada(Azul, 2) += 1
+                Next
+            Next
+            Return matrizAcumulada
         End Function
 #End Region
 

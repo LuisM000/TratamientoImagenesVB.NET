@@ -8,10 +8,18 @@ Public Class Principal
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Establecemos el control del botón derecho  
+        Me.ContextMenuStrip = ContextMenuStrip1
         'Colocamos la imagen secundaria en la parte inferior
         PictureBox2.Location = New Size(PictureBox2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 5))
         'Colocamos label imagen general
         Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
+        'Colocamos los chart y el botón
+        Chart1.Location = New Size(Chart1.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + Chart1.Size.Height + 100))
+        Chart2.Location = New Size(Chart2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 2) + 100))
+        Chart3.Location = New Size(Chart3.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 3) + 100))
+        Button1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Button1.Width / 2), SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 90))
+
         'Habilitamos el arrastre para el control PictureBox1 (No lo tiene permitido en tiempo de diseño)
         PictureBox1.AllowDrop = True
         'Asignamos el gestor que controle cuando sale imagen
@@ -21,7 +29,7 @@ Public Class Principal
 
     End Sub
 
-
+   
 #Region "Archivo"
     'Abrir imagen desde archivo
     Private Sub AbrirImagenToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AbrirImagenToolStripMenuItem1.Click
@@ -51,13 +59,20 @@ Public Class Principal
     Private Sub CrearTapizToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrearTapizToolStripMenuItem.Click
         Tapiz.Show()
     End Sub
+    'Guardamos imagen
+    Private Sub GuardarComoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardarComoToolStripMenuItem.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        objetoTratamiento.guardarcomo(bmp, 4)
+    End Sub
 #End Region
 
 #Region "Editar"
     Private Sub RefrescarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefrescarToolStripMenuItem.Click
-        'Actualizamos el Panel1
-        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
-        Panel1.AutoScroll = True
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
+        End If
     End Sub
 
     'Deshacer
@@ -397,23 +412,66 @@ Public Class Principal
 
 #End Region
 
+#Region "Actualizar histograma"
+    Dim tiempo As Integer = 3 'Variable que controla el tiempo de actualización
 
-#Region "Actualizar imagen secundaria/ actualizar hacer y deshacer"
+    Sub actualizarHistrograma() 'Función que recibe y dibuja el histograma
+        'Los ponesmos del colores correspondiente
+        Chart1.Series("Rojo").Color = Color.Red
+        Chart2.Series("Verde").Color = Color.Green
+        Chart3.Series("Azul").Color = Color.Blue
+        'Borramos el contenido
+        Chart1.Series("Rojo").Points.Clear()
+        Chart2.Series("Verde").Points.Clear()
+        Chart3.Series("Azul").Points.Clear()
+        Dim bmp As New Bitmap(PictureBox1.Image, New Size(New Point(100, 100)))
+        Dim histoAcumulado = objetoTratamiento.histogramaAcumulado(bmp)
+        For i = 0 To UBound(histoAcumulado)
+            Chart1.Series("Rojo").Points.AddXY(i + 1, histoAcumulado(i, 0))
+            Chart2.Series("Verde").Points.AddXY(i + 1, histoAcumulado(i, 1))
+            Chart3.Series("Azul").Points.AddXY(i + 1, histoAcumulado(i, 2))
+        Next
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        actualizarHistrograma()
+        tiempo = 0 'Para que el contador se pare
+        Button1.Text = "Actualizar histograma"
+    End Sub 'Botón para actualizar histograma manualmente
+    Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
+        If tiempo > 1 Then 'Si es mayor que uno vamos mostrando la cuenta atrás en el botón
+            tiempo -= 1
+            Button1.Text = "Actualizando en (" & tiempo & ")"
+        ElseIf tiempo = 1 Then 'Cuando llega a uno actualizamos
+            Button1.Text = "Actualizar histograma"
+            actualizarHistrograma()
+            tiempo = 0 'Pasamos el tiempo a cero para que no siga descontando y no estre en esta sentencia de control
+        End If
+    End Sub
+#End Region
+
+#Region "Actualizar imagen secundaria/ actualizar hacer y deshacer."
     'Realizamos esto cuando recibimos el evento
     Sub actualizarPicture(ByVal bmp As Bitmap)
         Try
             PictureBox1.Image = bmp
             PictureBox2.Image = bmp
             Timer2.Enabled = True
+            'Con esto actualizamos el histograma
+            tiempo = 3 '3 segundos para actualización
+            Timer3.Enabled = True
         Catch
         End Try
     End Sub
+
     'Actualizar deshacer/hacer
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         DeshacerToolStripMenuItem.Text = "Deshacer - " & objetoTratamiento.ListadoInfoAtras
         RehacerToolStripMenuItem.Text = "Rehacer - " & objetoTratamiento.ListadoInfoAdelante
         ImagenOriginalToolStripMenuItem.Text = objetoTratamiento.imagenOriginalInfo
     End Sub
+
+
     'FIN de actualizar imagen secundaria
 #End Region
 
@@ -435,14 +493,14 @@ Public Class Principal
 
 
 #Region "DRAG&DROP"
-    Private Sub PictureBox1_DragEnter1(sender As Object, e As DragEventArgs) Handles PictureBox1.DragEnter
+    Private Sub PictureBox1_DragEnter1(sender As Object, e As DragEventArgs)
         'DataFormats.FileDrop nos devuelve el array de rutas de archivos
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             'Los archivos son externos a nuestra aplicación por lo que de indicaremos All ya que dará lo mismo.
             e.Effect = DragDropEffects.All
         End If
     End Sub
-    Private Sub PictureBox1_DragDrop1(sender As Object, e As DragEventArgs) Handles PictureBox1.DragDrop
+    Private Sub PictureBox1_DragDrop1(sender As Object, e As DragEventArgs)
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             Dim rutaImagen As String
             'Asignamos la primera posición del array de ruta de archivos a la variable de tipo string
@@ -458,15 +516,142 @@ Public Class Principal
     End Sub
 #End Region
 
- 
-  
+
+
 #Region "Adaptar panel secundario"
     Private Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainer1.SplitterMoved
         PictureBox2.Width = SplitContainer1.Panel2.Width - 5
+        Chart1.Width = SplitContainer1.Panel2.Width
+        Chart2.Width = SplitContainer1.Panel2.Width
+        Chart3.Width = SplitContainer1.Panel2.Width
+        Button1.Width = SplitContainer1.Panel2.Width - 10
         Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20) 'Adaptamos label
     End Sub
 #End Region
- 
+
+#Region "Barra de herramientas con imágenes"
+    'ABrir imagen
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Dim bmp As Bitmap
+        bmp = objetoTratamiento.abrirImagen()
+        If bmp IsNot Nothing Then
+            PictureBox1.Image = bmp
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+    'ABrir imagen (como recurso)
+    Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
+        AbrirRecurso.Show()
+    End Sub
+    'Guardar como...
+    Private Sub ToolStripButton8_Click(sender As Object, e As EventArgs) Handles ToolStripButton8.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        objetoTratamiento.guardarcomo(bmp, 4)
+    End Sub
+    'ABrir imagen desde bing
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+        AbrirBing.Show()
+    End Sub
+    'ABrir imagen desde facebook
+    Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
+        AbrirFacebook.Show()
+    End Sub
+    'Deshacer
+    Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ListadoImagenesAtras
+        End If
+    End Sub
+    'Rehacer
+    Private Sub ToolStripButton6_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ListadoImagenesAdelante
+        End If
+    End Sub
+    'Refrescar
+    Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+    'Actualizar
+    Private Sub ToolStripButton9_Click(sender As Object, e As EventArgs) Handles ToolStripButton9.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
+        'Actualizamos el Panel1
+        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScroll = True
+    End Sub
+    'Blanco y negro
+    Private Sub ToolStripButton10_Click(sender As Object, e As EventArgs) Handles ToolStripButton10.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "blancoNegro"
+        transformar()
+    End Sub
+    'Escala de grises
+    Private Sub ToolStripButton11_Click(sender As Object, e As EventArgs) Handles ToolStripButton11.Click
+        Dim bmp As New Bitmap(PictureBox1.Image)
+        transformacion = "escalaGrises"
+        transformar()
+    End Sub
+#End Region
+
+#Region "ContextMenuStrip (Botón derecho)"
+
+    Private Sub AbrirImagenToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles AbrirImagenToolStripMenuItem3.Click
+        Dim bmp As Bitmap
+        bmp = objetoTratamiento.abrirImagen()
+        If bmp IsNot Nothing Then
+            PictureBox1.Image = bmp
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+
+    Private Sub GuardarImagenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardarImagenToolStripMenuItem.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        objetoTratamiento.guardarcomo(bmp, 4)
+    End Sub
+
+    Private Sub RefrescarToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles RefrescarToolStripMenuItem2.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+
+    Private Sub ActualizarToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ActualizarToolStripMenuItem2.Click
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
+        'Actualizamos el Panel1
+        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScroll = True
+    End Sub
+#End Region
 
 
+
+    Private Sub Chart3_Click(sender As Object, e As EventArgs) Handles Chart3.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Blue)
+        frmHisto.Show()
+
+    End Sub
+
+    Private Sub Chart2_Click(sender As Object, e As EventArgs) Handles Chart2.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Green)
+        frmHisto.Show()
+
+    End Sub
+
+    Private Sub Chart1_Click(sender As Object, e As EventArgs) Handles Chart1.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Red)
+        frmHisto.Show()
+    End Sub
 End Class
