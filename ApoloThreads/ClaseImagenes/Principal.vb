@@ -435,21 +435,22 @@ Public Class Principal
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         actualizarHistrograma()
-        tiempo = 1 'Para que el contador se pare
+        tiempo = 0 'Para que el contador se pare
         Button1.Text = "Actualizar histograma"
     End Sub 'Botón para actualizar histograma manualmente
     Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
-        If tiempo <> 1 Then
+        If tiempo > 1 Then 'Si es mayor que uno vamos mostrando la cuenta atrás en el botón
             tiempo -= 1
             Button1.Text = "Actualizando en (" & tiempo & ")"
-        Else
+        ElseIf tiempo = 1 Then 'Cuando llega a uno actualizamos
             Button1.Text = "Actualizar histograma"
             actualizarHistrograma()
+            tiempo = 0 'Pasamos el tiempo a cero para que no siga descontando y no estre en esta sentencia de control
         End If
     End Sub
 #End Region
 
-#Region "Actualizar imagen secundaria/ actualizar hacer y deshacer. Actualizar histogramas"
+#Region "Actualizar imagen secundaria/ actualizar hacer y deshacer."
     'Realizamos esto cuando recibimos el evento
     Sub actualizarPicture(ByVal bmp As Bitmap)
         Try
@@ -634,4 +635,23 @@ Public Class Principal
 
 
 
+    Private Sub Chart3_Click(sender As Object, e As EventArgs) Handles Chart3.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Blue)
+        frmHisto.Show()
+
+    End Sub
+
+    Private Sub Chart2_Click(sender As Object, e As EventArgs) Handles Chart2.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Green)
+        frmHisto.Show()
+
+    End Sub
+
+    Private Sub Chart1_Click(sender As Object, e As EventArgs) Handles Chart1.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Red)
+        frmHisto.Show()
+    End Sub
 End Class

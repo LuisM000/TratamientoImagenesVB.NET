@@ -278,7 +278,7 @@ Namespace Apolo
                     azulaux = Niveles(i, j).B
 
                     'Calculamos la media 
-                    media = (rojoaux + verdeaux + azulaux) / 3
+                    media = CInt((rojoaux + verdeaux + azulaux) / 3)
                     'En función de si el valor es mayor o menor de 128 (mitad aproximada
                     'de 255), lo convertimos en blanco o negro
                     If media >= valortope Then

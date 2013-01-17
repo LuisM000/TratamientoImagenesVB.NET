@@ -137,6 +137,7 @@ Partial Class Principal
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripButton10 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton11 = New System.Windows.Forms.ToolStripButton()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Chart3 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Chart2 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
@@ -225,8 +226,8 @@ Partial Class Principal
         Me.ReflexiónToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TraslaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.RotaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -815,6 +816,7 @@ Partial Class Principal
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Button2)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Button1)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Chart3)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Chart2)
@@ -987,12 +989,21 @@ Partial Class Principal
         Me.ToolStripButton11.Size = New System.Drawing.Size(36, 36)
         Me.ToolStripButton11.Text = "Escala de grises"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(22, 422)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(147, 29)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "Actualizar histograma"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Chart3
         '
         Me.Chart3.BackColor = System.Drawing.SystemColors.Control
         ChartArea1.Name = "ChartArea1"
         Me.Chart3.ChartAreas.Add(ChartArea1)
-        Me.Chart3.Location = New System.Drawing.Point(-5, 89)
+        Me.Chart3.Location = New System.Drawing.Point(-7, 83)
         Me.Chart3.Name = "Chart3"
         Series1.ChartArea = "ChartArea1"
         Series1.IsVisibleInLegend = False
@@ -1007,7 +1018,7 @@ Partial Class Principal
         Me.Chart2.BackColor = System.Drawing.SystemColors.Control
         ChartArea2.Name = "ChartArea1"
         Me.Chart2.ChartAreas.Add(ChartArea2)
-        Me.Chart2.Location = New System.Drawing.Point(-5, 226)
+        Me.Chart2.Location = New System.Drawing.Point(5, 177)
         Me.Chart2.Name = "Chart2"
         Series2.ChartArea = "ChartArea1"
         Series2.IsVisibleInLegend = False
@@ -1022,7 +1033,7 @@ Partial Class Principal
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
         ChartArea3.Name = "ChartArea1"
         Me.Chart1.ChartAreas.Add(ChartArea3)
-        Me.Chart1.Location = New System.Drawing.Point(-5, 363)
+        Me.Chart1.Location = New System.Drawing.Point(2, 285)
         Me.Chart1.Name = "Chart1"
         Series3.ChartArea = "ChartArea1"
         Series3.IsVisibleInLegend = False
@@ -1564,18 +1575,18 @@ Partial Class Principal
         Me.RotaciónToolStripMenuItem1.Size = New System.Drawing.Size(128, 22)
         Me.RotaciónToolStripMenuItem1.Text = "Rotación"
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(8, 48)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(147, 29)
-        Me.Button1.TabIndex = 5
-        Me.Button1.Text = "Actualizar histograma"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Timer3
         '
         Me.Timer3.Interval = 1000
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(22, 457)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(147, 29)
+        Me.Button2.TabIndex = 6
+        Me.Button2.Text = "Ver histogramas reales"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'Principal
         '
@@ -1812,5 +1823,6 @@ Partial Class Principal
     Friend WithEvents Chart2 As System.Windows.Forms.DataVisualization.Charting.Chart
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Timer3 As System.Windows.Forms.Timer
+    Friend WithEvents Button2 As System.Windows.Forms.Button
 
 End Class

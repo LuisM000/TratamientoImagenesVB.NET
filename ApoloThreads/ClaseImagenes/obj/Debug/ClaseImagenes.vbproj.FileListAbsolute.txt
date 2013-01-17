@@ -132,3 +132,4 @@ C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.ImportarExportarElementoEstructural.resources
 C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.ImportarExportarElementoEstructural.resources
 C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.OperadoresMorfologicos.resources
+C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Histogramas.resources
