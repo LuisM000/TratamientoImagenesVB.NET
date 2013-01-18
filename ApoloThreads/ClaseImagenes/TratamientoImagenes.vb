@@ -3117,6 +3117,7 @@ Namespace Apolo
 
             Return datosVuelta
         End Function
+        'Duplicamos la función (histogramaAcumulado, histogramaAcumuladoH) para que no haya fallos con los hilos)
         Public Function histogramaAcumulado(ByVal bmp As Bitmap)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim NivelesHist(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -3139,6 +3140,37 @@ Namespace Apolo
                     matrizAcumulada(Rojo, 0) += 1
                     matrizAcumulada(Verde, 1) += 1
                     matrizAcumulada(Azul, 2) += 1
+                Next
+            Next
+            Return matrizAcumulada
+        End Function
+        Public Function histogramaAcumuladoH(ByVal bmp As Bitmap)
+            Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            Dim NivelesHist(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Dim i, j As Long
+            ReDim NivelesHist(bmp2.Width - 1, bmp2.Height - 1)  'Asignamos a la matriz las dimensiones de la imagen -1 *
+            For i = 0 To bmp2.Width - 1 'Recorremos la matriz a lo ancho
+                For j = 0 To bmp2.Height - 1 'Recorremos la matriz a lo largo
+                    NivelesHist(i, j) = bmp2.GetPixel(i, j) 'Con el método GetPixel, asignamos para cada celda de la matriz el color con sus valores RGB.
+                Next
+            Next
+
+            Dim Rojo, Verde, Azul, Alfa As Integer 'Declaramos tres variables que almacenarán los colores (como integer, para que no se desborde al calcular la escala de grises)
+            Dim grises As Integer
+            Dim matrizAcumulada(255, 4) As ULong
+            For i = 0 To NivelesHist.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To NivelesHist.GetUpperBound(1)
+                    Rojo = NivelesHist(i, j).R 'ASignamos el color
+                    Verde = NivelesHist(i, j).G
+                    Azul = NivelesHist(i, j).B
+                    Alfa = NivelesHist(i, j).A
+                    grises = CInt((Rojo + Verde + Azul) / 3)
+                    'ACumulamos los valores
+                    matrizAcumulada(Rojo, 0) += 1 'rojo
+                    matrizAcumulada(Verde, 1) += 1 'verde
+                    matrizAcumulada(Azul, 2) += 1 'azul
+                    matrizAcumulada(Alfa, 3) += 1 'alfa
+                    matrizAcumulada(grises, 4) += 1 'escala de grises
                 Next
             Next
             Return matrizAcumulada

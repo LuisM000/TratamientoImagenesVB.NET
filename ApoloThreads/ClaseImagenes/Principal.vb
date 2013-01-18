@@ -10,16 +10,6 @@ Public Class Principal
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Establecemos el control del botón derecho  
         Me.ContextMenuStrip = ContextMenuStrip1
-        'Colocamos la imagen secundaria en la parte inferior
-        PictureBox2.Location = New Size(PictureBox2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 5))
-        'Colocamos label imagen general
-        Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
-        'Colocamos los chart y el botón
-        Chart1.Location = New Size(Chart1.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + Chart1.Size.Height + 100))
-        Chart2.Location = New Size(Chart2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 2) + 100))
-        Chart3.Location = New Size(Chart3.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 3) + 100))
-        Button1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Button1.Width / 2), SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 90))
-
         'Habilitamos el arrastre para el control PictureBox1 (No lo tiene permitido en tiempo de diseño)
         PictureBox1.AllowDrop = True
         'Asignamos el gestor que controle cuando sale imagen
@@ -27,6 +17,13 @@ Public Class Principal
         'Asignamos el gestor que controle cuando se abre una imagen nueva
         AddHandler objetoTratamiento.actualizaNombreImagen, New ActualizamosNombreImagen(AddressOf actualizarNombrePicture)
 
+        'ACtualizamos la imagen Lena
+        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
+        'ACtualizamos de forma manual el histograma
+        actualizarHistrograma()
+        tiempo = 0 'Para que el contador se pare
+        Button1.Text = "Actualizar histograma"
     End Sub
 
    
@@ -107,6 +104,19 @@ Public Class Principal
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             PictureBox1.Image = objetoTratamiento.ImagenOriginalGuardada
         End If
+    End Sub
+#End Region
+
+#Region "Información"
+    'Histograma detallada
+    Private Sub DetalladoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DetalladoToolStripMenuItem.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Red)
+        frmHisto.Show()
+    End Sub
+    'Todos los histogramas
+    Private Sub TodosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TodosToolStripMenuItem.Click
+        TodosHistogramas.Show()
     End Sub
 #End Region
 
@@ -449,6 +459,57 @@ Public Class Principal
         End If
     End Sub
 #End Region
+#Region "Abrir histogramas"
+    'Botón de mostrar todos los histográmas
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        TodosHistogramas.Show()
+    End Sub
+
+    Private Sub Chart3_Click(sender As Object, e As EventArgs) Handles Chart3.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Blue)
+        frmHisto.Show()
+
+    End Sub
+
+    Private Sub Chart2_Click(sender As Object, e As EventArgs) Handles Chart2.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Green)
+        frmHisto.Show()
+
+    End Sub
+
+    Private Sub Chart1_Click(sender As Object, e As EventArgs) Handles Chart1.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Red)
+        frmHisto.Show()
+    End Sub
+
+    Private Sub Chart3_MouseEnter(sender As Object, e As EventArgs) Handles Chart3.MouseEnter
+        Me.Cursor = Cursors.Hand
+    End Sub
+
+    Private Sub Chart3_MouseLeave(sender As Object, e As EventArgs) Handles Chart3.MouseLeave
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub Chart2_MouseEnter(sender As Object, e As EventArgs) Handles Chart2.MouseEnter
+        Me.Cursor = Cursors.Hand
+    End Sub
+
+    Private Sub Chart2_MouseLeave(sender As Object, e As EventArgs) Handles Chart2.MouseLeave
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub Chart1_MouseEnter(sender As Object, e As EventArgs) Handles Chart1.MouseEnter
+        Me.Cursor = Cursors.Hand
+    End Sub
+
+    Private Sub Chart1_MouseLeave(sender As Object, e As EventArgs) Handles Chart1.MouseLeave
+        Me.Cursor = Cursors.Default
+    End Sub
+
+#End Region
 
 #Region "Actualizar imagen secundaria/ actualizar hacer y deshacer."
     'Realizamos esto cuando recibimos el evento
@@ -493,14 +554,17 @@ Public Class Principal
 
 
 #Region "DRAG&DROP"
-    Private Sub PictureBox1_DragEnter1(sender As Object, e As DragEventArgs)
+
+   
+
+    Private Sub PictureBox1_DragEnter(sender As Object, e As DragEventArgs) Handles PictureBox1.DragEnter
         'DataFormats.FileDrop nos devuelve el array de rutas de archivos
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             'Los archivos son externos a nuestra aplicación por lo que de indicaremos All ya que dará lo mismo.
             e.Effect = DragDropEffects.All
         End If
     End Sub
-    Private Sub PictureBox1_DragDrop1(sender As Object, e As DragEventArgs)
+    Private Sub PictureBox1_DragDrop(sender As Object, e As DragEventArgs) Handles PictureBox1.DragDrop
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then
             Dim rutaImagen As String
             'Asignamos la primera posición del array de ruta de archivos a la variable de tipo string
@@ -518,14 +582,29 @@ Public Class Principal
 
 
 
-#Region "Adaptar panel secundario"
+#Region "Adaptar panel secundario y formuPrincipal"
     Private Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainer1.SplitterMoved
-        PictureBox2.Width = SplitContainer1.Panel2.Width - 5
-        Chart1.Width = SplitContainer1.Panel2.Width
+        PictureBox2.Width = SplitContainer1.Panel2.Width - 5 'Imagen general
+        Chart1.Width = SplitContainer1.Panel2.Width 'Chart-->histogramas
         Chart2.Width = SplitContainer1.Panel2.Width
         Chart3.Width = SplitContainer1.Panel2.Width
-        Button1.Width = SplitContainer1.Panel2.Width - 10
-        Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20) 'Adaptamos label
+        Button1.Width = SplitContainer1.Panel2.Width - 10 'Botón de actualizar histograma
+        Button2.Width = SplitContainer1.Panel2.Width - 10 'Botón de actualizar histograma
+        'Adaptamos label --> imagen general
+        Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
+    End Sub
+    Private Sub Principal_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        'Colocamos la imagen secundaria en la parte inferior
+        PictureBox2.Location = New Size(PictureBox2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 5))
+        'Colocamos label imagen general
+        Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
+        'Colocamos los chart y el botón
+        Chart1.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + Chart1.Size.Height + 70))
+        Chart2.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 2) + 70))
+        Chart3.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 3) + 70))
+        Button1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Button1.Width / 2), SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 70))
+        'Botón de todos los histogramas
+        Button2.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Button2.Width / 2), SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 100) - ((Chart1.Size.Height * 3)))
     End Sub
 #End Region
 
@@ -635,23 +714,6 @@ Public Class Principal
 
 
 
-    Private Sub Chart3_Click(sender As Object, e As EventArgs) Handles Chart3.Click
-        'Hay que crear la instancia con constructor y el valor del color
-        Dim frmHisto As New Histogramas(Color.Blue)
-        frmHisto.Show()
 
-    End Sub
-
-    Private Sub Chart2_Click(sender As Object, e As EventArgs) Handles Chart2.Click
-        'Hay que crear la instancia con constructor y el valor del color
-        Dim frmHisto As New Histogramas(Color.Green)
-        frmHisto.Show()
-
-    End Sub
-
-    Private Sub Chart1_Click(sender As Object, e As EventArgs) Handles Chart1.Click
-        'Hay que crear la instancia con constructor y el valor del color
-        Dim frmHisto As New Histogramas(Color.Red)
-        frmHisto.Show()
-    End Sub
+ 
 End Class

@@ -161,6 +161,12 @@
     <Compile Include="Histogramas\Histogramas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Histogramas\TodosHistogramas.Designer.vb">
+      <DependentUpon>TodosHistogramas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Histogramas\TodosHistogramas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -363,6 +369,9 @@
     <EmbeddedResource Include="Histogramas\Histogramas.resx">
       <DependentUpon>Histogramas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Histogramas\TodosHistogramas.resx">
+      <DependentUpon>TodosHistogramas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -498,6 +507,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\lenagrises1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remastered-lena-512x512.tif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CirculoRojo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CirculoVerde.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CirculoAzul.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CirculoGrises.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CirculoGrises1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
