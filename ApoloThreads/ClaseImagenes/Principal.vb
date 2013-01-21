@@ -426,65 +426,81 @@ Public Class Principal
     Dim tiempo As Integer = 3 'Variable que controla el tiempo de actualización
 
     Sub actualizarHistrograma() 'Función que recibe y dibuja el histograma
-        'Los ponesmos del colores correspondiente
-        Chart1.Series("Rojo").Color = Color.Red
-        Chart2.Series("Verde").Color = Color.Green
-        Chart3.Series("Azul").Color = Color.Blue
-        'Borramos el contenido
-        Chart1.Series("Rojo").Points.Clear()
-        Chart2.Series("Verde").Points.Clear()
-        Chart3.Series("Azul").Points.Clear()
-        Dim bmp As New Bitmap(PictureBox1.Image, New Size(New Point(100, 100)))
-        Dim histoAcumulado = objetoTratamiento.histogramaAcumulado(bmp)
-        For i = 0 To UBound(histoAcumulado)
-            Chart1.Series("Rojo").Points.AddXY(i + 1, histoAcumulado(i, 0))
-            Chart2.Series("Verde").Points.AddXY(i + 1, histoAcumulado(i, 1))
-            Chart3.Series("Azul").Points.AddXY(i + 1, histoAcumulado(i, 2))
-        Next
+        Try
+            'Los ponesmos del colores correspondiente
+            Chart1.Series("Rojo").Color = Color.Red
+            Chart2.Series("Verde").Color = Color.Green
+            Chart3.Series("Azul").Color = Color.Blue
+            'Borramos el contenido
+            Chart1.Series("Rojo").Points.Clear()
+            Chart2.Series("Verde").Points.Clear()
+            Chart3.Series("Azul").Points.Clear()
+            Dim bmp As New Bitmap(PictureBox1.Image, New Size(New Point(100, 100)))
+            Dim histoAcumulado = objetoTratamiento.histogramaAcumulado(bmp)
+            For i = 0 To UBound(histoAcumulado)
+                Chart1.Series("Rojo").Points.AddXY(i + 1, histoAcumulado(i, 0))
+                Chart2.Series("Verde").Points.AddXY(i + 1, histoAcumulado(i, 1))
+                Chart3.Series("Azul").Points.AddXY(i + 1, histoAcumulado(i, 2))
+            Next
+        Catch
+        End Try
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
         actualizarHistrograma()
         tiempo = 0 'Para que el contador se pare
         Button1.Text = "Actualizar histograma"
+        TabPage1.Text = "Histograma"
     End Sub 'Botón para actualizar histograma manualmente
+
     Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
         If tiempo > 1 Then 'Si es mayor que uno vamos mostrando la cuenta atrás en el botón
             tiempo -= 1
             Button1.Text = "Actualizando en (" & tiempo & ")"
+            TabPage1.Text = "Actualizando(" & tiempo & ")"
+            TabPage2.Text = "Actualizando(" & tiempo & ")"
         ElseIf tiempo = 1 Then 'Cuando llega a uno actualizamos
+            TabPage1.Text = "Histograma"
+            TabPage2.Text = "Registro de cambios"
             Button1.Text = "Actualizar histograma"
             actualizarHistrograma()
+            TabControl1_SelectedIndexChanged(sender, e)
             tiempo = 0 'Pasamos el tiempo a cero para que no siga descontando y no estre en esta sentencia de control
         End If
     End Sub
 #End Region
 #Region "Abrir histogramas"
     'Botón de mostrar todos los histográmas
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
         TodosHistogramas.Show()
     End Sub
 
-    Private Sub Chart3_Click(sender As Object, e As EventArgs) Handles Chart3.Click
+    Private Sub Chart3_Click_1(sender As Object, e As EventArgs) Handles Chart3.Click
         'Hay que crear la instancia con constructor y el valor del color
         Dim frmHisto As New Histogramas(Color.Blue)
         frmHisto.Show()
-
     End Sub
 
-    Private Sub Chart2_Click(sender As Object, e As EventArgs) Handles Chart2.Click
+    Private Sub Chart2_Click_1(sender As Object, e As EventArgs) Handles Chart2.Click
         'Hay que crear la instancia con constructor y el valor del color
         Dim frmHisto As New Histogramas(Color.Green)
         frmHisto.Show()
 
     End Sub
 
-    Private Sub Chart1_Click(sender As Object, e As EventArgs) Handles Chart1.Click
+    Private Sub Chart1_Click_1(sender As Object, e As EventArgs) Handles Chart1.Click
         'Hay que crear la instancia con constructor y el valor del color
         Dim frmHisto As New Histogramas(Color.Red)
         frmHisto.Show()
     End Sub
 
+    Private Sub Chart1_MouseEnter(sender As Object, e As EventArgs) Handles Chart1.MouseEnter
+          Me.Cursor = Cursors.Hand
+    End Sub
+
+    Private Sub Chart1_MouseLeave(sender As Object, e As EventArgs) Handles Chart1.MouseLeave
+        Me.Cursor = Cursors.Default
+    End Sub
     Private Sub Chart3_MouseEnter(sender As Object, e As EventArgs) Handles Chart3.MouseEnter
         Me.Cursor = Cursors.Hand
     End Sub
@@ -501,14 +517,63 @@ Public Class Principal
         Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub Chart1_MouseEnter(sender As Object, e As EventArgs) Handles Chart1.MouseEnter
-        Me.Cursor = Cursors.Hand
+#End Region
+
+
+#Region "Actualizar registro cambios tabcontrol"
+
+
+    Sub RefrescarTab()
+        Dim ancho As Integer = TabPage2.Width / 3 * 2.5
+        For Each c As Control In TabPage2.Controls
+            If TypeOf c Is PictureBox Then
+                c.Width = ancho
+            End If
+        Next
     End Sub
 
-    Private Sub Chart1_MouseLeave(sender As Object, e As EventArgs) Handles Chart1.MouseLeave
-        Me.Cursor = Cursors.Default
-    End Sub
+    Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
+        If TabControl1.SelectedIndex = 1 Then
 
+            Dim listaCompletaInfo = objetoTratamiento.ListadoTotalDeInfo
+            Dim labelInfo(listaCompletaInfo.Count - 1) As Label
+            Dim alto As Integer = 5
+
+            For i = 0 To listaCompletaInfo.Count - 1
+                'Labels
+                labelInfo(i) = New Label
+                TabPage2.Controls.Add(labelInfo(i))
+                labelInfo(i).Text = listaCompletaInfo(i)
+                labelInfo(i).Size = New Size(TabPage2.Width - 5, 12)
+                labelInfo(i).Location = New Size(5, alto)
+                labelInfo(i).Font = New Font("Segoe UI", 7, FontStyle.Bold)
+                alto += 115
+                '-----
+            Next
+
+            Dim listaCompletaImagenes = objetoTratamiento.ListadoTotalDeImagenes
+            Dim picImagenes(listaCompletaImagenes.Count - 1) As PictureBox
+            alto = 20
+            Dim ancho As Integer = TabPage2.Width / 3 * 2.5
+            For i = 0 To listaCompletaImagenes.Count - 1
+                'Labels
+                picImagenes(i) = New PictureBox
+                TabPage2.Controls.Add(picImagenes(i))
+                picImagenes(i).Image = listaCompletaImagenes(i)
+                picImagenes(i).Size = New Size(ancho, 100)
+                picImagenes(i).Location = New Size(5, alto)
+                picImagenes(i).SizeMode = PictureBoxSizeMode.StretchImage
+                picImagenes(i).BorderStyle = BorderStyle.FixedSingle
+                alto += 115
+                '-----
+            Next
+
+            '-- Scroll Vertical
+            Me.TabPage2.VerticalScroll.Visible = True
+            Me.TabPage2.AutoScroll = True
+
+        End If
+    End Sub
 #End Region
 
 #Region "Actualizar imagen secundaria/ actualizar hacer y deshacer."
@@ -588,10 +653,13 @@ Public Class Principal
         Chart1.Width = SplitContainer1.Panel2.Width 'Chart-->histogramas
         Chart2.Width = SplitContainer1.Panel2.Width
         Chart3.Width = SplitContainer1.Panel2.Width
-        Button1.Width = SplitContainer1.Panel2.Width - 10 'Botón de actualizar histograma
-        Button2.Width = SplitContainer1.Panel2.Width - 10 'Botón de actualizar histograma
+        Button1.Width = SplitContainer1.Panel2.Width - 20 'Botón de actualizar histograma
+        Button2.Width = SplitContainer1.Panel2.Width - 20 'Botón de actualizar histograma
         'Adaptamos label --> imagen general
         Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
+        'Adaptamos el tabcontrol
+        TabControl1.Size = New Size(SplitContainer1.Panel2.Width, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 30))
+        RefrescarTab() 'Actualizamos el registro de cambios
     End Sub
     Private Sub Principal_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         'Colocamos la imagen secundaria en la parte inferior
@@ -599,12 +667,15 @@ Public Class Principal
         'Colocamos label imagen general
         Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
         'Colocamos los chart y el botón
-        Chart1.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + Chart1.Size.Height + 70))
-        Chart2.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 2) + 70))
-        Chart3.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 3) + 70))
-        Button1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Button1.Width / 2), SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 70))
+        Chart1.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + Chart1.Size.Height + 100))
+        Chart2.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 2) + 100))
+        Chart3.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 3) + 100))
+        Button1.Location = New Size((TabControl1.Width / 2) - (Button1.Width / 2) - 3, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 102))
         'Botón de todos los histogramas
-        Button2.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Button2.Width / 2), SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 100) - ((Chart1.Size.Height * 3)))
+        Button2.Location = New Size((TabControl1.Width / 2) - (Button2.Width / 2) - 3, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 130) - ((Chart1.Size.Height * 3)))
+        'Adaptamos el tabcontrol
+        TabControl1.Size = New Size(SplitContainer1.Panel2.Width, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 30))
+
     End Sub
 #End Region
 
@@ -711,9 +782,5 @@ Public Class Principal
         Panel1.AutoScroll = True
     End Sub
 #End Region
-
-
-
-
  
 End Class
