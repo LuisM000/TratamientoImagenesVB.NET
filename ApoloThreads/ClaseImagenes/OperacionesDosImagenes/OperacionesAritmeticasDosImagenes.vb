@@ -84,13 +84,11 @@ Public Class OperacionesAritmeticasDosImagenes
         If RadioButton6.Checked = True Then 'multiplicación
             Dim res = objetoTratamiento.CompararDosImagenesSumatorio(PictureBox1.Image, PictureBox2.Image)
             MessageBox.Show(res(0) & "%")
-            PictureBox2.Image = res(2)
         End If
 
         If RadioButton7.Checked = True Then 'multiplicación
             Dim res = objetoTratamiento.CompararDosImagenes(PictureBox1.Image, PictureBox2.Image)
             MessageBox.Show(res(0) & "%")
-            PictureBox2.Image = res(1)
         End If
 
 

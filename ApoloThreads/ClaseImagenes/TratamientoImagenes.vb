@@ -2905,29 +2905,28 @@ Namespace Apolo
             Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles1 = Me.nivel(bmp6)
             Niveles2 = Me.nivel(bmp7)
-            Dim nivelesResta(bmp6.Width - 1, bmp6.Height - 1) As Integer
-            Dim bmpResultado As New Bitmap(bmp6.Width, bmp6.Height)
+            Dim nivelesResta(bmp6.Width - 21, bmp6.Height - 21) As Integer
             Dim valorCentro1, valorCentro2, valorMovido1, valorMovido2 As Integer
-            Dim valorResta As Integer
-            For i = 3 To Niveles1.GetUpperBound(0) - 3
-                For j = 3 To Niveles1.GetUpperBound(1) - 3
+            Dim valorRestaAcumulado As Integer
+            For i = 10 To Niveles1.GetUpperBound(0) - 10
+                For j = 10 To Niveles1.GetUpperBound(1) - 10
                     valorCentro1 = Niveles1(i, j).R
                     valorCentro2 = Niveles2(i, j).R
-                    For mi = -3 To 3
-                        For mj = -3 To 3
+                    valorRestaAcumulado = 0
+                    For mi = -10 To 10
+                        For mj = -10 To 10
                             valorMovido1 = Niveles1(i + mi, j + mj).R
                             valorMovido2 = Niveles2(i + mi, j + mj).R
-                            valorResta = Math.Abs((Math.Abs(valorCentro1 - valorMovido1)) - (Math.Abs(valorCentro2 - valorMovido2)))
-                            nivelesResta(i + mi, j + mj) = valorResta
-                            bmpResultado.SetPixel(i + mi, j + mj, Color.FromArgb(valorResta, valorResta, valorResta))
+                            valorRestaAcumulado += Math.Abs((Math.Abs(valorCentro1 - valorMovido1)) - (Math.Abs(valorCentro2 - valorMovido2)))
                         Next
                     Next
+                    nivelesResta(i - 10, j - 10) = valorRestaAcumulado / 441
                 Next
             Next
 
             Dim cuentaAcumulada As ULong
-            For i = 1 To nivelesResta.GetUpperBound(0) - 1
-                For j = 1 To nivelesResta.GetUpperBound(1) - 1
+            For i = 0 To nivelesResta.GetUpperBound(0)
+                For j = 0 To nivelesResta.GetUpperBound(1)
                     cuentaAcumulada += nivelesResta(i, j)
                 Next
             Next
@@ -2936,7 +2935,6 @@ Namespace Apolo
             Dim resultado As New ArrayList
             resultado.Add(100 - (cuentaAcumulada * 100) / maximo)
             resultado.Add(nivelesResta)
-            resultado.Add(bmpResultado)
             porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp1) 'generamos el evento
