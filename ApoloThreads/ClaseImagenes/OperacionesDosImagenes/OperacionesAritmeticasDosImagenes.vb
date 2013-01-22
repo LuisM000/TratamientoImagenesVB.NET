@@ -36,10 +36,10 @@ Public Class OperacionesAritmeticasDosImagenes
         RadioButton1.Checked = True
         PictureBox1.Image = bmpP
         PictureBox2.Image = bmpP
-        'Asignamos el gestor que controle cuando sale imagen
-        AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf Principal.actualizarPicture)
-        'Asignamos el gestor que controle cuando se abre una imagen nueva
-        AddHandler objetoTratamiento.actualizaNombreImagen, New ActualizamosNombreImagen(AddressOf Principal.actualizarNombrePicture)
+        ''Asignamos el gestor que controle cuando sale imagen
+        'AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf Principal.actualizarPicture)
+        ''Asignamos el gestor que controle cuando se abre una imagen nueva
+        'AddHandler objetoTratamiento.actualizaNombreImagen, New ActualizamosNombreImagen(AddressOf Principal.actualizarNombrePicture)
     End Sub
 
 
@@ -81,9 +81,26 @@ Public Class OperacionesAritmeticasDosImagenes
             Principal.PictureBox1.Image = objetoTratamiento.OperacionMultiplicacion(PictureBox1.Image, PictureBox2.Image, alfa)
         End If
 
+        If RadioButton6.Checked = True Then 'multiplicación
+            Dim res = objetoTratamiento.CompararDosImagenesSumatorio(PictureBox1.Image, PictureBox2.Image)
+            MessageBox.Show(res(0) & "%")
+            PictureBox2.Image = res(2)
+        End If
+
+        If RadioButton7.Checked = True Then 'multiplicación
+            Dim res = objetoTratamiento.CompararDosImagenes(PictureBox1.Image, PictureBox2.Image)
+            MessageBox.Show(res(0) & "%")
+            PictureBox2.Image = res(1)
+        End If
+
+
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs)
+
     End Sub
 End Class

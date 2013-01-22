@@ -2828,6 +2828,123 @@ Namespace Apolo
         End Function
 #End Region
 
+        'Comparador de imágenes a partir de dos bitmaps
+#Region "comparar dos imágenes"
+        Public Function CompararDosImagenes(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap)
+            'Clonamos los bitmaps originales
+            Dim bmp1clon = bmp1.Clone(New Rectangle(0, 0, bmp1.Width, bmp1.Height), Imaging.PixelFormat.DontCare)
+            Dim bmp2clon = bmp2.Clone(New Rectangle(0, 0, bmp2.Width, bmp2.Height), Imaging.PixelFormat.DontCare)
+            'Cuadramos los bitmaps y los asignamos a bmp4 y bmp5
+            Dim bmp3 = Me.CuadrarImagenes(bmp1clon, bmp2clon)
+            Dim bmp4 As Bitmap = bmp3(0)
+            Dim bmp5 As Bitmap = bmp3(1)
+            'Los pasamos a escala de grises
+            Dim bmp6, bmp7 As Bitmap
+            bmp6 = Me.EscalaGrises(bmp4)
+            bmp7 = Me.EscalaGrises(bmp5)
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Operación aritmética. Suma" 'Actualizar el estado
+
+            porcentaje(0) = 0 'Actualizamos el estado
+            porcentaje(1) = "Comparando imágenes" 'Actualizamos el estado
+            'Este primer bloque, guarda los niveles digitales de la imagen en la variable Niveles
+            Dim i, j As Long
+            Dim Niveles1(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            ReDim Niveles1(bmp6.Width - 1, bmp6.Height - 1)  'Asignamos a la matriz las dimensiones de la imagen -1 *
+            ReDim Niveles2(bmp7.Width - 1, bmp7.Height - 1)  'Asignamos a la matriz las dimensiones de la imagen -1 *
+            Dim aux1, aux2 As Integer
+            Dim restaaxu As Integer
+            Dim restaAcumulada As Integer
+            Dim bmpResultado As New Bitmap(bmp6.Width, bmp6.Height)
+            For i = 0 To bmp6.Width - 1 'Recorremos la matriz a lo ancho
+                For j = 0 To bmp6.Height - 1 'Recorremos la matriz a lo largo
+                    Niveles1(i, j) = bmp6.GetPixel(i, j) 'Con el método GetPixel, asignamos para cada celda de la matriz el color con sus valores RGB.
+                    Niveles2(i, j) = bmp7.GetPixel(i, j)
+                    aux1 = Niveles1(i, j).R
+                    aux2 = Niveles2(i, j).R
+                    restaaxu = Math.Abs(aux1 - aux2)
+                    restaAcumulada += restaaxu 'Restamos y acumulamos los valores
+
+                    bmpResultado.SetPixel(i, j, Color.FromArgb(restaaxu, restaaxu, restaaxu))
+                    porcentaje(0) = ((i * 100) / bmp6.Width) 'Actualizamos el estado
+                Next
+            Next
+            Dim maximo = ((bmp6.Width - 1) * (bmp6.Height - 1)) * 255
+            Dim resultado As New ArrayList
+            resultado.Add(100 - (restaAcumulada * 100) / maximo)
+            resultado.Add(bmpResultado)
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp1) 'generamos el evento
+            guardarImagen(bmp1, "Comparador de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            Return resultado
+        End Function
+        Public Function CompararDosImagenesSumatorio(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap)
+            'Clonamos los bitmaps originales
+            Dim bmp1clon = bmp1.Clone(New Rectangle(0, 0, bmp1.Width, bmp1.Height), Imaging.PixelFormat.DontCare)
+            Dim bmp2clon = bmp2.Clone(New Rectangle(0, 0, bmp2.Width, bmp2.Height), Imaging.PixelFormat.DontCare)
+            'Cuadramos los bitmaps y los asignamos a bmp4 y bmp5
+            Dim bmp3 = Me.CuadrarImagenes(bmp1clon, bmp2clon)
+            Dim bmp4 As Bitmap = bmp3(0)
+            Dim bmp5 As Bitmap = bmp3(1)
+            'Los pasamos a escala de grises
+            Dim bmp6a, bmp7a As Bitmap
+            bmp6a = Me.EscalaGrises(bmp4)
+            bmp7a = Me.EscalaGrises(bmp5)
+
+            'Pasamos por filtro paso alto
+            Dim objmascara As New TratamientoImagenes.mascaras
+            Dim mascara = objmascara.HIGH1a
+            Dim bmp6, bmp7 As Bitmap
+            bmp6 = Me.mascara3x3Grises(bmp6a, mascara)
+            bmp7 = Me.mascara3x3Grises(bmp7a, mascara)
+
+            Dim Niveles1(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles1 = Me.nivel(bmp6)
+            Niveles2 = Me.nivel(bmp7)
+            Dim nivelesResta(bmp6.Width - 1, bmp6.Height - 1) As Integer
+            Dim bmpResultado As New Bitmap(bmp6.Width, bmp6.Height)
+            Dim valorCentro1, valorCentro2, valorMovido1, valorMovido2 As Integer
+            Dim valorResta As Integer
+            For i = 3 To Niveles1.GetUpperBound(0) - 3
+                For j = 3 To Niveles1.GetUpperBound(1) - 3
+                    valorCentro1 = Niveles1(i, j).R
+                    valorCentro2 = Niveles2(i, j).R
+                    For mi = -3 To 3
+                        For mj = -3 To 3
+                            valorMovido1 = Niveles1(i + mi, j + mj).R
+                            valorMovido2 = Niveles2(i + mi, j + mj).R
+                            valorResta = Math.Abs((Math.Abs(valorCentro1 - valorMovido1)) - (Math.Abs(valorCentro2 - valorMovido2)))
+                            nivelesResta(i + mi, j + mj) = valorResta
+                            bmpResultado.SetPixel(i + mi, j + mj, Color.FromArgb(valorResta, valorResta, valorResta))
+                        Next
+                    Next
+                Next
+            Next
+
+            Dim cuentaAcumulada As ULong
+            For i = 1 To nivelesResta.GetUpperBound(0) - 1
+                For j = 1 To nivelesResta.GetUpperBound(1) - 1
+                    cuentaAcumulada += nivelesResta(i, j)
+                Next
+            Next
+
+            Dim maximo = ((nivelesResta.GetUpperBound(0) - 1) * (nivelesResta.GetUpperBound(1) - 1) * 255)
+            Dim resultado As New ArrayList
+            resultado.Add(100 - (cuentaAcumulada * 100) / maximo)
+            resultado.Add(nivelesResta)
+            resultado.Add(bmpResultado)
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp1) 'generamos el evento
+            guardarImagen(bmp1, "Comparador de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            Return resultado
+        End Function
+#End Region
+
 #End Region
 
 

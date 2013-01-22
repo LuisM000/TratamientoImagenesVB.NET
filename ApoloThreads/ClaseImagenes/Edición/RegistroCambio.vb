@@ -14,7 +14,7 @@ Public Class RegistroCambio
             labelInfo(i).Size = New Size(250, 150)
             labelInfo(i).Location = New Size(255, alto)
             labelInfo(i).Font = New Font("Segoe UI", 10)
-            alto += 100
+            alto += 180
             '-----
         Next
 
@@ -23,7 +23,7 @@ Public Class RegistroCambio
         alto = 25
 
         For i = 0 To listaCompletaImagenes.Count - 1
-            'Labels
+            'Pictures
             picImagenes(i) = New PictureBox
             Panel1.Controls.Add(picImagenes(i))
             picImagenes(i).Image = listaCompletaImagenes(i)
