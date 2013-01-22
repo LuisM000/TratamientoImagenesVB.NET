@@ -136,3 +136,4 @@ C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\Cla
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Histogramas.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.TodosHistogramas.resources
 C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.TodosHistogramas.resources
+C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.CompararImagenes.resources

@@ -37,8 +37,6 @@ Partial Class OperacionesAritmeticasDosImagenes
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.RadioButton6 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton7 = New System.Windows.Forms.RadioButton()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -186,36 +184,12 @@ Partial Class OperacionesAritmeticasDosImagenes
         Me.CheckBox1.Text = "Omitir canal alfa"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
-        'RadioButton6
-        '
-        Me.RadioButton6.AutoSize = True
-        Me.RadioButton6.Location = New System.Drawing.Point(22, 227)
-        Me.RadioButton6.Name = "RadioButton6"
-        Me.RadioButton6.Size = New System.Drawing.Size(132, 19)
-        Me.RadioButton6.TabIndex = 25
-        Me.RadioButton6.TabStop = True
-        Me.RadioButton6.Text = "Comparar todo loco"
-        Me.RadioButton6.UseVisualStyleBackColor = True
-        '
-        'RadioButton7
-        '
-        Me.RadioButton7.AutoSize = True
-        Me.RadioButton7.Location = New System.Drawing.Point(155, 252)
-        Me.RadioButton7.Name = "RadioButton7"
-        Me.RadioButton7.Size = New System.Drawing.Size(132, 19)
-        Me.RadioButton7.TabIndex = 26
-        Me.RadioButton7.TabStop = True
-        Me.RadioButton7.Text = "Comparar todo loco"
-        Me.RadioButton7.UseVisualStyleBackColor = True
-        '
         'OperacionesAritmeticasDosImagenes
         '
         Me.AcceptButton = Me.Button1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(485, 287)
-        Me.Controls.Add(Me.RadioButton7)
-        Me.Controls.Add(Me.RadioButton6)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.RadioButton5)
         Me.Controls.Add(Me.RadioButton4)
@@ -255,6 +229,4 @@ Partial Class OperacionesAritmeticasDosImagenes
     Friend WithEvents RadioButton4 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton5 As System.Windows.Forms.RadioButton
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
-    Friend WithEvents RadioButton6 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton7 As System.Windows.Forms.RadioButton
 End Class

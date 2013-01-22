@@ -344,6 +344,10 @@ Public Class Principal
     Private Sub OperacionesLógicasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OperacionesLógicasToolStripMenuItem1.Click
         OperacionesLogicasDosImagenes.Show()
     End Sub
+
+    Private Sub ComparadorDeImágenesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComparadorDeImágenesToolStripMenuItem.Click
+        CompararImagenes.Show()
+    End Sub
 #End Region
 
 #Region "Crear proceso con thread"
@@ -783,4 +787,5 @@ Public Class Principal
     End Sub
 #End Region
  
+   
 End Class

@@ -2838,47 +2838,92 @@ Namespace Apolo
             Dim bmp3 = Me.CuadrarImagenes(bmp1clon, bmp2clon)
             Dim bmp4 As Bitmap = bmp3(0)
             Dim bmp5 As Bitmap = bmp3(1)
-            'Los pasamos a escala de grises
-            Dim bmp6, bmp7 As Bitmap
-            bmp6 = Me.EscalaGrises(bmp4)
-            bmp7 = Me.EscalaGrises(bmp5)
+
 
             porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Operación aritmética. Suma" 'Actualizar el estado
+            porcentaje(1) = "Comparación de imágenes (local)" 'Actualizar el estado
 
-            porcentaje(0) = 0 'Actualizamos el estado
-            porcentaje(1) = "Comparando imágenes" 'Actualizamos el estado
             'Este primer bloque, guarda los niveles digitales de la imagen en la variable Niveles
             Dim i, j As Long
             Dim Niveles1(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-            ReDim Niveles1(bmp6.Width - 1, bmp6.Height - 1)  'Asignamos a la matriz las dimensiones de la imagen -1 *
-            ReDim Niveles2(bmp7.Width - 1, bmp7.Height - 1)  'Asignamos a la matriz las dimensiones de la imagen -1 *
-            Dim aux1, aux2 As Integer
-            Dim restaaxu As Integer
-            Dim restaAcumulada As Integer
-            Dim bmpResultado As New Bitmap(bmp6.Width, bmp6.Height)
-            For i = 0 To bmp6.Width - 1 'Recorremos la matriz a lo ancho
-                For j = 0 To bmp6.Height - 1 'Recorremos la matriz a lo largo
-                    Niveles1(i, j) = bmp6.GetPixel(i, j) 'Con el método GetPixel, asignamos para cada celda de la matriz el color con sus valores RGB.
-                    Niveles2(i, j) = bmp7.GetPixel(i, j)
-                    aux1 = Niveles1(i, j).R
-                    aux2 = Niveles2(i, j).R
-                    restaaxu = Math.Abs(aux1 - aux2)
-                    restaAcumulada += restaaxu 'Restamos y acumulamos los valores
+            ReDim Niveles1(bmp4.Width - 1, bmp4.Height - 1)
+            ReDim Niveles2(bmp4.Width - 1, bmp4.Height - 1)
+            Dim rojo1, rojo2, verde1, verde2, azul1, azul2, grises1, grises2 As Integer 'Almacenamos temporalmente los colores
 
-                    bmpResultado.SetPixel(i, j, Color.FromArgb(restaaxu, restaaxu, restaaxu))
-                    porcentaje(0) = ((i * 100) / bmp6.Width) 'Actualizamos el estado
+            Dim Arojo, Averde, Aazul, Agrises As Integer 'Variable con las diferencias
+
+            Dim restaAcRojo, restaAcAzul, restaAcVerde, restaAcGrises As ULong 'Resta acumulada
+
+            'Matrices con diferencias
+            Dim matrizGrises(bmp4.Width - 1, bmp4.Height - 1) As Integer
+            Dim matrizRojo(bmp4.Width - 1, bmp4.Height - 1) As Integer
+            Dim matrizAzul(bmp4.Width - 1, bmp4.Height - 1) As Integer
+            Dim matrizVerde(bmp4.Width - 1, bmp4.Height - 1) As Integer
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Comparando imágenes" 'Actualizar el estado
+            For i = 0 To bmp4.Width - 1 'Recorremos la matriz a lo ancho
+                For j = 0 To bmp4.Height - 1 'Recorremos la matriz a lo largo
+                    Niveles1(i, j) = bmp4.GetPixel(i, j) 'Con el método GetPixel, asignamos para cada celda de la matriz el color con sus valores RGB.
+                    Niveles2(i, j) = bmp5.GetPixel(i, j)
+
+                    'Almacenamos los rojos
+                    rojo1 = Niveles1(i, j).R
+                    rojo2 = Niveles2(i, j).R
+                    'Almacenamos los verde
+                    verde1 = Niveles1(i, j).G
+                    verde2 = Niveles2(i, j).G
+                    'Almacenamos los azul
+                    azul1 = Niveles1(i, j).B
+                    azul2 = Niveles2(i, j).B
+
+                    'Calculamos la media (grises)
+                    grises1 = CInt(rojo1 + verde1 + azul1) / 3
+                    grises2 = CInt(rojo2 + verde2 + azul2) / 3
+
+                    'Calculamoms las diferencias
+                    Arojo = Math.Abs(rojo1 - rojo2)
+                    Averde = Math.Abs(verde1 - verde2)
+                    Aazul = Math.Abs(azul1 - azul2)
+                    Agrises = Math.Abs(grises1 - grises2)
+
+                    'Calculamos el total de diferencias (acumuladas)
+                    restaAcRojo += Arojo
+                    restaAcVerde += Averde
+                    restaAcAzul += Aazul
+                    restaAcGrises += Agrises
+
+                    'Creamos las matrices con las diferencias
+                    matrizRojo(i, j) = Arojo
+                    matrizVerde(i, j) = Averde
+                    matrizAzul(i, j) = Aazul
+                    matrizGrises(i, j) = Agrises
+
+                    porcentaje(0) = ((i * 100) / bmp4.Width) 'Actualizamos el estado
                 Next
             Next
-            Dim maximo = ((bmp6.Width - 1) * (bmp6.Height - 1)) * 255
-            Dim resultado As New ArrayList
-            resultado.Add(100 - (restaAcumulada * 100) / maximo)
-            resultado.Add(bmpResultado)
+
+            Dim resultado As New ArrayList 'Creamos un arraylist con los resultados que serán devueltos
+
+            Dim maximo = ((bmp4.Width - 1) * (bmp4.Height - 1)) * 255
+
+            'Porcentaje de aciertos para cada canal y escala de grises
+            resultado.Add(CInt(100 - (restaAcRojo * 100) / maximo))
+            resultado.Add(CInt(100 - (restaAcVerde * 100) / maximo))
+            resultado.Add(CInt(100 - (restaAcAzul * 100) / maximo))
+            resultado.Add(CInt(100 - (restaAcGrises * 100) / maximo))
+
+            'Matriz con las diferencias
+            resultado.Add(matrizRojo)
+            resultado.Add(matrizVerde)
+            resultado.Add(matrizAzul)
+            resultado.Add(matrizGrises)
+
             porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            RaiseEvent actualizaBMP(bmp1) 'generamos el evento
-            guardarImagen(bmp1, "Comparador de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            'RaiseEvent actualizaBMP(bmp1) 'generamos el evento
+            'guardarImagen(bmp1, "Comparador de imágenes (local)") 'Guardamos la imagen para poder hacer retroceso
             Return resultado
         End Function
         Public Function CompararDosImagenesSumatorio(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap)

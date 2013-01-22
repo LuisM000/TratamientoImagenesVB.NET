@@ -202,6 +202,12 @@
     <Compile Include="Máscaras\PasoBajo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="OperacionesDosImagenes\CompararImagenes.Designer.vb">
+      <DependentUpon>CompararImagenes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesDosImagenes\CompararImagenes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.Designer.vb">
       <DependentUpon>OperacionesLogicasDosImagenes.vb</DependentUpon>
     </Compile>
@@ -393,6 +399,9 @@
     <EmbeddedResource Include="Máscaras\PasoBajo.resx">
       <DependentUpon>PasoBajo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesDosImagenes\CompararImagenes.resx">
+      <DependentUpon>CompararImagenes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.resx">
       <DependentUpon>OperacionesLogicasDosImagenes.vb</DependentUpon>
     </EmbeddedResource>
@@ -528,6 +537,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BingIcono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -235,6 +235,7 @@ Partial Class Principal
         Me.TraslaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.RotaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+        Me.ComparadorDeImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -795,7 +796,7 @@ Partial Class Principal
         '
         'OperacionesConDosImágenesToolStripMenuItem
         '
-        Me.OperacionesConDosImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SumaToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem1})
+        Me.OperacionesConDosImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SumaToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem1, Me.ComparadorDeImágenesToolStripMenuItem})
         Me.OperacionesConDosImágenesToolStripMenuItem.Name = "OperacionesConDosImágenesToolStripMenuItem"
         Me.OperacionesConDosImágenesToolStripMenuItem.Size = New System.Drawing.Size(184, 20)
         Me.OperacionesConDosImágenesToolStripMenuItem.Text = "Operaciones con dos imágenes"
@@ -803,13 +804,13 @@ Partial Class Principal
         'SumaToolStripMenuItem
         '
         Me.SumaToolStripMenuItem.Name = "SumaToolStripMenuItem"
-        Me.SumaToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.SumaToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
         Me.SumaToolStripMenuItem.Text = "Operaciones aritméticas"
         '
         'OperacionesLógicasToolStripMenuItem1
         '
         Me.OperacionesLógicasToolStripMenuItem1.Name = "OperacionesLógicasToolStripMenuItem1"
-        Me.OperacionesLógicasToolStripMenuItem1.Size = New System.Drawing.Size(201, 22)
+        Me.OperacionesLógicasToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
         Me.OperacionesLógicasToolStripMenuItem1.Text = "Operaciones lógicas"
         '
         'TransformacionesGeométricasToolStripMenuItem
@@ -1662,6 +1663,12 @@ Partial Class Principal
         '
         Me.Timer3.Interval = 1000
         '
+        'ComparadorDeImágenesToolStripMenuItem
+        '
+        Me.ComparadorDeImágenesToolStripMenuItem.Name = "ComparadorDeImágenesToolStripMenuItem"
+        Me.ComparadorDeImágenesToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.ComparadorDeImágenesToolStripMenuItem.Text = "Comparador de imágenes"
+        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -1907,5 +1914,6 @@ Partial Class Principal
     Friend WithEvents Chart2 As System.Windows.Forms.DataVisualization.Charting.Chart
     Friend WithEvents Chart1 As System.Windows.Forms.DataVisualization.Charting.Chart
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents ComparadorDeImágenesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
