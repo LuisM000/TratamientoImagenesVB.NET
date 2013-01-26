@@ -46,6 +46,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>Referencias externas\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -208,6 +209,12 @@
     <Compile Include="Máscaras\PasoBajo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Ayuda\NotificacionError.Designer.vb">
+      <DependentUpon>NotificacionError.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ayuda\NotificacionError.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OperacionesDosImagenes\CompararImagenes.Designer.vb">
       <DependentUpon>CompararImagenes.vb</DependentUpon>
     </Compile>
@@ -345,7 +352,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TratamientoImagenes.vb" />
+    <Compile Include="Tratamiento.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Abrir\AbrirBing.resx">
@@ -359,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abrir\Tapiz.resx">
       <DependentUpon>Tapiz.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ayuda\NotificacionError.resx">
+      <DependentUpon>NotificacionError.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Cuadricula.resx">
       <DependentUpon>Cuadricula.vb</DependentUpon>

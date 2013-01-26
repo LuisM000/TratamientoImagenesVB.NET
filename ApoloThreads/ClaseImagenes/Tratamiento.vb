@@ -108,7 +108,7 @@ Namespace Apolo
                 contadorImagenes = imagenesGuardadas.Count
                 Informacion.Add(info)
             Else
-                'Con esto controlamos que si hemos almacenado más de 40 imágenes
+                'Con esto controlamos que si hemos almacenado más de 100 imágenes
                 'Quitamos la primera y la nueva la incluimos en el último lugar
                 imagenesGuardadas.RemoveAt(0)
                 Informacion.RemoveAt(0)
@@ -3501,6 +3501,16 @@ Namespace Apolo
                 Next
             Next
             Return matrizAcumulada
+        End Function
+        Function capturarPantalla()
+            Dim tamaño As Size = Screen.PrimaryScreen.Bounds.Size 'Establecemos el tamaño de la captura
+            Dim Bm As New Bitmap(tamaño.Width, tamaño.Height) 'Creamos un bitmap con ese tamaño
+            Dim Gf As Graphics 'Objeto graphics
+            Gf = Graphics.FromImage(Bm)
+            Gf.CopyFromScreen(0, 0, 0, 0, tamaño) 'Capturamos la pantalla
+
+            Return Bm
+
         End Function
 #End Region
 

@@ -5,9 +5,23 @@ Public Class Principal
     Dim WithEvents objetoTratamiento As New TratamientoImagenes 'Objeto para todo el formulario así no se inicializan las variables de la clase en cada instancia
     Dim transformacion As String 'Transformación a aplicar
 
-
+#Region "control de excepciones"
+    Private Shared Sub Application_ThreadException(ByVal sender As Object, ByVal e As System.Threading.ThreadExceptionEventArgs)
+        Dim objetoTra As New TratamientoImagenes
+        Dim captura As Bitmap = objetoTra.capturarPantalla()
+        Dim excepc As Exception = e.Exception
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmError As New NotificacionError(captura, excepc)
+        frmError.Show()
+    End Sub
+#End Region
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+     
+
+        'Manejamos cualquier excepción no controlada
+        AddHandler Application.ThreadException, AddressOf Application_ThreadException
+
         'Establecemos el control del botón derecho  
         Me.ContextMenuStrip = ContextMenuStrip1
         'Habilitamos el arrastre para el control PictureBox1 (No lo tiene permitido en tiempo de diseño)
@@ -26,7 +40,7 @@ Public Class Principal
         Button1.Text = "Actualizar histograma"
     End Sub
 
-   
+
 #Region "Archivo"
     'Abrir imagen desde archivo
     Private Sub AbrirImagenToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AbrirImagenToolStripMenuItem1.Click
@@ -224,7 +238,7 @@ Public Class Principal
         Brillo.Show()
     End Sub
     Private Sub Contraste1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Contraste1ToolStripMenuItem.Click
-        Contraste1.show()
+        Contraste1.Show()
     End Sub
 
     Private Sub Contraste2ToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles Contraste2ToolStripMenuItem.Click
@@ -305,7 +319,7 @@ Public Class Principal
     End Sub
 
     Private Sub PixeladoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PixeladoToolStripMenuItem.Click
-        pixelar.show()
+        Pixelar.Show()
     End Sub
 
     Private Sub CuadrículaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CuadrículaToolStripMenuItem.Click
@@ -335,7 +349,7 @@ Public Class Principal
     End Sub
 
     Private Sub ÓleoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ÓleoToolStripMenuItem.Click
-        oleo.show()
+        Oleo.Show()
     End Sub
 
 #End Region
@@ -348,7 +362,7 @@ Public Class Principal
     Private Sub OperacionesLógicasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OperacionesLógicasToolStripMenuItem1.Click
         OperacionesLogicasDosImagenes.Show()
     End Sub
- 
+
     Private Sub LocalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LocalToolStripMenuItem.Click
         CompararImagenes.Show()
     End Sub
@@ -508,7 +522,7 @@ Public Class Principal
     End Sub
 
     Private Sub Chart1_MouseEnter(sender As Object, e As EventArgs) Handles Chart1.MouseEnter
-          Me.Cursor = Cursors.Hand
+        Me.Cursor = Cursors.Hand
     End Sub
 
     Private Sub Chart1_MouseLeave(sender As Object, e As EventArgs) Handles Chart1.MouseLeave
@@ -664,7 +678,7 @@ Public Class Principal
 
 #Region "DRAG&DROP"
 
-   
+
 
     Private Sub PictureBox1_DragEnter(sender As Object, e As DragEventArgs) Handles PictureBox1.DragEnter
         'DataFormats.FileDrop nos devuelve el array de rutas de archivos
@@ -826,10 +840,13 @@ Public Class Principal
         Panel1.AutoScroll = True
     End Sub
 #End Region
- 
-
-    Private Sub ErrorToolStripMenuItem_Click(sender As Object, e As EventArgs)
 
 
+
+    Private Sub ErrorToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles ErrorToolStripMenuItem.Click
+        Dim b As Integer = 0
+        Dim c As Integer = 1
+        c = c / b
     End Sub
+ 
 End Class

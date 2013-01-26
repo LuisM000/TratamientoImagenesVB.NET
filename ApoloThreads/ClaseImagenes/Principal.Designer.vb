@@ -126,6 +126,7 @@ Partial Class Principal
         Me.ReflexiónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TraslaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RotaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ErrorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -843,7 +844,7 @@ Partial Class Principal
         '
         'TransformacionesGeométricasToolStripMenuItem
         '
-        Me.TransformacionesGeométricasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReflexiónToolStripMenuItem1, Me.TraslaciónToolStripMenuItem, Me.RotaciónToolStripMenuItem})
+        Me.TransformacionesGeométricasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReflexiónToolStripMenuItem1, Me.TraslaciónToolStripMenuItem, Me.RotaciónToolStripMenuItem, Me.ErrorToolStripMenuItem})
         Me.TransformacionesGeométricasToolStripMenuItem.Name = "TransformacionesGeométricasToolStripMenuItem"
         Me.TransformacionesGeométricasToolStripMenuItem.Size = New System.Drawing.Size(182, 20)
         Me.TransformacionesGeométricasToolStripMenuItem.Text = "Transformaciones geométricas"
@@ -865,6 +866,12 @@ Partial Class Principal
         Me.RotaciónToolStripMenuItem.Name = "RotaciónToolStripMenuItem"
         Me.RotaciónToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.RotaciónToolStripMenuItem.Text = "Rotación"
+        '
+        'ErrorToolStripMenuItem
+        '
+        Me.ErrorToolStripMenuItem.Name = "ErrorToolStripMenuItem"
+        Me.ErrorToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ErrorToolStripMenuItem.Text = "Error"
         '
         'SplitContainer1
         '
@@ -1940,5 +1947,6 @@ Partial Class Principal
     Friend WithEvents LocalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents VecinosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ÓleoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ErrorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

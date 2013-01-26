@@ -80,8 +80,6 @@ Public Class OperacionesAritmeticasDosImagenes
         If RadioButton5.Checked = True Then 'multiplicación
             Principal.PictureBox1.Image = objetoTratamiento.OperacionMultiplicacion(PictureBox1.Image, PictureBox2.Image, alfa)
         End If
-
-
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
