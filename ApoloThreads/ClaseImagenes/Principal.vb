@@ -334,6 +334,10 @@ Public Class Principal
         RuidoDe.Show()
     End Sub
 
+    Private Sub ÓleoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ÓleoToolStripMenuItem.Click
+        oleo.show()
+    End Sub
+
 #End Region
 
 #Region "Operaciones con dos imágenes"
@@ -344,9 +348,13 @@ Public Class Principal
     Private Sub OperacionesLógicasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OperacionesLógicasToolStripMenuItem1.Click
         OperacionesLogicasDosImagenes.Show()
     End Sub
-
-    Private Sub ComparadorDeImágenesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComparadorDeImágenesToolStripMenuItem.Click
+ 
+    Private Sub LocalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LocalToolStripMenuItem.Click
         CompararImagenes.Show()
+    End Sub
+
+    Private Sub VecinosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VecinosToolStripMenuItem.Click
+        CompararImagenesVecinos.Show()
     End Sub
 #End Region
 
@@ -439,8 +447,8 @@ Public Class Principal
             Chart1.Series("Rojo").Points.Clear()
             Chart2.Series("Verde").Points.Clear()
             Chart3.Series("Azul").Points.Clear()
-            Dim bmp As New Bitmap(PictureBox1.Image, New Size(New Point(100, 100)))
-            Dim histoAcumulado = objetoTratamiento.histogramaAcumulado(bmp)
+            Dim bmpHisto As New Bitmap(PictureBox1.Image, New Size(New Point(100, 100)))
+            Dim histoAcumulado = objetoTratamiento.histogramaAcumulado(bmpHisto)
             For i = 0 To UBound(histoAcumulado)
                 Chart1.Series("Rojo").Points.AddXY(i + 1, histoAcumulado(i, 0))
                 Chart2.Series("Verde").Points.AddXY(i + 1, histoAcumulado(i, 1))
@@ -455,6 +463,7 @@ Public Class Principal
         tiempo = 0 'Para que el contador se pare
         Button1.Text = "Actualizar histograma"
         TabPage1.Text = "Histograma"
+        TabPage2.Text = "Registro cambios"
     End Sub 'Botón para actualizar histograma manualmente
 
     Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
@@ -537,47 +546,78 @@ Public Class Principal
     End Sub
 
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
-        If TabControl1.SelectedIndex = 1 Then
+        Try
+            If TabControl1.SelectedIndex = 1 Then
+                TabPage2.Controls.Clear() 'Borramos todos los controles creados anteriormente
+                Dim listaCompletaInfo = objetoTratamiento.ListadoTotalDeInfo
+                Dim labelInfo(listaCompletaInfo.Count - 1) As Label
+                Dim alto As Integer = 5
 
-            Dim listaCompletaInfo = objetoTratamiento.ListadoTotalDeInfo
-            Dim labelInfo(listaCompletaInfo.Count - 1) As Label
-            Dim alto As Integer = 5
+                For i = 0 To listaCompletaInfo.Count - 1 'Creamos los labls
+                    'Labels
+                    labelInfo(i) = New Label
+                    TabPage2.Controls.Add(labelInfo(i))
+                    labelInfo(i).Text = listaCompletaInfo(i)
+                    labelInfo(i).Size = New Size(TabPage2.Width - 5, 12)
+                    labelInfo(i).Location = New Size(5, alto)
+                    labelInfo(i).Font = New Font("Segoe UI", 7, FontStyle.Bold)
+                    alto += 115
+                    '-----
+                Next
 
-            For i = 0 To listaCompletaInfo.Count - 1
-                'Labels
-                labelInfo(i) = New Label
-                TabPage2.Controls.Add(labelInfo(i))
-                labelInfo(i).Text = listaCompletaInfo(i)
-                labelInfo(i).Size = New Size(TabPage2.Width - 5, 12)
-                labelInfo(i).Location = New Size(5, alto)
-                labelInfo(i).Font = New Font("Segoe UI", 7, FontStyle.Bold)
-                alto += 115
-                '-----
-            Next
+                Dim listaCompletaImagenes = objetoTratamiento.ListadoTotalDeImagenes
+                Dim picImagenes(listaCompletaImagenes.Count - 1) As PictureBox
+                alto = 20
+                Dim ancho As Integer = TabPage2.Width / 3 * 2.5
+                For i = 0 To listaCompletaImagenes.Count - 1 'Creamos los picturebox
+                    'Labels
+                    picImagenes(i) = New PictureBox
+                    TabPage2.Controls.Add(picImagenes(i))
+                    picImagenes(i).Image = listaCompletaImagenes(i)
+                    picImagenes(i).Size = New Size(ancho, 100)
+                    picImagenes(i).Location = New Size(5, alto)
+                    picImagenes(i).SizeMode = PictureBoxSizeMode.StretchImage
+                    picImagenes(i).BorderStyle = BorderStyle.FixedSingle
+                    alto += 115
+                    '-----
+                Next
 
-            Dim listaCompletaImagenes = objetoTratamiento.ListadoTotalDeImagenes
-            Dim picImagenes(listaCompletaImagenes.Count - 1) As PictureBox
-            alto = 20
-            Dim ancho As Integer = TabPage2.Width / 3 * 2.5
-            For i = 0 To listaCompletaImagenes.Count - 1
-                'Labels
-                picImagenes(i) = New PictureBox
-                TabPage2.Controls.Add(picImagenes(i))
-                picImagenes(i).Image = listaCompletaImagenes(i)
-                picImagenes(i).Size = New Size(ancho, 100)
-                picImagenes(i).Location = New Size(5, alto)
-                picImagenes(i).SizeMode = PictureBoxSizeMode.StretchImage
-                picImagenes(i).BorderStyle = BorderStyle.FixedSingle
-                alto += 115
-                '-----
-            Next
+                '-- Scroll Vertical
+                Me.TabPage2.VerticalScroll.Visible = True
+                Me.TabPage2.AutoScroll = True
 
-            '-- Scroll Vertical
-            Me.TabPage2.VerticalScroll.Visible = True
-            Me.TabPage2.AutoScroll = True
 
-        End If
+                'Recorremos los picturebox del tabcontrol para crear el evento que gestione todo
+                For Each c As Object In TabPage2.Controls
+                    If c.GetType Is GetType(PictureBox) Then
+                        AddHandler DirectCast(c, PictureBox).MouseEnter, AddressOf conFoco
+                        AddHandler DirectCast(c, PictureBox).MouseLeave, AddressOf sinFoco
+                        AddHandler DirectCast(c, PictureBox).MouseClick, AddressOf Pulsa
+                    End If
+                Next
+
+
+            End If
+        Catch
+        End Try
     End Sub
+
+    Private Sub conFoco(ByVal sender As Object, ByVal e As System.EventArgs)
+        Me.Cursor = Cursors.Hand
+    End Sub
+
+
+    Private Sub sinFoco(ByVal sender As Object, ByVal e As System.EventArgs)
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub Pulsa(ByVal sender As Object, ByVal e As System.EventArgs)
+        Dim bmp As New Bitmap(DirectCast(sender, PictureBox).Image)
+        Me.Cursor = Cursors.Default
+        PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp) 'La imagen seleccionado la actualizamos
+    End Sub
+
+
 #End Region
 
 #Region "Actualizar imagen secundaria/ actualizar hacer y deshacer."
@@ -787,5 +827,9 @@ Public Class Principal
     End Sub
 #End Region
  
-   
+
+    Private Sub ErrorToolStripMenuItem_Click(sender As Object, e As EventArgs)
+
+
+    End Sub
 End Class

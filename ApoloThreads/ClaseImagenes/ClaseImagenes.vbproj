@@ -131,6 +131,12 @@
     <Compile Include="Efectos\Distorsion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Efectos\Oleo.Designer.vb">
+      <DependentUpon>Oleo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Efectos\Oleo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Efectos\Pixelar.Designer.vb">
       <DependentUpon>Pixelar.vb</DependentUpon>
     </Compile>
@@ -206,6 +212,12 @@
       <DependentUpon>CompararImagenes.vb</DependentUpon>
     </Compile>
     <Compile Include="OperacionesDosImagenes\CompararImagenes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesDosImagenes\CompararImagenesVecinos.Designer.vb">
+      <DependentUpon>CompararImagenesVecinos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesDosImagenes\CompararImagenesVecinos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.Designer.vb">
@@ -360,6 +372,9 @@
     <EmbeddedResource Include="Efectos\Distorsion.resx">
       <DependentUpon>Distorsion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Efectos\Oleo.resx">
+      <DependentUpon>Oleo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Pixelar.resx">
       <DependentUpon>Pixelar.vb</DependentUpon>
     </EmbeddedResource>
@@ -401,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\CompararImagenes.resx">
       <DependentUpon>CompararImagenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesDosImagenes\CompararImagenesVecinos.resx">
+      <DependentUpon>CompararImagenesVecinos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.resx">
       <DependentUpon>OperacionesLogicasDosImagenes.vb</DependentUpon>

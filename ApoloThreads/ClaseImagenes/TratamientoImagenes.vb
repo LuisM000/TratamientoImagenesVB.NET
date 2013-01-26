@@ -603,16 +603,16 @@ Namespace Apolo
             guardarImagen(bmp, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
             Return bmp
         End Function
-        Public Function reducircolores(ByVal bmp As Bitmap, ByVal valorcontraste As Byte)
+        Public Function reducircolores(ByVal bmp As Bitmap, ByVal valorcolores As Byte)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp2) 'Obtenemos valores
             Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
             porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Reduciendo colores (" & valorcontraste & ")" 'Actualizar el estado
+            porcentaje(1) = "Reduciendo colores (" & valorcolores & ")" 'Actualizar el estado
             Dim valoralto, valorbajo As Byte
-            valorbajo = 128 - valorcontraste
-            valoralto = 128 + valorcontraste
+            valorbajo = 128 - valorcolores
+            valoralto = 128 + valorcolores
             Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
             For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
                 For j = 0 To Niveles.GetUpperBound(1)
@@ -649,7 +649,7 @@ Namespace Apolo
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
-            guardarImagen(bmp3, "Reducir colores (" & valorcontraste & ")")
+            guardarImagen(bmp3, "Reducir colores (" & valorcolores & ")")
             Return bmp3
         End Function
         Public Function filtroColoresRango(ByVal bmp As Bitmap, Optional ByVal valorRojoinf As Byte = 0, Optional ByVal valorRojosup As Byte = 0, Optional ByVal salidaRojo As Byte = 0, Optional ByVal valorVerdeinf As Byte = 0, Optional ByVal valorVerdesup As Byte = 0, Optional ByVal salidaVerde As Byte = 0, Optional ByVal valorAzulinf As Byte = 0, Optional ByVal valorAzulsup As Byte = 0, Optional ByVal salidaAzul As Byte = 0)
@@ -2399,6 +2399,54 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+        Public Function Oleo(ByVal bmp As Bitmap, Optional ByVal contorno As Byte = 30, Optional ByVal colores As Byte = 210)
+            Dim bmp2 = bmp
+            Dim bmp22 = bmp
+            'Reducimos los colores de la imagen
+            Dim bmp3 As Bitmap
+            bmp3 = Me.reducircolores(bmp2, colores)
+
+            'Creamos los contornos
+            Dim bmp4 As Bitmap
+            bmp4 = Me.contornos(bmp22, contorno, 70, 150, 29)
+
+
+            'Obtenemos valores de la imagen con los colores reducidos
+            Dim Niveles2(,) As System.Drawing.Color
+            Niveles2 = nivel(bmp3)
+
+            'Obtenemos valores de la imagen con los contornos
+            Dim Niveles(,) As System.Drawing.Color
+            Niveles = nivel(bmp4)
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Pintando al óleo" 'Actualizar el estado
+
+            Dim bmpSalida As New Bitmap(bmp.Width, bmp.Height)
+            Dim Rojo, Verde, Azul As Byte 'Declaramos tres variables que almacenarán los colores
+            Dim Rojo2, Verde2, Azul2 As Byte 'Declaramos tres variables que almacenarán los colores
+            For i = 0 To Niveles.GetUpperBound(0)     'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    Rojo2 = Niveles2(i, j).R
+                    Verde2 = Niveles2(i, j).G
+                    Azul2 = Niveles2(i, j).B
+                    If Rojo = 0 And Verde = 0 And Azul = 0 Then 'Si el píxel es negro
+                        bmpSalida.SetPixel(i, j, Color.FromArgb(Rojo, Verde, Azul)) 'Dejamos el contorno
+                    Else
+                        bmpSalida.SetPixel(i, j, Color.FromArgb(Rojo2, Verde2, Azul2)) 'Pintamos con la imagen con colores reducidos
+                    End If
+                    porcentaje(0) = ((i * 100) / (bmp3.Width)) 'Actualizamos el estado
+                Next
+            Next
+            guardarImagen(bmpSalida, "Efecto óleo") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
+
+        End Function
         Private Function calculaValorInterpolado(ByVal valorniveles(,) As System.Drawing.Color, ByVal anchoAlto() As Integer, ByVal numeroPixeles As Integer)
             Dim rojo, verde, azul, alfa As Integer
             Dim contador = 0
@@ -2926,64 +2974,183 @@ Namespace Apolo
             'guardarImagen(bmp1, "Comparador de imágenes (local)") 'Guardamos la imagen para poder hacer retroceso
             Return resultado
         End Function
-        Public Function CompararDosImagenesSumatorio(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap)
+        Public Function CompararDosImagenesVecinos(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal DistanciaVecinos As Integer = 1, Optional ByVal PasoAlto As Boolean = False, Optional ByVal Grafica As Integer = 0, Optional ComparadorRapido As Boolean = False)
             'Clonamos los bitmaps originales
             Dim bmp1clon = bmp1.Clone(New Rectangle(0, 0, bmp1.Width, bmp1.Height), Imaging.PixelFormat.DontCare)
             Dim bmp2clon = bmp2.Clone(New Rectangle(0, 0, bmp2.Width, bmp2.Height), Imaging.PixelFormat.DontCare)
             'Cuadramos los bitmaps y los asignamos a bmp4 y bmp5
-            Dim bmp3 = Me.CuadrarImagenes(bmp1clon, bmp2clon)
-            Dim bmp4 As Bitmap = bmp3(0)
-            Dim bmp5 As Bitmap = bmp3(1)
-            'Los pasamos a escala de grises
-            Dim bmp6a, bmp7a As Bitmap
-            bmp6a = Me.EscalaGrises(bmp4)
-            bmp7a = Me.EscalaGrises(bmp5)
+            Dim bmp4, bmp5 As Bitmap
+            If ComparadorRapido = True Then
+                bmp4 = New Bitmap(bmp1clon, 50, 50)
+                bmp5 = New Bitmap(bmp2clon, 50, 50)
+            Else
+                Dim bmp3 = Me.CuadrarImagenes(bmp1clon, bmp2clon)
+                bmp4 = bmp3(0)
+                bmp5 = bmp3(1)
+            End If
+         
+          
 
-            'Pasamos por filtro paso alto
-            Dim objmascara As New TratamientoImagenes.mascaras
-            Dim mascara = objmascara.HIGH1a
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Comparación de imágenes (vecindad)" 'Actualizar el estado
+
+            'Pasamos por filtro paso alto si PasoAlto=true
             Dim bmp6, bmp7 As Bitmap
-            bmp6 = Me.mascara3x3Grises(bmp6a, mascara)
-            bmp7 = Me.mascara3x3Grises(bmp7a, mascara)
+            If PasoAlto = True Then
+                Dim objmascara As New TratamientoImagenes.mascaras
+                Dim mascara = objmascara.HIGH1a
+                bmp6 = Me.mascara3x3RGB(bmp4, mascara)
+                bmp7 = Me.mascara3x3RGB(bmp5, mascara)
+            Else
+                bmp6 = bmp4
+                bmp7 = bmp5
+            End If
+
 
             Dim Niveles1(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles1 = Me.nivel(bmp6)
             Niveles2 = Me.nivel(bmp7)
-            Dim nivelesResta(bmp6.Width - 21, bmp6.Height - 21) As Integer
-            Dim valorCentro1, valorCentro2, valorMovido1, valorMovido2 As Integer
-            Dim valorRestaAcumulado As Integer
-            For i = 10 To Niveles1.GetUpperBound(0) - 10
-                For j = 10 To Niveles1.GetUpperBound(1) - 10
-                    valorCentro1 = Niveles1(i, j).R
-                    valorCentro2 = Niveles2(i, j).R
-                    valorRestaAcumulado = 0
-                    For mi = -10 To 10
-                        For mj = -10 To 10
-                            valorMovido1 = Niveles1(i + mi, j + mj).R
-                            valorMovido2 = Niveles2(i + mi, j + mj).R
-                            valorRestaAcumulado += Math.Abs((Math.Abs(valorCentro1 - valorMovido1)) - (Math.Abs(valorCentro2 - valorMovido2)))
+            Dim matrizRojoResta(bmp6.Width - (DistanciaVecinos * 2) - 1, bmp6.Height - (DistanciaVecinos * 2) - 1) As Integer
+            Dim matrizVerdeResta(bmp6.Width - (DistanciaVecinos * 2 - 1), bmp6.Height - (DistanciaVecinos * 2 - 1)) As Integer
+            Dim matrizAzulResta(bmp6.Width - (DistanciaVecinos * 2 - 1), bmp6.Height - (DistanciaVecinos * 2 - 1)) As Integer
+            Dim matrizGrisResta(bmp6.Width - (DistanciaVecinos * 2 - 1), bmp6.Height - (DistanciaVecinos * 2 - 1)) As Integer
+
+            Dim valorCentro1r, valorCentro2r, valorCentro1g, valorCentro2g, valorCentro1b, valorCentro2b, valorCentro1gris, valorCentro2gris As Integer
+            Dim valorMovido1r, valorMovido2r, valorMovido1g, valorMovido2g, valorMovido1b, valorMovido2b, valorMovido1gris, valorMovido2gris As Integer
+            Dim acumuladoR, acumuladoG, acumuladoB, acumuladoGris As Integer
+            Dim total As Integer = (DistanciaVecinos + DistanciaVecinos + 1) * (DistanciaVecinos + DistanciaVecinos + 1) - 1 'Restamos uno porque el píxel central también lo usamos y siempre será 0
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Comparando imágenes" 'Actualizar el estado
+
+            For i = DistanciaVecinos To Niveles1.GetUpperBound(0) - DistanciaVecinos 'Reducimos y excluimos la distancia al vecino
+                For j = DistanciaVecinos To Niveles1.GetUpperBound(1) - DistanciaVecinos
+                    valorCentro1r = Niveles1(i, j).R
+                    valorCentro2r = Niveles2(i, j).R
+                    valorCentro1g = Niveles1(i, j).G
+                    valorCentro2g = Niveles2(i, j).G
+                    valorCentro1b = Niveles1(i, j).B
+                    valorCentro2b = Niveles2(i, j).B
+                    valorCentro1gris = CInt(valorCentro1r + valorCentro1g + valorCentro1b) / 3
+                    valorCentro2gris = CInt(valorCentro2r + valorCentro2g + valorCentro2b) / 3
+                    acumuladoR = 0
+                    acumuladoG = 0
+                    acumuladoB = 0
+                    acumuladoGris = 0
+                    For mi = -DistanciaVecinos To DistanciaVecinos
+                        For mj = -DistanciaVecinos To DistanciaVecinos
+                            'Calculamos los tres canales y grises
+                            valorMovido1r = Niveles1(i + mi, j + mj).R
+                            valorMovido2r = Niveles2(i + mi, j + mj).R
+                            acumuladoR += Math.Abs((Math.Abs(valorCentro1r - valorMovido1r)) - (Math.Abs(valorCentro2r - valorMovido2r)))
+
+                            valorMovido1g = Niveles1(i + mi, j + mj).G
+                            valorMovido2g = Niveles2(i + mi, j + mj).G
+                            acumuladoG += Math.Abs((Math.Abs(valorCentro1g - valorMovido1g)) - (Math.Abs(valorCentro2g - valorMovido2g)))
+
+                            valorMovido1b = Niveles1(i + mi, j + mj).B
+                            valorMovido2b = Niveles2(i + mi, j + mj).B
+                            acumuladoB += Math.Abs((Math.Abs(valorCentro1b - valorMovido1b)) - (Math.Abs(valorCentro2b - valorMovido2b)))
+
+                            valorMovido1gris = CInt(valorMovido1r + valorMovido1g + valorMovido1b) / 3
+                            valorMovido2gris = CInt(valorMovido2r + valorMovido2g + valorMovido2b) / 3
+                            acumuladoGris += Math.Abs((Math.Abs(valorCentro1gris - valorMovido1gris)) - (Math.Abs(valorCentro2gris - valorMovido2gris)))
                         Next
                     Next
-                    nivelesResta(i - 10, j - 10) = valorRestaAcumulado / 441
+
+                    'Calculamos el porcentaje de acierto (Si Grafica=0 normal, Si Grafica=1 Math.E ^x, Si Grafica=2 x^raiz(2))
+                    If Grafica = 0 Then 'CÁlculo normal
+
+                        matrizRojoResta(i - DistanciaVecinos, j - DistanciaVecinos) = acumuladoR / total
+                        matrizVerdeResta(i - DistanciaVecinos, j - DistanciaVecinos) = acumuladoG / total
+                        matrizAzulResta(i - DistanciaVecinos, j - DistanciaVecinos) = acumuladoB / total
+                        matrizGrisResta(i - DistanciaVecinos, j - DistanciaVecinos) = acumuladoGris / total
+
+                    ElseIf Grafica = 1 Then 'Calculo math.E^x
+
+                        If (acumuladoR / total < Math.Log(255)) Then 'Logaritmo neperiano de 255
+                            matrizRojoResta(i - DistanciaVecinos, j - DistanciaVecinos) = Math.E ^ (acumuladoR / total)
+                        Else
+                            matrizRojoResta(i - DistanciaVecinos, j - DistanciaVecinos) = 255
+                        End If
+
+                        If (acumuladoG / total < Math.Log(255)) Then 'Logaritmo neperiano de 255
+                            matrizVerdeResta(i - DistanciaVecinos, j - DistanciaVecinos) = Math.E ^ (acumuladoG / total)
+                        Else
+                            matrizVerdeResta(i - DistanciaVecinos, j - DistanciaVecinos) = 255
+                        End If
+
+                        If (acumuladoB / total < Math.Log(255)) Then 'Logaritmo neperiano de 255
+                            matrizAzulResta(i - DistanciaVecinos, j - DistanciaVecinos) = Math.E ^ (acumuladoB / total)
+                        Else
+                            matrizAzulResta(i - DistanciaVecinos, j - DistanciaVecinos) = 255
+                        End If
+
+                        If (acumuladoGris / total < Math.Log(255)) Then 'Logaritmo neperiano de 255
+                            matrizGrisResta(i - DistanciaVecinos, j - DistanciaVecinos) = Math.E ^ (acumuladoGris / total)
+                        Else
+                            matrizGrisResta(i - DistanciaVecinos, j - DistanciaVecinos) = 255
+                        End If
+
+                    ElseIf Grafica = 2 Then 'Cálculo para x^raiz(2)
+
+                        If (acumuladoR / total < 50.3133) Then 'Valor igual a 255
+                            matrizRojoResta(i - DistanciaVecinos, j - DistanciaVecinos) = (acumuladoR / total) ^ Math.Sqrt(2)
+                        Else
+                            matrizRojoResta(i - DistanciaVecinos, j - DistanciaVecinos) = 255
+                        End If
+
+                        If (acumuladoG / total < 50.3133) Then 'Valor igual a 255
+                            matrizVerdeResta(i - DistanciaVecinos, j - DistanciaVecinos) = (acumuladoG / total) ^ Math.Sqrt(2)
+                        Else
+                            matrizVerdeResta(i - DistanciaVecinos, j - DistanciaVecinos) = 255
+                        End If
+
+                        If (acumuladoB / total < 50.3133) Then 'Valor igual a 255
+                            matrizAzulResta(i - DistanciaVecinos, j - DistanciaVecinos) = (acumuladoB / total) ^ Math.Sqrt(2)
+                        Else
+                            matrizAzulResta(i - DistanciaVecinos, j - DistanciaVecinos) = 255
+                        End If
+
+                        If (acumuladoGris / total < 50.3133) Then 'Valor igual a 255
+                            matrizGrisResta(i - DistanciaVecinos, j - DistanciaVecinos) = (acumuladoGris / total) ^ Math.Sqrt(2)
+                        Else
+                            matrizGrisResta(i - DistanciaVecinos, j - DistanciaVecinos) = 255
+                        End If
+
+                    End If
+                    porcentaje(0) = ((i * 100) / bmp6.Width) 'Actualizamos el estado
                 Next
             Next
 
-            Dim cuentaAcumulada As ULong
-            For i = 0 To nivelesResta.GetUpperBound(0)
-                For j = 0 To nivelesResta.GetUpperBound(1)
-                    cuentaAcumulada += nivelesResta(i, j)
+            Dim cuentaAcumuladaR, cuentaAcumuladaG, cuentaAcumuladaB, cuentaAcumuladaGris As ULong
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Calculando incrementos" 'Actualizar el estado
+            For i = 0 To matrizRojoResta.GetUpperBound(0)
+                For j = 0 To matrizRojoResta.GetUpperBound(1)
+                    cuentaAcumuladaR += matrizRojoResta(i, j)
+                    cuentaAcumuladaG += matrizVerdeResta(i, j)
+                    cuentaAcumuladaB += matrizAzulResta(i, j)
+                    cuentaAcumuladaGris += matrizGrisResta(i, j)
+                    porcentaje(0) = ((i * 100) / matrizRojoResta.GetUpperBound(0)) 'Actualizamos el estado
                 Next
             Next
-
-            Dim maximo = ((nivelesResta.GetUpperBound(0) - 1) * (nivelesResta.GetUpperBound(1) - 1) * 255)
+            Dim maximo = ((matrizRojoResta.GetUpperBound(0) - 1) * (matrizRojoResta.GetUpperBound(1) - 1) * 255)
             Dim resultado As New ArrayList
-            resultado.Add(100 - (cuentaAcumulada * 100) / maximo)
-            resultado.Add(nivelesResta)
+            resultado.Add(CInt(100 - (cuentaAcumuladaR * 100) / maximo))
+            resultado.Add(CInt(100 - (cuentaAcumuladaG * 100) / maximo))
+            resultado.Add(CInt(100 - (cuentaAcumuladaB * 100) / maximo))
+            resultado.Add(CInt(100 - (cuentaAcumuladaGris * 100) / maximo))
+            resultado.Add(matrizRojoResta)
+            resultado.Add(matrizVerdeResta)
+            resultado.Add(matrizAzulResta)
+            resultado.Add(matrizGrisResta)
+
             porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            RaiseEvent actualizaBMP(bmp1) 'generamos el evento
-            guardarImagen(bmp1, "Comparador de imágenes") 'Guardamos la imagen para poder hacer retroceso
+            'RaiseEvent actualizaBMP(bmp1) 'generamos el evento
+            'guardarImagen(bmp1, "Comparador de imágenes (local)") 'Guardamos la imagen para poder hacer retroceso
             Return resultado
         End Function
 #End Region

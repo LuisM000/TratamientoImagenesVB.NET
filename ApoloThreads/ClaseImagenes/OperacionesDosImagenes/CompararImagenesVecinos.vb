@@ -1,6 +1,5 @@
 ﻿Imports ClaseImagenes.Apolo
-Public Class CompararImagenes
-
+Public Class CompararImagenesVecinos
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
     Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
 
@@ -104,24 +103,24 @@ Public Class CompararImagenes
         End Try
     End Sub
 
-    Private Sub CompararImagenes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub CompararImagenesVecinos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PictureBox1.Image = bmpP
         PictureBox2.Image = bmpP
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        PictureBox1.Image = abrirImagen(PictureBox1.Image)
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         PictureBox2.Image = abrirImagen(PictureBox2.Image)
     End Sub
 
-    Private Sub Button2_Click_1(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        PictureBox1.Image = abrirImagen(PictureBox1.Image)
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
     End Sub
 
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If BackgroundWorker1.IsBusy = False Then
             comparando()
             BackgroundWorker1.RunWorkerAsync()
@@ -130,7 +129,29 @@ Public Class CompararImagenes
 
     Dim resultados As New ArrayList
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        resultados = objetoTratamiento.CompararDosImagenes(PictureBox1.Image, PictureBox2.Image)
+        Dim pasoAlto As Boolean
+        Dim numeroVecinos As Integer = 1
+        Dim comparadorRapido As Boolean = False
+        numeroVecinos = NumericUpDown1.Value 'Número de vecinos
+        If CheckBox1.Checked = True Then 'Comprobamos si aplicamos el paso alto
+            pasoAlto = True
+        Else
+            pasoAlto = False
+        End If
+        Dim grafica As Integer = 0 'Para saber quçe función aplicamos a los datos
+        If RadioButton1.Checked = True Then 'Normal
+            grafica = 0
+        ElseIf RadioButton2.Checked = True Then 'e^x
+            grafica = 1
+        ElseIf RadioButton3.Checked = True Then 'x*sqrt(2)
+            grafica = 2
+        End If
+        If CheckBox2.Checked = True Then
+            comparadorRapido = True
+        Else
+            comparadorRapido = False
+        End If
+        resultados = objetoTratamiento.CompararDosImagenesVecinos(PictureBox1.Image, PictureBox2.Image, numeroVecinos, pasoAlto, grafica, comparadorRapido)
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
@@ -161,8 +182,9 @@ Public Class CompararImagenes
         End If
     End Sub
 
-     
+
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
+
         'Creamos los bitmaps para luego crear su histograma
         Dim matrizRojo(,) As Integer = resultados(4)
         Dim matrizVerde(,) As Integer = resultados(5)
@@ -239,9 +261,9 @@ Public Class CompararImagenes
         End If
     End Sub
 
- 
+
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        If Me.Height < 481 Then
+        If Me.Height < 575 Then
             Panel1.Visible = True
             Me.Height += 10
             Panel2.Location = New Size(Panel2.Location.X, Panel2.Location.Y + 10)
@@ -249,4 +271,5 @@ Public Class CompararImagenes
             Timer2.Enabled = False
         End If
     End Sub
+
 End Class

@@ -23,12 +23,12 @@ Partial Class Principal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ImagenActual = New System.Windows.Forms.ToolStripStatusLabel()
@@ -115,9 +115,13 @@ Partial Class Principal
         Me.RadmiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PonerLosDosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ÓleoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesConDosImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SumaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesLógicasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ComparadorDeImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LocalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VecinosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransformacionesGeométricasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReflexiónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TraslaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -235,7 +239,6 @@ Partial Class Principal
         Me.TraslaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.RotaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
-        Me.ComparadorDeImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -708,7 +711,7 @@ Partial Class Principal
         '
         'EfectosToolStripMenuItem
         '
-        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfoqueToolStripMenuItem, Me.CuadrículaToolStripMenuItem, Me.SombraDeVidrioToolStripMenuItem, Me.SdaToolStripMenuItem, Me.RadmiToolStripMenuItem})
+        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfoqueToolStripMenuItem, Me.CuadrículaToolStripMenuItem, Me.SombraDeVidrioToolStripMenuItem, Me.SdaToolStripMenuItem, Me.RadmiToolStripMenuItem, Me.ÓleoToolStripMenuItem})
         Me.EfectosToolStripMenuItem.Name = "EfectosToolStripMenuItem"
         Me.EfectosToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
         Me.EfectosToolStripMenuItem.Text = "Efectos"
@@ -794,6 +797,12 @@ Partial Class Principal
         Me.SadToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.SadToolStripMenuItem.Text = "Ruido desplazado"
         '
+        'ÓleoToolStripMenuItem
+        '
+        Me.ÓleoToolStripMenuItem.Name = "ÓleoToolStripMenuItem"
+        Me.ÓleoToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.ÓleoToolStripMenuItem.Text = "Óleo"
+        '
         'OperacionesConDosImágenesToolStripMenuItem
         '
         Me.OperacionesConDosImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SumaToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem1, Me.ComparadorDeImágenesToolStripMenuItem})
@@ -813,6 +822,25 @@ Partial Class Principal
         Me.OperacionesLógicasToolStripMenuItem1.Size = New System.Drawing.Size(211, 22)
         Me.OperacionesLógicasToolStripMenuItem1.Text = "Operaciones lógicas"
         '
+        'ComparadorDeImágenesToolStripMenuItem
+        '
+        Me.ComparadorDeImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LocalToolStripMenuItem, Me.VecinosToolStripMenuItem})
+        Me.ComparadorDeImágenesToolStripMenuItem.Name = "ComparadorDeImágenesToolStripMenuItem"
+        Me.ComparadorDeImágenesToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
+        Me.ComparadorDeImágenesToolStripMenuItem.Text = "Comparador de imágenes"
+        '
+        'LocalToolStripMenuItem
+        '
+        Me.LocalToolStripMenuItem.Name = "LocalToolStripMenuItem"
+        Me.LocalToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.LocalToolStripMenuItem.Text = "Local"
+        '
+        'VecinosToolStripMenuItem
+        '
+        Me.VecinosToolStripMenuItem.Name = "VecinosToolStripMenuItem"
+        Me.VecinosToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
+        Me.VecinosToolStripMenuItem.Text = "Vecinos"
+        '
         'TransformacionesGeométricasToolStripMenuItem
         '
         Me.TransformacionesGeométricasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReflexiónToolStripMenuItem1, Me.TraslaciónToolStripMenuItem, Me.RotaciónToolStripMenuItem})
@@ -823,19 +851,19 @@ Partial Class Principal
         'ReflexiónToolStripMenuItem1
         '
         Me.ReflexiónToolStripMenuItem1.Name = "ReflexiónToolStripMenuItem1"
-        Me.ReflexiónToolStripMenuItem1.Size = New System.Drawing.Size(128, 22)
+        Me.ReflexiónToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.ReflexiónToolStripMenuItem1.Text = "Reflexión"
         '
         'TraslaciónToolStripMenuItem
         '
         Me.TraslaciónToolStripMenuItem.Name = "TraslaciónToolStripMenuItem"
-        Me.TraslaciónToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.TraslaciónToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.TraslaciónToolStripMenuItem.Text = "Traslación"
         '
         'RotaciónToolStripMenuItem
         '
         Me.RotaciónToolStripMenuItem.Name = "RotaciónToolStripMenuItem"
-        Me.RotaciónToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.RotaciónToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.RotaciónToolStripMenuItem.Text = "Rotación"
         '
         'SplitContainer1
@@ -1070,15 +1098,15 @@ Partial Class Principal
         'Chart3
         '
         Me.Chart3.BackColor = System.Drawing.SystemColors.Control
-        ChartArea1.Name = "ChartArea1"
-        Me.Chart3.ChartAreas.Add(ChartArea1)
+        ChartArea4.Name = "ChartArea1"
+        Me.Chart3.ChartAreas.Add(ChartArea4)
         Me.Chart3.Location = New System.Drawing.Point(4, 45)
         Me.Chart3.Name = "Chart3"
-        Series1.ChartArea = "ChartArea1"
-        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series1.IsVisibleInLegend = False
-        Series1.Name = "Azul"
-        Me.Chart3.Series.Add(Series1)
+        Series4.ChartArea = "ChartArea1"
+        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series4.IsVisibleInLegend = False
+        Series4.Name = "Azul"
+        Me.Chart3.Series.Add(Series4)
         Me.Chart3.Size = New System.Drawing.Size(173, 131)
         Me.Chart3.TabIndex = 9
         Me.Chart3.Text = "Histograma azul"
@@ -1086,15 +1114,15 @@ Partial Class Principal
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.SystemColors.Control
-        ChartArea2.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea2)
+        ChartArea5.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea5)
         Me.Chart2.Location = New System.Drawing.Point(4, 139)
         Me.Chart2.Name = "Chart2"
-        Series2.ChartArea = "ChartArea1"
-        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series2.IsVisibleInLegend = False
-        Series2.Name = "Verde"
-        Me.Chart2.Series.Add(Series2)
+        Series5.ChartArea = "ChartArea1"
+        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series5.IsVisibleInLegend = False
+        Series5.Name = "Verde"
+        Me.Chart2.Series.Add(Series5)
         Me.Chart2.Size = New System.Drawing.Size(173, 131)
         Me.Chart2.TabIndex = 8
         Me.Chart2.Text = "Histograma verde"
@@ -1102,15 +1130,15 @@ Partial Class Principal
         'Chart1
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
-        ChartArea3.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea3)
+        ChartArea6.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea6)
         Me.Chart1.Location = New System.Drawing.Point(4, 247)
         Me.Chart1.Name = "Chart1"
-        Series3.ChartArea = "ChartArea1"
-        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series3.IsVisibleInLegend = False
-        Series3.Name = "Rojo"
-        Me.Chart1.Series.Add(Series3)
+        Series6.ChartArea = "ChartArea1"
+        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series6.IsVisibleInLegend = False
+        Series6.Name = "Rojo"
+        Me.Chart1.Series.Add(Series6)
         Me.Chart1.Size = New System.Drawing.Size(173, 131)
         Me.Chart1.TabIndex = 7
         Me.Chart1.Text = "Histograma rojo"
@@ -1663,12 +1691,6 @@ Partial Class Principal
         '
         Me.Timer3.Interval = 1000
         '
-        'ComparadorDeImágenesToolStripMenuItem
-        '
-        Me.ComparadorDeImágenesToolStripMenuItem.Name = "ComparadorDeImágenesToolStripMenuItem"
-        Me.ComparadorDeImágenesToolStripMenuItem.Size = New System.Drawing.Size(211, 22)
-        Me.ComparadorDeImágenesToolStripMenuItem.Text = "Comparador de imágenes"
-        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -1915,5 +1937,8 @@ Partial Class Principal
     Friend WithEvents Chart1 As System.Windows.Forms.DataVisualization.Charting.Chart
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents ComparadorDeImágenesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents LocalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VecinosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ÓleoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
