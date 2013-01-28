@@ -52,10 +52,13 @@ Public Class AbrirRecurso
         ToolStripProgressBar1.MarqueeAnimationSpeed = 30
     End Sub
     Sub cargado()
-        ToolStripStatusLabel1.Text = "Imagen cargada"
-        ToolStripProgressBar1.Size = New Size(100, ToolStripProgressBar1.Size.Height)
-        ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
-        ToolStripProgressBar1.Value = 100
+        Try
+            ToolStripStatusLabel1.Text = "Imagen cargada"
+            ToolStripProgressBar1.Size = New Size(100, ToolStripProgressBar1.Size.Height)
+            ToolStripProgressBar1.Style = ProgressBarStyle.Continuous
+            ToolStripProgressBar1.Value = 100
+        Catch
+        End Try
     End Sub
 
     Sub cargadoError()

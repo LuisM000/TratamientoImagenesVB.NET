@@ -170,10 +170,15 @@ Namespace Apolo
         End Function
 
         'Hace que la imagen enviada se guarde
-        Public Function ActualizarImagen(ByVal bmp As Bitmap) As Bitmap
+        Public Function ActualizarImagen(ByVal bmp As Bitmap, Optional ByVal imagenOriginal As Boolean = False) As Bitmap
             porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             guardarImagen(bmp, "Actualizar imagen") 'Guardamos la imagen para poder hacer retroceso
+            If imagenOriginal = True Then 'Si queremos guardarla como imagen original
+                'Guardamos la imagen original
+                ImagenOriginalGuardada = bmp
+                imagenOriginalInfo = "Imagen original"
+            End If
             RaiseEvent actualizaBMP(bmp) 'generamos el evento
             Return bmp
         End Function

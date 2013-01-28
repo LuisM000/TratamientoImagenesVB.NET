@@ -33,7 +33,7 @@ Public Class Principal
 
         'ACtualizamos la imagen Lena
         Dim bmp As New Bitmap(Me.PictureBox1.Image)
-        Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
+        Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp, True)
         'ACtualizamos de forma manual el histograma
         actualizarHistrograma()
         tiempo = 0 'Para que el contador se pare
@@ -121,18 +121,7 @@ Public Class Principal
     End Sub
 #End Region
 
-#Region "Información"
-    'Histograma detallada
-    Private Sub DetalladoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DetalladoToolStripMenuItem.Click
-        'Hay que crear la instancia con constructor y el valor del color
-        Dim frmHisto As New Histogramas(Color.Red)
-        frmHisto.Show()
-    End Sub
-    'Todos los histogramas
-    Private Sub TodosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TodosToolStripMenuItem.Click
-        TodosHistogramas.Show()
-    End Sub
-#End Region
+ 
 
 #Region "OperacionesBasicas"
     Private Sub EscalaDeGrisesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EscalaDeGrisesToolStripMenuItem.Click
@@ -222,6 +211,16 @@ Public Class Principal
         Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "ReflexionVert"
         transformar()
+    End Sub
+    'Histograma detallada
+    Private Sub DetalladoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DetalladoToolStripMenuItem1.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Red)
+        frmHisto.Show()
+    End Sub
+    'Todos los histogramas
+    Private Sub TodosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles TodosToolStripMenuItem1.Click
+        TodosHistogramas.Show()
     End Sub
 #End Region
 
@@ -369,6 +368,14 @@ Public Class Principal
 
     Private Sub VecinosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VecinosToolStripMenuItem.Click
         CompararImagenesVecinos.Show()
+    End Sub
+#End Region
+
+
+
+#Region "Menú ayda"
+    Private Sub NotificarUnErrorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotificarUnErrorToolStripMenuItem.Click
+        NotificarErrorAyuda.Show()
     End Sub
 #End Region
 
@@ -629,6 +636,9 @@ Public Class Principal
         Dim bmp As New Bitmap(DirectCast(sender, PictureBox).Image)
         Me.Cursor = Cursors.Default
         PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp) 'La imagen seleccionado la actualizamos
+        'Actualizamos el Panel1
+        Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+        Panel1.AutoScroll = True
     End Sub
 
 
@@ -781,7 +791,7 @@ Public Class Principal
     Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             'Actualizamos el Panel1
-            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
             Panel1.AutoScroll = True
         End If
     End Sub
@@ -790,7 +800,7 @@ Public Class Principal
         Dim bmp As New Bitmap(Me.PictureBox1.Image)
         Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
         'Actualizamos el Panel1
-        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScrollMinSize = PictureBox1.Image.Size
         Panel1.AutoScroll = True
     End Sub
     'Blanco y negro
@@ -827,7 +837,7 @@ Public Class Principal
     Private Sub RefrescarToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles RefrescarToolStripMenuItem2.Click
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             'Actualizamos el Panel1
-            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
             Panel1.AutoScroll = True
         End If
     End Sub
@@ -836,7 +846,7 @@ Public Class Principal
         Dim bmp As New Bitmap(Me.PictureBox1.Image)
         Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
         'Actualizamos el Panel1
-        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScrollMinSize = PictureBox1.Image.Size
         Panel1.AutoScroll = True
     End Sub
 #End Region
@@ -848,5 +858,5 @@ Public Class Principal
         Dim c As Integer = 1
         c = c / b
     End Sub
- 
+
 End Class

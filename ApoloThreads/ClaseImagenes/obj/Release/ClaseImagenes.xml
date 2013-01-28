@@ -6,11 +6,7 @@ ClaseImagenes
 </name>
 </assembly>
 <members>
-<member name="M:ClaseImagenes.Excepciones.Main">
-	<summary>
- The main entry point for the application.
- </summary>
-</member><member name="P:ClaseImagenes.My.Resources.Resources.ResourceManager">
+<member name="P:ClaseImagenes.My.Resources.Resources.ResourceManager">
 	<summary>
   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
 </summary>
@@ -40,6 +36,10 @@ ClaseImagenes
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.BingIcono">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.camera_add">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>

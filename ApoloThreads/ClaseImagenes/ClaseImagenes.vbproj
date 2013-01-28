@@ -108,6 +108,12 @@
     <Compile Include="Abrir\Tapiz.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Ayuda\NotificarErrorAyuda.Designer.vb">
+      <DependentUpon>NotificarErrorAyuda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ayuda\NotificarErrorAyuda.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Efectos\Cuadricula.Designer.vb">
       <DependentUpon>Cuadricula.vb</DependentUpon>
     </Compile>
@@ -370,6 +376,9 @@
     <EmbeddedResource Include="Ayuda\NotificacionError.resx">
       <DependentUpon>NotificacionError.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ayuda\NotificarErrorAyuda.resx">
+      <DependentUpon>NotificarErrorAyuda.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Cuadricula.resx">
       <DependentUpon>Cuadricula.vb</DependentUpon>
     </EmbeddedResource>
@@ -571,6 +580,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camera_add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
