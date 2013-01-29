@@ -672,7 +672,6 @@ Public Class Principal
 #Region "Actualizar nombre imagen"
     'Realizamos esto cuando recibimos el evento
     Sub actualizarNombrePicture(ByVal nombre() As String)
-        ImagenActual.Text = nombre(0)
         Me.Text = "[" & nombre(0) & "]  " & "(" & nombre(1) & " x " & nombre(2) & ")   " & nombre(3)
         Try 'Actualizamos panel
             Panel1.AutoScrollMinSize = PictureBox1.Image.Size
@@ -852,11 +851,94 @@ Public Class Principal
 #End Region
 
 
+#Region "Posición puntero en Picturebox//Color picturebox"
 
-    Private Sub ErrorToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles ErrorToolStripMenuItem.Click
-        Dim b As Integer = 0
-        Dim c As Integer = 1
-        c = c / b
+    'Calculamos la posición del puntero dentro del picturebox
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+
+        Dim dpiH, dpiV As Integer 'Puntos por pulgada
+        Dim Resolucion As Size 'Resolución de pantalla
+        Dim gr As Graphics
+        gr = Me.CreateGraphics
+        dpiH = gr.DpiX 'Puntos por pulgada
+        dpiV = gr.DpiY
+        Resolucion = System.Windows.Forms.SystemInformation.PrimaryMonitorSize 'Resolución de pantalla
+        Dim ResHeight As Integer = Resolucion.Height
+        Dim ResWidth As Integer = Resolucion.Width
+
+
+        Dim mouseDownLocation As New Point(e.X, e.Y) 'Situación del puntero
+
+        If PíxelesToolStripMenuItem.Checked = True Then 'Si están selecionado píxeles
+            ToolStripStatusLabel2.Text = "(" & mouseDownLocation.X & "," & mouseDownLocation.Y & ") px"
+        ElseIf CentímetrosToolStripMenuItem.Checked = True Then 'Centímetros
+            ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH) * 2.54, 2) & "," & FormatNumber((mouseDownLocation.Y / dpiV) * 2.54, 2) & ") cm"
+        ElseIf MilímetrosToolStripMenuItem.Checked = True Then 'Centímetros
+            ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH) * 254, 0) & "," & FormatNumber((mouseDownLocation.Y / dpiV) * 254, 0) & ") mm"
+        ElseIf PulgadasToolStripMenuItem.Checked = True Then 'Pulgadas
+            ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH), 2) & "," & FormatNumber((mouseDownLocation.Y / dpiV), 2) & ") in"
+        End If
+
     End Sub
 
+    Sub quitarCheck()
+        PulgadasToolStripMenuItem.Checked = False
+        MilímetrosToolStripMenuItem.Checked = False
+        PíxelesToolStripMenuItem.Checked = False
+        CentímetrosToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub PulgadasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PulgadasToolStripMenuItem.Click
+        quitarCheck()
+        PulgadasToolStripMenuItem.Checked = True
+    End Sub
+
+    Private Sub PíxelesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PíxelesToolStripMenuItem.Click
+        quitarCheck()
+        PíxelesToolStripMenuItem.Checked = True
+    End Sub
+
+    Private Sub CentímetrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CentímetrosToolStripMenuItem.Click
+        quitarCheck()
+        CentímetrosToolStripMenuItem.Checked = True
+    End Sub
+
+    Private Sub MilímetrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MilímetrosToolStripMenuItem.Click
+        quitarCheck()
+        MilímetrosToolStripMenuItem.Checked = True
+    End Sub
+
+    '-------------------------------------
+    'Extraemos el color
+    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
+        If ModifierKeys = Keys.Control Then 'Si pulsa control al hacer clic
+            Dim bmp As Bitmap
+            bmp = PictureBox1.Image
+            Dim rojo, verde, azul, alfa As Byte
+            Try
+                'Obetentemos color
+                rojo = bmp.GetPixel(e.X, e.Y).R
+                verde = bmp.GetPixel(e.X, e.Y).G
+                azul = bmp.GetPixel(e.X, e.Y).B
+                alfa = bmp.GetPixel(e.X, e.Y).A
+                'Creamos un bitmap para ponerlo como imagen (con el color obtenido)
+                Dim bmpAux As New Bitmap(16, 16)
+                For i = 0 To 15
+                    For j = 0 To 15
+                        bmpAux.SetPixel(i, j, Color.FromArgb(alfa, rojo, verde, azul))
+                    Next
+                Next
+                'Asignamos la imagen
+                ToolStripStatusImagen.Image = bmpAux
+                'Escribimos los valores
+                ToolStripStatusColor.Text = bmp.GetPixel(e.X, e.Y).ToString()
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+#End Region
+
+    
+   
 End Class
