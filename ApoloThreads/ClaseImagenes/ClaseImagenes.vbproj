@@ -132,10 +132,10 @@
     <Compile Include="Efectos\Desenfocar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edición\RegistroCambio.Designer.vb">
+    <Compile Include="Edicion\RegistroCambio.Designer.vb">
       <DependentUpon>RegistroCambio.vb</DependentUpon>
     </Compile>
-    <Compile Include="Edición\RegistroCambio.vb">
+    <Compile Include="Edicion\RegistroCambio.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Efectos\Distorsion.Designer.vb">
@@ -191,34 +191,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\BordesYContornos.Designer.vb">
+    <Compile Include="Mascaras\BordesYContornos.Designer.vb">
       <DependentUpon>BordesYContornos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\BordesYContornos.vb">
+    <Compile Include="Mascaras\BordesYContornos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Máscaras\ImportarMascara.Designer.vb">
+    <Compile Include="Mascaras\ImportarMascara.Designer.vb">
       <DependentUpon>ImportarMascara.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\ImportarMascara.vb">
+    <Compile Include="Mascaras\ImportarMascara.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Máscaras\MascaraManual.Designer.vb">
+    <Compile Include="Mascaras\MascaraManual.Designer.vb">
       <DependentUpon>MascaraManual.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\MascaraManual.vb">
+    <Compile Include="Mascaras\MascaraManual.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Máscaras\PasoAlto.Designer.vb">
+    <Compile Include="Mascaras\PasoAlto.Designer.vb">
       <DependentUpon>PasoAlto.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\PasoAlto.vb">
+    <Compile Include="Mascaras\PasoAlto.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Máscaras\PasoBajo.Designer.vb">
+    <Compile Include="Mascaras\PasoBajo.Designer.vb">
       <DependentUpon>PasoBajo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\PasoBajo.vb">
+    <Compile Include="Mascaras\PasoBajo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ayuda\NotificacionError.Designer.vb">
@@ -394,7 +394,7 @@
     <EmbeddedResource Include="Efectos\Desenfocar.resx">
       <DependentUpon>Desenfocar.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Edición\RegistroCambio.resx">
+    <EmbeddedResource Include="Edicion\RegistroCambio.resx">
       <DependentUpon>RegistroCambio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Distorsion.resx">
@@ -427,19 +427,19 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\BordesYContornos.resx">
+    <EmbeddedResource Include="Mascaras\BordesYContornos.resx">
       <DependentUpon>BordesYContornos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\ImportarMascara.resx">
+    <EmbeddedResource Include="Mascaras\ImportarMascara.resx">
       <DependentUpon>ImportarMascara.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\MascaraManual.resx">
+    <EmbeddedResource Include="Mascaras\MascaraManual.resx">
       <DependentUpon>MascaraManual.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\PasoAlto.resx">
+    <EmbeddedResource Include="Mascaras\PasoAlto.resx">
       <DependentUpon>PasoAlto.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\PasoBajo.resx">
+    <EmbeddedResource Include="Mascaras\PasoBajo.resx">
       <DependentUpon>PasoBajo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\CompararImagenes.resx">
