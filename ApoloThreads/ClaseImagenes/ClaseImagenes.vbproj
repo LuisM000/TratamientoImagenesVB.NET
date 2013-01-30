@@ -102,6 +102,12 @@
     <Compile Include="Abrir\AbrirRecurso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Abrir\ImgCompilador.Designer.vb">
+      <DependentUpon>ImgCompilador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Abrir\ImgCompilador.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Abrir\Tapiz.Designer.vb">
       <DependentUpon>Tapiz.vb</DependentUpon>
     </Compile>
@@ -369,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abrir\AbrirRecurso.resx">
       <DependentUpon>AbrirRecurso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abrir\ImgCompilador.resx">
+      <DependentUpon>ImgCompilador.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abrir\Tapiz.resx">
       <DependentUpon>Tapiz.vb</DependentUpon>

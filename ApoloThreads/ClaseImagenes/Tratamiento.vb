@@ -3232,6 +3232,26 @@ Namespace Apolo
         End Function
 
         'Se abre imagen desde una URL
+        Function abririmgRuta(ByVal ruta As String) As Bitmap
+            Try
+                Dim bmpRuta As New Bitmap(ruta)
+                guardarImagen(bmpRuta, "Imagen original desde ruta") 'Almacenamos info y bitmap
+                contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+                RaiseEvent actualizaBMP(bmpRuta) 'Generamos evento
+                RaiseEvent actualizaNombreImagen({nombreImagen(ruta), bmpRuta.Width, bmpRuta.Height, "Desde ruta"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+
+                'Guardamos la imagen original
+                ImagenOriginalGuardada = bmpRuta
+                imagenOriginalInfo = "Imagen original desde ruta"
+                Return bmpRuta
+            Catch
+                Dim bmp As Bitmap
+                bmp = Nothing
+                Return bmp
+            End Try
+        End Function
+
+        'Se abre imagen desde una URL
         Function abrirRecursoWeb(ByVal enlace As String) As Bitmap
             Try
                 Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
@@ -3317,7 +3337,7 @@ Namespace Apolo
                 If (.ShowDialog() = Windows.Forms.DialogResult.OK) Then
 
                     If salvar.FileName <> "" Then
-                        Dim fs As System.IO.FileStream = CType(salvar.OpenFile(), System.IO.FileStream)
+                        Dim fs As System.IO.FileStream = CType(salvar.OpenFile, System.IO.FileStream)
                         Dim formato As String = ""
                         Select Case salvar.FilterIndex
                             Case 1

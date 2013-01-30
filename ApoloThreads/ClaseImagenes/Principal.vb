@@ -75,6 +75,21 @@ Public Class Principal
         Dim bmp As New Bitmap(Me.PictureBox1.Image)
         objetoTratamiento.guardarcomo(bmp, 4)
     End Sub
+    Private Sub AbrirCompiladorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AbrirCompiladorToolStripMenuItem.Click
+        'Abrimos el exe y guardamos la imagen actual
+        Dim bmpComp As New Bitmap(PictureBox1.Image)
+        bmpComp.Save("Compilador\imgforCompilador.png", System.Drawing.Imaging.ImageFormat.Png)
+        Dim Process1 As New Process
+        Process1.StartInfo.RedirectStandardOutput = True
+        Process1.StartInfo.FileName = "Compilador\FastSharp.exe"
+        Process1.StartInfo.UseShellExecute = False
+        Process1.StartInfo.CreateNoWindow = True
+        Process1.Start()
+        'A la espera de que se cierre...
+        Process1.WaitForExit()
+        'Aquí listar todas las imágenes que se han creado
+        ImgCompilador.ShowDialog()
+    End Sub
 #End Region
 
 #Region "Editar"
@@ -90,6 +105,9 @@ Public Class Principal
     Private Sub DeshacerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeshacerToolStripMenuItem.Click
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             PictureBox1.Image = objetoTratamiento.ListadoImagenesAtras
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
         End If
     End Sub
 
@@ -97,6 +115,9 @@ Public Class Principal
     Private Sub RehacerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RehacerToolStripMenuItem.Click
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             PictureBox1.Image = objetoTratamiento.ListadoImagenesAdelante
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
         End If
     End Sub
 
@@ -371,7 +392,28 @@ Public Class Principal
     End Sub
 #End Region
 
-
+#Region "Herramientas"
+    Dim HistogramasAutomáticos As Boolean = True
+    'Activa/desactiva histogramas automáticos
+    Private Sub HistogramasAutomáticosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HistogramasAutomáticosToolStripMenuItem.Click
+        If HistogramasAutomáticosToolStripMenuItem.Checked = False Then
+            HistogramasAutomáticosToolStripMenuItem.Checked = True
+            tiempo = 0 'Para que el contador se pare
+            Button1.Text = "Actualizar histograma"
+            TabPage1.Text = "Histograma"
+            TabPage2.Text = "Registro cambios"
+            HistogramasAutomáticos = True
+        Else
+            HistogramasAutomáticosToolStripMenuItem.Checked = False
+            tiempo = 0 'Para que el contador se pare
+            Button1.Text = "Actualizar histograma"
+            TabPage1.Text = "Histograma"
+            TabPage2.Text = "Registro cambios"
+            HistogramasAutomáticos = False
+        End If
+    End Sub
+   
+#End Region
 
 #Region "Menú ayda"
     Private Sub NotificarUnErrorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotificarUnErrorToolStripMenuItem.Click
@@ -382,8 +424,8 @@ Public Class Principal
 #Region "Crear proceso con thread"
     'ACtualizamos el estado del proceso
     Private Sub Timer1_Tick_1(sender As Object, e As EventArgs) Handles Timer1.Tick
-        BarraEstado.Value = CInt(TratamientoImagenes.porcentaje(0))
-        EstadoActual.Text = TratamientoImagenes.porcentaje(1)
+        barraestado.Value = CInt(TratamientoImagenes.porcentaje(0))
+        Estadoactual.Text = TratamientoImagenes.porcentaje(1)
         PorcentajeActual.Text = CInt(TratamientoImagenes.porcentaje(0)) & " %"
     End Sub
 
@@ -476,6 +518,7 @@ Public Class Principal
                 Chart3.Series("Azul").Points.AddXY(i + 1, histoAcumulado(i, 2))
             Next
         Catch
+            MessageBox.Show("Lo sentimos, algo ha ocurrido. Pruebe a deshacer los cambios y desactivar el histograma automático (Herramientas/Histograma automático)", "Apolo threads", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -488,18 +531,20 @@ Public Class Principal
     End Sub 'Botón para actualizar histograma manualmente
 
     Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
-        If tiempo > 1 Then 'Si es mayor que uno vamos mostrando la cuenta atrás en el botón
-            tiempo -= 1
-            Button1.Text = "Actualizando en (" & tiempo & ")"
-            TabPage1.Text = "Actualizando(" & tiempo & ")"
-            TabPage2.Text = "Actualizando(" & tiempo & ")"
-        ElseIf tiempo = 1 Then 'Cuando llega a uno actualizamos
-            TabPage1.Text = "Histograma"
-            TabPage2.Text = "Registro de cambios"
-            Button1.Text = "Actualizar histograma"
-            actualizarHistrograma()
-            TabControl1_SelectedIndexChanged(sender, e)
-            tiempo = 0 'Pasamos el tiempo a cero para que no siga descontando y no estre en esta sentencia de control
+        If HistogramasAutomáticos = True Then 'Variable global que controla si está activado o desactivado
+            If tiempo > 1 Then 'Si es mayor que uno vamos mostrando la cuenta atrás en el botón
+                tiempo -= 1
+                Button1.Text = "Actualizando en (" & tiempo & ")"
+                TabPage1.Text = "Actualizando(" & tiempo & ")"
+                TabPage2.Text = "Actualizando(" & tiempo & ")"
+            ElseIf tiempo = 1 Then 'Cuando llega a uno actualizamos
+                TabPage1.Text = "Histograma"
+                TabPage2.Text = "Registro de cambios"
+                Button1.Text = "Actualizar histograma"
+                actualizarHistrograma()
+                TabControl1_SelectedIndexChanged(sender, e)
+                tiempo = 0 'Pasamos el tiempo a cero para que no siga descontando y no estre en esta sentencia de control
+            End If
         End If
     End Sub
 #End Region
@@ -672,7 +717,6 @@ Public Class Principal
 #Region "Actualizar nombre imagen"
     'Realizamos esto cuando recibimos el evento
     Sub actualizarNombrePicture(ByVal nombre() As String)
-        ImagenActual.Text = nombre(0)
         Me.Text = "[" & nombre(0) & "]  " & "(" & nombre(1) & " x " & nombre(2) & ")   " & nombre(3)
         Try 'Actualizamos panel
             Panel1.AutoScrollMinSize = PictureBox1.Image.Size
@@ -779,12 +823,18 @@ Public Class Principal
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             PictureBox1.Image = objetoTratamiento.ListadoImagenesAtras
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
         End If
     End Sub
     'Rehacer
     Private Sub ToolStripButton6_Click_1(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             PictureBox1.Image = objetoTratamiento.ListadoImagenesAdelante
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
         End If
     End Sub
     'Refrescar
@@ -852,11 +902,94 @@ Public Class Principal
 #End Region
 
 
+#Region "Posición puntero en Picturebox//Color picturebox"
 
-    Private Sub ErrorToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles ErrorToolStripMenuItem.Click
-        Dim b As Integer = 0
-        Dim c As Integer = 1
-        c = c / b
+    'Calculamos la posición del puntero dentro del picturebox
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+
+        Dim dpiH, dpiV As Integer 'Puntos por pulgada
+        Dim Resolucion As Size 'Resolución de pantalla
+        Dim gr As Graphics
+        gr = Me.CreateGraphics
+        dpiH = gr.DpiX 'Puntos por pulgada
+        dpiV = gr.DpiY
+        Resolucion = System.Windows.Forms.SystemInformation.PrimaryMonitorSize 'Resolución de pantalla
+        Dim ResHeight As Integer = Resolucion.Height
+        Dim ResWidth As Integer = Resolucion.Width
+
+
+        Dim mouseDownLocation As New Point(e.X, e.Y) 'Situación del puntero
+
+        If PíxelesToolStripMenuItem.Checked = True Then 'Si están selecionado píxeles
+            ToolStripStatusLabel2.Text = "(" & mouseDownLocation.X & "," & mouseDownLocation.Y & ") px"
+        ElseIf CentímetrosToolStripMenuItem.Checked = True Then 'Centímetros
+            ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH) * 2.54, 2) & "," & FormatNumber((mouseDownLocation.Y / dpiV) * 2.54, 2) & ") cm"
+        ElseIf MilímetrosToolStripMenuItem.Checked = True Then 'Centímetros
+            ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH) * 254, 0) & "," & FormatNumber((mouseDownLocation.Y / dpiV) * 254, 0) & ") mm"
+        ElseIf PulgadasToolStripMenuItem.Checked = True Then 'Pulgadas
+            ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH), 2) & "," & FormatNumber((mouseDownLocation.Y / dpiV), 2) & ") in"
+        End If
+
     End Sub
 
+    Sub quitarCheck()
+        PulgadasToolStripMenuItem.Checked = False
+        MilímetrosToolStripMenuItem.Checked = False
+        PíxelesToolStripMenuItem.Checked = False
+        CentímetrosToolStripMenuItem.Checked = False
+    End Sub
+
+    Private Sub PulgadasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PulgadasToolStripMenuItem.Click
+        quitarCheck()
+        PulgadasToolStripMenuItem.Checked = True
+    End Sub
+
+    Private Sub PíxelesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PíxelesToolStripMenuItem.Click
+        quitarCheck()
+        PíxelesToolStripMenuItem.Checked = True
+    End Sub
+
+    Private Sub CentímetrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CentímetrosToolStripMenuItem.Click
+        quitarCheck()
+        CentímetrosToolStripMenuItem.Checked = True
+    End Sub
+
+    Private Sub MilímetrosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MilímetrosToolStripMenuItem.Click
+        quitarCheck()
+        MilímetrosToolStripMenuItem.Checked = True
+    End Sub
+
+    '-------------------------------------
+    'Extraemos el color
+    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
+        If ModifierKeys = Keys.Control Then 'Si pulsa control al hacer clic
+            Dim bmp As Bitmap
+            bmp = PictureBox1.Image
+            Dim rojo, verde, azul, alfa As Byte
+            Try
+                'Obetentemos color
+                rojo = bmp.GetPixel(e.X, e.Y).R
+                verde = bmp.GetPixel(e.X, e.Y).G
+                azul = bmp.GetPixel(e.X, e.Y).B
+                alfa = bmp.GetPixel(e.X, e.Y).A
+                'Creamos un bitmap para ponerlo como imagen (con el color obtenido)
+                Dim bmpAux As New Bitmap(16, 16)
+                For i = 0 To 15
+                    For j = 0 To 15
+                        bmpAux.SetPixel(i, j, Color.FromArgb(alfa, rojo, verde, azul))
+                    Next
+                Next
+                'Asignamos la imagen
+                ToolStripStatusImagen.Image = bmpAux
+                'Escribimos los valores
+                ToolStripStatusColor.Text = bmp.GetPixel(e.X, e.Y).ToString()
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+#End Region
+
+    
+ 
 End Class
