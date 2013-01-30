@@ -990,10 +990,5 @@ Public Class Principal
 
 #End Region
 
-    
-<<<<<<< HEAD
- 
-=======
-   
->>>>>>> 4297ce41fb196db9141883da1b650bc52a3614f2
+
 End Class
