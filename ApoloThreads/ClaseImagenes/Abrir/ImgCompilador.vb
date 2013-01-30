@@ -4,7 +4,7 @@ Imports ClaseImagenes.Apolo
 Public Class ImgCompilador
 
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-
+    Dim bmp As Bitmap 'Bitmap para mostrar la imagen seleccionada
         Function listaImagenes(ByVal rutaDirectorio As String) 'Listar los archivos xml de un directorio
             Dim folder As New DirectoryInfo(rutaDirectorio) 'Directorio
             Dim listaDearchivos As New ArrayList
@@ -30,14 +30,14 @@ Public Class ImgCompilador
         End If
     End Sub
 
-        Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
-            Try
-                Dim bmp As New Bitmap("Compilador\ImagenesCompiladas\" & ListBox1.SelectedItem.ToString)
-                PictureBox1.Image = bmp
-            Catch
-                PictureBox1.Image = My.Resources.cancel
-            End Try
-        End Sub
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        Try
+            bmp = New Bitmap("Compilador\ImagenesCompiladas\" & ListBox1.SelectedItem.ToString)
+            PictureBox1.Image = bmp
+        Catch
+            PictureBox1.Image = My.Resources.cancel
+        End Try
+    End Sub
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -55,7 +55,8 @@ Public Class ImgCompilador
                 Select Case respuesta
                     Case Windows.Forms.DialogResult.Yes 'Borramos el archivo
                         Dim ruta As String
-                        ruta = "Compilador\ImagenesCompiladas\" & ListBox1.SelectedItem 'Seleccionamos la ruta del archivo a borrar
+                        ruta = System.IO.Directory.GetCurrentDirectory() & "\Compilador\ImagenesCompiladas\" & ListBox1.SelectedItem 'Seleccionamos la ruta del archivo a borrar
+                        bmp.Dispose() 'Liberamos la imagen para poder borrarla
                         Kill(ruta)
                     Case Windows.Forms.DialogResult.No
                         'No hacemos nada
