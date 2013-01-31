@@ -45,10 +45,10 @@ Public Class NotificacionError
             CORREO.From = New System.Net.Mail.MailAddress("apolothreads@gmail.com", "Notificación error Apolo-threads", System.Text.Encoding.UTF8)
 
             Dim cuerpo As String
-            cuerpo = "Error: " & vbCrLf & texto1 & vbCrLf & vbCrLf
-            cuerpo += "Descripción: " & vbCrLf & texto2 & vbCrLf & vbCrLf
+            cuerpo = "Error: " & vbCrLf & texto1 & "----  "
+            cuerpo += "Descripción: " & vbCrLf & texto2 & "----  "
             If CheckBox2.Checked = True Then
-                cuerpo += "Email usuario: " & vbCrLf & textoEmail & vbCrLf & vbCrLf
+                cuerpo += "Email usuario: " & vbCrLf & textoEmail & "----  "
             End If
 
             Dim htmlView As AlternateView = AlternateView.CreateAlternateViewFromString(cuerpo, Nothing, "text/html")

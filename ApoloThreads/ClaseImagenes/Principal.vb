@@ -419,6 +419,10 @@ Public Class Principal
     Private Sub NotificarUnErrorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotificarUnErrorToolStripMenuItem.Click
         NotificarErrorAyuda.Show()
     End Sub
+
+    Private Sub AyúdanosAMejorarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AyúdanosAMejorarToolStripMenuItem.Click
+        AyudanosAmejorar.Show()
+    End Sub
 #End Region
 
 #Region "Crear proceso con thread"
@@ -990,5 +994,7 @@ Public Class Principal
 
 #End Region
 
-
+    Private Sub ColaboraConElProyectoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ColaboraConElProyectoToolStripMenuItem.Click
+        Colabora.Show()
+    End Sub
 End Class

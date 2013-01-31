@@ -41,7 +41,10 @@ Public Class ImgCompilador
 
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Principal.PictureBox1.Image = objetoTratamiento.abririmgRuta("Compilador\ImagenesCompiladas\" & ListBox1.SelectedItem.ToString)
+        Try
+            Principal.PictureBox1.Image = objetoTratamiento.abririmgRuta("Compilador\ImagenesCompiladas\" & ListBox1.SelectedItem.ToString)
+        Catch
+        End Try
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click

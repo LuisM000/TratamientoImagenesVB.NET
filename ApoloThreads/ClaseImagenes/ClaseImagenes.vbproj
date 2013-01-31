@@ -114,6 +114,18 @@
     <Compile Include="Abrir\Tapiz.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Ayuda\AyudanosAmejorar.Designer.vb">
+      <DependentUpon>AyudanosAmejorar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ayuda\AyudanosAmejorar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ayuda\Colabora.Designer.vb">
+      <DependentUpon>Colabora.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ayuda\Colabora.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Ayuda\NotificarErrorAyuda.Designer.vb">
       <DependentUpon>NotificarErrorAyuda.vb</DependentUpon>
     </Compile>
@@ -382,6 +394,12 @@
     <EmbeddedResource Include="Abrir\Tapiz.resx">
       <DependentUpon>Tapiz.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ayuda\AyudanosAmejorar.resx">
+      <DependentUpon>AyudanosAmejorar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ayuda\Colabora.resx">
+      <DependentUpon>Colabora.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ayuda\NotificacionError.resx">
       <DependentUpon>NotificacionError.vb</DependentUpon>
     </EmbeddedResource>
@@ -592,6 +610,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\camera_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fork_me.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\github.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,12 +23,12 @@ Partial Class Principal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea7 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea8 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea9 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series9 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
@@ -128,6 +128,8 @@ Partial Class Principal
         Me.HistogramasAutomáticosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotificarUnErrorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AyúdanosAMejorarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ColaboraConElProyectoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -882,7 +884,7 @@ Partial Class Principal
         '
         'AyudaToolStripMenuItem
         '
-        Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NotificarUnErrorToolStripMenuItem})
+        Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NotificarUnErrorToolStripMenuItem, Me.AyúdanosAMejorarToolStripMenuItem, Me.ColaboraConElProyectoToolStripMenuItem})
         Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
         Me.AyudaToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
         Me.AyudaToolStripMenuItem.Text = "Ayuda"
@@ -890,8 +892,20 @@ Partial Class Principal
         'NotificarUnErrorToolStripMenuItem
         '
         Me.NotificarUnErrorToolStripMenuItem.Name = "NotificarUnErrorToolStripMenuItem"
-        Me.NotificarUnErrorToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.NotificarUnErrorToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.NotificarUnErrorToolStripMenuItem.Text = "Notificar un error"
+        '
+        'AyúdanosAMejorarToolStripMenuItem
+        '
+        Me.AyúdanosAMejorarToolStripMenuItem.Name = "AyúdanosAMejorarToolStripMenuItem"
+        Me.AyúdanosAMejorarToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.AyúdanosAMejorarToolStripMenuItem.Text = "Ayúdanos a mejorar"
+        '
+        'ColaboraConElProyectoToolStripMenuItem
+        '
+        Me.ColaboraConElProyectoToolStripMenuItem.Name = "ColaboraConElProyectoToolStripMenuItem"
+        Me.ColaboraConElProyectoToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.ColaboraConElProyectoToolStripMenuItem.Text = "Colabora con el proyecto"
         '
         'SplitContainer1
         '
@@ -1125,15 +1139,15 @@ Partial Class Principal
         'Chart3
         '
         Me.Chart3.BackColor = System.Drawing.SystemColors.Control
-        ChartArea7.Name = "ChartArea1"
-        Me.Chart3.ChartAreas.Add(ChartArea7)
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart3.ChartAreas.Add(ChartArea1)
         Me.Chart3.Location = New System.Drawing.Point(4, 45)
         Me.Chart3.Name = "Chart3"
-        Series7.ChartArea = "ChartArea1"
-        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series7.IsVisibleInLegend = False
-        Series7.Name = "Azul"
-        Me.Chart3.Series.Add(Series7)
+        Series1.ChartArea = "ChartArea1"
+        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series1.IsVisibleInLegend = False
+        Series1.Name = "Azul"
+        Me.Chart3.Series.Add(Series1)
         Me.Chart3.Size = New System.Drawing.Size(173, 131)
         Me.Chart3.TabIndex = 9
         Me.Chart3.Text = "Histograma azul"
@@ -1141,15 +1155,15 @@ Partial Class Principal
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.SystemColors.Control
-        ChartArea8.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea8)
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea2)
         Me.Chart2.Location = New System.Drawing.Point(4, 139)
         Me.Chart2.Name = "Chart2"
-        Series8.ChartArea = "ChartArea1"
-        Series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series8.IsVisibleInLegend = False
-        Series8.Name = "Verde"
-        Me.Chart2.Series.Add(Series8)
+        Series2.ChartArea = "ChartArea1"
+        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series2.IsVisibleInLegend = False
+        Series2.Name = "Verde"
+        Me.Chart2.Series.Add(Series2)
         Me.Chart2.Size = New System.Drawing.Size(173, 131)
         Me.Chart2.TabIndex = 8
         Me.Chart2.Text = "Histograma verde"
@@ -1157,15 +1171,15 @@ Partial Class Principal
         'Chart1
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
-        ChartArea9.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea9)
+        ChartArea3.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea3)
         Me.Chart1.Location = New System.Drawing.Point(4, 247)
         Me.Chart1.Name = "Chart1"
-        Series9.ChartArea = "ChartArea1"
-        Series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series9.IsVisibleInLegend = False
-        Series9.Name = "Rojo"
-        Me.Chart1.Series.Add(Series9)
+        Series3.ChartArea = "ChartArea1"
+        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series3.IsVisibleInLegend = False
+        Series3.Name = "Rojo"
+        Me.Chart1.Series.Add(Series3)
         Me.Chart1.Size = New System.Drawing.Size(173, 131)
         Me.Chart1.TabIndex = 7
         Me.Chart1.Text = "Histograma rojo"
@@ -1776,20 +1790,20 @@ Partial Class Principal
         '
         Me.MilímetrosToolStripMenuItem.CheckOnClick = True
         Me.MilímetrosToolStripMenuItem.Name = "MilímetrosToolStripMenuItem"
-        Me.MilímetrosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.MilímetrosToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.MilímetrosToolStripMenuItem.Text = "Milímetros"
         '
         'CentímetrosToolStripMenuItem
         '
         Me.CentímetrosToolStripMenuItem.Name = "CentímetrosToolStripMenuItem"
-        Me.CentímetrosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CentímetrosToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.CentímetrosToolStripMenuItem.Text = "Centímetros"
         '
         'PulgadasToolStripMenuItem
         '
         Me.PulgadasToolStripMenuItem.CheckOnClick = True
         Me.PulgadasToolStripMenuItem.Name = "PulgadasToolStripMenuItem"
-        Me.PulgadasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PulgadasToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.PulgadasToolStripMenuItem.Text = "Pulgadas"
         '
         'PíxelesToolStripMenuItem
@@ -1798,7 +1812,7 @@ Partial Class Principal
         Me.PíxelesToolStripMenuItem.CheckOnClick = True
         Me.PíxelesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.PíxelesToolStripMenuItem.Name = "PíxelesToolStripMenuItem"
-        Me.PíxelesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PíxelesToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.PíxelesToolStripMenuItem.Text = "Píxeles"
         '
         'ToolStripStatusLabel3
@@ -2085,5 +2099,7 @@ Partial Class Principal
     Friend WithEvents ToolStripStatusLabel3 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusImagen As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusColor As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents AyúdanosAMejorarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ColaboraConElProyectoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
