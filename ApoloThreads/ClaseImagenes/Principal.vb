@@ -140,6 +140,10 @@ Public Class Principal
             PictureBox1.Image = objetoTratamiento.ImagenOriginalGuardada
         End If
     End Sub
+    'Propiedades de la imagen
+    Private Sub PropiedadesDeLaImagenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PropiedadesDeLaImagenToolStripMenuItem.Click
+        PropImagen.Show()
+    End Sub
 #End Region
 
  
@@ -423,6 +427,10 @@ Public Class Principal
     Private Sub AyúdanosAMejorarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AyúdanosAMejorarToolStripMenuItem.Click
         AyudanosAmejorar.Show()
     End Sub
+    Private Sub ColaboraConElProyectoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ColaboraConElProyectoToolStripMenuItem.Click
+        Colabora.Show()
+    End Sub
+
 #End Region
 
 #Region "Crear proceso con thread"
@@ -994,7 +1002,5 @@ Public Class Principal
 
 #End Region
 
-    Private Sub ColaboraConElProyectoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ColaboraConElProyectoToolStripMenuItem.Click
-        Colabora.Show()
-    End Sub
+   
 End Class

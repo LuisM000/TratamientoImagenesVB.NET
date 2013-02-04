@@ -147,6 +147,7 @@ Namespace Apolo
 
 #End Region
 
+       
   
 
         'Contiene el conjunto de funciones para tratamiento de imágenes digitales
