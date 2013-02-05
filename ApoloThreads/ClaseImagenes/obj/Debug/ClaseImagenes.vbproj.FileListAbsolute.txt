@@ -146,3 +146,4 @@ C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.AyudanosAmejorar.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Colabora.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.PropImagen.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Redimensionar.resources

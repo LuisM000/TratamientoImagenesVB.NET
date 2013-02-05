@@ -56,6 +56,7 @@ Public Class Histogramas
 
     Private Sub Histogramas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ToolStripProgressBar2.Value = 0 'Ponemos la barra de progreso a 0
+        ComboBox1.SelectedIndex = 0
         If BackgroundWorker1.IsBusy = False Then
             BackgroundWorker1.RunWorkerAsync()
             'Borramos el posible contenido del chart

@@ -88,13 +88,13 @@ Namespace Apolo
             End Get
         End Property
 
-        Public ReadOnly Property ListadoTotalDeInfo() As ArrayList 'Imagen hacia delante
+        Public ReadOnly Property ListadoTotalDeInfo() As ArrayList 'Toda la info de imágenes
             Get
                 Return Informacion
             End Get
         End Property
 
-        Public ReadOnly Property ListadoTotalDeImagenes() As ArrayList 'Imagen hacia delante
+        Public ReadOnly Property ListadoTotalDeImagenes() As ArrayList 'Todas las imágenes
             Get
                 Return imagenesGuardadas
             End Get
@@ -115,6 +115,19 @@ Namespace Apolo
                 imagenesGuardadas.Add(bmp)
                 Informacion.Add(info)
             End If
+        End Sub
+
+        'Liberar todas imágenes 
+        Public Sub LiberarImagenes() 'Borra todas las imágenes excepto la última
+            'Guardamos la última imagen y la última info asociada a esa imagen
+            Dim imgFinal As New Bitmap(CType(imagenesGuardadas.Item(imagenesGuardadas.Count - 1), Bitmap))
+            Dim infoFinal As String = Informacion.Item(Informacion.Count - 1)
+            'Borramos los arraylist que contienen la imagen e info
+            imagenesGuardadas.Clear()
+            Informacion.Clear()
+            'Se añaden sendas variables a los arraylist
+            imagenesGuardadas.Add(imgFinal)
+            Informacion.Add(infoFinal)
         End Sub
 
 #End Region
@@ -759,6 +772,27 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
 
+        End Function
+        Public Function Redimensionar(ByVal bmp As Bitmap, ByVal tamaño As System.Drawing.Rectangle, Optional ByVal interpolación As Drawing2D.InterpolationMode = 0) As Bitmap
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Redimensionando imagen" 'Actualizar el estado
+            'Creamos un bitmap nuevo
+            Dim bmp2 As New Bitmap(bmp)
+            'Creamos un bitmap con el tamaño
+            Dim bmp3 As New Bitmap(tamaño.Width, tamaño.Height)
+            'Creamos objeto graphics con el bitmap
+            Dim G As Graphics = Graphics.FromImage(bmp3)
+            porcentaje(0) = 20 'Actualizar el estado
+            'Seleccionamos el tipo de interpolación
+            G.InterpolationMode = interpolación
+            G.DrawImage(bmp2, tamaño, New Rectangle(0, 0, bmp.Width, bmp.Height), GraphicsUnit.Pixel)
+            porcentaje(0) = 70 'Actualizar el estado
+            'Devolvemos el resultado
+            porcentaje(0) = 100 'Actualizar el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Redimensionar (" & interpolación.ToString & ")") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
         End Function
 #End Region
 

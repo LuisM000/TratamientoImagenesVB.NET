@@ -96,7 +96,7 @@ Public Class Principal
     Private Sub RefrescarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RefrescarToolStripMenuItem.Click
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             'Actualizamos el Panel1
-            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
             Panel1.AutoScroll = True
         End If
     End Sub
@@ -246,6 +246,10 @@ Public Class Principal
     'Todos los histogramas
     Private Sub TodosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles TodosToolStripMenuItem1.Click
         TodosHistogramas.Show()
+    End Sub
+    'Redimensionar imagen
+    Private Sub RedimensionarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RedimensionarToolStripMenuItem.Click
+        Redimensionar.Show()
     End Sub
 #End Region
 
@@ -416,7 +420,32 @@ Public Class Principal
             HistogramasAutomáticos = False
         End If
     End Sub
-   
+    'Liberar memoria (libera todas las imágenes guardadas para hacer retroceso)
+    Private Sub LiberarMemoriaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiberarMemoriaToolStripMenuItem.Click
+        Dim resultado = MessageBox.Show("Esta opción borrará todo el historial de imágenes y no podrá ser recuperado. Además, es posible que durante unos segundos se ralentice el sistema. ¿Está seguro de querer hacerlo?", "Apolo threads", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+        If resultado = Windows.Forms.DialogResult.Yes Then
+            Dim objeto As New TratamientoImagenes
+            objeto.LiberarImagenes()
+            'forzamos la actualización del tabpage 2 (registro imágenes). Los histogramas no son necesarios puesto que nos quedamos con la imagen actual
+            TabControl1_SelectedIndexChanged(sender, e)
+            ClearMemory()
+        End If
+    End Sub
+
+    'Código para liberar RAM disponible en************************
+    'http://gdev.wordpress.com/2005/11/30/liberar-memoria-con-vb-net/
+    'Declaración de la API
+    Private Declare Auto Function SetProcessWorkingSetSize Lib "kernel32.dll" (ByVal procHandle As IntPtr, ByVal min As Int32, ByVal max As Int32) As Boolean
+    Public Sub ClearMemory()
+
+        Try
+            Dim Mem As Process
+            Mem = Process.GetCurrentProcess()
+            SetProcessWorkingSetSize(Mem.Handle, -1, -1)
+        Catch ex As Exception
+            'Control de errores
+        End Try
+    End Sub
 #End Region
 
 #Region "Menú ayda"
@@ -673,8 +702,6 @@ Public Class Principal
                         AddHandler DirectCast(c, PictureBox).MouseClick, AddressOf Pulsa
                     End If
                 Next
-
-
             End If
         Catch
         End Try
@@ -696,6 +723,9 @@ Public Class Principal
         'Actualizamos el Panel1
         Panel1.AutoScrollMinSize = PictureBox1.Image.Size
         Panel1.AutoScroll = True
+        If HistogramasAutomáticos = False Then 'Si no se actualiza automáticamente (está deshabiltado), forzamos la actualización
+            TabControl1_SelectedIndexChanged(sender, e)
+        End If
     End Sub
 
 
@@ -1001,6 +1031,7 @@ Public Class Principal
     End Sub
 
 #End Region
+ 
 
-   
+  
 End Class

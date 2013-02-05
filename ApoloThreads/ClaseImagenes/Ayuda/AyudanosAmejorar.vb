@@ -31,6 +31,10 @@ Public Class AyudanosAmejorar
     Dim rapidez, usabilidad, util, general As Integer
 
     Private Sub AyudanosAmejorar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ComboBox1.SelectedIndex = 0
+        ComboBox2.SelectedIndex = 0
+        ComboBox3.SelectedIndex = 0
+        ComboBox4.SelectedIndex = 0
         ToolStripProgressBar1.Size = New Size(0, 0)
     End Sub
 

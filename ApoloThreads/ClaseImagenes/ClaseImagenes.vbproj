@@ -245,6 +245,12 @@
     <Compile Include="Ayuda\NotificacionError.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Redimensionar.Designer.vb">
+      <DependentUpon>Redimensionar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Redimensionar.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OperacionesDosImagenes\CompararImagenes.Designer.vb">
       <DependentUpon>CompararImagenes.vb</DependentUpon>
     </Compile>
@@ -468,6 +474,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mascaras\PasoBajo.resx">
       <DependentUpon>PasoBajo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Redimensionar.resx">
+      <DependentUpon>Redimensionar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\CompararImagenes.resx">
       <DependentUpon>CompararImagenes.vb</DependentUpon>

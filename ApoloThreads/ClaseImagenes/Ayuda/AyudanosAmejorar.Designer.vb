@@ -102,43 +102,43 @@ Partial Class AyudanosAmejorar
         '
         'ComboBox1
         '
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
         Me.ComboBox1.Location = New System.Drawing.Point(171, 52)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(76, 23)
         Me.ComboBox1.TabIndex = 58
-        Me.ComboBox1.Text = "0"
         '
         'ComboBox2
         '
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
         Me.ComboBox2.Location = New System.Drawing.Point(171, 105)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(76, 23)
         Me.ComboBox2.TabIndex = 59
-        Me.ComboBox2.Text = "0"
         '
         'ComboBox3
         '
+        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
         Me.ComboBox3.Location = New System.Drawing.Point(171, 211)
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(76, 23)
         Me.ComboBox3.TabIndex = 60
-        Me.ComboBox3.Text = "0"
         '
         'ComboBox4
         '
+        Me.ComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox4.FormattingEnabled = True
         Me.ComboBox4.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
         Me.ComboBox4.Location = New System.Drawing.Point(171, 158)
         Me.ComboBox4.Name = "ComboBox4"
         Me.ComboBox4.Size = New System.Drawing.Size(76, 23)
         Me.ComboBox4.TabIndex = 62
-        Me.ComboBox4.Text = "0"
         '
         'Label7
         '
