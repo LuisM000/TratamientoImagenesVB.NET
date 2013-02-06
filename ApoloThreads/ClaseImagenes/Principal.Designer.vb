@@ -23,12 +23,12 @@ Partial Class Principal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
@@ -85,6 +85,7 @@ Partial Class Principal
         Me.ContrasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Contraste1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Contraste2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GamaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExposiciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ModificarCanalesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReducirColoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -130,6 +131,7 @@ Partial Class Principal
         Me.TransformaciónAfínToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HistogramasAutomáticosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LiberarMemoriaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotificarUnErrorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyúdanosAMejorarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -262,7 +264,6 @@ Partial Class Principal
         Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusImagen = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusColor = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.LiberarMemoriaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -580,7 +581,7 @@ Partial Class Principal
         '
         'OperacionesBásicosPersonalizadasToolStripMenuItem
         '
-        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlancoYNegroToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem2, Me.BrilloToolStripMenuItem1, Me.ContrasteToolStripMenuItem, Me.ExposiciónToolStripMenuItem1, Me.ModificarCanalesToolStripMenuItem1, Me.ReducirColoresToolStripMenuItem, Me.FiltrarColoresToolStripMenuItem, Me.MatrizToolStripMenuItem, Me.DetectarContornosToolStripMenuItem})
+        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlancoYNegroToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem2, Me.BrilloToolStripMenuItem1, Me.ContrasteToolStripMenuItem, Me.GamaToolStripMenuItem, Me.ExposiciónToolStripMenuItem1, Me.ModificarCanalesToolStripMenuItem1, Me.ReducirColoresToolStripMenuItem, Me.FiltrarColoresToolStripMenuItem, Me.MatrizToolStripMenuItem, Me.DetectarContornosToolStripMenuItem})
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Name = "OperacionesBásicosPersonalizadasToolStripMenuItem"
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Size = New System.Drawing.Size(205, 20)
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Text = "Operaciones básicos personalizadas"
@@ -588,26 +589,26 @@ Partial Class Principal
         'BlancoYNegroToolStripMenuItem
         '
         Me.BlancoYNegroToolStripMenuItem.Name = "BlancoYNegroToolStripMenuItem"
-        Me.BlancoYNegroToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.BlancoYNegroToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.BlancoYNegroToolStripMenuItem.Text = "Blanco y negro"
         '
         'EscalaDeGrisesToolStripMenuItem2
         '
         Me.EscalaDeGrisesToolStripMenuItem2.Name = "EscalaDeGrisesToolStripMenuItem2"
-        Me.EscalaDeGrisesToolStripMenuItem2.Size = New System.Drawing.Size(173, 22)
+        Me.EscalaDeGrisesToolStripMenuItem2.Size = New System.Drawing.Size(185, 22)
         Me.EscalaDeGrisesToolStripMenuItem2.Text = "Escala de grises"
         '
         'BrilloToolStripMenuItem1
         '
         Me.BrilloToolStripMenuItem1.Name = "BrilloToolStripMenuItem1"
-        Me.BrilloToolStripMenuItem1.Size = New System.Drawing.Size(173, 22)
+        Me.BrilloToolStripMenuItem1.Size = New System.Drawing.Size(185, 22)
         Me.BrilloToolStripMenuItem1.Text = "Brillo"
         '
         'ContrasteToolStripMenuItem
         '
         Me.ContrasteToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Contraste1ToolStripMenuItem, Me.Contraste2ToolStripMenuItem})
         Me.ContrasteToolStripMenuItem.Name = "ContrasteToolStripMenuItem"
-        Me.ContrasteToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ContrasteToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.ContrasteToolStripMenuItem.Text = "Contraste"
         '
         'Contraste1ToolStripMenuItem
@@ -622,40 +623,46 @@ Partial Class Principal
         Me.Contraste2ToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.Contraste2ToolStripMenuItem.Text = "Contraste 2"
         '
+        'GamaToolStripMenuItem
+        '
+        Me.GamaToolStripMenuItem.Name = "GamaToolStripMenuItem"
+        Me.GamaToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.GamaToolStripMenuItem.Text = "Corrección de gamma"
+        '
         'ExposiciónToolStripMenuItem1
         '
         Me.ExposiciónToolStripMenuItem1.Name = "ExposiciónToolStripMenuItem1"
-        Me.ExposiciónToolStripMenuItem1.Size = New System.Drawing.Size(173, 22)
+        Me.ExposiciónToolStripMenuItem1.Size = New System.Drawing.Size(185, 22)
         Me.ExposiciónToolStripMenuItem1.Text = "Exposición"
         '
         'ModificarCanalesToolStripMenuItem1
         '
         Me.ModificarCanalesToolStripMenuItem1.Name = "ModificarCanalesToolStripMenuItem1"
-        Me.ModificarCanalesToolStripMenuItem1.Size = New System.Drawing.Size(173, 22)
+        Me.ModificarCanalesToolStripMenuItem1.Size = New System.Drawing.Size(185, 22)
         Me.ModificarCanalesToolStripMenuItem1.Text = "Modificar canales"
         '
         'ReducirColoresToolStripMenuItem
         '
         Me.ReducirColoresToolStripMenuItem.Name = "ReducirColoresToolStripMenuItem"
-        Me.ReducirColoresToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.ReducirColoresToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.ReducirColoresToolStripMenuItem.Text = "Reducir colores"
         '
         'FiltrarColoresToolStripMenuItem
         '
         Me.FiltrarColoresToolStripMenuItem.Name = "FiltrarColoresToolStripMenuItem"
-        Me.FiltrarColoresToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.FiltrarColoresToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.FiltrarColoresToolStripMenuItem.Text = "Filtrar colores"
         '
         'MatrizToolStripMenuItem
         '
         Me.MatrizToolStripMenuItem.Name = "MatrizToolStripMenuItem"
-        Me.MatrizToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.MatrizToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.MatrizToolStripMenuItem.Text = "Matriz"
         '
         'DetectarContornosToolStripMenuItem
         '
         Me.DetectarContornosToolStripMenuItem.Name = "DetectarContornosToolStripMenuItem"
-        Me.DetectarContornosToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DetectarContornosToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.DetectarContornosToolStripMenuItem.Text = "Detectar contornos"
         '
         'MenuStrip1
@@ -909,6 +916,12 @@ Partial Class Principal
         Me.HistogramasAutomáticosToolStripMenuItem.Name = "HistogramasAutomáticosToolStripMenuItem"
         Me.HistogramasAutomáticosToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
         Me.HistogramasAutomáticosToolStripMenuItem.Text = "Histogramas automáticos"
+        '
+        'LiberarMemoriaToolStripMenuItem
+        '
+        Me.LiberarMemoriaToolStripMenuItem.Name = "LiberarMemoriaToolStripMenuItem"
+        Me.LiberarMemoriaToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.LiberarMemoriaToolStripMenuItem.Text = "Liberar memoria"
         '
         'AyudaToolStripMenuItem
         '
@@ -1167,15 +1180,15 @@ Partial Class Principal
         'Chart3
         '
         Me.Chart3.BackColor = System.Drawing.SystemColors.Control
-        ChartArea4.Name = "ChartArea1"
-        Me.Chart3.ChartAreas.Add(ChartArea4)
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart3.ChartAreas.Add(ChartArea1)
         Me.Chart3.Location = New System.Drawing.Point(4, 45)
         Me.Chart3.Name = "Chart3"
-        Series4.ChartArea = "ChartArea1"
-        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series4.IsVisibleInLegend = False
-        Series4.Name = "Azul"
-        Me.Chart3.Series.Add(Series4)
+        Series1.ChartArea = "ChartArea1"
+        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series1.IsVisibleInLegend = False
+        Series1.Name = "Azul"
+        Me.Chart3.Series.Add(Series1)
         Me.Chart3.Size = New System.Drawing.Size(173, 131)
         Me.Chart3.TabIndex = 9
         Me.Chart3.Text = "Histograma azul"
@@ -1183,15 +1196,15 @@ Partial Class Principal
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.SystemColors.Control
-        ChartArea5.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea5)
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea2)
         Me.Chart2.Location = New System.Drawing.Point(4, 139)
         Me.Chart2.Name = "Chart2"
-        Series5.ChartArea = "ChartArea1"
-        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series5.IsVisibleInLegend = False
-        Series5.Name = "Verde"
-        Me.Chart2.Series.Add(Series5)
+        Series2.ChartArea = "ChartArea1"
+        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series2.IsVisibleInLegend = False
+        Series2.Name = "Verde"
+        Me.Chart2.Series.Add(Series2)
         Me.Chart2.Size = New System.Drawing.Size(173, 131)
         Me.Chart2.TabIndex = 8
         Me.Chart2.Text = "Histograma verde"
@@ -1199,15 +1212,15 @@ Partial Class Principal
         'Chart1
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
-        ChartArea6.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea6)
+        ChartArea3.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea3)
         Me.Chart1.Location = New System.Drawing.Point(4, 247)
         Me.Chart1.Name = "Chart1"
-        Series6.ChartArea = "ChartArea1"
-        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series6.IsVisibleInLegend = False
-        Series6.Name = "Rojo"
-        Me.Chart1.Series.Add(Series6)
+        Series3.ChartArea = "ChartArea1"
+        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series3.IsVisibleInLegend = False
+        Series3.Name = "Rojo"
+        Me.Chart1.Series.Add(Series3)
         Me.Chart1.Size = New System.Drawing.Size(173, 131)
         Me.Chart1.TabIndex = 7
         Me.Chart1.Text = "Histograma rojo"
@@ -1216,10 +1229,10 @@ Partial Class Principal
         '
         Me.TabPage2.BackColor = System.Drawing.SystemColors.Control
         Me.TabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabPage2.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(191, 420)
+        Me.TabPage2.Size = New System.Drawing.Size(191, 422)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Registro cambios"
         '
@@ -1861,12 +1874,6 @@ Partial Class Principal
         Me.ToolStripStatusColor.Name = "ToolStripStatusColor"
         Me.ToolStripStatusColor.Size = New System.Drawing.Size(0, 19)
         '
-        'LiberarMemoriaToolStripMenuItem
-        '
-        Me.LiberarMemoriaToolStripMenuItem.Name = "LiberarMemoriaToolStripMenuItem"
-        Me.LiberarMemoriaToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.LiberarMemoriaToolStripMenuItem.Text = "Liberar memoria"
-        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -2140,5 +2147,6 @@ Partial Class Principal
     Friend WithEvents ToolStripMenuItem8 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents RedimensionarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LiberarMemoriaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GamaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

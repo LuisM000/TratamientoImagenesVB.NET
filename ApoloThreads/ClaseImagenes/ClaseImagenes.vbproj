@@ -45,6 +45,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
@@ -243,6 +246,12 @@
       <DependentUpon>NotificacionError.vb</DependentUpon>
     </Compile>
     <Compile Include="Ayuda\NotificacionError.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Gamma.Designer.vb">
+      <DependentUpon>Gamma.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Gamma.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OperacionesBasicasPersonalizadas\Redimensionar.Designer.vb">
@@ -475,6 +484,9 @@
     <EmbeddedResource Include="Mascaras\PasoBajo.resx">
       <DependentUpon>PasoBajo.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Gamma.resx">
+      <DependentUpon>Gamma.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Redimensionar.resx">
       <DependentUpon>Redimensionar.vb</DependentUpon>
     </EmbeddedResource>
@@ -543,6 +555,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

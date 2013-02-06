@@ -492,6 +492,31 @@ Namespace Apolo
             guardarImagen(bmp3, "Modificar brillo") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+        Public Function Gamma(ByVal bmp As Bitmap, ByVal ValorGammaRojo As Double, ByVal ValorGammaVerde As Double, ByVal ValorGammaAzul As Double)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2)
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Modificando gamma" 'Actualizar el estado
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    'Cambiamos el contraste creando una rampa de contraste
+                    Rojo = CByte(Math.Min(255, CInt(Math.Truncate((255.0 * Math.Pow(Niveles(i, j).R / 255.0, 1.0 / ValorGammaRojo)) + 0.5))))
+                    Verde = CByte(Math.Min(255, CInt(Math.Truncate((255.0 * Math.Pow(Niveles(i, j).G / 255.0, 1.0 / ValorGammaVerde)) + 0.5))))
+                    Azul = CByte(Math.Min(255, CInt(Math.Truncate((255.0 * Math.Pow(Niveles(i, j).B / 255.0, 1.0 / ValorGammaAzul)) + 0.5))))
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores modificados
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Modificar gamma") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
         Public Function Exposicion(ByVal bmp As Bitmap, ByVal valorSobreexposicion As Double)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen

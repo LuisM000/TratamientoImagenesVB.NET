@@ -17,8 +17,6 @@ Public Class Principal
 #End Region
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-     
-
         'Manejamos cualquier excepción no controlada
         AddHandler Application.ThreadException, AddressOf Application_ThreadException
 
@@ -78,10 +76,10 @@ Public Class Principal
     Private Sub AbrirCompiladorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AbrirCompiladorToolStripMenuItem.Click
         'Abrimos el exe y guardamos la imagen actual
         Dim bmpComp As New Bitmap(PictureBox1.Image)
-        bmpComp.Save("Compilador\imgforCompilador.png", System.Drawing.Imaging.ImageFormat.Png)
+        bmpComp.Save(System.IO.Directory.GetCurrentDirectory().ToString & "\Compilador\imgforCompilador.png", System.Drawing.Imaging.ImageFormat.Png)
         Dim Process1 As New Process
         Process1.StartInfo.RedirectStandardOutput = True
-        Process1.StartInfo.FileName = "Compilador\FastSharp.exe"
+        Process1.StartInfo.FileName = System.IO.Directory.GetCurrentDirectory().ToString & "\Compilador\FastSharp.exe"
         Process1.StartInfo.UseShellExecute = False
         Process1.StartInfo.CreateNoWindow = True
         Process1.Start()
@@ -271,6 +269,9 @@ Public Class Principal
 
     Private Sub Contraste2ToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles Contraste2ToolStripMenuItem.Click
         Contraste2.Show()
+    End Sub
+    Private Sub GamaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GamaToolStripMenuItem.Click
+        Gamma.Show()
     End Sub
     Private Sub ExposiciónToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ExposiciónToolStripMenuItem1.Click
         Exposicion.Show()
@@ -558,6 +559,7 @@ Public Class Principal
                 Chart2.Series("Verde").Points.AddXY(i + 1, histoAcumulado(i, 1))
                 Chart3.Series("Azul").Points.AddXY(i + 1, histoAcumulado(i, 2))
             Next
+
         Catch
             MessageBox.Show("Lo sentimos, algo ha ocurrido. Pruebe a deshacer los cambios y desactivar el histograma automático (Herramientas/Histograma automático)", "Apolo threads", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -737,6 +739,7 @@ Public Class Principal
         Try
             PictureBox1.Image = bmp
             PictureBox2.Image = bmp
+            'ACtualizamos el nombre del menú hacer/rehacer
             Timer2.Enabled = True
             'Con esto actualizamos el histograma
             tiempo = 3 '3 segundos para actualización
@@ -1032,6 +1035,5 @@ Public Class Principal
 
 #End Region
  
-
-  
+ 
 End Class
