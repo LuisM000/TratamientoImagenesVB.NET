@@ -9,14 +9,13 @@
              nodo requestedExecutionLevel por alguno de los siguientes.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
-        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
-        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+               <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
             La especificación del nodo requestedExecutionLevel deshabilitará la virtualización de archivos y del Registro.
             Si desea usar la virtualización de archivos y del Registro para la compatibilidad 
             con versiones anteriores, elimine el nodo requestedExecutionLevel.
         -->
-        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
       </requestedPrivileges>
     </security>
   </trustInfo>

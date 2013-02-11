@@ -4,6 +4,13 @@ Public Class Desenfocar
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
     Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
 
+    Private Sub Vincular(ByVal valor As Double)
+        Label1.Text = valor
+        HScrollBar1.Value = valor
+        Label4.Text = valor
+        HScrollBar2.Value = valor
+    End Sub
+
     Private Sub Desenfocar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         HScrollBar1.Maximum = bmpP.Width / 3 'Asignamos el máximo y mínimo como el ancho de la imagen
         HScrollBar1.Minimum = -bmpP.Width / 3
@@ -22,10 +29,16 @@ Public Class Desenfocar
 
     Private Sub HScrollBar1_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar1.Scroll
         Label1.Text = HScrollBar1.Value
+        If CheckBox1.Checked = True Then
+            Vincular(HScrollBar1.Value)
+        End If
     End Sub
 
     Private Sub HScrollBar2_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar2.Scroll
         Label4.Text = HScrollBar2.Value
+        If CheckBox1.Checked = True Then
+            Vincular(HScrollBar2.Value)
+        End If
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click

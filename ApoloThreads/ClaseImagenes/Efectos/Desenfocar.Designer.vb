@@ -32,11 +32,12 @@ Partial Class Desenfocar
         Me.HScrollBar2 = New System.Windows.Forms.HScrollBar()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(188, 160)
+        Me.Button2.Location = New System.Drawing.Point(188, 180)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(85, 30)
         Me.Button2.TabIndex = 9
@@ -45,7 +46,7 @@ Partial Class Desenfocar
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(279, 160)
+        Me.Button1.Location = New System.Drawing.Point(279, 180)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(85, 30)
         Me.Button1.TabIndex = 8
@@ -55,9 +56,10 @@ Partial Class Desenfocar
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(16, 17)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(126, 15)
+        Me.Label2.Size = New System.Drawing.Size(128, 15)
         Me.Label2.TabIndex = 7
         Me.Label2.Text = "Desenfoque horizontal"
         '
@@ -82,9 +84,10 @@ Partial Class Desenfocar
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(16, 81)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(111, 15)
+        Me.Label3.Size = New System.Drawing.Size(112, 15)
         Me.Label3.TabIndex = 12
         Me.Label3.Text = "Desenfoque vertical"
         '
@@ -111,18 +114,31 @@ Partial Class Desenfocar
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(19, 160)
+        Me.Button3.Location = New System.Drawing.Point(19, 180)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(85, 30)
         Me.Button3.TabIndex = 13
         Me.Button3.Text = "Restablecer"
         Me.Button3.UseVisualStyleBackColor = True
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = True
+        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox1.Location = New System.Drawing.Point(19, 146)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(69, 19)
+        Me.CheckBox1.TabIndex = 17
+        Me.CheckBox1.Text = "Vincular"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
         'Desenfocar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(376, 202)
+        Me.ClientSize = New System.Drawing.Size(376, 222)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label4)
@@ -150,4 +166,5 @@ Partial Class Desenfocar
     Friend WithEvents HScrollBar2 As System.Windows.Forms.HScrollBar
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 End Class

@@ -42,6 +42,8 @@ Partial Class Principal
         Me.GuardarComoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator()
         Me.AbrirCompiladorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem9 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CompartirImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EdiciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeshacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RehacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -264,6 +266,8 @@ Partial Class Principal
         Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusImagen = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusColor = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.CloudToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GuardarImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -299,7 +303,7 @@ Partial Class Principal
         '
         'AbrirImagenToolStripMenuItem
         '
-        Me.AbrirImagenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem1, Me.CargarToolStripMenuItem, Me.BuscarImágenesEnLaWebToolStripMenuItem, Me.BuscarImágenesEnFacebookToolStripMenuItem, Me.CrearTapizToolStripMenuItem, Me.ToolStripMenuItem4, Me.GuardarComoToolStripMenuItem, Me.ToolStripMenuItem6, Me.AbrirCompiladorToolStripMenuItem})
+        Me.AbrirImagenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem1, Me.CargarToolStripMenuItem, Me.BuscarImágenesEnLaWebToolStripMenuItem, Me.BuscarImágenesEnFacebookToolStripMenuItem, Me.CrearTapizToolStripMenuItem, Me.ToolStripMenuItem4, Me.GuardarComoToolStripMenuItem, Me.ToolStripMenuItem6, Me.AbrirCompiladorToolStripMenuItem, Me.ToolStripMenuItem9, Me.CompartirImagenToolStripMenuItem})
         Me.AbrirImagenToolStripMenuItem.Name = "AbrirImagenToolStripMenuItem"
         Me.AbrirImagenToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
         Me.AbrirImagenToolStripMenuItem.Text = "Archivo"
@@ -355,6 +359,17 @@ Partial Class Principal
         Me.AbrirCompiladorToolStripMenuItem.Name = "AbrirCompiladorToolStripMenuItem"
         Me.AbrirCompiladorToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
         Me.AbrirCompiladorToolStripMenuItem.Text = "Abrir compilador"
+        '
+        'ToolStripMenuItem9
+        '
+        Me.ToolStripMenuItem9.Name = "ToolStripMenuItem9"
+        Me.ToolStripMenuItem9.Size = New System.Drawing.Size(226, 6)
+        '
+        'CompartirImagenToolStripMenuItem
+        '
+        Me.CompartirImagenToolStripMenuItem.Name = "CompartirImagenToolStripMenuItem"
+        Me.CompartirImagenToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.CompartirImagenToolStripMenuItem.Text = "Compartir imagen"
         '
         'EdiciónToolStripMenuItem
         '
@@ -668,7 +683,7 @@ Partial Class Principal
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem, Me.OperacionesAritméticasToolStripMenuItem, Me.MáscarasToolStripMenuItem, Me.EfectosToolStripMenuItem, Me.OperacionesConDosImágenesToolStripMenuItem, Me.TransformacionesGeométricasToolStripMenuItem, Me.HerramientasToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem, Me.OperacionesAritméticasToolStripMenuItem, Me.MáscarasToolStripMenuItem, Me.EfectosToolStripMenuItem, Me.OperacionesConDosImágenesToolStripMenuItem, Me.TransformacionesGeométricasToolStripMenuItem, Me.CloudToolStripMenuItem, Me.HerramientasToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -1874,6 +1889,19 @@ Partial Class Principal
         Me.ToolStripStatusColor.Name = "ToolStripStatusColor"
         Me.ToolStripStatusColor.Size = New System.Drawing.Size(0, 19)
         '
+        'CloudToolStripMenuItem
+        '
+        Me.CloudToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuardarImágenesToolStripMenuItem})
+        Me.CloudToolStripMenuItem.Name = "CloudToolStripMenuItem"
+        Me.CloudToolStripMenuItem.Size = New System.Drawing.Size(50, 20)
+        Me.CloudToolStripMenuItem.Text = "Cloud"
+        '
+        'GuardarImágenesToolStripMenuItem
+        '
+        Me.GuardarImágenesToolStripMenuItem.Name = "GuardarImágenesToolStripMenuItem"
+        Me.GuardarImágenesToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.GuardarImágenesToolStripMenuItem.Text = "Guardar imágenes "
+        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -2148,5 +2176,9 @@ Partial Class Principal
     Friend WithEvents RedimensionarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LiberarMemoriaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GamaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem9 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents CompartirImagenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CloudToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GuardarImágenesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

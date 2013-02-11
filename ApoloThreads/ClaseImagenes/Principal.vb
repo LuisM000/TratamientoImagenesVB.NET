@@ -1,5 +1,6 @@
 ﻿Imports ClaseImagenes.Apolo
 Imports System.ComponentModel
+Imports System.IO
 
 Public Class Principal
     Dim WithEvents objetoTratamiento As New TratamientoImagenes 'Objeto para todo el formulario así no se inicializan las variables de la clase en cada instancia
@@ -15,6 +16,18 @@ Public Class Principal
         frmError.Show()
     End Sub
 #End Region
+
+    Private Sub Principal_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        'Al cerrar el formulario borramos todo lo acumulador por el programa
+        Dim folder As New DirectoryInfo(System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\") 'Directorio
+        Dim listaDearchivos As New ArrayList
+        For Each file As FileInfo In folder.GetFiles() 'Comprobamos si los archivos xml
+            Try
+                Kill(folder.ToString & file.ToString)
+            Catch
+            End Try
+        Next
+    End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Manejamos cualquier excepción no controlada
@@ -88,6 +101,10 @@ Public Class Principal
         'Aquí listar todas las imágenes que se han creado
         ImgCompilador.ShowDialog()
     End Sub
+
+    Private Sub CompartirImagenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CompartirImagenToolStripMenuItem.Click
+        Compartir.Show()
+    End Sub
 #End Region
 
 #Region "Editar"
@@ -144,7 +161,7 @@ Public Class Principal
     End Sub
 #End Region
 
- 
+
 
 #Region "OperacionesBasicas"
     Private Sub EscalaDeGrisesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EscalaDeGrisesToolStripMenuItem.Click
@@ -398,6 +415,12 @@ Public Class Principal
 
     Private Sub VecinosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VecinosToolStripMenuItem.Click
         CompararImagenesVecinos.Show()
+    End Sub
+#End Region
+
+#Region "Cloud"
+    Private Sub GuardarImágenesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardarImágenesToolStripMenuItem.Click
+        Compartir.Show()
     End Sub
 #End Region
 
@@ -1034,6 +1057,5 @@ Public Class Principal
     End Sub
 
 #End Region
- 
- 
+
 End Class

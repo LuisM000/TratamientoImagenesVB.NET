@@ -43,6 +43,7 @@ Partial Class OperacionesAritmeticas
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'RadioButton5
@@ -91,7 +92,7 @@ Partial Class OperacionesAritmeticas
         'Button3
         '
         Me.Button3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(168, 201)
+        Me.Button3.Location = New System.Drawing.Point(170, 215)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(85, 30)
         Me.Button3.TabIndex = 37
@@ -165,7 +166,7 @@ Partial Class OperacionesAritmeticas
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(359, 201)
+        Me.Button2.Location = New System.Drawing.Point(373, 215)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(85, 30)
         Me.Button2.TabIndex = 29
@@ -175,7 +176,7 @@ Partial Class OperacionesAritmeticas
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(450, 201)
+        Me.Button1.Location = New System.Drawing.Point(464, 215)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(85, 30)
         Me.Button1.TabIndex = 28
@@ -235,7 +236,7 @@ Partial Class OperacionesAritmeticas
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Checked = True
         Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Location = New System.Drawing.Point(24, 208)
+        Me.CheckBox1.Location = New System.Drawing.Point(26, 222)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(113, 19)
         Me.CheckBox1.TabIndex = 42
@@ -245,12 +246,25 @@ Partial Class OperacionesAritmeticas
         'BackgroundWorker1
         '
         '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Checked = True
+        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox2.Location = New System.Drawing.Point(156, 180)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(69, 19)
+        Me.CheckBox2.TabIndex = 43
+        Me.CheckBox2.Text = "Vincular"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
         'OperacionesAritmeticas
         '
         Me.AcceptButton = Me.Button1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(549, 243)
+        Me.ClientSize = New System.Drawing.Size(561, 257)
+        Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
@@ -300,4 +314,5 @@ Partial Class OperacionesAritmeticas
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
 End Class

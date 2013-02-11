@@ -42,6 +42,7 @@ Partial Class OperacionesLogicas
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'CheckBox1
@@ -49,7 +50,7 @@ Partial Class OperacionesLogicas
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Checked = True
         Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Location = New System.Drawing.Point(26, 208)
+        Me.CheckBox1.Location = New System.Drawing.Point(27, 225)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(113, 19)
         Me.CheckBox1.TabIndex = 62
@@ -99,7 +100,7 @@ Partial Class OperacionesLogicas
         'Button3
         '
         Me.Button3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(170, 201)
+        Me.Button3.Location = New System.Drawing.Point(171, 218)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(85, 30)
         Me.Button3.TabIndex = 57
@@ -176,7 +177,7 @@ Partial Class OperacionesLogicas
         'Button2
         '
         Me.Button2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(360, 201)
+        Me.Button2.Location = New System.Drawing.Point(361, 218)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(85, 30)
         Me.Button2.TabIndex = 49
@@ -186,7 +187,7 @@ Partial Class OperacionesLogicas
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(451, 201)
+        Me.Button1.Location = New System.Drawing.Point(452, 218)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(85, 30)
         Me.Button1.TabIndex = 48
@@ -238,12 +239,25 @@ Partial Class OperacionesLogicas
         'BackgroundWorker1
         '
         '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Checked = True
+        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox2.Location = New System.Drawing.Point(158, 179)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(69, 19)
+        Me.CheckBox2.TabIndex = 63
+        Me.CheckBox2.Text = "Vincular"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
         'OperacionesLogicas
         '
         Me.AcceptButton = Me.Button1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(549, 243)
+        Me.ClientSize = New System.Drawing.Size(549, 260)
+        Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
@@ -266,7 +280,6 @@ Partial Class OperacionesLogicas
         Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "OperacionesLogicas"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds
         Me.Text = "Operaciones lógicas"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -292,4 +305,5 @@ Partial Class OperacionesLogicas
     Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
 End Class

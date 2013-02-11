@@ -11,7 +11,8 @@
     <AssemblyName>ClaseImagenes</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,6 +48,50 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>ClaseImagenes.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>ClaseImagenes.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>ClaseImagenes.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>ClaseImagenes.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -105,6 +150,12 @@
     <Compile Include="Abrir\AbrirRecurso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Abrir\Compartir.Designer.vb">
+      <DependentUpon>Compartir.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Abrir\Compartir.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Abrir\ImgCompilador.Designer.vb">
       <DependentUpon>ImgCompilador.vb</DependentUpon>
     </Compile>
@@ -135,6 +186,7 @@
     <Compile Include="Ayuda\NotificarErrorAyuda.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Conexion.vb" />
     <Compile Include="Edicion\PropImagen.Designer.vb">
       <DependentUpon>PropImagen.vb</DependentUpon>
     </Compile>
@@ -409,6 +461,9 @@
     <EmbeddedResource Include="Abrir\AbrirRecurso.resx">
       <DependentUpon>AbrirRecurso.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abrir\Compartir.resx">
+      <DependentUpon>Compartir.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abrir\ImgCompilador.resx">
       <DependentUpon>ImgCompilador.vb</DependentUpon>
     </EmbeddedResource>
@@ -647,6 +702,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\github.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cargandogris.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SinImagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\starGris.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

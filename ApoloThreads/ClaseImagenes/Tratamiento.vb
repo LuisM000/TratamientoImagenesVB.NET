@@ -3383,6 +3383,17 @@ Namespace Apolo
             End Try
         End Sub
 
+        'Hace que la imagen enviada se guarde
+        Public Function OriginalApoloCloud(ByVal bmp As Bitmap) As Bitmap
+            guardarImagen(bmp, "Imagen original desde Apolo Cloud") 'Almacenamos info y bitmap
+            contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
+            RaiseEvent actualizaBMP(bmp) 'Generamos evento
+            RaiseEvent actualizaNombreImagen({"Imagen Apolo Cloud", bmp.Width, bmp.Height, "Recurso web (Apolo Cloud)"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
+            'Guardamos la imagen original
+            ImagenOriginalGuardada = bmp
+            imagenOriginalInfo = "Imagen original desde Apolo Cloud"
+            Return bmp
+        End Function
         'Función para guardar imagen
         Sub guardarcomo(ByVal bmp As Bitmap, Optional ByVal filtrado As Integer = 4)
             Dim salvar As New SaveFileDialog

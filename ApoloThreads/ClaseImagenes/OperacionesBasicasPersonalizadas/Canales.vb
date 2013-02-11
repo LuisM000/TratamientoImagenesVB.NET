@@ -5,6 +5,16 @@ Public Class Canales
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
     Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
 
+    Private Sub Vincular(ByVal valor As Double)
+        Label1.Text = valor
+        HScrollBar1.Value = valor
+        Label3.Text = valor
+        HScrollBar2.Value = valor
+        Label4.Text = valor
+        HScrollBar3.Value = valor
+        Label5.Text = valor
+        HScrollBar4.Value = valor
+    End Sub
     Sub RestablecerHS()
         HScrollBar1.Value = 0
         HScrollBar2.Value = 0
@@ -35,18 +45,30 @@ Public Class Canales
 
     Private Sub HScrollBar4_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar4.Scroll
         Label5.Text = HScrollBar4.Value
+        If CheckBox2.Checked = True Then
+            Vincular(HScrollBar4.Value)
+        End If
     End Sub
 
     Private Sub HScrollBar3_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar3.Scroll
         Label4.Text = HScrollBar3.Value
+        If CheckBox2.Checked = True Then
+            Vincular(HScrollBar3.Value)
+        End If
     End Sub
 
     Private Sub HScrollBar2_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar2.Scroll
         Label3.Text = HScrollBar2.Value
+        If CheckBox2.Checked = True Then
+            Vincular(HScrollBar2.Value)
+        End If
     End Sub
 
     Private Sub HScrollBar1_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar1.Scroll
         Label1.Text = HScrollBar1.Value
+        If CheckBox2.Checked = True Then
+            Vincular(HScrollBar1.Value)
+        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

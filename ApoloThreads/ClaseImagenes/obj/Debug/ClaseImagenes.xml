@@ -51,6 +51,10 @@ ClaseImagenes
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.cargandogris">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.check">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
@@ -120,6 +124,18 @@ ClaseImagenes
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.remastered_lena_512x512">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.SinImagen">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.star">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.starGris">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>

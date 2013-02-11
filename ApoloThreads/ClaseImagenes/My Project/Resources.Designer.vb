@@ -153,6 +153,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property cargandogris() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("cargandogris", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property check() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("check", resourceCulture)
@@ -326,6 +336,36 @@ Namespace My.Resources
         Friend ReadOnly Property remastered_lena_512x512() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("remastered-lena-512x512", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property SinImagen() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("SinImagen", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property star() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("star", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property starGris() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("starGris", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
