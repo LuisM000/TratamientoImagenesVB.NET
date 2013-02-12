@@ -90,6 +90,9 @@ Partial Class Compartir
         Me.BackgroundWorker6 = New System.ComponentModel.BackgroundWorker()
         Me.picCargandoVoto = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnBorrar = New System.Windows.Forms.Button()
+        Me.picBorrar = New System.Windows.Forms.PictureBox()
+        Me.BackgroundWorker7 = New System.ComponentModel.BackgroundWorker()
         CType(Me.picStar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picStar5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picStar4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,6 +123,7 @@ Partial Class Compartir
         CType(Me.PicValora4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCargandoVoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.picBorrar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnSubir
@@ -157,7 +161,7 @@ Partial Class Compartir
         'lblno
         '
         Me.lblno.AutoSize = True
-        Me.lblno.Location = New System.Drawing.Point(34, 266)
+        Me.lblno.Location = New System.Drawing.Point(34, 267)
         Me.lblno.Name = "lblno"
         Me.lblno.Size = New System.Drawing.Size(57, 15)
         Me.lblno.TabIndex = 12
@@ -174,7 +178,7 @@ Partial Class Compartir
         '
         'btnRecargar
         '
-        Me.btnRecargar.Location = New System.Drawing.Point(315, 591)
+        Me.btnRecargar.Location = New System.Drawing.Point(315, 553)
         Me.btnRecargar.Name = "btnRecargar"
         Me.btnRecargar.Size = New System.Drawing.Size(138, 33)
         Me.btnRecargar.TabIndex = 41
@@ -192,7 +196,7 @@ Partial Class Compartir
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox1.Size = New System.Drawing.Size(100, 63)
         Me.TextBox1.TabIndex = 54
         '
         'TextBox2
@@ -203,7 +207,7 @@ Partial Class Compartir
         Me.TextBox2.Multiline = True
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox2.Size = New System.Drawing.Size(100, 63)
         Me.TextBox2.TabIndex = 55
         '
         'TextBox3
@@ -214,7 +218,7 @@ Partial Class Compartir
         Me.TextBox3.Multiline = True
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox3.Size = New System.Drawing.Size(100, 63)
         Me.TextBox3.TabIndex = 56
         '
         'TextBox4
@@ -225,7 +229,7 @@ Partial Class Compartir
         Me.TextBox4.Multiline = True
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox4.Size = New System.Drawing.Size(100, 63)
         Me.TextBox4.TabIndex = 57
         '
         'TextBox5
@@ -236,7 +240,7 @@ Partial Class Compartir
         Me.TextBox5.Multiline = True
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.ReadOnly = True
-        Me.TextBox5.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox5.Size = New System.Drawing.Size(100, 63)
         Me.TextBox5.TabIndex = 58
         '
         'TextBox6
@@ -247,7 +251,7 @@ Partial Class Compartir
         Me.TextBox6.Multiline = True
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.ReadOnly = True
-        Me.TextBox6.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox6.Size = New System.Drawing.Size(100, 63)
         Me.TextBox6.TabIndex = 59
         '
         'TextBox7
@@ -258,7 +262,7 @@ Partial Class Compartir
         Me.TextBox7.Multiline = True
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.ReadOnly = True
-        Me.TextBox7.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox7.Size = New System.Drawing.Size(100, 63)
         Me.TextBox7.TabIndex = 60
         '
         'TextBox8
@@ -269,7 +273,7 @@ Partial Class Compartir
         Me.TextBox8.Multiline = True
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.ReadOnly = True
-        Me.TextBox8.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox8.Size = New System.Drawing.Size(100, 63)
         Me.TextBox8.TabIndex = 61
         '
         'TextBox9
@@ -280,7 +284,7 @@ Partial Class Compartir
         Me.TextBox9.Multiline = True
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.ReadOnly = True
-        Me.TextBox9.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox9.Size = New System.Drawing.Size(100, 63)
         Me.TextBox9.TabIndex = 62
         '
         'TextBox10
@@ -291,7 +295,7 @@ Partial Class Compartir
         Me.TextBox10.Multiline = True
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.ReadOnly = True
-        Me.TextBox10.Size = New System.Drawing.Size(100, 64)
+        Me.TextBox10.Size = New System.Drawing.Size(100, 63)
         Me.TextBox10.TabIndex = 63
         '
         'btnTodasImg
@@ -357,7 +361,7 @@ Partial Class Compartir
         '
         'btnVerImagen
         '
-        Me.btnVerImagen.Location = New System.Drawing.Point(315, 513)
+        Me.btnVerImagen.Location = New System.Drawing.Point(315, 475)
         Me.btnVerImagen.Name = "btnVerImagen"
         Me.btnVerImagen.Size = New System.Drawing.Size(138, 33)
         Me.btnVerImagen.TabIndex = 76
@@ -378,7 +382,7 @@ Partial Class Compartir
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(315, 552)
+        Me.Button2.Location = New System.Drawing.Point(315, 513)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(138, 33)
         Me.Button2.TabIndex = 80
@@ -407,7 +411,7 @@ Partial Class Compartir
         '
         Me.lblvot.AutoSize = True
         Me.lblvot.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblvot.Location = New System.Drawing.Point(702, 491)
+        Me.lblvot.Location = New System.Drawing.Point(702, 492)
         Me.lblvot.Name = "lblvot"
         Me.lblvot.Size = New System.Drawing.Size(86, 15)
         Me.lblvot.TabIndex = 83
@@ -417,7 +421,7 @@ Partial Class Compartir
         '
         Me.picStar1.Image = Global.ClaseImagenes.My.Resources.Resources.starGris
         Me.picStar1.InitialImage = CType(resources.GetObject("picStar1.InitialImage"), System.Drawing.Image)
-        Me.picStar1.Location = New System.Drawing.Point(4, 3)
+        Me.picStar1.Location = New System.Drawing.Point(3, 3)
         Me.picStar1.Name = "picStar1"
         Me.picStar1.Size = New System.Drawing.Size(15, 15)
         Me.picStar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -428,7 +432,7 @@ Partial Class Compartir
         '
         Me.picStar5.Image = Global.ClaseImagenes.My.Resources.Resources.starGris
         Me.picStar5.InitialImage = CType(resources.GetObject("picStar5.InitialImage"), System.Drawing.Image)
-        Me.picStar5.Location = New System.Drawing.Point(88, 3)
+        Me.picStar5.Location = New System.Drawing.Point(87, 3)
         Me.picStar5.Name = "picStar5"
         Me.picStar5.Size = New System.Drawing.Size(15, 15)
         Me.picStar5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -439,7 +443,7 @@ Partial Class Compartir
         '
         Me.picStar4.Image = Global.ClaseImagenes.My.Resources.Resources.starGris
         Me.picStar4.InitialImage = CType(resources.GetObject("picStar4.InitialImage"), System.Drawing.Image)
-        Me.picStar4.Location = New System.Drawing.Point(67, 3)
+        Me.picStar4.Location = New System.Drawing.Point(66, 3)
         Me.picStar4.Name = "picStar4"
         Me.picStar4.Size = New System.Drawing.Size(15, 15)
         Me.picStar4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -450,7 +454,7 @@ Partial Class Compartir
         '
         Me.picStar2.Image = Global.ClaseImagenes.My.Resources.Resources.starGris
         Me.picStar2.InitialImage = CType(resources.GetObject("picStar2.InitialImage"), System.Drawing.Image)
-        Me.picStar2.Location = New System.Drawing.Point(25, 3)
+        Me.picStar2.Location = New System.Drawing.Point(24, 3)
         Me.picStar2.Name = "picStar2"
         Me.picStar2.Size = New System.Drawing.Size(15, 15)
         Me.picStar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -461,7 +465,7 @@ Partial Class Compartir
         '
         Me.picStar3.Image = Global.ClaseImagenes.My.Resources.Resources.starGris
         Me.picStar3.InitialImage = CType(resources.GetObject("picStar3.InitialImage"), System.Drawing.Image)
-        Me.picStar3.Location = New System.Drawing.Point(46, 3)
+        Me.picStar3.Location = New System.Drawing.Point(45, 3)
         Me.picStar3.Name = "picStar3"
         Me.picStar3.Size = New System.Drawing.Size(15, 15)
         Me.picStar3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -472,14 +476,14 @@ Partial Class Compartir
         '
         Me.picImagenVisualizada.Location = New System.Drawing.Point(485, 445)
         Me.picImagenVisualizada.Name = "picImagenVisualizada"
-        Me.picImagenVisualizada.Size = New System.Drawing.Size(206, 206)
+        Me.picImagenVisualizada.Size = New System.Drawing.Size(206, 207)
         Me.picImagenVisualizada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.picImagenVisualizada.TabIndex = 78
         Me.picImagenVisualizada.TabStop = False
         '
         'picCargandoImagen
         '
-        Me.picCargandoImagen.Location = New System.Drawing.Point(459, 520)
+        Me.picCargandoImagen.Location = New System.Drawing.Point(458, 482)
         Me.picCargandoImagen.Name = "picCargandoImagen"
         Me.picCargandoImagen.Size = New System.Drawing.Size(20, 20)
         Me.picCargandoImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -587,7 +591,7 @@ Partial Class Compartir
         '
         'picRecargar
         '
-        Me.picRecargar.Location = New System.Drawing.Point(459, 597)
+        Me.picRecargar.Location = New System.Drawing.Point(458, 558)
         Me.picRecargar.Name = "picRecargar"
         Me.picRecargar.Size = New System.Drawing.Size(20, 20)
         Me.picRecargar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -596,7 +600,7 @@ Partial Class Compartir
         '
         'picCargando
         '
-        Me.picCargando.Location = New System.Drawing.Point(228, 335)
+        Me.picCargando.Location = New System.Drawing.Point(227, 335)
         Me.picCargando.Name = "picCargando"
         Me.picCargando.Size = New System.Drawing.Size(20, 20)
         Me.picCargando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -706,7 +710,7 @@ Partial Class Compartir
         '
         'picCargandoVoto
         '
-        Me.picCargandoVoto.Location = New System.Drawing.Point(823, 627)
+        Me.picCargandoVoto.Location = New System.Drawing.Point(822, 627)
         Me.picCargandoVoto.Name = "picCargandoVoto"
         Me.picCargandoVoto.Size = New System.Drawing.Size(20, 20)
         Me.picCargandoVoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -726,16 +730,40 @@ Partial Class Compartir
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(15, 18)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(307, 409)
+        Me.GroupBox1.Size = New System.Drawing.Size(307, 408)
         Me.GroupBox1.TabIndex = 93
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Subir imagen"
+        '
+        'btnBorrar
+        '
+        Me.btnBorrar.Enabled = False
+        Me.btnBorrar.Location = New System.Drawing.Point(315, 592)
+        Me.btnBorrar.Name = "btnBorrar"
+        Me.btnBorrar.Size = New System.Drawing.Size(138, 33)
+        Me.btnBorrar.TabIndex = 94
+        Me.btnBorrar.Text = "Borrar"
+        Me.btnBorrar.UseVisualStyleBackColor = True
+        '
+        'picBorrar
+        '
+        Me.picBorrar.Location = New System.Drawing.Point(458, 600)
+        Me.picBorrar.Name = "picBorrar"
+        Me.picBorrar.Size = New System.Drawing.Size(20, 20)
+        Me.picBorrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picBorrar.TabIndex = 95
+        Me.picBorrar.TabStop = False
+        '
+        'BackgroundWorker7
+        '
         '
         'Compartir
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(899, 697)
+        Me.Controls.Add(Me.picBorrar)
+        Me.Controls.Add(Me.btnBorrar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.picCargandoVoto)
         Me.Controls.Add(Me.Label1)
@@ -778,6 +806,7 @@ Partial Class Compartir
         Me.Controls.Add(Me.btnRecargar)
         Me.Enabled = False
         Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.Name = "Compartir"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
@@ -813,6 +842,7 @@ Partial Class Compartir
         CType(Me.picCargandoVoto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.picBorrar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -883,4 +913,7 @@ Partial Class Compartir
     Friend WithEvents BackgroundWorker6 As System.ComponentModel.BackgroundWorker
     Friend WithEvents picCargandoVoto As System.Windows.Forms.PictureBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents btnBorrar As System.Windows.Forms.Button
+    Friend WithEvents picBorrar As System.Windows.Forms.PictureBox
+    Friend WithEvents BackgroundWorker7 As System.ComponentModel.BackgroundWorker
 End Class

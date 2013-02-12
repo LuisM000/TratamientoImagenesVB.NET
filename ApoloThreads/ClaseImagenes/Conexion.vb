@@ -3,6 +3,7 @@
 Public Class Conexion
     Private datoConex(2) As String 'Variaable con los datos de conexión
     Private listaDirectorios As New ArrayList 'Variable con directorios
+    Private listaDirectoriosPrivados As New ArrayList 'Variable con directorios privados
     Private listaImagenes As New ArrayList 'Variable con imágenes públicas
     Private listainfoImagenes As New ArrayList 'Variable con información imágenes públicas
     Private NumeroImagenesPub As Integer 'Variable con el número de imágenes públicas encontradas
@@ -59,8 +60,17 @@ Public Class Conexion
             Return listaDirectorios
         End Get
         Set(value As ArrayList)
-            listaDirectorios.Clear()
             listaDirectorios = value
+        End Set
+    End Property
+
+    'Listado de directorios privados
+    Private Property DirectoriosPrivados As ArrayList
+        Get
+            Return listaDirectoriosPrivados
+        End Get
+        Set(value As ArrayList)
+            listaDirectoriosPrivados = value
         End Set
     End Property
 
@@ -140,6 +150,34 @@ Public Class Conexion
         Return listadirectorios
     End Function
 
+    'Función que lista todos los directorios
+    Private Function listarDirectoriosPrivados()
+        Dim listadirectorios As New ArrayList
+        Try
+            Dim dire = DatosConexion(0).ToString & "DatosUsuarios"
+            Dim ftp As FtpWebRequest = CType(FtpWebRequest.Create(DatosConexion(0).ToString & "DatosUsuarios"), FtpWebRequest)
+            Dim cred As New NetworkCredential(DatosConexion(1).ToString, DatosConexion(2).ToString)
+            ftp.Credentials = cred
+            ftp.KeepAlive = False
+            ftp.AuthenticationLevel = Security.AuthenticationLevel.MutualAuthRequested
+            ftp.Method = WebRequestMethods.Ftp.ListDirectoryDetails
+            'ftp.Proxy = Nothing
+            Dim ftpresp As FtpWebResponse = DirectCast(ftp.GetResponse, FtpWebResponse)
+
+            Dim sreader As New IO.StreamReader(ftpresp.GetResponseStream)
+            While Not sreader.Peek = -1
+                Dim ftpList As String() = sreader.ReadLine.Split(" ")
+                Dim ftpfile As String = ftpList(ftpList.GetUpperBound(0))
+                listaDirectoriosPrivados.Add(ftpfile)
+
+            End While
+            ftpresp.Close()
+        Catch ex As Exception
+            MessageBox.Show("Algo ha ocurrido, no se ha podido listar los directorios. Reinténtelo más tarde o contacte con el administrador", "Error conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        Return listaDirectoriosPrivados
+    End Function
+
     'Función que lista todas las imágenes públicas
     Public Function listarImagenesPublicas()
         Dim listaImagen As New ArrayList
@@ -203,7 +241,15 @@ Public Class Conexion
     'Subir una imagen a la carpeta pública
     Public Function SubirFotoPublica(ByVal bmp As Bitmap, ByVal nombreImagen As String, ByVal infoImagen As String) As Boolean
         Try
-           
+            'Listamos los directorios
+            Directorios = listarDirectorios()
+
+            'Listamos imágenes públicas
+            ImagenesPublicas = listarImagenesPublicas()
+
+            'Listamos info imágenes públicas
+            InfoimagenesPublicas = listarInfoImagenesPublicas()
+
             For Each item In ImagenesPublicas
                 If item = nombreImagen & ".jpg" Then
                     MessageBox.Show("La imagen ya existe, por favor, cambie el nombre e inténtelo de nuevo.", "Error al guardar la imagen", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -216,10 +262,10 @@ Public Class Conexion
             My.Computer.Network.UploadFile(nombreArchivo, DatosConexion(0) & nombreImagen & ".jpg", DatosConexion(1), DatosConexion(2), True, 500)
             'Creamos un archivo de texto con la información de la imagen
             Dim nombreArchivoinfo As String = TxtInfoFoto(nombreImagen, infoImagen)
-            My.Computer.Network.UploadFile(nombreArchivoinfo, DatosConexion(0) & nombreImagen & ".txt", DatosConexion(1), DatosConexion(2), True, 500)
+            My.Computer.Network.UploadFile(nombreArchivoinfo, DatosConexion(0) & nombreImagen & ".txt", DatosConexion(1), DatosConexion(2), False, 500)
             'Creamos un archivo con el archivo de texto donde se guardarán las valoraciones
             Dim archivoVacio As String = TxtInfoFoto(nombreImagen, "")
-            My.Computer.Network.UploadFile(archivoVacio, DatosConexion(0) & "Valoraciones/" & nombreImagen & ".txt", DatosConexion(1), DatosConexion(2), True, 500)
+            My.Computer.Network.UploadFile(archivoVacio, DatosConexion(0) & "Valoraciones/" & nombreImagen & ".txt", DatosConexion(1), DatosConexion(2), False, 500)
 
             'Listamos imágenes públicas
             ImagenesPublicas = listarImagenesPublicas()
@@ -430,6 +476,149 @@ Public Class Conexion
     End Function
  
 
+    'Crear Carpeta privada
+    Public Function CrearCarpetaPrivada(ByVal nombre As String, ByVal pass As String, ByVal email As String)
+        'Listamos los directorios
+        DirectoriosPrivados = listarDirectoriosPrivados()
+
+        Try
+            For Each item In DirectoriosPrivados
+                If item = nombre Then
+                    MessageBox.Show("El usuario ya existe.", "Error al crear directorio", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                    Exit Function
+                End If
+            Next
+            'Creamos el archivo para luego subirlo
+            Dim datosUsuario = TxtInfoFoto(nombre, nombre & "/" & pass & "/" & email)
+            Dim directorio As Boolean = CrearDirectorio(nombre)
+            Dim directorioValoraciones As Boolean = CrearDirectorio(nombre & "/Valoraciones")
+            If directorio = False And directorioValoraciones Then
+                MessageBox.Show("No se pudo crear el directorio, inténtelo más tarde.", "Error al crear directorio", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            End If
+            Dim direccion As String = DatosConexion(0) & "DatosUsuarios/" & nombre & "/DatosUser"
+            My.Computer.Network.UploadFile(datosUsuario, direccion, DatosConexion(1), DatosConexion(2))
+           Return True
+        Catch
+            MessageBox.Show("Algo ha ocurrido. Inténtelo de nuevo más tarde.", "Error al crear carpeta", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Private Function CrearDirectorio(ByVal nombreDirectorio As String) As Boolean
+        Try
+            Dim peticionFTP As FtpWebRequest
+            ' Creamos una peticion FTP con la dirección del directorio que queremos crear
+            peticionFTP = CType(WebRequest.Create(New Uri(DatosConexion(0) & "DatosUsuarios/" & nombreDirectorio)), FtpWebRequest)
+
+            ' Fijamos el usuario y la contraseña de la petición
+            peticionFTP.Credentials = New NetworkCredential(DatosConexion(1).ToString, DatosConexion(2).ToString)
+
+            ' Seleccionamos el comando que vamos a utilizar: Crear un directorio
+            peticionFTP.Method = WebRequestMethods.Ftp.MakeDirectory
+            Dim response As WebResponse = peticionFTP.GetResponse()
+            Return True
+        Catch
+            Return False
+        End Try
+    End Function
+
+    'Acceder a carpeta privada
+    Public Function AccederCarpetaPrivada(ByVal nombreUsuario As String, ByVal password As String) As Boolean
+        'Listamos los directorios
+        DirectoriosPrivados = listarDirectoriosPrivados()
+
+        Try
+            Dim comprobacionUser As Boolean = False
+            For Each item In DirectoriosPrivados 'Comprobamos que haya alguno que exista
+                If item = nombreUsuario Then
+                    comprobacionUser = True
+                End If
+            Next
+            If comprobacionUser = False Then 'Si ninguno existe, salimos
+                MessageBox.Show("El nombre de usuario o la contraseña no son correctos.", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+                Exit Function
+            End If
+            'La carpeta existe, ahora comprobamos que la contraseña coincida
+            Dim InfoDescargada As String = Nothing
+            Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & nombreUsuario & ".txt"
+            Try 'Si ya existe lo borramos
+                Kill(rutaGuardar)
+            Catch
+            End Try
+            Dim direccion As String = DatosConexion(0) & "DatosUsuarios/" & nombreUsuario & "/DatosUser"
+            My.Computer.Network.DownloadFile(direccion, rutaGuardar, DatosConexion(1), DatosConexion(2))
+            InfoDescargada = TxtInfoFotoLeer(rutaGuardar)
+            'Extraemos la contraseña
+            Dim InfoContr = InfoDescargada.Split("/")
+            If InfoContr(1).ToString = password Then 'Comprobamos si la contraseña es correcta
+                Return True
+                Exit Function
+            Else
+                MessageBox.Show("El nombre de usuario o la contraseña no son correctos.", "Error de credenciales", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+                Exit Function
+            End If
+
+
+        Catch
+            MessageBox.Show("No se ha podido conectar con su carpeta. Revise sus credenciales o inténtelo más tarde", "Error al acceder a carpeta privada", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
+    'Borrar archivo
+    Public Function EliminarArchivos(ByVal nombreArchivo As String) As Boolean
+        Try
+            Dim peticionFTP As FtpWebRequest
+
+            ' Creamos una petición FTP con la dirección del fichero a eliminar
+            peticionFTP = CType(WebRequest.Create(New Uri(DatosConexion(0) & nombreArchivo)), FtpWebRequest)
+            ' Fijamos el usuario y la contraseña de la petición
+            peticionFTP.Credentials = New NetworkCredential(DatosConexion(1).ToString, DatosConexion(2).ToString)
+            ' Seleccionamos el comando que vamos a utilizar: Eliminar un fichero
+            peticionFTP.Method = WebRequestMethods.Ftp.DeleteFile
+            peticionFTP.UsePassive = False
+            Dim respuestaFTP As FtpWebResponse
+            respuestaFTP = CType(peticionFTP.GetResponse(), FtpWebResponse)
+          
+            ' Creamos una petición FTP con la dirección del fichero a eliminar (comentarios)
+            Dim direccionComentarios As String
+            'Eliminamos .jpg y lo reemplzamos por .txt
+            direccionComentarios = nombreArchivo.Substring(0, nombreArchivo.Length - 4)
+            direccionComentarios += ".txt"
+            peticionFTP = CType(WebRequest.Create(New Uri(DatosConexion(0) & direccionComentarios)), FtpWebRequest)
+            peticionFTP.Credentials = New NetworkCredential(DatosConexion(1).ToString, DatosConexion(2).ToString)
+            peticionFTP.Method = WebRequestMethods.Ftp.DeleteFile
+            peticionFTP.UsePassive = False
+            respuestaFTP = CType(peticionFTP.GetResponse(), FtpWebResponse)
+
+            ' Creamos una petición FTP con la dirección del fichero a eliminar (Valoraciones)
+            Dim direccionValoraciones As String
+            'Eliminamos .jpg y lo reemplzamos por .txt
+            direccionValoraciones = nombreArchivo.Substring(0, nombreArchivo.Length - 4)
+            direccionValoraciones += ".txt"
+            direccionValoraciones = "Valoraciones/" & direccionValoraciones
+            peticionFTP = CType(WebRequest.Create(New Uri(DatosConexion(0) & direccionValoraciones)), FtpWebRequest)
+            peticionFTP.Credentials = New NetworkCredential(DatosConexion(1).ToString, DatosConexion(2).ToString)
+            peticionFTP.Method = WebRequestMethods.Ftp.DeleteFile
+            peticionFTP.UsePassive = False
+            respuestaFTP = CType(peticionFTP.GetResponse(), FtpWebResponse)
+
+            ' Si todo ha ido bien, devolvemos true
+            respuestaFTP.Close()
+
+            Return True
+        Catch ex As Exception
+            ' Si se produce algún fallo, se devolverá el mensaje del error
+            MessageBox.Show("Algo ha ocurrido. Inténtelo de nuevo más tarde.", "Error al borrar archivo", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
+
+
 
 
     'Crear archivo de texto con la información
@@ -448,6 +637,7 @@ Public Class Conexion
         Dim sr As New System.IO.StreamReader(ruta)
         texto = sr.ReadToEnd()
         sr.Close()
+        Kill(ruta)
         Return texto
     End Function
 
@@ -462,7 +652,7 @@ Public Class Conexion
         sr.Close()
         Dim textoSeparado() As String
         textoSeparado = texto.Split("/")
-       
+
         Dim cuentaValoracion As Integer = 0
         For i = 0 To textoSeparado.Count - 2 'La última está siempre vacía
             cuentaValoracion += textoSeparado(i)

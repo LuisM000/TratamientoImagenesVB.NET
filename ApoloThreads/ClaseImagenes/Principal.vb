@@ -30,6 +30,15 @@ Public Class Principal
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'borramos todo lo acumulador por el programa
+        Dim folder As New DirectoryInfo(System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\") 'Directorio
+        Dim listaDearchivos As New ArrayList
+        For Each file As FileInfo In folder.GetFiles() 'Comprobamos si los archivos xml
+            Try
+                Kill(folder.ToString & file.ToString)
+            Catch
+            End Try
+        Next
         'Manejamos cualquier excepción no controlada
         AddHandler Application.ThreadException, AddressOf Application_ThreadException
 
@@ -103,7 +112,8 @@ Public Class Principal
     End Sub
 
     Private Sub CompartirImagenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CompartirImagenToolStripMenuItem.Click
-        Compartir.Show()
+        Dim form As New Compartir()
+        form.Show()
     End Sub
 #End Region
 
@@ -420,7 +430,15 @@ Public Class Principal
 
 #Region "Cloud"
     Private Sub GuardarImágenesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardarImágenesToolStripMenuItem.Click
-        Compartir.Show()
+        Dim form As New Compartir()
+        form.Show()
+    End Sub
+    Private Sub CrearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrearToolStripMenuItem.Click
+        CrearCarpetaPrivada.Show()
+    End Sub
+
+    Private Sub AccesoCarpetaPrivadaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AccesoCarpetaPrivadaToolStripMenuItem.Click
+        AccesoPrivado.Show()
     End Sub
 #End Region
 
@@ -1057,5 +1075,6 @@ Public Class Principal
     End Sub
 
 #End Region
+
 
 End Class

@@ -131,6 +131,10 @@ Partial Class Principal
         Me.TraslaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RotaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransformaciónAfínToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CloudToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GuardarImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CrearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AccesoCarpetaPrivadaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HistogramasAutomáticosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LiberarMemoriaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -266,8 +270,6 @@ Partial Class Principal
         Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusImagen = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusColor = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.CloudToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GuardarImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -916,6 +918,31 @@ Partial Class Principal
         Me.TransformaciónAfínToolStripMenuItem.Name = "TransformaciónAfínToolStripMenuItem"
         Me.TransformaciónAfínToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
         Me.TransformaciónAfínToolStripMenuItem.Text = "Transformación afín"
+        '
+        'CloudToolStripMenuItem
+        '
+        Me.CloudToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuardarImágenesToolStripMenuItem, Me.CrearToolStripMenuItem, Me.AccesoCarpetaPrivadaToolStripMenuItem})
+        Me.CloudToolStripMenuItem.Name = "CloudToolStripMenuItem"
+        Me.CloudToolStripMenuItem.Size = New System.Drawing.Size(50, 20)
+        Me.CloudToolStripMenuItem.Text = "Cloud"
+        '
+        'GuardarImágenesToolStripMenuItem
+        '
+        Me.GuardarImágenesToolStripMenuItem.Name = "GuardarImágenesToolStripMenuItem"
+        Me.GuardarImágenesToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.GuardarImágenesToolStripMenuItem.Text = "Compartir imagen"
+        '
+        'CrearToolStripMenuItem
+        '
+        Me.CrearToolStripMenuItem.Name = "CrearToolStripMenuItem"
+        Me.CrearToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.CrearToolStripMenuItem.Text = "Crear carpeta privada"
+        '
+        'AccesoCarpetaPrivadaToolStripMenuItem
+        '
+        Me.AccesoCarpetaPrivadaToolStripMenuItem.Name = "AccesoCarpetaPrivadaToolStripMenuItem"
+        Me.AccesoCarpetaPrivadaToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.AccesoCarpetaPrivadaToolStripMenuItem.Text = "Acceso carpeta privada"
         '
         'HerramientasToolStripMenuItem
         '
@@ -1889,19 +1916,6 @@ Partial Class Principal
         Me.ToolStripStatusColor.Name = "ToolStripStatusColor"
         Me.ToolStripStatusColor.Size = New System.Drawing.Size(0, 19)
         '
-        'CloudToolStripMenuItem
-        '
-        Me.CloudToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuardarImágenesToolStripMenuItem})
-        Me.CloudToolStripMenuItem.Name = "CloudToolStripMenuItem"
-        Me.CloudToolStripMenuItem.Size = New System.Drawing.Size(50, 20)
-        Me.CloudToolStripMenuItem.Text = "Cloud"
-        '
-        'GuardarImágenesToolStripMenuItem
-        '
-        Me.GuardarImágenesToolStripMenuItem.Name = "GuardarImágenesToolStripMenuItem"
-        Me.GuardarImágenesToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.GuardarImágenesToolStripMenuItem.Text = "Guardar imágenes "
-        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -2180,5 +2194,7 @@ Partial Class Principal
     Friend WithEvents CompartirImagenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CloudToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GuardarImágenesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CrearToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AccesoCarpetaPrivadaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

@@ -7,6 +7,19 @@ Public Class Compartir
     Dim infoImagen As String 'Variable con la información recuperada del servidor 
     Dim imagenACtual As Integer = 0 'Variable que informa sobre qué 10 imágenes hay que mostrar
     Dim valoracionImagen(1) As String 'Variable con valoración de usuario y número de votos
+    Dim directorioActual As String 'Variable con el nombre actual (para sesiones privadas)
+    Dim directorioConstructor As String 'Variable con string recibido en el constructor
+
+    Public Sub New(Optional ByVal directorio As String = "") 'Constructor
+        ' Llamada necesaria para el diseñador.
+        InitializeComponent()
+        If directorio <> "" Then
+            ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+            directorioConstructor = directorio
+            directorioActual = "DatosUsuarios/" & directorio & "/"
+            btnBorrar.Enabled = True
+        End If
+    End Sub
 
     Private Sub dentroP(ByVal sender As Object, ByVal e As System.EventArgs)
         Me.Cursor = Cursors.Hand
@@ -15,13 +28,15 @@ Public Class Compartir
         Me.Cursor = Cursors.Default
     End Sub
     Private Sub ClicP(ByVal sender As Object, ByVal e As System.EventArgs)
-        Principal.PictureBox1.Image = objetoTratamiento.OriginalApoloCloud(DirectCast(sender, PictureBox).Image)
+        If DirectCast(sender, PictureBox).Image IsNot Nothing Then
+            Principal.PictureBox1.Image = objetoTratamiento.OriginalApoloCloud(DirectCast(sender, PictureBox).Image)
+        End If
     End Sub
 
     Private Sub Compartir_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Location = New Size(50, 50)
-        Me.Size = New Size(212, 5)
+        Me.Size = New Size(200, 5)
         picSubir.Image = Principal.PictureBox1.Image
         'Asignamos el gestor que controle cuando sale imagen
         AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf Principal.actualizarPicture)
@@ -52,14 +67,17 @@ Public Class Compartir
         End If
     End Sub
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        objetoConexion = New Conexion("ftp://93.188.160.15/", "u398464172", "luis000luis000")
+        objetoConexion = New Conexion("ftp://93.188.160.15/" & directorioActual, "u398464172", "luis000luis000")
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedDialog
         Me.Text = "Apolo Cloud"
+        If directorioActual <> "" Then
+            Me.Text += " [Sesión privada - " & directorioConstructor & "]"
+        End If
         Me.Enabled = True 'Lo activamos
-        Me.Size = New Size(899, 484)
+        Me.Size = New Size(899, 473)
 
         'Mostramos las primeras 10 imágenes
         If BackgroundWorker5.IsBusy = False Then
@@ -158,21 +176,26 @@ Public Class Compartir
     Private Sub BackgroundWorker4_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker4.RunWorkerCompleted
         'Incluimos en el listbox todas las imágenes
         ListBox1.Items.Clear()
-        For Each item In listaImagenes
-            ListBox1.Items.Add(item)
-        Next
-        btnRecargar.Text = "Recargar"
-        picRecargar.Image = Nothing
-        'Si no hay ninguna imagen en el picture al lado del listbox
-        '(esto sirve para que la primera vez carguemos una imagen)
-        If BackgroundWorker3.IsBusy = False And picImagenVisualizada.Image Is Nothing Then
-            picCargandoImagen.Image = My.Resources.cargandogris
-            btnVerImagen.Text = "Visualizando imagen"
-            Dim nombre As ArrayList
-            nombre = objetoConexion.listarImagenesPublicas
-            'Cargamos la primera imagen de la lista
-            nombreImagen = nombre(0).ToString.Replace(".jpg", "")
-            BackgroundWorker3.RunWorkerAsync()
+        If listaImagenes.Count > 0 Then 'Si hay alguna imagen
+            For Each item In listaImagenes
+                ListBox1.Items.Add(item)
+            Next
+            btnRecargar.Text = "Recargar"
+            picRecargar.Image = Nothing
+            'Si no hay ninguna imagen en el picture al lado del listbox
+            '(esto sirve para que la primera vez carguemos una imagen)
+            If BackgroundWorker3.IsBusy = False And picImagenVisualizada.Image Is Nothing Then
+                picCargandoImagen.Image = My.Resources.cargandogris
+                btnVerImagen.Text = "Visualizando imagen"
+                Dim nombre As ArrayList
+                nombre = objetoConexion.listarImagenesPublicas
+                'Cargamos la primera imagen de la lista
+                nombreImagen = nombre(0).ToString.Replace(".jpg", "")
+                BackgroundWorker3.RunWorkerAsync()
+            End If
+        Else
+            btnRecargar.Text = "Recargar"
+            picRecargar.Image = Nothing
         End If
     End Sub
 
@@ -319,6 +342,7 @@ Public Class Compartir
         End If
     End Sub
 #End Region
+
     Private Sub BackgroundWorker5_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker5.RunWorkerCompleted
         btnTodasImg.Text = "Ver más imágenes"
         btnInicio.Text = "Volver al principio"
@@ -337,6 +361,36 @@ Public Class Compartir
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
         picSubir.Image = Principal.PictureBox1.Image
     End Sub
+    'Borrar imagen (sólo en carpetas privadas)
+    Private Sub btnBorrar_Click(sender As Object, e As EventArgs) Handles btnBorrar.Click
+        If ListBox1.SelectedIndex >= 0 Then
+            Dim respuesta = MessageBox.Show("¿Está seguro de eliminar la imagen? Esta acción no se puede deshacer.", "Apolo Cloud", MessageBoxButtons.YesNo, MessageBoxIcon.Stop)
+            If respuesta = Windows.Forms.DialogResult.Yes Then
+                btnBorrar.Text = "Borrando"
+                picBorrar.Image = My.Resources.cargandogris
+                ImagenSeleccionada = ListBox1.SelectedItem.ToString
+                BackgroundWorker7.RunWorkerAsync()
+            End If
+        End If
+    End Sub
+    Dim borrada As Boolean
+    Dim ImagenSeleccionada As String
+    Private Sub BackgroundWorker7_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker7.DoWork
+        borrada = objetoConexion.EliminarArchivos(ImagenSeleccionada)
+    End Sub
+
+    Private Sub BackgroundWorker7_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker7.RunWorkerCompleted
+        btnBorrar.Text = "Borrar"
+        picBorrar.Image = Nothing
+        If borrada = True Then
+            MessageBox.Show("La imagen ha sido removida con éxito.", "Apolo Cloud", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+        If BackgroundWorker4.IsBusy = False Then 'Recargamos el listbox
+            btnRecargar.Text = "Recargando"
+            picRecargar.Image = My.Resources.cargandogris
+            BackgroundWorker4.RunWorkerAsync()
+        End If
+    End Sub
 
     Private Sub SubirImagenActualApoloToolStripMenuItem_Click(sender As Object, e As EventArgs)
         picSubir.Image = Principal.PictureBox1.Image
@@ -353,7 +407,7 @@ Public Class Compartir
         End If
     End Sub
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        If Me.Height < 700 Then
+        If Me.Height < 690 Then
             Me.Height += 10
         Else
             Timer2.Enabled = False
@@ -361,7 +415,7 @@ Public Class Compartir
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        If Me.Height > 484 Then
+        If Me.Height > 473 Then
             Me.Height -= 10
         Else
             Timer1.Enabled = False
@@ -444,5 +498,6 @@ Public Class Compartir
         PicValora1.Image = My.Resources.starGris : PicValora2.Image = My.Resources.starGris : PicValora3.Image = My.Resources.starGris : PicValora4.Image = My.Resources.starGris : PicValora5.Image = My.Resources.starGris
     End Sub
 
-  
+   
+
 End Class

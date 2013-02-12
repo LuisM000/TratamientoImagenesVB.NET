@@ -150,10 +150,10 @@
     <Compile Include="Abrir\AbrirRecurso.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abrir\Compartir.Designer.vb">
+    <Compile Include="Cloud\Compartir.Designer.vb">
       <DependentUpon>Compartir.vb</DependentUpon>
     </Compile>
-    <Compile Include="Abrir\Compartir.vb">
+    <Compile Include="Cloud\Compartir.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abrir\ImgCompilador.Designer.vb">
@@ -184,6 +184,18 @@
       <DependentUpon>NotificarErrorAyuda.vb</DependentUpon>
     </Compile>
     <Compile Include="Ayuda\NotificarErrorAyuda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cloud\CrearCarpetaPrivada.Designer.vb">
+      <DependentUpon>CrearCarpetaPrivada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cloud\CrearCarpetaPrivada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cloud\AccesoPrivado.Designer.vb">
+      <DependentUpon>AccesoPrivado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cloud\AccesoPrivado.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Conexion.vb" />
@@ -461,7 +473,7 @@
     <EmbeddedResource Include="Abrir\AbrirRecurso.resx">
       <DependentUpon>AbrirRecurso.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abrir\Compartir.resx">
+    <EmbeddedResource Include="Cloud\Compartir.resx">
       <DependentUpon>Compartir.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abrir\ImgCompilador.resx">
@@ -481,6 +493,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ayuda\NotificarErrorAyuda.resx">
       <DependentUpon>NotificarErrorAyuda.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cloud\CrearCarpetaPrivada.resx">
+      <DependentUpon>CrearCarpetaPrivada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cloud\AccesoPrivado.resx">
+      <DependentUpon>AccesoPrivado.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Edicion\PropImagen.resx">
       <DependentUpon>PropImagen.vb</DependentUpon>
