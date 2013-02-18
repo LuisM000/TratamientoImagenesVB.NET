@@ -1077,4 +1077,12 @@ Public Class Principal
 #End Region
 
 
+    Private Sub TransformaciónAfínToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransformaciónAfínToolStripMenuItem.Click
+        Dim bmp2 As New Bitmap("C:\Users\Luis\Desktop\2.png")
+
+        PictureBox1.Image = objetoTratamiento.Anaglifo(PictureBox1.Image, bmp2)
+
+      
+
+    End Sub
 End Class

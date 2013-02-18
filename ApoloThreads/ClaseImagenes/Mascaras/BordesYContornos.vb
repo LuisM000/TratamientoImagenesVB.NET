@@ -19,9 +19,6 @@ Public Class BordesYContornos
     End Sub
 
 
-
-
-
     Private Sub TextBox2_GotFocus(sender As Object, e As EventArgs) Handles TextBox2.GotFocus
         If TextBox2.Text = "Buscador de máscaras" Then
             TextBox2.Text = "" 'Borramos contenido

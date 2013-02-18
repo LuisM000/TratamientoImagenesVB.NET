@@ -18,6 +18,9 @@ Public Class Compartir
             directorioConstructor = directorio
             directorioActual = "DatosUsuarios/" & directorio & "/"
             btnBorrar.Enabled = True
+            btnCompartir.Enabled = True
+            lblEliminar.Enabled = True
+            lblEliminar.Visible = True
         End If
     End Sub
 
@@ -32,6 +35,7 @@ Public Class Compartir
             Principal.PictureBox1.Image = objetoTratamiento.OriginalApoloCloud(DirectCast(sender, PictureBox).Image)
         End If
     End Sub
+ 
 
     Private Sub Compartir_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
@@ -86,16 +90,17 @@ Public Class Compartir
             picTodas.Image = My.Resources.cargandogris
             BackgroundWorker5.RunWorkerAsync()
         End If
-       
     End Sub
 
 
     'Compartir imagen
     Private Sub btnSubir_Click(sender As Object, e As EventArgs) Handles btnSubir.Click
-        If BackgroundWorker2.IsBusy = False And txtnombre.Text <> "" And txtdescrip.Text <> "" Then
+        If BackgroundWorker2.IsBusy = False And txtnombre.Text <> "" And txtdescrip.Text <> "" And BackgroundWorker8.IsBusy = False Then
             btnSubir.Text = "Compartiendo..."
             picCargando.Image = My.Resources.cargandogris
             BackgroundWorker2.RunWorkerAsync()
+        ElseIf txtnombre.Text = "" Or txtdescrip.Text = "" Then
+            MessageBox.Show("Por favor, rellene los campos nombre y descripción para poder compartir la imagen.", "Apolo Cloud", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
@@ -134,6 +139,7 @@ Public Class Compartir
     Private Sub BackgroundWorker3_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker3.RunWorkerCompleted
         btnVerImagen.Text = "Ver imagen"
         picCargandoImagen.Image = Nothing
+        lblNombreImagen.Text = objetoConexion.NombreImagenActual
         lblinfo.Text = infoImagen
         If valoracionImagen(0).ToString <> "NaN" Then
             lblval.Text = "Valoración: " & FormatNumber(valoracionImagen(0), 1)
@@ -162,7 +168,7 @@ Public Class Compartir
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnRecargar.Click
-        If BackgroundWorker4.IsBusy = False Then
+        If BackgroundWorker4.IsBusy = False And BackgroundWorker8.IsBusy = False Then
             btnRecargar.Text = "Recargando"
             picRecargar.Image = My.Resources.cargandogris
             BackgroundWorker4.RunWorkerAsync()
@@ -172,6 +178,7 @@ Public Class Compartir
     Private Sub BackgroundWorker4_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker4.DoWork
         listaImagenes = objetoConexion.listarImagenesPublicas
     End Sub
+
 
     Private Sub BackgroundWorker4_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker4.RunWorkerCompleted
         'Incluimos en el listbox todas las imágenes
@@ -200,7 +207,7 @@ Public Class Compartir
     End Sub
 
     Private Sub btnTodasImg_Click(sender As Object, e As EventArgs) Handles btnTodasImg.Click
-        If BackgroundWorker5.IsBusy = False Then
+        If BackgroundWorker5.IsBusy = False And BackgroundWorker8.IsBusy = False Then
             imagenACtual += 10
             btnTodasImg.Text = "Cargando imágenes"
             picTodas.Image = My.Resources.cargandogris
@@ -209,7 +216,7 @@ Public Class Compartir
     End Sub
 
     Private Sub btnInicio_Click(sender As Object, e As EventArgs) Handles btnInicio.Click
-        If BackgroundWorker5.IsBusy = False Then
+        If BackgroundWorker5.IsBusy = False And BackgroundWorker8.IsBusy = False Then
             imagenACtual = 0
             btnInicio.Text = "Cargando imágenes"
             picTodas.Image = My.Resources.cargandogris
@@ -218,7 +225,7 @@ Public Class Compartir
     End Sub
 
     Private Sub btnUltimas_Click(sender As Object, e As EventArgs) Handles btnUltimas.Click
-        If BackgroundWorker5.IsBusy = False Then
+        If BackgroundWorker5.IsBusy = False And BackgroundWorker8.IsBusy = False Then
             imagenACtual = objetoConexion.NumeroImagenPublic - 10
             btnUltimas.Text = "Cargando imágenes"
             picTodas.Image = My.Resources.cargandogris
@@ -345,7 +352,8 @@ Public Class Compartir
 
     Private Sub BackgroundWorker5_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker5.RunWorkerCompleted
         btnTodasImg.Text = "Ver más imágenes"
-        btnInicio.Text = "Volver al principio"
+        btnInicio.Text = "Volver al inicio"
+        btnUltimas.Text = "Ver últimas imágenes"
         picTodas.Image = Nothing
 
         'Mostramos todo en el listbox al inciar formulario
@@ -363,13 +371,18 @@ Public Class Compartir
     End Sub
     'Borrar imagen (sólo en carpetas privadas)
     Private Sub btnBorrar_Click(sender As Object, e As EventArgs) Handles btnBorrar.Click
-        If ListBox1.SelectedIndex >= 0 Then
+        If ListBox1.SelectedIndex >= 0 And ComprobarHilos() Then
             Dim respuesta = MessageBox.Show("¿Está seguro de eliminar la imagen? Esta acción no se puede deshacer.", "Apolo Cloud", MessageBoxButtons.YesNo, MessageBoxIcon.Stop)
             If respuesta = Windows.Forms.DialogResult.Yes Then
                 btnBorrar.Text = "Borrando"
                 picBorrar.Image = My.Resources.cargandogris
                 ImagenSeleccionada = ListBox1.SelectedItem.ToString
-                BackgroundWorker7.RunWorkerAsync()
+                If BackgroundWorker7.IsBusy = False And ComprobarHilos() = True Then
+                    BackgroundWorker7.RunWorkerAsync()
+                Else
+                    btnBorrar.Text = "Borrar"
+                    picBorrar.Image = Nothing
+                End If
             End If
         End If
     End Sub
@@ -443,7 +456,7 @@ Public Class Compartir
             e.KeyChar = ""
         End If
     End Sub
- 
+
 
     Private Sub ClicEs(ByVal sender As Object, ByVal e As System.EventArgs)
         Select Case DirectCast(sender, PictureBox).Name
@@ -458,8 +471,9 @@ Public Class Compartir
             Case "PicValora5"
                 ValorVoto = 5
         End Select
-        If BackgroundWorker6.IsBusy = False And ValorVoto > 0 Then
+        If BackgroundWorker6.IsBusy = False And ValorVoto > 0 And ComprobarHilos() = True Then
             picCargandoVoto.Image = My.Resources.cargandogris
+            nombreImagen = ListBox1.SelectedItem.ToString.Replace(".jpg", "")
             BackgroundWorker6.RunWorkerAsync()
         End If
     End Sub
@@ -498,6 +512,101 @@ Public Class Compartir
         PicValora1.Image = My.Resources.starGris : PicValora2.Image = My.Resources.starGris : PicValora3.Image = My.Resources.starGris : PicValora4.Image = My.Resources.starGris : PicValora5.Image = My.Resources.starGris
     End Sub
 
+
+    'Compartir foto como pública
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles btnCompartir.Click
+        If ComprobarHilos() = True And BackgroundWorker8.IsBusy = False And picImagenVisualizada.Image IsNot Nothing And ListBox1.SelectedIndex >= 0 Then
+            btnCompartir.Text = "Compartiendo"
+            picCompartir.Image = My.Resources.cargandogris
+            nombredeImagen = ListBox1.SelectedItem.ToString.Substring(0, ListBox1.SelectedItem.ToString.Length - 4)
+            BackgroundWorker8.RunWorkerAsync()
+        End If
+    End Sub
+    Dim compartirImg As Boolean
+    Dim nombredeImagen As String
+    Private Sub BackgroundWorker8_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker8.DoWork
+        compartirImg = objetoConexion.CompartirImagen(picImagenVisualizada.Image, nombredeImagen, lblinfo.Text)
+    End Sub
+
+    Private Sub BackgroundWorker8_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker8.RunWorkerCompleted
+        btnCompartir.Text = "Hazla pública"
+        picCompartir.Image = Nothing
+    End Sub
+
+    Private Function ComprobarHilos() As Boolean
+        If BackgroundWorker1.IsBusy = False And BackgroundWorker2.IsBusy = False And BackgroundWorker3.IsBusy = False And BackgroundWorker4.IsBusy = False And BackgroundWorker5.IsBusy = False And BackgroundWorker6.IsBusy = False And BackgroundWorker7.IsBusy = False And BackgroundWorker8.IsBusy = False Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Sub TextBox11_GotFocus(sender As Object, e As EventArgs) Handles TextBox11.GotFocus
+        Me.AcceptButton = btnVerImagen
+        If TextBox11.Text = "Buscador de imágenes" Then
+            TextBox11.Text = "" 'Borramos contenido
+        End If
+    End Sub
+
+    Private Sub TextBox11_TextChanged(sender As Object, e As EventArgs) Handles TextBox11.TextChanged
+        Dim returnValue As Boolean
+        Dim comparisonType As StringComparison
+        For i = ListBox1.Items.Count - 1 To 0 Step -1
+            returnValue = LCase(ListBox1.Items(i)).StartsWith(LCase(TextBox11.Text), comparisonType)
+            If returnValue = True Then
+                ListBox1.ClearSelected() 'Borramos las selecciones anteriores
+                TextBox11.Focus() 'Establecemos el foco en el texbox
+                ListBox1.SetSelected(i, True)
+            End If
+        Next
+    End Sub
+
+
+    Private Sub txtdescrip_GotFocus(sender As Object, e As EventArgs) Handles txtdescrip.GotFocus
+        Me.AcceptButton = btnSubir
+    End Sub
+    Private Sub txtnombre_GotFocus(sender As Object, e As EventArgs) Handles txtnombre.GotFocus
+        Me.AcceptButton = btnSubir
+    End Sub
+
    
 
+
+    Private Sub lblEliminar_Click(sender As Object, e As EventArgs) Handles lblEliminar.Click
+        Dim respuesta = MessageBox.Show("¿Está seguro de eliminar su cuenta? Esta acción no se puede deshacer.", "Apolo Cloud", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+        If respuesta = Windows.Forms.DialogResult.Yes Then
+            If BackgroundWorker9.IsBusy = False Then
+                picTodas.Image = My.Resources.cargandogris
+                lblEliminar.Text = "Eliminando..."
+                BackgroundWorker9.RunWorkerAsync()
+            End If
+        End If
+    End Sub
+    Dim borrarCuenta As Boolean
+    Private Sub BackgroundWorker9_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker9.DoWork
+        borrarCuenta = objetoConexion.EliminarCuentaPrivada()
+    End Sub
+
+    Private Sub BackgroundWorker9_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker9.RunWorkerCompleted
+        lblEliminar.Text = "Eliminar cuenta"
+        picTodas.Image = Nothing
+        If borrarCuenta = True Then
+            MessageBox.Show("La cuenta ha sido borrada con éxito.", "Apolo Cloud", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Me.Close()
+        End If
+    End Sub
+
+
+
+    Private Sub lblEliminar_MouseEnter(sender As Object, e As EventArgs) Handles lblEliminar.MouseEnter
+        lblEliminar.Font = New Font("Segoe UI", 9, FontStyle.Underline)
+        Me.Cursor = Cursors.Hand
+        lblEliminar.ForeColor = Color.Black
+    End Sub
+
+    Private Sub lblEliminar_MouseLeave(sender As Object, e As EventArgs) Handles lblEliminar.MouseLeave
+        lblEliminar.Font = New Font("Segoe UI", 9)
+        Me.Cursor = Cursors.Default
+        lblEliminar.ForeColor = Color.FromArgb(150, 150, 150)
+    End Sub
 End Class

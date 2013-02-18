@@ -2535,7 +2535,7 @@ Namespace Apolo
             nivelesCalculado(3) = CInt(alfa)
             Return nivelesCalculado
         End Function
-
+        
 #End Region
 
         'Suma/Resta/multip/división/Unión/AND/OR/XOR de DOS imágenes. Devuelve un bitmap con el alto/ancho del bitmap más pequeño
@@ -2938,6 +2938,53 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             guardarImagen(bmp3, "XOR de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
+        End Function
+        Public Function Anaglifo(ByVal bmpIzquierda As Bitmap, ByVal bmpDerecha As Bitmap)
+            Dim bmp3 = bmpDerecha
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp3) 'Obtenemos valores
+
+            Dim bmpAnag1 As New Bitmap(bmp3.Width, bmp3.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Creando anaglifo. Etapa 1" 'Actualizar el estado
+
+            'Dejamos pasar sólo el rojo
+            Dim Rojo, Verde, Azul, alfa As Byte
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R
+                    alfa = Niveles(i, j).A
+                    bmpAnag1.SetPixel(i, j, Color.FromArgb(alfa, Rojo, 0, 0)) 'Asignamos a bmp los colores
+                Next
+                porcentaje(0) = ((i * 100) / bmpAnag1.Width) 'Actualizamos el estado
+            Next
+
+
+            Dim bmp4 = bmpIzquierda
+            Dim bmpAnag2 As New Bitmap(bmp4.Width, bmp4.Height)
+            Dim Niveles2(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles2 = nivel(bmp4) 'Obtenemos valores
+
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Creando anaglifo. Etapa 2" 'Actualizar el estado
+
+            'Dejamos pasar sólo verde y azul
+            For i = 0 To Niveles2.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles2.GetUpperBound(1)
+                    Verde = Niveles2(i, j).G
+                    Azul = Niveles2(i, j).B
+                    alfa = Niveles2(i, j).A
+                    bmpAnag2.SetPixel(i, j, Color.FromArgb(alfa, 0, Verde, Azul)) 'Asignamos a bmp los colores
+                Next
+                porcentaje(0) = ((i * 100) / bmpAnag2.Width) 'Actualizamos el estado
+            Next
+
+            Dim bmpSalida As Bitmap
+            bmpSalida = Me.OperacionSuma(bmpAnag1, bmpAnag2)
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmpSalida, "Anaglifo") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
         End Function
 #End Region
 

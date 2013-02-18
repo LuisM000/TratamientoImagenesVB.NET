@@ -93,6 +93,13 @@ Partial Class Compartir
         Me.btnBorrar = New System.Windows.Forms.Button()
         Me.picBorrar = New System.Windows.Forms.PictureBox()
         Me.BackgroundWorker7 = New System.ComponentModel.BackgroundWorker()
+        Me.lblNombreImagen = New System.Windows.Forms.TextBox()
+        Me.btnCompartir = New System.Windows.Forms.Button()
+        Me.BackgroundWorker8 = New System.ComponentModel.BackgroundWorker()
+        Me.picCompartir = New System.Windows.Forms.PictureBox()
+        Me.TextBox11 = New System.Windows.Forms.TextBox()
+        Me.lblEliminar = New System.Windows.Forms.Label()
+        Me.BackgroundWorker9 = New System.ComponentModel.BackgroundWorker()
         CType(Me.picStar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picStar5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picStar4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +131,7 @@ Partial Class Compartir
         CType(Me.picCargandoVoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.picBorrar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picCompartir, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnSubir
@@ -178,7 +186,7 @@ Partial Class Compartir
         '
         'btnRecargar
         '
-        Me.btnRecargar.Location = New System.Drawing.Point(315, 553)
+        Me.btnRecargar.Location = New System.Drawing.Point(316, 540)
         Me.btnRecargar.Name = "btnRecargar"
         Me.btnRecargar.Size = New System.Drawing.Size(138, 33)
         Me.btnRecargar.TabIndex = 41
@@ -352,16 +360,16 @@ Partial Class Compartir
         '
         Me.lblinfo.BackColor = System.Drawing.SystemColors.Control
         Me.lblinfo.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.lblinfo.Location = New System.Drawing.Point(701, 516)
+        Me.lblinfo.Location = New System.Drawing.Point(702, 552)
         Me.lblinfo.Multiline = True
         Me.lblinfo.Name = "lblinfo"
         Me.lblinfo.ReadOnly = True
-        Me.lblinfo.Size = New System.Drawing.Size(174, 77)
+        Me.lblinfo.Size = New System.Drawing.Size(174, 48)
         Me.lblinfo.TabIndex = 79
         '
         'btnVerImagen
         '
-        Me.btnVerImagen.Location = New System.Drawing.Point(315, 475)
+        Me.btnVerImagen.Location = New System.Drawing.Point(316, 462)
         Me.btnVerImagen.Name = "btnVerImagen"
         Me.btnVerImagen.Size = New System.Drawing.Size(138, 33)
         Me.btnVerImagen.TabIndex = 76
@@ -374,15 +382,15 @@ Partial Class Compartir
         Me.ListBox1.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 17
-        Me.ListBox1.Location = New System.Drawing.Point(43, 445)
+        Me.ListBox1.Location = New System.Drawing.Point(43, 496)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.ScrollAlwaysVisible = True
-        Me.ListBox1.Size = New System.Drawing.Size(264, 206)
+        Me.ListBox1.Size = New System.Drawing.Size(264, 155)
         Me.ListBox1.TabIndex = 75
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(315, 513)
+        Me.Button2.Location = New System.Drawing.Point(316, 500)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(138, 33)
         Me.Button2.TabIndex = 80
@@ -401,7 +409,7 @@ Partial Class Compartir
         '
         Me.lblval.AutoSize = True
         Me.lblval.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblval.Location = New System.Drawing.Point(702, 472)
+        Me.lblval.Location = New System.Drawing.Point(702, 509)
         Me.lblval.Name = "lblval"
         Me.lblval.Size = New System.Drawing.Size(66, 15)
         Me.lblval.TabIndex = 82
@@ -411,7 +419,7 @@ Partial Class Compartir
         '
         Me.lblvot.AutoSize = True
         Me.lblvot.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblvot.Location = New System.Drawing.Point(702, 492)
+        Me.lblvot.Location = New System.Drawing.Point(702, 529)
         Me.lblvot.Name = "lblvot"
         Me.lblvot.Size = New System.Drawing.Size(86, 15)
         Me.lblvot.TabIndex = 83
@@ -483,7 +491,7 @@ Partial Class Compartir
         '
         'picCargandoImagen
         '
-        Me.picCargandoImagen.Location = New System.Drawing.Point(458, 482)
+        Me.picCargandoImagen.Location = New System.Drawing.Point(459, 468)
         Me.picCargandoImagen.Name = "picCargandoImagen"
         Me.picCargandoImagen.Size = New System.Drawing.Size(20, 20)
         Me.picCargandoImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -591,7 +599,7 @@ Partial Class Compartir
         '
         'picRecargar
         '
-        Me.picRecargar.Location = New System.Drawing.Point(458, 558)
+        Me.picRecargar.Location = New System.Drawing.Point(459, 545)
         Me.picRecargar.Name = "picRecargar"
         Me.picRecargar.Size = New System.Drawing.Size(20, 20)
         Me.picRecargar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -625,7 +633,7 @@ Partial Class Compartir
         Me.Panel1.Controls.Add(Me.picStar4)
         Me.Panel1.Location = New System.Drawing.Point(701, 444)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(166, 22)
+        Me.Panel1.Size = New System.Drawing.Size(118, 22)
         Me.Panel1.TabIndex = 89
         '
         'Panel2
@@ -738,7 +746,7 @@ Partial Class Compartir
         'btnBorrar
         '
         Me.btnBorrar.Enabled = False
-        Me.btnBorrar.Location = New System.Drawing.Point(315, 592)
+        Me.btnBorrar.Location = New System.Drawing.Point(316, 579)
         Me.btnBorrar.Name = "btnBorrar"
         Me.btnBorrar.Size = New System.Drawing.Size(138, 33)
         Me.btnBorrar.TabIndex = 94
@@ -747,7 +755,7 @@ Partial Class Compartir
         '
         'picBorrar
         '
-        Me.picBorrar.Location = New System.Drawing.Point(458, 600)
+        Me.picBorrar.Location = New System.Drawing.Point(459, 586)
         Me.picBorrar.Name = "picBorrar"
         Me.picBorrar.Size = New System.Drawing.Size(20, 20)
         Me.picBorrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -757,11 +765,73 @@ Partial Class Compartir
         'BackgroundWorker7
         '
         '
+        'lblNombreImagen
+        '
+        Me.lblNombreImagen.BackColor = System.Drawing.SystemColors.Control
+        Me.lblNombreImagen.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.lblNombreImagen.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNombreImagen.Location = New System.Drawing.Point(702, 469)
+        Me.lblNombreImagen.Multiline = True
+        Me.lblNombreImagen.Name = "lblNombreImagen"
+        Me.lblNombreImagen.ReadOnly = True
+        Me.lblNombreImagen.Size = New System.Drawing.Size(174, 33)
+        Me.lblNombreImagen.TabIndex = 96
+        '
+        'btnCompartir
+        '
+        Me.btnCompartir.Enabled = False
+        Me.btnCompartir.Location = New System.Drawing.Point(316, 618)
+        Me.btnCompartir.Name = "btnCompartir"
+        Me.btnCompartir.Size = New System.Drawing.Size(138, 33)
+        Me.btnCompartir.TabIndex = 97
+        Me.btnCompartir.Text = "Hazla pública"
+        Me.btnCompartir.UseVisualStyleBackColor = True
+        '
+        'BackgroundWorker8
+        '
+        '
+        'picCompartir
+        '
+        Me.picCompartir.Location = New System.Drawing.Point(459, 625)
+        Me.picCompartir.Name = "picCompartir"
+        Me.picCompartir.Size = New System.Drawing.Size(20, 20)
+        Me.picCompartir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picCompartir.TabIndex = 98
+        Me.picCompartir.TabStop = False
+        '
+        'TextBox11
+        '
+        Me.TextBox11.Location = New System.Drawing.Point(43, 460)
+        Me.TextBox11.Name = "TextBox11"
+        Me.TextBox11.Size = New System.Drawing.Size(264, 23)
+        Me.TextBox11.TabIndex = 99
+        Me.TextBox11.Text = "Buscador de imágenes"
+        '
+        'lblEliminar
+        '
+        Me.lblEliminar.AutoSize = True
+        Me.lblEliminar.Enabled = False
+        Me.lblEliminar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.lblEliminar.Location = New System.Drawing.Point(791, 9)
+        Me.lblEliminar.Name = "lblEliminar"
+        Me.lblEliminar.Size = New System.Drawing.Size(89, 15)
+        Me.lblEliminar.TabIndex = 100
+        Me.lblEliminar.Text = "Eliminar cuenta"
+        Me.lblEliminar.Visible = False
+        '
+        'BackgroundWorker9
+        '
+        '
         'Compartir
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(899, 697)
+        Me.Controls.Add(Me.lblEliminar)
+        Me.Controls.Add(Me.TextBox11)
+        Me.Controls.Add(Me.picCompartir)
+        Me.Controls.Add(Me.btnCompartir)
+        Me.Controls.Add(Me.lblNombreImagen)
         Me.Controls.Add(Me.picBorrar)
         Me.Controls.Add(Me.btnBorrar)
         Me.Controls.Add(Me.GroupBox1)
@@ -843,6 +913,7 @@ Partial Class Compartir
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.picBorrar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picCompartir, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -916,4 +987,11 @@ Partial Class Compartir
     Friend WithEvents btnBorrar As System.Windows.Forms.Button
     Friend WithEvents picBorrar As System.Windows.Forms.PictureBox
     Friend WithEvents BackgroundWorker7 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents lblNombreImagen As System.Windows.Forms.TextBox
+    Friend WithEvents btnCompartir As System.Windows.Forms.Button
+    Friend WithEvents BackgroundWorker8 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents picCompartir As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox11 As System.Windows.Forms.TextBox
+    Friend WithEvents lblEliminar As System.Windows.Forms.Label
+    Friend WithEvents BackgroundWorker9 As System.ComponentModel.BackgroundWorker
 End Class

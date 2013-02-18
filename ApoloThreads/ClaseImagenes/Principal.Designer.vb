@@ -270,6 +270,7 @@ Partial Class Principal
         Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusImagen = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusColor = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -1234,6 +1235,7 @@ Partial Class Principal
         Me.Chart3.Size = New System.Drawing.Size(173, 131)
         Me.Chart3.TabIndex = 9
         Me.Chart3.Text = "Histograma azul"
+        Me.ToolTip1.SetToolTip(Me.Chart3, "Histograma azul")
         '
         'Chart2
         '
@@ -1250,6 +1252,7 @@ Partial Class Principal
         Me.Chart2.Size = New System.Drawing.Size(173, 131)
         Me.Chart2.TabIndex = 8
         Me.Chart2.Text = "Histograma verde"
+        Me.ToolTip1.SetToolTip(Me.Chart2, "Histograma verde")
         '
         'Chart1
         '
@@ -1266,6 +1269,7 @@ Partial Class Principal
         Me.Chart1.Size = New System.Drawing.Size(173, 131)
         Me.Chart1.TabIndex = 7
         Me.Chart1.Text = "Histograma rojo"
+        Me.ToolTip1.SetToolTip(Me.Chart1, "Histograma rojo")
         '
         'TabPage2
         '
@@ -2196,5 +2200,6 @@ Partial Class Principal
     Friend WithEvents GuardarImágenesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CrearToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AccesoCarpetaPrivadaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 
 End Class
