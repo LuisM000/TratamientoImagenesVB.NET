@@ -324,6 +324,12 @@
     <Compile Include="OperacionesBasicasPersonalizadas\Redimensionar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="OperacionesDosImagenes\Anaglifo.Designer.vb">
+      <DependentUpon>Anaglifo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesDosImagenes\Anaglifo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="OperacionesDosImagenes\CompararImagenes.Designer.vb">
       <DependentUpon>CompararImagenes.vb</DependentUpon>
     </Compile>
@@ -563,6 +569,9 @@
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Redimensionar.resx">
       <DependentUpon>Redimensionar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesDosImagenes\Anaglifo.resx">
+      <DependentUpon>Anaglifo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\CompararImagenes.resx">
       <DependentUpon>CompararImagenes.vb</DependentUpon>
     </EmbeddedResource>
@@ -732,6 +741,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Izquierda.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Derecha.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SpidyIzquierda.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SpidyDerecha.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

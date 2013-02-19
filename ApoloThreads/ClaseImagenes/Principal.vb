@@ -30,6 +30,10 @@ Public Class Principal
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Manejamos cualquier excepción no controlada
+        AddHandler Application.ThreadException, AddressOf Application_ThreadException
+
         'borramos todo lo acumulador por el programa
         Dim folder As New DirectoryInfo(System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\") 'Directorio
         Dim listaDearchivos As New ArrayList
@@ -44,13 +48,14 @@ Public Class Principal
 
         'Establecemos el control del botón derecho  
         Me.ContextMenuStrip = ContextMenuStrip1
-        'Habilitamos el arrastre para el control PictureBox1 (No lo tiene permitido en tiempo de diseño)
-        PictureBox1.AllowDrop = True
         'Asignamos el gestor que controle cuando sale imagen
         AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf actualizarPicture)
         'Asignamos el gestor que controle cuando se abre una imagen nueva
         AddHandler objetoTratamiento.actualizaNombreImagen, New ActualizamosNombreImagen(AddressOf actualizarNombrePicture)
 
+        'Habilitamos el arrastre para el control PictureBox1 (No lo tiene permitido en tiempo de diseño)
+        PictureBox1.AllowDrop = True
+        Panel1.AllowDrop = True
         'ACtualizamos la imagen Lena
         Dim bmp As New Bitmap(Me.PictureBox1.Image)
         Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp, True)
@@ -423,6 +428,9 @@ Public Class Principal
         CompararImagenes.Show()
     End Sub
 
+    Private Sub AnaglifoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AnaglifoToolStripMenuItem.Click
+        Anaglifo.Show()
+    End Sub
     Private Sub VecinosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VecinosToolStripMenuItem.Click
         CompararImagenesVecinos.Show()
     End Sub
@@ -819,16 +827,8 @@ Public Class Principal
 #Region "DRAG&DROP"
 
 
-
-    Private Sub PictureBox1_DragEnter(sender As Object, e As DragEventArgs) Handles PictureBox1.DragEnter
-        'DataFormats.FileDrop nos devuelve el array de rutas de archivos
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
-            'Los archivos son externos a nuestra aplicación por lo que de indicaremos All ya que dará lo mismo.
-            e.Effect = DragDropEffects.All
-        End If
-    End Sub
-    Private Sub PictureBox1_DragDrop(sender As Object, e As DragEventArgs) Handles PictureBox1.DragDrop
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+    Private Sub PictureBox1_DragDrop1(sender As Object, e As DragEventArgs) Handles PictureBox1.DragDrop
+        If e.Data.GetDataPresent(DataFormats.Bitmap) Then
             Dim rutaImagen As String
             'Asignamos la primera posición del array de ruta de archivos a la variable de tipo string
             'declarada anteriormente ya que en este caso sólo mostraremos una imagen en el control.
@@ -841,6 +841,16 @@ Public Class Principal
             End If
         End If
     End Sub
+
+    Private Sub PictureBox1_DragEnter1(sender As Object, e As DragEventArgs) Handles PictureBox1.DragEnter
+
+        'DataFormats.FileDrop nos devuelve el array de rutas de archivos
+        If e.Data.GetDataPresent(DataFormats.Bitmap) Then
+            'Los archivos son externos a nuestra aplicación por lo que de indicaremos All ya que dará lo mismo.
+            e.Effect = DragDropEffects.All
+        End If
+    End Sub
+
 #End Region
 
 
@@ -991,7 +1001,7 @@ Public Class Principal
 #Region "Posición puntero en Picturebox//Color picturebox"
 
     'Calculamos la posición del puntero dentro del picturebox
-    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs)
 
         Dim dpiH, dpiV As Integer 'Puntos por pulgada
         Dim Resolucion As Size 'Resolución de pantalla
@@ -1047,7 +1057,7 @@ Public Class Principal
 
     '-------------------------------------
     'Extraemos el color
-    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
+    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs)
         If ModifierKeys = Keys.Control Then 'Si pulsa control al hacer clic
             Dim bmp As Bitmap
             bmp = PictureBox1.Image
@@ -1077,12 +1087,4 @@ Public Class Principal
 #End Region
 
 
-    Private Sub TransformaciónAfínToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransformaciónAfínToolStripMenuItem.Click
-        Dim bmp2 As New Bitmap("C:\Users\Luis\Desktop\2.png")
-
-        PictureBox1.Image = objetoTratamiento.Anaglifo(PictureBox1.Image, bmp2)
-
-      
-
-    End Sub
 End Class

@@ -2946,7 +2946,7 @@ Namespace Apolo
 
             Dim bmpAnag1 As New Bitmap(bmp3.Width, bmp3.Height)
             porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Creando anaglifo. Etapa 1" 'Actualizar el estado
+            porcentaje(1) = "Creando anaglifo. Etapa 1/3" 'Actualizar el estado
 
             'Dejamos pasar sólo el rojo
             Dim Rojo, Verde, Azul, alfa As Byte
@@ -2966,7 +2966,7 @@ Namespace Apolo
             Niveles2 = nivel(bmp4) 'Obtenemos valores
 
             porcentaje(0) = 0 'Actualizar el estado
-            porcentaje(1) = "Creando anaglifo. Etapa 2" 'Actualizar el estado
+            porcentaje(1) = "Creando anaglifo. Etapa 2/3" 'Actualizar el estado
 
             'Dejamos pasar sólo verde y azul
             For i = 0 To Niveles2.GetUpperBound(0)  'Recorremos la matriz
