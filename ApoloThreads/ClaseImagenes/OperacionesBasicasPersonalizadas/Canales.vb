@@ -3,7 +3,7 @@
 Public Class Canales
 
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
 
     Private Sub Vincular(ByVal valor As Double)
         Label1.Text = valor

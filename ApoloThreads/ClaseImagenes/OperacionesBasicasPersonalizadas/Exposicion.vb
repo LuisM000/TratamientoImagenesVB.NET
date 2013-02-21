@@ -2,7 +2,7 @@
 
 Public Class Exposicion
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
     Private Sub Exposicion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         HScrollBar1.Value = 1000
         Label1.Text = HScrollBar1.Value / 1000

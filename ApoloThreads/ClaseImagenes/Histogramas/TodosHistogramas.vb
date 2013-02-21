@@ -1,7 +1,7 @@
 ﻿Imports ClaseImagenes.Apolo
 Public Class TodosHistogramas
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
 
     Sub cargando()
         ToolStripProgressBar2.Style = ProgressBarStyle.Marquee
@@ -19,7 +19,7 @@ Public Class TodosHistogramas
         End Try
     End Sub
     Sub recargar()
-        bmpP = Principal.PictureBox1.Image
+        bmpP = Principal.PictureBox2.Image
         ToolStripProgressBar2.Value = 0 'Ponemos la barra de progreso a 0
         If BackgroundWorker1.IsBusy = False Then
             BackgroundWorker1.RunWorkerAsync()

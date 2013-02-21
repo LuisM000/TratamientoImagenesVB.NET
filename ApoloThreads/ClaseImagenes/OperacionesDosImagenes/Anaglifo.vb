@@ -3,7 +3,6 @@
 Public Class Anaglifo
 
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
 
     Function abrirImagen(Optional ByVal imagenActual As Bitmap = Nothing) As Bitmap
         Try

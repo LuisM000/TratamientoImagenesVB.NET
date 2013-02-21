@@ -450,6 +450,18 @@
     <Compile Include="Operaciones\OperadoresMorfologicos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Operaciones\Traslacion.Designer.vb">
+      <DependentUpon>Traslacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Traslacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Voltear.Designer.vb">
+      <DependentUpon>Voltear.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Voltear.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -631,6 +643,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\OperadoresMorfologicos.resx">
       <DependentUpon>OperadoresMorfologicos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Traslacion.resx">
+      <DependentUpon>Traslacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Voltear.resx">
+      <DependentUpon>Voltear.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>

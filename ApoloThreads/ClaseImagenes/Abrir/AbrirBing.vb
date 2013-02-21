@@ -9,6 +9,7 @@ Public Class AbrirBing
     Public thIMG As Threading.Thread
 
     Private Sub AbrirBing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ComboBox1.SelectedIndex = 0
         'Asignamos el gestor que controle cuando sale imagen
         AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf Principal.actualizarPicture)
         'Asignamos el gestor que controle cuando se abre una imagen nueva

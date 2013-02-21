@@ -7,10 +7,10 @@ Public Class PropImagen
         TabPage1.AutoScroll = True
         TabPage2.AutoScroll = True
         Dim objetoTratamiento As New TratamientoImagenes
-        PictureBox1.Image = Principal.PictureBox1.Image
+        PictureBox1.Image = Principal.PictureBox2.Image
         PictureBox1.BorderStyle = BorderStyle.FixedSingle
         TextBox1.Text = Principal.Text
-        Dim bmp As New Bitmap(Principal.PictureBox1.Image)
+        Dim bmp As New Bitmap(Principal.PictureBox2.Image)
 
 
         'Nombre del archivo
@@ -49,7 +49,11 @@ Public Class PropImagen
             lblformato.Text = "Formato desconocido"
         End Try
         'Obtención del número de píxeles
-        lblnumPix.Text = CInt((Principal.PictureBox1.Image.Width * Principal.PictureBox1.Image.Height)) & " píxeles"
+        Dim bmpA As New Bitmap(Principal.PictureBox2.Image)
+        Dim ancho, alto As Integer
+        ancho = bmpA.Width
+        alto = bmpA.Height
+        lblnumPix.Text = CInt((ancho * alto)) & " píxeles"
         'Creamos los histogramas
         actualizarHistrograma()
     End Sub

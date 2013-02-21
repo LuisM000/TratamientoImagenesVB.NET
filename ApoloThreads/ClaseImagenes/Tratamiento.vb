@@ -19,6 +19,8 @@ Namespace Apolo
         Private Shared InformacionOrig As String 'Para saber qué se hizo
         '************************************
 
+        Private Shared ZoomActual As Double = 1 'Variable para conocer el zoom actual
+
 
         'Estado hilo
         Public Shared porcentaje(2) As String
@@ -46,9 +48,12 @@ Namespace Apolo
                 Try
                     contadorImagenes -= 1
                     RaiseEvent actualizaBMP(imagenesGuardadas.Item(contadorImagenes - 1))
+                    Zoom = 1
                     Return imagenesGuardadas.Item(contadorImagenes - 1)
+
                 Catch e As System.ArgumentOutOfRangeException
                     contadorImagenes += 1
+                    Zoom = 1
                     Return imagenesGuardadas.Item(contadorImagenes - 1)
                 End Try
             End Get
@@ -59,9 +64,11 @@ Namespace Apolo
                 Try
                     contadorImagenes += 1
                     RaiseEvent actualizaBMP(imagenesGuardadas.Item(contadorImagenes - 1))
+                    Zoom = 1
                     Return imagenesGuardadas.Item(contadorImagenes - 1)
                 Catch e As System.ArgumentOutOfRangeException
                     contadorImagenes -= 1
+                    Zoom = 1
                     Return imagenesGuardadas.Item(contadorImagenes - 1)
                 End Try
             End Get
@@ -100,6 +107,16 @@ Namespace Apolo
             End Get
         End Property
 
+        Public Property Zoom As Double
+            Get
+                Return ZoomActual
+            End Get
+            Set(value As Double)
+                ZoomActual = value
+            End Set
+        End Property
+
+
         'Almacenamos la imagen
         Private Sub guardarImagen(ByVal bmp As Bitmap, ByVal info As String) 'Para almacenar el bitmap y la información
             'Almacenamos la imagen con su información y añadimos +1 al contador
@@ -107,6 +124,7 @@ Namespace Apolo
                 imagenesGuardadas.Add(bmp)
                 contadorImagenes = imagenesGuardadas.Count
                 Informacion.Add(info)
+                Zoom = 1 'Establecemos el zoom a 1
             Else
                 'Con esto controlamos que si hemos almacenado más de 100 imágenes
                 'Quitamos la primera y la nueva la incluimos en el último lugar
@@ -114,6 +132,7 @@ Namespace Apolo
                 Informacion.RemoveAt(0)
                 imagenesGuardadas.Add(bmp)
                 Informacion.Add(info)
+                Zoom = 1 'Establecemos el zoom a 1
             End If
         End Sub
 
@@ -733,36 +752,6 @@ Namespace Apolo
                 guardarImagen(bmp3, "Filtrado de colores")
                 Return bmp3
             End If
-        End Function
-        Public Function Reflexion(ByVal bmp As Bitmap, Optional ByVal horizontal As Boolean = True, Optional ByVal vertical As Boolean = False) As Bitmap
-            Dim bmp2 = bmp
-            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-            Niveles = nivel(bmp2) 'Obtenemos valores
-            porcentaje(0) = 0 'Actualizar el estado
-            Dim tipoEstado As String = ""
-            If horizontal = True Then tipoEstado = " horizontal" Else tipoEstado = " vertical"
-            porcentaje(1) = "Aplicando reflexión" & tipoEstado 'Actualizar el estado
-            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
-            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
-
-            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
-                For j = 0 To Niveles.GetUpperBound(1)
-                    Rojo = Niveles(i, j).R
-                    Verde = Niveles(i, j).G
-                    Azul = Niveles(i, j).B
-                    alfa = Niveles(i, j).A
-                    If horizontal = True Then
-                        bmp3.SetPixel(Niveles.GetUpperBound(0) - i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
-                    Else
-                        bmp3.SetPixel(i, Niveles.GetUpperBound(1) - j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
-                    End If
-                Next
-                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
-            Next
-            porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            guardarImagen(bmp3, "Reflexión" & tipoEstado) 'Guardamos la imagen para poder hacer retroceso
-            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
-            Return bmp3
         End Function
         Public Function contornos(ByVal bmp As Bitmap, ByVal contorno As Integer, ByVal valorrojo As UInteger, ByVal valorverde As UInteger, ByVal valorazul As UInteger)
             Dim bmp2 = bmp
@@ -2024,6 +2013,97 @@ Namespace Apolo
 #End Region
 #End Region
 
+#Region "Operaciones geométricas"
+        Public Function Reflexion(ByVal bmp As Bitmap, Optional ByVal horizontal As Boolean = True, Optional ByVal vertical As Boolean = False) As Bitmap
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            Dim tipoEstado As String = ""
+            If horizontal = True Then tipoEstado = " horizontal" Else tipoEstado = " vertical"
+            porcentaje(1) = "Aplicando reflexión" & tipoEstado 'Actualizar el estado
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    alfa = Niveles(i, j).A
+                    If horizontal = True Then
+                        bmp3.SetPixel(Niveles.GetUpperBound(0) - i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
+                    Else
+                        bmp3.SetPixel(i, Niveles.GetUpperBound(1) - j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores 
+                    End If
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Reflexión" & tipoEstado) 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        Public Function Traslacion(ByVal bmp As Bitmap, ByVal Traslacionhorizontal As Integer, ByVal Traslacionvertical As Integer) As Bitmap
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Aplicando traslación. Horizontal: " & Traslacionhorizontal & " , Vertical: " & Traslacionvertical 'Actualizar el estado
+            Dim bmp3 As New Bitmap(bmp2.Width + Traslacionhorizontal, bmp2.Height + Traslacionvertical)
+            Dim Rojo, Verde, Azul, alfa As Byte 'Declaramos tres variables que almacenarán los colores
+
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).R
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).B
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i + Traslacionhorizontal, j + Traslacionvertical, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores desplazando
+                Next
+                porcentaje(0) = ((i * 100) / bmp2.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(bmp3, "Traslación: " & Traslacionhorizontal & "," & Traslacionvertical) 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+        'Public Function Rotacion(ByVal bmp As Bitmap, ByVal CoordenadaX As Integer, ByVal CoordenadaY As Integer, ByVal Giro As Integer, Optional AnchoBMPsalida As Integer = 5000, Optional altoBMPsalida As Integer = 5000) As Bitmap
+        '    Dim bmp2 As Bitmap = bmp
+        '    porcentaje(0) = 0 'Actualizar el estado
+        '    porcentaje(1) = "Girando imagen" 'Actualizar el estado
+        '    Dim G As Graphics
+        '    Dim bmp3 As New Bitmap(AnchoBMPsalida, altoBMPsalida)
+        '    G = Graphics.FromImage(bmp3)
+        '    'Borra la Matriz de transformación
+        '    G.ResetTransform()
+        '    Dim TAfin As New Drawing2D.Matrix
+        '    TAfin.RotateAt(Giro, New PointF(CoordenadaX, CoordenadaY))
+        '    G.Transform = TAfin
+        '    G.DrawImage(bmp2, New PointF(0, 0))
+        '    porcentaje(0) = 100 'Actualizar el estado
+        '    porcentaje(1) = "Finalizado" 'Actualizamos el estado
+        '    guardarImagen(bmp3, "Imagen rotada " & Giro & "º")
+        '    RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+        '    Return bmp3
+        'End Function
+        Public Function Volteados(ByVal bmp As Bitmap, ByVal rotacion As RotateFlipType)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Aplicando volteado"
+            Dim bmp2 As Bitmap = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+            bmp2.RotateFlip(rotacion)
+            porcentaje(0) = 100 'Actualizar el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            Dim bmp3 As Bitmap = bmp2
+            guardarImagen(bmp3, "Volteado")
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            Return bmp3
+        End Function
+
+#End Region
+
+
+
         'Principales efectos sobre imágenes. Contiene funciones que devuelven bitmaps
 #Region "Efectos"
         Public Function desenfoque(ByVal bmp As Bitmap, Optional ByVal desenfoqueHor As Short = 0, Optional ByVal desenfoqueVer As Short = 0)
@@ -2535,7 +2615,7 @@ Namespace Apolo
             nivelesCalculado(3) = CInt(alfa)
             Return nivelesCalculado
         End Function
-        
+
 #End Region
 
         'Suma/Resta/multip/división/Unión/AND/OR/XOR de DOS imágenes. Devuelve un bitmap con el alto/ancho del bitmap más pequeño
@@ -3100,8 +3180,8 @@ Namespace Apolo
                 bmp4 = bmp3(0)
                 bmp5 = bmp3(1)
             End If
-         
-          
+
+
 
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Comparación de imágenes (vecindad)" 'Actualizar el estado

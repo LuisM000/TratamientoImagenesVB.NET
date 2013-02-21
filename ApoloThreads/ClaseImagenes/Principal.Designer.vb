@@ -47,13 +47,19 @@ Partial Class Principal
         Me.EdiciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeshacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RehacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImagenOriginalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ZoomToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeshacerZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AjustarAPantallaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem10 = New System.Windows.Forms.ToolStripSeparator()
         Me.RegistroDeCambiosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActualizarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RefrescarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ImagenOriginalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripSeparator()
         Me.PropiedadesDeLaImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem11 = New System.Windows.Forms.ToolStripSeparator()
         Me.OperacionesBásicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EscalaDeGrisesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EscalaDeGrisesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -71,9 +77,6 @@ Partial Class Principal
         Me.BGRToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GRBToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RBGToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReflexiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HorizontalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VerticalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripSeparator()
         Me.HistogramasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DetalladoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -99,6 +102,12 @@ Partial Class Principal
         Me.OperacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesLógicasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesMorfológicasbetaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OperacionesGeométricasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReflexiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HorizontalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VerticalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TraslaciónToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TransformaciónAfínToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MáscarasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasoAltoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasoBajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -123,14 +132,10 @@ Partial Class Principal
         Me.OperacionesConDosImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SumaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesLógicasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AnaglifoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ComparadorDeImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LocalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VecinosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TransformacionesGeométricasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReflexiónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TraslaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RotaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TransformaciónAfínToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloudToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuardarImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CrearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -258,6 +263,11 @@ Partial Class Principal
         Me.ToolStripStatusImagen = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusColor = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
+        Me.VolteadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem12 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ManualsesgarImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PersonalizadaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
@@ -271,7 +281,6 @@ Partial Class Principal
         Me.ToolStripButton10 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton11 = New System.Windows.Forms.ToolStripButton()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.AnaglifoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -377,7 +386,7 @@ Partial Class Principal
         '
         'EdiciónToolStripMenuItem
         '
-        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.RegistroDeCambiosToolStripMenuItem, Me.ActualizarToolStripMenuItem, Me.RefrescarToolStripMenuItem, Me.ToolStripMenuItem1, Me.ImagenOriginalToolStripMenuItem, Me.ToolStripMenuItem7, Me.PropiedadesDeLaImagenToolStripMenuItem})
+        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.ImagenOriginalToolStripMenuItem, Me.ToolStripMenuItem1, Me.ZoomToolStripMenuItem, Me.ZoomToolStripMenuItem1, Me.DeshacerZoomToolStripMenuItem, Me.AjustarAPantallaToolStripMenuItem, Me.ToolStripMenuItem10, Me.RegistroDeCambiosToolStripMenuItem, Me.ActualizarToolStripMenuItem, Me.RefrescarToolStripMenuItem, Me.ToolStripMenuItem7, Me.PropiedadesDeLaImagenToolStripMenuItem, Me.ToolStripMenuItem11})
         Me.EdiciónToolStripMenuItem.Name = "EdiciónToolStripMenuItem"
         Me.EdiciónToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
         Me.EdiciónToolStripMenuItem.Text = "Edición"
@@ -396,6 +405,49 @@ Partial Class Principal
         Me.RehacerToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Y), System.Windows.Forms.Keys)
         Me.RehacerToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.RehacerToolStripMenuItem.Text = "Rehacer"
+        '
+        'ImagenOriginalToolStripMenuItem
+        '
+        Me.ImagenOriginalToolStripMenuItem.Name = "ImagenOriginalToolStripMenuItem"
+        Me.ImagenOriginalToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.ImagenOriginalToolStripMenuItem.Text = "Imagen original"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(204, 6)
+        '
+        'ZoomToolStripMenuItem
+        '
+        Me.ZoomToolStripMenuItem.Name = "ZoomToolStripMenuItem"
+        Me.ZoomToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
+        Me.ZoomToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.ZoomToolStripMenuItem.Text = "Zoom +"
+        '
+        'ZoomToolStripMenuItem1
+        '
+        Me.ZoomToolStripMenuItem1.Name = "ZoomToolStripMenuItem1"
+        Me.ZoomToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
+        Me.ZoomToolStripMenuItem1.Size = New System.Drawing.Size(207, 22)
+        Me.ZoomToolStripMenuItem1.Text = "Zoom -"
+        '
+        'DeshacerZoomToolStripMenuItem
+        '
+        Me.DeshacerZoomToolStripMenuItem.Name = "DeshacerZoomToolStripMenuItem"
+        Me.DeshacerZoomToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D0), System.Windows.Forms.Keys)
+        Me.DeshacerZoomToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.DeshacerZoomToolStripMenuItem.Text = "Deshacer zoom"
+        '
+        'AjustarAPantallaToolStripMenuItem
+        '
+        Me.AjustarAPantallaToolStripMenuItem.Name = "AjustarAPantallaToolStripMenuItem"
+        Me.AjustarAPantallaToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.AjustarAPantallaToolStripMenuItem.Text = "Ajustar a pantalla"
+        '
+        'ToolStripMenuItem10
+        '
+        Me.ToolStripMenuItem10.Name = "ToolStripMenuItem10"
+        Me.ToolStripMenuItem10.Size = New System.Drawing.Size(204, 6)
         '
         'RegistroDeCambiosToolStripMenuItem
         '
@@ -416,17 +468,6 @@ Partial Class Principal
         Me.RefrescarToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.RefrescarToolStripMenuItem.Text = "Refrescar"
         '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(204, 6)
-        '
-        'ImagenOriginalToolStripMenuItem
-        '
-        Me.ImagenOriginalToolStripMenuItem.Name = "ImagenOriginalToolStripMenuItem"
-        Me.ImagenOriginalToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
-        Me.ImagenOriginalToolStripMenuItem.Text = "Imagen original"
-        '
         'ToolStripMenuItem7
         '
         Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
@@ -438,9 +479,14 @@ Partial Class Principal
         Me.PropiedadesDeLaImagenToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.PropiedadesDeLaImagenToolStripMenuItem.Text = "Propiedades de la imagen"
         '
+        'ToolStripMenuItem11
+        '
+        Me.ToolStripMenuItem11.Name = "ToolStripMenuItem11"
+        Me.ToolStripMenuItem11.Size = New System.Drawing.Size(204, 6)
+        '
         'OperacionesBásicosToolStripMenuItem
         '
-        Me.OperacionesBásicosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EscalaDeGrisesToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem1, Me.InvertirColoresToolStripMenuItem, Me.SepiaToolStripMenuItem, Me.FiltrosBásicosToolStripMenuItem, Me.RGBAToolStripMenuItem, Me.ReflexiónToolStripMenuItem, Me.ToolStripMenuItem5, Me.HistogramasToolStripMenuItem, Me.ToolStripMenuItem8, Me.RedimensionarToolStripMenuItem})
+        Me.OperacionesBásicosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EscalaDeGrisesToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem1, Me.InvertirColoresToolStripMenuItem, Me.SepiaToolStripMenuItem, Me.FiltrosBásicosToolStripMenuItem, Me.RGBAToolStripMenuItem, Me.ToolStripMenuItem5, Me.HistogramasToolStripMenuItem, Me.ToolStripMenuItem8, Me.RedimensionarToolStripMenuItem})
         Me.OperacionesBásicosToolStripMenuItem.Name = "OperacionesBásicosToolStripMenuItem"
         Me.OperacionesBásicosToolStripMenuItem.Size = New System.Drawing.Size(125, 20)
         Me.OperacionesBásicosToolStripMenuItem.Text = "Operaciones básicos"
@@ -543,25 +589,6 @@ Partial Class Principal
         Me.RBGToolStripMenuItem.Name = "RBGToolStripMenuItem"
         Me.RBGToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.RBGToolStripMenuItem.Text = "RBG"
-        '
-        'ReflexiónToolStripMenuItem
-        '
-        Me.ReflexiónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HorizontalToolStripMenuItem, Me.VerticalToolStripMenuItem})
-        Me.ReflexiónToolStripMenuItem.Name = "ReflexiónToolStripMenuItem"
-        Me.ReflexiónToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
-        Me.ReflexiónToolStripMenuItem.Text = "Reflexión"
-        '
-        'HorizontalToolStripMenuItem
-        '
-        Me.HorizontalToolStripMenuItem.Name = "HorizontalToolStripMenuItem"
-        Me.HorizontalToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
-        Me.HorizontalToolStripMenuItem.Text = "Horizontal"
-        '
-        'VerticalToolStripMenuItem
-        '
-        Me.VerticalToolStripMenuItem.Name = "VerticalToolStripMenuItem"
-        Me.VerticalToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
-        Me.VerticalToolStripMenuItem.Text = "Vertical"
         '
         'ToolStripMenuItem5
         '
@@ -687,7 +714,7 @@ Partial Class Principal
         'MenuStrip1
         '
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem, Me.OperacionesAritméticasToolStripMenuItem, Me.MáscarasToolStripMenuItem, Me.EfectosToolStripMenuItem, Me.OperacionesConDosImágenesToolStripMenuItem, Me.TransformacionesGeométricasToolStripMenuItem, Me.CloudToolStripMenuItem, Me.HerramientasToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AbrirImagenToolStripMenuItem, Me.EdiciónToolStripMenuItem, Me.OperacionesBásicosToolStripMenuItem, Me.OperacionesBásicosPersonalizadasToolStripMenuItem, Me.OperacionesAritméticasToolStripMenuItem, Me.MáscarasToolStripMenuItem, Me.EfectosToolStripMenuItem, Me.OperacionesConDosImágenesToolStripMenuItem, Me.CloudToolStripMenuItem, Me.HerramientasToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -698,7 +725,7 @@ Partial Class Principal
         '
         'OperacionesAritméticasToolStripMenuItem
         '
-        Me.OperacionesAritméticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OperacionesToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem, Me.OperacionesMorfológicasbetaToolStripMenuItem})
+        Me.OperacionesAritméticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OperacionesToolStripMenuItem, Me.OperacionesLógicasToolStripMenuItem, Me.OperacionesMorfológicasbetaToolStripMenuItem, Me.OperacionesGeométricasToolStripMenuItem})
         Me.OperacionesAritméticasToolStripMenuItem.Name = "OperacionesAritméticasToolStripMenuItem"
         Me.OperacionesAritméticasToolStripMenuItem.Size = New System.Drawing.Size(84, 20)
         Me.OperacionesAritméticasToolStripMenuItem.Text = "Operaciones"
@@ -720,6 +747,45 @@ Partial Class Principal
         Me.OperacionesMorfológicasbetaToolStripMenuItem.Name = "OperacionesMorfológicasbetaToolStripMenuItem"
         Me.OperacionesMorfológicasbetaToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
         Me.OperacionesMorfológicasbetaToolStripMenuItem.Text = "Operaciones morfológicas (beta)"
+        '
+        'OperacionesGeométricasToolStripMenuItem
+        '
+        Me.OperacionesGeométricasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReflexiónToolStripMenuItem, Me.TraslaciónToolStripMenuItem2, Me.VolteadosToolStripMenuItem, Me.ToolStripMenuItem12, Me.TransformaciónAfínToolStripMenuItem1})
+        Me.OperacionesGeométricasToolStripMenuItem.Name = "OperacionesGeométricasToolStripMenuItem"
+        Me.OperacionesGeométricasToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.OperacionesGeométricasToolStripMenuItem.Text = "Operaciones geométricas"
+        '
+        'ReflexiónToolStripMenuItem
+        '
+        Me.ReflexiónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HorizontalToolStripMenuItem, Me.VerticalToolStripMenuItem})
+        Me.ReflexiónToolStripMenuItem.Name = "ReflexiónToolStripMenuItem"
+        Me.ReflexiónToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.ReflexiónToolStripMenuItem.Text = "Reflexión"
+        '
+        'HorizontalToolStripMenuItem
+        '
+        Me.HorizontalToolStripMenuItem.Name = "HorizontalToolStripMenuItem"
+        Me.HorizontalToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.HorizontalToolStripMenuItem.Text = "Horizontal"
+        '
+        'VerticalToolStripMenuItem
+        '
+        Me.VerticalToolStripMenuItem.Name = "VerticalToolStripMenuItem"
+        Me.VerticalToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.VerticalToolStripMenuItem.Text = "Vertical"
+        '
+        'TraslaciónToolStripMenuItem2
+        '
+        Me.TraslaciónToolStripMenuItem2.Name = "TraslaciónToolStripMenuItem2"
+        Me.TraslaciónToolStripMenuItem2.Size = New System.Drawing.Size(176, 22)
+        Me.TraslaciónToolStripMenuItem2.Text = "Traslación"
+        '
+        'TransformaciónAfínToolStripMenuItem1
+        '
+        Me.TransformaciónAfínToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManualsesgarImagenToolStripMenuItem, Me.PersonalizadaToolStripMenuItem})
+        Me.TransformaciónAfínToolStripMenuItem1.Name = "TransformaciónAfínToolStripMenuItem1"
+        Me.TransformaciónAfínToolStripMenuItem1.Size = New System.Drawing.Size(176, 22)
+        Me.TransformaciónAfínToolStripMenuItem1.Text = "Transformación afín"
         '
         'MáscarasToolStripMenuItem
         '
@@ -871,6 +937,12 @@ Partial Class Principal
         Me.OperacionesLógicasToolStripMenuItem1.Size = New System.Drawing.Size(206, 22)
         Me.OperacionesLógicasToolStripMenuItem1.Text = "Operaciones lógicas"
         '
+        'AnaglifoToolStripMenuItem
+        '
+        Me.AnaglifoToolStripMenuItem.Name = "AnaglifoToolStripMenuItem"
+        Me.AnaglifoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.AnaglifoToolStripMenuItem.Text = "Anaglifo"
+        '
         'ComparadorDeImágenesToolStripMenuItem
         '
         Me.ComparadorDeImágenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LocalToolStripMenuItem, Me.VecinosToolStripMenuItem})
@@ -889,37 +961,6 @@ Partial Class Principal
         Me.VecinosToolStripMenuItem.Name = "VecinosToolStripMenuItem"
         Me.VecinosToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
         Me.VecinosToolStripMenuItem.Text = "Vecinos"
-        '
-        'TransformacionesGeométricasToolStripMenuItem
-        '
-        Me.TransformacionesGeométricasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReflexiónToolStripMenuItem1, Me.TraslaciónToolStripMenuItem, Me.RotaciónToolStripMenuItem, Me.TransformaciónAfínToolStripMenuItem})
-        Me.TransformacionesGeométricasToolStripMenuItem.Name = "TransformacionesGeométricasToolStripMenuItem"
-        Me.TransformacionesGeométricasToolStripMenuItem.Size = New System.Drawing.Size(174, 20)
-        Me.TransformacionesGeométricasToolStripMenuItem.Text = "Transformaciones geométricas"
-        '
-        'ReflexiónToolStripMenuItem1
-        '
-        Me.ReflexiónToolStripMenuItem1.Name = "ReflexiónToolStripMenuItem1"
-        Me.ReflexiónToolStripMenuItem1.Size = New System.Drawing.Size(176, 22)
-        Me.ReflexiónToolStripMenuItem1.Text = "Reflexión"
-        '
-        'TraslaciónToolStripMenuItem
-        '
-        Me.TraslaciónToolStripMenuItem.Name = "TraslaciónToolStripMenuItem"
-        Me.TraslaciónToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
-        Me.TraslaciónToolStripMenuItem.Text = "Traslación"
-        '
-        'RotaciónToolStripMenuItem
-        '
-        Me.RotaciónToolStripMenuItem.Name = "RotaciónToolStripMenuItem"
-        Me.RotaciónToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
-        Me.RotaciónToolStripMenuItem.Text = "Rotación"
-        '
-        'TransformaciónAfínToolStripMenuItem
-        '
-        Me.TransformaciónAfínToolStripMenuItem.Name = "TransformaciónAfínToolStripMenuItem"
-        Me.TransformaciónAfínToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
-        Me.TransformaciónAfínToolStripMenuItem.Text = "Transformación afín"
         '
         'CloudToolStripMenuItem
         '
@@ -1729,8 +1770,8 @@ Partial Class Principal
         'ToolStripStatusLabel4
         '
         Me.ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
-        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(16, 19)
-        Me.ToolStripStatusLabel4.Text = "   "
+        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(56, 19)
+        Me.ToolStripStatusLabel4.Text = "Zoom: x1"
         '
         'ToolStripStatusLabel2
         '
@@ -1794,13 +1835,41 @@ Partial Class Principal
         Me.ToolStripStatusColor.Name = "ToolStripStatusColor"
         Me.ToolStripStatusColor.Size = New System.Drawing.Size(0, 19)
         '
+        'BackgroundWorker2
+        '
+        Me.BackgroundWorker2.WorkerReportsProgress = True
+        Me.BackgroundWorker2.WorkerSupportsCancellation = True
+        '
+        'VolteadosToolStripMenuItem
+        '
+        Me.VolteadosToolStripMenuItem.Name = "VolteadosToolStripMenuItem"
+        Me.VolteadosToolStripMenuItem.Size = New System.Drawing.Size(176, 22)
+        Me.VolteadosToolStripMenuItem.Text = "Voltear"
+        '
+        'ToolStripMenuItem12
+        '
+        Me.ToolStripMenuItem12.Name = "ToolStripMenuItem12"
+        Me.ToolStripMenuItem12.Size = New System.Drawing.Size(173, 6)
+        '
+        'ManualsesgarImagenToolStripMenuItem
+        '
+        Me.ManualsesgarImagenToolStripMenuItem.Name = "ManualsesgarImagenToolStripMenuItem"
+        Me.ManualsesgarImagenToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.ManualsesgarImagenToolStripMenuItem.Text = "Manual (sesgar imagen)"
+        '
+        'PersonalizadaToolStripMenuItem
+        '
+        Me.PersonalizadaToolStripMenuItem.Name = "PersonalizadaToolStripMenuItem"
+        Me.PersonalizadaToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.PersonalizadaToolStripMenuItem.Text = "Personalizada"
+        '
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PictureBox1.Image = Global.ClaseImagenes.My.Resources.Resources.remastered_lena_512x512
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Padding = New System.Windows.Forms.Padding(3)
         Me.PictureBox1.Size = New System.Drawing.Size(1066, 619)
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
@@ -1926,12 +1995,6 @@ Partial Class Principal
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
         '
-        'AnaglifoToolStripMenuItem
-        '
-        Me.AnaglifoToolStripMenuItem.Name = "AnaglifoToolStripMenuItem"
-        Me.AnaglifoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.AnaglifoToolStripMenuItem.Text = "Anaglifo"
-        '
         'Principal
         '
         Me.AllowDrop = True
@@ -2024,9 +2087,6 @@ Partial Class Principal
     Friend WithEvents EfectosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CuadrículaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CrearTapizToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ReflexiónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents HorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents VerticalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SombraDeVidrioToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SdaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TresPartesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2043,10 +2103,6 @@ Partial Class Principal
     Friend WithEvents ImagenOriginalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OperacionesConDosImágenesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SumaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TransformacionesGeométricasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ReflexiónToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TraslaciónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents RotaciónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ContrasteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Contraste1ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Contraste2ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2176,7 +2232,6 @@ Partial Class Principal
     Friend WithEvents HistogramasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DetalladoToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TodosToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TransformaciónAfínToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AyudaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NotificarUnErrorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem6 As System.Windows.Forms.ToolStripSeparator
@@ -2215,5 +2270,22 @@ Partial Class Principal
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents AnaglifoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ZoomToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ZoomToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DeshacerZoomToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem10 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents AjustarAPantallaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem11 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents OperacionesGeométricasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReflexiónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents HorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VerticalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TraslaciónToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TransformaciónAfínToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents VolteadosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem12 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ManualsesgarImagenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PersonalizadaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

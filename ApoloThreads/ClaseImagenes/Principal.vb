@@ -97,12 +97,12 @@ Public Class Principal
     End Sub
     'Guardamos imagen
     Private Sub GuardarComoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardarComoToolStripMenuItem.Click
-        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Dim bmp As New Bitmap(Me.PictureBox2.Image)
         objetoTratamiento.guardarcomo(bmp, 4)
     End Sub
     Private Sub AbrirCompiladorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AbrirCompiladorToolStripMenuItem.Click
         'Abrimos el exe y guardamos la imagen actual
-        Dim bmpComp As New Bitmap(PictureBox1.Image)
+        Dim bmpComp As New Bitmap(PictureBox2.Image)
         bmpComp.Save(System.IO.Directory.GetCurrentDirectory().ToString & "\Compilador\imgforCompilador.png", System.Drawing.Imaging.ImageFormat.Png)
         Dim Process1 As New Process
         Process1.StartInfo.RedirectStandardOutput = True
@@ -138,6 +138,7 @@ Public Class Principal
             'Actualizamos el Panel1
             Panel1.AutoScrollMinSize = PictureBox2.Image.Size
             Panel1.AutoScroll = True
+            ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
         End If
     End Sub
 
@@ -148,6 +149,7 @@ Public Class Principal
             'Actualizamos el Panel1
             Panel1.AutoScrollMinSize = PictureBox2.Image.Size
             Panel1.AutoScroll = True
+            ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
         End If
     End Sub
 
@@ -157,11 +159,12 @@ Public Class Principal
 
     'Actualizar imagen
     Private Sub ActualizarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActualizarToolStripMenuItem.Click
-        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Dim bmp As New Bitmap(Me.PictureBox2.Image)
         Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
         'Actualizamos el Panel1
-        Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+        Panel1.AutoScrollMinSize = PictureBox1.Image.Size
         Panel1.AutoScroll = True
+        ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
     End Sub
 
     'Deshacer imagen original
@@ -180,93 +183,69 @@ Public Class Principal
 
 #Region "OperacionesBasicas"
     Private Sub EscalaDeGrisesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EscalaDeGrisesToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "blancoNegro"
         transformar()
     End Sub
 
     Private Sub EscalaDeGrisesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EscalaDeGrisesToolStripMenuItem1.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "escalaGrises"
         transformar()
     End Sub
 
 
     Private Sub RGBToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RGBToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "invertir"
         transformar()
     End Sub
 
     Private Sub RojoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RojoToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "invertirRojo"
         transformar()
     End Sub
 
     Private Sub VerdeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerdeToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "invertirVerde"
         transformar()
     End Sub
 
     Private Sub AzulToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AzulToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "invertirAzul"
         transformar()
     End Sub
 
     Private Sub SepiaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SepiaToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "sepia"
         transformar()
     End Sub
 
     Private Sub FiltroAzulToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FiltroAzulToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "FiltroAzul"
         transformar()
     End Sub
     Private Sub FiltroVerdeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FiltroVerdeToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "FiltroVerde"
         transformar()
     End Sub
     Private Sub FiltroRojoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FiltroRojoToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "FiltroRojo"
         transformar()
     End Sub
 
     Private Sub BGRToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BGRToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "RGBtoBGR"
         transformar()
     End Sub
 
     Private Sub GRBToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GRBToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "RGBtoGRB"
         transformar()
     End Sub
 
     Private Sub RBGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RBGToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "RGBtoRBG"
         transformar()
     End Sub
 
-    Private Sub HorizontalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HorizontalToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
-        transformacion = "ReflexionHori"
-        transformar()
-    End Sub
-
-    Private Sub VerticalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerticalToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
-        transformacion = "ReflexionVert"
-        transformar()
-    End Sub
     'Histograma detallada
     Private Sub DetalladoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DetalladoToolStripMenuItem1.Click
         'Hay que crear la instancia con constructor y el valor del color
@@ -340,6 +319,27 @@ Public Class Principal
     Private Sub OperacionesMorfológicasbetaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperacionesMorfológicasbetaToolStripMenuItem.Click
         OperadoresMorfologicos.Show()
     End Sub
+#Region "Transformaciones geométricas"
+    'Reflexión horizontal
+    Private Sub HorizontalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HorizontalToolStripMenuItem.Click
+        transformacion = "ReflexionHori"
+        transformar()
+    End Sub
+    'Reflexión vertical
+    Private Sub VerticalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VerticalToolStripMenuItem.Click
+        transformacion = "ReflexionVert"
+        transformar()
+    End Sub
+    'Traslación
+    Private Sub TraslaciónToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles TraslaciónToolStripMenuItem2.Click
+        Traslacion.Show()
+    End Sub
+    'Voltear
+    Private Sub VolteadosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VolteadosToolStripMenuItem.Click
+        Voltear.Show()
+    End Sub
+#End Region
+
 #End Region
 
 #Region "Máscaras"
@@ -359,7 +359,6 @@ Public Class Principal
         MascaraManual.Show()
     End Sub
     Private Sub SobelTotalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SobelTotalToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "SobelTotal"
         transformar()
     End Sub
@@ -374,7 +373,6 @@ Public Class Principal
         Distorsion.Show()
     End Sub
     Private Sub DesenfoqueBLURToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesenfoqueBLURToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "blur"
         transformar()
     End Sub
@@ -391,13 +389,11 @@ Public Class Principal
         SombraVidrio.Show()
     End Sub
     Private Sub TresPartesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TresPartesToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "3partes"
         transformar()
     End Sub
 
     Private Sub SeisPartesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeisPartesToolStripMenuItem.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "6partes"
         transformar()
     End Sub
@@ -532,7 +528,7 @@ Public Class Principal
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
         'Obtener el objeto BackgroundWorker que provocó este evento
         Dim worker As BackgroundWorker = CType(sender, BackgroundWorker)
-        Dim bmp As New Bitmap(PictureBox1.Image)
+        Dim bmp As New Bitmap(PictureBox2.Image)
 
         Select Case transformacion
             Case "escalaGrises"
@@ -601,7 +597,7 @@ Public Class Principal
             Chart1.Series("Rojo").Points.Clear()
             Chart2.Series("Verde").Points.Clear()
             Chart3.Series("Azul").Points.Clear()
-            Dim bmpHisto As New Bitmap(PictureBox1.Image, New Size(New Point(100, 100)))
+            Dim bmpHisto As New Bitmap(PictureBox2.Image, New Size(New Point(100, 100)))
             Dim histoAcumulado = objetoTratamiento.histogramaAcumulado(bmpHisto)
             For i = 0 To UBound(histoAcumulado)
                 Chart1.Series("Rojo").Points.AddXY(i + 1, histoAcumulado(i, 0))
@@ -610,6 +606,7 @@ Public Class Principal
             Next
 
         Catch
+            tiempo = 0 'Pasamos el tiempo a cero para que no siga descontando y no estre en esta sentencia de control
             MessageBox.Show("Lo sentimos, algo ha ocurrido. Pruebe a deshacer los cambios y desactivar el histograma automático (Herramientas/Histograma automático)", "Apolo threads", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -786,6 +783,7 @@ Public Class Principal
     'Realizamos esto cuando recibimos el evento
     Sub actualizarPicture(ByVal bmp As Bitmap)
         Try
+            ToolStripStatusLabel4.Text = "Zoom: x1"
             PictureBox1.Image = bmp
             PictureBox2.Image = bmp
             'ACtualizamos el nombre del menú hacer/rehacer
@@ -793,6 +791,8 @@ Public Class Principal
             'Con esto actualizamos el histograma
             tiempo = 3 '3 segundos para actualización
             Timer3.Enabled = True
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
         Catch
         End Try
     End Sub
@@ -869,6 +869,8 @@ Public Class Principal
         TabControl1.Size = New Size(SplitContainer1.Panel2.Width, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 30))
         RefrescarTab() 'Actualizamos el registro de cambios
     End Sub
+
+ 
     Private Sub Principal_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         'Colocamos la imagen secundaria en la parte inferior
         PictureBox2.Location = New Size(PictureBox2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 5))
@@ -904,7 +906,7 @@ Public Class Principal
     End Sub
     'Guardar como...
     Private Sub ToolStripButton8_Click(sender As Object, e As EventArgs) Handles ToolStripButton8.Click
-        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Dim bmp As New Bitmap(Me.PictureBox2.Image)
         objetoTratamiento.guardarcomo(bmp, 4)
     End Sub
     'ABrir imagen desde bing
@@ -922,6 +924,7 @@ Public Class Principal
             'Actualizamos el Panel1
             Panel1.AutoScrollMinSize = PictureBox2.Image.Size
             Panel1.AutoScroll = True
+            ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
         End If
     End Sub
     'Rehacer
@@ -931,6 +934,7 @@ Public Class Principal
             'Actualizamos el Panel1
             Panel1.AutoScrollMinSize = PictureBox2.Image.Size
             Panel1.AutoScroll = True
+            ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
         End If
     End Sub
     'Refrescar
@@ -943,21 +947,20 @@ Public Class Principal
     End Sub
     'Actualizar
     Private Sub ToolStripButton9_Click(sender As Object, e As EventArgs) Handles ToolStripButton9.Click
-        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Dim bmp As New Bitmap(Me.PictureBox2.Image)
         Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
         'Actualizamos el Panel1
         Panel1.AutoScrollMinSize = PictureBox1.Image.Size
         Panel1.AutoScroll = True
+        ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
     End Sub
     'Blanco y negro
     Private Sub ToolStripButton10_Click(sender As Object, e As EventArgs) Handles ToolStripButton10.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "blancoNegro"
         transformar()
     End Sub
     'Escala de grises
     Private Sub ToolStripButton11_Click(sender As Object, e As EventArgs) Handles ToolStripButton11.Click
-        Dim bmp As New Bitmap(PictureBox1.Image)
         transformacion = "escalaGrises"
         transformar()
     End Sub
@@ -976,7 +979,7 @@ Public Class Principal
     End Sub
 
     Private Sub GuardarImagenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardarImagenToolStripMenuItem.Click
-        Dim bmp As New Bitmap(Me.PictureBox1.Image)
+        Dim bmp As New Bitmap(Me.PictureBox2.Image)
         objetoTratamiento.guardarcomo(bmp, 4)
     End Sub
 
@@ -998,11 +1001,60 @@ Public Class Principal
 #End Region
 
 
-#Region "Posición puntero en Picturebox//Color picturebox"
+#Region "Posición puntero en Picturebox//Color picturebox// Mover los scrollbar del panel al pulsar//Hacer roaming en el picturebox secundarios"
 
     'Calculamos la posición del puntero dentro del picturebox
-    Private Sub PictureBox1_MouseMove(sender As Object, e As MouseEventArgs)
+    Dim valorY, valorY2, valorX, valorX2 As Integer
 
+    Private Sub PictureBox1_MouseMove1(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            PictureBox2.Refresh()
+            PictureBox1.Refresh()
+            'Marcar en el picturebox 2 la zona (roaming)
+            '-------------------------------------------------------
+            Dim bmp1 As Bitmap
+            bmp1 = PictureBox1.Image
+            Dim ratioH As Single = bmp1.Width / PictureBox2.Width
+            Dim ratioV As Single = bmp1.Height / PictureBox2.Height
+            Dim Picture1 As Graphics = PictureBox2.CreateGraphics
+            Dim Picture2 As Graphics = PictureBox1.CreateGraphics
+            Dim x As Single = e.X / ratioH
+            Dim y As Single = e.Y / ratioV
+            Picture1.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(x - 10, y - 10), New Size(20, 20)))
+            Picture1.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(x - 1, y - 1), New Size(2, 2)))
+            Picture2.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(e.X - 10, e.Y - 10), New Size(20, 20)))
+            Picture2.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(e.X - 1, e.Y - 1), New Size(2, 2)))
+        End If
+        'Con esto se mueven los scrollbars al pulsar con el ratón
+        '-------------------------------------------------------
+        valorY = e.Y - valorY2
+        If (Panel1.VerticalScroll.Value + (valorY / 2)) > 0 Then
+            Try
+                If e.Button = Windows.Forms.MouseButtons.Left Then
+                    Panel1.VerticalScroll.Value += valorY / 2
+                End If
+                valorY2 = e.Y
+            Catch
+            End Try
+        End If
+
+        valorX = e.X - valorX2
+
+        If (Panel1.HorizontalScroll.Value + (valorX / 2)) > 0 Then
+            Try
+                If e.Button = Windows.Forms.MouseButtons.Left Then
+                    Panel1.HorizontalScroll.Value += valorX / 2
+                End If
+                valorX2 = e.X
+            Catch
+            End Try
+        End If
+
+        '-------------------------------------------------------
+        '-------------------------------------------------------
+
+        'Detectar posición del ratón con respecto al Picturebox
+        '-------------------------------------------------------
         Dim dpiH, dpiV As Integer 'Puntos por pulgada
         Dim Resolucion As Size 'Resolución de pantalla
         Dim gr As Graphics
@@ -1025,8 +1077,146 @@ Public Class Principal
         ElseIf PulgadasToolStripMenuItem.Checked = True Then 'Pulgadas
             ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH), 2) & "," & FormatNumber((mouseDownLocation.Y / dpiV), 2) & ") in"
         End If
+        '-------------------------------------------------------
+        '-------------------------------------------------------
+
 
     End Sub
+    Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
+        PictureBox2.Refresh()
+        PictureBox1.Refresh()
+    End Sub
+
+    '-------------------------------------
+    'Extraemos el color y pintamos recuadro (roaming)
+    Private Sub PictureBox1_MouseClick1(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseClick
+        If ModifierKeys = Keys.Control Then 'Si pulsa control al hacer clic
+            Dim bmp As Bitmap
+            bmp = PictureBox1.Image
+            Dim rojo, verde, azul, alfa As Byte
+            Try
+                'Obetentemos color
+                rojo = bmp.GetPixel(e.X, e.Y).R
+                verde = bmp.GetPixel(e.X, e.Y).G
+                azul = bmp.GetPixel(e.X, e.Y).B
+                alfa = bmp.GetPixel(e.X, e.Y).A
+                'Creamos un bitmap para ponerlo como imagen (con el color obtenido)
+                Dim bmpAux As New Bitmap(16, 16)
+                For i = 0 To 15
+                    For j = 0 To 15
+                        bmpAux.SetPixel(i, j, Color.FromArgb(alfa, rojo, verde, azul))
+                    Next
+                Next
+                'Asignamos la imagen
+                ToolStripStatusImagen.Image = bmpAux
+                'Escribimos los valores
+                ToolStripStatusColor.Text = bmp.GetPixel(e.X, e.Y).ToString()
+            Catch ex As Exception
+            End Try
+        End If
+
+    End Sub
+
+    Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            'Marcar en el picturebox 2 la zona (roaming)
+            '-------------------------------------------------------
+            Dim bmp1 As Bitmap
+            bmp1 = PictureBox1.Image
+            Dim ratioH As Single = bmp1.Width / PictureBox2.Width
+            Dim ratioV As Single = bmp1.Height / PictureBox2.Height
+            Dim Picture1 As Graphics = PictureBox2.CreateGraphics
+            Dim Picture2 As Graphics = PictureBox1.CreateGraphics
+            Dim x As Single = e.X / ratioH
+            Dim y As Single = e.Y / ratioV
+            Picture1.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(x - 10, y - 10), New Size(20, 20)))
+            Picture1.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(x - 1, y - 1), New Size(2, 2)))
+            Picture2.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(e.X - 10, e.Y - 10), New Size(20, 20)))
+            Picture2.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(e.X - 1, e.Y - 1), New Size(2, 2)))
+        End If
+    End Sub
+
+#Region "Roaming desde imagen secundaria"
+
+    Dim valorYY, valorYY2 As Integer
+
+    Private Sub PictureBox2_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            PictureBox1.Refresh()
+            PictureBox2.Refresh()
+            Dim bmp1 As New Bitmap(PictureBox1.Image)
+            Dim ratioH As Single = bmp1.Width / PictureBox2.Width
+            Dim ratioV As Single = bmp1.Height / PictureBox2.Height
+            Dim Picture1 As Graphics = PictureBox1.CreateGraphics
+            Dim Picture2 As Graphics = PictureBox2.CreateGraphics
+            Dim x As Single = e.X * ratioH
+            Dim y As Single = e.Y * ratioV
+            Picture1.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(x - 10, y - 10), New Size(20, 20)))
+            Picture1.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(x - 1, y - 1), New Size(2, 2)))
+            Picture2.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(e.X - 10, e.Y - 10), New Size(20, 20)))
+            Picture2.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(e.X - 1, e.Y - 1), New Size(2, 2)))
+            Try
+                Panel1.HorizontalScroll.Value = x - (Panel1.Width / 2) - 10
+            Catch
+                Try
+                    Panel1.HorizontalScroll.Value = x - 10
+                Catch
+                    Panel1.HorizontalScroll.Value = 0
+                End Try
+            End Try
+
+            Try
+                Panel1.VerticalScroll.Value = y - (Panel1.Height / 2) - 10
+            Catch
+                Try
+                    Panel1.VerticalScroll.Value = y - 10
+                Catch
+                    Panel1.VerticalScroll.Value = 0
+                End Try
+            End Try
+        End If
+    End Sub
+    Private Sub PictureBox2_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseMove
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            PictureBox1.Refresh()
+            PictureBox2.Refresh()
+            Dim bmp1 As New Bitmap(PictureBox1.Image)
+            Dim ratioH As Single = bmp1.Width / PictureBox2.Width
+            Dim ratioV As Single = bmp1.Height / PictureBox2.Height
+            Dim Picture1 As Graphics = PictureBox1.CreateGraphics
+            Dim Picture2 As Graphics = PictureBox2.CreateGraphics
+            Dim x As Single = e.X * ratioH
+            Dim y As Single = e.Y * ratioV
+            Picture1.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(x - 10, y - 10), New Size(20, 20)))
+            Picture1.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(x - 1, y - 1), New Size(2, 2)))
+            Picture2.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(e.X - 10, e.Y - 10), New Size(20, 20)))
+            Picture2.DrawRectangle(New Pen(Brushes.Red, 1), New Rectangle(New Point(e.X - 1, e.Y - 1), New Size(2, 2)))
+            Try
+                Panel1.HorizontalScroll.Value = x - (Panel1.Width / 2) - 10
+            Catch
+                Try
+                    Panel1.HorizontalScroll.Value = x - 10
+                Catch
+                    Panel1.HorizontalScroll.Value = 0
+                End Try
+            End Try
+
+            Try
+                Panel1.VerticalScroll.Value = y - (Panel1.Height / 2) - 10
+            Catch
+                Try
+                    Panel1.VerticalScroll.Value = y - 10
+                Catch
+                    Panel1.VerticalScroll.Value = 0
+                End Try
+            End Try
+        End If
+    End Sub
+    Private Sub PictureBox2_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox2.MouseUp
+        PictureBox1.Refresh()
+        PictureBox2.Refresh()
+    End Sub
+#End Region
 
     Sub quitarCheck()
         PulgadasToolStripMenuItem.Checked = False
@@ -1055,36 +1245,91 @@ Public Class Principal
         MilímetrosToolStripMenuItem.Checked = True
     End Sub
 
-    '-------------------------------------
-    'Extraemos el color
-    Private Sub PictureBox1_MouseClick(sender As Object, e As MouseEventArgs)
-        If ModifierKeys = Keys.Control Then 'Si pulsa control al hacer clic
-            Dim bmp As Bitmap
-            bmp = PictureBox1.Image
-            Dim rojo, verde, azul, alfa As Byte
-            Try
-                'Obetentemos color
-                rojo = bmp.GetPixel(e.X, e.Y).R
-                verde = bmp.GetPixel(e.X, e.Y).G
-                azul = bmp.GetPixel(e.X, e.Y).B
-                alfa = bmp.GetPixel(e.X, e.Y).A
-                'Creamos un bitmap para ponerlo como imagen (con el color obtenido)
-                Dim bmpAux As New Bitmap(16, 16)
-                For i = 0 To 15
-                    For j = 0 To 15
-                        bmpAux.SetPixel(i, j, Color.FromArgb(alfa, rojo, verde, azul))
-                    Next
-                Next
-                'Asignamos la imagen
-                ToolStripStatusImagen.Image = bmpAux
-                'Escribimos los valores
-                ToolStripStatusColor.Text = bmp.GetPixel(e.X, e.Y).ToString()
-            Catch ex As Exception
-            End Try
+#End Region
+
+#Region "Zoom + -//Eliminar zoom/Ajustar a pantalla//scrollvertical"
+    Private Sub refrescar()
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+    Private Sub Principal_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
+        'Hacer zoom
+        If ModifierKeys = Keys.Control Then 'Si pulsa control al dar a la rueda
+            If (objetoTratamiento.Zoom + (e.Delta / 1000)) - 0.1 > 0 Then
+                objetoTratamiento.Zoom += (e.Delta / 1000)
+                If BackgroundWorker2.IsBusy = False Then
+                    BackgroundWorker2.RunWorkerAsync()
+                End If
+            Else
+                MessageBox.Show("Zoom mínimo superado.", "Apolo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        End If
+        'Mover el scroll vertical
+        If ModifierKeys = Nothing Then
+            Dim valorMovimiento As Integer
+            valorMovimiento = 50
+            If e.Delta > 0 Then
+                If Panel1.VerticalScroll.Value > valorMovimiento Then
+                    Panel1.VerticalScroll.Value -= valorMovimiento
+                Else
+                    Panel1.VerticalScroll.Value = 0
+                End If
+            Else
+                Panel1.VerticalScroll.Value += valorMovimiento
+            End If
         End If
     End Sub
 
+
+    Private Sub ZoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem.Click
+        objetoTratamiento.Zoom += 0.1
+        If BackgroundWorker2.IsBusy = False Then
+            BackgroundWorker2.RunWorkerAsync()
+        End If
+    End Sub
+
+    Private Sub ZoomToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem1.Click
+        If objetoTratamiento.Zoom - 0.1 > 0 Then
+            objetoTratamiento.Zoom -= 0.1
+            If BackgroundWorker2.IsBusy = False Then
+                BackgroundWorker2.RunWorkerAsync()
+            End If
+        Else
+            MessageBox.Show("Zoom mínimo superado.", "Apolo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+    End Sub
+    Private Sub DeshacerZoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeshacerZoomToolStripMenuItem.Click
+        objetoTratamiento.Zoom = 1
+        If BackgroundWorker2.IsBusy = False Then
+            BackgroundWorker2.RunWorkerAsync()
+        End If
+    End Sub
+
+    Private Sub AjustarAPantallaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AjustarAPantallaToolStripMenuItem.Click
+        Dim bmpAjustado As New Bitmap(PictureBox1.Image, SplitContainer1.Panel1.Width, SplitContainer1.Panel1.Height)
+        PictureBox1.Image = bmpAjustado
+        Panel1.AutoScroll = False 'Quitamos los scrolls para que se vea la imagen completa
+    End Sub
+
+    Private Sub BackgroundWorker2_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker2.DoWork
+        Dim bmp As New Bitmap(PictureBox2.Image)
+        Dim bmp2 As New Bitmap(bmp, bmp.Width * objetoTratamiento.Zoom, bmp.Height * objetoTratamiento.Zoom)
+        PictureBox1.Image = bmp2
+        ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
+    End Sub
+
+    Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker2.RunWorkerCompleted
+        refrescar()
+    End Sub
 #End Region
 
+
+
+
+
+ 
 
 End Class

@@ -41,7 +41,7 @@ Public Class Compartir
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Location = New Size(50, 50)
         Me.Size = New Size(200, 5)
-        picSubir.Image = Principal.PictureBox1.Image
+        picSubir.Image = Principal.PictureBox2.Image
         'Asignamos el gestor que controle cuando sale imagen
         AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf Principal.actualizarPicture)
         'Asignamos el gestor que controle cuando se abre una imagen nueva
@@ -367,7 +367,7 @@ Public Class Compartir
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        picSubir.Image = Principal.PictureBox1.Image
+        picSubir.Image = Principal.PictureBox2.Image
     End Sub
     'Borrar imagen (sólo en carpetas privadas)
     Private Sub btnBorrar_Click(sender As Object, e As EventArgs) Handles btnBorrar.Click
@@ -406,7 +406,7 @@ Public Class Compartir
     End Sub
 
     Private Sub SubirImagenActualApoloToolStripMenuItem_Click(sender As Object, e As EventArgs)
-        picSubir.Image = Principal.PictureBox1.Image
+        picSubir.Image = Principal.PictureBox2.Image
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles lblTodasImagenes.Click

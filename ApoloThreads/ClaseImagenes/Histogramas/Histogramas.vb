@@ -2,7 +2,7 @@
 Public Class Histogramas
 
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
     Dim colorH As Color = Color.Red
     Dim valorH As Integer = 0
 
@@ -22,7 +22,7 @@ Public Class Histogramas
         End Try
     End Sub
     Sub Recargar()
-        bmpP = Principal.PictureBox1.Image
+        bmpP = Principal.PictureBox2.Image
         ToolStripProgressBar2.Value = 0 'Ponemos la barra de progreso a 0
         If BackgroundWorker1.IsBusy = False Then
             BackgroundWorker1.RunWorkerAsync()

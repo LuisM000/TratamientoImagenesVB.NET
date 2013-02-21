@@ -2,7 +2,7 @@
 
 Public Class RuidoDe
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
     Private Sub Ruido_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CheckBox1.Checked = False
         HScrollBar1.Minimum = 1

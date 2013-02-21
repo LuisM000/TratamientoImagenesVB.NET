@@ -6,7 +6,7 @@ Imports System.Xml
 Public Class Matriz
 
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
     Function comprobarDatos()
         For Each c As Control In Me.GroupBox1.Controls
             If TypeOf c Is TextBox Then
