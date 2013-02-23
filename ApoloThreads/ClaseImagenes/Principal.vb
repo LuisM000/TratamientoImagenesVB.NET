@@ -1001,7 +1001,8 @@ Public Class Principal
 #End Region
 
 
-#Region "Posición puntero en Picturebox//Color picturebox// Mover los scrollbar del panel al pulsar//Hacer roaming en el picturebox secundarios"
+#Region "Posición puntero en Picturebox//Color picturebox//Zoom interactivo// Mover los scrollbar del panel al pulsar//Hacer roaming en el picturebox secundarios"
+
 
     'Calculamos la posición del puntero dentro del picturebox
     Dim valorY, valorY2, valorX, valorX2 As Integer
@@ -1077,11 +1078,127 @@ Public Class Principal
         ElseIf PulgadasToolStripMenuItem.Checked = True Then 'Pulgadas
             ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH), 2) & "," & FormatNumber((mouseDownLocation.Y / dpiV), 2) & ") in"
         End If
+
         '-------------------------------------------------------
         '-------------------------------------------------------
+
+        'Zoom interactivo-------------------------------------
+        '-------------------------------------------------------
+        'Muestra el zoom a medida que nos desplazamos por el Picturebox
+        If ModifierKeys = Keys.Shift Then
+            zoomInteractivo(e.X, e.Y, valzoom, New Size(100, 100), True, Color.Red, 1, True)
+        End If
+    End Sub
+
+    Private Sub PictureBox3_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox3.MouseMove
+        'Si el cursor está encima del picturebox2, calcula dónde tiene que coger el valor del Picturebox2
+        If ModifierKeys = Keys.Shift Then
+            zoomInteractivo(PictureBox3.Location.X + e.X, PictureBox3.Location.Y + e.Y, valzoom, New Size(100, 100), True, Color.Red, 1, True)
+        End If
+    End Sub
+    Dim valzoom As Single = 2
+
+    Private Sub Principal_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
+        PictureBox3.Visible = False
+        Label2.Visible = False
+        PictureBox1.Refresh()
+        PictureBox3.Refresh()
+    End Sub
+
+    'X: Coordenada X del puntero con respecto al Picturebox1
+    'Y: Coordenada Y del puntero con respecto al Picturebox1
+    'ValorZoom: Aumento con respecto al picturebox1
+    'ValorPicturebox: Valor del lado del Picturebox2 
+    'Puntero (opcional): Indica se se va a mostrar un puntero en la posición actual 
+    'ColorPuntero(opcional): Color del puntero .
+    'TamanoPuntero(opcional): tamaño del lado del puntero
+    'EtiquetaZoom(opcional): Indica si se va a mostrar un label con el zoom actual
+    Sub zoomInteractivo(ByVal x As Integer, ByVal y As Integer, ByVal valorZoom As Decimal, ByVal valorPicturebox As Size, Optional ByVal puntero As Boolean = False, Optional colorPuntero As Color = Nothing, Optional tamanoPuntero As Integer = 1, Optional etiquetaZoom As Boolean = False)
+
+        Dim xResta, yResta As Single
+        PictureBox3.Size = valorPicturebox
+        valorZoom = Decimal.Round(valorZoom, 2)
+        xResta = CInt((PictureBox3.Width / 2) / valorZoom)
+        yResta = CInt((PictureBox3.Height / 2) / valorZoom)
+
+        Dim bmpAux As New Bitmap(PictureBox1.Image)
+
+
+        If x > 0 And y > 0 Then
+            PictureBox3.Visible = True
+
+            'Solucionamos problema con esquinas
+            If x > bmpAux.Width - xResta Then
+                x = bmpAux.Width - xResta
+            End If
+            If y > bmpAux.Height - yResta Then
+                y = bmpAux.Height - yResta
+            End If
+            If x - xResta < 0 Then
+                x = xResta
+            End If
+
+            If y - yResta < 0 Then
+                y = yResta
+            End If
+
+            'Creamos el bitmap con el tamaño elegido
+            Dim bmp As Bitmap = bmpAux.Clone(New Rectangle(New Point(x - xResta, y - yResta), New Size(xResta * 2, yResta * 2)), Imaging.PixelFormat.DontCare)
+            Dim bmpSalida As New Bitmap(bmp, PictureBox3.Width, PictureBox3.Height)
+            PictureBox3.Image = bmpSalida
+
+
+            'Situamos el Picturebox 2
+            Dim localizacion As Point
+            localizacion.X = x
+            localizacion.Y = y
+
+            If x + PictureBox3.Width > PictureBox1.Width Then
+                localizacion.X = x - PictureBox3.Width
+            End If
+            If y + PictureBox3.Height > PictureBox1.Height Then
+                localizacion.Y = y - PictureBox3.Height
+            End If
+
+            If Panel1.HorizontalScroll.Value > 0 Then
+                localizacion.X -= Panel1.HorizontalScroll.Value
+            End If
+            If Panel1.VerticalScroll.Value > 0 Then
+                localizacion.Y -= Panel1.VerticalScroll.Value
+            End If
+            PictureBox3.Location = localizacion
+
+
+            'Con esto forzamos la recolección de basura y destruimos el bitmap
+            'El uso no es aconsejable pero imprescindible en este caso
+            GC.Collect()
+            GC.WaitForPendingFinalizers()
+
+            'Pintamos el puntero
+            If puntero = True Then
+                PictureBox1.Refresh()
+                PictureBox3.Refresh()
+                'Si el puntero no tiene color lo ponemos rojo
+                If colorPuntero = Nothing Then colorPuntero = Color.Red
+                'Calculamos el lado del cuadrado
+                Dim lado As Integer = tamanoPuntero * 2
+                Dim Picture1 As Graphics = PictureBox1.CreateGraphics
+                Picture1.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(x - tamanoPuntero, y - tamanoPuntero), New Size(lado, lado)))
+                Dim Picture2 As Graphics = PictureBox3.CreateGraphics
+                Picture2.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(PictureBox3.Width / 2 - tamanoPuntero, PictureBox3.Height / 2 - tamanoPuntero), New Size(lado, lado)))
+            End If
+
+            'Si mostramos el label con el zoom
+            If etiquetaZoom = True Then
+                Label2.Visible = True
+                Label2.Text = "x" & valorZoom
+                Label2.Location = New Size(PictureBox3.Location.X + PictureBox3.Width / 2 - 10, PictureBox3.Location.Y - 20)
+            End If
+        End If
 
 
     End Sub
+
     Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
         PictureBox2.Refresh()
         PictureBox1.Refresh()
@@ -1247,7 +1364,7 @@ Public Class Principal
 
 #End Region
 
-#Region "Zoom + -//Eliminar zoom/Ajustar a pantalla//scrollvertical"
+#Region "Zoom + -//Eliminar zoom/Ajustar a pantalla//scrollvertical/Zoom interactivo"
     Private Sub refrescar()
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             'Actualizamos el Panel1
@@ -1269,16 +1386,29 @@ Public Class Principal
         End If
         'Mover el scroll vertical
         If ModifierKeys = Nothing Then
-            Dim valorMovimiento As Integer
-            valorMovimiento = 50
-            If e.Delta > 0 Then
-                If Panel1.VerticalScroll.Value > valorMovimiento Then
-                    Panel1.VerticalScroll.Value -= valorMovimiento
+            Try
+                Dim valorMovimiento As Integer
+                valorMovimiento = 50
+                If e.Delta > 0 Then
+                    If Panel1.VerticalScroll.Value > valorMovimiento Then
+                        Panel1.VerticalScroll.Value -= valorMovimiento
+                    Else
+                        Panel1.VerticalScroll.Value = 0
+                    End If
                 Else
-                    Panel1.VerticalScroll.Value = 0
+                    Panel1.VerticalScroll.Value += valorMovimiento
                 End If
-            Else
-                Panel1.VerticalScroll.Value += valorMovimiento
+            Catch
+            End Try
+        End If
+        'Aumenta el zoom interactivo con la rueda del ratón
+        If ModifierKeys = Keys.Shift Then 'Si pulsa control al dar a la rueda
+            If e.Delta > 0 And valzoom <= 5 Then
+                valzoom += 0.2
+                zoomInteractivo(e.X - 2, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2), valzoom, New Size(100, 100), True, Color.Red, 1, True)
+            ElseIf valzoom > 0.4 Then 'No puede ser menor
+                valzoom -= 0.2
+                zoomInteractivo(e.X - 2, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2), valzoom, New Size(100, 100), True, Color.Red, 1, True)
             End If
         End If
     End Sub
@@ -1329,7 +1459,5 @@ Public Class Principal
 
 
 
-
- 
 
 End Class
