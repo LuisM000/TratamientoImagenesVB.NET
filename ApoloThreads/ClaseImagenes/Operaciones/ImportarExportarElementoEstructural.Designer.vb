@@ -64,9 +64,10 @@ Partial Class ImportarExportarElementoEstructural
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(21, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(761, 15)
+        Me.Label1.Size = New System.Drawing.Size(764, 15)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "Cree su elemento estructural personalizado. Tenga en cuenta que el elemento debe " & _
     "ser cuadrado e impar (3x3, 7x7) y sólo puede contener 0 o 1."

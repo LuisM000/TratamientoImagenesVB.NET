@@ -1,0 +1,24 @@
+'*** CON ESTE CODIGO SIMPLEMENTE RECORREMOS EL BITMAP PIXEL A PIXEL
+'*** E INVERTIMOS LOS COLORES (255-COLOR)
+
+'Leemos la imagen y la convertimos en un bitmap
+Dim bmp as new bitmap("Compilador\imgforCompilador.png")
+'Creamos un nuevo bitmap con el alto/ancho de la imagen inicial
+Dim bmp2 as new bitmap(bmp.width,bmp.height)
+
+'Variable que almacena el color de cada pIxel
+Dim Niveles As System.Drawing.Color 
+
+Dim i,j as integer
+'Este primer bloque, guarda los niveles digitales de la imagen en la variable Niveles
+For i = 0 To bmp.Width - 1 'Recorremos la matriz a lo ancho
+	For j = 0 To bmp.Height - 1 'Recorremos la matriz a lo largo
+                    'Con el mEtodo GetPixel guardamos el valor del pIxel de la imagen original (ARGB)
+                    Niveles = bmp.GetPixel(i, j) 
+		    'Con el mEtodo SetPixel asignamos el valor de un Pixel
+                    'En este ejemplo invertimos los colores (excepto canal Alfa)
+                    bmp2.setpixel(i,j,color.fromargb(niveles.a,255-niveles.r,255-niveles.g,255-niveles.b)) 
+	Next
+Next
+
+'Guardamos la imagen en la ruta especificada (como png)

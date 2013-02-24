@@ -1,0 +1,49 @@
+'*** CON ESTE CODIGO SE PASA LA IMAGEN A BLANCO Y NEGRO
+'*** SE CALCULA LA MEDIA DE LOS COLORES Y SI ES MAYOR
+'*** DE 128 SE PASA A BLANCO, EN CASO CONTRARIO A NEGRO
+
+'Leemos la imagen y la convertimos en un bitmap
+Dim bmp as new bitmap("Compilador\imgforCompilador.png")
+'Creamos un nuevo bitmap con el alto/ancho de la imagen inicial
+Dim bmp2 as new bitmap(bmp.width,bmp.height)
+
+'Variable que almacena el color de cada pIxel
+Dim Niveles As System.Drawing.Color 
+
+Dim i,j as integer
+'Varibles para almacenar los colores
+Dim rojo,verde,azul,alfa as integer
+'Variable para almacenar la media
+Dim ValorMedia as integer
+'Este primer bloque, guarda los niveles digitales de la imagen en la variable Niveles
+For i = 0 To bmp.Width - 1 'Recorremos la matriz a lo ancho
+	For j = 0 To bmp.Height - 1 'Recorremos la matriz a lo largo
+
+                    'Con el mEtodo GetPixel guardamos el valor del pIxel de la imagen original (ARGB)
+                    Niveles = bmp.GetPixel(i, j) 
+		    'Asignamos los valores a las varibles
+		    rojo = Niveles.R
+                    verde = Niveles.G
+                    azul = Niveles.B
+		    alfa=Niveles.A
+
+                    'Calculamos la media
+                    ValorMedia = (rojo + verde + azul) / 3
+
+                    'En función de si el valor es mayor o menor de 128 (mitad aproximada
+                    'de 255), lo convertimos en blanco o negro
+                    If ValorMedia >= 128Then
+                        Rojo = 255
+                        Verde = 255
+                        Azul = 255
+                    Else
+                        Rojo = 0
+                        Verde = 0
+                        Azul = 0
+                    End If
+                    'Asignamos al bitmap (bmp2), los colores en blanco y negro (0 o 255)
+                    bmp2.setpixel(i,j,color.fromargb(alfa,rojo,verde,azul))
+	Next
+Next
+
+'Guardamos la imagen en la ruta especificada (como png)

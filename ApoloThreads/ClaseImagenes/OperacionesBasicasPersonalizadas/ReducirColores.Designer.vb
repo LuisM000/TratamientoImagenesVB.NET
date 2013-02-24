@@ -51,9 +51,10 @@ Partial Class ReducirColores
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(24, 24)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(95, 15)
+        Me.Label2.Size = New System.Drawing.Size(96, 15)
         Me.Label2.TabIndex = 7
         Me.Label2.Text = "Reduzca colores "
         '

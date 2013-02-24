@@ -69,7 +69,7 @@ Partial Class AbrirFacebook
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
         Me.WebBrowser1.ScrollBarsEnabled = False
-        Me.WebBrowser1.Size = New System.Drawing.Size(1054, 354)
+        Me.WebBrowser1.Size = New System.Drawing.Size(1054, 337)
         Me.WebBrowser1.TabIndex = 1
         '
         'Timer1
@@ -259,7 +259,7 @@ Partial Class AbrirFacebook
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripProgressBar1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 376)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 355)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(1076, 22)
         Me.StatusStrip1.TabIndex = 31
@@ -283,10 +283,10 @@ Partial Class AbrirFacebook
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1076, 398)
+        Me.ClientSize = New System.Drawing.Size(1076, 377)
+        Me.Controls.Add(Me.WebBrowser1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.WebBrowser1)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "AbrirFacebook"

@@ -3,7 +3,7 @@
 Public Class Contraste1
 
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
 
     Private Sub Contraste1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 

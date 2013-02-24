@@ -2,7 +2,7 @@
 
 Public Class Distorsion
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
     Private Sub Distorsion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         HScrollBar1.Minimum = 0
         HScrollBar1.Maximum = 19

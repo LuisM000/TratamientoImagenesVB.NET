@@ -3,7 +3,7 @@
 Public Class OperacionesAritmeticasDosImagenes
 
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
 
     Function abrirImagen(Optional ByVal imagenActual As Bitmap = Nothing) As Bitmap
         Try

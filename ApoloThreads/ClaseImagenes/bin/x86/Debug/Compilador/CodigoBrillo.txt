@@ -1,0 +1,32 @@
+'*** CON ESTE CODIGO AUMENTAMOS EL BRILLO EN 50 PUNTOS
+
+'Leemos la imagen y la convertimos en un bitmap
+Dim bmp as new bitmap("Compilador\imgforCompilador.png")
+'Creamos un nuevo bitmap con el alto/ancho de la imagen inicial
+Dim bmp2 as new bitmap(bmp.width,bmp.height)
+
+'Variable que almacena el color de cada pIxel
+Dim Niveles As System.Drawing.Color 
+
+Dim i,j,rojo,verde,azul,alfa as integer
+'Este primer bloque, guarda los niveles digitales de la imagen en la variable Niveles
+For i = 0 To bmp.Width - 1 'Recorremos la matriz a lo ancho
+	For j = 0 To bmp.Height - 1 'Recorremos la matriz a lo largo
+                    'Con el mEtodo GetPixel guardamos el valor del pIxel de la imagen original (ARGB)
+                    Niveles = bmp.GetPixel(i, j) 
+		    'Aumentamos rojo, verde, azul en 50. El canal alfa lo dejamos en su valor
+		    rojo=Niveles.r +50
+                    verde=Niveles.g +50
+                    azul=Niveles.b+50
+                    alfa=Niveles.a
+                    'Comprobamos que ningUn valor exceda 255, en tal caso, lo pasamos a 255
+               	    If rojo>255 then rojo=255
+  		    If verde>255 then verde=255
+		    If azul>255 then azul=255
+		    'Con el mEtodo SetPixel asignamos el valor de un Pixel
+                    'En este ejemplo aumentamos en 50 los colores (excepto canal Alfa)
+                    bmp2.setpixel(i,j,color.fromargb(alfa,rojo,verde,azul)) 
+	Next
+Next
+
+'Guardamos la imagen en la ruta especificada (como png)

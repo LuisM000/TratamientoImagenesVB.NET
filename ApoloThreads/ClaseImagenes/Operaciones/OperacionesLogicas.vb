@@ -2,7 +2,7 @@
 
 Public Class OperacionesLogicas
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
 
     Sub modificarControles(ByVal minimoHS As Integer, ByVal maximoHS As Integer, ByVal valorLabel As Integer)
         For Each c As Control In Me.Controls
@@ -18,6 +18,16 @@ Public Class OperacionesLogicas
         Label3.Text = valorLabel
         Label4.Text = valorLabel
         Label5.Text = valorLabel
+    End Sub
+    Private Sub Vincular(ByVal valor As Double)
+        Label1.Text = valor
+        HScrollBar1.Value = valor
+        Label3.Text = valor
+        HScrollBar2.Value = valor
+        Label4.Text = valor
+        HScrollBar3.Value = valor
+        Label5.Text = valor
+        HScrollBar4.Value = valor
     End Sub
 
 #Region "Modicar controles"
@@ -38,15 +48,27 @@ Public Class OperacionesLogicas
     End Sub
     Private Sub HScrollBar4_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar4.Scroll
         Label5.Text = HScrollBar4.Value
+        If CheckBox2.Checked = True Then
+            Vincular(HScrollBar4.Value)
+        End If
     End Sub
     Private Sub HScrollBar3_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar3.Scroll
         Label4.Text = HScrollBar3.Value
+        If CheckBox2.Checked = True Then
+            Vincular(HScrollBar3.Value)
+        End If
     End Sub
     Private Sub HScrollBar2_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar2.Scroll
         Label3.Text = HScrollBar2.Value
+        If CheckBox2.Checked = True Then
+            Vincular(HScrollBar2.Value)
+        End If
     End Sub
     Private Sub HScrollBar1_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar1.Scroll
         Label1.Text = HScrollBar1.Value
+        If CheckBox2.Checked = True Then
+            Vincular(HScrollBar1.Value)
+        End If
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click 'Restablecer
         If RadioButton2.Checked = True Then
@@ -64,7 +86,7 @@ Public Class OperacionesLogicas
 #End Region
 
     Private Sub OperacionesLogicas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Size = New Size(565, 282)
+        'Me.Size = New Size(565, 282)
         'Asignamos el gestor que controle cuando sale imagen
         AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf Principal.actualizarPicture)
         'Asignamos el gestor que controle cuando se abre una imagen nueva

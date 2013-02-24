@@ -66,9 +66,9 @@ Public Class NotificarErrorAyuda
             CORREO.From = New System.Net.Mail.MailAddress("apolothreads@gmail.com", "Notificación error detectado por usuario Apolo-threads", System.Text.Encoding.UTF8)
 
             Dim cuerpoCorreo As String
-            cuerpoCorreo = "Descripción: " & vbCrLf & cuerpo & vbCrLf & vbCrLf
+            cuerpoCorreo = "Descripción: " & cuerpo & "----  "
             If CheckBox2.Checked = True Then
-                cuerpoCorreo += "Email usuario: " & vbCrLf & email & vbCrLf & vbCrLf
+                cuerpoCorreo += "Email usuario: " & email & "----  "
             End If
 
             Dim htmlView As AlternateView = AlternateView.CreateAlternateViewFromString(cuerpoCorreo, Nothing, "text/html")

@@ -2,7 +2,7 @@
 
 Public Class OperacionesAritmeticas
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
 
     Sub modificarControles(ByVal minimoHS As Integer, ByVal maximoHS As Integer, ByVal valorLabel As Integer)
         For Each c As Control In Me.Controls
@@ -18,6 +18,28 @@ Public Class OperacionesAritmeticas
         Label3.Text = valorLabel
         Label4.Text = valorLabel
         Label5.Text = valorLabel
+    End Sub
+    Private Sub Vincular(ByVal valor As Double)
+        If RadioButton2.Checked = True Or RadioButton3.Checked = True Then
+            Label1.Text = valor
+            HScrollBar1.Value = valor
+            Label3.Text = valor
+            HScrollBar2.Value = valor
+            Label4.Text = valor
+            HScrollBar3.Value = valor
+            Label5.Text = valor
+            HScrollBar4.Value = valor
+        Else
+            Label1.Text = valor
+            HScrollBar1.Value = valor * 100
+            Label3.Text = valor
+            HScrollBar2.Value = valor * 100
+            Label4.Text = valor
+            HScrollBar3.Value = valor * 100
+            Label5.Text = valor
+            HScrollBar4.Value = valor * 100
+        End If
+       
     End Sub
 
 #Region "Modicar controles"
@@ -46,32 +68,56 @@ Public Class OperacionesAritmeticas
     Private Sub HScrollBar1_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar1.Scroll
         If RadioButton2.Checked = True Or RadioButton3.Checked = True Then
             Label1.Text = HScrollBar1.Value
+            If CheckBox2.Checked = True Then
+                Vincular(HScrollBar1.Value)
+            End If
         Else
             Label1.Text = HScrollBar1.Value / 100
+            If CheckBox2.Checked = True Then
+                Vincular(HScrollBar1.Value / 100)
+            End If
         End If
     End Sub
 
     Private Sub HScrollBar4_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar4.Scroll
         If RadioButton2.Checked = True Or RadioButton3.Checked = True Then
             Label5.Text = HScrollBar4.Value
+            If CheckBox2.Checked = True Then
+                Vincular(HScrollBar4.Value)
+            End If
         Else
             Label5.Text = HScrollBar4.Value / 100
+            If CheckBox2.Checked = True Then
+                Vincular(HScrollBar4.Value / 100)
+            End If
         End If
     End Sub
 
     Private Sub HScrollBar3_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar3.Scroll
         If RadioButton2.Checked = True Or RadioButton3.Checked = True Then
             Label4.Text = HScrollBar3.Value
+            If CheckBox2.Checked = True Then
+                Vincular(HScrollBar3.Value)
+            End If
         Else
             Label4.Text = HScrollBar3.Value / 100
+            If CheckBox2.Checked = True Then
+                Vincular(HScrollBar3.Value / 100)
+            End If
         End If
     End Sub
 
     Private Sub HScrollBar2_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar2.Scroll
         If RadioButton2.Checked = True Or RadioButton3.Checked = True Then
             Label3.Text = HScrollBar2.Value
+            If CheckBox2.Checked = True Then
+                Vincular(HScrollBar2.Value)
+            End If
         Else
             Label3.Text = HScrollBar2.Value / 100
+            If CheckBox2.Checked = True Then
+                Vincular(HScrollBar2.Value / 100)
+            End If
         End If
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click

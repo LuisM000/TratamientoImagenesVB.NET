@@ -1,0 +1,37 @@
+'*** CON ESTE CODIGO SE PASA LA ESCALA DE GRISES
+'*** SE CALCULA LA MEDIA DE LOS COLORES Y SE 
+'*** ASIGNA A LOS TRES CANALES (ROJO,VERDE,AZUL)
+
+'Leemos la imagen y la convertimos en un bitmap
+Dim bmp as new bitmap("Compilador\imgforCompilador.png")
+'Creamos un nuevo bitmap con el alto/ancho de la imagen inicial
+Dim bmp2 as new bitmap(bmp.width,bmp.height)
+
+'Variable que almacena el color de cada pIxel
+Dim Niveles As System.Drawing.Color 
+
+Dim i,j as integer
+'Varibles para almacenar los colores
+Dim rojo,verde,azul,alfa as integer
+'Variable para almacenar la media
+Dim ValorMedia as integer
+'Este primer bloque, guarda los niveles digitales de la imagen en la variable Niveles
+For i = 0 To bmp.Width - 1 'Recorremos la matriz a lo ancho
+	For j = 0 To bmp.Height - 1 'Recorremos la matriz a lo largo
+
+                    'Con el mEtodo GetPixel guardamos el valor del pIxel de la imagen original (ARGB)
+                    Niveles = bmp.GetPixel(i, j) 
+		    'Asignamos los valores a las varibles
+		    rojo = Niveles.R
+                    verde = Niveles.G
+                    azul = Niveles.B
+		    alfa=Niveles.A
+
+                    'Calculamos la media
+                    ValorMedia = (rojo + verde + azul) / 3
+                   'Asignamos la media a los tres canales
+                   bmp2.setpixel(i,j,color.fromargb(alfa,ValorMedia,ValorMedia,ValorMedia))
+	Next
+Next
+
+'Guardamos la imagen en la ruta especificada (como png)

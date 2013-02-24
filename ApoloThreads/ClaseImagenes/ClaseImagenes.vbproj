@@ -11,7 +11,8 @@
     <AssemblyName>ClaseImagenes</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,6 +45,53 @@
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>ClaseImagenes.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>ClaseImagenes.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>ClaseImagenes.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>ClaseImagenes.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -102,16 +150,59 @@
     <Compile Include="Abrir\AbrirRecurso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Cloud\Compartir.Designer.vb">
+      <DependentUpon>Compartir.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cloud\Compartir.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abrir\ImgCompilador.Designer.vb">
+      <DependentUpon>ImgCompilador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Abrir\ImgCompilador.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Abrir\Tapiz.Designer.vb">
       <DependentUpon>Tapiz.vb</DependentUpon>
     </Compile>
     <Compile Include="Abrir\Tapiz.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Ayuda\AyudanosAmejorar.Designer.vb">
+      <DependentUpon>AyudanosAmejorar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ayuda\AyudanosAmejorar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ayuda\Colabora.Designer.vb">
+      <DependentUpon>Colabora.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ayuda\Colabora.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Ayuda\NotificarErrorAyuda.Designer.vb">
       <DependentUpon>NotificarErrorAyuda.vb</DependentUpon>
     </Compile>
     <Compile Include="Ayuda\NotificarErrorAyuda.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cloud\CrearCarpetaPrivada.Designer.vb">
+      <DependentUpon>CrearCarpetaPrivada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cloud\CrearCarpetaPrivada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cloud\AccesoPrivado.Designer.vb">
+      <DependentUpon>AccesoPrivado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cloud\AccesoPrivado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Conexion.vb" />
+    <Compile Include="Edicion\PropImagen.Designer.vb">
+      <DependentUpon>PropImagen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Edicion\PropImagen.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Efectos\Cuadricula.Designer.vb">
@@ -126,10 +217,10 @@
     <Compile Include="Efectos\Desenfocar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Edición\RegistroCambio.Designer.vb">
+    <Compile Include="Edicion\RegistroCambio.Designer.vb">
       <DependentUpon>RegistroCambio.vb</DependentUpon>
     </Compile>
-    <Compile Include="Edición\RegistroCambio.vb">
+    <Compile Include="Edicion\RegistroCambio.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Efectos\Distorsion.Designer.vb">
@@ -185,40 +276,58 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\BordesYContornos.Designer.vb">
+    <Compile Include="Mascaras\BordesYContornos.Designer.vb">
       <DependentUpon>BordesYContornos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\BordesYContornos.vb">
+    <Compile Include="Mascaras\BordesYContornos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Máscaras\ImportarMascara.Designer.vb">
+    <Compile Include="Mascaras\ImportarMascara.Designer.vb">
       <DependentUpon>ImportarMascara.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\ImportarMascara.vb">
+    <Compile Include="Mascaras\ImportarMascara.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Máscaras\MascaraManual.Designer.vb">
+    <Compile Include="Mascaras\MascaraManual.Designer.vb">
       <DependentUpon>MascaraManual.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\MascaraManual.vb">
+    <Compile Include="Mascaras\MascaraManual.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Máscaras\PasoAlto.Designer.vb">
+    <Compile Include="Mascaras\PasoAlto.Designer.vb">
       <DependentUpon>PasoAlto.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\PasoAlto.vb">
+    <Compile Include="Mascaras\PasoAlto.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Máscaras\PasoBajo.Designer.vb">
+    <Compile Include="Mascaras\PasoBajo.Designer.vb">
       <DependentUpon>PasoBajo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Máscaras\PasoBajo.vb">
+    <Compile Include="Mascaras\PasoBajo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ayuda\NotificacionError.Designer.vb">
       <DependentUpon>NotificacionError.vb</DependentUpon>
     </Compile>
     <Compile Include="Ayuda\NotificacionError.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Gamma.Designer.vb">
+      <DependentUpon>Gamma.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Gamma.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Redimensionar.Designer.vb">
+      <DependentUpon>Redimensionar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesBasicasPersonalizadas\Redimensionar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperacionesDosImagenes\Anaglifo.Designer.vb">
+      <DependentUpon>Anaglifo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="OperacionesDosImagenes\Anaglifo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OperacionesDosImagenes\CompararImagenes.Designer.vb">
@@ -341,6 +450,18 @@
     <Compile Include="Operaciones\OperadoresMorfologicos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Operaciones\Traslacion.Designer.vb">
+      <DependentUpon>Traslacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Traslacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\Voltear.Designer.vb">
+      <DependentUpon>Voltear.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\Voltear.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -370,8 +491,20 @@
     <EmbeddedResource Include="Abrir\AbrirRecurso.resx">
       <DependentUpon>AbrirRecurso.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cloud\Compartir.resx">
+      <DependentUpon>Compartir.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abrir\ImgCompilador.resx">
+      <DependentUpon>ImgCompilador.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abrir\Tapiz.resx">
       <DependentUpon>Tapiz.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ayuda\AyudanosAmejorar.resx">
+      <DependentUpon>AyudanosAmejorar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ayuda\Colabora.resx">
+      <DependentUpon>Colabora.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ayuda\NotificacionError.resx">
       <DependentUpon>NotificacionError.vb</DependentUpon>
@@ -379,13 +512,22 @@
     <EmbeddedResource Include="Ayuda\NotificarErrorAyuda.resx">
       <DependentUpon>NotificarErrorAyuda.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cloud\CrearCarpetaPrivada.resx">
+      <DependentUpon>CrearCarpetaPrivada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cloud\AccesoPrivado.resx">
+      <DependentUpon>AccesoPrivado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edicion\PropImagen.resx">
+      <DependentUpon>PropImagen.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Cuadricula.resx">
       <DependentUpon>Cuadricula.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Desenfocar.resx">
       <DependentUpon>Desenfocar.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Edición\RegistroCambio.resx">
+    <EmbeddedResource Include="Edicion\RegistroCambio.resx">
       <DependentUpon>RegistroCambio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Distorsion.resx">
@@ -418,20 +560,29 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\BordesYContornos.resx">
+    <EmbeddedResource Include="Mascaras\BordesYContornos.resx">
       <DependentUpon>BordesYContornos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\ImportarMascara.resx">
+    <EmbeddedResource Include="Mascaras\ImportarMascara.resx">
       <DependentUpon>ImportarMascara.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\MascaraManual.resx">
+    <EmbeddedResource Include="Mascaras\MascaraManual.resx">
       <DependentUpon>MascaraManual.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\PasoAlto.resx">
+    <EmbeddedResource Include="Mascaras\PasoAlto.resx">
       <DependentUpon>PasoAlto.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Máscaras\PasoBajo.resx">
+    <EmbeddedResource Include="Mascaras\PasoBajo.resx">
       <DependentUpon>PasoBajo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Gamma.resx">
+      <DependentUpon>Gamma.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Redimensionar.resx">
+      <DependentUpon>Redimensionar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperacionesDosImagenes\Anaglifo.resx">
+      <DependentUpon>Anaglifo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\CompararImagenes.resx">
       <DependentUpon>CompararImagenes.vb</DependentUpon>
@@ -493,11 +644,18 @@
     <EmbeddedResource Include="Operaciones\OperadoresMorfologicos.resx">
       <DependentUpon>OperadoresMorfologicos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Traslacion.resx">
+      <DependentUpon>Traslacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\Voltear.resx">
+      <DependentUpon>Voltear.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -583,6 +741,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\camera_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fork_me.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\github.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cargandogris.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SinImagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\starGris.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Izquierda.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Derecha.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SpidyIzquierda.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SpidyDerecha.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -36,7 +36,7 @@ Partial Class Oleo
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(184, 153)
+        Me.Button2.Location = New System.Drawing.Point(184, 166)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(85, 30)
         Me.Button2.TabIndex = 14
@@ -45,7 +45,7 @@ Partial Class Oleo
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(275, 153)
+        Me.Button1.Location = New System.Drawing.Point(275, 166)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(85, 30)
         Me.Button1.TabIndex = 13
@@ -55,9 +55,10 @@ Partial Class Oleo
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(21, 20)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(95, 15)
+        Me.Label2.Size = New System.Drawing.Size(96, 15)
         Me.Label2.TabIndex = 12
         Me.Label2.Text = "Reduzca colores "
         '
@@ -82,9 +83,10 @@ Partial Class Oleo
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(21, 79)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(104, 15)
+        Me.Label3.Size = New System.Drawing.Size(105, 15)
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "Detecte contornos"
         '
@@ -115,7 +117,7 @@ Partial Class Oleo
         Me.AcceptButton = Me.Button1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(372, 195)
+        Me.ClientSize = New System.Drawing.Size(372, 208)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.HScrollBar2)

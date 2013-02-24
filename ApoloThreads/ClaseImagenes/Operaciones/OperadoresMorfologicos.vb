@@ -4,9 +4,9 @@ Imports System.Xml
 Imports ClaseImagenes.Apolo
 Public Class OperadoresMorfologicos
     Dim objetoTratamiento As New TratamientoImagenes 'Instancia a la clase TratamientoImagenes
-    Dim bmpP As New Bitmap(Principal.PictureBox1.Image) 'Imagen de principal
+    Dim bmpP As New Bitmap(Principal.PictureBox2.Image) 'Imagen de principal
     Dim elementoEstructural(,) As Integer 'Matriz de elemento estructural
-    Dim imagenOriginal As New Bitmap(Principal.PictureBox1.Image)
+    Dim imagenOriginal As New Bitmap(Principal.PictureBox2.Image)
     Dim transformacion As String 'Con esto controlamos la transformación a realizar
     Sub inhabilitarControles()
         ListBox1.Enabled = False
@@ -161,7 +161,7 @@ Public Class OperadoresMorfologicos
     'Actuar sobre imagen actual
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
         If BackgroundWorker1.IsBusy = False Then
-            bmpP = Principal.PictureBox1.Image
+            bmpP = Principal.PictureBox2.Image
         End If
     End Sub
 
