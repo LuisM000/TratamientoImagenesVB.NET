@@ -77,6 +77,150 @@ Namespace My
                 Me("CloudPass") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Red")>  _
+        Public Property ColorPunteroZoom() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("ColorPunteroZoom"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("ColorPunteroZoom") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property TamanoPunteroZoom() As Integer
+            Get
+                Return CType(Me("TamanoPunteroZoom"),Integer)
+            End Get
+            Set
+                Me("TamanoPunteroZoom") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property EtiquetaZoom() As Boolean
+            Get
+                Return CType(Me("EtiquetaZoom"),Boolean)
+            End Get
+            Set
+                Me("EtiquetaZoom") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("100")>  _
+        Public Property TamanoVentanaZoom() As Integer
+            Get
+                Return CType(Me("TamanoVentanaZoom"),Integer)
+            End Get
+            Set
+                Me("TamanoVentanaZoom") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
+        Public Property ValorZoom() As Decimal
+            Get
+                Return CType(Me("ValorZoom"),Decimal)
+            End Get
+            Set
+                Me("ValorZoom") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property PunteroZoom() As Boolean
+            Get
+                Return CType(Me("PunteroZoom"),Boolean)
+            End Get
+            Set
+                Me("PunteroZoom") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property DistanciaPunteroZoom() As Integer
+            Get
+                Return CType(Me("DistanciaPunteroZoom"),Integer)
+            End Get
+            Set
+                Me("DistanciaPunteroZoom") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
+        Public Property TamanoPictuZoomfijo() As Integer
+            Get
+                Return CType(Me("TamanoPictuZoomfijo"),Integer)
+            End Get
+            Set
+                Me("TamanoPictuZoomfijo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property TamanoPunteroZoomFijo() As Integer
+            Get
+                Return CType(Me("TamanoPunteroZoomFijo"),Integer)
+            End Get
+            Set
+                Me("TamanoPunteroZoomFijo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
+        Public Property ValorZoomFijo() As Decimal
+            Get
+                Return CType(Me("ValorZoomFijo"),Decimal)
+            End Get
+            Set
+                Me("ValorZoomFijo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Red")>  _
+        Public Property ColorPunterZoomFijo() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("ColorPunterZoomFijo"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("ColorPunterZoomFijo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property PunteroZoomfijo() As Boolean
+            Get
+                Return CType(Me("PunteroZoomfijo"),Boolean)
+            End Get
+            Set
+                Me("PunteroZoomfijo") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

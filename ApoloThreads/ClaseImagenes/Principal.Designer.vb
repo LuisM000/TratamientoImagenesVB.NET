@@ -23,12 +23,12 @@ Partial Class Principal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea22 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series22 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea23 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series23 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea24 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series24 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
@@ -51,6 +51,9 @@ Partial Class Principal
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ZoomToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ZoomInteractivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmpezarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PropiedadesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeshacerZoomToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AjustarAPantallaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem10 = New System.Windows.Forms.ToolStripSeparator()
@@ -59,7 +62,6 @@ Partial Class Principal
         Me.RefrescarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripSeparator()
         Me.PropiedadesDeLaImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem11 = New System.Windows.Forms.ToolStripSeparator()
         Me.OperacionesBásicosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EscalaDeGrisesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EscalaDeGrisesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -180,6 +182,19 @@ Partial Class Principal
         Me.Chart2 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.NumTamanoPuntero = New System.Windows.Forms.NumericUpDown()
+        Me.NumZoom = New System.Windows.Forms.NumericUpDown()
+        Me.NumVentana = New System.Windows.Forms.NumericUpDown()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.chbPuntero = New System.Windows.Forms.CheckBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -283,6 +298,7 @@ Partial Class Principal
         Me.ToolStripStatusColor = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -297,9 +313,16 @@ Partial Class Principal
         CType(Me.Chart3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        CType(Me.NumTamanoPuntero, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumZoom, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumVentana, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.StatusStrip2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Timer1
@@ -389,7 +412,7 @@ Partial Class Principal
         '
         'EdiciónToolStripMenuItem
         '
-        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.ImagenOriginalToolStripMenuItem, Me.ToolStripMenuItem1, Me.ZoomToolStripMenuItem, Me.ZoomToolStripMenuItem1, Me.DeshacerZoomToolStripMenuItem, Me.AjustarAPantallaToolStripMenuItem, Me.ToolStripMenuItem10, Me.RegistroDeCambiosToolStripMenuItem, Me.ActualizarToolStripMenuItem, Me.RefrescarToolStripMenuItem, Me.ToolStripMenuItem7, Me.PropiedadesDeLaImagenToolStripMenuItem, Me.ToolStripMenuItem11})
+        Me.EdiciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeshacerToolStripMenuItem, Me.RehacerToolStripMenuItem, Me.ImagenOriginalToolStripMenuItem, Me.ToolStripMenuItem1, Me.ZoomToolStripMenuItem, Me.ZoomToolStripMenuItem1, Me.ZoomInteractivoToolStripMenuItem, Me.DeshacerZoomToolStripMenuItem, Me.AjustarAPantallaToolStripMenuItem, Me.ToolStripMenuItem10, Me.RegistroDeCambiosToolStripMenuItem, Me.ActualizarToolStripMenuItem, Me.RefrescarToolStripMenuItem, Me.ToolStripMenuItem7, Me.PropiedadesDeLaImagenToolStripMenuItem})
         Me.EdiciónToolStripMenuItem.Name = "EdiciónToolStripMenuItem"
         Me.EdiciónToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
         Me.EdiciónToolStripMenuItem.Text = "Edición"
@@ -433,6 +456,25 @@ Partial Class Principal
         Me.ZoomToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
         Me.ZoomToolStripMenuItem1.Size = New System.Drawing.Size(207, 22)
         Me.ZoomToolStripMenuItem1.Text = "Zoom -"
+        '
+        'ZoomInteractivoToolStripMenuItem
+        '
+        Me.ZoomInteractivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmpezarToolStripMenuItem, Me.PropiedadesToolStripMenuItem})
+        Me.ZoomInteractivoToolStripMenuItem.Name = "ZoomInteractivoToolStripMenuItem"
+        Me.ZoomInteractivoToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.ZoomInteractivoToolStripMenuItem.Text = "Zoom interactivo"
+        '
+        'EmpezarToolStripMenuItem
+        '
+        Me.EmpezarToolStripMenuItem.Name = "EmpezarToolStripMenuItem"
+        Me.EmpezarToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.EmpezarToolStripMenuItem.Text = "Empezar"
+        '
+        'PropiedadesToolStripMenuItem
+        '
+        Me.PropiedadesToolStripMenuItem.Name = "PropiedadesToolStripMenuItem"
+        Me.PropiedadesToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.PropiedadesToolStripMenuItem.Text = "Propiedades"
         '
         'DeshacerZoomToolStripMenuItem
         '
@@ -481,11 +523,6 @@ Partial Class Principal
         Me.PropiedadesDeLaImagenToolStripMenuItem.Name = "PropiedadesDeLaImagenToolStripMenuItem"
         Me.PropiedadesDeLaImagenToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.PropiedadesDeLaImagenToolStripMenuItem.Text = "Propiedades de la imagen"
-        '
-        'ToolStripMenuItem11
-        '
-        Me.ToolStripMenuItem11.Name = "ToolStripMenuItem11"
-        Me.ToolStripMenuItem11.Size = New System.Drawing.Size(204, 6)
         '
         'OperacionesBásicosToolStripMenuItem
         '
@@ -1274,6 +1311,7 @@ Partial Class Principal
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(1, 1)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -1317,15 +1355,15 @@ Partial Class Principal
         'Chart3
         '
         Me.Chart3.BackColor = System.Drawing.SystemColors.Control
-        ChartArea1.Name = "ChartArea1"
-        Me.Chart3.ChartAreas.Add(ChartArea1)
+        ChartArea22.Name = "ChartArea1"
+        Me.Chart3.ChartAreas.Add(ChartArea22)
         Me.Chart3.Location = New System.Drawing.Point(4, 45)
         Me.Chart3.Name = "Chart3"
-        Series1.ChartArea = "ChartArea1"
-        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series1.IsVisibleInLegend = False
-        Series1.Name = "Azul"
-        Me.Chart3.Series.Add(Series1)
+        Series22.ChartArea = "ChartArea1"
+        Series22.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series22.IsVisibleInLegend = False
+        Series22.Name = "Azul"
+        Me.Chart3.Series.Add(Series22)
         Me.Chart3.Size = New System.Drawing.Size(173, 131)
         Me.Chart3.TabIndex = 9
         Me.Chart3.Text = "Histograma azul"
@@ -1334,15 +1372,15 @@ Partial Class Principal
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.SystemColors.Control
-        ChartArea2.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea2)
+        ChartArea23.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea23)
         Me.Chart2.Location = New System.Drawing.Point(4, 139)
         Me.Chart2.Name = "Chart2"
-        Series2.ChartArea = "ChartArea1"
-        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series2.IsVisibleInLegend = False
-        Series2.Name = "Verde"
-        Me.Chart2.Series.Add(Series2)
+        Series23.ChartArea = "ChartArea1"
+        Series23.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series23.IsVisibleInLegend = False
+        Series23.Name = "Verde"
+        Me.Chart2.Series.Add(Series23)
         Me.Chart2.Size = New System.Drawing.Size(173, 131)
         Me.Chart2.TabIndex = 8
         Me.Chart2.Text = "Histograma verde"
@@ -1351,15 +1389,15 @@ Partial Class Principal
         'Chart1
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
-        ChartArea3.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea3)
+        ChartArea24.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea24)
         Me.Chart1.Location = New System.Drawing.Point(4, 247)
         Me.Chart1.Name = "Chart1"
-        Series3.ChartArea = "ChartArea1"
-        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series3.IsVisibleInLegend = False
-        Series3.Name = "Rojo"
-        Me.Chart1.Series.Add(Series3)
+        Series24.ChartArea = "ChartArea1"
+        Series24.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series24.IsVisibleInLegend = False
+        Series24.Name = "Rojo"
+        Me.Chart1.Series.Add(Series24)
         Me.Chart1.Size = New System.Drawing.Size(173, 131)
         Me.Chart1.TabIndex = 7
         Me.Chart1.Text = "Histograma rojo"
@@ -1369,12 +1407,150 @@ Partial Class Principal
         '
         Me.TabPage2.BackColor = System.Drawing.SystemColors.Control
         Me.TabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 24)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(191, 422)
+        Me.TabPage2.Size = New System.Drawing.Size(191, 420)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Registro cambios"
+        '
+        'TabPage3
+        '
+        Me.TabPage3.AutoScroll = True
+        Me.TabPage3.Controls.Add(Me.Panel2)
+        Me.TabPage3.Controls.Add(Me.Label3)
+        Me.TabPage3.Controls.Add(Me.PictureBox4)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(191, 420)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Zoom interactivo"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Panel2
+        '
+        Me.Panel2.Controls.Add(Me.NumTamanoPuntero)
+        Me.Panel2.Controls.Add(Me.NumZoom)
+        Me.Panel2.Controls.Add(Me.NumVentana)
+        Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.Button3)
+        Me.Panel2.Controls.Add(Me.chbPuntero)
+        Me.Panel2.Controls.Add(Me.Label6)
+        Me.Panel2.Controls.Add(Me.Label7)
+        Me.Panel2.Controls.Add(Me.GroupBox1)
+        Me.Panel2.Location = New System.Drawing.Point(0, 197)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(189, 218)
+        Me.Panel2.TabIndex = 2
+        '
+        'Button4
+        '
+        Me.Button4.Location = New System.Drawing.Point(27, 174)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(134, 23)
+        Me.Button4.TabIndex = 30
+        Me.Button4.Text = "Guardar cambios"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'NumTamanoPuntero
+        '
+        Me.NumTamanoPuntero.Location = New System.Drawing.Point(101, 119)
+        Me.NumTamanoPuntero.Maximum = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.NumTamanoPuntero.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumTamanoPuntero.Name = "NumTamanoPuntero"
+        Me.NumTamanoPuntero.Size = New System.Drawing.Size(48, 23)
+        Me.NumTamanoPuntero.TabIndex = 29
+        Me.NumTamanoPuntero.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'NumZoom
+        '
+        Me.NumZoom.DecimalPlaces = 1
+        Me.NumZoom.Increment = New Decimal(New Integer() {2, 0, 0, 65536})
+        Me.NumZoom.Location = New System.Drawing.Point(120, 55)
+        Me.NumZoom.Maximum = New Decimal(New Integer() {52, 0, 0, 65536})
+        Me.NumZoom.Minimum = New Decimal(New Integer() {4, 0, 0, 65536})
+        Me.NumZoom.Name = "NumZoom"
+        Me.NumZoom.Size = New System.Drawing.Size(41, 23)
+        Me.NumZoom.TabIndex = 28
+        Me.NumZoom.Value = New Decimal(New Integer() {4, 0, 0, 65536})
+        '
+        'NumVentana
+        '
+        Me.NumVentana.Location = New System.Drawing.Point(120, 20)
+        Me.NumVentana.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        Me.NumVentana.Minimum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.NumVentana.Name = "NumVentana"
+        Me.NumVentana.Size = New System.Drawing.Size(58, 23)
+        Me.NumVentana.TabIndex = 27
+        Me.NumVentana.Value = New Decimal(New Integer() {20, 0, 0, 0})
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(41, 121)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(54, 15)
+        Me.Label5.TabIndex = 26
+        Me.Label5.Text = "Tamaño:"
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(62, 148)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(65, 23)
+        Me.Button3.TabIndex = 25
+        Me.Button3.Text = "Color"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'chbPuntero
+        '
+        Me.chbPuntero.AutoSize = True
+        Me.chbPuntero.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chbPuntero.Location = New System.Drawing.Point(19, 94)
+        Me.chbPuntero.Name = "chbPuntero"
+        Me.chbPuntero.Size = New System.Drawing.Size(108, 19)
+        Me.chbPuntero.TabIndex = 24
+        Me.chbPuntero.Text = "Activar puntero"
+        Me.chbPuntero.UseVisualStyleBackColor = True
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(16, 57)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(90, 15)
+        Me.Label6.TabIndex = 23
+        Me.Label6.Text = "Valor del zoom:"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(16, 20)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(98, 15)
+        Me.Label7.TabIndex = 22
+        Me.Label7.Text = "Tamaño ventana:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(61, 15)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(53, 15)
+        Me.Label3.TabIndex = 1
+        Me.Label3.Text = "Zoom x2"
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox4.Location = New System.Drawing.Point(27, 33)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(150, 150)
+        Me.PictureBox4.TabIndex = 0
+        Me.PictureBox4.TabStop = False
         '
         'Label1
         '
@@ -2020,6 +2196,16 @@ Partial Class Principal
         Me.BackgroundWorker2.WorkerReportsProgress = True
         Me.BackgroundWorker2.WorkerSupportsCancellation = True
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Button4)
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 3)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(185, 214)
+        Me.GroupBox1.TabIndex = 31
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Propiedades"
+        '
         'Principal
         '
         Me.AllowDrop = True
@@ -2055,10 +2241,19 @@ Partial Class Principal
         CType(Me.Chart3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        CType(Me.NumTamanoPuntero, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumZoom, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumVentana, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.StatusStrip2.ResumeLayout(False)
         Me.StatusStrip2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2278,7 +2473,6 @@ Partial Class Principal
     Friend WithEvents CentímetrosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PulgadasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PíxelesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripStatusLabel3 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusImagen As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusColor As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents AyúdanosAMejorarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2304,7 +2498,6 @@ Partial Class Principal
     Friend WithEvents ToolStripMenuItem10 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
     Friend WithEvents AjustarAPantallaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem11 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents OperacionesGeométricasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReflexiónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -2317,5 +2510,23 @@ Partial Class Principal
     Friend WithEvents PersonalizadaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents ZoomInteractivoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripStatusLabel3 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents EmpezarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PropiedadesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
+    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents NumTamanoPuntero As System.Windows.Forms.NumericUpDown
+    Friend WithEvents NumZoom As System.Windows.Forms.NumericUpDown
+    Friend WithEvents NumVentana As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents chbPuntero As System.Windows.Forms.CheckBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
 
 End Class

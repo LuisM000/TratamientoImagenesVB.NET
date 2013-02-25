@@ -79,6 +79,10 @@ ClaseImagenes
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.Derecha">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.facebook">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
@@ -100,6 +104,10 @@ ClaseImagenes
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.image_link">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.Izquierda">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
@@ -128,6 +136,14 @@ ClaseImagenes
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.SinImagen">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.SpidyDerecha">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.SpidyIzquierda">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
