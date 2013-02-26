@@ -30,7 +30,7 @@ Public Class Principal
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+      
         'Manejamos cualquier excepción no controlada
         AddHandler Application.ThreadException, AddressOf Application_ThreadException
 
@@ -63,6 +63,8 @@ Public Class Principal
         actualizarHistrograma()
         tiempo = 0 'Para que el contador se pare
         Button1.Text = "Actualizar histograma"
+        'Tamaño del Picturebox 4 del tabpage 2 que muestra zoo
+        PictureBox4.Size = New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo)
     End Sub
 
 
@@ -688,7 +690,7 @@ Public Class Principal
 #End Region
 
 
-#Region "Actualizar registro cambios tabcontrol"
+#Region "Actualizar registro cambios tabcontrol/"
 
 
     Sub RefrescarTab()
@@ -753,6 +755,27 @@ Public Class Principal
             End If
         Catch
         End Try
+        'ACtualizamos datos zoom fijo
+        If TabControl1.SelectedIndex = 2 Then
+            NumVentana.Value = My.Settings.TamanoPictuZoomfijo
+            NumTamanoPuntero.Value = My.Settings.TamanoPunteroZoomFijo
+            NumZoom.Value = My.Settings.ValorZoomFijo
+            If My.Settings.PunteroZoomfijo Then
+                chbPuntero.Checked = True
+                Button3.Enabled = True
+                NumTamanoPuntero.Enabled = True
+            Else
+                chbPuntero.Checked = False
+                Button3.Enabled = False
+                NumTamanoPuntero.Enabled = False
+            End If
+            Button3.BackColor = My.Settings.ColorPunterZoomFijo
+            'Adpatamos tabpage 2 (zoom)
+            Label3.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label3.Width / 2), Label3.Location.Y)
+            PictureBox4.Location = New Size((SplitContainer1.Panel2.Width / 2) - (PictureBox4.Width / 2), PictureBox4.Location.Y)
+            Panel2.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Panel2.Width / 2), PictureBox4.Location.Y + PictureBox4.Height + 10)
+            SplitContainer1.SplitterDistance = Me.Width - (PictureBox4.Width + 50)
+        End If
     End Sub
 
     Private Sub conFoco(ByVal sender As Object, ByVal e As System.EventArgs)
@@ -775,6 +798,9 @@ Public Class Principal
             TabControl1_SelectedIndexChanged(sender, e)
         End If
     End Sub
+
+
+
 
 
 #End Region
@@ -861,12 +887,18 @@ Public Class Principal
         Chart1.Width = SplitContainer1.Panel2.Width 'Chart-->histogramas
         Chart2.Width = SplitContainer1.Panel2.Width
         Chart3.Width = SplitContainer1.Panel2.Width
-        Button1.Width = SplitContainer1.Panel2.Width - 20 'Botón de actualizar histograma
-        Button2.Width = SplitContainer1.Panel2.Width - 20 'Botón de actualizar histograma
+        Button1.Width = SplitContainer1.Panel2.Width - 50 'Botón de actualizar histograma
+        Button2.Width = SplitContainer1.Panel2.Width - 50 'Botón de actualizar histograma
         'Adaptamos label --> imagen general
         Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
         'Adaptamos el tabcontrol
         TabControl1.Size = New Size(SplitContainer1.Panel2.Width, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 30))
+
+        'Adpatamos tabpage 2 (zoom)
+        Label3.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label3.Width / 2), Label3.Location.Y)
+        PictureBox4.Location = New Size((SplitContainer1.Panel2.Width / 2) - (PictureBox4.Width / 2), PictureBox4.Location.Y)
+        Panel2.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Panel2.Width / 2), PictureBox4.Location.Y + PictureBox4.Height + 10)
+
         RefrescarTab() 'Actualizamos el registro de cambios
     End Sub
 
@@ -876,16 +908,28 @@ Public Class Principal
         PictureBox2.Location = New Size(PictureBox2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 5))
         'Colocamos label imagen general
         Label1.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label1.Width / 2), PictureBox2.Location.Y - 20)
+        ''Colocamos los chart y el botón
+        'Chart1.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + Chart1.Size.Height + 100))
+        'Chart2.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 2) + 100))
+        'Chart3.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 3) + 100))
+        'Button1.Location = New Size((TabControl1.Width / 2) - (Button1.Width / 2) - 3, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 102))
+        ''Botón de todos los histogramas
+        'Button2.Location = New Size((TabControl1.Width / 2) - (Button2.Width / 2) - 3, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 130) - ((Chart1.Size.Height * 3)))
+
         'Colocamos los chart y el botón
-        Chart1.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + Chart1.Size.Height + 100))
-        Chart2.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 2) + 100))
-        Chart3.Location = New Size(-7, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + (Chart1.Size.Height * 3) + 100))
-        Button1.Location = New Size((TabControl1.Width / 2) - (Button1.Width / 2) - 3, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 102))
+        Chart1.Location = New Size(-7, SplitContainer1.Location.Y)
+        Chart2.Location = New Size(-7, SplitContainer1.Location.Y + Chart1.Height)
+        Chart3.Location = New Size(-7, SplitContainer1.Location.Y + Chart1.Height + Chart2.Height)
+        Button1.Location = New Size((TabControl1.Width / 2) - (Button1.Width / 2) - 3, Chart3.Location.Y + Chart3.Height)
         'Botón de todos los histogramas
-        Button2.Location = New Size((TabControl1.Width / 2) - (Button2.Width / 2) - 3, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 130) - ((Chart1.Size.Height * 3)))
+        Button2.Location = New Size((TabControl1.Width / 2) - (Button2.Width / 2) - 3, Button1.Location.Y + Button1.Height + 5)
+
+
         'Adaptamos el tabcontrol
         TabControl1.Size = New Size(SplitContainer1.Panel2.Width, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 30))
 
+
+        
     End Sub
 #End Region
 
@@ -1001,8 +1045,12 @@ Public Class Principal
 #End Region
 
 
-#Region "Posición puntero en Picturebox//Color picturebox//Zoom interactivo// Mover los scrollbar del panel al pulsar//Hacer roaming en el picturebox secundarios"
-
+#Region "Capturar tecla pulsada//Posición puntero en Picturebox//Color picturebox//Zoom interactivo y fijo// Mover los scrollbar del panel al pulsar//Hacer roaming en el picturebox secundarios"
+    Dim TeclaActual As String
+    'Capturar la tecla pulsada
+    Private Sub Principal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        TeclaActual = e.KeyChar.ToString
+    End Sub
 
     'Calculamos la posición del puntero dentro del picturebox
     Dim valorY, valorY2, valorX, valorX2 As Integer
@@ -1086,14 +1134,20 @@ Public Class Principal
         '-------------------------------------------------------
         'Muestra el zoom a medida que nos desplazamos por el Picturebox
         If ModifierKeys = Keys.Shift Then
-            zoomInteractivo(e.X, e.Y, valzoom, New Size(100, 100), True, Color.Red, 1, True)
+            zoomInteractivo(PictureBox3, e.X, e.Y, My.Settings.ValorZoom, New Size(My.Settings.TamanoVentanaZoom, My.Settings.TamanoVentanaZoom), My.Settings.DistanciaPunteroZoom, My.Settings.PunteroZoom, My.Settings.ColorPunteroZoom, My.Settings.TamanoPunteroZoom, My.Settings.EtiquetaZoom)
+        End If
+
+        'Zoom interactivo desde tabpage-------------------------------------
+        '-------------------------------------------------------
+        If TabControl1.SelectedIndex = 2 Then
+            zoomFijo(PictureBox4, e.X, e.Y, My.Settings.ValorZoomFijo, New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo), My.Settings.PunteroZoomfijo, My.Settings.ColorPunterZoomFijo, My.Settings.TamanoPunteroZoomFijo)
         End If
     End Sub
 
     Private Sub PictureBox3_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox3.MouseMove
         'Si el cursor está encima del picturebox2, calcula dónde tiene que coger el valor del Picturebox2
         If ModifierKeys = Keys.Shift Then
-            zoomInteractivo(PictureBox3.Location.X + e.X, PictureBox3.Location.Y + e.Y, valzoom, New Size(100, 100), True, Color.Red, 1, True)
+            zoomInteractivo(PictureBox3, PictureBox3.Location.X + e.X + Panel1.HorizontalScroll.Value, PictureBox3.Location.Y + e.Y + Panel1.VerticalScroll.Value, My.Settings.ValorZoom, New Size(My.Settings.TamanoVentanaZoom, My.Settings.TamanoVentanaZoom), My.Settings.DistanciaPunteroZoom, My.Settings.PunteroZoom, My.Settings.ColorPunteroZoom, My.Settings.TamanoPunteroZoom, My.Settings.EtiquetaZoom)
         End If
     End Sub
     Dim valzoom As Single = 2
@@ -1103,29 +1157,31 @@ Public Class Principal
         Label2.Visible = False
         PictureBox1.Refresh()
         PictureBox3.Refresh()
+        TeclaActual = ""
     End Sub
-
+    'PicSecundario: Picturebox donde se irá mostrando el zoom interactivo
     'X: Coordenada X del puntero con respecto al Picturebox1
     'Y: Coordenada Y del puntero con respecto al Picturebox1
     'ValorZoom: Aumento con respecto al picturebox1
-    'ValorPicturebox: Valor del lado del Picturebox2 
+    'ValorPicturebox: Valor del lado (ancho/alto) del Picturebox2 
     'Puntero (opcional): Indica se se va a mostrar un puntero en la posición actual 
     'ColorPuntero(opcional): Color del puntero .
     'TamanoPuntero(opcional): tamaño del lado del puntero
     'EtiquetaZoom(opcional): Indica si se va a mostrar un label con el zoom actual
-    Sub zoomInteractivo(ByVal x As Integer, ByVal y As Integer, ByVal valorZoom As Decimal, ByVal valorPicturebox As Size, Optional ByVal puntero As Boolean = False, Optional colorPuntero As Color = Nothing, Optional tamanoPuntero As Integer = 1, Optional etiquetaZoom As Boolean = False)
+    Sub zoomInteractivo(ByVal PicSecundario As PictureBox, ByVal x As Integer, ByVal y As Integer, ByVal valorZoom As Decimal, ByVal valorPicturebox As Size, Optional DistanciaPuntero As Integer = 0, Optional ByVal puntero As Boolean = False, Optional colorPuntero As Color = Nothing, Optional tamanoPuntero As Integer = 1, Optional etiquetaZoom As Boolean = False)
+
 
         Dim xResta, yResta As Single
-        PictureBox3.Size = valorPicturebox
+        PicSecundario.Size = valorPicturebox
         valorZoom = Decimal.Round(valorZoom, 2)
-        xResta = CInt((PictureBox3.Width / 2) / valorZoom)
-        yResta = CInt((PictureBox3.Height / 2) / valorZoom)
+        xResta = CInt((PicSecundario.Width / 2) / valorZoom)
+        yResta = CInt((PicSecundario.Height / 2) / valorZoom)
 
         Dim bmpAux As New Bitmap(PictureBox1.Image)
 
 
         If x > 0 And y > 0 Then
-            PictureBox3.Visible = True
+            PicSecundario.Visible = True
 
             'Solucionamos problema con esquinas
             If x > bmpAux.Width - xResta Then
@@ -1144,60 +1200,122 @@ Public Class Principal
 
             'Creamos el bitmap con el tamaño elegido
             Dim bmp As Bitmap = bmpAux.Clone(New Rectangle(New Point(x - xResta, y - yResta), New Size(xResta * 2, yResta * 2)), Imaging.PixelFormat.DontCare)
-            Dim bmpSalida As New Bitmap(bmp, PictureBox3.Width, PictureBox3.Height)
-            PictureBox3.Image = bmpSalida
+            Dim bmpSalida As New Bitmap(bmp, PicSecundario.Width, PicSecundario.Height)
+            PicSecundario.Image = bmpSalida
 
 
             'Situamos el Picturebox 2
             Dim localizacion As Point
-            localizacion.X = x
-            localizacion.Y = y
+            localizacion.X = x + DistanciaPuntero
+            localizacion.Y = y + DistanciaPuntero
 
-            If x + PictureBox3.Width > PictureBox1.Width Then
-                localizacion.X = x - PictureBox3.Width
+            If x + PicSecundario.Width > PictureBox1.Width Then
+                localizacion.X = x - PicSecundario.Width
             End If
-            If y + PictureBox3.Height > PictureBox1.Height Then
-                localizacion.Y = y - PictureBox3.Height
+            If y + PicSecundario.Height > PictureBox1.Height Then
+                localizacion.Y = y - PicSecundario.Height
             End If
 
             If Panel1.HorizontalScroll.Value > 0 Then
-                localizacion.X -= Panel1.HorizontalScroll.Value
+                localizacion.X -= Panel1.HorizontalScroll.Value + DistanciaPuntero
             End If
             If Panel1.VerticalScroll.Value > 0 Then
                 localizacion.Y -= Panel1.VerticalScroll.Value
             End If
-            PictureBox3.Location = localizacion
+            PicSecundario.Location = localizacion
 
 
             'Con esto forzamos la recolección de basura y destruimos el bitmap
             'El uso no es aconsejable pero imprescindible en este caso
             GC.Collect()
             GC.WaitForPendingFinalizers()
+            PictureBox1.Refresh()
+            PicSecundario.Refresh()
 
             'Pintamos el puntero
             If puntero = True Then
-                PictureBox1.Refresh()
-                PictureBox3.Refresh()
                 'Si el puntero no tiene color lo ponemos rojo
                 If colorPuntero = Nothing Then colorPuntero = Color.Red
                 'Calculamos el lado del cuadrado
                 Dim lado As Integer = tamanoPuntero * 2
                 Dim Picture1 As Graphics = PictureBox1.CreateGraphics
                 Picture1.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(x - tamanoPuntero, y - tamanoPuntero), New Size(lado, lado)))
-                Dim Picture2 As Graphics = PictureBox3.CreateGraphics
-                Picture2.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(PictureBox3.Width / 2 - tamanoPuntero, PictureBox3.Height / 2 - tamanoPuntero), New Size(lado, lado)))
+                Dim Picture2 As Graphics = PicSecundario.CreateGraphics
+                Picture2.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(PicSecundario.Width / 2 - tamanoPuntero, PicSecundario.Height / 2 - tamanoPuntero), New Size(lado, lado)))
             End If
 
             'Si mostramos el label con el zoom
             If etiquetaZoom = True Then
                 Label2.Visible = True
                 Label2.Text = "x" & valorZoom
-                Label2.Location = New Size(PictureBox3.Location.X + PictureBox3.Width / 2 - 10, PictureBox3.Location.Y - 20)
+                Label2.Location = New Size(PicSecundario.Location.X + PicSecundario.Width / 2 - 10, PicSecundario.Location.Y - 20)
             End If
         End If
 
 
     End Sub
+    Sub zoomFijo(ByVal PicSecundario As PictureBox, ByVal x As Integer, ByVal y As Integer, ByVal valorZoom As Decimal, ByVal valorPicturebox As Size, Optional ByVal puntero As Boolean = False, Optional colorPuntero As Color = Nothing, Optional tamanoPuntero As Integer = 1)
+
+        Dim xResta, yResta As Single
+        PicSecundario.Size = valorPicturebox
+        valorZoom = Decimal.Round(valorZoom, 2)
+        xResta = CInt((PicSecundario.Width / 2) / valorZoom)
+        yResta = CInt((PicSecundario.Height / 2) / valorZoom)
+
+        Dim bmpAux As New Bitmap(PictureBox1.Image)
+
+
+        If x > 0 And y > 0 Then
+            PicSecundario.Visible = True
+
+            'Solucionamos problema con esquinas
+            If x > bmpAux.Width - xResta Then
+                x = bmpAux.Width - xResta
+            End If
+            If y > bmpAux.Height - yResta Then
+                y = bmpAux.Height - yResta
+            End If
+            If x - xResta < 0 Then
+                x = xResta
+            End If
+
+            If y - yResta < 0 Then
+                y = yResta
+            End If
+
+            'Creamos el bitmap con el tamaño elegido
+            Dim bmp As Bitmap = bmpAux.Clone(New Rectangle(New Point(x - xResta, y - yResta), New Size(xResta * 2, yResta * 2)), Imaging.PixelFormat.DontCare)
+            Dim bmpSalida As New Bitmap(bmp, PicSecundario.Width, PicSecundario.Height)
+            PicSecundario.Image = bmpSalida
+
+
+            'Con esto forzamos la recolección de basura y destruimos el bitmap
+            'El uso no es aconsejable pero imprescindible en este caso
+            GC.Collect()
+            GC.WaitForPendingFinalizers()
+            PictureBox1.Refresh()
+            PicSecundario.Refresh()
+
+            'Pintamos el puntero
+            If puntero = True Then
+                'Si el puntero no tiene color lo ponemos rojo
+                If colorPuntero = Nothing Then colorPuntero = Color.Red
+                'Calculamos el lado del cuadrado
+                Dim lado As Integer = tamanoPuntero * 2
+                Dim Picture1 As Graphics = PictureBox1.CreateGraphics
+                Picture1.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(x - tamanoPuntero, y - tamanoPuntero), New Size(lado, lado)))
+                Dim Picture2 As Graphics = PicSecundario.CreateGraphics
+                Picture2.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(PicSecundario.Width / 2 - tamanoPuntero, PicSecundario.Height / 2 - tamanoPuntero), New Size(lado, lado)))
+            End If
+
+            'Si mostramos el label con el zoom
+            Label3.Visible = True
+            Label3.Text = "Zoom x" & valorZoom
+        End If
+
+
+    End Sub
+
 
     Private Sub PictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
         PictureBox2.Refresh()
@@ -1364,7 +1482,7 @@ Public Class Principal
 
 #End Region
 
-#Region "Zoom + -//Eliminar zoom/Ajustar a pantalla//scrollvertical/Zoom interactivo"
+#Region "Zoom + -//Eliminar zoom/Ajustar a pantalla//scrollvertical/Zoom interactivo y fijo"
     Private Sub refrescar()
         If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
             'Actualizamos el Panel1
@@ -1385,7 +1503,7 @@ Public Class Principal
             End If
         End If
         'Mover el scroll vertical
-        If ModifierKeys = Nothing Then
+        If ModifierKeys = Nothing And TeclaActual = "" Then 'Si no estamos haciendo ninguna acción
             Try
                 Dim valorMovimiento As Integer
                 valorMovimiento = 50
@@ -1403,12 +1521,24 @@ Public Class Principal
         End If
         'Aumenta el zoom interactivo con la rueda del ratón
         If ModifierKeys = Keys.Shift Then 'Si pulsa control al dar a la rueda
-            If e.Delta > 0 And valzoom <= 5 Then
-                valzoom += 0.2
-                zoomInteractivo(e.X - 2, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2), valzoom, New Size(100, 100), True, Color.Red, 1, True)
-            ElseIf valzoom > 0.4 Then 'No puede ser menor
-                valzoom -= 0.2
-                zoomInteractivo(e.X - 2, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2), valzoom, New Size(100, 100), True, Color.Red, 1, True)
+            If e.Delta > 0 And My.Settings.ValorZoom <= 5 Then
+                My.Settings.ValorZoom += 0.2
+                zoomInteractivo(PictureBox3, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoom, New Size(My.Settings.TamanoVentanaZoom, My.Settings.TamanoVentanaZoom), My.Settings.DistanciaPunteroZoom, My.Settings.PunteroZoom, My.Settings.ColorPunteroZoom, My.Settings.TamanoPunteroZoom, My.Settings.EtiquetaZoom)
+            ElseIf My.Settings.ValorZoom > 0.4 Then 'No puede ser menor
+                My.Settings.ValorZoom -= 0.2
+                zoomInteractivo(PictureBox3, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoom, New Size(My.Settings.TamanoVentanaZoom, My.Settings.TamanoVentanaZoom), My.Settings.DistanciaPunteroZoom, My.Settings.PunteroZoom, My.Settings.ColorPunteroZoom, My.Settings.TamanoPunteroZoom, My.Settings.EtiquetaZoom)
+            End If
+        End If
+        'Aumenta el zoom interactivo con la rueda del ratón en el zoom fijo (del tabpage 2)
+        If TabControl1.SelectedIndex = 2 And TeclaActual = "z" Then 'Si está seleccionado el tabpage del zoom y pulsado Z
+            If e.Delta > 0 And My.Settings.ValorZoomFijo <= 5 Then
+                My.Settings.ValorZoomFijo += 0.2
+                NumZoom.Value = My.Settings.ValorZoomFijo 'ACtualizamosd el label
+                zoomFijo(PictureBox4, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoomFijo, New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo), My.Settings.PunteroZoomfijo, My.Settings.ColorPunterZoomFijo, My.Settings.TamanoPunteroZoomFijo)
+            ElseIf My.Settings.ValorZoomFijo > 0.4 Then 'No puede ser menor
+                My.Settings.ValorZoomFijo -= 0.2
+                NumZoom.Value = My.Settings.ValorZoomFijo
+                zoomFijo(PictureBox4, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoomFijo, New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo), My.Settings.PunteroZoomfijo, My.Settings.ColorPunterZoomFijo, My.Settings.TamanoPunteroZoomFijo)
             End If
         End If
     End Sub
@@ -1430,6 +1560,15 @@ Public Class Principal
         Else
             MessageBox.Show("Zoom mínimo superado.", "Apolo", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+    End Sub
+    'Zoom interactivo
+    Private Sub EmpezarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmpezarToolStripMenuItem.Click
+        MessageBox.Show("Pulse la tecla SHIFT y muévase por la imagen para ver la imagen ampliada." & vbCrLf & "Mueva la rueda del ratón para ampliar o disminuir el zoom.", "Zoom interactivo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    End Sub
+
+    Private Sub PropiedadesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PropiedadesToolStripMenuItem.Click
+        PropiedadesZoom.Show()
     End Sub
     Private Sub DeshacerZoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeshacerZoomToolStripMenuItem.Click
         objetoTratamiento.Zoom = 1
@@ -1457,7 +1596,54 @@ Public Class Principal
 #End Region
 
 
+  
+#Region "Modificar cambios zoom fijo.. Tabpage 2"
+    Private Sub chbPuntero_CheckedChanged(sender As Object, e As EventArgs) Handles chbPuntero.CheckedChanged
+        If chbPuntero.Checked = True Then
+            Button3.Enabled = True
+            NumTamanoPuntero.Enabled = True
+        Else
+            Button3.Enabled = False
+            NumTamanoPuntero.Enabled = False
+        End If
+    End Sub
 
+    Dim dcolor As New ColorDialog
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        dcolor.ShowDialog()
+        Button3.BackColor = dcolor.Color
+    End Sub
 
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        If chbPuntero.Checked = True Then
+            My.Settings.PunteroZoomfijo = True
+            Button3.Enabled = True
+            NumTamanoPuntero.Enabled = True
+        Else
+            My.Settings.PunteroZoomfijo = False
+            Button3.Enabled = False
+            NumTamanoPuntero.Enabled = False
+        End If
+        My.Settings.TamanoPictuZoomfijo = NumVentana.Value
+        My.Settings.ValorZoomFijo = NumZoom.Value
+        My.Settings.TamanoPunteroZoomFijo = NumTamanoPuntero.Value
+        My.Settings.ColorPunterZoomFijo = Button3.BackColor
+        My.Settings.Save()
+
+        PictureBox4.Size = New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo)
+        Label3.Text = "Zoom x" & My.Settings.ValorZoomFijo
+
+<<<<<<< HEAD
  
+=======
+        'Adpatamos tabpage 2 (zoom)
+        Label3.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label3.Width / 2), Label3.Location.Y)
+        PictureBox4.Location = New Size((SplitContainer1.Panel2.Width / 2) - (PictureBox4.Width / 2), PictureBox4.Location.Y)
+        Panel2.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Panel2.Width / 2), PictureBox4.Location.Y + PictureBox4.Height + 10)
+        SplitContainer1.SplitterDistance = Me.Width - (PictureBox4.Width + 50)
+
+    End Sub
+#End Region
+   
+>>>>>>> 6b1b18a2f13de9c68df6f37bec1b21faf550d0ee
 End Class
