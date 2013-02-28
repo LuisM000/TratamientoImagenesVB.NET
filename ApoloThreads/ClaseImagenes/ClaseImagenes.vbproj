@@ -354,6 +354,18 @@
     <Compile Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Operaciones\DensityScilingAuto.Designer.vb">
+      <DependentUpon>DensityScilingAuto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\DensityScilingAuto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\DensityScilingManual.Designer.vb">
+      <DependentUpon>DensityScilingManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\DensityScilingManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Operaciones\ImportarExportarElementoEstructural.Designer.vb">
       <DependentUpon>ImportarExportarElementoEstructural.vb</DependentUpon>
     </Compile>
@@ -601,6 +613,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.resx">
       <DependentUpon>OperacionesLogicasDosImagenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\DensityScilingAuto.resx">
+      <DependentUpon>DensityScilingAuto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\DensityScilingManual.resx">
+      <DependentUpon>DensityScilingManual.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\ImportarExportarElementoEstructural.resx">
       <DependentUpon>ImportarExportarElementoEstructural.vb</DependentUpon>

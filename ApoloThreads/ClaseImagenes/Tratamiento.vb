@@ -2102,6 +2102,161 @@ Namespace Apolo
 
 #End Region
 
+#Region "Otras operaciones"
+        Public Function DensitySlicing(ByVal bmp As Bitmap, ByVal Divisiones As Integer, ByVal colores() As Color)
+            If Divisiones <> colores.Length Then
+                MessageBox.Show("El número de colores debe ser igual al número de divisiones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return bmp
+                Exit Function
+            End If
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            Dim bmp3 As New Bitmap(bmp.Width, bmp.Height)
+            'Creamos el estado
+            porcentaje(1) = "Aplicando density slicing"
+            Dim Rojo, Verde, Azul, alfa As Integer
+            Dim ValorCapa As Integer = 256 / Divisiones
+            Dim valorMedia, valorAcumulado As Integer
+            Dim valor As Integer = 0
+            Dim colorSalida As Color
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    valorAcumulado = 0 : valor = 0
+                    Rojo = Niveles(i, j).B
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).R
+                    alfa = Niveles(i, j).A
+                    valorMedia = (Rojo + Verde + Azul) / 3
+
+                    For s = 1 To Divisiones
+                        If valorMedia >= valorAcumulado And valorMedia < valorAcumulado + ValorCapa Then
+                            colorSalida = colores(valor)
+                            Exit For
+                        End If
+                        valorAcumulado += ValorCapa
+                        valor += 1
+                    Next
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, colorSalida))
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Density Slicing") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+        Public Function DensitySlicing(ByVal bmp As Bitmap, ByVal rangos(,) As Integer, ByVal colores() As Color)
+            If rangos.GetUpperBound(0) + 1 <> colores.Length Then
+                MessageBox.Show("El número de colores debe ser igual al número de divisiones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return bmp
+                Exit Function
+            End If
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            porcentaje(0) = 0 'Actualizar el estado
+            Dim bmp3 As New Bitmap(bmp.Width, bmp.Height)
+            'Creamos el estado
+            porcentaje(1) = "Aplicando density slicing"
+            Dim Rojo, Verde, Azul, alfa As Integer
+
+            Dim valorMedia As Integer
+            Dim valor As Integer = 0
+            Dim colorSalida As Color
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    Rojo = Niveles(i, j).B
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).R
+                    alfa = Niveles(i, j).A
+                    valorMedia = (Rojo + Verde + Azul) / 3
+                    colorSalida = Color.FromArgb(0, 0, 0, 0)
+                    For s = 0 To rangos.GetUpperBound(0)
+                        If valorMedia >= rangos(s, 0) And valorMedia < rangos(s, 1) Then
+                            colorSalida = colores(s)
+                            Exit For
+                        End If
+                    Next
+                    bmp3.SetPixel(i, j, colorSalida)
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Density Slicing") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+
+        Public Function DensitySlicingNormalizado(ByVal bmp As Bitmap, ByVal Divisiones As Integer, ByVal colores() As Color)
+            If Divisiones <> colores.Length Then
+                MessageBox.Show("El número de colores debe ser igual al número de divisiones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return bmp
+                Exit Function
+            End If
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            porcentaje(0) = 0 'Actualizamos el estado
+            porcentaje(1) = "Cargando imagen" 'Actualizamos el estado
+            Dim minimo As Byte = 255
+            Dim maximo As Byte = 0
+
+            'Este primer bloque, guarda los niveles digitales de la imagen en la variable Niveles
+            Dim i, j As Long
+            Dim ValorGris, Rojoaxu, Verdeaxu, Azulaux As Integer
+            ReDim Niveles(bmp2.Width - 1, bmp2.Height - 1)  'Asignamos a la matriz las dimensiones de la imagen -1 *
+            For i = 0 To bmp2.Width - 1 'Recorremos la matriz a lo ancho
+                For j = 0 To bmp2.Height - 1 'Recorremos la matriz a lo largo
+                    Niveles(i, j) = bmp2.GetPixel(i, j) 'Con el método GetPixel, asignamos para cada celda de la matriz el color con sus valores RGB.
+                    Rojoaxu = Niveles(i, j).R : Verdeaxu = Niveles(i, j).G : Azulaux = Niveles(i, j).B
+                    ValorGris = (Rojoaxu + Verdeaxu + Azulaux) / 3
+                    If ValorGris > maximo Then maximo = ValorGris
+                    If ValorGris < minimo Then minimo = ValorGris
+                    porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+                Next
+            Next
+
+            'Creamos el estado
+            porcentaje(1) = "Aplicando density slicing"
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            'Mientras cargo la imagen buscar el valor mínimo y máximo
+
+            Dim valoresIntermedios As Integer = maximo - minimo
+
+            Dim Rojo, Verde, Azul, alfa As Integer
+            Dim ValorCapa As Integer = valoresIntermedios / Divisiones
+            Dim valorMedia, valorAcumulado As Integer
+            Dim valor As Integer = 0
+            Dim colorSalida As Color
+            For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
+                For j = 0 To Niveles.GetUpperBound(1)
+                    valorAcumulado = minimo : valor = 0
+                    Rojo = Niveles(i, j).B
+                    Verde = Niveles(i, j).G
+                    Azul = Niveles(i, j).R
+                    alfa = Niveles(i, j).A
+                    valorMedia = (Rojo + Verde + Azul) / 3
+
+                    For s = 1 To Divisiones
+                        If valorMedia >= valorAcumulado And valorMedia < valorAcumulado + ValorCapa Then
+                            colorSalida = colores(valor)
+                            Exit For
+                        End If
+                        valorAcumulado += ValorCapa
+                        valor += 1
+                    Next
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, colorSalida))
+                Next
+                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+            Next
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Density Slicing normalizado") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+#End Region
+
 
 
         'Principales efectos sobre imágenes. Contiene funciones que devuelven bitmaps

@@ -340,6 +340,15 @@ Public Class Principal
     Private Sub VolteadosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VolteadosToolStripMenuItem.Click
         Voltear.Show()
     End Sub
+
+    'Density Sciling
+    Private Sub AutomáticoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutomáticoToolStripMenuItem.Click
+        DensityScilingAuto.Show()
+    End Sub
+    'Density Sciling manual
+    Private Sub ManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualToolStripMenuItem.Click
+        DensityScilingManual.Show()
+    End Sub
 #End Region
 
 #End Region
@@ -884,7 +893,7 @@ Public Class Principal
 #Region "Adaptar panel secundario y formuPrincipal"
     Private Sub SplitContainer1_SplitterMoved(sender As Object, e As SplitterEventArgs) Handles SplitContainer1.SplitterMoved
         PictureBox2.Width = SplitContainer1.Panel2.Width - 5 'Imagen general
-        Chart1.Width = SplitContainer1.Panel2.Width 'Chart-->histogramas
+        Chart1.Width = SplitContainer1.Panel2.Width   'Chart-->histogramas
         Chart2.Width = SplitContainer1.Panel2.Width
         Chart3.Width = SplitContainer1.Panel2.Width
         Button1.Width = SplitContainer1.Panel2.Width - 50 'Botón de actualizar histograma
@@ -917,19 +926,23 @@ Public Class Principal
         'Button2.Location = New Size((TabControl1.Width / 2) - (Button2.Width / 2) - 3, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 130) - ((Chart1.Size.Height * 3)))
 
         'Colocamos los chart y el botón
-        Chart1.Location = New Size(-7, SplitContainer1.Location.Y)
-        Chart2.Location = New Size(-7, SplitContainer1.Location.Y + Chart1.Height)
-        Chart3.Location = New Size(-7, SplitContainer1.Location.Y + Chart1.Height + Chart2.Height)
+        Chart1.Location = New Size(-7, SplitContainer1.Location.Y - 5)
+        Chart2.Location = New Size(-7, SplitContainer1.Location.Y + Chart1.Height - 5)
+        Chart3.Location = New Size(-7, SplitContainer1.Location.Y + Chart1.Height + Chart2.Height - 5)
         Button1.Location = New Size((TabControl1.Width / 2) - (Button1.Width / 2) - 3, Chart3.Location.Y + Chart3.Height)
         'Botón de todos los histogramas
-        Button2.Location = New Size((TabControl1.Width / 2) - (Button2.Width / 2) - 3, Button1.Location.Y + Button1.Height + 5)
+        Button2.Location = New Size((TabControl1.Width / 2) - (Button2.Width / 2) - 3, Button1.Location.Y + Button1.Height + 3)
 
 
         'Adaptamos el tabcontrol
         TabControl1.Size = New Size(SplitContainer1.Panel2.Width, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 30))
+        If TabControl1.Height < 500 Then 'Mostramos los scrolls si es demasiado pequeño
+            TabPage1.AutoScroll = True
+        Else
+            TabPage1.AutoScroll = False
 
+        End If
 
-        
     End Sub
 #End Region
 
@@ -1535,7 +1548,7 @@ Public Class Principal
                 My.Settings.ValorZoomFijo += 0.2
                 NumZoom.Value = My.Settings.ValorZoomFijo 'ACtualizamosd el label
                 zoomFijo(PictureBox4, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoomFijo, New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo), My.Settings.PunteroZoomfijo, My.Settings.ColorPunterZoomFijo, My.Settings.TamanoPunteroZoomFijo)
-            ElseIf My.Settings.ValorZoomFijo > 0.4 Then 'No puede ser menor
+            ElseIf My.Settings.ValorZoomFijo > 1 Then 'No puede ser menor
                 My.Settings.ValorZoomFijo -= 0.2
                 NumZoom.Value = My.Settings.ValorZoomFijo
                 zoomFijo(PictureBox4, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoomFijo, New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo), My.Settings.PunteroZoomfijo, My.Settings.ColorPunterZoomFijo, My.Settings.TamanoPunteroZoomFijo)
@@ -1580,6 +1593,7 @@ Public Class Principal
     Private Sub AjustarAPantallaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AjustarAPantallaToolStripMenuItem.Click
         Dim bmpAjustado As New Bitmap(PictureBox1.Image, SplitContainer1.Panel1.Width, SplitContainer1.Panel1.Height)
         PictureBox1.Image = bmpAjustado
+        objetoTratamiento.ActualizarImagen(bmpAjustado)
         Panel1.AutoScroll = False 'Quitamos los scrolls para que se vea la imagen completa
     End Sub
 
@@ -1633,9 +1647,6 @@ Public Class Principal
         PictureBox4.Size = New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo)
         Label3.Text = "Zoom x" & My.Settings.ValorZoomFijo
 
-<<<<<<< HEAD
- 
-=======
         'Adpatamos tabpage 2 (zoom)
         Label3.Location = New Size((SplitContainer1.Panel2.Width / 2) - (Label3.Width / 2), Label3.Location.Y)
         PictureBox4.Location = New Size((SplitContainer1.Panel2.Width / 2) - (PictureBox4.Width / 2), PictureBox4.Location.Y)
@@ -1644,6 +1655,7 @@ Public Class Principal
 
     End Sub
 #End Region
+
    
->>>>>>> 6b1b18a2f13de9c68df6f37bec1b21faf550d0ee
+
 End Class

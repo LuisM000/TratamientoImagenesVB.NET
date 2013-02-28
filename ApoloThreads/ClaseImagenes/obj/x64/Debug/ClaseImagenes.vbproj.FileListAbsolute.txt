@@ -138,3 +138,9 @@ C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug
 C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.Principal.resources
 C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.vbproj.GenerateResource.Cache
 C:\Users\Luis\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.PropiedadesZoom.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.PropiedadesZoom.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.Anaglifo.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.Traslacion.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.Voltear.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.DensityScilingAuto.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.DensityScilingManual.resources
