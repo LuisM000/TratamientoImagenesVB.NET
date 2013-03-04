@@ -50,7 +50,8 @@ Public Class DensityScilingManual
 
 
         If valorActual = 1 Then
-            TextBox1.Text += NumerInicio.Value & "," & NumerFin.Value & "," & btnColor.BackColor.Name.ToString & ","
+            Dim colorbtn As Integer = btnColor.BackColor.ToArgb
+            TextBox1.Text += NumerInicio.Value & "," & NumerFin.Value & "," & colorbtn & ","
             btnColor.BackColor = ObtenerColor(valorActual + 1)
             lbltramo.Text = "Tramo " & valorActual
             btnColor.BackColor = ObtenerColor(valorActual)
@@ -66,8 +67,9 @@ Public Class DensityScilingManual
             If valorAux >= 253 Then valorAux = 255
             NumerFin.Value = valorAux
         ElseIf valorActual <= numeroDivisiones Then
+            Dim colorbtn As Integer = btnColor.BackColor.ToArgb
             TextBox1.Text += vbCrLf
-            TextBox1.Text += NumerInicio.Value & "," & NumerFin.Value & "," & btnColor.BackColor.Name.ToString & ","
+            TextBox1.Text += NumerInicio.Value & "," & NumerFin.Value & "," & colorbtn & ","
             Try
                 btnColor.BackColor = ObtenerColor(valorActual + 1)
                 btnColor.BackColor = ObtenerColor(valorActual)
@@ -154,7 +156,7 @@ Public Class DensityScilingManual
             contador = 0
             For i = 2 To texto.GetUpperBound(0) Step 3
                 If texto(i) <> "" Then
-                    VectColores(contador) = Color.FromName(texto(i))
+                    VectColores(contador) = Color.FromArgb(texto(i))
                     contador += 1
                 End If
             Next

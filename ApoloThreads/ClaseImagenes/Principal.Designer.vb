@@ -23,12 +23,12 @@ Partial Class Principal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea7 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea8 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea9 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series9 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
@@ -114,6 +114,10 @@ Partial Class Principal
         Me.TransformaciónAfínToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManualsesgarImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PersonalizadaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OtrasOperacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DensitySlicingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AutomáticoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MáscarasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasoAltoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasoBajoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -135,6 +139,16 @@ Partial Class Principal
         Me.PonerLosDosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ÓleoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CombinacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EfectoMarteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EfectoAntiguoSobreexpuestoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EfectoMarinoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AumentarRasgosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DisminuirRasgosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ContornoSombreadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ContenidoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DesmedidoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ColorearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesConDosImágenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SumaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OperacionesLógicasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -300,10 +314,6 @@ Partial Class Principal
         Me.ToolStripStatusColor = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
-        Me.OtrasOperacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DensitySlicingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AutomáticoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -856,6 +866,32 @@ Partial Class Principal
         Me.PersonalizadaToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
         Me.PersonalizadaToolStripMenuItem.Text = "Personalizada"
         '
+        'OtrasOperacionesToolStripMenuItem
+        '
+        Me.OtrasOperacionesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DensitySlicingToolStripMenuItem})
+        Me.OtrasOperacionesToolStripMenuItem.Name = "OtrasOperacionesToolStripMenuItem"
+        Me.OtrasOperacionesToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
+        Me.OtrasOperacionesToolStripMenuItem.Text = "Otras operaciones"
+        '
+        'DensitySlicingToolStripMenuItem
+        '
+        Me.DensitySlicingToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AutomáticoToolStripMenuItem, Me.ManualToolStripMenuItem})
+        Me.DensitySlicingToolStripMenuItem.Name = "DensitySlicingToolStripMenuItem"
+        Me.DensitySlicingToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DensitySlicingToolStripMenuItem.Text = "Density slicing"
+        '
+        'AutomáticoToolStripMenuItem
+        '
+        Me.AutomáticoToolStripMenuItem.Name = "AutomáticoToolStripMenuItem"
+        Me.AutomáticoToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.AutomáticoToolStripMenuItem.Text = "Automático"
+        '
+        'ManualToolStripMenuItem
+        '
+        Me.ManualToolStripMenuItem.Name = "ManualToolStripMenuItem"
+        Me.ManualToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.ManualToolStripMenuItem.Text = "Manual"
+        '
         'MáscarasToolStripMenuItem
         '
         Me.MáscarasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasoAltoToolStripMenuItem, Me.PasoBajoToolStripMenuItem, Me.BordesYContornosToolStripMenuItem, Me.MáscaraManualToolStripMenuItem, Me.SobelTotalToolStripMenuItem})
@@ -895,7 +931,7 @@ Partial Class Principal
         '
         'EfectosToolStripMenuItem
         '
-        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfoqueToolStripMenuItem, Me.CuadrículaToolStripMenuItem, Me.SombraDeVidrioToolStripMenuItem, Me.SdaToolStripMenuItem, Me.RadmiToolStripMenuItem, Me.ÓleoToolStripMenuItem})
+        Me.EfectosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesenfoqueToolStripMenuItem, Me.CuadrículaToolStripMenuItem, Me.SombraDeVidrioToolStripMenuItem, Me.SdaToolStripMenuItem, Me.RadmiToolStripMenuItem, Me.ÓleoToolStripMenuItem, Me.CombinacionesToolStripMenuItem})
         Me.EfectosToolStripMenuItem.Name = "EfectosToolStripMenuItem"
         Me.EfectosToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
         Me.EfectosToolStripMenuItem.Text = "Efectos"
@@ -986,6 +1022,68 @@ Partial Class Principal
         Me.ÓleoToolStripMenuItem.Name = "ÓleoToolStripMenuItem"
         Me.ÓleoToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.ÓleoToolStripMenuItem.Text = "Óleo"
+        '
+        'CombinacionesToolStripMenuItem
+        '
+        Me.CombinacionesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EfectoMarteToolStripMenuItem, Me.EfectoAntiguoSobreexpuestoToolStripMenuItem, Me.EfectoMarinoToolStripMenuItem, Me.AumentarRasgosToolStripMenuItem, Me.DisminuirRasgosToolStripMenuItem, Me.ContornoSombreadoToolStripMenuItem, Me.ColorearToolStripMenuItem})
+        Me.CombinacionesToolStripMenuItem.Name = "CombinacionesToolStripMenuItem"
+        Me.CombinacionesToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.CombinacionesToolStripMenuItem.Text = "Combinaciones"
+        '
+        'EfectoMarteToolStripMenuItem
+        '
+        Me.EfectoMarteToolStripMenuItem.Name = "EfectoMarteToolStripMenuItem"
+        Me.EfectoMarteToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.EfectoMarteToolStripMenuItem.Text = "Efecto Marte"
+        '
+        'EfectoAntiguoSobreexpuestoToolStripMenuItem
+        '
+        Me.EfectoAntiguoSobreexpuestoToolStripMenuItem.Name = "EfectoAntiguoSobreexpuestoToolStripMenuItem"
+        Me.EfectoAntiguoSobreexpuestoToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.EfectoAntiguoSobreexpuestoToolStripMenuItem.Text = "Efecto antiguo sobreexpuesto"
+        '
+        'EfectoMarinoToolStripMenuItem
+        '
+        Me.EfectoMarinoToolStripMenuItem.Name = "EfectoMarinoToolStripMenuItem"
+        Me.EfectoMarinoToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.EfectoMarinoToolStripMenuItem.Text = "Efecto marino"
+        '
+        'AumentarRasgosToolStripMenuItem
+        '
+        Me.AumentarRasgosToolStripMenuItem.Name = "AumentarRasgosToolStripMenuItem"
+        Me.AumentarRasgosToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.AumentarRasgosToolStripMenuItem.Text = "Aumentar rasgos"
+        '
+        'DisminuirRasgosToolStripMenuItem
+        '
+        Me.DisminuirRasgosToolStripMenuItem.Name = "DisminuirRasgosToolStripMenuItem"
+        Me.DisminuirRasgosToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.DisminuirRasgosToolStripMenuItem.Text = "Disminuir rasgos"
+        '
+        'ContornoSombreadoToolStripMenuItem
+        '
+        Me.ContornoSombreadoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContenidoToolStripMenuItem, Me.DesmedidoToolStripMenuItem})
+        Me.ContornoSombreadoToolStripMenuItem.Name = "ContornoSombreadoToolStripMenuItem"
+        Me.ContornoSombreadoToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ContornoSombreadoToolStripMenuItem.Text = "Contorno sombreado"
+        '
+        'ContenidoToolStripMenuItem
+        '
+        Me.ContenidoToolStripMenuItem.Name = "ContenidoToolStripMenuItem"
+        Me.ContenidoToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.ContenidoToolStripMenuItem.Text = "Contenido"
+        '
+        'DesmedidoToolStripMenuItem
+        '
+        Me.DesmedidoToolStripMenuItem.Name = "DesmedidoToolStripMenuItem"
+        Me.DesmedidoToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.DesmedidoToolStripMenuItem.Text = "Desmedido"
+        '
+        'ColorearToolStripMenuItem
+        '
+        Me.ColorearToolStripMenuItem.Name = "ColorearToolStripMenuItem"
+        Me.ColorearToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ColorearToolStripMenuItem.Text = "Aumentar luz"
         '
         'OperacionesConDosImágenesToolStripMenuItem
         '
@@ -1153,7 +1251,7 @@ Partial Class Principal
         'PictureBox3
         '
         Me.PictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox3.Location = New System.Drawing.Point(607, 55)
+        Me.PictureBox3.Location = New System.Drawing.Point(584, 30)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(112, 100)
         Me.PictureBox3.TabIndex = 1
@@ -1361,15 +1459,15 @@ Partial Class Principal
         'Chart3
         '
         Me.Chart3.BackColor = System.Drawing.SystemColors.Control
-        ChartArea7.Name = "ChartArea1"
-        Me.Chart3.ChartAreas.Add(ChartArea7)
+        ChartArea4.Name = "ChartArea1"
+        Me.Chart3.ChartAreas.Add(ChartArea4)
         Me.Chart3.Location = New System.Drawing.Point(4, 45)
         Me.Chart3.Name = "Chart3"
-        Series7.ChartArea = "ChartArea1"
-        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series7.IsVisibleInLegend = False
-        Series7.Name = "Azul"
-        Me.Chart3.Series.Add(Series7)
+        Series4.ChartArea = "ChartArea1"
+        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series4.IsVisibleInLegend = False
+        Series4.Name = "Azul"
+        Me.Chart3.Series.Add(Series4)
         Me.Chart3.Size = New System.Drawing.Size(173, 131)
         Me.Chart3.TabIndex = 9
         Me.Chart3.Text = "Histograma azul"
@@ -1378,15 +1476,15 @@ Partial Class Principal
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.SystemColors.Control
-        ChartArea8.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea8)
+        ChartArea5.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea5)
         Me.Chart2.Location = New System.Drawing.Point(4, 139)
         Me.Chart2.Name = "Chart2"
-        Series8.ChartArea = "ChartArea1"
-        Series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series8.IsVisibleInLegend = False
-        Series8.Name = "Verde"
-        Me.Chart2.Series.Add(Series8)
+        Series5.ChartArea = "ChartArea1"
+        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series5.IsVisibleInLegend = False
+        Series5.Name = "Verde"
+        Me.Chart2.Series.Add(Series5)
         Me.Chart2.Size = New System.Drawing.Size(173, 131)
         Me.Chart2.TabIndex = 8
         Me.Chart2.Text = "Histograma verde"
@@ -1395,15 +1493,15 @@ Partial Class Principal
         'Chart1
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
-        ChartArea9.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea9)
+        ChartArea6.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea6)
         Me.Chart1.Location = New System.Drawing.Point(4, 247)
         Me.Chart1.Name = "Chart1"
-        Series9.ChartArea = "ChartArea1"
-        Series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series9.IsVisibleInLegend = False
-        Series9.Name = "Rojo"
-        Me.Chart1.Series.Add(Series9)
+        Series6.ChartArea = "ChartArea1"
+        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series6.IsVisibleInLegend = False
+        Series6.Name = "Rojo"
+        Me.Chart1.Series.Add(Series6)
         Me.Chart1.Size = New System.Drawing.Size(173, 131)
         Me.Chart1.TabIndex = 7
         Me.Chart1.Text = "Histograma rojo"
@@ -2205,8 +2303,8 @@ Partial Class Principal
         'ToolStripStatusLabel3
         '
         Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
-        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(253, 19)
-        Me.ToolStripStatusLabel3.Text = "   (Haga clic y pulse control para recoger color)"
+        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(251, 19)
+        Me.ToolStripStatusLabel3.Text = "   (Pulse control y haga clic para recoger color)"
         '
         'ToolStripStatusImagen
         '
@@ -2224,32 +2322,6 @@ Partial Class Principal
         '
         Me.BackgroundWorker2.WorkerReportsProgress = True
         Me.BackgroundWorker2.WorkerSupportsCancellation = True
-        '
-        'OtrasOperacionesToolStripMenuItem
-        '
-        Me.OtrasOperacionesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DensitySlicingToolStripMenuItem})
-        Me.OtrasOperacionesToolStripMenuItem.Name = "OtrasOperacionesToolStripMenuItem"
-        Me.OtrasOperacionesToolStripMenuItem.Size = New System.Drawing.Size(241, 22)
-        Me.OtrasOperacionesToolStripMenuItem.Text = "Otras operaciones"
-        '
-        'DensitySlicingToolStripMenuItem
-        '
-        Me.DensitySlicingToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AutomáticoToolStripMenuItem, Me.ManualToolStripMenuItem})
-        Me.DensitySlicingToolStripMenuItem.Name = "DensitySlicingToolStripMenuItem"
-        Me.DensitySlicingToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.DensitySlicingToolStripMenuItem.Text = "Density slicing"
-        '
-        'AutomáticoToolStripMenuItem
-        '
-        Me.AutomáticoToolStripMenuItem.Name = "AutomáticoToolStripMenuItem"
-        Me.AutomáticoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.AutomáticoToolStripMenuItem.Text = "Automático"
-        '
-        'ManualToolStripMenuItem
-        '
-        Me.ManualToolStripMenuItem.Name = "ManualToolStripMenuItem"
-        Me.ManualToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ManualToolStripMenuItem.Text = "Manual"
         '
         'Principal
         '
@@ -2580,5 +2652,15 @@ Partial Class Principal
     Friend WithEvents DensitySlicingToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AutomáticoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ManualToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CombinacionesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EfectoMarteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EfectoAntiguoSobreexpuestoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EfectoMarinoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AumentarRasgosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DisminuirRasgosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ContornoSombreadoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ContenidoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DesmedidoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ColorearToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

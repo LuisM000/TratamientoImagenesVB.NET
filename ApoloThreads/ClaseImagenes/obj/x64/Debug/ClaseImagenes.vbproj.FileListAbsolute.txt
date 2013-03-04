@@ -144,3 +144,7 @@ C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.Voltear.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.DensityScilingAuto.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.DensityScilingManual.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.Afin.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.Cargando.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.ReconPPp.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\x64\Debug\ClaseImagenes.TAfinPers.resources

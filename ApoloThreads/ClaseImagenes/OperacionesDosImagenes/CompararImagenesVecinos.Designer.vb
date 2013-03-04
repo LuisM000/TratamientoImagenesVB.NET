@@ -23,14 +23,14 @@ Partial Class CompararImagenesVecinos
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea7 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea8 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
@@ -45,10 +45,10 @@ Partial Class CompararImagenesVecinos
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Chart4 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Chart3 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Chart2 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.Chart4 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
@@ -78,10 +78,10 @@ Partial Class CompararImagenesVecinos
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.Chart4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Chart3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Chart4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -219,35 +219,18 @@ Partial Class CompararImagenesVecinos
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(524, 413)
         Me.TableLayoutPanel1.TabIndex = 38
         '
-        'Chart4
-        '
-        Me.Chart4.BackColor = System.Drawing.SystemColors.Control
-        ChartArea5.Name = "ChartArea1"
-        Me.Chart4.ChartAreas.Add(ChartArea5)
-        Me.Chart4.Location = New System.Drawing.Point(265, 209)
-        Me.Chart4.Name = "Chart4"
-        Series5.ChartArea = "ChartArea1"
-        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series5.IsVisibleInLegend = False
-        Series5.Name = "Gris"
-        Me.Chart4.Series.Add(Series5)
-        Me.Chart4.Size = New System.Drawing.Size(256, 201)
-        Me.Chart4.TabIndex = 32
-        Me.Chart4.Text = "Histograma grises"
-        Me.ToolTip1.SetToolTip(Me.Chart4, "Histograma grises:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Cuanto más cercano al 0, más aciertos.")
-        '
         'Chart3
         '
         Me.Chart3.BackColor = System.Drawing.SystemColors.Control
-        ChartArea6.Name = "ChartArea1"
-        Me.Chart3.ChartAreas.Add(ChartArea6)
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart3.ChartAreas.Add(ChartArea1)
         Me.Chart3.Location = New System.Drawing.Point(3, 209)
         Me.Chart3.Name = "Chart3"
-        Series6.ChartArea = "ChartArea1"
-        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series6.IsVisibleInLegend = False
-        Series6.Name = "Azul"
-        Me.Chart3.Series.Add(Series6)
+        Series1.ChartArea = "ChartArea1"
+        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series1.IsVisibleInLegend = False
+        Series1.Name = "Azul"
+        Me.Chart3.Series.Add(Series1)
         Me.Chart3.Size = New System.Drawing.Size(256, 201)
         Me.Chart3.TabIndex = 31
         Me.Chart3.Text = "Histograma azul"
@@ -256,15 +239,15 @@ Partial Class CompararImagenesVecinos
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.SystemColors.Control
-        ChartArea7.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea7)
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea2)
         Me.Chart2.Location = New System.Drawing.Point(265, 3)
         Me.Chart2.Name = "Chart2"
-        Series7.ChartArea = "ChartArea1"
-        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series7.IsVisibleInLegend = False
-        Series7.Name = "Verde"
-        Me.Chart2.Series.Add(Series7)
+        Series2.ChartArea = "ChartArea1"
+        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series2.IsVisibleInLegend = False
+        Series2.Name = "Verde"
+        Me.Chart2.Series.Add(Series2)
         Me.Chart2.Size = New System.Drawing.Size(256, 200)
         Me.Chart2.TabIndex = 30
         Me.Chart2.Text = "Histograma verde"
@@ -273,19 +256,36 @@ Partial Class CompararImagenesVecinos
         'Chart1
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
-        ChartArea8.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea8)
+        ChartArea3.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea3)
         Me.Chart1.Location = New System.Drawing.Point(3, 3)
         Me.Chart1.Name = "Chart1"
-        Series8.ChartArea = "ChartArea1"
-        Series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series8.IsVisibleInLegend = False
-        Series8.Name = "Rojo"
-        Me.Chart1.Series.Add(Series8)
+        Series3.ChartArea = "ChartArea1"
+        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series3.IsVisibleInLegend = False
+        Series3.Name = "Rojo"
+        Me.Chart1.Series.Add(Series3)
         Me.Chart1.Size = New System.Drawing.Size(256, 200)
         Me.Chart1.TabIndex = 29
         Me.Chart1.Text = "Histograma rojo"
         Me.ToolTip1.SetToolTip(Me.Chart1, "Histograma rojo:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Cuanto más cercano al 0, más aciertos.")
+        '
+        'Chart4
+        '
+        Me.Chart4.BackColor = System.Drawing.SystemColors.Control
+        ChartArea4.Name = "ChartArea1"
+        Me.Chart4.ChartAreas.Add(ChartArea4)
+        Me.Chart4.Location = New System.Drawing.Point(265, 209)
+        Me.Chart4.Name = "Chart4"
+        Series4.ChartArea = "ChartArea1"
+        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series4.IsVisibleInLegend = False
+        Series4.Name = "Gris"
+        Me.Chart4.Series.Add(Series4)
+        Me.Chart4.Size = New System.Drawing.Size(256, 201)
+        Me.Chart4.TabIndex = 32
+        Me.Chart4.Text = "Histograma grises"
+        Me.ToolTip1.SetToolTip(Me.Chart4, "Histograma grises:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Cuanto más cercano al 0, más aciertos.")
         '
         'Panel1
         '
@@ -417,7 +417,7 @@ Partial Class CompararImagenesVecinos
         Me.NumericUpDown1.Name = "NumericUpDown1"
         Me.NumericUpDown1.Size = New System.Drawing.Size(45, 23)
         Me.NumericUpDown1.TabIndex = 39
-        Me.NumericUpDown1.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericUpDown1.Value = New Decimal(New Integer() {3, 0, 0, 0})
         '
         'Label3
         '
@@ -523,10 +523,10 @@ Partial Class CompararImagenesVecinos
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
-        CType(Me.Chart4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Chart3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Chart4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()

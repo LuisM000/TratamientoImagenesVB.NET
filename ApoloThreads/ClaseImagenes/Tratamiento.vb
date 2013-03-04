@@ -2174,7 +2174,7 @@ Namespace Apolo
                     valorMedia = (Rojo + Verde + Azul) / 3
                     colorSalida = Color.FromArgb(0, 0, 0, 0)
                     For s = 0 To rangos.GetUpperBound(0)
-                        If valorMedia >= rangos(s, 0) And valorMedia < rangos(s, 1) Then
+                        If valorMedia >= rangos(s, 0) And valorMedia <= rangos(s, 1) Then
                             colorSalida = colores(s)
                             Exit For
                         End If
@@ -2769,6 +2769,135 @@ Namespace Apolo
             nivelesCalculado(2) = CInt(azul)
             nivelesCalculado(3) = CInt(alfa)
             Return nivelesCalculado
+        End Function
+        Public Function EfectoMarte(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim objetoMasc As New mascaras
+            'Aplicamos efecto repujado
+            Dim mascara = objetoMasc.Repujado
+            Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara)
+
+            Dim bmpSalida As Bitmap
+            bmpSalida = Me.OperacionResta(bmp2, bmp3)
+
+            guardarImagen(bmpSalida, "Efecto marte") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
+
+        End Function
+        Public Function EfectoAntigSobreex(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim objetoMasc As New mascaras
+            'Aplicamos efecto repujado
+            Dim mascara = objetoMasc.Repujado
+            Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara)
+
+            Dim bmpSalida As Bitmap
+            bmpSalida = Me.OperacionSuma(bmp2, bmp3)
+
+            guardarImagen(bmpSalida, "Efecto antiguo y sobreexpuesto") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
+
+        End Function
+        Public Function EfectoMarino(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim objetoMasc As New mascaras
+            'Aplicamos efecto repujado
+            Dim mascara = objetoMasc.Repujado
+            Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara)
+
+            Dim bmpSalida As Bitmap
+            bmpSalida = Me.OperacionResta(bmp3, bmp2)
+
+            guardarImagen(bmpSalida, "Efecto marino") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
+
+        End Function
+        Public Function EfectoAumentarRasgos(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim objetoMasc As New mascaras
+            'Aplicamos efecto repujado
+            Dim mascara = objetoMasc.PrewittHoriz
+            Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara, 0, 3)
+            mascara = objetoMasc.PrewittVert
+            Dim bmp4 = Me.mascara3x3Grises(bmp2, mascara, 0, 3)
+            Dim PrewiUnido = Me.OperacionUnir(bmp3, bmp4)
+            Dim bmpSalida As Bitmap
+            bmpSalida = Me.OperacionResta(bmp2, PrewiUnido)
+
+            guardarImagen(bmpSalida, "Efecto aumentar rasgos") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
+
+        End Function
+        Public Function EfectoDisminuirRasgos(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim objetoMasc As New mascaras
+            'Aplicamos efecto repujado
+            Dim mascara = objetoMasc.PrewittHoriz
+            Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara, 0, 3)
+            mascara = objetoMasc.PrewittVert
+            Dim bmp4 = Me.mascara3x3Grises(bmp2, mascara, 0, 3)
+            Dim PrewiUnido = Me.OperacionUnir(bmp3, bmp4)
+            Dim bmpSalida As Bitmap
+            bmpSalida = Me.OperacionSuma(bmp2, PrewiUnido)
+
+            guardarImagen(bmpSalida, "Efecto disminuir rasgos") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
+
+        End Function
+        Public Function EfectoContornoSombreado(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim objetoMasc As New mascaras
+            'Aplicamos efecto repujado
+            Dim mascara = objetoMasc.Repujado
+            Dim bmp3 = Me.mascara3x3RGB(bmp2, mascara)
+
+            Dim bmpSalida As Bitmap
+            bmpSalida = Me.OperacionResta(bmp2, bmp3)
+
+            guardarImagen(bmpSalida, "Efecto contorno sombreado 1") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
+
+        End Function
+        Public Function EfectoContornoSombreado2(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim objetoMasc As New mascaras
+            'Aplicamos efecto repujado
+            Dim mascara = objetoMasc.Repujado
+            Dim bmp3 = Me.mascara3x3RGB(bmp2, mascara)
+
+            Dim bmpSalida As Bitmap
+            bmpSalida = Me.OperacionResta(bmp3, bmp2)
+
+            guardarImagen(bmpSalida, "Efecto contorno sombreado 2") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
+
+        End Function
+        Public Function EfectoAumentarLuz(ByVal bmp As Bitmap) As Bitmap
+            Dim bmp2 = bmp
+            Dim bmp3 = Me.EscalaGrises(bmp2)
+            Dim bmp4 = Me.OperacionResta(bmp2, bmp3)
+            Dim bmpSalida As Bitmap
+            bmpSalida = Me.OperacionSuma(bmp2, bmp4)
+
+            guardarImagen(bmpSalida, "Efecto aumentar luz") 'Guardamos la imagen para poder hacer retroceso
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpSalida) 'generamos el evento
+            Return bmpSalida
+
         End Function
 
 #End Region

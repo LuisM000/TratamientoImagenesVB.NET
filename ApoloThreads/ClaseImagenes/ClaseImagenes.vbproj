@@ -354,6 +354,30 @@
     <Compile Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Operaciones\AFin\Afin.designer.vb">
+      <DependentUpon>Afin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\AFin\Afin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\AFin\Cargando.designer.vb">
+      <DependentUpon>Cargando.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\AFin\Cargando.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\AFin\ReconPPp.designer.vb">
+      <DependentUpon>ReconPPp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\AFin\ReconPPp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operaciones\AFin\TAfinPers.designer.vb">
+      <DependentUpon>TAfinPers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\AFin\TAfinPers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Operaciones\DensityScilingAuto.Designer.vb">
       <DependentUpon>DensityScilingAuto.vb</DependentUpon>
     </Compile>
@@ -614,6 +638,18 @@
     <EmbeddedResource Include="OperacionesDosImagenes\OperacionesLogicasDosImagenes.resx">
       <DependentUpon>OperacionesLogicasDosImagenes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\AFin\Afin.resx">
+      <DependentUpon>Afin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\AFin\Cargando.resx">
+      <DependentUpon>Cargando.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\AFin\ReconPPp.resx">
+      <DependentUpon>ReconPPp.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\AFin\TAfinPers.resx">
+      <DependentUpon>TAfinPers.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\DensityScilingAuto.resx">
       <DependentUpon>DensityScilingAuto.vb</DependentUpon>
     </EmbeddedResource>
@@ -799,6 +835,7 @@
   <ItemGroup>
     <None Include="Resources\SpidyDerecha.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

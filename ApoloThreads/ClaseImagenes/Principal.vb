@@ -63,6 +63,7 @@ Public Class Principal
         actualizarHistrograma()
         tiempo = 0 'Para que el contador se pare
         Button1.Text = "Actualizar histograma"
+
         'Tamaño del Picturebox 4 del tabpage 2 que muestra zoo
         PictureBox4.Size = New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo)
     End Sub
@@ -340,6 +341,14 @@ Public Class Principal
     Private Sub VolteadosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VolteadosToolStripMenuItem.Click
         Voltear.Show()
     End Sub
+    'Sesgar imagen (T afín manual)
+    Private Sub ManualsesgarImagenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualsesgarImagenToolStripMenuItem.Click
+        Afin.Show()
+    End Sub
+
+    Private Sub PersonalizadaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PersonalizadaToolStripMenuItem.Click
+        TAfinPers.Show()
+    End Sub
 
     'Density Sciling
     Private Sub AutomáticoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutomáticoToolStripMenuItem.Click
@@ -419,7 +428,41 @@ Public Class Principal
     Private Sub ÓleoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ÓleoToolStripMenuItem.Click
         Oleo.Show()
     End Sub
+    Private Sub EfectoMarteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EfectoMarteToolStripMenuItem.Click
+        transformacion = "Marte"
+        transformar()
+    End Sub
 
+    Private Sub EfectoAntiguoSobreexpuestoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EfectoAntiguoSobreexpuestoToolStripMenuItem.Click
+        transformacion = "AntiguiSobreexpu"
+        transformar()
+    End Sub
+    Private Sub EfectoMarinoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EfectoMarinoToolStripMenuItem.Click
+        transformacion = "Marino"
+        transformar()
+    End Sub
+    Private Sub AumentarRasgosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AumentarRasgosToolStripMenuItem.Click
+        transformacion = "AumentarRasgos"
+        transformar()
+    End Sub
+    Private Sub DisminuirRasgosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DisminuirRasgosToolStripMenuItem.Click
+        transformacion = "DisminuirRasgos"
+        transformar()
+    End Sub
+    Private Sub ContenidoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ContenidoToolStripMenuItem.Click
+        transformacion = "ContSombreado1"
+        transformar()
+    End Sub
+
+    Private Sub DesmedidoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DesmedidoToolStripMenuItem.Click
+        transformacion = "ContSombreado2"
+        transformar()
+    End Sub
+
+    Private Sub ColorearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ColorearToolStripMenuItem.Click
+        transformacion = "AumentarLuz"
+        transformar()
+    End Sub
 #End Region
 
 #Region "Operaciones con dos imágenes"
@@ -582,6 +625,22 @@ Public Class Principal
                 Dim objetoMascara As New TratamientoImagenes.mascaras
                 Dim mascara = objetoMascara.LOW9
                 PictureBox1.Image = objetoTratamiento.mascara3x3RGB(bmp, mascara, , )
+            Case "Marte"
+                PictureBox1.Image = objetoTratamiento.EfectoMarte(bmp)
+            Case "AntiguiSobreexpu"
+                PictureBox1.Image = objetoTratamiento.EfectoAntigSobreex(bmp)
+            Case "Marino"
+                PictureBox1.Image = objetoTratamiento.EfectoMarino(bmp)
+            Case "AumentarRasgos"
+                PictureBox1.Image = objetoTratamiento.EfectoAumentarRasgos(bmp)
+            Case "DisminuirRasgos"
+                PictureBox1.Image = objetoTratamiento.EfectoDisminuirRasgos(bmp)
+            Case "ContSombreado1"
+                PictureBox1.Image = objetoTratamiento.EfectoContornoSombreado(bmp)
+            Case "ContSombreado2"
+                PictureBox1.Image = objetoTratamiento.EfectoContornoSombreado2(bmp)
+            Case "AumentarLuz"
+                PictureBox1.Image = objetoTratamiento.EfectoAumentarLuz(bmp)
         End Select
     End Sub
 
@@ -1069,7 +1128,7 @@ Public Class Principal
     Dim valorY, valorY2, valorX, valorX2 As Integer
 
     Private Sub PictureBox1_MouseMove1(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
-        If e.Button = Windows.Forms.MouseButtons.Left Then
+        If e.Button = Windows.Forms.MouseButtons.Left And (barraestado.Value = 0 Or barraestado.Value = 100) Then
             PictureBox2.Refresh()
             PictureBox1.Refresh()
             'Marcar en el picturebox 2 la zona (roaming)
@@ -1366,7 +1425,7 @@ Public Class Principal
     End Sub
 
     Private Sub PictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
-        If e.Button = Windows.Forms.MouseButtons.Left Then
+        If e.Button = Windows.Forms.MouseButtons.Left And (barraestado.Value = 0 Or barraestado.Value = 100) Then
             'Marcar en el picturebox 2 la zona (roaming)
             '-------------------------------------------------------
             Dim bmp1 As Bitmap
@@ -1658,4 +1717,11 @@ Public Class Principal
 
    
 
+  
+
+     
+ 
+ 
+
+   
 End Class
