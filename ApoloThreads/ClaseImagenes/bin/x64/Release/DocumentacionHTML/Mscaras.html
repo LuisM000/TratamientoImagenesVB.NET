@@ -1,0 +1,244 @@
+﻿<html>
+	
+<head>
+	<title>M&aacute;scaras</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.8.0.560">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Apolo. Documentación de ayuda..html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Mscaras");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>M&aacute;scaras</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Manualdeusuario.html">Manual de usuario</a> &rsaquo;&rsaquo; <a href="Referenciadefunciones.html">Referencia de funciones</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Referenciadefunciones.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Operaciones.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Efectos.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps3"><span class="rvts0"><span class="rvts11">Mascaras</span></span></h1>
+<p class="rvps4"><span class="rvts7">Es la sexta opción en la barra superior de opciones. A continuación se muestra una imagen del menú.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">1</span><span class="rvts18">. Menú máscaras.</span></p>
+<p class="rvps17"><img width="200" height="150" alt="" style="padding : 1px;" src="lib/NewItem219.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Las máscaras se sirven de un método matemática denominado máscara de convolución. Convolución es el tratamiento de una matriz por otra que se llama </span><span class="rvts15">kernel.</span><span class="rvts7"> Este </span><span class="rvts15">kernel </span><span class="rvts7">no es más que una matriz (de 3x3) cuyo píxel central será el evaluado y los píxeles adyacentes son sus vecinos. De esta manera el valor del píxel evaluado se transformará en función del valor de sus vecinos. Ejemplificándolo, vamos a imaginar una matriz de 3x3 y cuyos valores para los tres canales RGB son:</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Tabla </span><span class="rvts26">1</span><span class="rvts18">. Valores píxeles.</span></p>
+<div class="rvps28"><table border="1" cellpadding="4" cellspacing="-1" style="border-width: 0px; border-collapse: collapse;">
+<tr valign="top">
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 23px;"><p class="rvps22"><span class="rvts7">20,30,200</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 23px;"><p class="rvps22"><span class="rvts7">21,32,190</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 23px;"><p class="rvps22"><span class="rvts7">30,40,202</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px;"><p class="rvps22"><span class="rvts7">40,21,180</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px;"><p class="rvps22"><span class="rvts7">50,33,190</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px;"><p class="rvps22"><span class="rvts7">20,41,203</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px;"><p class="rvps22"><span class="rvts7">21,30,200</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px;"><p class="rvps22"><span class="rvts7">22,31,192</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px;"><p class="rvps22"><span class="rvts7">40,35,201</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps27"><span class="rvts18"><br/></span></p>
+<p class="rvps27"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps4"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">A continuación, vamos a aplicar un </span><span class="rvts15">kernel </span><span class="rvts7">con los siguientes valores:</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Tabla </span><span class="rvts26">2</span><span class="rvts18">. Kernel de 3x3</span></p>
+<div class="rvps27"><table width="223" border="1" cellpadding="4" cellspacing="-1" style="border-width: 0px; border-collapse: collapse;">
+<tr valign="top">
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 19px;"><p class="rvps22"><span class="rvts7">1</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 19px;"><p class="rvps22"><span class="rvts7">1</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 19px;"><p class="rvps22"><span class="rvts7">1</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 31px;"><p class="rvps22"><span class="rvts7">1</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 31px;"><p class="rvps22"><span class="rvts7">2</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 31px;"><p class="rvps22"><span class="rvts7">1</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 31px;"><p class="rvps22"><span class="rvts7">1</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 31px;"><p class="rvps22"><span class="rvts7">1</span></p>
+</td>
+<td valign="middle" style="border-width : 1px; border-color: #bfbfbf; border-style: solid; width: 60px; height: 31px;"><p class="rvps22"><span class="rvts7">1</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps27"><span class="rvts7"><br/></span></p>
+<p class="rvps27"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps27"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Este kernel actuará sobre todos los píxeles de la imagen, en este caso, vamos a aplicarlo sobre el píxel central (</span><span class="rvts15">50, 33, 190</span><span class="rvts7">), por lo tanto, las operaciones a realizar para calcular el nuevo valor del píxel serían:</span></p>
+<ul style="text-indent: 0px; margin-left: 47px; list-style-position: outside;">
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts7">Para el canal rojo: (20*1+21*1+30*1+40*1+</span><span class="rvts21">50*2</span><span class="rvts7">+20*1+21*1+22*1+40*1)/9</span></li>
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts7">Para el canal verde: (30*1+32*1+40*1+21*1+</span><span class="rvts21">33*2</span><span class="rvts7">+41*1+30*1+31*1+35*1)/9</span></li>
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts7">Para el canal azul: (200*1+190*1+202*1+40*180+</span><span class="rvts21">190*2</span><span class="rvts7">+203*1+200*1+192*1+201*1)/9</span></li>
+</ul>
+<p class="rvps15"><span class="rvts7">En negrita se ha resaltado el píxel central.</span></p>
+<p class="rvps15"><span class="rvts7">Como se comprueba, la operación que se realiza es la suma entre todos los valores de los vecinos (del </span><span class="rvts15">kernel</span><span class="rvts7">) en función de sus pesos y se divide entre el total de la suma de los pesos. En la siguiente imagen se puede observar gráficamente (imagen extraída de la documentación de GIMP):</span></p>
+<p class="rvps15"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">2</span><span class="rvts18">. Ejemplo de kernel (extraído de GIMP).</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/NewItem218.png"/></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts27"><br/></span></p>
+<p class="rvps15"><span class="rvts7">Adicionalmente, el resultado puede dividirse con la suma de dos valores (</span><span class="rvts15">Desviación+factor</span><span class="rvts7">). Estos valores de forma predefinida suman 1 para no afectar al resultado final.</span></p>
+<p class="rvps15"><span class="rvts7">Apolo sólo provee de máscaras de 3x3. Si usted requiere máscaras mayores, puede notificarlo y en poco tiempo lanzaremos una actualización que incluya máscaras mayores, o incluso, puede seguir la documentación técnica para desarrollarlo usted, ¡es muy sencillo!</span></p>
+<hr style="height: 1px; color : #000000;  background-color : #000000; border-width : 0px;"/>
+<h1 class="rvps3"><a name="Paso alto"></a>
+<span class="rvts0"><span class="rvts12">Paso alto</span></span></h1>
+<p class="rvps4"><span class="rvts7">Este tipo de máscaras se utiliza para resaltar detalles de la imagen y enfocarlas. Lo que hace es asignar el peso más alto al píxel central (evaluado) y a los vecinos valores negativos o 0.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">3</span><span class="rvts18">. Menú máscara paso alto.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem228.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">En la anterior imagen, en la máscara seleccionada puede observarse que el valor del píxel central será de 9 y los píxeles vecinos de -1. Si se aplica esta máscara a la imagen original de Lena, se obtiene el siguiente resultado.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración</span><span class="rvts26"> 4</span><span class="rvts18">. Lena filtro de paso alto.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem227.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Los detalles puntuales se han resaltado, pero por contra, se ha introducido bastante ruido en la imagen.</span></p>
+<h1 class="rvps3"><a name="Paso bajo"></a>
+<span class="rvts0"><span class="rvts12">Paso bajo</span></span></h1>
+<p class="rvps4"><span class="rvts7">Este tipo de filtros se utiliza generalmente para eliminar ruido en una imagen, suavizarla o desenfocarla. Lo que hace es asignar pesos similares a todos los píxeles del </span><span class="rvts15">kernel</span><span class="rvts7"> y así suavizar los colores. </span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración</span><span class="rvts26"> 5</span><span class="rvts18">. Menú filtro paso bajo.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem226.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">En la imagen anterior se observa que la máscara está formada únicamente por 1. De esta manera se consigue suavizar todos los colores de la imagen. Aplicando el filtro de la ilustración sobre la imagen original de Lena, se observan sus resultados.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">6</span><span class="rvts18">. Lena filtro paso bajo.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem225.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">En la ilustración se ve cómo se han disminuido los detalles en la imagen y se aprecia que la imagen está desenfocada. Esto es debido a que el rango de colores ha disminuido y las diferencias entre colores son menores que antes.</span></p>
+<h1 class="rvps3"><a name="Bordes y contornos"></a>
+<span class="rvts0"><span class="rvts12">Bordes y contornos</span></span></h1>
+<p class="rvps4"><span class="rvts7">Las máscaras agrupadas en este menú se utilizan generalmente para detectar bordes de una imagen o contornos. Lo que se busca al aplicar estos </span><span class="rvts15">kernels</span><span class="rvts7"> es buscar los píxeles límite o frontera para así determinar el perímetro dentro de la imagen.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">7</span><span class="rvts18">. Menú de bordes y contornos.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem224.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps4"><span class="rvts7">En la ilustración anterior se observa el menú de bordes, el cual dispone de un buscador para localizar de forma más fácil la máscara seleccionada. En el siguiente caso, se va a aplicar la máscara de sobel. Esta máscara está pensada para buscar puntos frontera en la imagen y así poder visualizar los bordes.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">8</span><span class="rvts18">. Lena sobel horizontal.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem223.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Se ha aplicado la máscara en escala de grises para obtener unos mejores resultados. Como puede observarse la detección de contornos con sobel es bastante buena. Si se aplica a continuación un filtro de paso bajo se podría eliminar el exceso de ruido.</span></p>
+<h1 class="rvps3"><a name="Máscara manual"></a>
+<span class="rvts0"><span class="rvts12">Máscara manual</span></span></h1>
+<p class="rvps4"><span class="rvts7">Esta opción permite crear un kernel de 3x3 a elección libre del usuario. Además de los 9 valores de la máscara, se puede seleccionar el valor del factor y la desviación, en caso de querer aplicarla y si se quiere aplicar en el espacio </span><span class="rvts15">RGB </span><span class="rvts7">o en escala de grises.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración</span><span class="rvts26"> 9</span><span class="rvts18">. Menú máscara manual.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem222.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Opcionalmente, se puede exportar la máscara y se creará un archivo </span><span class="rvts15">XML </span><span class="rvts7">que se almacenará en la configuración de Apolo. Este archivo (máscara) puede volver a utilizarse pulsando la opción importar máscara y buscándola por su nombre.</span></p>
+<p class="rvps4"><span class="rvts7">A continuación se puede ver la imagen de Lena a la que se ha aplicado una máscara personalizada con los valores mostrados en la ilustración anterior.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">10</span><span class="rvts18">. Lena máscara manual (repujado).</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem221.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">La máscara se ha aplicado sobre la escala de grises y sus valores corresponden a una máscara conocida como </span><span class="rvts15">repujado</span><span class="rvts27">.</span></p>
+<h1 class="rvps3"><a name="Sobel total"></a>
+<span class="rvts0"><span class="rvts12">Sobel total</span></span></h1>
+<p class="rvps4"><span class="rvts7">La función </span><span class="rvts15">sobel total</span><span class="rvts7"> es una aplicación específica de las anteriores. Simplemente aplica sobre la imagen original los cuatro tipos de sobel (horizontal, vertical, diagonal 1, diagonal 2) y una vez almacenadas esas imágenes, las une para obtener el resultado final.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">11</span><span class="rvts18">. Lena sobel total.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem220.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Comparándola con la imagen en la que sólo se había aplicado sobel horizontal, el nivel de ruido es inferior y el detalle de los bordes sea resaltado. Si sobre esta imagen se intentan eliminar los valores menos blancos, el resultado sería una muy buena detección de bordes.</span></p>
+<p></p>
+<p class="rvps8"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/help-authoring-tool">Create HTML Help, DOC, PDF and print manuals from 1 single source</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyleft 2013  por Luis Marcos Rivera.</div>
+		</div>
+	</body>
+	
+</html>
+

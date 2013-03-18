@@ -2,7 +2,7 @@
 Imports System.Net.Mail
 
 Public Class Conexion
-    Const directorioRaiz As String = "ftp://93.188.160.15/"
+    Const directorioRaiz As String = "ftp://31.170.164.110/"
     Private datoConex(2) As String 'Variaable con los datos de conexión
     Private listaDirectorios As New ArrayList 'Variable con directorios
     Private listaDirectoriosPrivados As New ArrayList 'Variable con directorios privados
@@ -427,6 +427,7 @@ Public Class Conexion
     Public Function DescargarFotosPublicas(ByVal NombreFoto As String) As Bitmap
         Dim bmpDescargado As Bitmap = My.Resources.SinImagen
         'Con esto hacemos que no se dupliquen las imágenes
+
         Dim rdn As New Random()
         ' generar un random entre 1 y 1000
         Dim numero As Integer = rdn.Next(1, 1000)

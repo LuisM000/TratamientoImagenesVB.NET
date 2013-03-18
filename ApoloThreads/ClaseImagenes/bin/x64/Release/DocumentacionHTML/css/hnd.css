@@ -1,0 +1,389 @@
+﻿/* ========== Text Styles ========== */
+hr { color: #000000}
+body, table, span.rvts0 /* Normal text */
+{
+ font-size: 10pt;
+ font-family: 'Arial', 'Helvetica', sans-serif;
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.rvts1 /* Heading */
+{
+ font-weight: bold;
+ color: #0000ff;
+}
+span.rvts2 /* Subheading */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.rvts3 /* Keywords */
+{
+ font-style: italic;
+ color: #800000;
+}
+a.rvts4, span.rvts4 /* Jump 1 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+a.rvts5, span.rvts5 /* Jump 2 */
+{
+ color: #008000;
+ text-decoration: underline;
+}
+span.rvts6 /* Font Style */
+{
+}
+span.rvts7
+{
+ font-size: 11pt;
+ font-family: 'calibri';
+ color: #000000;
+}
+span.rvts8 /* Font Style */
+{
+ font-size: 11pt;
+ color: #4f81bd;
+}
+a.rvts9, span.rvts9
+{
+ font-size: 11pt;
+ font-family: 'Calibri';
+ color: #5b9bd5;
+ text-decoration: underline;
+}
+a.rvts9:hover { color: #3366ff; }
+a.rvts10, span.rvts10
+{
+ font-size: 11pt;
+ font-family: 'Calibri';
+ color: #5b9bd5;
+ text-decoration: underline;
+}
+a.rvts10:hover { color: #0000ff; }
+span.rvts11
+{
+ font-size: 18pt;
+ font-family: 'Calibri';
+ font-weight: bold;
+ color: #2e74b5;
+}
+span.rvts12
+{
+ font-size: 16pt;
+ font-family: 'Calibri';
+ color: #2e74b5;
+}
+span.rvts13 /* Font Style */
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #c0c0c0;
+}
+a.rvts14, span.rvts14 /* Font Style */
+{
+ font-family: 'Tahoma', 'Geneva', sans-serif;
+ font-style: italic;
+ color: #6666ff;
+ text-decoration: underline;
+}
+span.rvts15
+{
+ font-size: 11pt;
+ font-family: 'calibri';
+ font-style: italic;
+ color: #000000;
+}
+span.rvts16
+{
+ font-size: 18pt;
+ font-family: 'calibri light';
+ font-weight: bold;
+ color: #2e74b5;
+}
+span.rvts17
+{
+ font-size: 9pt;
+ font-family: 'Times New Roman', 'Times', serif;
+ font-style: italic;
+ color: #44546a;
+}
+span.rvts18
+{
+ font-size: 12pt;
+ font-family: 'Calibri';
+ color: #5b9bd5;
+}
+span.rvts19
+{
+ font-size: 12pt;
+ font-family: 'Calibri';
+ color: #5b9bd5;
+}
+span.rvts20
+{
+ font-size: 12pt;
+ font-family: 'calibri light';
+ color: #5b9bd5;
+}
+span.rvts21
+{
+ font-size: 11pt;
+ font-family: 'calibri';
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts22
+{
+ font-size: 13pt;
+ font-family: 'Calibri';
+ color: #2e74b5;
+}
+a.rvts23, span.rvts23
+{
+ font-size: 11pt;
+ color: #5b9bd5;
+ text-decoration: underline;
+}
+a.rvts23:hover { color: #3366ff; }
+span.rvts24
+{
+ font-size: 11pt;
+ font-family: 'Calibri';
+ color: #4f81bd;
+}
+span.rvts25
+{
+ font-size: 11pt;
+ font-family: 'calibri';
+ font-style: italic;
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts26
+{
+ font-size: 12pt;
+ font-family: 'Times New Roman', 'Times', serif;
+ color: #5b9bd5;
+}
+span.rvts27
+{
+ font-size: 11pt;
+ font-family: 'Times New Roman', 'Times', serif;
+ color: #000000;
+}
+span.rvts28
+{
+ font-size: 11pt;
+ font-family: 'Times New Roman', 'Times', serif;
+ font-style: italic;
+ color: #000000;
+}
+span.rvts29
+{
+ font-size: 11pt;
+ font-family: 'Times New Roman', 'Times', serif;
+ font-weight: bold;
+ color: #000000;
+}
+span.rvts30
+{
+ font-size: 12pt;
+ font-family: 'Times New Roman', 'Times', serif;
+ color: #5b9bd5;
+}
+/* ========== Para Styles ========== */
+p,ul,ol /* Paragraph Style */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
+}
+.rvps1 /* Centered */
+{
+ text-align: center;
+}
+.rvps2 /* Paragraph Style */
+{
+}
+.rvps3
+{
+ text-align: justify;
+ text-indent: -1px;
+ line-height: 1.50;
+ page-break-inside: avoid;
+ page-break-after: avoid;
+ padding: 0px 0px 0px 0px;
+ margin: 16px 0px 0px 0px;
+}
+.rvps4
+{
+ text-align: justify;
+ text-indent: -1px;
+ line-height: 1.50;
+ margin: 0px 0px 12px 0px;
+}
+.rvps5 /* Paragraph Style */
+{
+}
+.rvps6
+{
+ text-indent: 48px;
+ line-height: 1.50;
+}
+.rvps7
+{
+ line-height: 1.50;
+}
+.rvps8 /* Paragraph Style */
+{
+ text-align: center;
+ border-color: #c0c0c0;
+ border-style: solid;
+ border-width: 1px;
+ border-right: none;
+ border-left: none;
+ padding: 2px 0px 2px 0px;
+ margin: 7px 0px 7px 0px;
+}
+.rvps9
+{
+ text-align: justify;
+ text-indent: 0px;
+ line-height: 1.50;
+ page-break-inside: avoid;
+ page-break-after: avoid;
+ padding: 0px 0px 0px 0px;
+ margin: 16px 0px 0px 0px;
+}
+.rvps10
+{
+ text-align: center;
+ text-indent: -1px;
+ margin: 0px 0px 12px 0px;
+}
+.rvps11
+{
+ text-align: justify;
+ text-indent: -24px;
+ line-height: 1.50;
+ margin: 0px 0px 12px 47px;
+}
+.rvps12
+{
+ text-align: center;
+ text-indent: -1px;
+ line-height: 1.50;
+ page-break-after: avoid;
+ margin: 0px 0px 12px 0px;
+}
+.rvps13
+{
+ text-align: justify;
+ line-height: 1.50;
+ margin: 0px 0px 12px 0px;
+}
+.rvps14
+{
+ text-align: justify;
+ text-indent: -1px;
+ line-height: 1.50;
+ page-break-after: avoid;
+ margin: 0px 0px 12px 0px;
+}
+.rvps15
+{
+ text-align: justify;
+ line-height: 1.50;
+ margin: 0px 0px 12px 0px;
+}
+.rvps16
+{
+ text-align: justify;
+ text-indent: -1px;
+ margin: 0px 0px 13px 0px;
+}
+.rvps17
+{
+ text-align: center;
+ text-indent: -1px;
+ line-height: 1.50;
+ margin: 0px 0px 12px 0px;
+}
+.rvps18
+{
+ text-align: justify;
+ text-indent: -1px;
+ line-height: 1.50;
+ page-break-inside: avoid;
+ page-break-after: avoid;
+ padding: 0px 0px 0px 0px;
+ margin: 11px 0px 0px 0px;
+}
+.rvps19
+{
+ text-indent: -1px;
+ line-height: 1.50;
+ margin: 0px 0px 12px 0px;
+}
+.rvps20
+{
+ text-indent: -24px;
+ line-height: 1.50;
+ margin: 0px 0px 12px 47px;
+}
+.rvps21
+{
+ line-height: 1.50;
+ margin: 0px 0px 12px 0px;
+}
+.rvps22
+{
+ text-align: center;
+ line-height: 1.50;
+ margin: 0px 0px 12px 0px;
+}
+.rvps23
+{
+ text-align: center;
+ text-indent: -1px;
+ line-height: 1.50;
+ page-break-inside: avoid;
+ page-break-after: avoid;
+ padding: 0px 0px 0px 0px;
+ margin: 11px 0px 0px 0px;
+}
+.rvps24
+{
+ text-align: justify;
+ text-indent: -24px;
+ line-height: 1.50;
+ margin: 0px 0px 12px 48px;
+}
+.rvps25
+{
+ text-align: center;
+ line-height: 1.50;
+ margin: 0px 0px 12px 47px;
+}
+.rvps26
+{
+ text-align: justify;
+ line-height: 1.50;
+ margin: 0px 0px 12px 47px;
+}
+.rvps27
+{
+ text-align: center;
+ margin: 0px 0px 0px 1px;
+}
+.rvps28
+{
+ text-align: center;
+ text-indent: 48px;
+ margin: 0px 0px 0px 49px;
+}

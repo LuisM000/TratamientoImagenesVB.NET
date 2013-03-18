@@ -73,7 +73,7 @@ Partial Class Exposicion
         'HScrollBar1
         '
         Me.HScrollBar1.Location = New System.Drawing.Point(27, 53)
-        Me.HScrollBar1.Maximum = 2000
+        Me.HScrollBar1.Maximum = 2009
         Me.HScrollBar1.Name = "HScrollBar1"
         Me.HScrollBar1.Size = New System.Drawing.Size(242, 20)
         Me.HScrollBar1.TabIndex = 5

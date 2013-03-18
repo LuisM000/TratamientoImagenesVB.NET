@@ -1,0 +1,314 @@
+﻿<html>
+	
+<head>
+	<title>Operaciones b&aacute;sicas personalizadas</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.8.0.560">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Apolo. Documentación de ayuda..html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Operacionesbsicaspersonalizadas");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Operaciones b&aacute;sicas personalizadas</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Manualdeusuario.html">Manual de usuario</a> &rsaquo;&rsaquo; <a href="Referenciadefunciones.html">Referencia de funciones</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Referenciadefunciones.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Operacionesbsicas.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Operaciones.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps3"><span class="rvts0"><span class="rvts11">Operaciones básicas personalizadas</span></span></h1>
+<p class="rvps4"><span class="rvts7">Es la cuarta opción del menú superior. A continuación se muestra una imagen del menú.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración 1. Menú operaciones básicas personalizadas.</span></p>
+<p class="rvps17"><img width="220" height="280" alt="" style="padding : 1px;" src="lib/NewItem182.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18"><br/></span></p>
+<p class="rvps15"><span class="rvts7">En este menú puede encontrar las funciones básicas para modificar en una imagen pero, a diferencia del menú anterior, éstas pueden modificarse de forma manual. En esta guía, vamos a utilizar de ejemplo la mítica imagen de Lena, a continuación la podemos ver en su estado original.</span></p>
+<p class="rvps15"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">2</span><span class="rvts18">. Imagen original de Lena.</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/NewItem181.png"/></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts7"><br/></span></p>
+<hr style="height: 1px; color : #000000;  background-color : #000000; border-width : 0px;"/>
+<h1 class="rvps3"><a name="blancoNegro"></a>
+<span class="rvts0"><span class="rvts12">Blanco y negro</span></span></h1>
+<p class="rvps4"><span class="rvts7">Binariza la imagen, es decir, cada píxel lo pasa a color blanco o negro. Esta función es muy sencilla, simplemente calcula la media de color para cada píxel (</span><span class="rvts15">(ColorRojo+ColorVerde+ColorAzu)l/3</span><span class="rvts7">) y en función del valor de salida de esta media, el píxel pasa a ser blanco o negro. Si la media es mayor o igual del valor seleccionado por el usuario (valor umbral), el píxel pasa a tener en sus tres canales (rojo, verde, azul) un valor de 255 &nbsp;(blanco), en caso contrario pasa a tener un valor 0 en todos sus canales (negro).</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">3</span><span class="rvts18">. Menú blanco y negro.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem180.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts7"><br/></span></p>
+<p class="rvps4"><span class="rvts7">La imagen se ha binarizado y todos los valores son o negros o blancos.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">4</span><span class="rvts18">. Imagen de Lena en blanco y negro con valor umbral 74.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem179.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<h1 class="rvps3"><a name="EscalaGrises"></a>
+<span class="rvts0"><span class="rvts12">Escala de grises</span></span></h1>
+<p class="rvps4"><span class="rvts7">Con esta función se pasa a tener una imagen en escala de grises, es decir, cada píxel tiene un tono de gris. Los tonos de gris se caracterizan por tener el mismo valor en todos los canales (</span><span class="rvts15">RGB</span><span class="rvts7">), siendo el menor valor el color negro (</span><span class="rvts28">0,0,0</span><span class="rvts7">) y el mayor en blanco (</span><span class="rvts15">255,255,255</span><span class="rvts7">).</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">5</span><span class="rvts18">. Menú escala de grises.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem178.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts7"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Para aplicar esta función hay que calcular, para cada píxel, la media de sus tres componentes (RGB) y dicha media aplicarla a los tres canales en el píxel tratado pero teniendo en cuenta el valor seleccionado por el usuario. Si se tiene un píxel con valores; Rojo = 100, Verde = 200, Azul= 50, se debe calcular la media (</span><span class="rvts15">(100+200+50)/3</span><span class="rvts7">) y aplicar el valor resultante a los tres canales, por lo tanto, el píxel resultante tendría los siguientes valores para cada canal; Rojo = (100+200+50)/3, Verde = (100+200+50)/3, Azul = (100+200+50)/3, haciendo el cálculo sería, Rojo = 116, Verde = 116, Azul = 116, y en función del valor seleccionado por el usuario, se calculará el valor de salida. Realmente lo que se hace es reducir el número de tonos de grises, desde la gama completa (con valor igual a 0), hasta blanco y negro (con valor igual a 127).</span></p>
+<p class="rvps4"><span class="rvts7">En la siguiente ilustración, se puede observar la imagen de Lena en escala de grises con un valor de 50.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">6</span><span class="rvts18">. Lena en escala de grises con valor 50.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem177.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">La imagen se ha pasado a escala de grises, pero una escala de grises reducida, es decir, no contiene los 256 valores diferentes de gris.</span></p>
+<h1 class="rvps3"><a name="Brillo"></a>
+<span class="rvts0"><span class="rvts12">Brillo</span></span></h1>
+<p class="rvps4"><span class="rvts7">En el apartado </span><span class="rvts15">brillo</span><span class="rvts7"> se puede aumentar o disminuir la intensidad de los píxeles. Al aumentar, por ejemplo, en diez puntos el brillo, a cada canal de cada píxeles se le suma 10. En caso de que el valor sea mayor de 255 o menor de 0, se le asigna 255 o 0 respectivamente a cada canal.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">7</span><span class="rvts18">. Menú modificar brillo.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem176.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">En la siguiente ilustración se puede observar la imagen de Lena a la que se le ha aumentado 68 puntos.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración</span><span class="rvts26"> 8</span><span class="rvts18">. Lena con brillo aumentado en 68 puntos.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem175.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">De la imagen anterior se saca la conclusión de que la imagen se &nbsp;</span><span class="rvts15">ha aclarado</span><span class="rvts7">, es decir, sus valores son más cercanos al blanco (255).</span></p>
+<h1 class="rvps3"><a name="Contraste"></a>
+<span class="rvts0"><span class="rvts12">Contraste (Contraste 1/Contraste 2)</span></span></h1>
+<p class="rvps4"><span class="rvts7">Al aumentar el contraste de una imagen se aumenta la diferencia entre los diferentes colores, mientras que si se disminuye, se atenúan las diferencias.</span></p>
+<p class="rvps4"><span class="rvts7">En Apolo hay dos funciones para modificar el contraste:</span></p>
+<p class="rvps4"><span class="rvts21">Contraste 1 (recomendado)</span><span class="rvts7">: con esta opción se obtienen excelentes resultados a la hora de dar mayor contraste a imágenes para visualizar mejor los detalles. Se le debe proporcionar un valor de entrada a partir del cual se calculará el valor de salida para cada píxel. Se le suma una unidad al valor de entrada y se divide entre la cuarta parte del número Pi, a este valor le llamaremos </span><span class="rvts15">ValorCalculado</span><span class="rvts7">. Si se selecciona el canal rojo de un píxel cualquiera, llamémosle, </span><span class="rvts15">ValorRojo</span><span class="rvts7">, y se le aplica la siguiente modificación, </span><span class="rvts15">ValorRojo</span><span class="rvts7">= ((</span><span class="rvts15">ValorRojo</span><span class="rvts7"> – 128) * </span><span class="rvts15">ValorCalculado</span><span class="rvts7">) + 128, se obtiene el valor de salida del canal rojo de ese píxel.</span><br/><span class="rvts7">Aplicando esto a todos los píxeles y los tres canales, se obtiene la imagen de salida.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">9</span><span class="rvts18">. Menú modificar contraste.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem174.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">A continuación se muestran dos histogramas, siendo el de la izquierda el de la imagen original y el de la derecha tras una modificación de 1.4.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">10</span><span class="rvts18">. Diferencia contraste histogramas.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem173.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps4"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Como se ve claramente, se han estirado los valores para adaptarse en mayor medida a todo el rango de valores.</span></p>
+<p class="rvps4"><span class="rvts7">En la siguiente imagen puede verse el resultado de aplicar 0.4 puntos de contraste en la imagen de Lena.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">11</span><span class="rvts18">. Imagen de Lena aumentada en 0.4 puntos su contraste.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem172.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps4"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Comparada con la imagen original, puede apreciarse que los colores claros son más claros y los oscuros han aumentado sustancialmente.</span></p>
+<p class="rvps4"><span class="rvts21">Contraste</span><span class="rvts7"> </span><span class="rvts21">2</span><span class="rvts7">: esta función estira los valores hasta llegar a los extremos seleccionados. El menú tiene una opción de seleccionar un valor mínimo y un valor máximo. El valor mínimo es el valor más bajo que se quiere que tenga el píxel con menor valor, y el valor máximo es lo contrario. Estos valores se analizan por canal, es decir, se calculará previamente el valor de intensidad más bajo para cada canal </span><span class="rvts15">RGB</span><span class="rvts27">.</span></p>
+<p class="rvps4"><span class="rvts27"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">12</span><span class="rvts18">. Menú modificar contraste 2.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem171.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Ejemplificando, si seleccionamos como valor mínimo el 0 y valor máximo el 255, ajustará los niveles de la imagen para que se estiren hasta llegar a tener valores mínimos de 0 y máximos de 255.</span></p>
+<p class="rvps4"><span class="rvts7">Si se analiza con detenimiento esta función, en imágenes que cuyos valores mínimos y máximos son iguales o superiores que los máximos/mínimos de la imagen, no habrá modificación alguna.</span></p>
+<p class="rvps4"><span class="rvts7">En la imagen de la izquierda se muestra el histograma (del canal verde) de la imagen original, y la imagen de Lena a la que se ha dado un valor mínimo de 10 y máximo de 240.</span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">13</span><span class="rvts18">. Diferencia contraste histogramas.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem170.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Como se observa claramente en los valores más cercanos a 0 (puesto que abundan más que los cercanos a 255), se ve que se han </span><span class="rvts15">desplazado </span><span class="rvts7">hacia la izquierda, es decir, han pasado a ser 10.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">14</span><span class="rvts18">. Lena con contraste disminuido.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem169.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Si se compara con la imagen original, se detecta que es una imagen más apagada, menos contrastada.</span></p>
+<h1 class="rvps3"><a name="Gamma"></a>
+<span class="rvts0"><span class="rvts12">Corrección de gamma</span></span></h1>
+<p class="rvps4"><span class="rvts7">La corrección de gamma es la responsable de la sensación de contraste de una imagen, y decimos sensación porque no es algo inherente a la imagen, sino a los dispositivos que la registran, a los dispositivos que la reproducen y a la luminosidad del entorno donde la estamos viendo.</span></p>
+<p class="rvps4"><span class="rvts27"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">15</span><span class="rvts18">. Menú corrección de gamma.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem168.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Si se accede al menú, se observa que requiere tres valores, uno para cada canal </span><span class="rvts15">RGB</span><span class="rvts7">. Y en función de esos valores de entrada se modificarán los diferentes canales para generar un valor de salida.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">16</span><span class="rvts18">. Lena corrección de gamma 0.53.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem167.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps4"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">En la imagen anterior se puede observar que está más contrastada pero también más apagada la imagen. Observando el histograma se apreciará que los valores se han desplazado hacia el 0 y se han repartido más por todo el histograma.</span></p>
+<h1 class="rvps3"><a name="Exposicion"></a>
+<span class="rvts0"><span class="rvts12">Exposición</span></span></h1>
+<p class="rvps4"><span class="rvts7">Esta función aumenta o disminuye la </span><span class="rvts15">luz</span><span class="rvts7"> en la imagen. El algoritmo simplemente divide cada canal de cada píxel entre el valor seleccionado en la menú mostrado a continuación.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">17</span><span class="rvts18">. Menú modificar exposición.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem193.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts26"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Si se quiere aumentar la exposición (hacer más clara la imagen), se deben seleccionar valores menores de 1, en caso contrario mayores.</span></p>
+<p class="rvps4"><span class="rvts7">En la siguiente imagen se puede apreciar una modificación de exposición en 0.68 puntos.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración</span><span class="rvts26"> 18</span><span class="rvts18">. Lena sobreexpuesta.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem192.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps19"><span class="rvts7">Comparada con la imagen original, es una imagen más clara, cuyos valores han tendido a 255. Es una imagen sobreexpuesta, ya que está </span><span class="rvts15">quemada</span><span class="rvts7"> por la luz.</span></p>
+<h1 class="rvps3"><a name="ModificarCanales"></a>
+<span class="rvts0"><span class="rvts12">Modificar canales</span></span></h1>
+<p class="rvps4"><span class="rvts7">Esta función trabaja de una forma muy similar a aumentar brillo pero con la diferencia que la modifica de forma individual para cada canal.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">19</span><span class="rvts18">. Menú modificar canales.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem166.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Como puede observarse en la imagen anterior, se puede seleccionar el valor a modificar para cada canal </span><span class="rvts15">ARGB</span><span class="rvts7"> y este valor será lo que se aumentará o disminuirá a cada canal de cada píxel.</span></p>
+<p class="rvps4"><span class="rvts7">En la siguiente imagen se ha aumentado en 28 puntos el canal rojo y verde, y disminuido en 10 puntos el valor azul. El valor alfa se ha conservado.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">20</span><span class="rvts18">. Imagen de Lena con los canales modificados.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem165.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps4"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Como puede observarse la imagen se ha tornado hacia colores amarillos, puesto que al aumentar los canales verde y rojo y disminuir el canal azul, se ha favorecido la obtención de tonos amarillos (en color amarillo se crea con rojo más verde).</span></p>
+<h1 class="rvps3"><a name="ReducirColores"></a>
+<span class="rvts0"><span class="rvts12">Reducir colores</span></span></h1>
+<p class="rvps4"><span class="rvts7">Con esta función se limita el número de colores por canal. Esta limitación se efectúa desde los valores intermedios del rango del canal, es decir, los valores se empiezan a eliminar empezando por el intermedio (128).</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración 21. Menú reducir colores.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem190.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Seleccionando el valor 0, lo que ocurrirá es que para cada canal </span><span class="rvts15">RGB</span><span class="rvts7"> únicamente quedarán dos colores el 1 y el 255. En la siguiente imagen se muestra a Lena a la que se ha aplicado reducción de colores a 0, es decir, sólo queda para cada canal el valor 1 y 255, por lo tanto el conjunto de la imagen sólo tendrá 2^3 colores.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">22</span><span class="rvts18">. Lena con colores reducidos.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem189.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Como puede observarse la imagen tiene muy pocos colores. Viendo el histograma, únicamente hay valores 1 y 255 por cada canal.</span></p>
+<h1 class="rvps3"><a name="FiltrarColores"></a>
+<span class="rvts0"><span class="rvts12">Filtrar colores</span></span></h1>
+<p class="rvps4"><span class="rvts7">Es una interesante opción que permite seleccionar un rango de colores y modificar su valor. </span><br/><span class="rvts7">Dentro del menú se encuentran tres apartados, uno por canal como se ve en la ilustración.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración 23. Filtrar colores.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem188.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">En la imagen anterior los colores cuyo canal rojo está entre 0 y 50 pasarían a ser de 255. Esta transformación se ve reflejada en la siguiente imagen.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">24</span><span class="rvts18">. Lena con colores filtrados.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem191.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps4"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Se aprecia en la imagen que las zonas más oscuras, donde cuyo canal rojo oscila entre 0 y 50, han pasado a tener un valor en dicho canal rojo de 255, un rojo intenso.</span></p>
+<h1 class="rvps3"><a name="Matriz"></a>
+<span class="rvts0"><span class="rvts12">Matriz</span></span></h1>
+<p class="rvps4"><span class="rvts7">Esta función trabaja de forma muy similar al efecto </span><span class="rvts15">sepia</span><span class="rvts7">, es más, puede decirse que es la base del efecto sepia. Lo que hace es asignar un peso a cada canal. En el siguiente ejemplo se muestra cómo se calcula el valor de cada canal en cada píxel.</span></p>
+<p class="rvps4"><span class="rvts7">Rojo = Rojo * Peso11 + Verde * Peso12 + Azul * Peso13</span></p>
+<p class="rvps4"><span class="rvts7">Verde = Rojo * Peso21 + Verde * Peso22 + Azul * Peso23</span></p>
+<p class="rvps4"><span class="rvts7">Azul = Rojo * Peso31 + Verde * Peso32 + Azul * Peso33</span></p>
+<p class="rvps4"><span class="rvts7">Donde cada peso corresponde a una valor de la matriz que se puede seleccionar en el menú.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">25</span><span class="rvts18">. Menú matriz.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem186.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">En la imagen anterior, se puede ver que el mayor peso se ha asignado al primer valor, por lo tanto, los resultados deberían ser tonos ligeramente rojizos.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración 26. Lena modificada por matriz.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem185.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Revisando el histograma de la anterior imagen se observa que los valores más altos están en el histograma rojo.</span></p>
+<p class="rvps4"><span class="rvts7">Este menú también permite guardar una matriz simplemente pulsando en </span><span class="rvts15">Exportar matriz</span><span class="rvts7">, y seleccionando un nombre. Una vez guardada la matriz, se puede recuperar pulsando en el botón </span><span class="rvts15">Importar matriz</span><span class="rvts7"> y seleccionándola.</span></p>
+<h1 class="rvps3"><a name="DetectarContornos"></a>
+<span class="rvts0"><span class="rvts12">Detectar contornos</span></span></h1>
+<p class="rvps4"><span class="rvts7">Esta función determina los contornos en una imagen. Para ello, se sirve de 4 valores. El primero valor determina el umbral a partir del cual un píxel se asignará como contorno o no contornos (blanco o negro), y los tres restantes (rojo, verde, azul) son el peso que se asignará a cada canal.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">27</span><span class="rvts18">. Menú detectar contornos.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem184.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts7"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Aplicando a la imagen de Lena los valores anteriores, se creará una imagen en que cada píxel únicamente puede ser negro (contorno) o blanco (relleno).</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">28</span><span class="rvts18">. Lena contornos.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem183.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">Como se aprecia en la imagen el resultado no es muy bueno ya que no determina bien los contornos. Se pueden ir modificando los valores para ajustarse a la imagen en concreto, pero automatizar esta función para que detecte siempre de forma correcta los contornos en cualquier tipo de imagen es muy complejo.</span></p>
+<p></p>
+<p class="rvps8"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/create-epub-ebooks">Full-featured EBook editor</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyleft 2013  por Luis Marcos Rivera.</div>
+		</div>
+	</body>
+	
+</html>
+

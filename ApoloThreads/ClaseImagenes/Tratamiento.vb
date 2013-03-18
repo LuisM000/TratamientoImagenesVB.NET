@@ -39,7 +39,7 @@ Namespace Apolo
                 Return porcentaje
             End Get
         End Property
-
+        
         'Propiedades y métodos para hacer y rehacer el conjunto de imágenes
 #Region "Hacer/deshacerImagenes"
 
@@ -371,6 +371,7 @@ Namespace Apolo
                     Rojo = CByte((valorContrasteMax - valorContrasteMin) * ((Niveles(i, j).R - RojoMin) / (RojoMax - RojoMin)) + valorContrasteMin)
                     Verde = CByte((valorContrasteMax - valorContrasteMin) * ((Niveles(i, j).G - VerdeMin) / (VerdeMax - VerdeMin)) + valorContrasteMin)
                     Azul = CByte((valorContrasteMax - valorContrasteMin) * ((Niveles(i, j).B - AzulMin) / (AzulMax - AzulMin)) + valorContrasteMin)
+
                     alfa = Niveles(i, j).A
                     bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul))
                 Next
@@ -653,9 +654,19 @@ Namespace Apolo
 
             For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
                 For j = 0 To Niveles.GetUpperBound(1)
-                    Rojo = Niveles(i, j).B 'Realizamos la inversión de los colores
-                    Verde = Niveles(i, j).G 'Realizamos la inversión de los colores
-                    Azul = Niveles(i, j).R 'Realizamos la inversión de los colores
+                    If BGR = True Then
+                        Rojo = Niveles(i, j).B 'Realizamos la modificacion de los colores
+                        Verde = Niveles(i, j).G 'Realizamos la modificacion de los colores
+                        Azul = Niveles(i, j).R 'Realizamos la modificacion de los colores
+                    ElseIf GRB = True Then
+                        Rojo = Niveles(i, j).G 'Realizamos la modificacion de los colores
+                        Verde = Niveles(i, j).R 'Realizamos la modificacion de los colores
+                        Azul = Niveles(i, j).B 'Realizamos la modificacion de los colores
+                    Else
+                        Rojo = Niveles(i, j).R 'Realizamos la modificacion de los colores
+                        Verde = Niveles(i, j).B 'Realizamos la modificacion de los colores
+                        Azul = Niveles(i, j).G 'Realizamos la modificacion de los colores
+                    End If
                     alfa = Niveles(i, j).A
                     bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
                 Next
@@ -3880,16 +3891,16 @@ Namespace Apolo
                 If tamaño <> "" Then
                     tamaño = "&ImageFilters=%27Size%3a" & tamaño & "%27"
                 End If
-                Dim accountKey As String = "URndltgY4xIFqjJOhdozXaBilXhSo76PIW7YWedDkJI="
-                Dim serviceRoot As String = "https://api.datamarket.azure.com/Bing/Search/"
-                Dim imageQueryRoot As String = serviceRoot + "Image?"
+                Dim ClaveCuenta As String = "URndltgY4xIFqjJOhdozXaBilXhSo76PIW7YWedDkJI="
+                Dim raizServicio As String = "https://api.datamarket.azure.com/Bing/Search/"
+                Dim imageQueryRoot As String = raizServicio + "Image?"
                 Dim imageQuery As String = imageQueryRoot + "Query=%27" + texto + "%27" + "&$top=" & numeroImagenes & tamaño
 
                 'XmlDocument que usaremos para leer los resultados
                 Dim document As XmlDocument = New XmlDocument()
 
                 'Las siguientes cuatro líneas configurar el XmlDocument para utilizar las credenciales 
-                Dim accountCredential As New NetworkCredential(accountKey, accountKey)
+                Dim accountCredential As New NetworkCredential(ClaveCuenta, ClaveCuenta)
                 Dim resolver As New XmlUrlResolver()
                 resolver.Credentials = accountCredential
                 document.XmlResolver = resolver
@@ -4009,12 +4020,17 @@ Namespace Apolo
             Next
             Return matrizAcumulada
         End Function
-        Function capturarPantalla()
+        Function capturarPantalla(ByVal ControlExcepciones As Boolean)
             Dim tamaño As Size = Screen.PrimaryScreen.Bounds.Size 'Establecemos el tamaño de la captura
             Dim Bm As New Bitmap(tamaño.Width, tamaño.Height) 'Creamos un bitmap con ese tamaño
             Dim Gf As Graphics 'Objeto graphics
             Gf = Graphics.FromImage(Bm)
             Gf.CopyFromScreen(0, 0, 0, 0, tamaño) 'Capturamos la pantalla
+            If ControlExcepciones = False Then 'Si no la ha capturado el control de excepciones (es decir, la ha realizado el usuario)
+                porcentaje(1) = "Finalizado" 'Actualizamos el estado
+                RaiseEvent actualizaBMP(Bm) 'generamos el evento
+                guardarImagen(Bm, "Captura de pantalla") 'Guardamos la imagen para poder hacer retroceso
+            End If
 
             Return Bm
 

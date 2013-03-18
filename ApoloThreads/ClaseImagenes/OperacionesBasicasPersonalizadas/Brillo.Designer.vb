@@ -33,7 +33,7 @@ Partial Class Brillo
         'HScrollBar1
         '
         Me.HScrollBar1.Location = New System.Drawing.Point(27, 53)
-        Me.HScrollBar1.Maximum = 255
+        Me.HScrollBar1.Maximum = 264
         Me.HScrollBar1.Minimum = -254
         Me.HScrollBar1.Name = "HScrollBar1"
         Me.HScrollBar1.Size = New System.Drawing.Size(242, 20)

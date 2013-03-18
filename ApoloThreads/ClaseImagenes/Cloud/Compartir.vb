@@ -71,7 +71,7 @@ Public Class Compartir
         End If
     End Sub
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        objetoConexion = New Conexion("ftp://93.188.160.15/" & directorioActual, "u398464172", "luis000luis000")
+        objetoConexion = New Conexion("ftp://31.170.164.110/" & directorioActual, "u610031309", "luis000luis000")
     End Sub
 
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted

@@ -9,15 +9,18 @@ Public Class Principal
 #Region "control de excepciones"
     Private Shared Sub Application_ThreadException(ByVal sender As Object, ByVal e As System.Threading.ThreadExceptionEventArgs)
         Dim objetoTra As New TratamientoImagenes
-        Dim captura As Bitmap = objetoTra.capturarPantalla()
+        Dim captura As Bitmap = objetoTra.capturarPantalla(True)
         Dim excepc As Exception = e.Exception
-        'Hay que crear la instancia con constructor y el valor del color
+        'Hay que crear la instancia con constructor
         Dim frmError As New NotificacionError(captura, excepc)
         frmError.Show()
     End Sub
 #End Region
 
     Private Sub Principal_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        ' Forzamos una recolección de elementos no utilizados
+        GC.Collect()
+        GC.WaitForPendingFinalizers()
         'Al cerrar el formulario borramos todo lo acumulador por el programa
         Dim folder As New DirectoryInfo(System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\") 'Directorio
         Dim listaDearchivos As New ArrayList
@@ -30,7 +33,6 @@ Public Class Principal
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-      
         'Manejamos cualquier excepción no controlada
         AddHandler Application.ThreadException, AddressOf Application_ThreadException
 
@@ -66,9 +68,20 @@ Public Class Principal
 
         'Tamaño del Picturebox 4 del tabpage 2 que muestra zoo
         PictureBox4.Size = New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo)
+
+        'Comprobamos actualizaciones automáticas
+        Actualizar = Nothing
+        If My.Settings.Actualizaciones_Comprobar = True Then
+            ActualizacionesAutomáticasToolStripMenuItem.Checked = True
+            If BackgroundWorkerACtual_Automaticas.IsBusy = False Then
+                BackgroundWorkerACtual_Automaticas.RunWorkerAsync()
+            End If
+        Else
+            ActualizacionesAutomáticasToolStripMenuItem.Checked = False
+        End If
     End Sub
 
-
+ 
 #Region "Archivo"
     'Abrir imagen desde archivo
     Private Sub AbrirImagenToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AbrirImagenToolStripMenuItem1.Click
@@ -88,7 +101,7 @@ Public Class Principal
 
     'Abrir imágenes con BING
     Private Sub BuscarImágenesEnLaWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnLaWebToolStripMenuItem.Click
-        AbrirBing.Show()
+        Bing2.Show()
     End Sub
     'Abrir imágenes con FB
     Private Sub BuscarImágenesEnFacebookToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnFacebookToolStripMenuItem.Click
@@ -531,6 +544,16 @@ Public Class Principal
             ClearMemory()
         End If
     End Sub
+    'Ocultar/mostrar barra de accesos rápidos
+    Private Sub BarraAccesosRápidosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BarraAccesosRápidosToolStripMenuItem.Click
+        If BarraAccesosRápidosToolStripMenuItem.Checked = True Then
+            BarraAccesosRápidosToolStripMenuItem.Checked = False
+            ToolStrip1.Visible = False
+        Else
+            BarraAccesosRápidosToolStripMenuItem.Checked = True
+            ToolStrip1.Visible = True
+        End If
+    End Sub
 
     'Código para liberar RAM disponible en************************
     'http://gdev.wordpress.com/2005/11/30/liberar-memoria-con-vb-net/
@@ -546,9 +569,61 @@ Public Class Principal
             'Control de errores
         End Try
     End Sub
+    'Comprobar actualizaciones automáticamente
+    Private Sub ActualizacionesAutomáticasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActualizacionesAutomáticasToolStripMenuItem.Click
+        If ActualizacionesAutomáticasToolStripMenuItem.Checked = True Then
+            My.Settings.Actualizaciones_Comprobar = False
+            ActualizacionesAutomáticasToolStripMenuItem.Checked = False
+        Else
+            My.Settings.Actualizaciones_Comprobar = True
+            ActualizacionesAutomáticasToolStripMenuItem.Checked = True
+        End If
+        My.Settings.Save()
+    End Sub
+    Private Sub BackgroundWorkerACtual_Automaticas_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorkerACtual_Automaticas.DoWork
+        Actualizar = objetoActualizacion.ComprobarVersion()
+    End Sub
+
+    Private Sub BackgroundWorkerACtual_Automaticas_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorkerACtual_Automaticas.RunWorkerCompleted
+          Select Actualizar(0)
+            Case "Error"
+                MessageBox.Show("No se pudo conectar. Compruebe las actualizaciones más tarde.", "Error comprobar actualizaciones", MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+            Case My.Application.Info.Version.ToString
+                'MessageBox.Show("¡Apolo está actualizado!" & vbCrLf & "Versión: " & My.Application.Info.Version.ToString, "Comprobar actualizaciones", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
+            Case Else
+                Dim textoMejoras As String
+                textoMejoras = "Hay una nueva versión disponible:" & vbCrLf
+                textoMejoras += "Versión: " & Actualizar(0) & vbCrLf & "Mejoras: "
+                For i = 1 To Actualizar.Length - 1
+                    textoMejoras += Actualizar(i)
+                Next
+                textoMejoras += vbCrLf & "-----------------------" & vbCrLf & "Si decide instalar la nueva actualización se cerrará Apolo, ¿está seguro de que desea actualizar ahora?"
+                Dim respuestaActualizacion = MessageBox.Show(textoMejoras, "Comprobar actualizaciones", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                If respuestaActualizacion = Windows.Forms.DialogResult.Yes Then
+                    Dim rutaArchivo As String
+                    If System.Environment.Is64BitOperatingSystem = True Then 'Comprobamos el tipo de sistema operativo
+                        rutaArchivo = objetoActualizacion.DescargarActualizacion(True)
+                    Else
+                        rutaArchivo = objetoActualizacion.DescargarActualizacion(False)
+                    End If
+                    Process.Start(rutaArchivo)
+                    Application.Exit()
+                End If
+        End Select
+    End Sub
+     
+   
 #End Region
 
-#Region "Menú ayda"
+#Region "Menú ayuda"
+
+    Private Sub AyudaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AyudaToolStripMenuItem1.Click
+        Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\HelpApolo.chm")
+    End Sub
+
+    Private Sub AyudaEnLaWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AyudaEnLaWebToolStripMenuItem.Click
+        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionHTML\DocumentacionApolo.html")
+    End Sub
     Private Sub NotificarUnErrorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotificarUnErrorToolStripMenuItem.Click
         NotificarErrorAyuda.Show()
     End Sub
@@ -558,6 +633,52 @@ Public Class Principal
     End Sub
     Private Sub ColaboraConElProyectoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ColaboraConElProyectoToolStripMenuItem.Click
         Colabora.Show()
+    End Sub
+    Private Sub AcercaDeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AcercaDeToolStripMenuItem.Click
+        AboutBox1.Show()
+    End Sub
+
+    'Comprobar actualizaciones
+    Dim objetoActualizacion As New Actualizar 'Instancia a la clase actualizar
+    Dim Actualizar() As String 'contendrá los datos de la actualización (datos del archivo descargado)
+
+    Private Sub ComprobarActualizacionesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ComprobarActualizacionesToolStripMenuItem.Click
+        If BackgroundWorkerACTUALIZACION.IsBusy = False Then
+            Actualizar = Nothing
+            BackgroundWorkerACTUALIZACION.RunWorkerAsync()
+        End If
+    End Sub
+
+    Private Sub BackgroundWorkerACTUALIZACION_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorkerACTUALIZACION.DoWork
+        Actualizar = objetoActualizacion.ComprobarVersion()
+    End Sub
+
+    Private Sub BackgroundWorkerACTUALIZACION_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorkerACTUALIZACION.RunWorkerCompleted
+        Select Case Actualizar(0)
+            Case "Error"
+                MessageBox.Show("No se pudo conectar. Compruebe las actualizaciones más tarde.", "Error comprobar actualizaciones", MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+            Case My.Application.Info.Version.ToString
+                MessageBox.Show("¡Apolo está actualizado!" & vbCrLf & "Versión: " & My.Application.Info.Version.ToString, "Comprobar actualizaciones", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
+            Case Else
+                Dim textoMejoras As String
+                textoMejoras = "Hay una nueva versión disponible:" & vbCrLf
+                textoMejoras += "Versión: " & Actualizar(0) & vbCrLf & "Mejoras: "
+                For i = 1 To Actualizar.Length - 1
+                    textoMejoras += Actualizar(i)
+                Next
+                textoMejoras += vbCrLf & "-----------------------" & vbCrLf & "Si decide instalar la nueva actualización se cerrará Apolo, ¿está seguro de que desea actualizar ahora?"
+                Dim respuestaActualizacion = MessageBox.Show(textoMejoras, "Comprobar actualizaciones", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                If respuestaActualizacion = Windows.Forms.DialogResult.Yes Then
+                    Dim rutaArchivo As String
+                    If System.Environment.Is64BitOperatingSystem = True Then 'Comprobamos el tipo de sistema operativo
+                        rutaArchivo = objetoActualizacion.DescargarActualizacion(True)
+                    Else
+                        rutaArchivo = objetoActualizacion.DescargarActualizacion(False)
+                    End If
+                    Process.Start(rutaArchivo)
+                    Application.Exit()
+                End If
+        End Select
     End Sub
 
 #End Region
@@ -970,7 +1091,7 @@ Public Class Principal
         RefrescarTab() 'Actualizamos el registro de cambios
     End Sub
 
- 
+
     Private Sub Principal_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         'Colocamos la imagen secundaria en la parte inferior
         PictureBox2.Location = New Size(PictureBox2.Location.X, SplitContainer1.Panel2.Height - (PictureBox2.Size.Height + 5))
@@ -1027,7 +1148,7 @@ Public Class Principal
     End Sub
     'ABrir imagen desde bing
     Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
-        AbrirBing.Show()
+        Bing2.Show()
     End Sub
     'ABrir imagen desde facebook
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
@@ -1070,6 +1191,16 @@ Public Class Principal
         Panel1.AutoScroll = True
         ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
     End Sub
+    'Imagen original
+    Private Sub ToolStripButton13_Click(sender As Object, e As EventArgs) Handles ToolStripButton13.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ImagenOriginalGuardada
+        End If
+    End Sub
+    'Histogramas
+    Private Sub ToolStripButton18_Click(sender As Object, e As EventArgs) Handles ToolStripButton18.Click
+        TodosHistogramas.Show()
+    End Sub
     'Blanco y negro
     Private Sub ToolStripButton10_Click(sender As Object, e As EventArgs) Handles ToolStripButton10.Click
         transformacion = "blancoNegro"
@@ -1079,6 +1210,91 @@ Public Class Principal
     Private Sub ToolStripButton11_Click(sender As Object, e As EventArgs) Handles ToolStripButton11.Click
         transformacion = "escalaGrises"
         transformar()
+    End Sub
+    'Detectar contornos
+    Private Sub ToolStripButton12_Click(sender As Object, e As EventArgs) Handles ToolStripButton12.Click
+        Contornos.Show()
+    End Sub
+    'Reducir colores
+    Private Sub ToolStripButton14_Click(sender As Object, e As EventArgs) Handles ToolStripButton14.Click
+        ReducirColores.Show()
+    End Sub
+    'Operaciones aritméticas
+    Private Sub ToolStripButton15_Click(sender As Object, e As EventArgs) Handles ToolStripButton15.Click
+        OperacionesAritmeticas.Show()
+    End Sub
+    'Transformación afín
+    Private Sub ToolStripButton16_Click(sender As Object, e As EventArgs) Handles ToolStripButton16.Click
+        TAfinPers.Show()
+    End Sub
+    'Voltear imagen
+    Private Sub ToolStripButton17_Click(sender As Object, e As EventArgs) Handles ToolStripButton17.Click
+        Voltear.Show()
+    End Sub
+    'Mascara manual
+    Private Sub ToolStripButton19_Click(sender As Object, e As EventArgs) Handles ToolStripButton19.Click
+        MascaraManual.Show()
+    End Sub
+    'Bordes y contornos
+    Private Sub ToolStripButton21_Click(sender As Object, e As EventArgs) Handles ToolStripButton21.Click
+        BordesYContornos.Show()
+    End Sub
+    'Sobel total
+    Private Sub ToolStripButton20_Click(sender As Object, e As EventArgs) Handles ToolStripButton20.Click
+        transformacion = "SobelTotal"
+        transformar()
+    End Sub
+    'Ruido
+    Private Sub ToolStripButton22_Click(sender As Object, e As EventArgs) Handles ToolStripButton22.Click
+        RuidoDe.Show()
+    End Sub
+    'Sombra de vidrio
+    Private Sub ToolStripButton23_Click(sender As Object, e As EventArgs) Handles ToolStripButton23.Click
+        SombraVidrio.Show()
+    End Sub
+    'Trocear imagen
+    Private Sub ToolStripButton24_Click(sender As Object, e As EventArgs) Handles ToolStripButton24.Click
+        transformacion = "6partes"
+        transformar()
+    End Sub
+
+    'Crear anaglifo
+    Private Sub ToolStripButton25_Click(sender As Object, e As EventArgs) Handles ToolStripButton25.Click
+        Anaglifo.Show()
+    End Sub
+    'Comparar imágenes
+    Private Sub ToolStripButton26_Click(sender As Object, e As EventArgs) Handles ToolStripButton26.Click
+        CompararImagenesVecinos.Show()
+    End Sub
+
+    'Compartir imagen
+    Private Sub ToolStripButton27_Click(sender As Object, e As EventArgs) Handles ToolStripButton27.Click
+        Dim form As New Compartir()
+        form.Show()
+    End Sub
+    'Sesión Cloud Privada
+    Private Sub ToolStripButton28_Click(sender As Object, e As EventArgs) Handles ToolStripButton28.Click
+        AccesoPrivado.Show()
+    End Sub
+    'Liberar memoria (libera todas las imágenes guardadas para hacer retroceso)
+    Private Sub ToolStripButton29_Click(sender As Object, e As EventArgs) Handles ToolStripButton29.Click
+        Dim resultado = MessageBox.Show("Esta opción borrará todo el historial de imágenes y no podrá ser recuperado. Además, es posible que durante unos segundos se ralentice el sistema. ¿Está seguro de querer hacerlo?", "Apolo threads", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+        If resultado = Windows.Forms.DialogResult.Yes Then
+            Dim objeto As New TratamientoImagenes
+            objeto.LiberarImagenes()
+            'forzamos la actualización del tabpage 2 (registro imágenes). Los histogramas no son necesarios puesto que nos quedamos con la imagen actual
+            TabControl1_SelectedIndexChanged(sender, e)
+            ClearMemory()
+        End If
+    End Sub
+
+    'Notificar error
+    Private Sub ToolStripButton30_Click(sender As Object, e As EventArgs) Handles ToolStripButton30.Click
+        NotificarErrorAyuda.Show()
+    End Sub
+    'Colabora
+    Private Sub ToolStripButton31_Click(sender As Object, e As EventArgs) Handles ToolStripButton31.Click
+        Colabora.Show()
     End Sub
 #End Region
 
@@ -1327,64 +1543,65 @@ Public Class Principal
 
     End Sub
     Sub zoomFijo(ByVal PicSecundario As PictureBox, ByVal x As Integer, ByVal y As Integer, ByVal valorZoom As Decimal, ByVal valorPicturebox As Size, Optional ByVal puntero As Boolean = False, Optional colorPuntero As Color = Nothing, Optional tamanoPuntero As Integer = 1)
+        Try
+            Dim xResta, yResta As Single
+            PicSecundario.Size = valorPicturebox
+            valorZoom = Decimal.Round(valorZoom, 2)
+            xResta = CInt((PicSecundario.Width / 2) / valorZoom)
+            yResta = CInt((PicSecundario.Height / 2) / valorZoom)
 
-        Dim xResta, yResta As Single
-        PicSecundario.Size = valorPicturebox
-        valorZoom = Decimal.Round(valorZoom, 2)
-        xResta = CInt((PicSecundario.Width / 2) / valorZoom)
-        yResta = CInt((PicSecundario.Height / 2) / valorZoom)
-
-        Dim bmpAux As New Bitmap(PictureBox1.Image)
+            Dim bmpAux As New Bitmap(PictureBox1.Image)
 
 
-        If x > 0 And y > 0 Then
-            PicSecundario.Visible = True
+            If x > 0 And y > 0 Then
+                PicSecundario.Visible = True
 
-            'Solucionamos problema con esquinas
-            If x > bmpAux.Width - xResta Then
-                x = bmpAux.Width - xResta
+                'Solucionamos problema con esquinas
+                If x > bmpAux.Width - xResta Then
+                    x = bmpAux.Width - xResta
+                End If
+                If y > bmpAux.Height - yResta Then
+                    y = bmpAux.Height - yResta
+                End If
+                If x - xResta < 0 Then
+                    x = xResta
+                End If
+
+                If y - yResta < 0 Then
+                    y = yResta
+                End If
+
+                'Creamos el bitmap con el tamaño elegido
+                Dim bmp As Bitmap = bmpAux.Clone(New Rectangle(New Point(x - xResta, y - yResta), New Size(xResta * 2, yResta * 2)), Imaging.PixelFormat.DontCare)
+                Dim bmpSalida As New Bitmap(bmp, PicSecundario.Width, PicSecundario.Height)
+                PicSecundario.Image = bmpSalida
+
+
+                'Con esto forzamos la recolección de basura y destruimos el bitmap
+                'El uso no es aconsejable pero imprescindible en este caso
+                GC.Collect()
+                GC.WaitForPendingFinalizers()
+                PictureBox1.Refresh()
+                PicSecundario.Refresh()
+
+                'Pintamos el puntero
+                If puntero = True Then
+                    'Si el puntero no tiene color lo ponemos rojo
+                    If colorPuntero = Nothing Then colorPuntero = Color.Red
+                    'Calculamos el lado del cuadrado
+                    Dim lado As Integer = tamanoPuntero * 2
+                    Dim Picture1 As Graphics = PictureBox1.CreateGraphics
+                    Picture1.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(x - tamanoPuntero, y - tamanoPuntero), New Size(lado, lado)))
+                    Dim Picture2 As Graphics = PicSecundario.CreateGraphics
+                    Picture2.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(PicSecundario.Width / 2 - tamanoPuntero, PicSecundario.Height / 2 - tamanoPuntero), New Size(lado, lado)))
+                End If
+
+                'Si mostramos el label con el zoom
+                Label3.Visible = True
+                Label3.Text = "Zoom x" & valorZoom
             End If
-            If y > bmpAux.Height - yResta Then
-                y = bmpAux.Height - yResta
-            End If
-            If x - xResta < 0 Then
-                x = xResta
-            End If
-
-            If y - yResta < 0 Then
-                y = yResta
-            End If
-
-            'Creamos el bitmap con el tamaño elegido
-            Dim bmp As Bitmap = bmpAux.Clone(New Rectangle(New Point(x - xResta, y - yResta), New Size(xResta * 2, yResta * 2)), Imaging.PixelFormat.DontCare)
-            Dim bmpSalida As New Bitmap(bmp, PicSecundario.Width, PicSecundario.Height)
-            PicSecundario.Image = bmpSalida
-
-
-            'Con esto forzamos la recolección de basura y destruimos el bitmap
-            'El uso no es aconsejable pero imprescindible en este caso
-            GC.Collect()
-            GC.WaitForPendingFinalizers()
-            PictureBox1.Refresh()
-            PicSecundario.Refresh()
-
-            'Pintamos el puntero
-            If puntero = True Then
-                'Si el puntero no tiene color lo ponemos rojo
-                If colorPuntero = Nothing Then colorPuntero = Color.Red
-                'Calculamos el lado del cuadrado
-                Dim lado As Integer = tamanoPuntero * 2
-                Dim Picture1 As Graphics = PictureBox1.CreateGraphics
-                Picture1.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(x - tamanoPuntero, y - tamanoPuntero), New Size(lado, lado)))
-                Dim Picture2 As Graphics = PicSecundario.CreateGraphics
-                Picture2.DrawRectangle(New Pen(colorPuntero, 1), New Rectangle(New Point(PicSecundario.Width / 2 - tamanoPuntero, PicSecundario.Height / 2 - tamanoPuntero), New Size(lado, lado)))
-            End If
-
-            'Si mostramos el label con el zoom
-            Label3.Visible = True
-            Label3.Text = "Zoom x" & valorZoom
-        End If
-
+        Catch
+        End Try
 
     End Sub
 
@@ -1595,10 +1812,14 @@ Public Class Principal
         If ModifierKeys = Keys.Shift Then 'Si pulsa control al dar a la rueda
             If e.Delta > 0 And My.Settings.ValorZoom <= 5 Then
                 My.Settings.ValorZoom += 0.2
-                zoomInteractivo(PictureBox3, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoom, New Size(My.Settings.TamanoVentanaZoom, My.Settings.TamanoVentanaZoom), My.Settings.DistanciaPunteroZoom, My.Settings.PunteroZoom, My.Settings.ColorPunteroZoom, My.Settings.TamanoPunteroZoom, My.Settings.EtiquetaZoom)
+                Dim tamañoBarra As Integer = 0
+                If ToolStrip1.Visible = True Then tamañoBarra = ToolStrip1.Height
+                zoomInteractivo(PictureBox3, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + tamañoBarra + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoom, New Size(My.Settings.TamanoVentanaZoom, My.Settings.TamanoVentanaZoom), My.Settings.DistanciaPunteroZoom, My.Settings.PunteroZoom, My.Settings.ColorPunteroZoom, My.Settings.TamanoPunteroZoom, My.Settings.EtiquetaZoom)
             ElseIf My.Settings.ValorZoom > 0.4 Then 'No puede ser menor
                 My.Settings.ValorZoom -= 0.2
-                zoomInteractivo(PictureBox3, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoom, New Size(My.Settings.TamanoVentanaZoom, My.Settings.TamanoVentanaZoom), My.Settings.DistanciaPunteroZoom, My.Settings.PunteroZoom, My.Settings.ColorPunteroZoom, My.Settings.TamanoPunteroZoom, My.Settings.EtiquetaZoom)
+                Dim tamañoBarra As Integer = 0
+                If ToolStrip1.Visible = True Then tamañoBarra = ToolStrip1.Height
+                zoomInteractivo(PictureBox3, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + tamañoBarra + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoom, New Size(My.Settings.TamanoVentanaZoom, My.Settings.TamanoVentanaZoom), My.Settings.DistanciaPunteroZoom, My.Settings.PunteroZoom, My.Settings.ColorPunteroZoom, My.Settings.TamanoPunteroZoom, My.Settings.EtiquetaZoom)
             End If
         End If
         'Aumenta el zoom interactivo con la rueda del ratón en el zoom fijo (del tabpage 2)
@@ -1606,11 +1827,15 @@ Public Class Principal
             If e.Delta > 0 And My.Settings.ValorZoomFijo <= 5 Then
                 My.Settings.ValorZoomFijo += 0.2
                 NumZoom.Value = My.Settings.ValorZoomFijo 'ACtualizamosd el label
-                zoomFijo(PictureBox4, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoomFijo, New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo), My.Settings.PunteroZoomfijo, My.Settings.ColorPunterZoomFijo, My.Settings.TamanoPunteroZoomFijo)
+                Dim tamañoBarra As Integer = 0
+                If ToolStrip1.Visible = True Then tamañoBarra = ToolStrip1.Height
+                zoomFijo(PictureBox4, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + tamañoBarra + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoomFijo, New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo), My.Settings.PunteroZoomfijo, My.Settings.ColorPunterZoomFijo, My.Settings.TamanoPunteroZoomFijo)
             ElseIf My.Settings.ValorZoomFijo > 1 Then 'No puede ser menor
                 My.Settings.ValorZoomFijo -= 0.2
+                Dim tamañoBarra As Integer = 0
+                If ToolStrip1.Visible = True Then tamañoBarra = ToolStrip1.Height
                 NumZoom.Value = My.Settings.ValorZoomFijo
-                zoomFijo(PictureBox4, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + ToolStrip1.Height + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoomFijo, New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo), My.Settings.PunteroZoomfijo, My.Settings.ColorPunterZoomFijo, My.Settings.TamanoPunteroZoomFijo)
+                zoomFijo(PictureBox4, e.X - 2 + Panel1.HorizontalScroll.Value, e.Y - (MenuStrip1.Height + tamañoBarra + 2) + Panel1.VerticalScroll.Value, My.Settings.ValorZoomFijo, New Size(My.Settings.TamanoPictuZoomfijo, My.Settings.TamanoPictuZoomfijo), My.Settings.PunteroZoomfijo, My.Settings.ColorPunterZoomFijo, My.Settings.TamanoPunteroZoomFijo)
             End If
         End If
     End Sub
@@ -1655,7 +1880,25 @@ Public Class Principal
         objetoTratamiento.ActualizarImagen(bmpAjustado)
         Panel1.AutoScroll = False 'Quitamos los scrolls para que se vea la imagen completa
     End Sub
-
+    'Captura de pantalla
+    Private Sub CapturaDePantallaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CapturaDePantallaToolStripMenuItem.Click
+        If BackgroundWorker2.IsBusy = False Then
+            Dim bmpCaptura As Bitmap
+            bmpCaptura = objetoTratamiento.capturarPantalla(False)
+            PictureBox1.Image = bmpCaptura
+            refrescar()
+        End If
+    End Sub
+    'Copiar
+    Private Sub CopiarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopiarToolStripMenuItem.Click
+        My.Computer.Clipboard.SetImage(PictureBox1.Image)
+    End Sub
+    'Pegar
+    Private Sub PegarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PegarToolStripMenuItem.Click
+        If My.Computer.Clipboard.ContainsImage() Then
+            PictureBox1.Image = objetoTratamiento.ActualizarImagen(My.Computer.Clipboard.GetImage(), True)
+        End If
+    End Sub
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker2.DoWork
         Dim bmp As New Bitmap(PictureBox2.Image)
         Dim bmp2 As New Bitmap(bmp, bmp.Width * objetoTratamiento.Zoom, bmp.Height * objetoTratamiento.Zoom)
@@ -1669,7 +1912,7 @@ Public Class Principal
 #End Region
 
 
-  
+
 #Region "Modificar cambios zoom fijo.. Tabpage 2"
     Private Sub chbPuntero_CheckedChanged(sender As Object, e As EventArgs) Handles chbPuntero.CheckedChanged
         If chbPuntero.Checked = True Then
@@ -1715,13 +1958,22 @@ Public Class Principal
     End Sub
 #End Region
 
-   
 
-  
 
-     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
- 
-
-   
 End Class

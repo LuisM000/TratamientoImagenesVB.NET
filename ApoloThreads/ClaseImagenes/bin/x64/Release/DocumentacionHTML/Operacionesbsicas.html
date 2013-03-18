@@ -1,0 +1,214 @@
+﻿<html>
+	
+<head>
+	<title>Operaciones b&aacute;sicas</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.8.0.560">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Apolo. Documentación de ayuda..html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Operacionesbsicas");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Operaciones b&aacute;sicas</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Manualdeusuario.html">Manual de usuario</a> &rsaquo;&rsaquo; <a href="Referenciadefunciones.html">Referencia de funciones</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Referenciadefunciones.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Edicin.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Operacionesbsicaspersonalizadas.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps3"><span class="rvts0"><span class="rvts11">Operaciones básicas</span></span></h1>
+<p class="rvps4"><span class="rvts7">Tercer elemento de la barra de herramientas. A continuación, se muestra una imagen.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">1</span><span class="rvts18">. Menú de operaciones básicas.</span></p>
+<p class="rvps17"><img width="180" height="220" alt="" style="padding : 1px;" src="lib/NewItem163.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18"><br/></span></p>
+<p class="rvps15"><span class="rvts7">En este menú puede encontrar las funciones básicas para modificar en una imagen. En esta guía, vamos a utilizar de ejemplo la mítica imagen de Lena, a continuación la podemos ver en su estado original.</span></p>
+<p class="rvps15"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">2</span><span class="rvts18">. Imagen original de Lena.</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/NewItem162.png"/></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts11"><br/></span></p>
+<hr style="height: 1px; color : #000000;  background-color : #000000; border-width : 0px;"/>
+<h1 class="rvps3"><a name="blancoNegro"></a>
+<span class="rvts0"><span class="rvts12">Blanco y negro</span></span></h1>
+<p class="rvps4"><span class="rvts7">Binariza la imagen, es decir, cada píxel lo pasa a color blanco o negro. Esta función es muy sencilla, simplemente calcula la media de color para cada píxel (</span><span class="rvts15">(ColorRojo+ColorVerde+ColorAzu)l/3</span><span class="rvts7">) y en función del valor de salida de esta media, el píxel pasa a ser blanco o negro. Si la media es mayor o igual de 128, el píxel pasa a tener en sus tres canales (rojo, verde, azul) un valor de 255 &nbsp;(blanco), en caso contrario pasa a tener un valor 0 en todos sus canales (negro).</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">3</span><span class="rvts18">. Imagen de Lena en blanco y negro.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem161.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">La imagen se ha binarizado y todos los valores son o negros o blancos.</span></p>
+<p class="rvps4"><a name="grises"></a>
+<span class="rvts12">Escala de grises</span></p>
+<p class="rvps4"><span class="rvts7">Con esta función se pasa a tener una imagen en escala de grises, es decir, cada píxel tiene un tono de gris. Los tonos de gris se caracterizan por tener el mismo valor en todos los canales (</span><span class="rvts15">RGB</span><span class="rvts7">), siendo el menor valor el color negro (</span><span class="rvts28">0,0,0</span><span class="rvts7">) y el mayor en blanco (</span><span class="rvts15">255,255,255</span><span class="rvts7">).</span></p>
+<p class="rvps4"><span class="rvts7">Para aplicar esta función hay que calcular, para cada píxel, la media de sus tres componentes (RGB) y dicha media aplicarla a los tres canales en el píxel tratado. Si se tiene un píxel con valores; Rojo = 100, Verde = 200, Azul= 50, se debe calcular la media (</span><span class="rvts15">(100+200+50)/3</span><span class="rvts7">) y aplicar el valor resultante a los tres canales, por lo tanto, el píxel resultante tendría los siguientes valores para cada canal; Rojo = (100+200+50)/3, Verde = (100+200+50)/3, Azul = (100+200+50)/3, haciendo el cálculo sería, Rojo = 116, Verde = 116, Azul = 116.</span></p>
+<p class="rvps4"><span class="rvts7">En la siguiente ilustración, se puede observar la imagen de Lena en escala de grises.</span></p>
+<h3 class="rvps23"><span class="rvts0"><span class="rvts18"><br/></span></span></h3>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">4</span><span class="rvts18">. Imagen de Lena en escala de grises.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem160.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">La imagen ha pasado de tener diferentes tonalidades a únicamente 256 tonos de gris.</span></p>
+<p class="rvps4"><a name="invertir"></a>
+<span class="rvts12">Invertir colores (RGB/Rojo/Verde/Azul)</span></p>
+<p class="rvps4"><span class="rvts7">Esta función calcula la diferencia entre 255 (valor máximo de un píxel) y el valor actual, es decir, </span><span class="rvts15">invierte los colores</span><span class="rvts7">. Un ejemplo claro es tomar un píxel de color blanco, cuyos valores serían (para los canales RGB) de 255. Si invertimos el color, hay que restar 255 menos el valor del píxel actual que como es 255, daría un resultado de 0 y el píxel pasaría a ser negro.</span></p>
+<p class="rvps4"><span class="rvts7">Tiene 4 variantes esta función, </span><span class="rvts15">RGB</span><span class="rvts7">, </span><span class="rvts15">Rojo</span><span class="rvts7">, </span><span class="rvts15">Verde</span><span class="rvts7">, </span><span class="rvts15">Azul</span><span class="rvts27">.</span></p>
+<ul style="text-indent: 0px; margin-left: 47px; list-style-position: outside;">
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts21">RGB</span><span class="rvts7">: Invierte los colores en los 3 canales RGB.</span></li>
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Rojo</span><span class="rvts7">: Invierte sólo el canal rojo manteniendo el verde y azul con su valor original.</span></li>
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Verde</span><span class="rvts7">: Invierte sólo el canal verde manteniendo el rojo y azul con su valor original.</span></li>
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Azul</span><span class="rvts7">: Invierte sólo el canal azul manteniendo el rojo y verde con su valor original.</span></li>
+</ul>
+<p class="rvps11"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">5</span><span class="rvts18">. Lena con canales RGB invertidos.</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/NewItem159.png"/></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts27"><br/></span></p>
+<p class="rvps15"><span class="rvts7">Los valores de los colores se han invertido y lo que antes era oscuro ahora es claro.</span></p>
+<h1 class="rvps3"><a name="sepia"></a>
+<span class="rvts0"><span class="rvts12">Sepia</span></span></h1>
+<p class="rvps4"><span class="rvts7">Crea una imagen modificando sus píxeles pasando a tener tonos sepia. Para poder realizar esta transformación aplica a cada canal un valor calculado en función de unos pesos específicos. </span><br/><span class="rvts7">Rojo = Rojo * Peso1 + Verde * Peso2 + Azul * Peso3</span></p>
+<p class="rvps4"><span class="rvts7">Verde = Rojo * Peso4 + Verde * Peso5 + Azul * Peso6</span></p>
+<p class="rvps4"><span class="rvts7">Azul = Rojo * Peso7 + Verde * Peso8 + Azul * Peso9</span></p>
+<p class="rvps4"><span class="rvts7">Es recomendable que la suma de los pesos para cada color se igual a 1, por ejemplo, para el canal Rojo la suma de Peso1 + Peso2 + Peso3 debería ser igual a 1 si no se quiere alterar demasiado los valores. No obstante es opcional, se hace una comprobación previa para determinar que el valor sea correcto y no mayor de 255.</span></p>
+<p class="rvps4"><span class="rvts7">Los valores para los tonos sepia son los recomendados por Microsoft y serían, 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">6</span><span class="rvts18">. Lena en tonos sepia.</span></p>
+<p class="rvps17"><img alt="" style="padding : 1px;" src="lib/NewItem158.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts27"><br/></span></p>
+<p class="rvps4"><span class="rvts7">La imagen ahora tiene únicamente tonos sepia.</span></p>
+<p class="rvps4"><a name="filtrosBasicos"></a>
+<span class="rvts12">Filtros básicos (Rojo/Verde/Azul)</span></p>
+<p class="rvps4"><span class="rvts7">Estos filtros calculan la media para cada píxel (</span><span class="rvts15">(ColorRojo+ColorVerde+ColorAzu)l/3</span><span class="rvts7">) y el valor resultante lo asignan al canal al que se quiere aplicar el filtro y valor 0 para los dos canales restantes.</span></p>
+<p class="rvps15"><span class="rvts7"> Tiene 3 variantes, filtro rojo, filtro verde y filtro azul:</span></p>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Filtro rojo</span><span class="rvts7">: Calcula la media, para cada píxel, de los tres canales y asigna el resultado al canal rojo, mientras que al canal verde y azul les asigna valor 0.</span></li>
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Filtro verde</span><span class="rvts7">: Calcula la media, para cada píxel, de los tres canales y asigna el resultado al canal verde, mientras que al canal rojo y azul les asigna valor 0.</span></li>
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Filtro azul</span><span class="rvts7">: Calcula la media, para cada píxel, de los tres canales y asigna el resultado al canal azul, mientras que al canal verde y rojo les asigna valor 0.</span></li>
+</ul>
+<p class="rvps24"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">7</span><span class="rvts18">. Imagen de Lena con un filtro rojo.</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/NewItem157.png"/></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts29"><br/></span></p>
+<p class="rvps15"><span class="rvts7">Se aprecia que la imagen ahora únicamente tiene colores rojos, es algo así como una escala de grises pero sólo de rojos.</span></p>
+<h1 class="rvps3"><a name="RGB a"></a>
+<span class="rvts0"><span class="rvts12">RGB a… (BGR/GRB/RBG)</span></span></h1>
+<p class="rvps4"><span class="rvts7">Esta función intercambia, para cada píxel, el valor de sus canales. Tiene tres variantes, BGR, GRB, RBG:</span></p>
+<ul style="text-indent: 0px; margin-left: 47px; list-style-position: outside;">
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts21">RGB a BGR</span><span class="rvts7">: Para cada píxel, el canal rojo pasa a tener el valor del canal azul, el canal azul pasa a tener el valor del canal rojo, y el canal verde mantiene su valor.</span></li>
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts21">RGB a GRB</span><span class="rvts7">: Para cada píxel, el canal rojo pasa a tener el valor del canal verde, el canal verde pasa a tener el valor del canal rojo, y el canal azul mantiene su valor.</span></li>
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts21">RGB a RBG</span><span class="rvts7">: Para cada píxel, el canal verde pasa a tener el valor del canal azul, el canal azul pasa a tener el valor del canal verde, y el canal rojo mantiene su valor.</span></li>
+</ul>
+<p class="rvps11"><span class="rvts7"><br/></span></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps17"><span class="rvts18">Ilustración </span><span class="rvts26">8</span><span class="rvts30">.</span><span class="rvts18"> Imagen de Lena con el canal RGB a RBG</span><span class="rvts30">.</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/NewItem156.png"/></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts27"><br/></span></p>
+<p class="rvps15"><span class="rvts7">Como puede observarse la imagen se ha tornado a tonos morados.</span></p>
+<h1 class="rvps3"><a name="Histogramas"></a>
+<span class="rvts0"><span class="rvts12">Histogramas (Detallado/Todos)</span></span></h1>
+<p class="rvps15"><span class="rvts7">Muestra una serie de gráficas con el histograma acumulado de la imagen. El histograma acumulado, no es más que el número de píxeles que tiene un determinado valor. Por ejemplo, para el canal rojo y el valor 50, sería el número de píxeles que tiene valor 50 en el canal rojo.</span></p>
+<p class="rvps21"><span class="rvts7">Dentro de los histogramas se puede seleccionar 5 formas de visualización: área (</span><span class="rvts15">spline</span><span class="rvts7">), área, columnas, línea (</span><span class="rvts15">spline</span><span class="rvts7">), línea. Además, el tamaño del histograma se adapta al tamaño de la ventana, es decir, si se quiere visualizar el histograma en un gran tamaño, basta con maximizar la ventana y se adaptará para que se vea más grande.</span><br/><span class="rvts7">En la gráfica se muestra el valor del píxel en el eje de las x, y el número de píxeles en el eje de las y.</span></p>
+<p class="rvps15"><span class="rvts7">Hay dos modalidades de visualizarlos:</span></p>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Detallado</span><span class="rvts7">: Muestra el histograma individual, pudiendo seleccionar el canal rojo, verde, azul, escala de grises (media de los canales RGB) y canal alfa. </span></li>
+</ul>
+<p class="rvps24"><span class="rvts7"><br/></span></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts18">Ilustración </span><span class="rvts26">9</span><span class="rvts18">. Histograma detallado canal rojo.</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/NewItem155.png"/></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts27"><br/></span></p>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Todos</span><span class="rvts7">: muestra los histogramas para los canales rojo, verde, azul y escala de grises en una misma ventana.</span></li>
+</ul>
+<p class="rvps24"><span class="rvts7"><br/></span></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts18">Ilustración </span><span class="rvts26">10</span><span class="rvts18">. Todos los histogramas.</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/NewItem154.png"/></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts27"><br/></span></p>
+<h1 class="rvps3"><a name="Redimensionar"></a>
+<span class="rvts0"><span class="rvts12">Redimensionar</span></span></h1>
+<p class="rvps4"><span class="rvts7">Esta función posibilita cambiar el ancho y alto de una imagen. Esta modificación se permite hacer asignando directamente el ancho y alto o el porcentaje de ancho/alto que se quiere aumentar o disminuir.</span></p>
+<p class="rvps4"><span class="rvts7">Además, incluye la capacidad para seleccionar el tipo de interpolación con el que se quiere realizar el escalado de la imagen. Los diferentes tipos de interpolación son:</span></p>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Default</span><span class="rvts7">: especifica el modo predeterminado.</span></li>
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Low</span><span class="rvts7">: especifica interpolación de calidad baja.</span></li>
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">High</span><span class="rvts7">: especifica interpolación de calidad alta.</span></li>
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Bilinear</span><span class="rvts7">: especifica interpolación bilineal. No se ha aplicado ningún filtro previo. Este modo no es adecuado para comprimir una imagen hasta por debajo de un 50% de su tamaño original.</span></li>
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">Bicubic</span><span class="rvts7">: especifica interpolación bicúbica. No se ha aplicado ningún filtro previo. Este modo no es adecuado para comprimir una imagen hasta por debajo de un 25% de su tamaño original.</span></li>
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">NearestNeighbor</span><span class="rvts7">: especifica interpolación de elemento más cercano.</span></li>
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">HighQualityBilinear</span><span class="rvts7">: especifica una interpolación bilineal de gran calidad. Se aplica un filtro previo para garantizar una compresión de gran calidad.</span></li>
+<li class="rvps24" style="margin-left: 0; text-indent: 0px"><span class="rvts21">HighQualityBicubic</span><span class="rvts7">: especifica una interpolación bicúbica de gran calidad. Se aplica un filtro previo para garantizar una compresión de gran calidad. Este modo genera imágenes transformadas de la más alta calidad.</span></li>
+</ul>
+<p class="rvps24"><span class="rvts7"><br/></span></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts18">Ilustración </span><span class="rvts26">11</span><span class="rvts18">. Redimensionar imagen.</span></p>
+<p class="rvps22"><img alt="" style="padding : 1px;" src="lib/NewItem164.png"/></p>
+<p class="rvps22"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps22"><span class="rvts18"><br/></span></p>
+<p></p>
+<p class="rvps8"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/help-authoring-tool">Free help authoring environment</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyleft 2013  por Luis Marcos Rivera.</div>
+		</div>
+	</body>
+	
+</html>
+

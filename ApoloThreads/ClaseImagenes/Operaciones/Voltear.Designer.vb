@@ -73,7 +73,7 @@ Partial Class Voltear
         Me.AcceptButton = Me.Button5
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(258, 246)
+        Me.ClientSize = New System.Drawing.Size(253, 232)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Label1)

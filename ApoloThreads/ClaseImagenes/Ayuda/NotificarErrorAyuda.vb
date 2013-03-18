@@ -115,7 +115,7 @@ Public Class NotificarErrorAyuda
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
         If CheckBox1.Checked = True Then
             Dim objetoTratamiento As New Apolo.TratamientoImagenes
-            PictureBox1.Image = objetoTratamiento.capturarPantalla()
+            PictureBox1.Image = objetoTratamiento.capturarPantalla(True)
             Timer1.Enabled = True
         Else
             Timer2.Enabled = True
@@ -150,7 +150,7 @@ Public Class NotificarErrorAyuda
 
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
         Dim objetoTratamiento As New Apolo.TratamientoImagenes
-        PictureBox1.Image = objetoTratamiento.capturarPantalla()
+        PictureBox1.Image = objetoTratamiento.capturarPantalla(True)
     End Sub
     Private Sub PictureBox2_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox2.MouseEnter
         Me.Cursor = Cursors.Hand

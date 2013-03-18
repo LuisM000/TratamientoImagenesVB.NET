@@ -26,13 +26,26 @@ Partial Class TAfinPers
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TAfinPers))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AbrirImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GuardarImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SalirAlProgramaPrincipalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EnlazarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReconstruirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReconstruirImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PropiedadesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AbrirImagenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GuardarImagenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SalirAlProgramaPrincipalToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.interpolar = New System.Windows.Forms.Label()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -74,34 +87,21 @@ Partial Class TAfinPers
         Me.TextBox11 = New System.Windows.Forms.TextBox()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel4 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel4 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.AbrirImagenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GuardarImagenToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SalirAlProgramaPrincipalToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.AbrirImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GuardarImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SalirAlProgramaPrincipalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReconstruirImagenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PropiedadesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.interpolar = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -120,10 +120,31 @@ Partial Class TAfinPers
         Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.ArchivoToolStripMenuItem.Text = "Archivo"
         '
+        'AbrirImagenToolStripMenuItem
+        '
+        Me.AbrirImagenToolStripMenuItem.Image = CType(resources.GetObject("AbrirImagenToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.AbrirImagenToolStripMenuItem.Name = "AbrirImagenToolStripMenuItem"
+        Me.AbrirImagenToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
+        Me.AbrirImagenToolStripMenuItem.Text = "Abrir imagen"
+        '
+        'GuardarImagenToolStripMenuItem
+        '
+        Me.GuardarImagenToolStripMenuItem.Image = CType(resources.GetObject("GuardarImagenToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.GuardarImagenToolStripMenuItem.Name = "GuardarImagenToolStripMenuItem"
+        Me.GuardarImagenToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
+        Me.GuardarImagenToolStripMenuItem.Text = "Guardar imagen"
+        '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
         Me.ToolStripMenuItem3.Size = New System.Drawing.Size(209, 6)
+        '
+        'SalirAlProgramaPrincipalToolStripMenuItem
+        '
+        Me.SalirAlProgramaPrincipalToolStripMenuItem.Image = CType(resources.GetObject("SalirAlProgramaPrincipalToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.SalirAlProgramaPrincipalToolStripMenuItem.Name = "SalirAlProgramaPrincipalToolStripMenuItem"
+        Me.SalirAlProgramaPrincipalToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
+        Me.SalirAlProgramaPrincipalToolStripMenuItem.Text = "Salir al programa principal"
         '
         'EnlazarToolStripMenuItem
         '
@@ -132,12 +153,33 @@ Partial Class TAfinPers
         Me.EnlazarToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
         Me.EnlazarToolStripMenuItem.Text = "Enlazar"
         '
+        'EnviarImagenAlProgramaPrincipalToolStripMenuItem
+        '
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem.Image = CType(resources.GetObject("EnviarImagenAlProgramaPrincipalToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem.Name = "EnviarImagenAlProgramaPrincipalToolStripMenuItem"
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem.Text = "Enviar imagen al programa principal"
+        '
         'ReconstruirToolStripMenuItem
         '
         Me.ReconstruirToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReconstruirImagenToolStripMenuItem, Me.PropiedadesToolStripMenuItem})
         Me.ReconstruirToolStripMenuItem.Name = "ReconstruirToolStripMenuItem"
         Me.ReconstruirToolStripMenuItem.Size = New System.Drawing.Size(79, 20)
         Me.ReconstruirToolStripMenuItem.Text = "Reconstruir"
+        '
+        'ReconstruirImagenToolStripMenuItem
+        '
+        Me.ReconstruirImagenToolStripMenuItem.Image = CType(resources.GetObject("ReconstruirImagenToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ReconstruirImagenToolStripMenuItem.Name = "ReconstruirImagenToolStripMenuItem"
+        Me.ReconstruirImagenToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.ReconstruirImagenToolStripMenuItem.Text = "Reconstruir imagen"
+        '
+        'PropiedadesToolStripMenuItem
+        '
+        Me.PropiedadesToolStripMenuItem.Image = CType(resources.GetObject("PropiedadesToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.PropiedadesToolStripMenuItem.Name = "PropiedadesToolStripMenuItem"
+        Me.PropiedadesToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.PropiedadesToolStripMenuItem.Text = "Propiedades"
         '
         'SplitContainer1
         '
@@ -166,10 +208,56 @@ Partial Class TAfinPers
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(266, 98)
         '
+        'AbrirImagenToolStripMenuItem1
+        '
+        Me.AbrirImagenToolStripMenuItem1.Image = CType(resources.GetObject("AbrirImagenToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.AbrirImagenToolStripMenuItem1.Name = "AbrirImagenToolStripMenuItem1"
+        Me.AbrirImagenToolStripMenuItem1.Size = New System.Drawing.Size(265, 22)
+        Me.AbrirImagenToolStripMenuItem1.Text = "Abrir imagen"
+        '
+        'GuardarImagenToolStripMenuItem1
+        '
+        Me.GuardarImagenToolStripMenuItem1.Image = CType(resources.GetObject("GuardarImagenToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.GuardarImagenToolStripMenuItem1.Name = "GuardarImagenToolStripMenuItem1"
+        Me.GuardarImagenToolStripMenuItem1.Size = New System.Drawing.Size(265, 22)
+        Me.GuardarImagenToolStripMenuItem1.Text = "Guardar imagen"
+        '
+        'EnviarImagenAlProgramaPrincipalToolStripMenuItem1
+        '
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Image = CType(resources.GetObject("EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Name = "EnviarImagenAlProgramaPrincipalToolStripMenuItem1"
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Size = New System.Drawing.Size(265, 22)
+        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Text = "Enviar imagen al programa principal"
+        '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(262, 6)
+        '
+        'SalirAlProgramaPrincipalToolStripMenuItem1
+        '
+        Me.SalirAlProgramaPrincipalToolStripMenuItem1.Image = CType(resources.GetObject("SalirAlProgramaPrincipalToolStripMenuItem1.Image"), System.Drawing.Image)
+        Me.SalirAlProgramaPrincipalToolStripMenuItem1.Name = "SalirAlProgramaPrincipalToolStripMenuItem1"
+        Me.SalirAlProgramaPrincipalToolStripMenuItem1.Size = New System.Drawing.Size(265, 22)
+        Me.SalirAlProgramaPrincipalToolStripMenuItem1.Text = "Salir al programa principal"
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox2.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(788, 669)
+        Me.PictureBox2.TabIndex = 1
+        Me.PictureBox2.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(788, 669)
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
         '
         'Panel2
         '
@@ -183,6 +271,15 @@ Partial Class TAfinPers
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(262, 160)
         Me.Panel2.TabIndex = 96
+        '
+        'interpolar
+        '
+        Me.interpolar.AutoSize = True
+        Me.interpolar.Location = New System.Drawing.Point(236, 51)
+        Me.interpolar.Name = "interpolar"
+        Me.interpolar.Size = New System.Drawing.Size(19, 13)
+        Me.interpolar.TabIndex = 76
+        Me.interpolar.Text = "(1)"
         '
         'CheckBox1
         '
@@ -577,12 +674,17 @@ Partial Class TAfinPers
         '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2, Me.ToolStripStatusLabel3, Me.ToolStripStatusLabel4})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel3, Me.ToolStripStatusLabel2, Me.ToolStripStatusLabel4, Me.ToolStripStatusLabel1})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 675)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(1077, 22)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel4
+        '
+        Me.ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
+        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(0, 17)
         '
         'ToolStripStatusLabel1
         '
@@ -601,108 +703,6 @@ Partial Class TAfinPers
         Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
         Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(77, 17)
         Me.ToolStripStatusLabel3.Text = "Coordenadas"
-        '
-        'ToolStripStatusLabel4
-        '
-        Me.ToolStripStatusLabel4.Name = "ToolStripStatusLabel4"
-        Me.ToolStripStatusLabel4.Size = New System.Drawing.Size(0, 17)
-        '
-        'AbrirImagenToolStripMenuItem1
-        '
-        Me.AbrirImagenToolStripMenuItem1.Image = CType(resources.GetObject("AbrirImagenToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.AbrirImagenToolStripMenuItem1.Name = "AbrirImagenToolStripMenuItem1"
-        Me.AbrirImagenToolStripMenuItem1.Size = New System.Drawing.Size(265, 22)
-        Me.AbrirImagenToolStripMenuItem1.Text = "Abrir imagen"
-        '
-        'GuardarImagenToolStripMenuItem1
-        '
-        Me.GuardarImagenToolStripMenuItem1.Image = CType(resources.GetObject("GuardarImagenToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.GuardarImagenToolStripMenuItem1.Name = "GuardarImagenToolStripMenuItem1"
-        Me.GuardarImagenToolStripMenuItem1.Size = New System.Drawing.Size(265, 22)
-        Me.GuardarImagenToolStripMenuItem1.Text = "Guardar imagen"
-        '
-        'EnviarImagenAlProgramaPrincipalToolStripMenuItem1
-        '
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Image = CType(resources.GetObject("EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Name = "EnviarImagenAlProgramaPrincipalToolStripMenuItem1"
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Size = New System.Drawing.Size(265, 22)
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem1.Text = "Enviar imagen al programa principal"
-        '
-        'SalirAlProgramaPrincipalToolStripMenuItem1
-        '
-        Me.SalirAlProgramaPrincipalToolStripMenuItem1.Image = CType(resources.GetObject("SalirAlProgramaPrincipalToolStripMenuItem1.Image"), System.Drawing.Image)
-        Me.SalirAlProgramaPrincipalToolStripMenuItem1.Name = "SalirAlProgramaPrincipalToolStripMenuItem1"
-        Me.SalirAlProgramaPrincipalToolStripMenuItem1.Size = New System.Drawing.Size(265, 22)
-        Me.SalirAlProgramaPrincipalToolStripMenuItem1.Text = "Salir al programa principal"
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox2.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(788, 669)
-        Me.PictureBox2.TabIndex = 1
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(788, 669)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
-        'AbrirImagenToolStripMenuItem
-        '
-        Me.AbrirImagenToolStripMenuItem.Image = CType(resources.GetObject("AbrirImagenToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.AbrirImagenToolStripMenuItem.Name = "AbrirImagenToolStripMenuItem"
-        Me.AbrirImagenToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
-        Me.AbrirImagenToolStripMenuItem.Text = "Abrir imagen"
-        '
-        'GuardarImagenToolStripMenuItem
-        '
-        Me.GuardarImagenToolStripMenuItem.Image = CType(resources.GetObject("GuardarImagenToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.GuardarImagenToolStripMenuItem.Name = "GuardarImagenToolStripMenuItem"
-        Me.GuardarImagenToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
-        Me.GuardarImagenToolStripMenuItem.Text = "Guardar imagen"
-        '
-        'SalirAlProgramaPrincipalToolStripMenuItem
-        '
-        Me.SalirAlProgramaPrincipalToolStripMenuItem.Image = CType(resources.GetObject("SalirAlProgramaPrincipalToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.SalirAlProgramaPrincipalToolStripMenuItem.Name = "SalirAlProgramaPrincipalToolStripMenuItem"
-        Me.SalirAlProgramaPrincipalToolStripMenuItem.Size = New System.Drawing.Size(212, 22)
-        Me.SalirAlProgramaPrincipalToolStripMenuItem.Text = "Salir al programa principal"
-        '
-        'EnviarImagenAlProgramaPrincipalToolStripMenuItem
-        '
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem.Image = CType(resources.GetObject("EnviarImagenAlProgramaPrincipalToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem.Name = "EnviarImagenAlProgramaPrincipalToolStripMenuItem"
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem.Size = New System.Drawing.Size(265, 22)
-        Me.EnviarImagenAlProgramaPrincipalToolStripMenuItem.Text = "Enviar imagen al programa principal"
-        '
-        'ReconstruirImagenToolStripMenuItem
-        '
-        Me.ReconstruirImagenToolStripMenuItem.Image = CType(resources.GetObject("ReconstruirImagenToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ReconstruirImagenToolStripMenuItem.Name = "ReconstruirImagenToolStripMenuItem"
-        Me.ReconstruirImagenToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.ReconstruirImagenToolStripMenuItem.Text = "Reconstruir imagen"
-        '
-        'PropiedadesToolStripMenuItem
-        '
-        Me.PropiedadesToolStripMenuItem.Image = CType(resources.GetObject("PropiedadesToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.PropiedadesToolStripMenuItem.Name = "PropiedadesToolStripMenuItem"
-        Me.PropiedadesToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.PropiedadesToolStripMenuItem.Text = "Propiedades"
-        '
-        'interpolar
-        '
-        Me.interpolar.AutoSize = True
-        Me.interpolar.Location = New System.Drawing.Point(236, 51)
-        Me.interpolar.Name = "interpolar"
-        Me.interpolar.Size = New System.Drawing.Size(19, 13)
-        Me.interpolar.TabIndex = 76
-        Me.interpolar.Text = "(1)"
         '
         'TAfinPers
         '
@@ -725,14 +725,14 @@ Partial Class TAfinPers
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -755,8 +755,6 @@ Partial Class TAfinPers
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents ToolStripStatusLabel3 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel4 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
@@ -804,4 +802,6 @@ Partial Class TAfinPers
     Friend WithEvents PropiedadesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents interpolar As System.Windows.Forms.Label
+    Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel3 As System.Windows.Forms.ToolStripStatusLabel
 End Class

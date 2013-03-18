@@ -150,6 +150,19 @@
     <Compile Include="Abrir\AbrirRecurso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Abrir\Bing2.Designer.vb">
+      <DependentUpon>Bing2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Abrir\Bing2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Actualizar.vb" />
+    <Compile Include="Ayuda\AboutBox1.Designer.vb">
+      <DependentUpon>AboutBox1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ayuda\AboutBox1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Cloud\Compartir.Designer.vb">
       <DependentUpon>Compartir.vb</DependentUpon>
     </Compile>
@@ -277,11 +290,6 @@
     <Compile Include="Histogramas\TodosHistogramas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Mascaras\BordesYContornos.Designer.vb">
       <DependentUpon>BordesYContornos.vb</DependentUpon>
     </Compile>
@@ -317,6 +325,11 @@
     </Compile>
     <Compile Include="Ayuda\NotificacionError.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="OperacionesBasicasPersonalizadas\Gamma.Designer.vb">
       <DependentUpon>Gamma.vb</DependentUpon>
@@ -533,6 +546,12 @@
     <EmbeddedResource Include="Abrir\AbrirRecurso.resx">
       <DependentUpon>AbrirRecurso.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abrir\Bing2.resx">
+      <DependentUpon>Bing2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ayuda\AboutBox1.resx">
+      <DependentUpon>AboutBox1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cloud\Compartir.resx">
       <DependentUpon>Compartir.vb</DependentUpon>
     </EmbeddedResource>
@@ -599,12 +618,6 @@
     <EmbeddedResource Include="Histogramas\TodosHistogramas.resx">
       <DependentUpon>TodosHistogramas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="My Project\Resources.resx">
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mascaras\BordesYContornos.resx">
       <DependentUpon>BordesYContornos.vb</DependentUpon>
     </EmbeddedResource>
@@ -619,6 +632,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mascaras\PasoBajo.resx">
       <DependentUpon>PasoBajo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesBasicasPersonalizadas\Gamma.resx">
       <DependentUpon>Gamma.vb</DependentUpon>
@@ -746,9 +764,6 @@
     <None Include="Resources\image_link.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bing.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\bing.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -835,7 +850,84 @@
   <ItemGroup>
     <None Include="Resources\SpidyDerecha.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Contornso.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LenaContorno.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LenaMenosColores.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LenaAfin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LenaAfinr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Voltear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Histogramas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Todohistogramas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mascara.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sobel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BordesContornos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LenaRuido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LenaSombraVidrio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LenaTrozos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\anaglifo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tarta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Comparar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Colabora.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FondoCargando.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FondoCargando%281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bing1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lenagrises.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LenaOriginal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ram.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remastered-lena-512x5121.tif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

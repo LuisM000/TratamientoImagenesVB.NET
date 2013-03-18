@@ -62,7 +62,7 @@ Public Class OperacionesAritmeticas
     End Sub
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
         If RadioButton2.Checked = True Then
-            modificarControles(0, 255, 0)
+            modificarControles(0, 264, 0)
         End If
     End Sub
     Private Sub HScrollBar1_Scroll(sender As Object, e As ScrollEventArgs) Handles HScrollBar1.Scroll

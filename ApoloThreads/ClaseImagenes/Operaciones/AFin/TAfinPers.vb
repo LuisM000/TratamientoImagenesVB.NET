@@ -170,14 +170,11 @@ CUIDADO:
     Private Sub PictureBox1_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PictureBox1.MouseMove
         Dim mouseDownLocation As New Point(e.X, e.Y)
         ToolStripStatusLabel3.Text = "Coordenadas " & mouseDownLocation.X & "," & mouseDownLocation.Y
-        ToolStripStatusLabel4.Text = "Coordenadas " & mouseDownLocation.X & "," & mouseDownLocation.Y
-     
     End Sub
 
     Private Sub PictureBox2_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PictureBox2.MouseMove
         Dim mouseDownLocation As New Point(e.X, e.Y)
         ToolStripStatusLabel3.Text = "Coordenadas " & mouseDownLocation.X & "," & mouseDownLocation.Y
-        ToolStripStatusLabel4.Text = "Coordenadas " & mouseDownLocation.X & "," & mouseDownLocation.Y
     End Sub
 
 

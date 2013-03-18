@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("ClaseImagenes")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("ClaseImagenes")> 
-<Assembly: AssemblyCopyright("Copyright ©  2012")> 
+<Assembly: AssemblyTitle("Apolo")> 
+<Assembly: AssemblyDescription("Programa para tratamiento de imágenes digitales desarrollado en Visual Basic 2012.")> 
+<Assembly: AssemblyCompany("Luis Marcos Rivera")> 
+<Assembly: AssemblyProduct("Apolo")> 
+<Assembly: AssemblyCopyright("Copyright (c) 2013. MIT License")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' mediante el asterisco ('*'), como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("0.9.0.0")> 
+<Assembly: AssemblyFileVersion("0.9.0.0")> 

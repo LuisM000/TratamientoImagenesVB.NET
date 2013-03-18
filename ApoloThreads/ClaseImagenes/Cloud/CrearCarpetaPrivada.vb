@@ -42,7 +42,7 @@ Public Class CrearCarpetaPrivada
     End Sub
     Dim valor As Boolean
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        Dim objetoConexion As New Conexion("ftp://93.188.160.15/", "u398464172", "luis000luis000")
+        Dim objetoConexion As New Conexion("ftp://31.170.164.110/", "u610031309", "luis000luis000")
         valor = objetoConexion.CrearCarpetaPrivada(usuario, contrasena, EmailTextBox.Text)
     End Sub
 
