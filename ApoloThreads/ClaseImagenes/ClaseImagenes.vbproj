@@ -278,6 +278,18 @@
     <Compile Include="Efectos\SombraVidrio.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Herramientas\GrabarSecuencia.Designer.vb">
+      <DependentUpon>GrabarSecuencia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\GrabarSecuencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Herramientas\ImportarSecuencia.Designer.vb">
+      <DependentUpon>ImportarSecuencia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Herramientas\ImportarSecuencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Histogramas\Histogramas.Designer.vb">
       <DependentUpon>Histogramas.vb</DependentUpon>
     </Compile>
@@ -534,6 +546,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Secuencia.vb" />
     <Compile Include="Tratamiento.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -611,6 +624,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Efectos\SombraVidrio.resx">
       <DependentUpon>SombraVidrio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\GrabarSecuencia.resx">
+      <DependentUpon>GrabarSecuencia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Herramientas\ImportarSecuencia.resx">
+      <DependentUpon>ImportarSecuencia.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Histogramas\Histogramas.resx">
       <DependentUpon>Histogramas.vb</DependentUpon>

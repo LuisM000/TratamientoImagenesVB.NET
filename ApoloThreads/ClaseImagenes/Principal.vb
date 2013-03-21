@@ -612,7 +612,10 @@ Public Class Principal
         End Select
     End Sub
      
-   
+    'Grabar secuencia
+    Private Sub GrabarSecuenciaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GrabarSecuenciaToolStripMenuItem.Click
+        GrabarSecuencia.Show()
+    End Sub
 #End Region
 
 #Region "Menú ayuda"
@@ -1974,6 +1977,4 @@ Public Class Principal
 
 
 
-
- 
 End Class

@@ -643,8 +643,10 @@ Namespace Apolo
             Return bmp3
         End Function
         Public Function RGBto(ByVal bmp As Bitmap, Optional ByVal BGR As Boolean = False, Optional ByVal GRB As Boolean = True, Optional ByVal RBG As Boolean = False)
+            Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-            Niveles = nivel(bmp) 'Obtenemos valores
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
             porcentaje(0) = 0 'Actualizar el estado
             Dim TipoEstado As String = "RGB a"
             'Creamos el estado
@@ -668,14 +670,14 @@ Namespace Apolo
                         Azul = Niveles(i, j).G 'Realizamos la modificacion de los colores
                     End If
                     alfa = Niveles(i, j).A
-                    bmp.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, Verde, Azul)) 'Asignamos a bmp los colores invertidos
                 Next
-                porcentaje(0) = ((i * 100) / bmp.Width) 'Actualizamos el estado
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
             Next
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
-            RaiseEvent actualizaBMP(bmp) 'generamos el evento
-            guardarImagen(bmp, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
-            Return bmp
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
         End Function
         Public Function reducircolores(ByVal bmp As Bitmap, ByVal valorcolores As Byte)
             Dim bmp2 = bmp
@@ -3159,6 +3161,7 @@ Namespace Apolo
                 For j = 0 To Niveles.GetUpperBound(1)
                     Rojoaux = Niveles(i, j).R    'Uniendo los valores
                     Rojoaux = (Rojoaux + Niveles2(i, j).R) / 2
+
                     Verdeaux = Niveles(i, j).G
                     Verdeaux = (Verdeaux + Niveles2(i, j).G) / 2
                     Azulaux = Niveles(i, j).B
@@ -4034,6 +4037,129 @@ Namespace Apolo
 
             Return Bm
 
+        End Function
+        Function Secuencia(ByVal datosSecuencia(,) As String, ByVal bmp As Bitmap) As Bitmap
+
+            Dim bmpSalida As Bitmap = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
+
+            For i = 0 To datosSecuencia.GetUpperBound(0)
+                Select Case datosSecuencia(i, 0)
+                    Case "Blanco y negro"
+                        bmpSalida = Me.BlancoNegro(bmpSalida, datosSecuencia(i, 1))
+                    Case "Escala de grises"
+                        bmpSalida = Me.EscalaGrises(bmpSalida, datosSecuencia(i, 1))
+                    Case "Brillo"
+                        bmpSalida = Me.Brillo(bmpSalida, datosSecuencia(i, 1))
+                    Case "Invertir colores (rojo, verde, azul)"
+                        bmpSalida = Me.Invertir(bmpSalida, Convert.ToBoolean(datosSecuencia(i, 1)), Convert.ToBoolean(datosSecuencia(i, 2)), Convert.ToBoolean(datosSecuencia(i, 3)))
+                    Case "Sepia"
+                        bmpSalida = Me.sepia(bmpSalida)
+                    Case "Filtros básicos (rojo, verde, azul)"
+                        bmpSalida = Me.filtrosBasicos(bmpSalida, Convert.ToBoolean(datosSecuencia(i, 1)), Convert.ToBoolean(datosSecuencia(i, 2)), Convert.ToBoolean(datosSecuencia(i, 3)))
+                    Case "RGB a (BGR, GRB, RBG)"
+                        bmpSalida = Me.RGBto(bmpSalida, Convert.ToBoolean(datosSecuencia(i, 1)), Convert.ToBoolean(datosSecuencia(i, 2)), Convert.ToBoolean(datosSecuencia(i, 3)))
+                    Case "Redimensionar"
+                        bmpSalida = Me.Redimensionar(bmpSalida, New Rectangle(0, 0, datosSecuencia(i, 1), datosSecuencia(i, 2)), Drawing2D.InterpolationMode.HighQualityBicubic)
+                    Case "Contraste (recomendado)"
+                        bmpSalida = Me.Contraste(bmpSalida, datosSecuencia(i, 1))
+                    Case "Contraste"
+                        bmpSalida = Me.ContrasteEstirar(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2))
+                    Case "Correción de gamma"
+                        bmpSalida = Me.Gamma(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3))
+                    Case "Exposición"
+                        bmpSalida = Me.Exposicion(bmpSalida, datosSecuencia(i, 1))
+                    Case "Modificar canales"
+                        bmpSalida = Me.Canales(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4))
+                    Case "Reducir colores"
+                        bmpSalida = Me.reducircolores(bmpSalida, 127 - (datosSecuencia(i, 1) / 2))
+                    Case "Filtrar colores (rojo)"
+                        bmpSalida = Me.filtroColoresRango(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3))
+                    Case "Filtrar colores (verde)"
+                        bmpSalida = Me.filtroColoresRango(bmpSalida, 0, 0, 0, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3))
+                    Case "Filtrar colores (azul)"
+                        bmpSalida = Me.filtroColoresRango(bmpSalida, 0, 0, 0, 0, 0, 0, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3))
+                    Case "Detectar contornos"
+                        bmpSalida = Me.contornos(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4))
+                    Case "Operación aritmética - Suma"
+                        bmpSalida = Me.Suma(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), False)
+                    Case "Operación aritmética - Resta"
+                        bmpSalida = Me.Resta(bmpSalida, -datosSecuencia(i, 1), -datosSecuencia(i, 2), -datosSecuencia(i, 3), -datosSecuencia(i, 4), False)
+                    Case "Operación aritmética - División"
+                        bmpSalida = Me.Division(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), False)
+                    Case "Operación aritmética - Multiplicación"
+                        bmpSalida = Me.Multiplicacion(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), False)
+                    Case "Operación lógicas - AND"
+                        bmpSalida = Me.OperAND(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), False)
+                    Case "Operación lógicas - OR"
+                        bmpSalida = Me.OperOR(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), False)
+                    Case "Operación lógicas - XOR"
+                        bmpSalida = Me.OperXOR(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), False)
+                    Case "Reflexión horizontal"
+                        bmpSalida = Me.Reflexion(bmpSalida,True,False)
+                    Case "Reflexión vertical"
+                        bmpSalida = Me.Reflexion(bmpSalida, False, True)
+                    Case "Traslación"
+                        bmpSalida = Me.Traslacion(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2))
+                    Case "Voltear"
+                        bmpSalida = Me.Volteados(bmpSalida, Volteado(datosSecuencia(i, 1)))
+                    Case "Density Slicing automático"
+                        'Calculamos el número de colores
+                        Dim matrizStringColores() As String = {"Red", "Green", "Blue", "Black", "White", "Yellow", "Maroon", "Gray", "LightGreen", "LightBlue", "Orange", "Pink", "Gold", "DarkBlue", "DarkGreen"}
+                        Dim matrizColores(datosSecuencia(i, 1) - 1) As Color
+                        For ii = 0 To CInt(datosSecuencia(i, 1)) - 1
+                            matrizColores(ii) = Color.FromName(matrizStringColores(ii).ToString)
+                        Next
+                        If Convert.ToBoolean(datosSecuencia(i, 2)) = True Then 'Si es normalizada
+                            bmpSalida = Me.DensitySlicingNormalizado(bmpSalida, datosSecuencia(i, 1), matrizColores)
+                        Else
+                            bmpSalida = Me.DensitySlicing(bmpSalida, datosSecuencia(i, 1), matrizColores)
+                        End If
+
+                End Select
+
+
+
+            Next
+
+            Return bmpSalida
+        End Function
+
+        Private Function Volteado(ByVal VolteadoSelec As String) As RotateFlipType
+            Select Case VolteadoSelec
+                Case "RotateNoneFlipNone"
+                    Volteado = (RotateFlipType.RotateNoneFlipNone)
+                Case "Rotate90FlipNone"
+                    Volteado = (RotateFlipType.Rotate90FlipNone)
+                Case "Rotate180FlipNone"
+                    Volteado = (RotateFlipType.Rotate180FlipNone)
+                Case "Rotate270FlipNone"
+                    Volteado = (RotateFlipType.Rotate270FlipNone)
+                Case "RotateNoneFlipX"
+                    Volteado = (RotateFlipType.RotateNoneFlipX)
+                Case "Rotate90FlipX"
+                    Volteado = (RotateFlipType.Rotate90FlipX)
+                Case "Rotate180FlipX"
+                    Volteado = (RotateFlipType.Rotate180FlipX)
+                Case "Rotate270FlipX"
+                    Volteado = (RotateFlipType.Rotate270FlipX)
+                Case "RotateNoneFlipY"
+                    Volteado = (RotateFlipType.RotateNoneFlipY)
+                Case "Rotate90FlipY"
+                    Volteado = (RotateFlipType.Rotate90FlipY)
+                Case "Rotate180FlipY"
+                    Volteado = (RotateFlipType.Rotate180FlipY)
+                Case "Rotate270FlipY"
+                    Volteado = (RotateFlipType.Rotate270FlipY)
+                Case "RotateNoneFlipXY"
+                    Volteado = (RotateFlipType.RotateNoneFlipXY)
+                Case "Rotate90FlipXY"
+                    Volteado = (RotateFlipType.Rotate90FlipXY)
+                Case "Rotate180FlipXY"
+                    Volteado = (RotateFlipType.Rotate180FlipXY)
+                Case "Rotate270FlipXY"
+                    Volteado = (RotateFlipType.Rotate270FlipXY)
+            End Select
+            Return Volteado
         End Function
 #End Region
 

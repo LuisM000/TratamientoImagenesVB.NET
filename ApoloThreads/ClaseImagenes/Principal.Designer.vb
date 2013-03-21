@@ -171,6 +171,7 @@ Partial Class Principal
         Me.LiberarMemoriaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BarraAccesosRápidosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActualizacionesAutomáticasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GrabarSecuenciaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaEnLaWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -614,8 +615,8 @@ Partial Class Principal
         '
         Me.OperacionesBásicosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EscalaDeGrisesToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem1, Me.InvertirColoresToolStripMenuItem, Me.SepiaToolStripMenuItem, Me.FiltrosBásicosToolStripMenuItem, Me.RGBAToolStripMenuItem, Me.ToolStripMenuItem5, Me.HistogramasToolStripMenuItem, Me.ToolStripMenuItem8, Me.RedimensionarToolStripMenuItem})
         Me.OperacionesBásicosToolStripMenuItem.Name = "OperacionesBásicosToolStripMenuItem"
-        Me.OperacionesBásicosToolStripMenuItem.Size = New System.Drawing.Size(125, 20)
-        Me.OperacionesBásicosToolStripMenuItem.Text = "Operaciones básicos"
+        Me.OperacionesBásicosToolStripMenuItem.Size = New System.Drawing.Size(124, 20)
+        Me.OperacionesBásicosToolStripMenuItem.Text = "Operaciones básicas"
         '
         'EscalaDeGrisesToolStripMenuItem
         '
@@ -755,8 +756,8 @@ Partial Class Principal
         '
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BlancoYNegroToolStripMenuItem, Me.EscalaDeGrisesToolStripMenuItem2, Me.BrilloToolStripMenuItem1, Me.ContrasteToolStripMenuItem, Me.GamaToolStripMenuItem, Me.ExposiciónToolStripMenuItem1, Me.ModificarCanalesToolStripMenuItem1, Me.ReducirColoresToolStripMenuItem, Me.FiltrarColoresToolStripMenuItem, Me.MatrizToolStripMenuItem, Me.DetectarContornosToolStripMenuItem})
         Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Name = "OperacionesBásicosPersonalizadasToolStripMenuItem"
-        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Size = New System.Drawing.Size(205, 20)
-        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Text = "Operaciones básicos personalizadas"
+        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Size = New System.Drawing.Size(204, 20)
+        Me.OperacionesBásicosPersonalizadasToolStripMenuItem.Text = "Operaciones básicas personalizadas"
         '
         'BlancoYNegroToolStripMenuItem
         '
@@ -1104,7 +1105,7 @@ Partial Class Principal
         '
         Me.EfectoMarteToolStripMenuItem.Name = "EfectoMarteToolStripMenuItem"
         Me.EfectoMarteToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
-        Me.EfectoMarteToolStripMenuItem.Text = "Efecto Marte"
+        Me.EfectoMarteToolStripMenuItem.Text = "Efecto marte"
         '
         'EfectoAntiguoSobreexpuestoToolStripMenuItem
         '
@@ -1226,7 +1227,7 @@ Partial Class Principal
         '
         'HerramientasToolStripMenuItem
         '
-        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HistogramasAutomáticosToolStripMenuItem, Me.LiberarMemoriaToolStripMenuItem, Me.BarraAccesosRápidosToolStripMenuItem, Me.ActualizacionesAutomáticasToolStripMenuItem})
+        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HistogramasAutomáticosToolStripMenuItem, Me.LiberarMemoriaToolStripMenuItem, Me.BarraAccesosRápidosToolStripMenuItem, Me.ActualizacionesAutomáticasToolStripMenuItem, Me.GrabarSecuenciaToolStripMenuItem})
         Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
         Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(87, 20)
         Me.HerramientasToolStripMenuItem.Text = "Herramientas"
@@ -1258,6 +1259,12 @@ Partial Class Principal
         Me.ActualizacionesAutomáticasToolStripMenuItem.Name = "ActualizacionesAutomáticasToolStripMenuItem"
         Me.ActualizacionesAutomáticasToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.ActualizacionesAutomáticasToolStripMenuItem.Text = "Actualizaciones automáticas"
+        '
+        'GrabarSecuenciaToolStripMenuItem
+        '
+        Me.GrabarSecuenciaToolStripMenuItem.Name = "GrabarSecuenciaToolStripMenuItem"
+        Me.GrabarSecuenciaToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.GrabarSecuenciaToolStripMenuItem.Text = "Grabar secuencia"
         '
         'AyudaToolStripMenuItem
         '
@@ -3039,5 +3046,6 @@ Partial Class Principal
     Friend WithEvents BackgroundWorkerACTUALIZACION As System.ComponentModel.BackgroundWorker
     Friend WithEvents ActualizacionesAutomáticasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BackgroundWorkerACtual_Automaticas As System.ComponentModel.BackgroundWorker
+    Friend WithEvents GrabarSecuenciaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
