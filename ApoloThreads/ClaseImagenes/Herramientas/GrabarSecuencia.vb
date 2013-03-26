@@ -42,6 +42,21 @@ Public Class GrabarSecuencia
     End Sub
     'FIN Manjeamos el buscador----------------------------
 
+    'Abrir documentación
+    Private Sub Label7_MouseClick(sender As Object, e As MouseEventArgs) Handles Label7.MouseClick
+        Label7.ForeColor = Color.Black
+        Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\HelpApolo.chm")
+    End Sub
+
+    Private Sub Label7_MouseEnter(sender As Object, e As EventArgs) Handles Label7.MouseEnter
+        Label7.ForeColor = Color.DimGray
+        Me.Cursor = Cursors.Hand
+    End Sub
+
+    Private Sub Label7_MouseLeave(sender As Object, e As EventArgs) Handles Label7.MouseLeave
+        Label7.ForeColor = Color.FromName("AppWorkspace")
+        Me.Cursor = Cursors.Default
+    End Sub
 #End Region
 
     Private Sub GrabarSecuencia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -332,6 +347,108 @@ Public Class GrabarSecuencia
 
                     Combo1.SelectedItem = 5
                     combo2.SelectedIndex = 0
+
+                Case "Sobel total"
+                    ResetearControles(0)
+
+
+                Case "Desenfoque - Distorsión"
+                    ResetearControles(1)
+                    Combo1.DataSource = New ArrayList(objetoSecuencia.valor0to10)
+                    Combo1.SelectedItem = 0
+
+                Case "Desenfoque - Movimiento"
+                    ResetearControles(2)
+                    Combo1.DataSource = New ArrayList(objetoSecuencia.valor0to10)
+                    combo2.DataSource = New ArrayList(objetoSecuencia.valor0to10)
+
+                    Combo1.SelectedItem = 0
+                    combo2.SelectedItem = 0
+
+                Case "Desenfoque - Blur"
+                    ResetearControles(0)
+
+                Case "Pixelado"
+                    ResetearControles(1)
+                    Combo1.DataSource = New ArrayList(objetoSecuencia.valor1to20)
+
+                    Combo1.SelectedItem = 8
+
+                Case "Cuadrícula"
+                    ResetearControles(4)
+
+                    Combo1.DataSource = New ArrayList(objetoSecuencia.valor1to255)
+                    combo2.DataSource = New ArrayList(objetoSecuencia.MatrizconColores)
+                    combo3.DataSource = New ArrayList(objetoSecuencia.valor1to255)
+                    combo4.DataSource = New ArrayList(objetoSecuencia.MatrizconColores)
+
+                    Combo1.SelectedItem = 20
+                    combo2.SelectedItem = "Black"
+                    combo3.SelectedItem = 20
+                    combo4.SelectedItem = "Black"
+
+
+                Case "Sombra de vidrio"
+                    ResetearControles(2)
+
+                    Combo1.DataSource = New ArrayList(objetoSecuencia.valor1to255)
+                    combo2.DataSource = New ArrayList(objetoSecuencia.valorBooleano)
+
+                    Combo1.SelectedItem = 100
+                    combo2.SelectedIndex = 0
+
+                Case "Trocear imagen - Tres partes"
+                    ResetearControles(0)
+
+                Case "Trocear imagen - Seis partes"
+                    ResetearControles(0)
+
+                Case "Ruido aleatorio"
+                    ResetearControles(1)
+                    Combo1.DataSource = New ArrayList(objetoSecuencia.valor1to20)
+
+                    Combo1.SelectedItem = 8
+
+                Case "Ruido desplazado"
+                    ResetearControles(2)
+                    Combo1.DataSource = New ArrayList(objetoSecuencia.valor1to500)
+                    combo2.DataSource = New ArrayList(objetoSecuencia.valorBooleano)
+
+                    Combo1.SelectedItem = 100
+                    combo2.SelectedIndex = 0
+
+                Case "Óleo"
+                    ResetearControles(2)
+                    Combo1.DataSource = New ArrayList(objetoSecuencia.valor5to50)
+                    combo2.DataSource = New ArrayList(objetoSecuencia.valor0to255)
+
+                    Combo1.SelectedItem = 20
+                    combo2.SelectedItem = 200
+
+                Case "Efecto Marte"
+                    ResetearControles(0)
+
+                Case "Efecto antiguo sobreexpuesto"
+                    ResetearControles(0)
+
+                Case "Efecto marino"
+                    ResetearControles(0)
+
+                Case "Aumentar rasgos"
+                    ResetearControles(0)
+
+                Case "Disminuir rasgos"
+                    ResetearControles(0)
+
+                Case "Contorno sombreado - Contenido"
+                    ResetearControles(0)
+
+                Case "Contorno sombreado - Desmedido"
+                    ResetearControles(0)
+
+                Case "Aumentar luz"
+                    ResetearControles(0)
+
             End Select
         End If
        
@@ -542,5 +659,7 @@ Public Class GrabarSecuencia
 
   
 
-   
+ 
+
+  
 End Class

@@ -53,6 +53,7 @@ Partial Class GrabarSecuencia
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.BackgroundWorker2 = New System.ComponentModel.BackgroundWorker()
+        Me.Label7 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -104,7 +105,7 @@ Partial Class GrabarSecuencia
         '
         Me.listBoxFunciones.FormattingEnabled = True
         Me.listBoxFunciones.ItemHeight = 15
-        Me.listBoxFunciones.Items.AddRange(New Object() {"Blanco y negro", "Escala de grises", "Brillo", "Invertir colores (rojo, verde, azul)", "Sepia", "Filtros básicos (rojo, verde, azul)", "RGB a (BGR, GRB, RBG)", "Redimensionar", "Contraste (recomendado)", "Contraste", "Correción de gamma", "Exposición", "Modificar canales", "Reducir colores", "Filtrar colores (rojo)", "Filtrar colores (verde)", "Filtrar colores (azul)", "Detectar contornos", "Operación aritmética - Suma", "Operación aritmética - Resta", "Operación aritmética - División", "Operación aritmética - Multiplicación", "Operación lógicas - AND", "Operación lógicas - OR", "Operación lógicas - XOR", "Reflexión horizontal", "Reflexión vertical", "Traslación", "Voltear", "Density Slicing automático"})
+        Me.listBoxFunciones.Items.AddRange(New Object() {"Blanco y negro", "Escala de grises", "Brillo", "Invertir colores (rojo, verde, azul)", "Sepia", "Filtros básicos (rojo, verde, azul)", "RGB a (BGR, GRB, RBG)", "Redimensionar", "Contraste (recomendado)", "Contraste", "Correción de gamma", "Exposición", "Modificar canales", "Reducir colores", "Filtrar colores (rojo)", "Filtrar colores (verde)", "Filtrar colores (azul)", "Detectar contornos", "Operación aritmética - Suma", "Operación aritmética - Resta", "Operación aritmética - División", "Operación aritmética - Multiplicación", "Operación lógicas - AND", "Operación lógicas - OR", "Operación lógicas - XOR", "Reflexión horizontal", "Reflexión vertical", "Traslación", "Voltear", "Density Slicing automático", "Sobel total", "Desenfoque - Distorsión", "Desenfoque - Movimiento", "Desenfoque - Blur", "Pixelado", "Cuadrícula", "Sombra de vidrio", "Trocear imagen - Tres partes", "Trocear imagen - Seis partes", "Ruido aleatorio", "Ruido desplazado", "Óleo", "Efecto Marte", "Efecto antiguo sobreexpuesto", "Efecto marino", "Aumentar rasgos", "Disminuir rasgos", "Contorno sombreado - Contenido", "Contorno sombreado - Desmedido", "Aumentar luz"})
         Me.listBoxFunciones.Location = New System.Drawing.Point(12, 55)
         Me.listBoxFunciones.Name = "listBoxFunciones"
         Me.listBoxFunciones.Size = New System.Drawing.Size(264, 169)
@@ -317,11 +318,22 @@ Partial Class GrabarSecuencia
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Función"
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.SystemColors.AppWorkspace
+        Me.Label7.Location = New System.Drawing.Point(964, 12)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(92, 15)
+        Me.Label7.TabIndex = 113
+        Me.Label7.Text = "Documentación"
+        '
         'GrabarSecuencia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1070, 467)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
@@ -374,4 +386,5 @@ Partial Class GrabarSecuencia
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents BackgroundWorker2 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Label7 As System.Windows.Forms.Label
 End Class

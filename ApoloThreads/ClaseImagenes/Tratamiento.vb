@@ -221,6 +221,7 @@ Namespace Apolo
         'Modificar canales// Filtros básicos// RGBto// Reducir colores//Filtrar colores por rango//
         'Detectar contornos// reflexión
 #Region "OperacionesBasicas"
+
         Public Function EscalaGrises(ByVal bmp As Bitmap, Optional ByVal valorcontraste As Byte = 0) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -4114,7 +4115,48 @@ Namespace Apolo
                         Else
                             bmpSalida = Me.DensitySlicing(bmpSalida, datosSecuencia(i, 1), matrizColores)
                         End If
-
+                    Case "Sobel total"
+                        bmpSalida = Me.sobelTotal(bmpSalida)
+                    Case "Desenfoque - Distorsión"
+                        bmpSalida = Me.Distorsion(bmpSalida, datosSecuencia(i, 1))
+                    Case "Desenfoque - Movimiento"
+                        bmpSalida = Me.desenfoque(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2))
+                    Case "Desenfoque - Blur"
+                        Dim objetoMascara As New TratamientoImagenes.mascaras
+                        Dim mascara = objetoMascara.LOW9
+                        bmpSalida = Me.mascara3x3RGB(bmp, mascara, , )
+                    Case "Pixelado"
+                        bmpSalida = Me.Pixelar(bmp, datosSecuencia(i, 1))
+                    Case "Cuadrícula"
+                        bmpSalida = Me.cuadricula(bmp, Color.FromName(datosSecuencia(i, 2)), Color.FromName(datosSecuencia(i, 4)), datosSecuencia(i, 1), datosSecuencia(i, 3))
+                    Case "Sombra de vidrio"
+                        bmpSalida = Me.SombraVidrio(bmp, datosSecuencia(i, 1), Convert.ToBoolean(datosSecuencia(i, 2)))
+                    Case "Trocear imagen - Tres partes"
+                        bmpSalida = Me.ImagenTresPartes(bmp)
+                    Case "Trocear imagen - Seis partes"
+                        bmpSalida = Me.ImagenSeisPartes(bmp)
+                    Case "Ruido aleatorio"
+                        bmpSalida = Me.RuidoAleatorio(bmp, datosSecuencia(i, 1))
+                    Case "Ruido desplazado"
+                        bmpSalida = Me.RuidoProgresivo(bmp, datosSecuencia(i, 1), Convert.ToBoolean(datosSecuencia(i, 2)))
+                    Case "Óleo"
+                        bmpSalida = Me.Oleo(bmp, datosSecuencia(i, 1), 127 - (datosSecuencia(i, 2) / 2))
+                    Case "Efecto Marte"
+                        bmpSalida = Me.EfectoMarte(bmp)
+                    Case "Efecto antiguo sobreexpuesto"
+                        bmpSalida = Me.EfectoAntigSobreex(bmp)
+                    Case "Efecto marino"
+                        bmpSalida = Me.EfectoMarino(bmp)
+                    Case "Aumentar rasgos"
+                        bmpSalida = Me.EfectoAumentarRasgos(bmp)
+                    Case "Disminuir rasgos"
+                        bmpSalida = Me.EfectoDisminuirRasgos(bmp)
+                    Case "Contorno sombreado - Contenido"
+                        bmpSalida = Me.EfectoContornoSombreado(bmp)
+                    Case "Contorno sombreado - Desmedido"
+                        bmpSalida = Me.EfectoContornoSombreado2(bmp)
+                    Case "Aumentar luz"
+                        bmpSalida = Me.EfectoAumentarLuz(bmp)
                 End Select
 
 

@@ -3,8 +3,11 @@
     Dim valor0a255(255) As Integer
     Dim valor0aMenos255(255) As Integer
     Dim valor1a255(254) As Integer
+    Dim valor1a500(499) As Integer
     Dim valor2a15(13) As Integer
+    Dim valor1a20(19) As Integer
     Dim valor0a127(127) As Integer
+    Dim valor0a10(10) As Integer
     Dim valor5a50(45) As Integer
     Dim valorBool(1) As String
     Dim valor1a5000(4999) As Integer
@@ -16,7 +19,7 @@
     Dim valor0a2con3decimales(2000) As Single
     Dim objetoTratamiento As New Apolo.TratamientoImagenes
     Dim ruta As String = ""
-    Dim matrizColores(14) As Color
+    Dim matrizStringColores() As String = {"Red", "Green", "Blue", "Black", "White", "Yellow", "Maroon", "Gray", "LightGreen", "LightBlue", "Orange", "Pink", "Gold", "DarkBlue", "DarkGreen"}
     Dim volteados() As String = {"RotateNoneFlipNone", "Rotate90FlipNone", "Rotate180FlipNone", "Rotate270FlipNone", "RotateNoneFlipX", "Rotate90FlipX", "Rotate180FlipX", "Rotate270FlipX", "RotateNoneFlipY", "Rotate90FlipY", "Rotate180FlipY", "Rotate270FlipY", "RotateNoneFlipXY", "Rotate90FlipXY", "Rotate180FlipXY", "Rotate270FlipXY"}
 
     Sub New() 'En el constructor creamos los rangos que luego se asignarán a los combos
@@ -31,8 +34,17 @@
             If i >= 0 And i <= 255 Then
                 valor0a255(i) = i
             End If
+            If i >= 0 And i <= 10 Then
+                valor0a10(i) = i
+            End If
+            If i >= 1 And i <= 500 Then
+                valor1a500(i - 1) = i
+            End If
             If i >= 2 And i <= 15 Then
                 valor2a15(i - 2) = i
+            End If
+            If i >= 1 And i <= 20 Then
+                valor1a20(i - 1) = i
             End If
             If i >= 1 And i <= 255 Then
                 valor1a255(i - 1) = i
@@ -71,12 +83,6 @@
         valorBool(1) = "False"
 
    
-        Dim matrizStringColores() As String = {"Red", "Green", "Blue", "Black", "White", "Yellow", "Maroon", "Gray", "LightGreen", "LightBlue", "Orange", "Pink", "Gold", "DarkBlue", "DarkGreen"}
-
-        For i = 0 To matrizStringColores.Length - 1
-            matrizColores(i) = Color.FromName(matrizStringColores(i).ToString)
-        Next
-
     End Sub
 
 #Region "Valores para los combos"
@@ -112,6 +118,22 @@
     Public ReadOnly Property valor2to15() As Integer()
         Get
             Return valor2a15
+        End Get
+    End Property
+
+    Public ReadOnly Property valor1to500() As Integer()
+        Get
+            Return valor1a500
+        End Get
+    End Property
+    Public ReadOnly Property valor1to20() As Integer()
+        Get
+            Return valor1a20
+        End Get
+    End Property
+    Public ReadOnly Property valor0to10() As Integer()
+        Get
+            Return valor0a10
         End Get
     End Property
     Public ReadOnly Property valor0to127() As Integer()
@@ -168,14 +190,14 @@
             Return volteados
         End Get
     End Property
- 
-#End Region
-
-    Private ReadOnly Property MatrizconColores() As Color
+    Public ReadOnly Property MatrizconColores() As String()
         Get
-            Return MatrizconColores
+            Return matrizStringColores
         End Get
     End Property
+#End Region
+
+   
 
     'Descripción
     Function Textodescripcion(ByVal nombreFuncion As String) As String
@@ -241,6 +263,46 @@
                 cadenaDescripcion = "Parámetro 1: indica que tipo de volteo que se va a realizar." & vbCrLf & "*Nota: la opción -RotateNoneFlipNone- no afecta a la imagen." & vbCrLf & "*Nota: para ver la información completa de los giros, revisar documentación."
             Case "Density Slicing automático"
                 cadenaDescripcion = "Parámetro 1: estable el número de divisiones que se aplicarán a la imagen." & vbCrLf & "Parámetro 2: indica si, previo a aplicar la función, se va a normalizar el histograma."
+            Case "Sobel total"
+                cadenaDescripcion = "Sin parámetros."
+            Case "Desenfoque - Distorsión"
+                cadenaDescripcion = "Parámetro 1: indica el nivel de distorsión que se va a aplicar." & vbCrLf & "*Nota: el valor 0 no aplica distorsión a la imagen."
+            Case "Desenfoque - Movimiento"
+                cadenaDescripcion = "Parámetro 1: indica el desplazamiento en x del desenfoque." & vbCrLf & "Parámetro 2: indica el desplazamiento en y del desenfoque." & vbCrLf & "*Nota: el valor 0 en ambos parámetros no aplica desplazamiento en la imagen."
+            Case "Desenfoque - Blur"
+                cadenaDescripcion = "Sin parámetros."
+            Case "Pixelado"
+                cadenaDescripcion = "Parámetro 1: indica el número de píxeles que se utilizarán para la transformación."
+            Case "Cuadrícula"
+                cadenaDescripcion = "Parámetro 1: indica el espacio horizontal (en píxeles) entre las líneas verticales." & vbCrLf & "Parámetro 2: indica el color de las líneas verticales." & vbCrLf & "Parámetro 3: indica el espacio vertical (en píxeles) entre las líneas horizontales." & vbCrLf & "Parámetro 4: indica el color de las líneas horizontales."
+            Case "Sombra de vidrio"
+                cadenaDescripcion = "Parámetro 1: indica el tamaño de la sombra que se creará." & vbCrLf & "Parámetro 2: si la opción es True, la sombra mostrada se atenuará modificando el canal alfa, en caso contrario, la sombra será sólida."
+            Case "Trocear imagen - Tres partes"
+                cadenaDescripcion = "Sin parámetros."
+            Case "Trocear imagen - Seis partes"
+                cadenaDescripcion = "Sin parámetros."
+            Case "Ruido aleatorio"
+                cadenaDescripcion = "Parámetro 1: indica el grado de aleatoriedad de la función."
+            Case "Ruido desplazado"
+                cadenaDescripcion = "Parámetro 1: indica el valor máximo que se va a aplicar a un píxel concreto." & vbCrLf & "Parámetro 2: si esta opción es True, el ruido se aplicará en escala de grises."
+            Case "Óleo"
+                cadenaDescripcion = "Parámetro 1: el valor del contorno." & vbCrLf & "Parámetro 2: indica el número de colores por canal de la imagen." & vbCrLf & "*Nota: si el valor número de colores es 255 no se aplicará reducción alguna de colores."
+            Case "Efecto Marte"
+                cadenaDescripcion = "Sin parámetros."
+            Case "Efecto antiguo sobreexpuesto"
+                cadenaDescripcion = "Sin parámetros."
+            Case "Efecto marino"
+                  cadenaDescripcion = "Sin parámetros."
+            Case "Aumentar rasgos"
+                  cadenaDescripcion = "Sin parámetros."
+            Case "Disminuir rasgos"
+                   cadenaDescripcion = "Sin parámetros."
+            Case "Contorno sombreado - Contenido"
+                  cadenaDescripcion = "Sin parámetros."
+            Case "Contorno sombreado - Desmedido"
+                cadenaDescripcion = "Sin parámetros."
+            Case "Aumentar luz"
+                cadenaDescripcion = "Sin parámetros."
         End Select
         Return cadenaDescripcion
     End Function

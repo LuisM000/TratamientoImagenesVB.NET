@@ -779,7 +779,7 @@ Public Class Principal
 #End Region
 
 #Region "Actualizar histograma"
-    Dim tiempo As Integer = 3 'Variable que controla el tiempo de actualización
+    Dim tiempo As Integer = 5 'Variable que controla el tiempo de actualización
 
     Sub actualizarHistrograma() 'Función que recibe y dibuja el histograma
         Try
@@ -1007,7 +1007,7 @@ Public Class Principal
             'ACtualizamos el nombre del menú hacer/rehacer
             Timer2.Enabled = True
             'Con esto actualizamos el histograma
-            tiempo = 3 '3 segundos para actualización
+            tiempo = 5 '3 segundos para actualización
             Timer3.Enabled = True
             Panel1.AutoScrollMinSize = PictureBox1.Image.Size
             Panel1.AutoScroll = True
