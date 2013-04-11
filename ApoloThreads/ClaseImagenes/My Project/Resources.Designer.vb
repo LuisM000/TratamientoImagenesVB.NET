@@ -193,6 +193,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property CineFotos() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("CineFotos", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property CirculoAzul() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("CirculoAzul", resourceCulture)
@@ -503,9 +513,49 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property marco() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("marco", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property marcoNegro() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("marcoNegro", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property MarcoOndul() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("MarcoOndul", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property Mascara() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Mascara", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property negativoMarco() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("negativoMarco", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

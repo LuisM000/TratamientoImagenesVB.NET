@@ -355,7 +355,7 @@ Public Class Conexion
         Dim InfoDescargada As String = Nothing
         Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & NumeroFoto & ".txt"
         Try 'Si ya existe lo borramos
-            Kill(rutaGuardar)
+            My.Computer.FileSystem.DeleteFile(rutaGuardar)
         Catch
         End Try
         Try
@@ -377,7 +377,7 @@ Public Class Conexion
 
         Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & NombreFoto & ".txt"
         Try 'Si ya existe lo borramos
-            Kill(rutaGuardar)
+            My.Computer.FileSystem.DeleteFile(rutaGuardar)
         Catch
         End Try
         Try
@@ -412,7 +412,7 @@ Public Class Conexion
         Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & NumeroFoto & ".jpg"
 
         Try 'Si ya existe lo borramos
-            Kill(rutaGuardar)
+            My.Computer.FileSystem.DeleteFile(rutaGuardar)
         Catch
         End Try
         Try
@@ -435,7 +435,7 @@ Public Class Conexion
         Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & NombreFoto & ".jpg"
 
         Try 'Si ya existe lo borramos
-            Kill(rutaGuardar)
+            My.Computer.FileSystem.DeleteFile(rutaGuardar)
         Catch
         End Try
         Try
@@ -458,7 +458,7 @@ Public Class Conexion
         PeticionimagPublic += 1 + numero
         Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & NumeroFoto & ".txt"
         Try 'Si ya existe lo borramos
-            Kill(rutaGuardar)
+            My.Computer.FileSystem.DeleteFile(rutaGuardar)
         Catch
         End Try
         Try
@@ -479,7 +479,7 @@ Public Class Conexion
         PeticionimagPublic += 1 + numero
         Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & nombreFoto & ".txt"
         Try 'Si ya existe lo borramos
-            Kill(rutaGuardar)
+            My.Computer.FileSystem.DeleteFile(rutaGuardar)
         Catch
         End Try
         Try
@@ -502,7 +502,7 @@ Public Class Conexion
         PeticionimagPublic += 1 + numero
         Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & NumeroFoto & ".txt"
         Try 'Si ya existe lo borramos
-            Kill(rutaGuardar)
+            My.Computer.FileSystem.DeleteFile(rutaGuardar)
         Catch
         End Try
         Try
@@ -525,7 +525,7 @@ Public Class Conexion
 
         Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & nombreFoto & ".txt"
         Try 'Si ya existe lo borramos
-            Kill(rutaGuardar)
+            My.Computer.FileSystem.DeleteFile(rutaGuardar)
         Catch
         End Try
         Try
@@ -609,7 +609,7 @@ Public Class Conexion
             Dim InfoDescargada As String = Nothing
             Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & nombreUsuario & ".txt"
             Try 'Si ya existe lo borramos
-                Kill(rutaGuardar)
+                My.Computer.FileSystem.DeleteFile(rutaGuardar)
             Catch
             End Try
             Dim direccion As String = DatosConexion(0) & "DatosUsuarios/" & nombreUsuario & "/DatosUser"
@@ -667,7 +667,7 @@ Public Class Conexion
         PeticionimagPublic += 1 + numero
         Dim rutaGuardar As String = System.IO.Directory.GetCurrentDirectory().ToString & "\ImagenesCloud\" & PeticionimagPublic & "-" & "Recup" & email & ".txt"
         Try 'Si ya existe lo borramos
-            Kill(rutaGuardar)
+            My.Computer.FileSystem.DeleteFile(rutaGuardar)
         Catch
         End Try
         Try
@@ -861,7 +861,7 @@ Public Class Conexion
         Dim sr As New System.IO.StreamReader(ruta)
         texto = sr.ReadToEnd()
         sr.Close()
-        Kill(ruta)
+        My.Computer.FileSystem.DeleteFile(ruta)
         Return texto
     End Function
 

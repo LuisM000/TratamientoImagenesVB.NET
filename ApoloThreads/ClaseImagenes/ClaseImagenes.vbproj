@@ -224,6 +224,12 @@
     <Compile Include="Edicion\PropImagen.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Efectos\Cine.Designer.vb">
+      <DependentUpon>Cine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Efectos\Cine.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Efectos\Cuadricula.Designer.vb">
       <DependentUpon>Cuadricula.vb</DependentUpon>
     </Compile>
@@ -246,6 +252,12 @@
       <DependentUpon>Distorsion.vb</DependentUpon>
     </Compile>
     <Compile Include="Efectos\Distorsion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Efectos\OjosRojos.Designer.vb">
+      <DependentUpon>OjosRojos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Efectos\OjosRojos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Efectos\Oleo.Designer.vb">
@@ -306,6 +318,12 @@
       <DependentUpon>BordesYContornos.vb</DependentUpon>
     </Compile>
     <Compile Include="Mascaras\BordesYContornos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mascaras\MascaraPersonal.designer.vb">
+      <DependentUpon>MascaraPersonal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Mascaras\MascaraPersonal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Mascaras\ImportarMascara.Designer.vb">
@@ -505,6 +523,12 @@
     <Compile Include="OperacionesDosImagenes\OperacionesAritmeticasDosImagenes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Operaciones\OperacionesEstadisticas.Designer.vb">
+      <DependentUpon>OperacionesEstadisticas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Operaciones\OperacionesEstadisticas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Operaciones\OperacionesLogicas.Designer.vb">
       <DependentUpon>OperacionesLogicas.vb</DependentUpon>
     </Compile>
@@ -598,6 +622,9 @@
     <EmbeddedResource Include="Edicion\PropImagen.resx">
       <DependentUpon>PropImagen.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Efectos\Cine.resx">
+      <DependentUpon>Cine.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Cuadricula.resx">
       <DependentUpon>Cuadricula.vb</DependentUpon>
     </EmbeddedResource>
@@ -609,6 +636,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Distorsion.resx">
       <DependentUpon>Distorsion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Efectos\OjosRojos.resx">
+      <DependentUpon>OjosRojos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Efectos\Oleo.resx">
       <DependentUpon>Oleo.vb</DependentUpon>
@@ -639,6 +669,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mascaras\BordesYContornos.resx">
       <DependentUpon>BordesYContornos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mascaras\MascaraPersonal.resx">
+      <DependentUpon>MascaraPersonal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mascaras\ImportarMascara.resx">
       <DependentUpon>ImportarMascara.vb</DependentUpon>
@@ -737,6 +770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OperacionesDosImagenes\OperacionesAritmeticasDosImagenes.resx">
       <DependentUpon>OperacionesAritmeticasDosImagenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operaciones\OperacionesEstadisticas.resx">
+      <DependentUpon>OperacionesEstadisticas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Operaciones\OperacionesLogicas.resx">
       <DependentUpon>OperacionesLogicas.vb</DependentUpon>
@@ -946,6 +982,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\remastered-lena-512x5121.tif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CineFotos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marcoNegro.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MarcoOndul.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\negativoMarco.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -67,6 +67,10 @@ ClaseImagenes
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.CineFotos">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.CirculoAzul">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
@@ -191,7 +195,23 @@ ClaseImagenes
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.marco">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.marcoNegro">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.MarcoOndul">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:ClaseImagenes.My.Resources.Resources.Mascara">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:ClaseImagenes.My.Resources.Resources.negativoMarco">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
@@ -255,6 +275,1751 @@ ClaseImagenes
 	<summary>
   Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
 </summary>
+</member><member name="T:ClaseImagenes.Apolo.ActualizamosImagen">
+	<summary>
+ Este delegado, recibe un Bitmap en cuanto se realiza una función dentro de la clase y se genera un evento indicando que se ha modificado la imagen.
+ <example><para>La forma de utilizar el evento (fuera de la clase) es la siguiente:
+ En el load del formulario se pone el siguiente código:</para>
+			<code>'Asignamos el gestor que controle cuando sale imagen
+AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf actualizarPicture)</code>
+			<para>Una vez hecho esto, se crea un procedimiento (por ejemplo), que muestre la imagen en un Picturebox:
+ <code>Sub actualizarPicture(ByVal bmp As Bitmap)
+PictureBox2.Image = bmp
+End Sub
+ </code></para></example>
+	</summary>
+	<param name="bmp">Imagen en formato Bitmap.</param>
+</member><member name="T:ClaseImagenes.Apolo.ActualizamosNombreImagen">
+	<summary>
+ Este delegado, recibe un string en cuanto se realiza una función de abrir una imagen original(desde archivo, FB, recurso web, etc) dentro de la clase y se genera un evento indicando que se ha abierto una imagen original y se dispone de información de ella.
+ <example><para>La forma de utilizar el evento (fuera de la clase) es la siguiente:
+ En el load del formulario se pone el siguiente código:</para>
+			<code>'Asignamos el gestor que controle cuando se abre una imagen nueva
+ AddHandler objetoTratamiento.actualizaNombreImagen, New ActualizamosNombreImagen(AddressOf actualizarNombrePicture)</code>
+			<para>Una vez hecho esto, se crea un procedimiento (por ejemplo), que muestre la información recibida:
+ <code>Sub actualizarNombrePicture(ByVal nombre() As String)
+ 'Se le pone la información a la cabecera del formulario
+Me.Text = "[" + nombre(0) + "]  " + "(" + nombre(1) + " x " + nombre(2) + ")   " + nombre(3)
+End Sub
+ </code></para></example>
+	</summary>
+	<param name="NombreImagen">Esta variable es un string que tiene (generalmente) cuatro campos: nombre de la imagen, ancho de la imagen, alto de la imagen y procedencia de la imagen (desde archivo, BING, etc.).</param>
+</member><member name="F:ClaseImagenes.Apolo.TratamientoImagenes.imagenesGuardadas">
+	<summary>
+ Variable arraylist que almacena todas las imágenes que van entrando a la clase.
+ </summary>
+</member><member name="F:ClaseImagenes.Apolo.TratamientoImagenes.imagenOriginal">
+	<summary>
+ Variable bitmap que almacena la última imagen original abierta.
+ </summary>
+</member><member name="F:ClaseImagenes.Apolo.TratamientoImagenes.porcentaje">
+	<summary>
+ Variable que indica el estado de progreso de una transformación. Se puede utilizar con un timer..
+ </summary>
+	<remarks>La primera posición del string porcentaje(0) indica el porcentaje de progreso. La segunda posición indica el estado del progreso.</remarks>
+</member><member name="E:ClaseImagenes.Apolo.TratamientoImagenes.actualizaBMP">
+	<summary>
+ Evento que gestiona cuándo se modifica la imagen (entra una imagen en la clase y se devuelve transformada).
+ </summary>
+</member><member name="E:ClaseImagenes.Apolo.TratamientoImagenes.actualizaNombreImagen">
+	<summary>
+ Evento que gestiona cuándo se abre una imagen original, ya sea desde archivo, BING, Facebook, etc.
+ </summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.estadoCarga">
+	<summary>
+ Proporciona información sobre el estado actual de carga.
+ Devuelve un array con 2 valores. El primero, es porcentaje de carga (0 a 100) y el segundo, la función que se está realizando (por ejemplo, "Transformando en escala de grises".
+ </summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.ListadoImagenesAtras">
+	<summary>
+ Proporciona la imagen anterior a la actual (para hacer retroceso).
+ </summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.ListadoImagenesAdelante">
+	<summary>
+ Proporciona la imagen posterior (en caso de haberla) a la actual.
+ </summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.ListadoInfoAtras">
+	<summary>
+ Proporciona la información del estado de la imagen anterior a la actual (para hacer retroceso).
+ </summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.ListadoInfoAdelante">
+	<summary>
+ Proporciona la información del estado de la imagen posterior (en caso de haberla) a la actual.
+ </summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.ListadoTotalDeInfo">
+	<summary>
+ Devuelve una lista (arraylist) con toda la información de todas las transformaciones realizadas.
+ </summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.ListadoTotalDeImagenes">
+	<summary>
+ Devuelve una lista (arraylist) con todas las imágenes (en formato Bitmap) de todas las transformaciones realizadas.
+ </summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.Zoom">
+	<summary>
+ Devuelve el estado del zoom actual de la imagen (si devuelve 1, la imagen no tiene aumento)
+ </summary>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.guardarImagen(System.Drawing.Bitmap,System.String)">
+	<summary>
+ Almacena la imagen y su información para poder deshacer/rehacer
+ </summary>
+	<param name="bmp">Imagen (en formato Bitmap) tras la transformación</param>
+	<param name="info">Información (string) de qué transformación ha sufrido la imagen</param>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.LiberarImagenes">
+	<summary>
+ Elimina todo el contenido de imágenes e información almacenada, dejando únicamente la imagen actual.
+ </summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.ImagenOriginalGuardada">
+	<summary>
+ Devuelve la última imagen abierta como original (desde archivo, bing, etc). 
+ En caso de asignar un valor, éste debe ser una imagen abierta como original (no recomendable asignar un valor desde fuera de la clase).
+ <example>Para obtener la última imagen abierta, el código sería así:
+ <code>Picturebox1.image=objetoTratamiento.ImagenOriginalGuardada</code></example>
+	</summary>
+</member><member name="P:ClaseImagenes.Apolo.TratamientoImagenes.imagenOriginalInfo">
+	<summary>
+ Devuelve la INFORMACIÓN de la última imagen abierta como original (desde archivo, bing, etc) . //
+ En caso de asignar un valor, éste debe ser la información de una imagen abierta como original (no recomendable asignar un valor desde fuera de la clase).
+ <example>Para obtener la información (de dónde se ha obtenido el recurso), de la última imagen abierta, se haría así:
+ <code>Picturebox1.image=objetoTratamiento.ImagenOriginalGuardada</code></example>
+	</summary>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.nivel(System.Drawing.Bitmap)">
+	<summary>
+ Devuelve una matriz con los colores de cada píxel.
+ <example>A continuación se muestra un ejemplo de llamada a la función: // 
+ <code> Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen  //
+ Niveles = nivel(bmp2) 'Obtenemos valores
+ </code>
+		</example>
+	</summary>
+	<param name="bmp">Imagen en formato Bitmap de la cual se quiere extraer los colores.</param>
+	<returns>Devuelve una matriz de dos dimensiones (ancho*alto de la imagen) y cada celda contiene un System.Drawing.Color con el valor del píxel.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ActualizarImagen(System.Drawing.Bitmap,System.Boolean)">
+	<summary>
+ Actualiza la imagen enviada para que pase a ser la primera en la lista de deshacer/rehacer, y devuelve la imagen enviada.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+ <code>Picturebox1.image=objetoTratamiento.ActualizarImagen(bmp,False)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen en formato Bitmap que pasará a ser la primera de la lista (y será devuelta).</param>
+	<param name="imagenOriginal">En caso de ser TRUE, la imagen enviada se almacenará como una imagen original.</param>
+	<returns>Devuelve un Bitmap con la imagen enviada.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EscalaGrises(System.Drawing.Bitmap,System.Byte)">
+	<summary>
+ Función que transforma una imagen en escala de grises.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+ <code>Picturebox1.image=objetoTratamiento.EscalaGrises(bmp,20)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valorcontraste">Este valor reduce el número de grises utilizados (0 a 127). El 0 es toda la gama de grises y el 127 es blanco y negro.</param>
+	<returns>Devuelve un bitmap.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Invertir(System.Drawing.Bitmap,System.Boolean,System.Boolean,System.Boolean)">
+	<summary>
+ Función que invierte los colores de una imagen (para los canales RGB).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+ <code>Picturebox1.image=objetoTratamiento.Invertir(bmp,TRUE,TRUE,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Irojo">Para invertir el canal rojo, TRUE. Si no se quiere afectar al canal rojo, FALSE.</param>
+	<param name="Iverde">Para invertir el canal verde, TRUE. Si no se quiere afectar al canal verde, FALSE.</param>
+	<param name="Iazul">Para invertir el canal azul, TRUE. Si no se quiere afectar al canal azul, FALSE.</param>
+	<returns>Devuelve un bitmap.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.BlancoNegro(System.Drawing.Bitmap,System.Byte)">
+	<summary>
+ Función que transforma una imagen a blanco y negro (binariza).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+ <code>Picturebox1.image=objetoTratamiento.BlancoNegro(bmp,128)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valortope">Indica el valor umbral a partir del cual el píxel será negro o blanco. Si por ejemplo se selecciona 128, los valores 
+ inferiores pasarán a ser negro (0), y los superiores blanco (128).</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ContrasteEstirar(System.Drawing.Bitmap,System.Byte,System.Byte)">
+	<summary>
+ Función que aumenta o disminuye el contraste. "Estira" o "encoge" los valores de la imagen hasta el tope superior e inferior seleccionado.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+ <code>Picturebox1.image=objetoTratamiento.ContrasteEstirar(bmp,0,255)</code></example>
+ En este ejemplo, la imagen pasará a ocupar todos los niveles (de 0 a 255), siempre que sea posible.
+ </summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valorContrasteMax">Valor máximo que pasará a tener el píxel con valor más alto.</param>
+	<param name="valorContrasteMin">Valor mínimo que pasará a tener el píxel con valor más bajo</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Debe tenerse en cuenta que el valor valorContrasteMax debe ser mayor que valorContrasteMin.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Contraste(System.Drawing.Bitmap,System.Double)">
+	<summary>
+ Función que aumenta o disminuye el contraste. "Estira" o "encoge" el histograma de la imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+ <code>Picturebox1.image=objetoTratamiento.Contraste(bmp,1.2)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valorContraste">Valor de contraste. Debe oscilar entre -1 y 1 para unos resultados óptimos.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.sepia(System.Drawing.Bitmap)">
+	<summary>
+ Función que transforma una imagen a tonos sepia.
+<example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+ <code>Picturebox1.image=objetoTratamiento.sepia(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Los pesos para el filtro sepia son: 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131 .</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.filtroponderado(System.Drawing.Bitmap,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+	<summary>
+ Esta función aplica a cada canal un peso específico multiplicándolo por los 3 canales (RGB).
+ <para>Rojo = Rojo * Rr + Verde * Rg + Azul * Rb</para>
+		<para>Verde = Rojo * Gr + Verde * Gg + Azul * Gb</para>
+		<para>Azul = Rojo * Br + Verde * Bg + Azul * Bb</para>
+		<example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.filtroponderado(bmp, 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Rr">Peso que será multiplicado por el rojo y aplicado en el canal rojo.</param>
+	<param name="Rg">Peso que será multiplicado por el verde y aplicado en el canal rojo.</param>
+	<param name="Rb">Peso que será multiplicado por el azul y aplicado en el canal rojo.</param>
+	<param name="Gr">Peso que será multiplicado por el rojo y aplicado en el canal verde.</param>
+	<param name="Gg">Peso que será multiplicado por el verde y aplicado en el canal verde.</param>
+	<param name="Gb">Peso que será multiplicado por el azul y aplicado en el canal verde.</param>
+	<param name="Br">Peso que será multiplicado por el rojo y aplicado en el canal azul.</param>
+	<param name="Bg">Peso que será multiplicado por el verde y aplicado en el canal azul.</param>
+	<param name="Bb">Peso que será multiplicado por el azul y aplicado en el canal azul.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Para no alterar los tonos de la imagen, la suma de los 3 pesos por cada canal debe ser igual a 1.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Brillo(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Función que aumenta o disminuye el brillo de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Brillo(bmp,20)</code>
+ Esta función aumenta en 20 puntos el brillo de la imagen.</example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="cantidad">Cantidad de brillo que se sumará/restará a cada píxel.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Gamma(System.Drawing.Bitmap,System.Double,System.Double,System.Double)">
+	<summary>
+ Función que modifica la gamma de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.gamma(bmp,2,2,2)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ValorGammaRojo">Correción de gamma que se aplicará al canal rojo. Debe ser mayor que 0. El valor 1 no aplica ninguna correción.</param>
+	<param name="ValorGammaVerde">Correción de gamma que se aplicará al canal verde. Debe ser mayor que 0. El valor 1 no aplica ninguna correción.</param>
+	<param name="ValorGammaAzul">Correción de gamma que se aplicará al canal azul. Debe ser mayor que 0. El valor 1 no aplica ninguna correción.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Exposicion(System.Drawing.Bitmap,System.Double)">
+	<summary>
+ Función que aumenta o disminuye la exposición de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:</example>
+		<code>Picturebox1.image=objetotratamiento.Exposicion(bmp,0.6)</code>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valorSobreexposicion">Variable que indica el aumento o disminución de la exposición. Valores menores que 1 aumentan la exposición y mayores la disminuyen.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Canales(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Función que aumenta o disminuye canal por canal (ARGB) los valores de los píxeles.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Canales(bmp,10,30,-20,0)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="canalrojo">Variable que indica el valor que se va a modificar en el canal rojo.</param>
+	<param name="canalverde">Variable que indica el valor que se va a modificar en el canal verde.</param>
+	<param name="canalazul">Variable que indica el valor que se va a modificar en el canal azul.</param>
+	<param name="canaalfa">Variable que indica el valor que se va a modificar en el canal alfa.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.filtrosBasicos(System.Drawing.Bitmap,System.Boolean,System.Boolean,System.Boolean)">
+	<summary>
+ Función que calcula la media de las canales RGB para cada píxel, y el valor resultante lo asignan al canal al que se le ha asignado el valor TRUE.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.filtrosBasicos(bmp,TRUE,FALSE,FALSE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="FRojo">Si el valor es TRUE, la media calculada se asignará al canal rojo. En caso de ser FALSE el canal rojo será 0.</param>
+	<param name="FVerde">Si el valor es TRUE, la media calculada se asignará al canal verde. En caso de ser FALSE el canal verde será 0.</param>
+	<param name="Fazul">Si el valor es TRUE, la media calculada se asignará al canal azul. En caso de ser FALSE el canal azul será 0.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Tenga en cuenta que sólo se debería poner un único canal como TRUE.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.RGBto(System.Drawing.Bitmap,System.Boolean,System.Boolean,System.Boolean)">
+	<summary>
+ Función que intercambia, para cada píxel, el valor de sus canales RGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.RGBto(bmp,TRUE,FALSE,FALSE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="BGR">Si el valor es TRUE, el canal rojo pasará a tener el valor del canal azul, el canal azul pasará a tener el valor del canal rojo, y el canal verde mantendrá su valor.</param>
+	<param name="GRB">Si el valor es TRUE, , el canal rojo pasará a tener el valor del canal verde, el canal verde pasará a tener el valor del canal rojo, y el canal azul mantendrá su valor.</param>
+	<param name="RBG">Si el valor es TRUE, el canal verde pasará a tener el valor del canal azul, el canal azul pasará a tener el valor del canal verde, y el canal rojo mantendrá su valor.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Tenga en cuenta que sólo se debería asignar TRUE a una de las tres variables (BGR, GRB, RBG).</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.reducircolores(System.Drawing.Bitmap,System.Byte)">
+	<summary>
+ Función que reduce los colores de la imagen. Pudiendo pasar de 255 por canal a 1 por canal.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.reducircolores(bmp,60)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valorcolores">Variable que indica el número de colores de cada canal.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Tenga en cuenta que el valor 0 equivale a un color por canal.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.filtroColoresRango(System.Drawing.Bitmap,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte)">
+	<summary>
+ Función que permite seleccionar un rango de colores (por canal RGB) y pasar todos los píxeles de ese rango a un valor determinado.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.filtroColoresRango(bmp,0,100,0,0,0,0,0,0,0)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valorRojoinf">Valor inferior del rango para el canal rojo.</param>
+	<param name="valorRojosup">Valor superior del rango para el canal rojo.</param>
+	<param name="salidaRojo">Valor de salida para los píxeles dentro del rango del canal rojo.</param>
+	<param name="valorVerdeinf">Valor inferior del rango para el canal verde.</param>
+	<param name="valorVerdesup">Valor superior del rango para el canal verde.</param>
+	<param name="salidaVerde">Valor de salida para los píxeles dentro del rango del canal verde.</param>
+	<param name="valorAzulinf">Valor inferior del rango para el canal azul.</param>
+	<param name="valorAzulsup">Valor superior del rango para el canal azul.</param>
+	<param name="salidaAzul">Valor de salida para los píxeles dentro del rango del canal azul.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Los valores inferiores siempre deben ser mayores que los superiores.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EliminarOjosRojos(System.Drawing.Bitmap,System.Drawing.Point,System.Int32,System.Double)">
+	<summary>
+ Función que permite eliminar el efecto de ojos rojos en una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EliminarOjosRojos(bmp, New Point(300,40),8,1.5)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="CentroOjo">Esta variable indica la coordenada X e Y del centro del ojo (en píxeles).</param>
+	<param name="radioOjo">Variable que indica el valor del radio del ojo (en píxeles).</param>
+	<param name="valorMinimo">Valor mínimo a partir del cual se aplicará la función. La correción se aplica a los píxeles cuya operación (rojo / ((verde + azul) / 2)) es mayor que esta variable (valorMinimo).</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.contornos(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32)">
+	<summary>
+ Función que detecta los contornos de una imagen y devuelve los contornos en color blanco y el resto de la imagen en color negro.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.contornos(bmp, 20,70,50,80)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="contorno">Valor que indica el grado de contorno que se va a detectar. Valores más pequeños detectan más contornos y superiores menos contornos.</param>
+	<param name="valorrojo">Peso para la detección del contorno para el canal rojo. Valores mayores detectan más contornos. El valor debe estar comprendido entre 0 y 255.</param>
+	<param name="valorverde">Peso para la detección del contorno para el canal verde. Valores mayores detectan más contornos. El valor debe estar comprendido entre 0 y 255.</param>
+	<param name="valorazul">Peso para la detección del contorno para el canal azul. Valores mayores detectan más contornos. El valor debe estar comprendido entre 0 y 255.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Redimensionar(System.Drawing.Bitmap,System.Drawing.Rectangle,System.Drawing.Drawing2D.InterpolationMode)">
+	<summary>
+ Función que permite cambiar el tamaño de una imagen (bitmap).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Redimensionar(bmp, New Rectangle(New Point(0, 0), New Size(500, 500)), Drawing2D.InterpolationMode.Bilinear)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="tamaño">Tamaño al que se quiere transformar la imagen.</param>
+	<param name="interpolación">Tipo de interpolación a la hora de modificar el tamaño de la imagen.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Para comparar los diferentes algoritmos de interpolación, acceder a la siguiente web: msdn.microsoft.com/es-es/library/system.drawing.drawing2d.interpolationmode.aspx</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.mascara3x3RGB(System.Drawing.Bitmap,System.Double[0:,0:],System.Double,System.Double)">
+	<summary>
+ Esta función permite aplicar una matriz de convolución (kernel) a la imagen. Recorre toda la imagen mediante una matriz de 3x3, aplicando los diferentes pesos de la matriz a los píxeles de la imagen. La matriz actúa en los 3 canales RGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoMascara As New TratamientoImagenes.mascaras 'Se instancia a la clase máscaras (se puede crear también una matriz de 3x3)
+Dim mascara = objetoMascara.SobelH 'Se define una máscara Sobel
+Picturebox1.image=objetoTratamiento.mascara3x3RGB(bmp, mascara,0, 1)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="matrizMascara">Matriz de 3x3 que define el kernel.</param>
+	<param name="desviacion">Variable por la cual el resultado se dividará (este parámetro se suma a la variable factor)</param>
+	<param name="factor">Variable por la cual el resultado se dividará (este parámetro se suma a la variable desviación)</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.mascaras para ver cómo se crean máscaras (kernels) predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.mascara3x3Grises(System.Drawing.Bitmap,System.Double[0:,0:],System.Double,System.Double)">
+	<summary>
+ Esta función permite aplicar una matriz de convolución (kernel) a la imagen. Recorre toda la imagen mediante una matriz de 3x3, aplicando los diferentes pesos de la matriz a los píxeles de la imagen. La matriz actúa en escala de grises.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoMascara As New TratamientoImagenes.mascaras 'Se instancia a la clase máscaras (se puede crear también una matriz de 3x3)
+Dim mascara = objetoMascara.SobelH 'Se define una máscara Sobel
+Picturebox1.image=objetoTratamiento.mascara3x3RGB(bmp, mascara,0, 1)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="matrizMascara">Matriz de 3x3 que define el kernel.</param>
+	<param name="desviacion">Variable por la cual el resultado se dividará (este parámetro se suma a la variable factor)</param>
+	<param name="factor">Variable por la cual el resultado se dividará (este parámetro se suma a la variable desviación)</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.mascaras para ver cómo se crean máscaras (kernels) predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.mascaraManualRGB(System.Drawing.Bitmap,System.Double[0:,0:],System.Double,System.Double)">
+	<summary>
+ Esta función permite aplicar una matriz de convolución (kernel) a la imagen. Recorre toda la imagen mediante una matriz de tamaño determinado, aplicando los diferentes pesos de la matriz a los píxeles de la imagen. La matriz actúa en los 3 canales RGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoMascara As New TratamientoImagenes.mascaras 'Se instancia a la clase máscaras (se puede crear también una matriz de 3x3)
+Dim mascara = objetoMascara.SobelH 'Se define una máscara Sobel
+Picturebox1.image=objetoTratamiento.mascara3x3RGB(bmp, mascara,0, 1)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="matrizMascara">Matriz del tamaño que se quiera siempre y cuando sea cuadrada e impar (5x5, 7x7...). Dicha matriz será quien defina el kernel.</param>
+	<param name="desviacion">Variable por la cual el resultado se dividará (este parámetro se suma a la variable factor)</param>
+	<param name="factor">Variable por la cual el resultado se dividará (este parámetro se suma a la variable desviación)</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.mascaras para ver cómo se crean máscaras (kernels) predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.LOW9">
+	<summary>
+ Función que devuelve una máscara de paso bajo con coeficiente 9.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.LOW9</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.LOW10">
+	<summary>
+ Función que devuelve una máscara de paso bajo con coeficiente 10.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.LOW10</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.LOW12">
+	<summary>
+ Función que devuelve una máscara de paso bajo con coeficiente 12.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.LOW12</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.HIGH1a">
+	<summary>
+ Función que devuelve una máscara de paso alto con coeficiente 1.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.HIGH1a</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.HIGH1b">
+	<summary>
+ Función que devuelve una máscara de paso alto con coeficiente 1.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.HIGH1b</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.HIGH16">
+	<summary>
+ Función que devuelve una máscara de paso alto con coeficiente 16.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.HIGH16</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Resta1">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (resta-movimiento).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Resta1</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Resta2">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (resta-movimiento).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Resta2</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Resta3">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (resta-movimiento).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Resta3</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Laplaciana1">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Laplaciana1</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Laplaciana2">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Laplaciana2</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Laplaciana3">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Laplaciana3</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Laplaciana4">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Laplaciana4</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.LaplacianaDiagonal">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.LaplacianaDiagonal</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.LaplacianaHorizont">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.LaplacianaHorizont</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.LaplacianaVertical">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.LaplacianaVertical</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.GradienteEste">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Este).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.GradienteEste</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.GradienteSudeste">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Sudeste).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.GradienteSedeste</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.GradienteSur">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Sur).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.GradienteSur</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.GradienteOeste">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Oeste).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.GradienteOeste</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.GradienteNoreste">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Noreste).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.GradienteNoreste</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.GradienteNorte">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Norte).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.GradienteNorte</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.EmbossingEste">
+	<summary>
+ Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Este.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.EmbossingEste</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.EmbossingSudeste">
+	<summary>
+ Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Sudeste.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.EmbossingSudeste</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.EmbossingSur">
+	<summary>
+ Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Sur.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.EmbossingSur</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.EmbossingOeste">
+	<summary>
+ Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Oeste.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.EmbossingOeste</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.EmbossingNoreste">
+	<summary>
+ Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Noreste.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.EmbossingNoreste</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.EmbossingNorte">
+	<summary>
+ Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Norte.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.EmbossingNorte</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.SobelV">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (vertical). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 4.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.SobelV</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.SobelH">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (horizontal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 4.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.SobelH</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.SobelDiagonal1">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (diagonal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 4.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.SobelDiagonal1</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.SobelDiagonal2">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (diagonal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 4.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.SobelDiagonal2</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.PrewittVert">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (vertical). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 3.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.PrewittVert</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.PrewittHoriz">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (horizontal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 3.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.PrewittHoriz</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.PrewittDiag1">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (diagonal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 3.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.PrewittDiag1</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.PrewittDiag2">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (diagonal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 3.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.PrewittDiag2</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.LineasVerticales">
+	<summary>
+ Función que devuelve una máscara para detectar líneas verticales.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.LineasVerticales</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.LineasHorizontales">
+	<summary>
+ Función que devuelve una máscara para detectar líneas horizontales.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.LineasHorizontales</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Repujado">
+	<summary>
+ Función que devuelve una máscara para imitar un efecto de repujado.
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Repujado</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Kirsch0">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (orientación 0º).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Kirsch0</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Kirsch45">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (orientación 45º).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Kirsch45</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Kirsch90">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (orientación 90º).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Kirsch90</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Kirsch135">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (orientación 135º).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Kirsch135</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Kirsch180">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (orientación 180º).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Kirsch180</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Kirsch225">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (orientación 225º).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Kirsch225</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Kirsch270">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (orientación 270º).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Kirsch270</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.Kirsch315">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (orientación 315º).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.Kirsch315</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.FreichenHori">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (horizontal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor (1 / (2 + Math.Sqrt(2))).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.FreichenHori</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras.FreichenVert">
+	<summary>
+ Función que devuelve una máscara para detectar bordes (vertical). Para resultados óptimos, es conveniente aplicar desviación 0 y factor (1 / (2 + Math.Sqrt(2))).
+ <example>Para obtener esta máscara, se debe proceder así:
+ <code>Dim mascara=objetoMascara.FreichenVert</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="T:ClaseImagenes.Apolo.TratamientoImagenes.Mascaras">
+	<summary>
+ La clase Tratamiento.Mascaras, permite obtener diferentes matrices de 3x3 predefinidas (kernels) para después aplicar máscaras a imágenes. El proceso
+ de obtención de máscaras es muy sencillo. A continuación se muestra cómo realizarlo.
+ <example><para>Para instancia un objeto de la clase Tratamiento.Mascaras, primeramente debe hacer referencia a la clase en su proyecto:</para>
+			<code>Imports nombredeaplicacion.Tratamiento.Mascaras</code>
+			<para>A continuación se instancia a la clase y ya se puede obtener una máscara de 3x3 predefinida (este proceso es asistido, si utiliza Visual Studio, por IntelliSense):
+ <code>Dim objetoMascara as new Tratamiento.Mascaras 
+Dim mascara=objetoMascara.SobelH</code></para></example>
+	</summary>
+	<remarks>Clase creada por Luis Marcos Rivera.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.sobelTotal(System.Drawing.Bitmap)">
+	<summary>
+ Función que aplica el operador Sobel (kernel) sobre la imagen. Este operador se aplica en vertical, horizontal y ambas diagonales y por último une las imágenes.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.sobelTotal(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>La función puede demorarse varios segundos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Unir4(System.Collections.ArrayList)">
+	<summary>
+ Función que une cuatro imágenes que se le pasen como arraylist de bitmaps.
+ <example>La llamada a la función, asignando la imagen de salida a un Bitmap sería así:
+ <code>Dim bmpUnido as bitmap=objetoTratamiento.sobelTotal(bmp)</code></example>
+	</summary>
+	<param name="bmp">Variable arraylist que debe contener cuatro bitmaps.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Suma(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Función que suma valores a los píxeles de la imagen. Se aumentan los valores en los 4 canales ARGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Suma(bmp, 20,20,20,0,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Sumarojo">Variable que indica que valor que se va a aumentar en el canal rojo.</param>
+	<param name="Sumaverde">Variable que indica que valor que se va a aumentar en el canal verde.</param>
+	<param name="Sumaazul">Variable que indica que valor que se va a aumentar en el canal azul.</param>
+	<param name="sumaAlfa">Variable que indica que valor que se va a aumentar en el canal alfa.</param>
+	<param name="omitirAlfa">Si la variable es TRUE, no se aumentará el canal alfa. En caso de ser FALSE, se aumentará en función del valor incluido en la variable sumaAlfa.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Resta(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Función que resta valores a los píxeles de la imagen. Se resta los valores en los 4 canales ARGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Resta(bmp, 20,20,20,0,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Restarojo">Variable que indica que valor que se va a disminuir en el canal rojo.</param>
+	<param name="Restaverde">Variable que indica que valor que se va a disminuir en el canal verde.</param>
+	<param name="Restaazul">Variable que indica que valor que se va a disminuir en el canal azul.</param>
+	<param name="RestaAlfa">Variable que indica que valor que se va a disminuir en el canal alfa.</param>
+	<param name="omitirAlfa">Si la variable es TRUE, no se disminuirá el canal alfa. En caso de ser FALSE, se disminuirá en función del valor incluido en la variable RestaAlfa.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Las variables Restarojo, Restaverde, Restazul y RestaAlfa deben ser positivas para que la función reste los valores.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Multiplicacion(System.Drawing.Bitmap,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+	<summary>
+ Función que multiplica valores a los píxeles de la imagen. Se multiplica los valores en los 4 canales ARGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Multiplicacion(bmp, 1.5,1,1,0,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Multiplicacionrojo">Variable que indica el valor por el cual se multiplicarán los píxeles del canal rojo.</param>
+	<param name="Multiplicacionverde">Variable que indica el valor por el cual se multiplicarán los píxeles del canal verde.</param>
+	<param name="Multiplicacionazul">Variable que indica el valor por el cual se multiplicarán los píxeles del canal azul.</param>
+	<param name="MultiplicacionAlfa">Variable que indica el valor por el cual se multiplicarán los píxeles del canal alfa.</param>
+	<param name="omitirAlfa">Si la variable es TRUE, no se multiplicará el canal alfa. En caso de ser FALSE, se multiplicará en función del valor incluido en la variable MultiplicacionAlfa.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Division(System.Drawing.Bitmap,System.Double,System.Double,System.Double,System.Double,System.Boolean)">
+	<summary>
+ Función que divide valores a los píxeles de la imagen. Se dividen los valores en los 4 canales ARGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Division(bmp, 1.5,1,1,0,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Divisionrojo">Variable que indica el valor por el cual se dividirán los píxeles del canal rojo.</param>
+	<param name="Divisionverde">Variable que indica el valor por el cual se dividirán los píxeles del canal verde.</param>
+	<param name="Divisionazul">Variable que indica el valor por el cual se dividirán los píxeles del canal azul.</param>
+	<param name="DivisionAlfa">Variable que indica el valor por el cual se dividirán los píxeles del canal alfa.</param>
+	<param name="omitirAlfa">Si la variable es TRUE, no se dividirá el canal alfa. En caso de ser FALSE, se dividirá en función del valor incluido en la variable MultiplicacionAlfa.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>El valor cero en las variables Divisionrojo, Divisionverde, Divisionazul, DivisionAlfa produciría un error.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperAND(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Función que realiza la operación AND a los valores de los píxeles de la imagen. Se opera en los valores en los 4 canales ARGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperAND(bmp, 1,1,0,0,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Arojo">Variable que indica el valor por el cual se operará (con el operador AND) los píxeles del canal rojo.</param>
+	<param name="Averde">Variable que indica el valor por el cual se operará (con el operador AND) los píxeles del canal verde.</param>
+	<param name="Aazul">Variable que indica el valor por el cual se operará (con el operador AND) los píxeles del canal azul.</param>
+	<param name="AAlfa">Variable que indica el valor por el cual se operará (con el operador AND) los píxeles del canal alfa.</param>
+	<param name="omitirAlfa">Si la variable es TRUE, no se operará en el canal alfa. En caso de ser FALSE, se hará en AND en función del valor incluido en la variable AAlfa.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Las operaciones lógicas tiene más sentido realizarlas en imágenes binarias.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperOR(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Función que realiza la operación OR a los valores de los píxeles de la imagen. Se opera en los valores en los 4 canales ARGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperOR(bmp, 1,1,0,0,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Orojo">Variable que indica el valor por el cual se operará (con el operador OR) los píxeles del canal rojo.</param>
+	<param name="Overde">Variable que indica el valor por el cual se operará (con el operador OR) los píxeles del canal verde.</param>
+	<param name="Oazul">Variable que indica el valor por el cual se operará (con el operador OR) los píxeles del canal azul.</param>
+	<param name="OAlfa">Variable que indica el valor por el cual se operará (con el operador OR) los píxeles del canal alfa.</param>
+	<param name="omitirAlfa">Si la variable es TRUE, no se operará en el canal alfa. En caso de ser FALSE, se hará en OR en función del valor incluido en la variable OAlfa.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Las operaciones lógicas tiene más sentido realizarlas en imágenes binarias.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperXOR(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+	<summary>
+ Función que realiza la operación XOR a los valores de los píxeles de la imagen. Se opera en los valores en los 4 canales ARGB.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperXOR(bmp, 255,255,255,0,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Xrojo">Variable que indica el valor por el cual se operará (con el operador XOR) los píxeles del canal rojo.</param>
+	<param name="Xverde">Variable que indica el valor por el cual se operará (con el operador XOR) los píxeles del canal verde.</param>
+	<param name="Xazul">Variable que indica el valor por el cual se operará (con el operador XOR) los píxeles del canal azul.</param>
+	<param name="XAlfa">Variable que indica el valor por el cual se operará (con el operador XOR) los píxeles del canal alfa.</param>
+	<param name="omitirAlfa">Si la variable es TRUE, no se operará en el canal alfa. En caso de ser FALSE, se hará en XOR en función del valor incluido en la variable XAlfa.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Las operaciones lógicas tiene más sentido realizarlas en imágenes binarias.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.MorfologicasDilatacion(System.Drawing.Bitmap,System.Int32[0:,0:])">
+	<summary>
+ Función que calcula el operador morfológico de dilatación de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+Picturebox1.image=objetoTratamiento.MorfologicasDilatacion(bmp, estructura)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.MorfologicasErosion(System.Drawing.Bitmap,System.Int32[0:,0:])">
+	<summary>
+ Función que calcula el operador morfológico de erosión de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+Picturebox1.image=objetoTratamiento.MorfologicasErosión(bmp, estructura)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.MorfologicasApertura(System.Drawing.Bitmap,System.Int32[0:,0:])">
+	<summary>
+ Función que calcula el operador morfológico de apertura de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+Picturebox1.image=objetoTratamiento.MorfologicasApertura(bmp, estructura)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.MorfologicasCerradura(System.Drawing.Bitmap,System.Int32[0:,0:])">
+	<summary>
+ Función que calcula el operador morfológico de cerradura de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+Picturebox1.image=objetoTratamiento.MorfologicasCerradura(bmp, estructura)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.MorfologicasPerimetroDilatEros(System.Drawing.Bitmap,System.Int32[0:,0:])">
+	<summary>
+ Función que calcula el operador morfológico de perímetro (a través de diltación y erosión) de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+Picturebox1.image=objetoTratamiento.MorfologicasPerimetroDilatEros(bmp, estructura)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.MorfologicasPerimetroOrigEros(System.Drawing.Bitmap,System.Int32[0:,0:])">
+	<summary>
+ Función que calcula el operador morfológico de perímetro (a través de la imagen original y erosionada) de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+Picturebox1.image=objetoTratamiento.MorfologicasPerimetroOrigEros(bmp, estructura)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.MorfologicasPerimetroDilatOrigin(System.Drawing.Bitmap,System.Int32[0:,0:])">
+	<summary>
+ Función que calcula el operador morfológico de perímetro (a través de la imagen dilatada y la original) de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+Picturebox1.image=objetoTratamiento.MorfologicasPerimetroDilatOrigin(bmp, estructura)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.MorfologicasTopHat(System.Drawing.Bitmap,System.Int32[0:,0:])">
+	<summary>
+ Función que calcula el operador morfológico Top Hat de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+Picturebox1.image=objetoTratamiento.MorfologicasTopHat(bmp, estructura)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.MorfologicasBottomHat(System.Drawing.Bitmap,System.Int32[0:,0:])">
+	<summary>
+ Función que calcula el operador morfológico Bottom Hat de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+Picturebox1.image=objetoTratamiento.MorfologicasBottomHat(bmp, estructura)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Cuadrado3x3">
+	<summary>
+ Función que devuelve una matriz de 3x3 formada por todo unos.
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Cuadrado3x3</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Cuadrado5x5">
+	<summary>
+ Función que devuelve una matriz de 5x5 formada por todo unos.
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Cuadrado5x5</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 5x5.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Cuadrado7x7">
+	<summary>
+ Función que devuelve una matriz de 7x7 formada por todo unos.
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Cuadrado7x7</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 7x7.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Cuadrado9x9">
+	<summary>
+ Función que devuelve una matriz de 9x9 formada por todo unos.
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Cuadrado9x9</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 9x9.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.CuadradoPersonal(System.Int32)">
+	<summary>
+ Función que devuelve una matriz de las dimensiones seleccionadas formada por todo unos.
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.CuadradoPersonal(5)</code></example>
+	</summary>
+	<param name="tamañoLado">Variable que indica el lado del cuadrado.</param>
+	<returns>Devuelve una matriz de 9x9.</returns>
+	<remarks>Si quiere crearse un cuadrado personalizado para utilizar en conjunto con los operadores morfológicos, éste debe ser impar.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Diamante3x3">
+	<summary>
+ Función que devuelve una matriz de 3x3 en forma de diamante (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Diamante3x3</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Diamante5x5">
+	<summary>
+ Función que devuelve una matriz de 5x5 en forma de diamante (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Diamante5x5</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 5x5.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Diamante7x7">
+	<summary>
+ Función que devuelve una matriz de 7x7 en forma de diamante (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Diamante7x7</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 7x7.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Diamante9x9">
+	<summary>
+ Función que devuelve una matriz de 9x9 en forma de diamante (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Diamante9x9</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 9x9.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Disco5x5">
+	<summary>
+ Función que devuelve una matriz de 5x5 en forma de disco (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Disco5x5</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 5x5.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Disco7x7">
+	<summary>
+ Función que devuelve una matriz de 7x7 en forma de disco (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Disco7x7</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 7x7.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.Disco9x9">
+	<summary>
+ Función que devuelve una matriz de 9x9 en forma de disco (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.Disco9x9</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 9x9.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.DiagonalA3x3">
+	<summary>
+ Función que devuelve una matriz de 3x3 formando una diagonal de izquierda a derecha (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.DiagonalA3x3</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.DiagonalA5x5">
+	<summary>
+ Función que devuelve una matriz de 5x5 formando una diagonal de izquierda a derecha (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.DiagonalA5x5</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 5x5.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.DiagonalA7x7">
+	<summary>
+ Función que devuelve una matriz de 7x7 formando una diagonal de izquierda a derecha (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.DiagonalA7x7</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 7x7.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.DiagonalA9x9">
+	<summary>
+ Función que devuelve una matriz de 9x9 formando una diagonal de izquierda a derecha (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.DiagonalA9x9</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 9x9.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.DiagonalB3x3">
+	<summary>
+ Función que devuelve una matriz de 3x3 formando una diagonal de derecha a izquieda (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.DiagonalB3x3</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 3x3.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.DiagonalB5x5">
+	<summary>
+ Función que devuelve una matriz de 5x5 formando una diagonal de derecha a izquieda (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.DiagonalB5x5</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 5x5.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.DiagonalB7x7">
+	<summary>
+ Función que devuelve una matriz de 7x7 formando una diagonal de derecha a izquieda (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.DiagonalB7x7</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 7x7.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural.DiagonalB9x9">
+	<summary>
+ Función que devuelve una matriz de 9x9 formando una diagonal de derecha a izquieda (formada por ceros y unos).
+ <example>Para obtener esta matriz, se debe proceder así:
+ <code>Dim estructura=objetoEstructura.DiagonalB9x9</code></example>
+	</summary>
+	<returns>Devuelve una matriz de 9x9.</returns>
+</member><member name="T:ClaseImagenes.Apolo.TratamientoImagenes.ElementoEstructural">
+	<summary>
+ Esta función permite definir elementos estructurales predefinidos para aplicar junto con operadores morfológicos. Su principal función es devolver matrices impares formadas por 0 y/o 1.
+ El proceso de obtención de un elemento estructural es muy sencillo. A continuación se muestra cómo realizarlo.
+ <example><para>Para instancia un objeto de la clase Tratamiento.ElementoEstructural, primeramente debe hacer referencia a la clase en su proyecto:</para>
+			<code>Imports nombredeaplicacion.Tratamiento.ElementoEstructural</code>
+			<para>A continuación se instancia a la clase y ya se puede obtener un elemento estrucutral predefinido (este proceso es asistido, si utiliza Visual Studio, por IntelliSense):
+ <code>Dim objetoEstructura as new Tratamiento.ElementoEstructural 
+Dim mascara=objetoEstructura.Cuadrado3x3</code></para></example>
+	</summary>
+	<remarks>Clase creada por Luis Marcos Rivera.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EstadisticoMedia(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Funcíón que calcula la media de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EstadisticoMedia(bmp, 3)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EstadisticoMediaArmonica(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Funcíón que calcula la media armónica de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EstadisticoArmonica(bmp, 3)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EstadisticoMediaGeométrica(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Funcíón que calcula la media geométrica de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EstadisticoGeometrica(bmp, 3)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1. El valor máximo posible es 5.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EstadisticoMediana(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Funcíón que calcula la mediana de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EstadisticoMediana(bmp, 3)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EstadisticoModa(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Funcíón que calcula la moda de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EstadisticoModa(bmp, 3)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EstadisticoRango(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Funcíón que calcula el rango de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EstadisticoRango(bmp, 3)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Reflexion(System.Drawing.Bitmap,System.Boolean,System.Boolean)">
+	<summary>
+ Función que efectúa la reflexión vertical u horizontal de una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Picturebox1.image=objetoTratamiento.Reflexion(bmp, TRUE, FALSE)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="horizontal">Si es TRUE, indica que se va a efectuar la reflexión horizontal de la imagen. En caso de ser FALSE no se hará la reflexión horizontal.</param>
+	<param name="vertical">Si es TRUE, indica que se va a efectuar la reflexión vertical de la imagen. En caso de ser FALSE no se hará la reflexión vertical.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Tenga en cuenta que sólo se puede hacer una reflexión a la vez, por lo tanto sólo podrá haber un valor (horizontal o vertical) como TRUE.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Traslacion(System.Drawing.Bitmap,System.Int32,System.Int32)">
+	<summary>
+ Función que traslada la imagen en X e Y y asigna valores sin color (ARGB=0) a la porción trasladada.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Picturebox1.image=objetoTratamiento.Traslacion(bmp, 20, 20)
+ </code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Traslacionhorizontal">Valor en píxeles que se va a trasladar la imagen en el eje X. Debe ser positivo.</param>
+	<param name="Traslacionvertical">Valor en píxeles que se va a trasladar la imagen en el eje Y. Debe ser positivo.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Volteados(System.Drawing.Bitmap,System.Drawing.RotateFlipType)">
+	<summary>
+ Función que efectúa un volteo de la imagen. Los volteos, son los predefinidos en .NET. Para los diferentes volteos, si se utilizar Visual Studio, IntelliSense le asistirá.
+ </summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="rotacion">Indica el tipo de volteo que se va a realizar.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Para ver la información de los diferentes tipos de volteos, visitar la siguiente web: msdn.microsoft.com/es-es/library/system.drawing.rotatefliptype(v=vs.80).aspx</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.DensitySlicing(System.Drawing.Bitmap,System.Int32,System.Drawing.Color[])">
+	<summary>
+ Esta función es un tipo de segmentación simple. Consiste en pasar la imagen a escala de grises e ir asignando por rangos, diferentes colores. Se selecciona el número de divisiones y automáticamente se calculan las divisiones.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.DensitySlicing(bmp, 3, {Color.Red, Color.Black, Color.Blue})</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Divisiones">Número de divisiones que se van a efectuar. Tenga en cuenta que el número máximo serían 256. Valores mayores de 15 dan resultados poco satisfactorios.</param>
+	<param name="colores">Matriz con los colores para diferentes divisiones.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>El número de divisiones (Divisiones) debe de ser el mismo que el número de colores (colores).</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.DensitySlicing(System.Drawing.Bitmap,System.Int32[0:,0:],System.Drawing.Color[])">
+	<summary>
+ Esta función es un tipo de segmentación simple. Consiste en pasar la imagen a escala de grises e ir asignando por rangos, diferentes colores. Se seleccionan los diferentes rangos y se le asignan los colores.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code> Dim rango(2, 2) As Integer
+rango(0, 0) = 0 : rango(0, 1) = 100
+rango(1, 0) = 101 : rango(0, 2) = 200
+rango(2, 0) = 201 : rango(0, 3) = 255
+Picturebox1.image=objetoTratamiento.DensitySlicing(bmp, rango, {Color.Red, Color.Black, Color.Blue})</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="rangos">Intervalos de las diferentes divisiones. Es una matriz bidimensional en la que cada fila debe incluir el rango de una división.</param>
+	<param name="colores">Matriz con los colores para diferentes divisiones.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>El número de divisiones (Divisiones) debe de ser el mismo que el rango de colores (rangos).</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.DensitySlicingNormalizado(System.Drawing.Bitmap,System.Int32,System.Drawing.Color[])">
+	<summary>
+ Esta función es un tipo de segmentación simple. Consiste en pasar la imagen a escala de grises e ir asignando por rangos, diferentes colores. Se selecciona el número de divisiones y automáticamente el algoritmo lo adapatará en función del valor máximo y mínimo de la imagen, es decir, está normalizada.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.DensitySlicingNormalizado(bmp, 3, {Color.Red, Color.Black, Color.Blue})</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="Divisiones">Número de divisiones que se van a efectuar. Tenga en cuenta que el número máximo serían 256. Valores mayores de 15 dan resultados poco satisfactorios.</param>
+	<param name="colores">Matriz con los colores para diferentes divisiones.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>El número de divisiones (Divisiones) debe de ser el mismo que el número de colores (colores).</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.desenfoque(System.Drawing.Bitmap,System.Int16,System.Int16)">
+	<summary>
+ Función que desenfoca creando un efecto de duplicidad de imágenes estando una de ellas movida.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.desenfoque(bmp,20,20)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="desenfoqueHor">Variable que indica el número de píxeles que se van a desenfocar en la imagen en horizontal.</param>
+	<param name="desenfoqueVer">Variable que indica el número de píxeles que se van a desenfocar en la imagen en vertical.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.cuadricula(System.Drawing.Bitmap,System.Drawing.Color,System.Drawing.Color,System.Int32,System.Int32)">
+	<summary>
+ Función que crea una cuadricula por encima de la imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.cuadricula(bmp,color.Red,color.Red,20,20)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="colorHorizontal">Color que se asignará a las líneas horizontales de la cuadrícula.</param>
+	<param name="colorVertical">Color que se asignará a las líneas verticales de la cuadrícula.</param>
+	<param name="horizontal">Espaciado horizontal entre las líneas verticales. El valor debe ser mayor que 0.</param>
+	<param name="vertical">Espaciado vertical entre las líneas horizontales. El valor debe ser mayor que 0.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.SombraVidrio(System.Drawing.Bitmap,System.Int32,System.Boolean)">
+	<summary>
+ Función que crea una imagen espejo en la parte inferior de la imagen original, pudiendo estar ésta atenuada.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.SombraVidrio(bmp,100,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="altoSombra">Indica el tamaño en píxeles de la sombra creada en la parte inferior de la imagen. El tamaño no puede ser mayor que el alto de la imagen original.</param>
+	<param name="atenuarSombra">Si la variable es TRUE, el canal alfa disminuye a lo largo de la sombra. En caso de ser FALSE, el canal alfa no se varía.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ImagenTresPartes(System.Drawing.Bitmap)">
+	<summary>
+ Función que divide la imagen en tres partes (verticales) y las alterna.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.ImagenTresPartes(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.ImagenSeisPartes(System.Drawing.Bitmap)">
+	<summary>
+ Función que divide la imagen en seis partes (dos horizontales y tres verticales) y las alterna.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.ImagenSeisPartes(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.RuidoAleatorio(System.Drawing.Bitmap,System.Byte)">
+	<summary>
+ Función que introduce a la imagen píxeles con valores aleatorios.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.RuidoAleatorio(bmp,2)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valorRuido">Indica el grado de píxeles aleatorios. A partir de valores mayores de 20, la imagen pierde casi por totalidad su aspecto original.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.RuidoProgresivo(System.Drawing.Bitmap,System.Int32,System.Boolean)">
+	<summary>
+ Función que altera los valores originales de los píxeles de forma aleatoria.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.RuidoProgresivo(bmp,50,TRUE)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valorRuido">Indica el rango entre el que oscilará el nuevo valor del píxel con respecto al valor original.</param>
+	<param name="blancoNegro">Si el parámetro es TRUE, los valores alterados estarán en blanco y negro.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Distorsion(System.Drawing.Bitmap,System.Byte)">
+	<summary>
+ Función que distorsiona la posición de los píxeles de forma aleatoria en función del parámetro valorDesenfoque.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Distorsión(bmp,8)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="valorDesenfoque">Variable que indica el rango en que se moverán de su posición original los píxeles de la imagen.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Pixelar(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Función que pixela la imagen creando cuadrados con píxeles con el mismo valor.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Pixelar(bmp,8)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="numeroPixeles">Variable que define el ancho de los nuevos píxeles.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Oleo(System.Drawing.Bitmap,System.Byte,System.Byte)">
+	<summary>
+ Función que crea un efecto que imita a una imagen pintada al óleo. Se crea en tres etapas, primeramente reduce los colores de la imagen, detecta los contornos, y por último une las imágenes.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.Oleo(bmp,30,170)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<param name="contorno">Variable que indica el grado de contornos que se va a detectar. Valores más bajos detectan más contornos que los superiores.</param>
+	<param name="colores">Variable que indica que número de colores máximo que tendrá la imagen por canal.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EfectoMarte(System.Drawing.Bitmap)">
+	<summary>
+ Función que crea un efecto rojizo (depende los tonos de la imagen) sobre la imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EfectoMarte(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EfectoAntigSobreex(System.Drawing.Bitmap)">
+	<summary>
+ Función que crea un efecto de imagen sobreexpuesta.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EfectoAntigSobreex(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EfectoMarino(System.Drawing.Bitmap)">
+	<summary>
+ Función que crea un efecto marino (depende los tonos de la imagen) sobre la imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EfectoMarino(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EfectoAumentarRasgos(System.Drawing.Bitmap)">
+	<summary>
+ Función que crea un efecto que oscure las zonas más negras de la imagen, y en fotografías retrato, aumentan los rasgos de los rostros.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EfectoAumentarRasgos(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EfectoDisminuirRasgos(System.Drawing.Bitmap)">
+	<summary>
+ Función que crea un efecto que aclara las zonas más negras de la imagen, y en fotografías retrato, disminuye los rasgos de los rostros.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EfectoDisminuirRasgos(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EfectoContornoSombreado(System.Drawing.Bitmap)">
+	<summary>
+ Función que crea un efecto de detección de contornos con sombras.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EfectoContornoSombreado(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EfectoContornoSombreado2(System.Drawing.Bitmap)">
+	<summary>
+ Función que crea un efecto de detección de contornos con sombras.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EfectoContornoSombreado2(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.EfectoAumentarLuz(System.Drawing.Bitmap)">
+	<summary>
+ Función que crea aumenta el valor de los píxeles creando un efecto de luz rojiza.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.EfectoAumentarLuz(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.cine(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Drawing.Bitmap,System.Drawing.Bitmap,System.Drawing.Bitmap,System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Función que crear un marco a partir de cine a partir de 6 imágenes.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.cine(bmp1,bmp2,bmp3,bmp4,bmp5, eleccionCombo)</code></example>
+	</summary>
+	<param name="bmpP0">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+	<param name="bmpP1">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+	<param name="bmpP2">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+	<param name="bmpP3">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+	<param name="bmpP4">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+	<param name="bmpP5">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+	<param name="tamañoImagen">Indica el tamaño de salida del marco. Si se le pasa un 0, el tamaño será pequeño, un 1 mediano y 2 grande.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Esta función fue recuperar de otro proyecto anterior y no está bien optimizada, podría demorarse varios segundos.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.marco(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Función que crear un marco rodeando a una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.marco(bmp,1)</code></example>
+	</summary>
+	<param name="bmp">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+	<param name="numeroMarco">Indica el marco que se va a seleccionar. Los valores posibles son, 0, 1, 2 o 3.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.CuadrarImagenes(System.Drawing.Bitmap,System.Drawing.Bitmap)">
+	<summary>
+ Función que hace que dos imágenes de diferentes tamaño tengan el mismo tamaño. Busca y aplica el alto/ancho más pequeño del par de imágenes.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>bmpCuadrado=me.CuadrarImagenes(bmp,bmp2)</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 a cuadrar.</param>
+	<param name="bmp2">Imagen 2 a cuadrar.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperacionSuma(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Boolean)">
+	<summary>
+ Función que suma los píxeles de dos imágenes. La suma se hace canal a canal (ARGB).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperacionSuma(bmp1,bmp2,TRUE)</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 de la suma. Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 de la suma. Se debe pasar en formato Bitmap.</param>
+	<param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la suma, en caso contrario, el canal alfa se tratará de forma normal.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperacionResta(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Boolean)">
+	<summary>
+ Función que resta los píxeles de dos imágenes. La resta se hace canal a canal (ARGB).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperacionResta(bmp1,bmp2,TRUE)</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 de la resta. Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 de la resta. Se debe pasar en formato Bitmap.</param>
+	<param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la resta, en caso contrario, el canal alfa se tratará de forma normal.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperacionMultiplicacion(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Boolean)">
+	<summary>
+ Función que multiplica los píxeles de dos imágenes. La multiplicación se hace canal a canal (ARGB).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperacionMultiplicacion(bmp1,bmp2,TRUE)</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 de la multiplicación. Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 de la multiplicación. Se debe pasar en formato Bitmap.</param>
+	<param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la multiplicación, en caso contrario, el canal alfa se tratará de forma normal.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperacionDivision(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Boolean)">
+	<summary>
+ Función que divide los píxeles de dos imágenes. La división se hace canal a canal (ARGB).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperacionDivisión(bmp1,bmp2,TRUE)</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 de la división (dividendo). Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 de la división (divisor). Se debe pasar en formato Bitmap.</param>
+	<param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks><para>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</para>
+		<para>En caso de que algún valor en el dividendo sea 0, automáticamente pasará a ser 1.</para></remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperacionUnir(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Boolean)">
+	<summary>
+ Función que une los píxeles de dos imágenes. La unión se hace canal a canal (ARGB). Se trata de sumar cada canal de cada píxel y dividirlo entre 2.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperacionUnir(bmp1,bmp2,TRUE)</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 de la unión. Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 de la unión. Se debe pasar en formato Bitmap.</param>
+	<param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperacionAND(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Boolean)">
+	<summary>
+ Función que hace la operación AND de dos imágenes. El operador AND se hace canal a canal (ARGB).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperacionAND(bmp1,bmp2,TRUE)</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 del operador AND. Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 del operador AND. Se debe pasar en formato Bitmap.</param>
+	<param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks><para>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</para>
+		<para>Este tipo de operaciones lógicas, tienen más sentido con imágenes binarias.</para></remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperacionOR(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Boolean)">
+	<summary>
+ Función que hace la operación OR de dos imágenes. El operador OR se hace canal a canal (ARGB).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperacionOR(bmp1,bmp2,TRUE)</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 del operador OR. Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 del operador OR. Se debe pasar en formato Bitmap.</param>
+	<param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks><para>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</para>
+		<para>Este tipo de operaciones lógicas, tienen más sentido con imágenes binarias.</para></remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OperacionXOR(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Boolean)">
+	<summary>
+ Función que hace la operación XOR de dos imágenes. El operador XOR se hace canal a canal (ARGB).
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperacionXOR(bmp1,bmp2,TRUE)</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 del operador XOR. Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 del operador XOR. Se debe pasar en formato Bitmap.</param>
+	<param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks><para>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</para>
+		<para>Este tipo de operaciones lógicas, tienen más sentido con imágenes binarias.</para></remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Anaglifo(System.Drawing.Bitmap,System.Drawing.Bitmap)">
+	<summary>
+ Función que crea una imagen anaglifo a partir de dos imágenes muy cercanas al mismo objeto.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.OperacionAnaglifo(bmp1,bmp2)</code></example>
+	</summary>
+	<param name="bmpIzquierda">Imagen izquierda del par de imágenes que formarán el anaglifo. Se debe pasar en formato Bitmap.</param>
+	<param name="bmpDerecha">Imagen derecha del par de imágenes que formarán el anaglifo. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.CompararDosImagenes(System.Drawing.Bitmap,System.Drawing.Bitmap)">
+	<summary>
+ Función que compara dos imágenes píxel a píxel y canal a canal.
+ <example>La llamada a la función, asignando los resultados a un arraylist, sería:
+ <code>Dim resultadoComparacion As New ArrayList(Me.CompararDosImagenes(bmp1, bmp2))</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 a comparar. Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 a comparar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un arraylist con la información de la comparación. En las 4 primeras posiciones devuelve el porcentaje de aciertos del canal rojo, verde, azul y alfa, respectivamente. En 
+ las siguientes 4 posiciones, devuelve matrices de dos dimensiones (ancho y alto más pequeño del par de imágenes), con todas las comparaciones píxel a píxel (las diferencias en valor absoluto
+ entre los píxeles de la primera imagen con respecto a la segunda). Esta cuatro matrices son del canal rojo, verde, azul y alfa, respectivamente.</returns>
+	<remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.CompararDosImagenesVecinos(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+	<summary>
+ Función que comparar dos imágenes teniendo en cuenta sus vecinos más próximos y las diferencias entre ellos (los incrementos en sus valores).
+ <example>La llamada a la función, asignando los resultados a un arraylist, sería:
+ <code>Dim resultadoComparacion As New ArrayList(Me.CompararDosImagenes(bmp1, bmp2))</code></example>
+	</summary>
+	<param name="bmp1">Imagen 1 a comparar. Se debe pasar en formato Bitmap.</param>
+	<param name="bmp2">Imagen 2 a comparar. Se debe pasar en formato Bitmap.</param>
+	<param name="DistanciaVecinos">Variable que indica el número de vecinos que se van a utilizar para la comparación. Para saber el lado del kernel evaluado, se debe calcular (DistanciaVecinos*2+1).</param>
+	<param name="PasoAlto">Si esta opción es TRUE, previamente a comparar las imágenes se aplica un filtro de paso alto para acentuar las diferencias en la imagen. En caso de ser FALSE, no se aplica filtro previo.</param>
+	<param name="Grafica">Esta variable si toma valor 0, no modificará los valores de la comparación. En caso de ser 1, se aplicará a la matriz con los resultados la función math.E^x, y si es 2 se aplicará x^raiz(2).</param>
+	<param name="ComparadorRapido">Si esta opción es TRUE, se reducirá el tamaño de la imagen para hacer una comparación rápida pero menos exahustiva. En caso de ser FALSE, se compararán las imágenes con su tamaño original.</param>
+	<returns>Devuelve un arraylist con la información de la comparación. En las 4 primeras posiciones devuelve el porcentaje de aciertos del canal rojo, verde, azul y alfa, respectivamente. En 
+ las siguientes 4 posiciones, devuelve matrices de dos dimensiones (ancho y alto más pequeño del par de imágenes), con todas las comparaciones píxel a píxel (las diferencias en valor absoluto
+ entre los píxeles de la primera imagen con respecto a la segunda). Esta cuatro matrices son del canal rojo, verde, azul y alfa, respectivamente.</returns>
+	<remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.tapiz(System.Int32,System.Int32,System.Drawing.Color,System.String)">
+	<summary>
+ Función que crea un rectángulo con el color y las dimensiones especificadas.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.tapiz(500,500,color.Red,"Nueva imagen como tapiz")</code></example>
+	</summary>
+	<param name="ancho">Variable que indica el ancho del tapiz de salida.</param>
+	<param name="alto">Variable que indica el alto del tapiz de salida.</param>
+	<param name="color">Variable que indica el color del tapiz de salida.</param>
+	<param name="nombreTapiz">Esta variable no tiene efecto en esta función.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Para almacenar el nombre del tapiz (nombreTapiz) y que luego sea su nombre de cara a su aplicación, debe llamar al procedimiento actualizarNombreTapiz y pasarle como parámetros el nombre, ancho y alto.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.actualizarNombreTapiz(System.String,System.Int32,System.Int32)">
+	<summary>
+ Para ver su utilidad, revisar las observaciones (remarks) de la función tapiz en la documentación.
+ </summary>
+	<param name="nombre">Nombre del tapiz creado.</param>
+	<param name="ancho">Ancho del tapiz creado.</param>
+	<param name="alto">Alto del tapiz creado.</param>
+	<remarks>Véase las observaciones (remarks) de la función tapiz.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.abrirImagen(System.Int32)">
+	<summary>
+ Función que muestra un cuadro de diálogo para seleccionar una imagen desde el pc y devuelve la imagen en formato bitmap.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así (haciendo una comprobación de que la imagen no está vacía):
+ <code>Dim bmpArchivo as bitmap=objetoTratamiento.abrirImagen(1)
+ If bmpArchivo IsNot Nothing Then Picturebox1.image=bmpArchivo</code></example>
+	</summary>
+	<param name="filtrado">Esta variable indica el filtro seleccionado para el formato de las imágenes que se mostrarán en el cuadro de diálogo. 1 (todos los formatos compatibles),
+ 2 (BMP), 3 (GIF), 4 (JPG/JPEG), 5 (PNG), 6 (TIFF), 7 (todos los archivos). (</param>
+	<returns>Devuelve un bitmap.</returns>
+	<remarks>En caso de que haya algún fallo a la hora de seleccionar la imagen, la función devolverá un bitmap vacío.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.abririmgRuta(System.String)">
+	<summary>
+ Función que abre una imagen desde una ruta del pc.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así (haciendo una comprobación de que la imagen no está vacía):
+ <code>Dim bmpWeb as bitmap=objetoTratamiento.abririmgRuta("C:/Users/Usuario/Desktop/imagen.png")
+ If bmpArchivo IsNot Nothing Then Picturebox1.image=bmpWeb</code></example>
+	</summary>
+	<param name="ruta">Indica la ruta donde se encuentra la imagen en el pc (local).</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>En caso de que haya algún fallo a la hora buscar la imagen, la función devolverá un bitmap vacío.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.abrirRecursoWeb(System.String)">
+	<summary>
+ Función que abre una imagen desde una URL de internet.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así (haciendo una comprobación de que la imagen no está vacía):
+ <code>Dim bmpWeb as bitmap=objetoTratamiento.abririmgRuta("www.imagenes.com/imagenEjemplo)
+ If bmpArchivo IsNot Nothing Then Picturebox1.image=bmpWeb</code></example>
+	</summary>
+	<param name="enlace">Indica el recurso web donde se halla la imagen.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>En caso de que haya algún fallo a la hora buscar/descargar la imagen, la función devolverá un bitmap vacío.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.abrirDragDrop(System.String)">
+	<summary>
+ Función que abre una imagen desde una ruta del pc y la guarda como si se hubiese arrastrado a la aplicación. Esta función sólo debe utilizarse para imágenes que se abren arrastrándolas a la aplicación.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así (haciendo una comprobación de que la imagen no está vacía):
+ <code>Dim bmpWeb as bitmap=objetoTratamiento.abririmgRuta("C:/Users/Usuario/Desktop/imagen.png")
+ If bmpArchivo IsNot Nothing Then Picturebox1.image=bmpWeb</code></example>
+	</summary>
+	<param name="ruta">Indica la ruta donde se encuentra la imagen en el pc (local).</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>En caso de que haya algún fallo a la hora buscar la imagen, la función devolverá un bitmap vacío.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.abrirRecursoWebAxu(System.String)">
+	<summary>
+ Función que abre una imagen sin dejar rastro. No guarda información en las listas de hacer/rehacer, en imágenes originales, etc.
+ </summary>
+	<param name="enlace">Indica el recurso web donde se halla la imagen.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>En caso de que haya algún fallo a la hora buscar/descargar la imagen, la función devolverá un bitmap vacío.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.InfoImagenPrecarga(System.Drawing.Bitmap,System.String)">
+	<summary>
+ Función que guarda una imagen como recurso web. No es recomendable utilizar esta función.
+ </summary>
+	<param name="bmp">Imagen en formato bitmap.</param>
+	<param name="direccionURL">Dirección URL del recurso web.</param>
+	<remarks></remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.OriginalApoloCloud(System.Drawing.Bitmap)">
+	<summary>
+ Función que no debe utilizarse
+ </summary>
+	<param name="bmp">Imagen que se ha extraido de Cloud y se quiere guardar como imagen original.</param>
+	<returns>Devuelve un bitmap (la imagen enviada).</returns>
+	<remarks></remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.guardarcomo(System.Drawing.Bitmap,System.Int32)">
+	<summary>
+ Procedimiento que guarda una imagen que se le pase como bitmap, mostrando un cuadro de diálogo al usuario de dónde guardarla en su pc.
+ <example>La llamada al procedimiento sería así:
+ <code>objetoTratamiento.guardarcomo(bmp,4)</code></example>
+	</summary>
+	<param name="bmp">Imagen que se quiere guardar. Debe pasarse en formato bitmap.</param>
+	<param name="filtrado">Tipo de formato que aparecerá como predeterminado a la hora de guardar la imagen. 1 (BMP), 2 (GIF), 3 (JPG/JPEG), 4 (PNG), 5 (TIFF).</param>
+	<remarks>La imagen guardada se almacena como primera imagen del hacer/deshacer.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.nombreImagen(System.String)">
+	<summary>
+ Función que devuelve el nombre de una imagen a partir de una ruta local del pc.
+ <example>La llamada a la función sería así:
+ <code>Dim ImagenEnPC as string="C:\Users\Usuario\Desktop\ImagenEjemplo.jpg"
+ Dim nombreDeImagen as string=objetoTratamiento.nombreImagen(ImagenEnPC)</code></example>
+	</summary>
+	<param name="rutaImagen">Variable que indica la ruta de donde se quiere extraer el nombre.</param>
+	<returns>Devuelve un string con el nombre de la imagen.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.nombreRecursoWeb(System.String)">
+	<summary>
+ Función que devuelve el nombre de una imagen a partir de una URL.
+ <example>La llamada a la función sería así:
+ <code>Dim ImagenWEB as string="imagenes.com/imagenPrueba.jpg"
+ Dim nombreDeImagen as string=objetoTratamiento.nombreRecursoWeb(ImagenWEB)</code></example>
+	</summary>
+	<param name="url">Variable que indica la ruta de donde se quiere extraer el nombre.</param>
+	<returns>Devuelve un string con el nombre de la imagen.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.BuscarImagenesBing(System.String,System.Int32,System.String,System.Boolean)">
+	<summary>
+ Función que devuelve URLs con imágenes encontradas en BING imágenes.
+ <example>Para hacer una petición a la función, sería así:</example>
+		<code>Dim matrizConURL=objetoTratamiento.BuscarImagenesBing("Gatos",50,"Large",FALSE)</code>
+	</summary>
+	<param name="texto">Indica el texto con el que se buscarán imágenes.</param>
+	<param name="numeroImagenes">Indica el número de imágenes que será devuelto. Un máximo de 50.</param>
+	<param name="tamaño">Indica el tamaño de las imágenes. Si el valor es una cadena vacía se buscarán todas los tamaños. Se puede seleccionar "Small", "Medium", "Large" (sin las comillas).</param>
+	<param name="Precarga">Si esta opción es TRUE, el primer resultado será la imagen original, en caso de ser false, el primer resultado será una miniatura.</param>
+	<returns>Devuelve una matriz bidimensional en la que, por cada fila, los dos primeros resultados corresponden a una imagen y su miniatura. Por ejemplo, el resultado 0,0 será la miniatura, el 0,1 la imagen original, y el 1,0 será la miniatura de otro resultado y el 1,1 la original.</returns>
+	<remarks>Está limitado a 5000 peticiones por mes.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.histogramaAcumulado(System.Drawing.Bitmap)">
+	<summary>
+ Función que devuelve el histograma acumulado de una imagen.
+ <example>Para utilizar la función, se procedería así:
+ <code>Dim matrizAcumulada=objetoTratamiento.histogramaAcumulado(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen de la cual se quiere obtener el histograma acumulado. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve una matriz de dimensiones (255,2) siendo 255,0 para el rojo, 255,1 para el verde y 255,2 para el azul. Dentro de cada canal
+ los 256 valores indica el valor acumulado, por ejemplo, para el 0. Es decir, por ejemplo, el valor (150,1) informa del número de veces que se
+ repite el valor 150 en el canal verde.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.histogramaAcumuladoH(System.Drawing.Bitmap)">
+	<summary>
+ Función que devuelve el histograma acumulado de una imagen.
+ <example>Para utilizar la función, se procedería así:
+ <code>Dim matrizAcumulada=objetoTratamiento.histogramaAcumulado(bmp)</code></example>
+	</summary>
+	<param name="bmp">Imagen de la cual se quiere obtener el histograma acumulado. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve una matriz de dimensiones (255,2) siendo 255,0 para el rojo, 255,1 para el verde y 255,2 para el azul. Dentro de cada canal
+ los 256 valores indica el valor acumulado, por ejemplo, para el 0. Es decir, por ejemplo, el valor (150,1) informa del número de veces que se
+ repite el valor 150 en el canal verde.</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.capturarPantalla(System.Boolean)">
+	<summary>
+ Función que devuelve una captura de pantalla en el momento en que se llama a la función.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Picturebox1.image=objetoTratamiento.capturarPantalla(FALSE)</code></example>
+	</summary>
+	<param name="ControlExcepciones">Este valor siempre debe ser FALSE.</param>
+	<returns>Devuelve un bitmap</returns>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Secuencia(System.String[0:,0:],System.Drawing.Bitmap)">
+	<summary>
+ Función que a partir de una secuencia de operaciones las aplica a una imagen.
+ <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+ <code>Dim PasosSecuencia(1,1) as string
+ PasosSecuencia(0,0)="Blanco y negro" : PasosSecuencia(0,1)="128"
+ PasosSecuencia(1,0)="Sepia"
+ Picturebox1.image=objetoTratamiento.Secuencia(PasosSecuencia,bmp)</code></example>
+	</summary>
+	<param name="datosSecuencia">Indica la secuencia de operaciones que se van a realizar. Debe ser una matriz bidimensional y en cada fila debe estar en primer lugar 
+ el nombre de la transformación y en los restantes lugares (columnas) los diferentes parámetros (si los hubiera).</param>
+	<param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+	<returns>Devuelve un bitmap</returns>
+	<remarks>Para ver los nombres de las diferentes funciones, revisar documentación del desarrollador.</remarks>
+</member><member name="M:ClaseImagenes.Apolo.TratamientoImagenes.Volteado(System.String)">
+	<summary>
+ Función que a partir del nombre de un volteo, devuelve un RotateFlipType
+ </summary>
+	<param name="VolteadoSelec">Nombre del volteo.</param>
+	<returns>Devuelve un RotateFlipType</returns>
+</member><member name="T:ClaseImagenes.Apolo.TratamientoImagenes">
+	<summary>
+ La clase TratamientoImagenes permite crear aplicaciones con multitud de funcionalidades, todas ellas orientadas a tratamiento de imágenes. Con esta clase se pretende englobar todo el proceso
+ de creación de una aplicación de tratamiento de imágenes, desde la propias transformaciones, hasta la adquisición de imágenes o las funciones de deshacer/rehacer. 
+ <example><para>Para utilizar la clase en una aplicación, primero se debe hacer referencia con la sentencia Imports:</para>
+			<code>Imports nombredeaplicacion.Tratamiento</code>
+			<para>A continuación, se puede instanciar a la clase y por ejemplo asignar a un Picturebox una imagen transformada a tonos sepia:
+<code>Dim objetoTratamiento as new Tratamiento
+Dim bmp as new bitmap(Picturebox1.image) 
+Picturebox1.image=ObjetoTratamiento.sepia(bmp)</code></para>
+		</example>
+	</summary>
+	<remarks>Clase creada por Luis Marcos Rivera.</remarks>
 </member>
 </members>
 </doc>

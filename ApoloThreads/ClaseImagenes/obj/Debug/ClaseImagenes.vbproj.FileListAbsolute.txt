@@ -179,3 +179,13 @@ C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.TAfinPers.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.DensityScilingAuto.resources
 C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.DensityScilingManual.resources
+C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\ClaseImagenes\bin\Debug\ClaseImagenes.exe.config
+C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\ClaseImagenes\obj\Debug\ClaseImagenes.exe
+C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\ClaseImagenes\obj\Debug\ClaseImagenes.xml
+C:\Users\Luis\Desktop\TratamientoImagenesVB.NET\ClaseImagenes\obj\Debug\ClaseImagenes.pdb
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.Cine.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.OjosRojos.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.GrabarSecuencia.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.ImportarSecuencia.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.MascaraPersonal.resources
+C:\Users\Luis\Desktop\Apolo\TratamientoImagenesVB.NET\ApoloThreads\ClaseImagenes\obj\Debug\ClaseImagenes.OperacionesEstadisticas.resources

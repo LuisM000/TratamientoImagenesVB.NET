@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="fe9eda5c-4b8c-43e6-b1df-65b248c8947f" Title="ClaseImagenes.Apolo Namespace" Url="html/1373dd2f-3e1b-9259-6b1d-6533580bffd7.htm">
+    <HelpTOCNode Title="ActualizamosImagen Delegate" Url="html/e9f38150-fd96-a8e2-44df-97415d644977.htm" />
+    <HelpTOCNode Title="ActualizamosNombreImagen Delegate" Url="html/9c12bf26-1782-93be-2eb1-448474d14c83.htm" />
+    <HelpTOCNode Id="862e8d4d-6da4-49fe-b7be-8ac220cea40a" Title="TratamientoImagenes Class" Url="html/81d40a54-ef19-7f55-31ff-6bdc4957c725.htm">
+      <HelpTOCNode Title="TratamientoImagenes Members" Url="html/1dc9aa6b-a3b6-c375-7ff9-85830ac3b960.htm" />
+      <HelpTOCNode Title="TratamientoImagenes Constructor " Url="html/79f914c3-924e-2e5d-055a-b00aec762748.htm" />
+      <HelpTOCNode Id="42d740d6-13f6-4285-8ca3-69ff88981757" Title="TratamientoImagenes Fields" Url="html/a60f2cfc-8bd1-34a1-1d0b-932efd5a9d13.htm">
+        <HelpTOCNode Title="imagenesGuardadas Field" Url="html/5eeb724a-df51-09e8-f16c-e57c6108c90b.htm" />
+        <HelpTOCNode Title="imagenOriginal Field" Url="html/8c6ebfed-2022-afa5-2db9-605cf3bcad9a.htm" />
+        <HelpTOCNode Title="porcentaje Field" Url="html/ac5285b0-ca27-c72f-5e12-b432f16309c0.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="8bf4b109-488e-4481-b18a-8214bde42020" Title="TratamientoImagenes Methods" Url="html/24d5b2dd-9970-b8d0-156f-392cfd9cd2f8.htm">
+        <HelpTOCNode Title="abrirDragDrop Method " Url="html/af5c4116-c8a5-1917-f1b8-8742bbea056a.htm" />
+        <HelpTOCNode Title="abrirImagen Method " Url="html/caf7dae3-55cb-1605-07a0-5fa45dad7361.htm" />
+        <HelpTOCNode Title="abririmgRuta Method " Url="html/61d682c9-59c2-2b61-82b3-d3c7efe99de2.htm" />
+        <HelpTOCNode Title="abrirRecursoWeb Method " Url="html/aaa1d278-71b0-cbf4-33a9-dbd3916b3d22.htm" />
+        <HelpTOCNode Title="abrirRecursoWebAxu Method " Url="html/e2ae806e-f50d-5347-bf05-756122780393.htm" />
+        <HelpTOCNode Title="ActualizarImagen Method " Url="html/35e7e1c7-45a8-f5c4-de24-8adcd7fd22b7.htm" />
+        <HelpTOCNode Title="actualizarNombreTapiz Method " Url="html/ee59b4ca-d3ad-c447-9955-3eee053834c4.htm" />
+        <HelpTOCNode Title="Anaglifo Method " Url="html/41328fc1-0227-b1bd-39bd-b31f9bed875c.htm" />
+        <HelpTOCNode Title="BlancoNegro Method " Url="html/2e8347c9-c4ad-af3f-e4d7-bda15e75a3bc.htm" />
+        <HelpTOCNode Title="Brillo Method " Url="html/872f9544-42f4-d975-f199-027cd6e25142.htm" />
+        <HelpTOCNode Title="BuscarImagenesBing Method " Url="html/837071c6-f284-6ea0-32fb-072e9fb1dad1.htm" />
+        <HelpTOCNode Title="Canales Method " Url="html/a23f042f-6f21-e517-0ea6-31c8d7c85bf0.htm" />
+        <HelpTOCNode Title="capturarPantalla Method " Url="html/c4af0527-95ac-10e5-538f-f778fc30b113.htm" />
+        <HelpTOCNode Title="cine Method " Url="html/0637f7f0-157e-05dc-7fc6-bc84374d8a9c.htm" />
+        <HelpTOCNode Title="CompararDosImagenes Method " Url="html/2960229f-aa37-0e9b-7fcf-c3743a0eaf99.htm" />
+        <HelpTOCNode Title="CompararDosImagenesVecinos Method " Url="html/c6dc90eb-2075-cbb4-00be-bc9e508dea7b.htm" />
+        <HelpTOCNode Title="contornos Method " Url="html/1badac79-3c5f-267e-dcbe-0e5684eb2ff7.htm" />
+        <HelpTOCNode Title="Contraste Method " Url="html/26d8f13a-8ef8-c522-178d-bea6ccbc605b.htm" />
+        <HelpTOCNode Title="ContrasteEstirar Method " Url="html/15e687be-ea9a-d3db-1ceb-e9ab9eb5e243.htm" />
+        <HelpTOCNode Title="cuadricula Method " Url="html/64eaa928-65cd-645a-eab8-e89c872a3096.htm" />
+        <HelpTOCNode Id="2bd73f04-368b-4d26-9ef3-2075be494aa9" Title="DensitySlicing Method " Url="html/f0d86bae-4389-b857-ab1b-5edc14756e5f.htm">
+          <HelpTOCNode Title="DensitySlicing Method (Bitmap, Int32, Color[])" Url="html/7b2b361d-beec-c6ab-900f-e5eeeda9e1cf.htm" />
+          <HelpTOCNode Title="DensitySlicing Method (Bitmap, Int32[,], Color[])" Url="html/14abb7c3-b6a4-2d20-b502-a7f848f5fed7.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="DensitySlicingNormalizado Method " Url="html/5adb1ad5-a830-126b-8005-f8ad987535fc.htm" />
+        <HelpTOCNode Title="desenfoque Method " Url="html/0cd3667f-467f-caf6-af74-3c7d99335bdb.htm" />
+        <HelpTOCNode Title="Distorsion Method " Url="html/396777c6-3d54-327b-7221-0a5544b8018d.htm" />
+        <HelpTOCNode Title="Division Method " Url="html/327ad475-e7d3-56a3-1daf-4029b51c3c0e.htm" />
+        <HelpTOCNode Title="EfectoAntigSobreex Method " Url="html/e88f8c55-68ad-ac5e-a697-b2e968ed9f53.htm" />
+        <HelpTOCNode Title="EfectoAumentarLuz Method " Url="html/cd87616e-6035-ace5-04c5-2567b37c7f92.htm" />
+        <HelpTOCNode Title="EfectoAumentarRasgos Method " Url="html/32443254-8d37-73e9-7768-75dc1860dbbf.htm" />
+        <HelpTOCNode Title="EfectoContornoSombreado Method " Url="html/91267655-b25c-a78c-4e9a-5a1596fdde2c.htm" />
+        <HelpTOCNode Title="EfectoContornoSombreado2 Method " Url="html/2d9a7c9b-d2a5-5823-b753-0e0bb0ae26bd.htm" />
+        <HelpTOCNode Title="EfectoDisminuirRasgos Method " Url="html/62fb13ee-ee92-af5b-92f1-a08e1613da97.htm" />
+        <HelpTOCNode Title="EfectoMarino Method " Url="html/5acb0b0b-05ec-d434-321f-56e5fcc7bb79.htm" />
+        <HelpTOCNode Title="EfectoMarte Method " Url="html/27fe74dc-6197-fa36-7848-53c3579dfdfe.htm" />
+        <HelpTOCNode Title="EliminarOjosRojos Method " Url="html/8a91573c-afc8-838f-45ee-691eb0208744.htm" />
+        <HelpTOCNode Title="EscalaGrises Method " Url="html/3d7560db-cc87-86a2-6f7d-393e3a440525.htm" />
+        <HelpTOCNode Title="EstadisticoMedia Method " Url="html/1fd5fe17-354a-3f23-c4cb-dca9fff4a428.htm" />
+        <HelpTOCNode Title="EstadisticoMediaArmonica Method " Url="html/25342aa6-c0c7-c207-851c-88fd88e287ea.htm" />
+        <HelpTOCNode Title="EstadisticoMediaGeom&#233;trica Method " Url="html/5f81df9e-4c6c-e4cb-5b71-c95caba5e5fb.htm" />
+        <HelpTOCNode Title="EstadisticoMediana Method " Url="html/ca5f2a08-757c-a782-5c00-264099971943.htm" />
+        <HelpTOCNode Title="EstadisticoModa Method " Url="html/b51c19a7-a5ce-bb78-0069-5fdeec383748.htm" />
+        <HelpTOCNode Title="EstadisticoRango Method " Url="html/946996f6-620c-d212-4666-cfddb125d398.htm" />
+        <HelpTOCNode Title="Exposicion Method " Url="html/3b5f6a6c-455d-4c57-383f-78780850e628.htm" />
+        <HelpTOCNode Title="filtroColoresRango Method " Url="html/d3857fd4-a4bd-df5a-b745-c7250f0f42e6.htm" />
+        <HelpTOCNode Title="filtroponderado Method " Url="html/fd91aa36-4f29-ca03-7078-3bf79cb4b161.htm" />
+        <HelpTOCNode Title="filtrosBasicos Method " Url="html/275bf3e3-6520-dd38-dab2-ef7ec549125b.htm" />
+        <HelpTOCNode Title="Gamma Method " Url="html/5657858a-1a98-ce1a-8f6f-2ee682149ad2.htm" />
+        <HelpTOCNode Title="guardarcomo Method " Url="html/0c4ed650-ab55-aed6-e124-f9f4efcd709a.htm" />
+        <HelpTOCNode Title="histogramaAcumulado Method " Url="html/0d0c6f8e-31ff-78d8-1af6-592f5aa0a004.htm" />
+        <HelpTOCNode Title="histogramaAcumuladoH Method " Url="html/5d3520f1-7ae0-cadc-2b54-c9e2e413863a.htm" />
+        <HelpTOCNode Title="ImagenSeisPartes Method " Url="html/cf1650f4-f2d2-fcbf-bf7f-c4b2f9000b3b.htm" />
+        <HelpTOCNode Title="ImagenTresPartes Method " Url="html/98f0e844-9381-c8a8-8098-112b707109de.htm" />
+        <HelpTOCNode Title="InfoImagenPrecarga Method " Url="html/b7361c00-cc5f-f966-31eb-bfe38f439151.htm" />
+        <HelpTOCNode Title="Invertir Method " Url="html/dca039e5-d77f-8e15-0709-166af6c0f4b7.htm" />
+        <HelpTOCNode Title="LiberarImagenes Method " Url="html/7b7f02a0-e73a-c374-674f-96e4a0e90b2a.htm" />
+        <HelpTOCNode Title="marco Method " Url="html/8b01d5a1-11b3-c0fa-b89e-ec9da5663c5d.htm" />
+        <HelpTOCNode Title="mascara3x3Grises Method " Url="html/1bae9abd-5202-f4a2-e6d7-ec668018e638.htm" />
+        <HelpTOCNode Title="mascara3x3RGB Method " Url="html/4e6d1fda-f44d-1165-2228-baee9f23f177.htm" />
+        <HelpTOCNode Title="mascaraManualRGB Method " Url="html/41d037e2-5a57-c1df-fe2c-f951acbb59f1.htm" />
+        <HelpTOCNode Title="MorfologicasApertura Method " Url="html/becfc7ee-59b8-0c6c-1cad-0db4c74735f9.htm" />
+        <HelpTOCNode Title="MorfologicasBottomHat Method " Url="html/6c5fe9c4-2e6b-f0d6-72a9-e1a41ce53034.htm" />
+        <HelpTOCNode Title="MorfologicasCerradura Method " Url="html/e452c25f-7981-227f-eecc-8f0e76fec539.htm" />
+        <HelpTOCNode Title="MorfologicasDilatacion Method " Url="html/6e967de5-d133-368e-5d95-1a7e9f3c8e27.htm" />
+        <HelpTOCNode Title="MorfologicasErosion Method " Url="html/8800d749-efe4-8bab-b481-311f265e7569.htm" />
+        <HelpTOCNode Title="MorfologicasPerimetroDilatEros Method " Url="html/682d79f6-4745-fe28-3128-d3f4ab855565.htm" />
+        <HelpTOCNode Title="MorfologicasPerimetroDilatOrigin Method " Url="html/5ce10e5b-c101-7121-ea59-33c1c6c1644d.htm" />
+        <HelpTOCNode Title="MorfologicasPerimetroOrigEros Method " Url="html/5af04326-fdfa-3ffd-d5ff-6ed4652bcc5f.htm" />
+        <HelpTOCNode Title="MorfologicasTopHat Method " Url="html/35a6609d-372f-6d14-c599-d0d47adb626f.htm" />
+        <HelpTOCNode Title="Multiplicacion Method " Url="html/d8ae1b18-f1f4-e2bd-12d9-6fb03f414557.htm" />
+        <HelpTOCNode Title="nombreImagen Method " Url="html/a8c5b547-4ea8-bebb-3393-a755e05b996a.htm" />
+        <HelpTOCNode Title="nombreRecursoWeb Method " Url="html/a6a4e2f1-da8c-ad3f-988b-8a82d170d210.htm" />
+        <HelpTOCNode Title="Oleo Method " Url="html/0569f34a-c05a-7a47-b9f8-61a687d52f42.htm" />
+        <HelpTOCNode Title="OperacionAND Method " Url="html/35b02a9e-26dd-9705-4cc6-095308d147c2.htm" />
+        <HelpTOCNode Title="OperacionDivision Method " Url="html/7c834fce-5d5c-74be-b39e-253457971f55.htm" />
+        <HelpTOCNode Title="OperacionMultiplicacion Method " Url="html/510184df-fa5e-f0e1-7395-5b83ea909d79.htm" />
+        <HelpTOCNode Title="OperacionOR Method " Url="html/30d2fc04-68c0-459b-a113-32a28a6eac0e.htm" />
+        <HelpTOCNode Title="OperacionResta Method " Url="html/e6805256-cb11-a6ab-7e91-e181bc7900b5.htm" />
+        <HelpTOCNode Title="OperacionSuma Method " Url="html/bf4807ae-b714-d0bd-645c-c6d4abec22cf.htm" />
+        <HelpTOCNode Title="OperacionUnir Method " Url="html/b0d9f2ab-460b-3b31-b6dd-77c6a7d71b26.htm" />
+        <HelpTOCNode Title="OperacionXOR Method " Url="html/125afca1-bb63-31c3-b4c7-11662b9b4bb3.htm" />
+        <HelpTOCNode Title="OperAND Method " Url="html/ba33ea73-c4b6-f49b-2770-4f27b1145b36.htm" />
+        <HelpTOCNode Title="OperOR Method " Url="html/ae5c316c-3504-609e-527e-db77eee747f7.htm" />
+        <HelpTOCNode Title="OperXOR Method " Url="html/6be61c3e-fb48-46e6-8116-072e8faffbfa.htm" />
+        <HelpTOCNode Title="OriginalApoloCloud Method " Url="html/7531a6e2-32d0-6a23-a2bf-d7c9b901ba69.htm" />
+        <HelpTOCNode Title="Pixelar Method " Url="html/e63d011a-2c5f-f914-f0ea-3310ac024133.htm" />
+        <HelpTOCNode Title="Redimensionar Method " Url="html/0a8f32e9-c2d8-a1c7-b5d0-384260ecd15f.htm" />
+        <HelpTOCNode Title="reducircolores Method " Url="html/6790fb38-1ecd-5bd4-1a12-6ae9c360837d.htm" />
+        <HelpTOCNode Title="Reflexion Method " Url="html/7116086b-c8e0-7ad5-dc02-ef172ae7c324.htm" />
+        <HelpTOCNode Title="Resta Method " Url="html/c47ad509-90cd-f222-5cbc-4e5b03b0929e.htm" />
+        <HelpTOCNode Title="RGBto Method " Url="html/4b75aac7-9d08-2363-2f5b-cfd770e86ed8.htm" />
+        <HelpTOCNode Title="RuidoAleatorio Method " Url="html/6c83fe31-7c1b-a3c7-a52e-7a96ff6b63e3.htm" />
+        <HelpTOCNode Title="RuidoProgresivo Method " Url="html/63d3b7b9-ced5-7a69-1ba1-4360e939db08.htm" />
+        <HelpTOCNode Title="Secuencia Method " Url="html/bf1574e6-b5bd-5b1e-b1a4-36606874ed56.htm" />
+        <HelpTOCNode Title="sepia Method " Url="html/58b996ee-50c3-8d39-ef81-5f46195f0d0a.htm" />
+        <HelpTOCNode Title="sobelTotal Method " Url="html/6830700a-2c69-fa2d-3756-fc184b9561aa.htm" />
+        <HelpTOCNode Title="SombraVidrio Method " Url="html/863be27e-8e0e-9558-a0a5-6dd3042c0c7a.htm" />
+        <HelpTOCNode Title="Suma Method " Url="html/1eb7a99b-ad2b-cfac-795e-8f97eb118278.htm" />
+        <HelpTOCNode Title="tapiz Method " Url="html/40617159-fda4-e79d-9495-528fbb9cec24.htm" />
+        <HelpTOCNode Title="Traslacion Method " Url="html/6d326077-e788-c362-d454-582353c609dd.htm" />
+        <HelpTOCNode Title="Volteados Method " Url="html/0505b0b0-aead-0444-6c81-e40e8885c565.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="3183698f-5812-4968-9977-cf32f66d7a28" Title="TratamientoImagenes Properties" Url="html/206f03c4-6504-4156-4ec3-75368dfbc8bb.htm">
+        <HelpTOCNode Title="estadoCarga Property " Url="html/e100576b-5505-aaa3-c26a-d8b7a48824d9.htm" />
+        <HelpTOCNode Title="ImagenOriginalGuardada Property " Url="html/dde2e4df-a766-59e0-741e-1cbb590a41a9.htm" />
+        <HelpTOCNode Title="imagenOriginalInfo Property " Url="html/00d956e3-a8fe-476c-e0b8-fabb5e8b387e.htm" />
+        <HelpTOCNode Title="ListadoImagenesAdelante Property " Url="html/40b2068d-ba01-b140-8fd1-893c11bb991a.htm" />
+        <HelpTOCNode Title="ListadoImagenesAtras Property " Url="html/82ee55c0-82c6-c7cc-60f2-b099ba6827b5.htm" />
+        <HelpTOCNode Title="ListadoInfoAdelante Property " Url="html/5501a04b-188e-7119-a331-44069d4d449c.htm" />
+        <HelpTOCNode Title="ListadoInfoAtras Property " Url="html/4c70546e-6dc4-6d4a-4da4-c2a3ec9c3b91.htm" />
+        <HelpTOCNode Title="ListadoTotalDeImagenes Property " Url="html/56699c7d-937f-3131-4172-4a425aa375ba.htm" />
+        <HelpTOCNode Title="ListadoTotalDeInfo Property " Url="html/21d27146-f2bd-c286-12f9-dd59134c9c8e.htm" />
+        <HelpTOCNode Title="Zoom Property " Url="html/9529203e-01eb-ae1d-1443-d334e92ff5ca.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="1359cdc2-57c8-4696-8f18-788444f9486d" Title="TratamientoImagenes Events" Url="html/cfe8a72c-3c56-a1d2-d614-a589327beab0.htm">
+        <HelpTOCNode Title="actualizaBMP Event" Url="html/d3bc79bc-f2f3-4b5c-4983-c30be13d3b96.htm" />
+        <HelpTOCNode Title="actualizaNombreImagen Event" Url="html/f94d818f-a699-5e4c-6756-0cdcd4d0f039.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="db663828-2703-4c7c-8b8e-dc7afc9159df" Title="TratamientoImagenes.ElementoEstructural Class" Url="html/8baa7ed5-757c-ea31-502d-a9fce7b7188c.htm">
+      <HelpTOCNode Title="TratamientoImagenes.ElementoEstructural Members" Url="html/42b5a2a1-806b-1b1a-1265-8ad7f4920103.htm" />
+      <HelpTOCNode Title="TratamientoImagenes.ElementoEstructural Constructor " Url="html/07125805-0455-51c8-af50-077af9d0fa2e.htm" />
+      <HelpTOCNode Id="7301c653-81ed-4d0e-8f0a-f9af2528d791" Title="TratamientoImagenes.ElementoEstructural Methods" Url="html/9fbcd4ab-d763-eca9-8cfa-018a8f7a7a9f.htm">
+        <HelpTOCNode Title="Cuadrado3x3 Method " Url="html/9efa874a-12d8-907d-4c60-0455e3b6a4e6.htm" />
+        <HelpTOCNode Title="Cuadrado5x5 Method " Url="html/6af26dbc-da10-90e5-614f-f497b6090125.htm" />
+        <HelpTOCNode Title="Cuadrado7x7 Method " Url="html/f586b4a9-b211-491c-93cc-785f51148890.htm" />
+        <HelpTOCNode Title="Cuadrado9x9 Method " Url="html/17db5142-b30f-156a-8a2b-9b5fad64efc4.htm" />
+        <HelpTOCNode Title="CuadradoPersonal Method " Url="html/c1c3e984-cc4e-882e-834d-81f54244ff78.htm" />
+        <HelpTOCNode Title="DiagonalA3x3 Method " Url="html/7e84fbbd-0635-6f6e-0c45-af8090c00cea.htm" />
+        <HelpTOCNode Title="DiagonalA5x5 Method " Url="html/03a3ec01-4cc1-663a-b482-e720c2064322.htm" />
+        <HelpTOCNode Title="DiagonalA7x7 Method " Url="html/7200178d-4839-6134-ba6a-2b66557cfc61.htm" />
+        <HelpTOCNode Title="DiagonalA9x9 Method " Url="html/fb8d7ab3-5437-79ef-82b8-c6954e9855c1.htm" />
+        <HelpTOCNode Title="DiagonalB3x3 Method " Url="html/c3ecc4c8-ce5d-d0ad-7703-8fa5b5eddf4e.htm" />
+        <HelpTOCNode Title="DiagonalB5x5 Method " Url="html/f49fd154-b44a-6e5a-b2a9-51e35f79507d.htm" />
+        <HelpTOCNode Title="DiagonalB7x7 Method " Url="html/8354ced8-991c-6b1c-2b27-840ebc35e389.htm" />
+        <HelpTOCNode Title="DiagonalB9x9 Method " Url="html/dabf6108-b837-0d23-cf3f-94d0ffbdea38.htm" />
+        <HelpTOCNode Title="Diamante3x3 Method " Url="html/43d6d09b-73a0-a6b8-de64-7279e25a727a.htm" />
+        <HelpTOCNode Title="Diamante5x5 Method " Url="html/f1fda10d-0a46-e7fe-42a1-7a1d934dc9ff.htm" />
+        <HelpTOCNode Title="Diamante7x7 Method " Url="html/dbbc061d-ce6e-88c4-451a-b3358a71b3a1.htm" />
+        <HelpTOCNode Title="Diamante9x9 Method " Url="html/e5d03c9f-ffb9-6390-075e-5ade608cb1d9.htm" />
+        <HelpTOCNode Title="Disco5x5 Method " Url="html/9ce8965a-5ba5-674e-6713-9bdbcf4069ad.htm" />
+        <HelpTOCNode Title="Disco7x7 Method " Url="html/d34854a9-cd4a-f6b4-f354-7dae90389858.htm" />
+        <HelpTOCNode Title="Disco9x9 Method " Url="html/b631e849-6d81-596b-f062-c1a7126a30b9.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a30faf42-8d1b-4f3c-954d-102b19fef48b" Title="TratamientoImagenes.Mascaras Class" Url="html/102ea46f-d4c2-0f2d-0684-42a7169b1635.htm">
+      <HelpTOCNode Title="TratamientoImagenes.Mascaras Members" Url="html/99bf1f97-a02c-017d-4287-3af80fd47508.htm" />
+      <HelpTOCNode Title="TratamientoImagenes.Mascaras Constructor " Url="html/37c1575c-7acb-55c7-3835-a1dc86fed835.htm" />
+      <HelpTOCNode Id="f7c2143d-7341-4215-8a30-11fd2480b409" Title="TratamientoImagenes.Mascaras Methods" Url="html/2e9eb3b1-d423-4bd2-0ea8-db759d72667d.htm">
+        <HelpTOCNode Title="EmbossingEste Method " Url="html/30bb53a7-e4b0-e3b9-73cc-a6d6f640f072.htm" />
+        <HelpTOCNode Title="EmbossingNoreste Method " Url="html/8714329e-a676-9d8a-ed54-102a2c963cf6.htm" />
+        <HelpTOCNode Title="EmbossingNorte Method " Url="html/74a39318-29b2-6576-6511-66312d60e6d1.htm" />
+        <HelpTOCNode Title="EmbossingOeste Method " Url="html/128ef856-44c9-f661-33c4-8ab9a79d9e98.htm" />
+        <HelpTOCNode Title="EmbossingSudeste Method " Url="html/e93e4156-40de-8ca0-6bf3-0121dcfcb3b4.htm" />
+        <HelpTOCNode Title="EmbossingSur Method " Url="html/73a98e67-6076-3364-8636-8f29440008be.htm" />
+        <HelpTOCNode Title="FreichenHori Method " Url="html/543f72ac-3407-1dbe-393d-ec75d2a6166c.htm" />
+        <HelpTOCNode Title="FreichenVert Method " Url="html/13eb4b72-a06e-a73a-ef48-94b856a36a80.htm" />
+        <HelpTOCNode Title="GradienteEste Method " Url="html/b35335b2-f67b-cc6f-ba10-23e193e31af1.htm" />
+        <HelpTOCNode Title="GradienteNoreste Method " Url="html/6c614e26-4184-abc7-c8fe-e5af2ab25699.htm" />
+        <HelpTOCNode Title="GradienteNorte Method " Url="html/7ced5b80-d5f5-a093-61d9-bc20bc79bc45.htm" />
+        <HelpTOCNode Title="GradienteOeste Method " Url="html/4d4cd622-2eef-095c-ee3f-5ebf577690a7.htm" />
+        <HelpTOCNode Title="GradienteSudeste Method " Url="html/d3f63f53-e34d-1248-9b9a-09bce552ac28.htm" />
+        <HelpTOCNode Title="GradienteSur Method " Url="html/8a5691a3-5a9a-76c3-ba74-52c701b7577a.htm" />
+        <HelpTOCNode Title="HIGH16 Method " Url="html/ef46fb30-5a2b-1f53-9072-c1cd0f65eb33.htm" />
+        <HelpTOCNode Title="HIGH1a Method " Url="html/dc4dd19f-6512-a6a3-3642-a516235eaf88.htm" />
+        <HelpTOCNode Title="HIGH1b Method " Url="html/cf5a3cfc-92a0-252e-038a-ab48b4c46189.htm" />
+        <HelpTOCNode Title="Kirsch0 Method " Url="html/28a6a490-27d6-aa69-df12-4588e465d420.htm" />
+        <HelpTOCNode Title="Kirsch135 Method " Url="html/96e15377-dac7-789f-7b5a-53916050849d.htm" />
+        <HelpTOCNode Title="Kirsch180 Method " Url="html/b0601dfe-d61f-c20f-280b-117347eee92b.htm" />
+        <HelpTOCNode Title="Kirsch225 Method " Url="html/6289fe37-1600-efc9-2fdd-0425e14552ec.htm" />
+        <HelpTOCNode Title="Kirsch270 Method " Url="html/ae8493e5-9eca-0655-7228-4f6fd405b1ad.htm" />
+        <HelpTOCNode Title="Kirsch315 Method " Url="html/9a6a4fdf-b38a-9a94-d08b-22f7271089d8.htm" />
+        <HelpTOCNode Title="Kirsch45 Method " Url="html/225bd278-860c-53c4-c13e-7a8d54c4eccc.htm" />
+        <HelpTOCNode Title="Kirsch90 Method " Url="html/6dc2a0ec-7a47-2503-4819-af3e82fb5c6d.htm" />
+        <HelpTOCNode Title="Laplaciana1 Method " Url="html/aba435f3-db97-30aa-4cea-6592a7065ce7.htm" />
+        <HelpTOCNode Title="Laplaciana2 Method " Url="html/69bbb69e-4b6c-8c2b-c365-7ed0b76703fa.htm" />
+        <HelpTOCNode Title="Laplaciana3 Method " Url="html/5e88a0d1-2bac-faf0-9f19-81cc7813ee8c.htm" />
+        <HelpTOCNode Title="Laplaciana4 Method " Url="html/a4dbc1fe-27b1-440a-03f0-c5edb29668f9.htm" />
+        <HelpTOCNode Title="LaplacianaDiagonal Method " Url="html/e6522372-ef6a-fcad-238c-b765583843c0.htm" />
+        <HelpTOCNode Title="LaplacianaHorizont Method " Url="html/a63fa32d-0525-a6d7-a83c-6566179d0336.htm" />
+        <HelpTOCNode Title="LaplacianaVertical Method " Url="html/4d64b0e8-d8bd-e42f-3289-09e345f3c732.htm" />
+        <HelpTOCNode Title="LineasHorizontales Method " Url="html/85eac107-1f71-b6f3-5de5-40b4b1db2062.htm" />
+        <HelpTOCNode Title="LineasVerticales Method " Url="html/8596b3fa-9b2c-3cf8-710a-a473d15e86dd.htm" />
+        <HelpTOCNode Title="LOW10 Method " Url="html/954e9280-d639-d586-877c-51c9f972969a.htm" />
+        <HelpTOCNode Title="LOW12 Method " Url="html/f9ae5316-2df5-1f5c-de9a-37eee99abacb.htm" />
+        <HelpTOCNode Title="LOW9 Method " Url="html/e9697dec-c4d9-357c-7c57-969f1992e4ef.htm" />
+        <HelpTOCNode Title="PrewittDiag1 Method " Url="html/ac4e1497-6cbf-31e9-e19b-efe85b212c14.htm" />
+        <HelpTOCNode Title="PrewittDiag2 Method " Url="html/173468ee-cbf5-2a23-6731-5e6f880c9e2f.htm" />
+        <HelpTOCNode Title="PrewittHoriz Method " Url="html/f6f99553-20cb-111e-bf4f-9fb41ca0005e.htm" />
+        <HelpTOCNode Title="PrewittVert Method " Url="html/b5e98408-9679-3e4b-5438-99e09d37c15d.htm" />
+        <HelpTOCNode Title="Repujado Method " Url="html/e6a788c6-c1b2-40b7-8631-1e8db777969c.htm" />
+        <HelpTOCNode Title="Resta1 Method " Url="html/b2a1b354-dcff-3612-58d5-3f10549276e0.htm" />
+        <HelpTOCNode Title="Resta2 Method " Url="html/8aae0ced-da27-8624-1f97-9d22d3f40d25.htm" />
+        <HelpTOCNode Title="Resta3 Method " Url="html/a7a6941f-3335-d66e-9c41-d50a35abb7c8.htm" />
+        <HelpTOCNode Title="SobelDiagonal1 Method " Url="html/a5464afb-f448-3364-2405-79b569a7827d.htm" />
+        <HelpTOCNode Title="SobelDiagonal2 Method " Url="html/7c8f7add-fde6-5f76-5e97-94d12913fd94.htm" />
+        <HelpTOCNode Title="SobelH Method " Url="html/c6386514-97c7-1abd-a61c-0a75e9561e57.htm" />
+        <HelpTOCNode Title="SobelV Method " Url="html/7ece079d-7f6c-5bdd-8eb2-8fac27d76d9a.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>

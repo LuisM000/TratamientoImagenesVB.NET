@@ -60,7 +60,7 @@ Public Class ImgCompilador
                         Dim ruta As String
                         ruta = System.IO.Directory.GetCurrentDirectory() & "\Compilador\ImagenesCompiladas\" & ListBox1.SelectedItem 'Seleccionamos la ruta del archivo a borrar
                         bmp.Dispose() 'Liberamos la imagen para poder borrarla
-                        Kill(ruta)
+                        My.Computer.FileSystem.DeleteFile(ruta)
                     Case Windows.Forms.DialogResult.No
                         'No hacemos nada
                 End Select

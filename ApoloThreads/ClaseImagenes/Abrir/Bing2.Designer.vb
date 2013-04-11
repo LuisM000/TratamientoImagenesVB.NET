@@ -41,7 +41,7 @@ Partial Class Bing2
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(260, 41)
+        Me.TextBox1.Location = New System.Drawing.Point(234, 41)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(279, 23)
         Me.TextBox1.TabIndex = 1
@@ -50,7 +50,7 @@ Partial Class Bing2
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(93, 45)
+        Me.Label1.Location = New System.Drawing.Point(67, 45)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(149, 15)
         Me.Label1.TabIndex = 2
@@ -59,7 +59,7 @@ Partial Class Bing2
         'Button1
         '
         Me.Button1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(760, 39)
+        Me.Button1.Location = New System.Drawing.Point(734, 39)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(106, 29)
         Me.Button1.TabIndex = 3
@@ -109,7 +109,7 @@ Partial Class Bing2
         'PictureBox2
         '
         Me.PictureBox2.Image = Global.ClaseImagenes.My.Resources.Resources.Bing1
-        Me.PictureBox2.Location = New System.Drawing.Point(542, 42)
+        Me.PictureBox2.Location = New System.Drawing.Point(516, 42)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(20, 20)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -123,7 +123,7 @@ Partial Class Bing2
         Me.ComboBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"Todos", "Pequeño", "Mediano", "Grande"})
-        Me.ComboBox1.Location = New System.Drawing.Point(580, 42)
+        Me.ComboBox1.Location = New System.Drawing.Point(554, 42)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(156, 23)
         Me.ComboBox1.TabIndex = 58

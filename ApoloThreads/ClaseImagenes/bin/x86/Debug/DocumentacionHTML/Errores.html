@@ -1,0 +1,94 @@
+﻿<html>
+	
+<head>
+	<title>Errores</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "Apolo. Documentación de ayuda..html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Errores");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Errores</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Manualdeusuario.html">Manual de usuario</a> &rsaquo;&rsaquo; <a href="Referenciadefunciones.html">Referencia de funciones</a> &rsaquo;&rsaquo; <a href="Otros.html">Otros</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Otros.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Accesosrpidos.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Licenciadocumentacin.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps3"><span class="rvts0"><span class="rvts12">Errores</span></span></h1>
+<p class="rvps4"><span class="rvts7">Cada vez que se produce un error no controlado, automáticamente Apolo lo detecta y muestra una ventana emergente informando del error. En esta ventana, se muestra la excepción que se ha detectado y su descripción. Además, en el momento de producirse la excepción se guarda una captura de pantalla que se puede adjuntar al formulario del error.</span></p>
+<p class="rvps4"><span class="rvts7"><br/></span></p>
+<h3 class="rvps24"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></h3>
+<h3 class="rvps24"><span class="rvts0"><span class="rvts18">Ilustración 1. Formulario excepción.</span></span></h3>
+<p class="rvps12"><img alt="" style="padding : 1px;" src="lib/NewItem294.png"/></p>
+<p class="rvps12"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps31"><span class="rvts33"> </span></p>
+<p class="rvps15"><span class="rvts7">Si se desea enviar el error, hay un cuadro de texto en el cual se debe escribir con el mayor detalle posible, lo que estaba intentando hacer y en qué momento se ha producido el error. Por último se puede adjuntar su email para que le informemos del progreso de detección del error.</span></p>
+<h1 class="rvps3"><span class="rvts0"><span class="rvts12">Errores comunes</span></span></h1>
+<p class="rvps4"><span class="rvts7">A algunas ocasiones se producen excepciones controladas (no mostrarán ningún cuadro de error) que afectan al correcto funcionamiento de Apolo. A continuación se muestran los errores más comunes:</span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li class="rvps15"><span class="rvts7">La barra de progreso se queda parada antes de llegar al 100%. Este error puede deberse a dos causas. </span></li>
+</ol>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps25" style="margin-left: 0; text-indent: 0px"><span class="rvts7">La primera es debido a un conflicto al actualizar el histograma del menú lateral de Apolo y se soluciona desactivando los histogramas automáticos (</span><span class="rvts15">Herramientas&gt;Histogramas </span><span class="rvts7">automáticos) La opción zoom interactivo muestra el cuador muy arriba (solución</span><span class="rvts34">à</span><span class="rvts7"> abrir una imagen que haga que los scrolls aparezcan).</span></li>
+<li class="rvps25" style="margin-left: 0; text-indent: 0px"><span class="rvts7">Otra posible causa es que la imagen tenga poca resolución (menos de 400 x 400 píxeles), y en algunas ocasiones puede no llegar a actualizarse bien la barra. No obstante esto no afecta al funcionamiento de Apolo, el resultado será el mismo.</span></li>
+</ul>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li class="rvps15"><span class="rvts7">Dentro de la función </span><span class="rvts15">Grabar secuencia</span><span class="rvts7">, al aplicar una serie de funciones la barra de progreso se queda parada y no completa la función. Este error es debido a que alguno de los parámetros no es un valor correcto para la función seleccionada. Debería revisar todos los parámetros de la lista de funciones.</span></li>
+<li class="rvps15"><span class="rvts7">No conecta con Apolo Cloud. Esto puede deberse a la configuración de su antivirus o cortafuegos. Para solucionarlo, desactive temporalmente su sistema de protección y determine si éste es el error. En caso de afirmativo, agregue Apolo como excepción en su antivirus.</span></li>
+<li class="rvps15"><span class="rvts7">Aparece error al buscar actualizaciones. Esto puede deberse a un fallo temporal del servidor, o a la configuración de su antivirus o cortafuegos. En caso de que el error persista más de 24 horas desactive temporalmente su sistema de protección y determine si éste es el error. En caso de afirmativo, agregue Apolo como excepción en su antivirus. Si siguiese fallando tras desactivar la protección de su sistema, notifíquelo en el menú </span><span class="rvts15">Ayuda&gt;Notificar un error</span><span class="rvts28">.</span></li>
+</ol>
+<p></p>
+<p class="rvps8"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/feature-tour/iphone-website-generation">Free iPhone documentation generator</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyleft 2013  por Luis Marcos Rivera.</div>
+		</div>
+	</body>
+	
+</html>
+

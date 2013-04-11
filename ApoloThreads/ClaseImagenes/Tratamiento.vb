@@ -1,12 +1,56 @@
 ﻿Imports System.Xml
 Imports System.Net
-Namespace Apolo
 
+Namespace Apolo
+    ''' <summary>
+    ''' Este delegado, recibe un Bitmap en cuanto se realiza una función dentro de la clase y se genera un evento indicando que se ha modificado la imagen.
+    ''' <example><para>La forma de utilizar el evento (fuera de la clase) es la siguiente:
+    ''' En el load del formulario se pone el siguiente código:</para>
+    ''' <code>'Asignamos el gestor que controle cuando sale imagen
+    '''AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf actualizarPicture)</code>
+    ''' <para>Una vez hecho esto, se crea un procedimiento (por ejemplo), que muestre la imagen en un Picturebox:
+    ''' <code>Sub actualizarPicture(ByVal bmp As Bitmap)
+    '''PictureBox2.Image = bmp
+    '''End Sub
+    ''' </code></para></example>
+    ''' </summary>
+    ''' <param name="bmp">Imagen en formato Bitmap.</param>
     Public Delegate Sub ActualizamosImagen(ByVal bmp As Bitmap) 'Definimos el Tipo de evento
+
+    ''' <summary>
+    ''' Este delegado, recibe un string en cuanto se realiza una función de abrir una imagen original(desde archivo, FB, recurso web, etc) dentro de la clase y se genera un evento indicando que se ha abierto una imagen original y se dispone de información de ella.
+    ''' <example><para>La forma de utilizar el evento (fuera de la clase) es la siguiente:
+    ''' En el load del formulario se pone el siguiente código:</para>
+    ''' <code>'Asignamos el gestor que controle cuando se abre una imagen nueva
+    ''' AddHandler objetoTratamiento.actualizaNombreImagen, New ActualizamosNombreImagen(AddressOf actualizarNombrePicture)</code>
+    ''' <para>Una vez hecho esto, se crea un procedimiento (por ejemplo), que muestre la información recibida:
+    ''' <code>Sub actualizarNombrePicture(ByVal nombre() As String)
+    ''' 'Se le pone la información a la cabecera del formulario
+    '''Me.Text = "[" + nombre(0) + "]  " + "(" + nombre(1) + " x " + nombre(2) + ")   " + nombre(3)
+    '''End Sub
+    ''' </code></para></example>
+    ''' </summary>
+    ''' <param name="NombreImagen">Esta variable es un string que tiene (generalmente) cuatro campos: nombre de la imagen, ancho de la imagen, alto de la imagen y procedencia de la imagen (desde archivo, BING, etc.).</param>
     Public Delegate Sub ActualizamosNombreImagen(ByVal NombreImagen() As String) 'Definimos el Tipo de evento
 
+    ''' <summary>
+    ''' La clase TratamientoImagenes permite crear aplicaciones con multitud de funcionalidades, todas ellas orientadas a tratamiento de imágenes. Con esta clase se pretende englobar todo el proceso
+    ''' de creación de una aplicación de tratamiento de imágenes, desde la propias transformaciones, hasta la adquisición de imágenes o las funciones de deshacer/rehacer. 
+    ''' <example><para>Para utilizar la clase en una aplicación, primero se debe hacer referencia con la sentencia Imports:</para>
+    ''' <code>Imports nombredeaplicacion.Tratamiento</code>
+    ''' <para>A continuación, se puede instanciar a la clase y por ejemplo asignar a un Picturebox una imagen transformada a tonos sepia:
+    '''<code>Dim objetoTratamiento as new Tratamiento
+    '''Dim bmp as new bitmap(Picturebox1.image) 
+    '''Picturebox1.image=ObjetoTratamiento.sepia(bmp)</code></para>
+    ''' </example>
+    ''' </summary>
+    ''' <remarks>Clase creada por Luis Marcos Rivera.</remarks>
     Public Class TratamientoImagenes
+
         'Variables para controlar atrás/adelante 
+        ''' <summary>
+        ''' Variable arraylist que almacena todas las imágenes que van entrando a la clase.
+        ''' </summary>
         Public Shared imagenesGuardadas As New ArrayList 'Para ir atrás y adelante, Lo creamos como
         'Se crea como shared para que no se cree de nuevo en cada instancia
         Private Shared contadorImagenes As Integer 'Para saber en qué índice de las imágenesGUardadas estamos
@@ -14,6 +58,10 @@ Namespace Apolo
         '************************************
 
         'Variables para controlar atrás/adelante imágenes originales
+
+        ''' <summary>
+        ''' Variable bitmap que almacena la última imagen original abierta.
+        ''' </summary>
         Public Shared imagenOriginal As Bitmap 'Imagen original guardada
         'Se crea como shared para que no se cree de nuevo en cada instancia
         Private Shared InformacionOrig As String 'Para saber qué se hizo
@@ -23,26 +71,43 @@ Namespace Apolo
 
 
         'Estado hilo
-        Public Shared porcentaje(2) As String
+        ''' <summary>
+        ''' Variable que indica el estado de progreso de una transformación. Se puede utilizar con un timer..
+        ''' </summary>
+        ''' <remarks>La primera posición del string porcentaje(0) indica el porcentaje de progreso. La segunda posición indica el estado del progreso.</remarks>
+        Public Shared porcentaje(1) As String
 
         'Evento de tipo ActualizamosImagen
+        ''' <summary>
+        ''' Evento que gestiona cuándo se modifica la imagen (entra una imagen en la clase y se devuelve transformada).
+        ''' </summary>
         Event actualizaBMP As ActualizamosImagen
 
         'Evento de tipo ActualizamosImagen
+        ''' <summary>
+        ''' Evento que gestiona cuándo se abre una imagen original, ya sea desde archivo, BING, Facebook, etc.
+        ''' </summary>
         Event actualizaNombreImagen As ActualizamosNombreImagen
 
 
         'Propiedad con el estado de la carga
+        ''' <summary>
+        ''' Proporciona información sobre el estado actual de carga.
+        ''' Devuelve un array con 2 valores. El primero, es porcentaje de carga (0 a 100) y el segundo, la función que se está realizando (por ejemplo, "Transformando en escala de grises".
+        ''' </summary>
         Public ReadOnly Property estadoCarga() As Array 'Propiedad con el estado de la carga
             Get
                 'Serán dos valores, el porcentaje de carga y quién está realizando la acción
                 Return porcentaje
             End Get
         End Property
-        
+
         'Propiedades y métodos para hacer y rehacer el conjunto de imágenes
 #Region "Hacer/deshacerImagenes"
 
+        ''' <summary>
+        ''' Proporciona la imagen anterior a la actual (para hacer retroceso).
+        ''' </summary>
         Public ReadOnly Property ListadoImagenesAtras() As Bitmap 'Imagen hacia atrás
             Get
                 Try
@@ -59,6 +124,9 @@ Namespace Apolo
             End Get
         End Property
 
+        ''' <summary>
+        ''' Proporciona la imagen posterior (en caso de haberla) a la actual.
+        ''' </summary>
         Public ReadOnly Property ListadoImagenesAdelante() As Bitmap 'Imagen hacia delante
             Get
                 Try
@@ -74,7 +142,9 @@ Namespace Apolo
             End Get
         End Property
 
-
+        ''' <summary>
+        ''' Proporciona la información del estado de la imagen anterior a la actual (para hacer retroceso).
+        ''' </summary>
         Public ReadOnly Property ListadoInfoAtras() As String 'Imagen hacia atrás
             Get
                 Try
@@ -85,6 +155,9 @@ Namespace Apolo
             End Get
         End Property
 
+        ''' <summary>
+        ''' Proporciona la información del estado de la imagen posterior (en caso de haberla) a la actual.
+        ''' </summary>
         Public ReadOnly Property ListadoInfoAdelante() As String 'Imagen hacia delante
             Get
                 Try
@@ -95,29 +168,43 @@ Namespace Apolo
             End Get
         End Property
 
+        ''' <summary>
+        ''' Devuelve una lista (arraylist) con toda la información de todas las transformaciones realizadas.
+        ''' </summary>
         Public ReadOnly Property ListadoTotalDeInfo() As ArrayList 'Toda la info de imágenes
             Get
                 Return Informacion
             End Get
         End Property
 
+        ''' <summary>
+        ''' Devuelve una lista (arraylist) con todas las imágenes (en formato Bitmap) de todas las transformaciones realizadas.
+        ''' </summary>
         Public ReadOnly Property ListadoTotalDeImagenes() As ArrayList 'Todas las imágenes
             Get
                 Return imagenesGuardadas
             End Get
         End Property
 
+        ''' <summary>
+        ''' Devuelve el estado del zoom actual de la imagen (si devuelve 1, la imagen no tiene aumento)
+        ''' </summary>
         Public Property Zoom As Double
             Get
                 Return ZoomActual
             End Get
             Set(value As Double)
-                ZoomActual = value
+                ZoomActual = Math.Round(value, 1)
             End Set
         End Property
 
 
         'Almacenamos la imagen
+        ''' <summary>
+        ''' Almacena la imagen y su información para poder deshacer/rehacer
+        ''' </summary>
+        ''' <param name="bmp">Imagen (en formato Bitmap) tras la transformación</param>
+        ''' <param name="info">Información (string) de qué transformación ha sufrido la imagen</param>
         Private Sub guardarImagen(ByVal bmp As Bitmap, ByVal info As String) 'Para almacenar el bitmap y la información
             'Almacenamos la imagen con su información y añadimos +1 al contador
             If imagenesGuardadas.Count < 100 Then
@@ -137,6 +224,9 @@ Namespace Apolo
         End Sub
 
         'Liberar todas imágenes 
+        ''' <summary>
+        ''' Elimina todo el contenido de imágenes e información almacenada, dejando únicamente la imagen actual.
+        ''' </summary>
         Public Sub LiberarImagenes() 'Borra todas las imágenes excepto la última
             'Guardamos la última imagen y la última info asociada a esa imagen
             Dim imgFinal As New Bitmap(CType(imagenesGuardadas.Item(imagenesGuardadas.Count - 1), Bitmap))
@@ -154,6 +244,13 @@ Namespace Apolo
 
         'Gestionar la imagen original actual
 #Region "Hacer/deshacer imagenes originales"
+
+        ''' <summary>
+        ''' Devuelve la última imagen abierta como original (desde archivo, bing, etc). 
+        ''' En caso de asignar un valor, éste debe ser una imagen abierta como original (no recomendable asignar un valor desde fuera de la clase).
+        ''' <example>Para obtener la última imagen abierta, el código sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.ImagenOriginalGuardada</code></example>
+        ''' </summary>
         Public Property ImagenOriginalGuardada() As Bitmap 'Imagen original hacia atrás
             Get
                 RaiseEvent actualizaBMP(imagenOriginal) 'generamos el evento
@@ -167,6 +264,12 @@ Namespace Apolo
         End Property
 
 
+        ''' <summary>
+        ''' Devuelve la INFORMACIÓN de la última imagen abierta como original (desde archivo, bing, etc) . //
+        ''' En caso de asignar un valor, éste debe ser la información de una imagen abierta como original (no recomendable asignar un valor desde fuera de la clase).
+        ''' <example>Para obtener la información (de dónde se ha obtenido el recurso), de la última imagen abierta, se haría así:
+        ''' <code>Picturebox1.image=objetoTratamiento.ImagenOriginalGuardada</code></example>
+        ''' </summary>
         Public Property imagenOriginalInfo() As String 'Imagen hacia atrás
             Get
                 Return InformacionOrig
@@ -179,13 +282,23 @@ Namespace Apolo
 
 #End Region
 
-       
-  
+
+
 
         'Contiene el conjunto de funciones para tratamiento de imágenes digitales
 #Region "FuncionesTratamiento"
 
         'Función para obtener los niveles digitales de la imagen
+        ''' <summary>
+        ''' Devuelve una matriz con los colores de cada píxel.
+        ''' <example>A continuación se muestra un ejemplo de llamada a la función: // 
+        ''' <code> Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen  //
+        ''' Niveles = nivel(bmp2) 'Obtenemos valores
+        ''' </code>
+        ''' </example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen en formato Bitmap de la cual se quiere extraer los colores.</param>
+        ''' <returns>Devuelve una matriz de dos dimensiones (ancho*alto de la imagen) y cada celda contiene un System.Drawing.Color con el valor del píxel.</returns>
         Private Function nivel(ByVal bmp As Bitmap)
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             porcentaje(0) = 0 'Actualizamos el estado
@@ -203,6 +316,15 @@ Namespace Apolo
         End Function
 
         'Hace que la imagen enviada se guarde
+        ''' <summary>
+        ''' Actualiza la imagen enviada para que pase a ser la primera en la lista de deshacer/rehacer, y devuelve la imagen enviada.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+        ''' <code>Picturebox1.image=objetoTratamiento.ActualizarImagen(bmp,False)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen en formato Bitmap que pasará a ser la primera de la lista (y será devuelta).</param>
+        ''' <param name="imagenOriginal">En caso de ser TRUE, la imagen enviada se almacenará como una imagen original.</param>
+        ''' <returns>Devuelve un Bitmap con la imagen enviada.</returns>
         Public Function ActualizarImagen(ByVal bmp As Bitmap, Optional ByVal imagenOriginal As Boolean = False) As Bitmap
             porcentaje(0) = 100 'Actualizamos el estado
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
@@ -222,6 +344,14 @@ Namespace Apolo
         'Detectar contornos// reflexión
 #Region "OperacionesBasicas"
 
+        ''' <summary>
+        ''' Función que transforma una imagen en escala de grises.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+        ''' <code>Picturebox1.image=objetoTratamiento.EscalaGrises(bmp,20)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valorcontraste">Este valor reduce el número de grises utilizados (0 a 127). El 0 es toda la gama de grises y el 127 es blanco y negro.</param>
+        ''' <returns>Devuelve un bitmap.</returns>
         Public Function EscalaGrises(ByVal bmp As Bitmap, Optional ByVal valorcontraste As Byte = 0) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -261,6 +391,17 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que invierte los colores de una imagen (para los canales RGB).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+        ''' <code>Picturebox1.image=objetoTratamiento.Invertir(bmp,TRUE,TRUE,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Irojo">Para invertir el canal rojo, TRUE. Si no se quiere afectar al canal rojo, FALSE.</param>
+        ''' <param name="Iverde">Para invertir el canal verde, TRUE. Si no se quiere afectar al canal verde, FALSE.</param>
+        ''' <param name="Iazul">Para invertir el canal azul, TRUE. Si no se quiere afectar al canal azul, FALSE.</param>
+        ''' <returns>Devuelve un bitmap.</returns>
         Public Function Invertir(ByVal bmp As Bitmap, Optional ByVal Irojo As Boolean = True, Optional ByVal Iverde As Boolean = True, Optional ByVal Iazul As Boolean = True) As Bitmap
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Niveles = nivel(bmp) 'Obtenemos valores
@@ -299,6 +440,16 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp) 'generamos el evento
             Return bmp
         End Function
+
+        ''' <summary>
+        ''' Función que transforma una imagen a blanco y negro (binariza).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+        ''' <code>Picturebox1.image=objetoTratamiento.BlancoNegro(bmp,128)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valortope">Indica el valor umbral a partir del cual el píxel será negro o blanco. Si por ejemplo se selecciona 128, los valores 
+        ''' inferiores pasarán a ser negro (0), y los superiores blanco (128).</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function BlancoNegro(ByVal bmp As Bitmap, Optional ByVal valortope As Byte = 128) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -339,6 +490,18 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que aumenta o disminuye el contraste. "Estira" o "encoge" los valores de la imagen hasta el tope superior e inferior seleccionado.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+        ''' <code>Picturebox1.image=objetoTratamiento.ContrasteEstirar(bmp,0,255)</code></example>
+        ''' En este ejemplo, la imagen pasará a ocupar todos los niveles (de 0 a 255), siempre que sea posible.
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valorContrasteMax">Valor máximo que pasará a tener el píxel con valor más alto.</param>
+        ''' <param name="valorContrasteMin">Valor mínimo que pasará a tener el píxel con valor más bajo</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Debe tenerse en cuenta que el valor valorContrasteMax debe ser mayor que valorContrasteMin.</remarks>
         Public Function ContrasteEstirar(ByVal bmp As Bitmap, ByVal valorContrasteMax As Byte, ByVal valorContrasteMin As Byte) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -384,6 +547,15 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que aumenta o disminuye el contraste. "Estira" o "encoge" el histograma de la imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+        ''' <code>Picturebox1.image=objetoTratamiento.Contraste(bmp,1.2)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valorContraste">Valor de contraste. Debe oscilar entre -1 y 1 para unos resultados óptimos.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Contraste(ByVal bmp As Bitmap, ByVal valorContraste As Double) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -431,9 +603,39 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que transforma una imagen a tonos sepia.
+        '''<example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así: 
+        ''' <code>Picturebox1.image=objetoTratamiento.sepia(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Los pesos para el filtro sepia son: 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131 .</remarks>
         Public Function sepia(ByVal bmp As Bitmap)
             Return filtroponderado(bmp, 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131)
         End Function
+
+        ''' <summary>
+        ''' Esta función aplica a cada canal un peso específico multiplicándolo por los 3 canales (RGB).
+        ''' <para>Rojo = Rojo * Rr + Verde * Rg + Azul * Rb</para>
+        ''' <para>Verde = Rojo * Gr + Verde * Gg + Azul * Gb</para>
+        ''' <para>Azul = Rojo * Br + Verde * Bg + Azul * Bb</para>
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.filtroponderado(bmp, 0.393, 0.769, 0.189, 0.349, 0.686, 0.168, 0.272, 0.534, 0.131)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Rr">Peso que será multiplicado por el rojo y aplicado en el canal rojo.</param>
+        ''' <param name="Rg">Peso que será multiplicado por el verde y aplicado en el canal rojo.</param>
+        ''' <param name="Rb">Peso que será multiplicado por el azul y aplicado en el canal rojo.</param>
+        ''' <param name="Gr">Peso que será multiplicado por el rojo y aplicado en el canal verde.</param>
+        ''' <param name="Gg">Peso que será multiplicado por el verde y aplicado en el canal verde.</param>
+        ''' <param name="Gb">Peso que será multiplicado por el azul y aplicado en el canal verde.</param>
+        ''' <param name="Br">Peso que será multiplicado por el rojo y aplicado en el canal azul.</param>
+        ''' <param name="Bg">Peso que será multiplicado por el verde y aplicado en el canal azul.</param>
+        ''' <param name="Bb">Peso que será multiplicado por el azul y aplicado en el canal azul.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Para no alterar los tonos de la imagen, la suma de los 3 pesos por cada canal debe ser igual a 1.</remarks>
         Public Function filtroponderado(ByVal bmp As Bitmap, Optional ByVal Rr As Double = 1, Optional ByVal Rg As Double = 0, Optional ByVal Rb As Double = 0, Optional ByVal Gr As Double = 0, Optional ByVal Gg As Double = 1, Optional ByVal Gb As Double = 0, Optional ByVal Br As Double = 0, Optional ByVal Bg As Double = 0, Optional ByVal Bb As Double = 1)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -469,6 +671,16 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que aumenta o disminuye el brillo de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Brillo(bmp,20)</code>
+        ''' Esta función aumenta en 20 puntos el brillo de la imagen.</example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="cantidad">Cantidad de brillo que se sumará/restará a cada píxel.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Brillo(ByVal bmp As Bitmap, ByVal cantidad As Integer)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -513,6 +725,17 @@ Namespace Apolo
             guardarImagen(bmp3, "Modificar brillo") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que modifica la gamma de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.gamma(bmp,2,2,2)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ValorGammaRojo">Correción de gamma que se aplicará al canal rojo. Debe ser mayor que 0. El valor 1 no aplica ninguna correción.</param>
+        ''' <param name="ValorGammaVerde">Correción de gamma que se aplicará al canal verde. Debe ser mayor que 0. El valor 1 no aplica ninguna correción.</param>
+        ''' <param name="ValorGammaAzul">Correción de gamma que se aplicará al canal azul. Debe ser mayor que 0. El valor 1 no aplica ninguna correción.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Gamma(ByVal bmp As Bitmap, ByVal ValorGammaRojo As Double, ByVal ValorGammaVerde As Double, ByVal ValorGammaAzul As Double)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -538,6 +761,15 @@ Namespace Apolo
             guardarImagen(bmp3, "Modificar gamma") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que aumenta o disminuye la exposición de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:</example>
+        ''' <code>Picturebox1.image=objetotratamiento.Exposicion(bmp,0.6)</code>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valorSobreexposicion">Variable que indica el aumento o disminución de la exposición. Valores menores que 1 aumentan la exposición y mayores la disminuyen.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Exposicion(ByVal bmp As Bitmap, ByVal valorSobreexposicion As Double)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -565,6 +797,18 @@ Namespace Apolo
             guardarImagen(bmp3, "Modificar exposición") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que aumenta o disminuye canal por canal (ARGB) los valores de los píxeles.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Canales(bmp,10,30,-20,0)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="canalrojo">Variable que indica el valor que se va a modificar en el canal rojo.</param>
+        ''' <param name="canalverde">Variable que indica el valor que se va a modificar en el canal verde.</param>
+        ''' <param name="canalazul">Variable que indica el valor que se va a modificar en el canal azul.</param>
+        ''' <param name="canaalfa">Variable que indica el valor que se va a modificar en el canal alfa.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Canales(ByVal bmp As Bitmap, Optional ByVal canalrojo As Integer = 0, Optional ByVal canalverde As Integer = 0, Optional ByVal canalazul As Integer = 0, Optional ByVal canaalfa As Integer = 0)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -599,6 +843,18 @@ Namespace Apolo
             guardarImagen(bmp3, "Modificar canales") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que calcula la media de las canales RGB para cada píxel, y el valor resultante lo asignan al canal al que se le ha asignado el valor TRUE.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.filtrosBasicos(bmp,TRUE,FALSE,FALSE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="FRojo">Si el valor es TRUE, la media calculada se asignará al canal rojo. En caso de ser FALSE el canal rojo será 0.</param>
+        ''' <param name="FVerde">Si el valor es TRUE, la media calculada se asignará al canal verde. En caso de ser FALSE el canal verde será 0.</param>
+        ''' <param name="Fazul">Si el valor es TRUE, la media calculada se asignará al canal azul. En caso de ser FALSE el canal azul será 0.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Tenga en cuenta que sólo se debería poner un único canal como TRUE.</remarks>
         Public Function filtrosBasicos(ByVal bmp As Bitmap, Optional ByVal FRojo As Boolean = False, Optional ByVal FVerde As Boolean = False, Optional ByVal Fazul As Boolean = False)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -643,6 +899,18 @@ Namespace Apolo
             guardarImagen(bmp3, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que intercambia, para cada píxel, el valor de sus canales RGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.RGBto(bmp,TRUE,FALSE,FALSE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="BGR">Si el valor es TRUE, el canal rojo pasará a tener el valor del canal azul, el canal azul pasará a tener el valor del canal rojo, y el canal verde mantendrá su valor.</param>
+        ''' <param name="GRB">Si el valor es TRUE, , el canal rojo pasará a tener el valor del canal verde, el canal verde pasará a tener el valor del canal rojo, y el canal azul mantendrá su valor.</param>
+        ''' <param name="RBG">Si el valor es TRUE, el canal verde pasará a tener el valor del canal azul, el canal azul pasará a tener el valor del canal verde, y el canal rojo mantendrá su valor.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Tenga en cuenta que sólo se debería asignar TRUE a una de las tres variables (BGR, GRB, RBG).</remarks>
         Public Function RGBto(ByVal bmp As Bitmap, Optional ByVal BGR As Boolean = False, Optional ByVal GRB As Boolean = True, Optional ByVal RBG As Boolean = False)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -680,6 +948,17 @@ Namespace Apolo
             guardarImagen(bmp3, TipoEstado) 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+
+        ''' <summary>
+        ''' Función que reduce los colores de la imagen. Pudiendo pasar de 255 por canal a 1 por canal.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.reducircolores(bmp,60)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valorcolores">Variable que indica el número de colores de cada canal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Tenga en cuenta que el valor 0 equivale a un color por canal.</remarks>
         Public Function reducircolores(ByVal bmp As Bitmap, ByVal valorcolores As Byte)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -729,6 +1008,24 @@ Namespace Apolo
             guardarImagen(bmp3, "Reducir colores (" & valorcolores & ")")
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que permite seleccionar un rango de colores (por canal RGB) y pasar todos los píxeles de ese rango a un valor determinado.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.filtroColoresRango(bmp,0,100,0,0,0,0,0,0,0)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valorRojoinf">Valor inferior del rango para el canal rojo.</param>
+        ''' <param name="valorRojosup">Valor superior del rango para el canal rojo.</param>
+        ''' <param name="salidaRojo">Valor de salida para los píxeles dentro del rango del canal rojo.</param>
+        ''' <param name="valorVerdeinf">Valor inferior del rango para el canal verde.</param>
+        ''' <param name="valorVerdesup">Valor superior del rango para el canal verde.</param>
+        ''' <param name="salidaVerde">Valor de salida para los píxeles dentro del rango del canal verde.</param>
+        ''' <param name="valorAzulinf">Valor inferior del rango para el canal azul.</param>
+        ''' <param name="valorAzulsup">Valor superior del rango para el canal azul.</param>
+        ''' <param name="salidaAzul">Valor de salida para los píxeles dentro del rango del canal azul.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Los valores inferiores siempre deben ser mayores que los superiores.</remarks>
         Public Function filtroColoresRango(ByVal bmp As Bitmap, Optional ByVal valorRojoinf As Byte = 0, Optional ByVal valorRojosup As Byte = 0, Optional ByVal salidaRojo As Byte = 0, Optional ByVal valorVerdeinf As Byte = 0, Optional ByVal valorVerdesup As Byte = 0, Optional ByVal salidaVerde As Byte = 0, Optional ByVal valorAzulinf As Byte = 0, Optional ByVal valorAzulsup As Byte = 0, Optional ByVal salidaAzul As Byte = 0)
             If valorRojoinf > valorRojosup Or valorVerdeinf > valorVerdesup Or valorAzulinf > valorAzulsup Then
                 MessageBox.Show("El valor inferior debe ser mayor que el superior.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -767,7 +1064,73 @@ Namespace Apolo
                 Return bmp3
             End If
         End Function
-        Public Function contornos(ByVal bmp As Bitmap, ByVal contorno As Integer, ByVal valorrojo As UInteger, ByVal valorverde As UInteger, ByVal valorazul As UInteger)
+
+        ''' <summary>
+        ''' Función que permite eliminar el efecto de ojos rojos en una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EliminarOjosRojos(bmp, New Point(300,40),8,1.5)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="CentroOjo">Esta variable indica la coordenada X e Y del centro del ojo (en píxeles).</param>
+        ''' <param name="radioOjo">Variable que indica el valor del radio del ojo (en píxeles).</param>
+        ''' <param name="valorMinimo">Valor mínimo a partir del cual se aplicará la función. La correción se aplica a los píxeles cuya operación (rojo / ((verde + azul) / 2)) es mayor que esta variable (valorMinimo).</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        Public Function EliminarOjosRojos(ByVal bmp As Bitmap, ByVal CentroOjo As Point, ByVal radioOjo As Integer, Optional valorMinimo As Double = 1.5) As Bitmap
+            Dim bmpCirculo As New Bitmap(bmp)
+            Dim bmpCopia As New Bitmap(bmp)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Corrigiendo ojos rojos" 'Actualizar el estado
+
+            Dim gr As Graphics = Graphics.FromImage(bmpCirculo)
+
+            'Le damos un color poco problable para un ojo (amarillo puro) ya que luego evaluaremos el cuadrado circunscrito a la circunferencia
+            Dim relleno As Brush = New SolidBrush(Color.FromArgb(255, 255, 255, 0))
+            gr.FillEllipse(relleno, CentroOjo.X - radioOjo, CentroOjo.Y - radioOjo, radioOjo * 2, radioOjo * 2)
+            Dim bmpPintado As New Bitmap(bmpCirculo) 'Almacenamos una copia de la imagen con la primera línea
+
+            Dim rojo, verde, azul As Integer
+            Dim PorcentajeTotal = (CentroOjo.X + (radioOjo + 1)) - (CentroOjo.X - (radioOjo - 1)) + CentroOjo.X - (radioOjo - 1)
+
+            'Recorremos el cuadrado circunscrito a la circunferencia
+            For i = CentroOjo.X - (radioOjo - 1) To CentroOjo.X + (radioOjo + 1)
+                For j = CentroOjo.Y - (radioOjo - 1) To CentroOjo.Y + (radioOjo + 1)
+                    'Si el valor es amarillo (es decir, es el círculo que creamos)
+                    If bmpPintado.GetPixel(i, j) = (Color.FromArgb(255, 255, 255, 0)) Then
+                        Dim intensidadRojo As Double
+                        verde = bmp.GetPixel(i, j).G
+                        azul = bmp.GetPixel(i, j).B
+                        rojo = bmp.GetPixel(i, j).R
+                        intensidadRojo = (rojo / ((verde + azul) / 2))
+                        'Hacemos la comprobación de que sea un ojo rojo (el valor más adecuado por norma general es 1.5)
+                        If intensidadRojo > valorMinimo Then
+                            'Creamos el valor rojo a partir del verde y azul
+                            rojo = (verde + azul) / 2
+                            bmpCopia.SetPixel(i, j, Color.FromArgb(rojo, verde, azul))
+                        End If
+
+                    End If
+                Next
+                porcentaje(0) = ((i * 100) / PorcentajeTotal) 'Actualizamos el estado
+            Next
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmpCopia) 'generamos el evento
+            guardarImagen(bmpCopia, "Corregir ojos rojos")
+            Return bmpCopia
+        End Function
+
+        ''' <summary>
+        ''' Función que detecta los contornos de una imagen y devuelve los contornos en color blanco y el resto de la imagen en color negro.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.contornos(bmp, 20,70,50,80)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="contorno">Valor que indica el grado de contorno que se va a detectar. Valores más pequeños detectan más contornos y superiores menos contornos.</param>
+        ''' <param name="valorrojo">Peso para la detección del contorno para el canal rojo. Valores mayores detectan más contornos. El valor debe estar comprendido entre 0 y 255.</param>
+        ''' <param name="valorverde">Peso para la detección del contorno para el canal verde. Valores mayores detectan más contornos. El valor debe estar comprendido entre 0 y 255.</param>
+        ''' <param name="valorazul">Peso para la detección del contorno para el canal azul. Valores mayores detectan más contornos. El valor debe estar comprendido entre 0 y 255.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        Public Function contornos(ByVal bmp As Bitmap, ByVal contorno As Integer, ByVal valorrojo As Integer, ByVal valorverde As Integer, ByVal valorazul As Integer)
             Dim bmp2 = bmp
             Dim color1 As Color
             porcentaje(0) = 0 'Actualizar el estado
@@ -801,6 +1164,17 @@ Namespace Apolo
             Return bmp3
 
         End Function
+
+        ''' <summary>
+        ''' Función que permite cambiar el tamaño de una imagen (bitmap).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Redimensionar(bmp, New Rectangle(New Point(0, 0), New Size(500, 500)), Drawing2D.InterpolationMode.Bilinear)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="tamaño">Tamaño al que se quiere transformar la imagen.</param>
+        ''' <param name="interpolación">Tipo de interpolación a la hora de modificar el tamaño de la imagen.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Para comparar los diferentes algoritmos de interpolación, acceder a la siguiente web: msdn.microsoft.com/es-es/library/system.drawing.drawing2d.interpolationmode.aspx</remarks>
         Public Function Redimensionar(ByVal bmp As Bitmap, ByVal tamaño As System.Drawing.Rectangle, Optional ByVal interpolación As Drawing2D.InterpolationMode = 0) As Bitmap
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Redimensionando imagen" 'Actualizar el estado
@@ -822,6 +1196,7 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
 #End Region
 
 
@@ -829,6 +1204,20 @@ Namespace Apolo
         'Además incluye una subclase con el conjunto de máscaras disponibles (sobel, repujado, etc)
         'Incluye una función (sobelTotal) que aplica la máscara de sobel en 4 direcciones y une las imágenes
 #Region "Máscaras"
+        ''' <summary>
+        ''' Esta función permite aplicar una matriz de convolución (kernel) a la imagen. Recorre toda la imagen mediante una matriz de 3x3, aplicando los diferentes pesos de la matriz a los píxeles de la imagen. La matriz actúa en los 3 canales RGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoMascara As New TratamientoImagenes.mascaras 'Se instancia a la clase máscaras (se puede crear también una matriz de 3x3)
+        '''Dim mascara = objetoMascara.SobelH 'Se define una máscara Sobel
+        '''Picturebox1.image=objetoTratamiento.mascara3x3RGB(bmp, mascara,0, 1)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="matrizMascara">Matriz de 3x3 que define el kernel.</param>
+        ''' <param name="desviacion">Variable por la cual el resultado se dividará (este parámetro se suma a la variable factor)</param>
+        ''' <param name="factor">Variable por la cual el resultado se dividará (este parámetro se suma a la variable desviación)</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.mascaras para ver cómo se crean máscaras (kernels) predefinidos.</remarks>
         Public Function mascara3x3RGB(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -898,6 +1287,21 @@ Namespace Apolo
             guardarImagen(bmp3, "Máscara 3x3 RGB " & tipoEstado)
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Esta función permite aplicar una matriz de convolución (kernel) a la imagen. Recorre toda la imagen mediante una matriz de 3x3, aplicando los diferentes pesos de la matriz a los píxeles de la imagen. La matriz actúa en escala de grises.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoMascara As New TratamientoImagenes.mascaras 'Se instancia a la clase máscaras (se puede crear también una matriz de 3x3)
+        '''Dim mascara = objetoMascara.SobelH 'Se define una máscara Sobel
+        '''Picturebox1.image=objetoTratamiento.mascara3x3RGB(bmp, mascara,0, 1)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="matrizMascara">Matriz de 3x3 que define el kernel.</param>
+        ''' <param name="desviacion">Variable por la cual el resultado se dividará (este parámetro se suma a la variable factor)</param>
+        ''' <param name="factor">Variable por la cual el resultado se dividará (este parámetro se suma a la variable desviación)</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.mascaras para ver cómo se crean máscaras (kernels) predefinidos.</remarks>
         Public Function mascara3x3Grises(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -968,17 +1372,123 @@ Namespace Apolo
             guardarImagen(bmp3, "Máscara 3x3 Gris " & tipoEstado)
             Return bmp3
         End Function
-#Region "Subclase con conjunto de máscaras"
-        Public Class mascaras
-            Private coefmascara(2, 2) As Double
 
+        ''' <summary>
+        ''' Esta función permite aplicar una matriz de convolución (kernel) a la imagen. Recorre toda la imagen mediante una matriz de tamaño determinado, aplicando los diferentes pesos de la matriz a los píxeles de la imagen. La matriz actúa en los 3 canales RGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoMascara As New TratamientoImagenes.mascaras 'Se instancia a la clase máscaras (se puede crear también una matriz de 3x3)
+        '''Dim mascara = objetoMascara.SobelH 'Se define una máscara Sobel
+        '''Picturebox1.image=objetoTratamiento.mascara3x3RGB(bmp, mascara,0, 1)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="matrizMascara">Matriz del tamaño que se quiera siempre y cuando sea cuadrada e impar (5x5, 7x7...). Dicha matriz será quien defina el kernel.</param>
+        ''' <param name="desviacion">Variable por la cual el resultado se dividará (este parámetro se suma a la variable factor)</param>
+        ''' <param name="factor">Variable por la cual el resultado se dividará (este parámetro se suma a la variable desviación)</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.mascaras para ver cómo se crean máscaras (kernels) predefinidos.</remarks>
+        Public Function mascaraManualRGB(ByVal bmp As Bitmap, ByVal matrizMascara(,) As Double, Optional ByVal desviacion As Double = 0, Optional ByVal factor As Double = 1)
+            Dim bmp2 = bmp
+            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
+            Niveles = nivel(bmp2) 'Obtenemos valores
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+
+            'Creamos el estado*****
+            Dim tipoEstado As String = "(" & matrizMascara.GetUpperBound(0) + 1 & "x" & matrizMascara.GetUpperBound(0) + 1 & ")"
+             
+            tipoEstado = tipoEstado.Remove(tipoEstado.Count - 1) 'Eliminamos la última coma
+            tipoEstado = tipoEstado & ")" 'Ponemos el último cierre de paréntesis
+            '*****
+            porcentaje(1) = "Aplicando máscara personalizada " & tipoEstado 'Actualizar el estado
+            Dim SumaRojo, SumaVerde, SumaAzul, SumaMascara As Long
+            Dim Rojo, verde, azul, alfa As Integer
+
+            For mi = -(matrizMascara.GetUpperBound(0) / 2) To matrizMascara.GetUpperBound(0) / 2
+                For mj = -(matrizMascara.GetUpperBound(0) / 2) To matrizMascara.GetUpperBound(0) / 2
+                    SumaMascara = SumaMascara + matrizMascara(mi + matrizMascara.GetUpperBound(0) / 2, mj + matrizMascara.GetUpperBound(0) / 2)
+                Next
+            Next
+
+            If SumaMascara = 0 Then SumaMascara = 1
+
+            For i = (matrizMascara.GetUpperBound(0) / 2) To Niveles.GetUpperBound(0) - (matrizMascara.GetUpperBound(0) / 2)
+                For j = (matrizMascara.GetUpperBound(0) / 2) To Niveles.GetUpperBound(1) - (matrizMascara.GetUpperBound(0) / 2)
+                    SumaRojo = 0
+                    For mi = -(matrizMascara.GetUpperBound(0) / 2) To (matrizMascara.GetUpperBound(0) / 2)
+                        For mj = -(matrizMascara.GetUpperBound(0) / 2) To (matrizMascara.GetUpperBound(0) / 2)
+
+                            SumaRojo = SumaRojo + Niveles(i + mi, j + mj).R * matrizMascara(mi + (matrizMascara.GetUpperBound(0) / 2), mj + (matrizMascara.GetUpperBound(0) / 2))
+                        Next
+                    Next
+
+                    SumaVerde = 0
+                    For mi = -(matrizMascara.GetUpperBound(0) / 2) To (matrizMascara.GetUpperBound(0) / 2)
+                        For mj = -(matrizMascara.GetUpperBound(0) / 2) To (matrizMascara.GetUpperBound(0) / 2)
+                            SumaVerde = SumaVerde + Niveles(i + mi, j + mj).G * matrizMascara(mi + (matrizMascara.GetUpperBound(0) / 2), mj + (matrizMascara.GetUpperBound(0) / 2))
+
+                        Next
+                    Next
+
+                    SumaAzul = 0
+                    For mi = -(matrizMascara.GetUpperBound(0) / 2) To (matrizMascara.GetUpperBound(0) / 2)
+                        For mj = -(matrizMascara.GetUpperBound(0) / 2) To (matrizMascara.GetUpperBound(0) / 2)
+                            SumaAzul = SumaAzul + Niveles(i + mi, j + mj).B * matrizMascara(mi + (matrizMascara.GetUpperBound(0) / 2), mj + (matrizMascara.GetUpperBound(0) / 2))
+                        Next
+                    Next
+
+                    If factor + desviacion = 0 Then factor = 1 : desviacion = 0
+                    Rojo = Math.Abs((SumaRojo / SumaMascara) / (factor + desviacion))
+                    verde = Math.Abs((SumaVerde / SumaMascara) / (factor + desviacion))
+                    azul = Math.Abs((SumaAzul / SumaMascara) / (factor + desviacion))
+                    If Rojo > 255 Then Rojo = 255
+                    If verde > 255 Then verde = 255
+                    If azul > 255 Then azul = 255
+                    alfa = Niveles(i, j).A
+                    bmp3.SetPixel(i, j, Color.FromArgb(alfa, Rojo, verde, azul))
+                Next
+                porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+            Next
+            porcentaje(0) = 100
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Máscara personalizada " & tipoEstado)
+            Return bmp3
+        End Function
+
+#Region "Subclase con conjunto de máscaras"
+        ''' <summary>
+        ''' La clase Tratamiento.Mascaras, permite obtener diferentes matrices de 3x3 predefinidas (kernels) para después aplicar máscaras a imágenes. El proceso
+        ''' de obtención de máscaras es muy sencillo. A continuación se muestra cómo realizarlo.
+        ''' <example><para>Para instancia un objeto de la clase Tratamiento.Mascaras, primeramente debe hacer referencia a la clase en su proyecto:</para>
+        ''' <code>Imports nombredeaplicacion.Tratamiento.Mascaras</code>
+        ''' <para>A continuación se instancia a la clase y ya se puede obtener una máscara de 3x3 predefinida (este proceso es asistido, si utiliza Visual Studio, por IntelliSense):
+        ''' <code>Dim objetoMascara as new Tratamiento.Mascaras 
+        '''Dim mascara=objetoMascara.SobelH</code></para></example>
+        ''' </summary>
+        ''' <remarks>Clase creada por Luis Marcos Rivera.</remarks>
+        Public Class Mascaras
+            Private coefmascara(2, 2) As Double
 #Region "Paso bajo"
+            ''' <summary>
+            ''' Función que devuelve una máscara de paso bajo con coeficiente 9.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.LOW9</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function LOW9()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara de paso bajo con coeficiente 10.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.LOW10</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function LOW10()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 1
@@ -986,6 +1496,13 @@ Namespace Apolo
 
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara de paso bajo con coeficiente 12.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.LOW12</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function LOW12()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 1
@@ -994,18 +1511,38 @@ Namespace Apolo
             End Function
 #End Region 'Máscaras de paso bajo
 #Region "Paso alto"
+            ''' <summary>
+            ''' Función que devuelve una máscara de paso alto con coeficiente 1.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.HIGH1a</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function HIGH1a()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 9 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara de paso alto con coeficiente 1.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.HIGH1b</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function HIGH1b()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 5 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara de paso alto con coeficiente 16.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.HIGH16</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function HIGH16()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 20 : coefmascara(1, 2) = -1
@@ -1014,258 +1551,559 @@ Namespace Apolo
             End Function
 #End Region 'Máscaras de paso alto
 #Region "Bordes y contornos"
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (resta-movimiento).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Resta1</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Resta1()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (resta-movimiento).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Resta2</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Resta2()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (resta-movimiento).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Resta3</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Resta3()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Laplaciana1</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Laplaciana1()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = -4 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Laplaciana2</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Laplaciana2()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Laplaciana3</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Laplaciana3()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 8 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Laplaciana4</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Laplaciana4()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = -2 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = -2 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = -2
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = -2 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.LaplacianaDiagonal</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function LaplacianaDiagonal()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 0 : coefmascara(1, 1) = 4 : coefmascara(1, 2) = 0
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.LaplacianaHorizont</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function LaplacianaHorizont()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (operador Laplaciano).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.LaplacianaVertical</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function LaplacianaVertical()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = 0 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 0
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Este).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.GradienteEste</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function GradienteEste()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Sudeste).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.GradienteSedeste</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function GradienteSudeste()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Sur).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.GradienteSur</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function GradienteSur()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Oeste).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.GradienteOeste</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function GradienteOeste()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Noreste).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.GradienteNoreste</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function GradienteNoreste()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (calcula el gradiente dirección Norte).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.GradienteNorte</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function GradienteNorte()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = -2 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Este.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.EmbossingEste</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function EmbossingEste()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Sudeste.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.EmbossingSudeste</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function EmbossingSudeste()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Sur.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.EmbossingSur</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function EmbossingSur()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Oeste.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.EmbossingOeste</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function EmbossingOeste()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Noreste.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.EmbossingNoreste</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function EmbossingNoreste()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara que imita el efecto embossing (relieve), orientación Norte.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.EmbossingNorte</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function EmbossingNorte()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = 0 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 0
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (vertical). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 4.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.SobelV</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function SobelV()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 2 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = 0 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 0
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = -2 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (horizontal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 4.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.SobelH</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function SobelH()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 2 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -2
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (diagonal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 4.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.SobelDiagonal1</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function SobelDiagonal1()
                 coefmascara(0, 0) = -2 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 2
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (diagonal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 4.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.SobelDiagonal2</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function SobelDiagonal2()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 2
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = -2 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (vertical). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 3.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.PrewittVert</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function PrewittVert()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 0 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 0
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (horizontal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 3.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.PrewittHoriz</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function PrewittHoriz()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (diagonal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 3.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.PrewittDiag1</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function PrewittDiag1()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (diagonal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor 3.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.PrewittDiag2</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function PrewittDiag2()
                 coefmascara(0, 0) = 0 : coefmascara(0, 1) = 1 : coefmascara(0, 2) = 1
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = 0
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar líneas verticales.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.LineasVerticales</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function LineasVerticales()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 2 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = 2
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = -1 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar líneas horizontales.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.LineasHorizontales</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function LineasHorizontales()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = 2 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 2 : coefmascara(1, 2) = -1
                 coefmascara(2, 0) = -1 : coefmascara(2, 1) = 2 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para imitar un efecto de repujado.
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Repujado</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Repujado()
                 coefmascara(0, 0) = -2 : coefmascara(0, 1) = -1 : coefmascara(0, 2) = 0
                 coefmascara(1, 0) = -1 : coefmascara(1, 1) = 1 : coefmascara(1, 2) = 1
                 coefmascara(2, 0) = 0 : coefmascara(2, 1) = 1 : coefmascara(2, 2) = 2
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (orientación 0º).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Kirsch0</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Kirsch0()
                 coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = 5
                 coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 5
                 coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = 5
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (orientación 45º).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Kirsch45</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Kirsch45()
                 coefmascara(0, 0) = -3 : coefmascara(0, 1) = 5 : coefmascara(0, 2) = 5
                 coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 5
                 coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (orientación 90º).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Kirsch90</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Kirsch90()
                 coefmascara(0, 0) = 5 : coefmascara(0, 1) = 5 : coefmascara(0, 2) = 5
                 coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
                 coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (orientación 135º).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Kirsch135</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Kirsch135()
                 coefmascara(0, 0) = 5 : coefmascara(0, 1) = 5 : coefmascara(0, 2) = 5
                 coefmascara(1, 0) = 5 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
                 coefmascara(2, 0) = -3 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (orientación 180º).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Kirsch180</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Kirsch180()
                 coefmascara(0, 0) = 5 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
                 coefmascara(1, 0) = 5 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
                 coefmascara(2, 0) = 5 : coefmascara(2, 1) = -3 : coefmascara(2, 2) = -3
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (orientación 225º).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Kirsch225</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Kirsch225()
                 coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
                 coefmascara(1, 0) = 5 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
                 coefmascara(2, 0) = 5 : coefmascara(2, 1) = 5 : coefmascara(2, 2) = -3
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (orientación 270º).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Kirsch270</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Kirsch270()
                 coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
                 coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -3
                 coefmascara(2, 0) = 5 : coefmascara(2, 1) = 5 : coefmascara(2, 2) = 5
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (orientación 315º).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.Kirsch315</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Kirsch315()
                 coefmascara(0, 0) = -3 : coefmascara(0, 1) = -3 : coefmascara(0, 2) = -3
                 coefmascara(1, 0) = -3 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 5
                 coefmascara(2, 0) = -3 : coefmascara(2, 1) = 5 : coefmascara(2, 2) = 5
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (horizontal). Para resultados óptimos, es conveniente aplicar desviación 0 y factor (1 / (2 + Math.Sqrt(2))).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.FreichenHori</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function FreichenHori()
                 coefmascara(0, 0) = 1 : coefmascara(0, 1) = 0 : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = Math.Sqrt(2) : coefmascara(1, 1) = 0 : coefmascara(1, 2) = -Math.Sqrt(2)
                 coefmascara(2, 0) = 1 : coefmascara(2, 1) = 0 : coefmascara(2, 2) = -1
                 Return coefmascara
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una máscara para detectar bordes (vertical). Para resultados óptimos, es conveniente aplicar desviación 0 y factor (1 / (2 + Math.Sqrt(2))).
+            ''' <example>Para obtener esta máscara, se debe proceder así:
+            ''' <code>Dim mascara=objetoMascara.FreichenVert</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function FreichenVert()
                 coefmascara(0, 0) = -1 : coefmascara(0, 1) = -Math.Sqrt(2) : coefmascara(0, 2) = -1
                 coefmascara(1, 0) = 0 : coefmascara(1, 1) = 0 : coefmascara(1, 2) = 0
@@ -1279,13 +2117,21 @@ Namespace Apolo
 #End Region 'Contiene todas las máscaras disponibles
 
         'Funciones para crear Sobel total
+        ''' <summary>
+        ''' Función que aplica el operador Sobel (kernel) sobre la imagen. Este operador se aplica en vertical, horizontal y ambas diagonales y por último une las imágenes.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.sobelTotal(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>La función puede demorarse varios segundos.</remarks>
         Public Function sobelTotal(ByVal bmp As Bitmap)
             Dim bmp2 = bmp
             Dim bmp3 = bmp
             Dim bmp4 = bmp
             Dim bmp5 = bmp
 
-            Dim objetoMascaras As New mascaras
+            Dim objetoMascaras As New Mascaras
             Dim MatrizMascara(2, 2) As Double
 
             'Sobel horizontal
@@ -1310,6 +2156,14 @@ Namespace Apolo
             Return Me.Unir4(bmpTotal)
 
         End Function
+
+        ''' <summary>
+        ''' Función que une cuatro imágenes que se le pasen como arraylist de bitmaps.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Bitmap sería así:
+        ''' <code>Dim bmpUnido as bitmap=objetoTratamiento.sobelTotal(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Variable arraylist que debe contener cuatro bitmaps.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Private Function Unir4(ByVal bmp As ArrayList)
             Dim bmp2 As New ArrayList(bmp)
 
@@ -1372,6 +2226,18 @@ Namespace Apolo
 
         'Funciones para realizar suma/resta/multiplicación/división sobre píxeles de una imagen
 #Region "Operaciones aritméticas"
+        ''' <summary>
+        ''' Función que suma valores a los píxeles de la imagen. Se aumentan los valores en los 4 canales ARGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Suma(bmp, 20,20,20,0,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Sumarojo">Variable que indica que valor que se va a aumentar en el canal rojo.</param>
+        ''' <param name="Sumaverde">Variable que indica que valor que se va a aumentar en el canal verde.</param>
+        ''' <param name="Sumaazul">Variable que indica que valor que se va a aumentar en el canal azul.</param>
+        ''' <param name="sumaAlfa">Variable que indica que valor que se va a aumentar en el canal alfa.</param>
+        ''' <param name="omitirAlfa">Si la variable es TRUE, no se aumentará el canal alfa. En caso de ser FALSE, se aumentará en función del valor incluido en la variable sumaAlfa.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Suma(ByVal bmp As Bitmap, ByVal Sumarojo As Integer, ByVal Sumaverde As Integer, ByVal Sumaazul As Integer, ByVal sumaAlfa As Integer, Optional ByVal omitirAlfa As Boolean = True) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -1404,6 +2270,20 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que resta valores a los píxeles de la imagen. Se resta los valores en los 4 canales ARGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Resta(bmp, 20,20,20,0,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Restarojo">Variable que indica que valor que se va a disminuir en el canal rojo.</param>
+        ''' <param name="Restaverde">Variable que indica que valor que se va a disminuir en el canal verde.</param>
+        ''' <param name="Restaazul">Variable que indica que valor que se va a disminuir en el canal azul.</param>
+        ''' <param name="RestaAlfa">Variable que indica que valor que se va a disminuir en el canal alfa.</param>
+        ''' <param name="omitirAlfa">Si la variable es TRUE, no se disminuirá el canal alfa. En caso de ser FALSE, se disminuirá en función del valor incluido en la variable RestaAlfa.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Las variables Restarojo, Restaverde, Restazul y RestaAlfa deben ser positivas para que la función reste los valores.</remarks>
         Public Function Resta(ByVal bmp As Bitmap, ByVal Restarojo As Integer, ByVal Restaverde As Integer, ByVal Restaazul As Integer, ByVal RestaAlfa As Integer, Optional ByVal omitirAlfa As Boolean = True) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -1436,6 +2316,19 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que multiplica valores a los píxeles de la imagen. Se multiplica los valores en los 4 canales ARGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Multiplicacion(bmp, 1.5,1,1,0,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Multiplicacionrojo">Variable que indica el valor por el cual se multiplicarán los píxeles del canal rojo.</param>
+        ''' <param name="Multiplicacionverde">Variable que indica el valor por el cual se multiplicarán los píxeles del canal verde.</param>
+        ''' <param name="Multiplicacionazul">Variable que indica el valor por el cual se multiplicarán los píxeles del canal azul.</param>
+        ''' <param name="MultiplicacionAlfa">Variable que indica el valor por el cual se multiplicarán los píxeles del canal alfa.</param>
+        ''' <param name="omitirAlfa">Si la variable es TRUE, no se multiplicará el canal alfa. En caso de ser FALSE, se multiplicará en función del valor incluido en la variable MultiplicacionAlfa.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Multiplicacion(ByVal bmp As Bitmap, ByVal Multiplicacionrojo As Double, ByVal Multiplicacionverde As Double, ByVal Multiplicacionazul As Double, ByVal MultiplicacionAlfa As Double, Optional ByVal omitirAlfa As Boolean = True) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -1472,6 +2365,20 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que divide valores a los píxeles de la imagen. Se dividen los valores en los 4 canales ARGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Division(bmp, 1.5,1,1,0,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Divisionrojo">Variable que indica el valor por el cual se dividirán los píxeles del canal rojo.</param>
+        ''' <param name="Divisionverde">Variable que indica el valor por el cual se dividirán los píxeles del canal verde.</param>
+        ''' <param name="Divisionazul">Variable que indica el valor por el cual se dividirán los píxeles del canal azul.</param>
+        ''' <param name="DivisionAlfa">Variable que indica el valor por el cual se dividirán los píxeles del canal alfa.</param>
+        ''' <param name="omitirAlfa">Si la variable es TRUE, no se dividirá el canal alfa. En caso de ser FALSE, se dividirá en función del valor incluido en la variable MultiplicacionAlfa.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>El valor cero en las variables Divisionrojo, Divisionverde, Divisionazul, DivisionAlfa produciría un error.</remarks>
         Public Function Division(ByVal bmp As Bitmap, ByVal Divisionrojo As Double, ByVal Divisionverde As Double, ByVal Divisionazul As Double, ByVal DivisionAlfa As Double, Optional ByVal omitirAlfa As Boolean = True) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -1508,6 +2415,19 @@ Namespace Apolo
 
         'Funciones para realizar and/or/xor sobre píxeles de una imagen
 #Region "Operaciones lógicas"
+        ''' <summary>
+        ''' Función que realiza la operación AND a los valores de los píxeles de la imagen. Se opera en los valores en los 4 canales ARGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperAND(bmp, 1,1,0,0,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Arojo">Variable que indica el valor por el cual se operará (con el operador AND) los píxeles del canal rojo.</param>
+        ''' <param name="Averde">Variable que indica el valor por el cual se operará (con el operador AND) los píxeles del canal verde.</param>
+        ''' <param name="Aazul">Variable que indica el valor por el cual se operará (con el operador AND) los píxeles del canal azul.</param>
+        ''' <param name="AAlfa">Variable que indica el valor por el cual se operará (con el operador AND) los píxeles del canal alfa.</param>
+        ''' <param name="omitirAlfa">Si la variable es TRUE, no se operará en el canal alfa. En caso de ser FALSE, se hará en AND en función del valor incluido en la variable AAlfa.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Las operaciones lógicas tiene más sentido realizarlas en imágenes binarias.</remarks>
         Public Function OperAND(ByVal bmp As Bitmap, ByVal Arojo As Integer, ByVal Averde As Integer, ByVal Aazul As Integer, ByVal AAlfa As Integer, Optional ByVal omitirAlfa As Boolean = True) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -1540,6 +2460,20 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que realiza la operación OR a los valores de los píxeles de la imagen. Se opera en los valores en los 4 canales ARGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperOR(bmp, 1,1,0,0,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Orojo">Variable que indica el valor por el cual se operará (con el operador OR) los píxeles del canal rojo.</param>
+        ''' <param name="Overde">Variable que indica el valor por el cual se operará (con el operador OR) los píxeles del canal verde.</param>
+        ''' <param name="Oazul">Variable que indica el valor por el cual se operará (con el operador OR) los píxeles del canal azul.</param>
+        ''' <param name="OAlfa">Variable que indica el valor por el cual se operará (con el operador OR) los píxeles del canal alfa.</param>
+        ''' <param name="omitirAlfa">Si la variable es TRUE, no se operará en el canal alfa. En caso de ser FALSE, se hará en OR en función del valor incluido en la variable OAlfa.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Las operaciones lógicas tiene más sentido realizarlas en imágenes binarias.</remarks>
         Public Function OperOR(ByVal bmp As Bitmap, ByVal Orojo As Integer, ByVal Overde As Integer, ByVal Oazul As Integer, ByVal OAlfa As Integer, Optional ByVal omitirAlfa As Boolean = True) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -1572,6 +2506,20 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que realiza la operación XOR a los valores de los píxeles de la imagen. Se opera en los valores en los 4 canales ARGB.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperXOR(bmp, 255,255,255,0,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Xrojo">Variable que indica el valor por el cual se operará (con el operador XOR) los píxeles del canal rojo.</param>
+        ''' <param name="Xverde">Variable que indica el valor por el cual se operará (con el operador XOR) los píxeles del canal verde.</param>
+        ''' <param name="Xazul">Variable que indica el valor por el cual se operará (con el operador XOR) los píxeles del canal azul.</param>
+        ''' <param name="XAlfa">Variable que indica el valor por el cual se operará (con el operador XOR) los píxeles del canal alfa.</param>
+        ''' <param name="omitirAlfa">Si la variable es TRUE, no se operará en el canal alfa. En caso de ser FALSE, se hará en XOR en función del valor incluido en la variable XAlfa.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Las operaciones lógicas tiene más sentido realizarlas en imágenes binarias.</remarks>
         Public Function OperXOR(ByVal bmp As Bitmap, ByVal Xrojo As Integer, ByVal Xverde As Integer, ByVal Xazul As Integer, ByVal XAlfa As Integer, Optional ByVal omitirAlfa As Boolean = True) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -1608,7 +2556,18 @@ Namespace Apolo
 
         'Funciones morfológicas sobre píxeles de una imagen. Erosión, dilatación, bottom hat, top hatt, cerradura, apertura, diámetro
 #Region "Operaciones morfológicas"
-
+        ''' <summary>
+        ''' Función que calcula el operador morfológico de dilatación de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+        '''Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+        '''Picturebox1.image=objetoTratamiento.MorfologicasDilatacion(bmp, estructura)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
         Public Function MorfologicasDilatacion(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -1661,6 +2620,19 @@ Namespace Apolo
             guardarImagen(bmp3, "Operador morfológico. Dilatación") 'Actualizar el estado
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que calcula el operador morfológico de erosión de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+        '''Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+        '''Picturebox1.image=objetoTratamiento.MorfologicasErosión(bmp, estructura)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
         Public Function MorfologicasErosion(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -1713,6 +2685,19 @@ Namespace Apolo
             guardarImagen(bmp3, "Operador morfológico. Erosión") 'Actualizar el estado
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que calcula el operador morfológico de apertura de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+        '''Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+        '''Picturebox1.image=objetoTratamiento.MorfologicasApertura(bmp, estructura)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
         Public Function MorfologicasApertura(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim objeto As New TratamientoImagenes
@@ -1724,6 +2709,19 @@ Namespace Apolo
             guardarImagen(bmp3, "Operador morfológico. Apertura") 'Actualizar el estado
             Return bmp4
         End Function
+
+        ''' <summary>
+        ''' Función que calcula el operador morfológico de cerradura de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+        '''Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+        '''Picturebox1.image=objetoTratamiento.MorfologicasCerradura(bmp, estructura)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
         Public Function MorfologicasCerradura(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim objeto As New TratamientoImagenes
@@ -1749,6 +2747,19 @@ Namespace Apolo
         '    guardarImagen(bmpSalida, "Operador morfológico. Transformada de ganancia o pérdida") 'Actualizar el estado
         '    Return bmpSalida
         'End Function
+
+        ''' <summary>
+        ''' Función que calcula el operador morfológico de perímetro (a través de diltación y erosión) de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+        '''Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+        '''Picturebox1.image=objetoTratamiento.MorfologicasPerimetroDilatEros(bmp, estructura)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
         Public Function MorfologicasPerimetroDilatEros(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim bmp3 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
@@ -1762,6 +2773,19 @@ Namespace Apolo
             guardarImagen(bmp6, "Operador morfológico. Perímetro (Dilatación-Erosión)") 'Actualizar el estado
             Return bmp6
         End Function
+
+        ''' <summary>
+        ''' Función que calcula el operador morfológico de perímetro (a través de la imagen original y erosionada) de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+        '''Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+        '''Picturebox1.image=objetoTratamiento.MorfologicasPerimetroOrigEros(bmp, estructura)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
         Public Function MorfologicasPerimetroOrigEros(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim objeto As New TratamientoImagenes
@@ -1773,6 +2797,19 @@ Namespace Apolo
             guardarImagen(bmp6, "Operador morfológico. Perímetro (Original-Erosión)") 'Actualizar el estado
             Return bmp6
         End Function
+
+        ''' <summary>
+        ''' Función que calcula el operador morfológico de perímetro (a través de la imagen dilatada y la original) de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+        '''Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+        '''Picturebox1.image=objetoTratamiento.MorfologicasPerimetroDilatOrigin(bmp, estructura)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
         Public Function MorfologicasPerimetroDilatOrigin(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim objeto As New TratamientoImagenes
@@ -1784,6 +2821,19 @@ Namespace Apolo
             guardarImagen(bmp6, "Operador morfológico. Perímetro (Dilatación-Original)") 'Actualizar el estado
             Return bmp6
         End Function
+
+        ''' <summary>
+        ''' Función que calcula el operador morfológico Top Hat de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+        '''Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+        '''Picturebox1.image=objetoTratamiento.MorfologicasTopHat(bmp, estructura)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
         Public Function MorfologicasTopHat(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim bmp3 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
@@ -1796,6 +2846,19 @@ Namespace Apolo
             guardarImagen(bmp6, "Operador morfológico. Top Hat") 'Actualizar el estado
             Return bmp6
         End Function
+
+        ''' <summary>
+        ''' Función que calcula el operador morfológico Bottom Hat de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim objetoEstructura As New TratamientoImagenes.ElementoEstructural 'Se instancia a la clase ElementoEstructural (se puede crear también una matrices personalizadas)
+        '''Dim estructura = objetoEstructura.Cuadrado3x3 'Se define una cuadrada de 3x3
+        '''Picturebox1.image=objetoTratamiento.MorfologicasBottomHat(bmp, estructura)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="ElementoEstructural">Matriz (impar, por ejemplo 3x3, 5x5...) de dos dimensiones que debe contener exclusivamente 0 y/o 1. </param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Véase también la clase Tratamiento.ElementoEstructural para ver cómo se crean elementos estructurales predefinidos.</remarks>
         Public Function MorfologicasBottomHat(ByVal bmp As Bitmap, ByVal ElementoEstructural(,) As Integer)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim bmp3 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
@@ -1811,8 +2874,24 @@ Namespace Apolo
 
         'Contiene clase con todos los elementos estructurales predefinidos
 #Region "Clase con elementos estructurales"
+        ''' <summary>
+        ''' Esta función permite definir elementos estructurales predefinidos para aplicar junto con operadores morfológicos. Su principal función es devolver matrices impares formadas por 0 y/o 1.
+        ''' El proceso de obtención de un elemento estructural es muy sencillo. A continuación se muestra cómo realizarlo.
+        ''' <example><para>Para instancia un objeto de la clase Tratamiento.ElementoEstructural, primeramente debe hacer referencia a la clase en su proyecto:</para>
+        ''' <code>Imports nombredeaplicacion.Tratamiento.ElementoEstructural</code>
+        ''' <para>A continuación se instancia a la clase y ya se puede obtener un elemento estrucutral predefinido (este proceso es asistido, si utiliza Visual Studio, por IntelliSense):
+        ''' <code>Dim objetoEstructura as new Tratamiento.ElementoEstructural 
+        '''Dim mascara=objetoEstructura.Cuadrado3x3</code></para></example>
+        ''' </summary>
+        ''' <remarks>Clase creada por Luis Marcos Rivera.</remarks>
         Public Class ElementoEstructural
             Private Estructura(,) As Integer
+            ''' <summary>
+            ''' Función que devuelve una matriz de 3x3 formada por todo unos.
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Cuadrado3x3</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Cuadrado3x3()
                 ReDim Estructura(2, 2)
                 For i = 0 To Estructura.GetUpperBound(0)
@@ -1822,6 +2901,13 @@ Namespace Apolo
                 Next
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 5x5 formada por todo unos.
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Cuadrado5x5</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 5x5.</returns>
             Public Function Cuadrado5x5()
                 ReDim Estructura(4, 4)
                 For i = 0 To Estructura.GetUpperBound(0)
@@ -1831,6 +2917,13 @@ Namespace Apolo
                 Next
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 7x7 formada por todo unos.
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Cuadrado7x7</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 7x7.</returns>
             Public Function Cuadrado7x7()
                 ReDim Estructura(6, 6)
                 For i = 0 To Estructura.GetUpperBound(0)
@@ -1840,6 +2933,13 @@ Namespace Apolo
                 Next
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 9x9 formada por todo unos.
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Cuadrado9x9</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 9x9.</returns>
             Public Function Cuadrado9x9()
                 ReDim Estructura(8, 8)
                 For i = 0 To Estructura.GetUpperBound(0)
@@ -1849,6 +2949,15 @@ Namespace Apolo
                 Next
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de las dimensiones seleccionadas formada por todo unos.
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.CuadradoPersonal(5)</code></example>
+            ''' </summary>
+            ''' <param name="tamañoLado">Variable que indica el lado del cuadrado.</param>
+            ''' <returns>Devuelve una matriz de 9x9.</returns>
+            ''' <remarks>Si quiere crearse un cuadrado personalizado para utilizar en conjunto con los operadores morfológicos, éste debe ser impar.</remarks>
             Public Function CuadradoPersonal(ByVal tamañoLado As Integer)
                 ReDim Estructura(tamañoLado - 1, tamañoLado - 1)
                 For i = 0 To Estructura.GetUpperBound(0)
@@ -1859,6 +2968,12 @@ Namespace Apolo
                 Return Estructura
             End Function
 
+            ''' <summary>
+            ''' Función que devuelve una matriz de 3x3 en forma de diamante (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Diamante3x3</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function Diamante3x3()
                 ReDim Estructura(2, 2)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 1 : Estructura(0, 2) = 0
@@ -1866,6 +2981,13 @@ Namespace Apolo
                 Estructura(2, 0) = 0 : Estructura(2, 1) = 1 : Estructura(2, 2) = 0
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 5x5 en forma de diamante (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Diamante5x5</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 5x5.</returns>
             Public Function Diamante5x5()
                 ReDim Estructura(4, 4)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 1 : Estructura(0, 3) = 0 : Estructura(0, 4) = 0
@@ -1875,6 +2997,13 @@ Namespace Apolo
                 Estructura(4, 0) = 0 : Estructura(4, 1) = 0 : Estructura(4, 2) = 1 : Estructura(4, 3) = 0 : Estructura(4, 4) = 0
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 7x7 en forma de diamante (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Diamante7x7</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 7x7.</returns>
             Public Function Diamante7x7()
                 ReDim Estructura(6, 6)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 1 : Estructura(0, 4) = 0 : Estructura(0, 5) = 0 : Estructura(0, 6) = 0
@@ -1887,6 +3016,13 @@ Namespace Apolo
                 Return Estructura
 
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 9x9 en forma de diamante (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Diamante9x9</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 9x9.</returns>
             Public Function Diamante9x9()
                 ReDim Estructura(8, 8)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 0 : Estructura(0, 4) = 1 : Estructura(0, 5) = 0 : Estructura(0, 6) = 0 : Estructura(0, 7) = 0 : Estructura(0, 8) = 0
@@ -1902,6 +3038,12 @@ Namespace Apolo
 
             End Function
 
+            ''' <summary>
+            ''' Función que devuelve una matriz de 5x5 en forma de disco (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Disco5x5</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 5x5.</returns>
             Public Function Disco5x5()
                 ReDim Estructura(4, 4)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 1 : Estructura(0, 2) = 1 : Estructura(0, 3) = 1 : Estructura(0, 4) = 0
@@ -1911,6 +3053,13 @@ Namespace Apolo
                 Estructura(4, 0) = 0 : Estructura(4, 1) = 1 : Estructura(4, 2) = 1 : Estructura(4, 3) = 1 : Estructura(4, 4) = 0
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 7x7 en forma de disco (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Disco7x7</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 7x7.</returns>
             Public Function Disco7x7()
                 ReDim Estructura(6, 6)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 1 : Estructura(0, 3) = 1 : Estructura(0, 4) = 1 : Estructura(0, 5) = 0 : Estructura(0, 6) = 0
@@ -1923,6 +3072,13 @@ Namespace Apolo
                 Return Estructura
 
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 9x9 en forma de disco (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.Disco9x9</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 9x9.</returns>
             Public Function Disco9x9()
                 ReDim Estructura(8, 8)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 1 : Estructura(0, 4) = 1 : Estructura(0, 5) = 1 : Estructura(0, 6) = 0 : Estructura(0, 7) = 0 : Estructura(0, 8) = 0
@@ -1938,6 +3094,12 @@ Namespace Apolo
 
             End Function
 
+            ''' <summary>
+            ''' Función que devuelve una matriz de 3x3 formando una diagonal de izquierda a derecha (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.DiagonalA3x3</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function DiagonalA3x3()
                 ReDim Estructura(2, 2)
                 Estructura(0, 0) = 1 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0
@@ -1945,6 +3107,13 @@ Namespace Apolo
                 Estructura(2, 0) = 0 : Estructura(2, 1) = 0 : Estructura(2, 2) = 1
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 5x5 formando una diagonal de izquierda a derecha (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.DiagonalA5x5</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 5x5.</returns>
             Public Function DiagonalA5x5()
                 ReDim Estructura(4, 4)
                 Estructura(0, 0) = 1 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 0 : Estructura(0, 4) = 0
@@ -1954,6 +3123,13 @@ Namespace Apolo
                 Estructura(4, 0) = 0 : Estructura(4, 1) = 0 : Estructura(4, 2) = 0 : Estructura(4, 3) = 0 : Estructura(4, 4) = 1
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 7x7 formando una diagonal de izquierda a derecha (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.DiagonalA7x7</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 7x7.</returns>
             Public Function DiagonalA7x7()
                 ReDim Estructura(6, 6)
                 Estructura(0, 0) = 1 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 0 : Estructura(0, 4) = 0 : Estructura(0, 5) = 0 : Estructura(0, 6) = 0
@@ -1966,6 +3142,13 @@ Namespace Apolo
                 Return Estructura
 
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 9x9 formando una diagonal de izquierda a derecha (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.DiagonalA9x9</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 9x9.</returns>
             Public Function DiagonalA9x9()
                 ReDim Estructura(8, 8)
                 Estructura(0, 0) = 1 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 0 : Estructura(0, 4) = 0 : Estructura(0, 5) = 0 : Estructura(0, 6) = 0 : Estructura(0, 7) = 0 : Estructura(0, 8) = 0
@@ -1981,6 +3164,12 @@ Namespace Apolo
 
             End Function
 
+            ''' <summary>
+            ''' Función que devuelve una matriz de 3x3 formando una diagonal de derecha a izquieda (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.DiagonalB3x3</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 3x3.</returns>
             Public Function DiagonalB3x3()
                 ReDim Estructura(2, 2)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 1
@@ -1988,6 +3177,13 @@ Namespace Apolo
                 Estructura(2, 0) = 1 : Estructura(2, 1) = 0 : Estructura(2, 2) = 0
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 5x5 formando una diagonal de derecha a izquieda (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.DiagonalB5x5</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 5x5.</returns>
             Public Function DiagonalB5x5()
                 ReDim Estructura(4, 4)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 0 : Estructura(0, 4) = 1
@@ -1997,6 +3193,13 @@ Namespace Apolo
                 Estructura(4, 0) = 1 : Estructura(4, 1) = 0 : Estructura(4, 2) = 0 : Estructura(4, 3) = 0 : Estructura(4, 4) = 0
                 Return Estructura
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 7x7 formando una diagonal de derecha a izquieda (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.DiagonalB7x7</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 7x7.</returns>
             Public Function DiagonalB7x7()
                 ReDim Estructura(6, 6)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 0 : Estructura(0, 4) = 0 : Estructura(0, 5) = 0 : Estructura(0, 6) = 1
@@ -2009,6 +3212,13 @@ Namespace Apolo
                 Return Estructura
 
             End Function
+
+            ''' <summary>
+            ''' Función que devuelve una matriz de 9x9 formando una diagonal de derecha a izquieda (formada por ceros y unos).
+            ''' <example>Para obtener esta matriz, se debe proceder así:
+            ''' <code>Dim estructura=objetoEstructura.DiagonalB9x9</code></example>
+            ''' </summary>
+            ''' <returns>Devuelve una matriz de 9x9.</returns>
             Public Function DiagonalB9x9()
                 ReDim Estructura(8, 8)
                 Estructura(0, 0) = 0 : Estructura(0, 1) = 0 : Estructura(0, 2) = 0 : Estructura(0, 3) = 0 : Estructura(0, 4) = 0 : Estructura(0, 5) = 0 : Estructura(0, 6) = 0 : Estructura(0, 7) = 0 : Estructura(0, 8) = 1
@@ -2027,7 +3237,330 @@ Namespace Apolo
 #End Region
 #End Region
 
+        'Funciones estadísticas sobre píxeles de una imagen. Media
+#Region "Operaciones estadísticas"
+        ''' <summary>
+        ''' Funcíón que calcula la media de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EstadisticoMedia(bmp, 3)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        Public Function EstadisticoMedia(ByVal bmp As Bitmap, Optional ByVal LadoCuadrado As Integer = 1)
+            Dim bmp2 = bmp
+
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Calculando media (lado " & LadoCuadrado + LadoCuadrado + 1 & ")"
+            Dim Rojo, Verde, Azul As Integer
+            Dim numeroPixelesEvaluados As Integer = Math.Pow(LadoCuadrado + LadoCuadrado + 1, 2)
+
+            For i = LadoCuadrado To bmp2.Width - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1  'Recorremos la matriz
+                For j = LadoCuadrado To bmp2.Height - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1
+                    Rojo = 0 : Verde = 0 : Azul = 0
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            Rojo += bmp2.GetPixel(i + mi, j + mj).R
+                            Verde += bmp2.GetPixel(i + mi, j + mj).G
+                            Azul += bmp2.GetPixel(i + mi, j + mj).B
+                        Next
+                    Next
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            bmp3.SetPixel(i + mi, j + mj, Color.FromArgb(CInt(Rojo / numeroPixelesEvaluados), CInt(Verde / numeroPixelesEvaluados), CInt(Azul / numeroPixelesEvaluados))) 'Asignamos a bmp los colores 
+                        Next
+                    Next
+                    porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+                Next
+            Next
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Cálculo de media (lado " & LadoCuadrado + LadoCuadrado + 1 & ")") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+
+        ''' <summary>
+        ''' Funcíón que calcula la media armónica de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EstadisticoArmonica(bmp, 3)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        Public Function EstadisticoMediaArmonica(ByVal bmp As Bitmap, Optional ByVal LadoCuadrado As Integer = 1)
+            Dim bmp2 = bmp
+
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Calculando media armónica (lado " & LadoCuadrado + LadoCuadrado + 1 & ")"
+            Dim Rojo, Verde, Azul As Double
+            Dim numeroPixelesEvaluados As Integer = Math.Pow(LadoCuadrado + LadoCuadrado + 1, 2)
+
+            For i = LadoCuadrado To bmp2.Width - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1  'Recorremos la matriz
+                For j = LadoCuadrado To bmp2.Height - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1
+                    Rojo = 0 : Verde = 0 : Azul = 0
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            Rojo += 1 / bmp2.GetPixel(i + mi, j + mj).R
+                            Verde += 1 / bmp2.GetPixel(i + mi, j + mj).G
+                            Azul += 1 / bmp2.GetPixel(i + mi, j + mj).B
+                        Next
+                    Next
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            bmp3.SetPixel(i + mi, j + mj, Color.FromArgb(CInt(numeroPixelesEvaluados / Rojo), CInt(numeroPixelesEvaluados / Verde), CInt(numeroPixelesEvaluados / Azul))) 'Asignamos a bmp los colores 
+                        Next
+                    Next
+                    porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+                Next
+            Next
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Cálculo de media armónica (lado " & LadoCuadrado + LadoCuadrado + 1 & ")") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+
+        ''' <summary>
+        ''' Funcíón que calcula la media geométrica de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EstadisticoGeometrica(bmp, 3)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1. El valor máximo posible es 5.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        Public Function EstadisticoMediaGeométrica(ByVal bmp As Bitmap, Optional ByVal LadoCuadrado As Integer = 1)
+            Dim bmp2 = bmp
+
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Calculando media geométrica (lado " & LadoCuadrado + LadoCuadrado + 1 & ")"
+            Dim Rojo, Verde, Azul As Double
+            Dim numeroPixelesEvaluados As Integer = Math.Pow(LadoCuadrado + LadoCuadrado + 1, 2)
+
+            For i = LadoCuadrado To bmp2.Width - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1  'Recorremos la matriz
+                For j = LadoCuadrado To bmp2.Height - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1
+                    Rojo = 1 : Verde = 1 : Azul = 1
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            Rojo *= bmp2.GetPixel(i + mi, j + mj).R
+                            Verde *= bmp2.GetPixel(i + mi, j + mj).G
+                            Azul *= bmp2.GetPixel(i + mi, j + mj).B
+                        Next
+                    Next
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            bmp3.SetPixel(i + mi, j + mj, Color.FromArgb(CInt(Math.Pow(Rojo, 1 / numeroPixelesEvaluados)), CInt(Math.Pow(Verde, 1 / numeroPixelesEvaluados)), CInt(Math.Pow(Azul, 1 / numeroPixelesEvaluados)))) 'Asignamos a bmp los colores 
+                        Next
+                    Next
+                    porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+                Next
+            Next
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Cálculo de media geométrica (lado " & LadoCuadrado + LadoCuadrado + 1 & ")") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+
+        ''' <summary>
+        ''' Funcíón que calcula la mediana de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EstadisticoMediana(bmp, 3)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        Public Function EstadisticoMediana(ByVal bmp As Bitmap, Optional ByVal LadoCuadrado As Integer = 1)
+            Dim bmp2 = bmp
+
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Calculando mediana (lado " & LadoCuadrado + LadoCuadrado + 1 & ")"
+            Dim Rojo, Verde, Azul As Integer()
+
+            ReDim Rojo(Math.Pow((LadoCuadrado + LadoCuadrado + 1), 2) - 1)
+            ReDim Verde(Math.Pow((LadoCuadrado + LadoCuadrado + 1), 2) - 1)
+            ReDim Azul(Math.Pow((LadoCuadrado + LadoCuadrado + 1), 2) - 1)
+
+            Dim numeroPixelesEvaluados As Integer = Math.Pow(LadoCuadrado + LadoCuadrado + 1, 2)
+            Dim contador As Integer = 0
+            For i = LadoCuadrado To bmp2.Width - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1  'Recorremos la matriz
+                For j = LadoCuadrado To bmp2.Height - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1
+                    contador = 0
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            Rojo(contador) = bmp2.GetPixel(i + mi, j + mj).R
+                            Verde(contador) = bmp2.GetPixel(i + mi, j + mj).G
+                            Azul(contador) = bmp2.GetPixel(i + mi, j + mj).B
+                            contador += 1
+                        Next
+                    Next
+                    'Ordenamos las matrices
+                    Array.Sort(Rojo)
+                    Array.Sort(Verde)
+                    Array.Sort(Azul)
+                    Dim rojoMedio, verdeMedio, azulMedio As Byte
+                    'Buscamos valor intermedio (mediana)
+                    rojoMedio = Rojo((Math.Pow((2 + 2 + 1), 2) - 1) / 2)
+                    verdeMedio = Verde((Math.Pow((2 + 2 + 1), 2) - 1) / 2)
+                    azulMedio = Azul((Math.Pow((2 + 2 + 1), 2) - 1) / 2)
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            bmp3.SetPixel(i + mi, j + mj, Color.FromArgb(rojoMedio, verdeMedio, azulMedio))
+                        Next
+                    Next
+                    porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+                Next
+            Next
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Cálculo de mediana (lado " & LadoCuadrado + LadoCuadrado + 1 & ")") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+
+        ''' <summary>
+        ''' Funcíón que calcula la moda de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EstadisticoModa(bmp, 3)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        Public Function EstadisticoModa(ByVal bmp As Bitmap, Optional ByVal LadoCuadrado As Integer = 1)
+            Dim bmp2 = bmp
+
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Calculando moda (lado " & LadoCuadrado + LadoCuadrado + 1 & ")"
+            Dim Rojo, Verde, Azul As Integer()
+
+            ReDim Rojo(Math.Pow((LadoCuadrado + LadoCuadrado + 1), 2) - 1)
+            ReDim Verde(Math.Pow((LadoCuadrado + LadoCuadrado + 1), 2) - 1)
+            ReDim Azul(Math.Pow((LadoCuadrado + LadoCuadrado + 1), 2) - 1)
+
+            Dim numeroPixelesEvaluados As Integer = Math.Pow(LadoCuadrado + LadoCuadrado + 1, 2)
+            Dim contador As Integer = 0
+            For i = LadoCuadrado To bmp2.Width - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1  'Recorremos la matriz
+                For j = LadoCuadrado To bmp2.Height - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1
+                    contador = 0
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            Rojo(contador) = bmp2.GetPixel(i + mi, j + mj).R
+                            Verde(contador) = bmp2.GetPixel(i + mi, j + mj).G
+                            Azul(contador) = bmp2.GetPixel(i + mi, j + mj).B
+                            contador += 1
+                        Next
+                    Next
+                    Dim rojoModaAux, verdeModaAux, azulModaAux As Integer
+                    Dim rojoModa, verdeModa, azulModa As Byte
+                    'Buscamos valor moda (más repetido)
+                    Dim matrizAcumulada(255, 2) As ULong
+                    For si = 0 To Rojo.Count - 1 'Acumulamos los valores
+                        'ACumulamos los valores
+                        matrizAcumulada(Rojo(si), 0) += 1
+                        matrizAcumulada(Verde(si), 1) += 1
+                        matrizAcumulada(Azul(si), 2) += 1
+                    Next
+                    rojoModaAux = 0 : verdeModaAux = 0 : azulModaAux = 0
+                    For ri = 0 To 255 'Buscamos el valor más grande
+                        If matrizAcumulada(ri, 0) > rojoModaAux Then rojoModaAux = ri
+                        If matrizAcumulada(ri, 1) > verdeModaAux Then verdeModaAux = ri
+                        If matrizAcumulada(ri, 2) > azulModaAux Then azulModaAux = ri
+                    Next
+                    rojoModa = rojoModaAux
+                    verdeModa = verdeModaAux
+                    azulModa = azulModaAux
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            bmp3.SetPixel(i + mi, j + mj, Color.FromArgb(rojoModa, verdeModa, azulModa))
+                        Next
+                    Next
+                    porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+                Next
+            Next
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Cálculo de moda (lado " & LadoCuadrado + LadoCuadrado + 1 & ")") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+
+        ''' <summary>
+        ''' Funcíón que calcula el rango de un conjunto de píxeles que forman un kernel. El valor de la media lo asigna al conjunto de píxeles evaluados.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EstadisticoRango(bmp, 3)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="LadoCuadrado">Variable que indica que lado del cuadrado. El lado real que va a tener el kernel, será LadoCuadrado*2+1.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        Public Function EstadisticoRango(ByVal bmp As Bitmap, Optional ByVal LadoCuadrado As Integer = 1)
+            Dim bmp2 = bmp
+
+            Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Calculando rango (lado " & LadoCuadrado + LadoCuadrado + 1 & ")"
+            Dim Rojo, Verde, Azul As Integer()
+
+            ReDim Rojo(Math.Pow((LadoCuadrado + LadoCuadrado + 1), 2) - 1)
+            ReDim Verde(Math.Pow((LadoCuadrado + LadoCuadrado + 1), 2) - 1)
+            ReDim Azul(Math.Pow((LadoCuadrado + LadoCuadrado + 1), 2) - 1)
+
+            Dim numeroPixelesEvaluados As Integer = Math.Pow(LadoCuadrado + LadoCuadrado + 1, 2)
+            Dim contador As Integer = 0
+            For i = LadoCuadrado To bmp2.Width - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1  'Recorremos la matriz
+                For j = LadoCuadrado To bmp2.Height - (LadoCuadrado + 1) Step LadoCuadrado + LadoCuadrado + 1
+                    contador = 0
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            Rojo(contador) = bmp2.GetPixel(i + mi, j + mj).R
+                            Verde(contador) = bmp2.GetPixel(i + mi, j + mj).G
+                            Azul(contador) = bmp2.GetPixel(i + mi, j + mj).B
+                            contador += 1
+                        Next
+                    Next
+                    'Ordenamos las matrices
+                    Array.Sort(Rojo)
+                    Array.Sort(Verde)
+                    Array.Sort(Azul)
+                    Dim rojoRango, verdeRango, azulRango As Byte
+                    'Buscamos valor intermedio (mediana)
+                    rojoRango = Rojo(Rojo.Count - 1) - Rojo(0)
+                    verdeRango = Verde(Verde.Count - 1) - Verde(0)
+                    azulRango = Azul(Azul.Count - 1) - Azul(0)
+                    For mi = -LadoCuadrado To LadoCuadrado
+                        For mj = -LadoCuadrado To LadoCuadrado
+                            bmp3.SetPixel(i + mi, j + mj, Color.FromArgb(rojoRango, verdeRango, azulRango))
+                        Next
+                    Next
+                    porcentaje(0) = ((i * 100) / bmp3.Width) 'Actualizamos el estado
+                Next
+            Next
+            porcentaje(0) = 100 'Actualizamos el estado
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            guardarImagen(bmp3, "Cálculo de rango (lado " & LadoCuadrado + LadoCuadrado + 1 & ")") 'Guardamos la imagen para poder hacer retroceso
+            Return bmp3
+        End Function
+
+#End Region
+
+
 #Region "Operaciones geométricas"
+        ''' <summary>
+        ''' Función que efectúa la reflexión vertical u horizontal de una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Picturebox1.image=objetoTratamiento.Reflexion(bmp, TRUE, FALSE)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="horizontal">Si es TRUE, indica que se va a efectuar la reflexión horizontal de la imagen. En caso de ser FALSE no se hará la reflexión horizontal.</param>
+        ''' <param name="vertical">Si es TRUE, indica que se va a efectuar la reflexión vertical de la imagen. En caso de ser FALSE no se hará la reflexión vertical.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Tenga en cuenta que sólo se puede hacer una reflexión a la vez, por lo tanto sólo podrá haber un valor (horizontal o vertical) como TRUE.</remarks>
         Public Function Reflexion(ByVal bmp As Bitmap, Optional ByVal horizontal As Boolean = True, Optional ByVal vertical As Boolean = False) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2058,6 +3591,17 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que traslada la imagen en X e Y y asigna valores sin color (ARGB=0) a la porción trasladada.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Picturebox1.image=objetoTratamiento.Traslacion(bmp, 20, 20)
+        ''' </code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Traslacionhorizontal">Valor en píxeles que se va a trasladar la imagen en el eje X. Debe ser positivo.</param>
+        ''' <param name="Traslacionvertical">Valor en píxeles que se va a trasladar la imagen en el eje Y. Debe ser positivo.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Traslacion(ByVal bmp As Bitmap, ByVal Traslacionhorizontal As Integer, ByVal Traslacionvertical As Integer) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2101,6 +3645,14 @@ Namespace Apolo
         '    RaiseEvent actualizaBMP(bmp3) 'generamos el evento
         '    Return bmp3
         'End Function
+
+        ''' <summary>
+        ''' Función que efectúa un volteo de la imagen. Los volteos, son los predefinidos en .NET. Para los diferentes volteos, si se utilizar Visual Studio, IntelliSense le asistirá.
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="rotacion">Indica el tipo de volteo que se va a realizar.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Para ver la información de los diferentes tipos de volteos, visitar la siguiente web: msdn.microsoft.com/es-es/library/system.drawing.rotatefliptype(v=vs.80).aspx</remarks>
         Public Function Volteados(ByVal bmp As Bitmap, ByVal rotacion As RotateFlipType)
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Aplicando volteado"
@@ -2117,6 +3669,16 @@ Namespace Apolo
 #End Region
 
 #Region "Otras operaciones"
+        ''' <summary>
+        ''' Esta función es un tipo de segmentación simple. Consiste en pasar la imagen a escala de grises e ir asignando por rangos, diferentes colores. Se selecciona el número de divisiones y automáticamente se calculan las divisiones.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.DensitySlicing(bmp, 3, {Color.Red, Color.Black, Color.Blue})</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Divisiones">Número de divisiones que se van a efectuar. Tenga en cuenta que el número máximo serían 256. Valores mayores de 15 dan resultados poco satisfactorios.</param>
+        ''' <param name="colores">Matriz con los colores para diferentes divisiones.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>El número de divisiones (Divisiones) debe de ser el mismo que el número de colores (colores).</remarks>
         Public Function DensitySlicing(ByVal bmp As Bitmap, ByVal Divisiones As Integer, ByVal colores() As Color)
             If Divisiones <> colores.Length Then
                 MessageBox.Show("El número de colores debe ser igual al número de divisiones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -2161,6 +3723,21 @@ Namespace Apolo
             guardarImagen(bmp3, "Density Slicing") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Esta función es un tipo de segmentación simple. Consiste en pasar la imagen a escala de grises e ir asignando por rangos, diferentes colores. Se seleccionan los diferentes rangos y se le asignan los colores.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code> Dim rango(2, 2) As Integer
+        '''rango(0, 0) = 0 : rango(0, 1) = 100
+        '''rango(1, 0) = 101 : rango(0, 2) = 200
+        '''rango(2, 0) = 201 : rango(0, 3) = 255
+        '''Picturebox1.image=objetoTratamiento.DensitySlicing(bmp, rango, {Color.Red, Color.Black, Color.Blue})</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="rangos">Intervalos de las diferentes divisiones. Es una matriz bidimensional en la que cada fila debe incluir el rango de una división.</param>
+        ''' <param name="colores">Matriz con los colores para diferentes divisiones.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>El número de divisiones (Divisiones) debe de ser el mismo que el rango de colores (rangos).</remarks>
         Public Function DensitySlicing(ByVal bmp As Bitmap, ByVal rangos(,) As Integer, ByVal colores() As Color)
             If rangos.GetUpperBound(0) + 1 <> colores.Length Then
                 MessageBox.Show("El número de colores debe ser igual al número de divisiones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -2203,6 +3780,16 @@ Namespace Apolo
             Return bmp3
         End Function
 
+        ''' <summary>
+        ''' Esta función es un tipo de segmentación simple. Consiste en pasar la imagen a escala de grises e ir asignando por rangos, diferentes colores. Se selecciona el número de divisiones y automáticamente el algoritmo lo adapatará en función del valor máximo y mínimo de la imagen, es decir, está normalizada.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.DensitySlicingNormalizado(bmp, 3, {Color.Red, Color.Black, Color.Blue})</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="Divisiones">Número de divisiones que se van a efectuar. Tenga en cuenta que el número máximo serían 256. Valores mayores de 15 dan resultados poco satisfactorios.</param>
+        ''' <param name="colores">Matriz con los colores para diferentes divisiones.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>El número de divisiones (Divisiones) debe de ser el mismo que el número de colores (colores).</remarks>
         Public Function DensitySlicingNormalizado(ByVal bmp As Bitmap, ByVal Divisiones As Integer, ByVal colores() As Color)
             If Divisiones <> colores.Length Then
                 MessageBox.Show("El número de colores debe ser igual al número de divisiones", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -2275,6 +3862,15 @@ Namespace Apolo
 
         'Principales efectos sobre imágenes. Contiene funciones que devuelven bitmaps
 #Region "Efectos"
+        ''' <summary>
+        ''' Función que desenfoca creando un efecto de duplicidad de imágenes estando una de ellas movida.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.desenfoque(bmp,20,20)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="desenfoqueHor">Variable que indica el número de píxeles que se van a desenfocar en la imagen en horizontal.</param>
+        ''' <param name="desenfoqueVer">Variable que indica el número de píxeles que se van a desenfocar en la imagen en vertical.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function desenfoque(ByVal bmp As Bitmap, Optional ByVal desenfoqueHor As Short = 0, Optional ByVal desenfoqueVer As Short = 0)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2332,6 +3928,18 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que crea una cuadricula por encima de la imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.cuadricula(bmp,color.Red,color.Red,20,20)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="colorHorizontal">Color que se asignará a las líneas horizontales de la cuadrícula.</param>
+        ''' <param name="colorVertical">Color que se asignará a las líneas verticales de la cuadrícula.</param>
+        ''' <param name="horizontal">Espaciado horizontal entre las líneas verticales. El valor debe ser mayor que 0.</param>
+        ''' <param name="vertical">Espaciado vertical entre las líneas horizontales. El valor debe ser mayor que 0.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function cuadricula(ByVal bmp As Bitmap, ByVal colorHorizontal As Color, ByVal colorVertical As Color, ByVal horizontal As Integer, Optional ByVal vertical As Integer = 20)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2376,6 +3984,16 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que crea una imagen espejo en la parte inferior de la imagen original, pudiendo estar ésta atenuada.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.SombraVidrio(bmp,100,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="altoSombra">Indica el tamaño en píxeles de la sombra creada en la parte inferior de la imagen. El tamaño no puede ser mayor que el alto de la imagen original.</param>
+        ''' <param name="atenuarSombra">Si la variable es TRUE, el canal alfa disminuye a lo largo de la sombra. En caso de ser FALSE, el canal alfa no se varía.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function SombraVidrio(ByVal bmp As Bitmap, ByVal altoSombra As Integer, Optional ByVal atenuarSombra As Boolean = True) As Bitmap
             Dim bmp2 = bmp
 
@@ -2429,6 +4047,14 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que divide la imagen en tres partes (verticales) y las alterna.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.ImagenTresPartes(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function ImagenTresPartes(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2476,6 +4102,14 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que divide la imagen en seis partes (dos horizontales y tres verticales) y las alterna.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.ImagenSeisPartes(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function ImagenSeisPartes(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2559,6 +4193,15 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que introduce a la imagen píxeles con valores aleatorios.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.RuidoAleatorio(bmp,2)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valorRuido">Indica el grado de píxeles aleatorios. A partir de valores mayores de 20, la imagen pierde casi por totalidad su aspecto original.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function RuidoAleatorio(ByVal bmp As Bitmap, ByVal valorRuido As Byte)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2596,6 +4239,16 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que altera los valores originales de los píxeles de forma aleatoria.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.RuidoProgresivo(bmp,50,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valorRuido">Indica el rango entre el que oscilará el nuevo valor del píxel con respecto al valor original.</param>
+        ''' <param name="blancoNegro">Si el parámetro es TRUE, los valores alterados estarán en blanco y negro.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function RuidoProgresivo(ByVal bmp As Bitmap, ByVal valorRuido As Integer, Optional blancoNegro As Boolean = False)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2642,6 +4295,15 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que distorsiona la posición de los píxeles de forma aleatoria en función del parámetro valorDesenfoque.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Distorsión(bmp,8)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="valorDesenfoque">Variable que indica el rango en que se moverán de su posición original los píxeles de la imagen.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Distorsion(ByVal bmp As Bitmap, ByVal valorDesenfoque As Byte)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2688,6 +4350,15 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que pixela la imagen creando cuadrados con píxeles con el mismo valor.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Pixelar(bmp,8)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="numeroPixeles">Variable que define el ancho de los nuevos píxeles.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Pixelar(ByVal bmp As Bitmap, ByVal numeroPixeles As Integer)
             Dim bmp2 = bmp
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -2713,6 +4384,16 @@ Namespace Apolo
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que crea un efecto que imita a una imagen pintada al óleo. Se crea en tres etapas, primeramente reduce los colores de la imagen, detecta los contornos, y por último une las imágenes.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.Oleo(bmp,30,170)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="contorno">Variable que indica el grado de contornos que se va a detectar. Valores más bajos detectan más contornos que los superiores.</param>
+        ''' <param name="colores">Variable que indica que número de colores máximo que tendrá la imagen por canal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function Oleo(ByVal bmp As Bitmap, Optional ByVal contorno As Byte = 30, Optional ByVal colores As Byte = 210)
             Dim bmp2 = bmp
             Dim bmp22 = bmp
@@ -2784,9 +4465,17 @@ Namespace Apolo
             nivelesCalculado(3) = CInt(alfa)
             Return nivelesCalculado
         End Function
+
+        ''' <summary>
+        ''' Función que crea un efecto rojizo (depende los tonos de la imagen) sobre la imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EfectoMarte(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function EfectoMarte(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
-            Dim objetoMasc As New mascaras
+            Dim objetoMasc As New Mascaras
             'Aplicamos efecto repujado
             Dim mascara = objetoMasc.Repujado
             Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara)
@@ -2800,9 +4489,17 @@ Namespace Apolo
             Return bmpSalida
 
         End Function
+
+        ''' <summary>
+        ''' Función que crea un efecto de imagen sobreexpuesta.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EfectoAntigSobreex(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function EfectoAntigSobreex(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
-            Dim objetoMasc As New mascaras
+            Dim objetoMasc As New Mascaras
             'Aplicamos efecto repujado
             Dim mascara = objetoMasc.Repujado
             Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara)
@@ -2816,9 +4513,17 @@ Namespace Apolo
             Return bmpSalida
 
         End Function
+
+        ''' <summary>
+        ''' Función que crea un efecto marino (depende los tonos de la imagen) sobre la imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EfectoMarino(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function EfectoMarino(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
-            Dim objetoMasc As New mascaras
+            Dim objetoMasc As New Mascaras
             'Aplicamos efecto repujado
             Dim mascara = objetoMasc.Repujado
             Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara)
@@ -2832,9 +4537,17 @@ Namespace Apolo
             Return bmpSalida
 
         End Function
+
+        ''' <summary>
+        ''' Función que crea un efecto que oscure las zonas más negras de la imagen, y en fotografías retrato, aumentan los rasgos de los rostros.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EfectoAumentarRasgos(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function EfectoAumentarRasgos(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
-            Dim objetoMasc As New mascaras
+            Dim objetoMasc As New Mascaras
             'Aplicamos efecto repujado
             Dim mascara = objetoMasc.PrewittHoriz
             Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara, 0, 3)
@@ -2850,9 +4563,17 @@ Namespace Apolo
             Return bmpSalida
 
         End Function
+
+        ''' <summary>
+        ''' Función que crea un efecto que aclara las zonas más negras de la imagen, y en fotografías retrato, disminuye los rasgos de los rostros.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EfectoDisminuirRasgos(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function EfectoDisminuirRasgos(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
-            Dim objetoMasc As New mascaras
+            Dim objetoMasc As New Mascaras
             'Aplicamos efecto repujado
             Dim mascara = objetoMasc.PrewittHoriz
             Dim bmp3 = Me.mascara3x3Grises(bmp2, mascara, 0, 3)
@@ -2868,9 +4589,17 @@ Namespace Apolo
             Return bmpSalida
 
         End Function
+
+        ''' <summary>
+        ''' Función que crea un efecto de detección de contornos con sombras.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EfectoContornoSombreado(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function EfectoContornoSombreado(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
-            Dim objetoMasc As New mascaras
+            Dim objetoMasc As New Mascaras
             'Aplicamos efecto repujado
             Dim mascara = objetoMasc.Repujado
             Dim bmp3 = Me.mascara3x3RGB(bmp2, mascara)
@@ -2884,9 +4613,17 @@ Namespace Apolo
             Return bmpSalida
 
         End Function
+
+        ''' <summary>
+        ''' Función que crea un efecto de detección de contornos con sombras.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EfectoContornoSombreado2(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function EfectoContornoSombreado2(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
-            Dim objetoMasc As New mascaras
+            Dim objetoMasc As New Mascaras
             'Aplicamos efecto repujado
             Dim mascara = objetoMasc.Repujado
             Dim bmp3 = Me.mascara3x3RGB(bmp2, mascara)
@@ -2900,6 +4637,14 @@ Namespace Apolo
             Return bmpSalida
 
         End Function
+
+        ''' <summary>
+        ''' Función que crea aumenta el valor de los píxeles creando un efecto de luz rojiza.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.EfectoAumentarLuz(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Public Function EfectoAumentarLuz(ByVal bmp As Bitmap) As Bitmap
             Dim bmp2 = bmp
             Dim bmp3 = Me.EscalaGrises(bmp2)
@@ -2914,10 +4659,217 @@ Namespace Apolo
 
         End Function
 
+        ''' <summary>
+        ''' Función que crear un marco a partir de cine a partir de 6 imágenes.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.cine(bmp1,bmp2,bmp3,bmp4,bmp5, eleccionCombo)</code></example>
+        ''' </summary>
+        ''' <param name="bmpP0">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmpP1">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmpP2">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmpP3">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmpP4">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmpP5">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="tamañoImagen">Indica el tamaño de salida del marco. Si se le pasa un 0, el tamaño será pequeño, un 1 mediano y 2 grande.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Esta función fue recuperar de otro proyecto anterior y no está bien optimizada, podría demorarse varios segundos.</remarks>
+        Public Function cine(ByVal bmpP0 As Bitmap, ByVal bmpP1 As Bitmap, ByVal bmpP2 As Bitmap, ByVal bmpP3 As Bitmap, ByVal bmpP4 As Bitmap, ByVal bmpP5 As Bitmap, Optional tamañoImagen As Integer = 2)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Creando efecto marco de cine" 'Actualizar el estado
+
+            Dim PicColor1, PicColor2, PicColor3, PicColor4, PicColor5, PicColor6, PicColor7 As Color
+            Dim r, g, b, a As Integer
+            Dim x As Integer
+            Dim y As Integer
+            Dim bmp3 As New Bitmap(bmpP0)
+            Dim bmp2 As New Bitmap(My.Resources.CineFotos)
+
+            Dim imgtemp1 As New Bitmap(bmpP0)
+            Dim imgtemp2 As New Bitmap(bmp2)
+
+
+            Dim imgtemp4 As New Bitmap(bmp2)
+
+            Dim imgtemp5 As New Bitmap(bmpP0, 690, 520)
+            Dim imgtemp6 As New Bitmap(bmpP1, 690, 520)
+            Dim imgtemp7 As New Bitmap(bmpP2, 690, 520)
+            Dim imgtemp8 As New Bitmap(bmpP3, 690, 520)
+            Dim imgtemp9 As New Bitmap(bmpP4, 690, 520)
+            Dim imgtemp10 As New Bitmap(bmpP5, 690, 520)
+
+
+            For x = 0 To bmp2.Width - 1
+                For y = 0 To bmp2.Height - 1
+                    PicColor1 = imgtemp4.GetPixel(x, y)
+
+                    If (x > 68 And x < 754) And (y > 342 And y < 857) Then
+                        PicColor2 = imgtemp5.GetPixel(x - 68, y - 342)
+                        r = PicColor2.R
+                        g = PicColor2.G
+                        b = PicColor2.B
+                        a = PicColor2.A
+
+                    Else
+                        r = PicColor1.R
+                        g = PicColor1.G
+                        b = PicColor1.B
+                        a = PicColor1.A
+                    End If
+
+                    If (x > 819 And x < 1505) And (y > 342 And y < 857) Then
+                        PicColor3 = imgtemp6.GetPixel(x - 819, y - 342)
+                        r = PicColor3.R
+                        g = PicColor3.G
+                        b = PicColor3.B
+                        a = PicColor3.A
+                    End If
+
+                    If (x > 1570 And x < 2257) And (y > 342 And y < 857) Then
+                        PicColor4 = imgtemp7.GetPixel(x - 1570, y - 342)
+                        r = PicColor4.R
+                        g = PicColor4.G
+                        b = PicColor4.B
+                        a = PicColor4.A
+                    End If
+
+
+                    If (x > 2320 And x < 3008) And (y > 342 And y < 857) Then
+                        PicColor5 = imgtemp8.GetPixel(x - 2320, y - 342)
+                        r = PicColor5.R
+                        g = PicColor5.G
+                        b = PicColor5.B
+                        a = PicColor5.A
+                    End If
+
+                    If (x > 3071 And x < 3760) And (y > 342 And y < 857) Then
+                        PicColor6 = imgtemp9.GetPixel(x - 3071, y - 342)
+                        r = PicColor6.R
+                        g = PicColor6.G
+                        b = PicColor6.B
+                        a = PicColor6.A
+                    End If
+
+                    If (x > 3821) And (y > 342 And y < 861) Then
+                        PicColor7 = imgtemp10.GetPixel(x - 3821, y - 342)
+                        r = PicColor7.R
+                        g = PicColor7.G
+                        b = PicColor7.B
+                        a = PicColor7.A
+
+                    End If
+                    imgtemp2.SetPixel(x, y, Color.FromArgb(a, r, g, b))
+
+                Next
+                porcentaje(0) = ((x * 100) / imgtemp2.Width) 'Actualizamos el estado
+
+            Next
+
+            If tamañoImagen = 0 Then imgtemp2 = Me.Redimensionar(imgtemp2, New Rectangle(New Point(0, 0), New Size(imgtemp2.Width / 4, imgtemp2.Height / 4)), Drawing2D.InterpolationMode.HighQualityBilinear)
+            If tamañoImagen = 1 Then imgtemp2 = Me.Redimensionar(imgtemp2, New Rectangle(New Point(0, 0), New Size(imgtemp2.Width / 2, imgtemp2.Height / 2)))
+
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(imgtemp2, "Efecto marco de cine") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(imgtemp2) 'generamos el evento
+
+            Return imgtemp2
+
+        End Function
+
+        ''' <summary>
+        ''' Función que crear un marco rodeando a una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.marco(bmp,1)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que formará parte del marco. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="numeroMarco">Indica el marco que se va a seleccionar. Los valores posibles son, 0, 1, 2 o 3.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        Public Function marco(ByVal bmp As Bitmap, Optional numeroMarco As Integer = 0)
+            porcentaje(0) = 0 'Actualizar el estado
+            porcentaje(1) = "Creando efecto marco" 'Actualizar el estado
+
+            Dim PicColor1, PicColor2 As Color
+            Dim r, g, b, a As Integer
+            Dim x As Integer
+            Dim y As Integer
+            Dim x1, x2, y1, y2 As Integer
+            Dim bmp3 As New Bitmap(bmp, 1127, 908)
+            Dim bmp2 As New Bitmap(My.Resources.marco)
+            If numeroMarco = 0 Then
+                x1 = 185 : x2 = 1308
+                y1 = 185 : y2 = 1090
+                Dim bmp3aux As New Bitmap(bmp, 1127, 908)
+                bmp3 = bmp3aux
+                bmp2 = (My.Resources.marco)
+            End If
+
+            If numeroMarco = 1 Then
+                x1 = 54 : x2 = 1295
+                y1 = 94 : y2 = 700
+                Dim bmp3aux As New Bitmap(bmp, 1241, 606)
+                bmp3 = bmp3aux
+                bmp2 = (My.Resources.negativoMarco)
+            End If
+
+            If numeroMarco = 2 Then
+                x1 = 51 : x2 = 281
+                y1 = 51 : y2 = 281
+                Dim bmp3aux As New Bitmap(bmp, 230, 230)
+                bmp3 = bmp3aux
+                bmp2 = (My.Resources.MarcoOndul)
+            End If
+
+            If numeroMarco = 3 Then
+                x1 = 285 : x2 = 2795
+                y1 = 285 : y2 = 2194
+                Dim bmp3aux As New Bitmap(bmp, 2510, 1909)
+                bmp3 = bmp3aux
+                bmp2 = (My.Resources.marcoNegro)
+            End If
+
+
+            Dim imgtemp2 As New Bitmap(bmp2.Width, bmp2.Height)
+
+            For x = 0 To bmp2.Width - 1
+                For y = 0 To bmp2.Height - 1
+                    PicColor1 = bmp2.GetPixel(x, y)
+
+                    If (x > x1 And x < x2) And (y > y1 And y < y2) Then
+                        PicColor2 = bmp3.GetPixel(x - x1, y - y1)
+                        r = PicColor2.R
+                        g = PicColor2.G
+                        b = PicColor2.B
+                        a = PicColor2.A
+
+                    Else
+                        r = PicColor1.R
+                        g = PicColor1.G
+                        b = PicColor1.B
+                        a = PicColor1.A
+                    End If
+                    imgtemp2.SetPixel(x, y, Color.FromArgb(a, r, g, b))
+                Next
+                porcentaje(0) = ((x * 100) / imgtemp2.Width) 'Actualizamos el estado
+            Next
+
+            porcentaje(1) = "Finalizado" 'Actualizamos el estado
+            guardarImagen(imgtemp2, "Efecto marco") 'Guardamos la imagen para poder hacer retroceso
+            RaiseEvent actualizaBMP(imgtemp2) 'generamos el evento
+
+            Return imgtemp2
+        End Function
+
 #End Region
 
         'Suma/Resta/multip/división/Unión/AND/OR/XOR de DOS imágenes. Devuelve un bitmap con el alto/ancho del bitmap más pequeño
 #Region "operaciones con dos imágenes"
+        ''' <summary>
+        ''' Función que hace que dos imágenes de diferentes tamaño tengan el mismo tamaño. Busca y aplica el alto/ancho más pequeño del par de imágenes.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>bmpCuadrado=me.CuadrarImagenes(bmp,bmp2)</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 a cuadrar.</param>
+        ''' <param name="bmp2">Imagen 2 a cuadrar.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Private Function CuadrarImagenes(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap)
             Dim alto, ancho As Integer
             If bmp1.Height >= bmp2.Height Then alto = bmp2.Height Else alto = bmp1.Height
@@ -2929,6 +4881,17 @@ Namespace Apolo
             bmpRetorno(1) = bmpAjustado2
             Return bmpRetorno
         End Function
+
+        ''' <summary>
+        ''' Función que suma los píxeles de dos imágenes. La suma se hace canal a canal (ARGB).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperacionSuma(bmp1,bmp2,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 de la suma. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 de la suma. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la suma, en caso contrario, el canal alfa se tratará de forma normal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
         Public Function OperacionSuma(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
@@ -2980,6 +4943,18 @@ Namespace Apolo
             guardarImagen(bmp3, "Suma de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+
+        ''' <summary>
+        ''' Función que resta los píxeles de dos imágenes. La resta se hace canal a canal (ARGB).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperacionResta(bmp1,bmp2,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 de la resta. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 de la resta. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la resta, en caso contrario, el canal alfa se tratará de forma normal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
         Public Function OperacionResta(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
@@ -3030,6 +5005,17 @@ Namespace Apolo
             guardarImagen(bmp3, "Resta de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que multiplica los píxeles de dos imágenes. La multiplicación se hace canal a canal (ARGB).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperacionMultiplicacion(bmp1,bmp2,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 de la multiplicación. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 de la multiplicación. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la multiplicación, en caso contrario, el canal alfa se tratará de forma normal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
         Public Function OperacionMultiplicacion(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
@@ -3084,6 +5070,18 @@ Namespace Apolo
             guardarImagen(bmp3, "Multiplicación de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que divide los píxeles de dos imágenes. La división se hace canal a canal (ARGB).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperacionDivisión(bmp1,bmp2,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 de la división (dividendo). Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 de la división (divisor). Se debe pasar en formato Bitmap.</param>
+        ''' <param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks><para>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</para>
+        ''' <para>En caso de que algún valor en el dividendo sea 0, automáticamente pasará a ser 1.</para></remarks>
         Public Function OperacionDivision(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
@@ -3138,6 +5136,17 @@ Namespace Apolo
             guardarImagen(bmp3, "División de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que une los píxeles de dos imágenes. La unión se hace canal a canal (ARGB). Se trata de sumar cada canal de cada píxel y dividirlo entre 2.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperacionUnir(bmp1,bmp2,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 de la unión. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 de la unión. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
         Public Function OperacionUnir(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
@@ -3186,6 +5195,18 @@ Namespace Apolo
             guardarImagen(bmp3, "Unión de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que hace la operación AND de dos imágenes. El operador AND se hace canal a canal (ARGB).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperacionAND(bmp1,bmp2,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 del operador AND. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 del operador AND. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks><para>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</para>
+        ''' <para>Este tipo de operaciones lógicas, tienen más sentido con imágenes binarias.</para></remarks>
         Public Function OperacionAND(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
@@ -3230,6 +5251,18 @@ Namespace Apolo
             guardarImagen(bmp3, "AND de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que hace la operación OR de dos imágenes. El operador OR se hace canal a canal (ARGB).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperacionOR(bmp1,bmp2,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 del operador OR. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 del operador OR. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks><para>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</para>
+        ''' <para>Este tipo de operaciones lógicas, tienen más sentido con imágenes binarias.</para></remarks>
         Public Function OperacionOR(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
@@ -3274,6 +5307,18 @@ Namespace Apolo
             guardarImagen(bmp3, "OR de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que hace la operación XOR de dos imágenes. El operador XOR se hace canal a canal (ARGB).
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperacionXOR(bmp1,bmp2,TRUE)</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 del operador XOR. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 del operador XOR. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="omitirAlfa">Si esta opción es TRUE, el canal alfa se omitirá al hacer la división, en caso contrario, el canal alfa se tratará de forma normal.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks><para>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</para>
+        ''' <para>Este tipo de operaciones lógicas, tienen más sentido con imágenes binarias.</para></remarks>
         Public Function OperacionXOR(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal omitirAlfa As Boolean = True)
             Dim bmpAux1 = bmp1
             Dim bmpAux2 = bmp2
@@ -3318,6 +5363,16 @@ Namespace Apolo
             guardarImagen(bmp3, "XOR de imágenes") 'Guardamos la imagen para poder hacer retroceso
             Return bmp3
         End Function
+
+        ''' <summary>
+        ''' Función que crea una imagen anaglifo a partir de dos imágenes muy cercanas al mismo objeto.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.OperacionAnaglifo(bmp1,bmp2)</code></example>
+        ''' </summary>
+        ''' <param name="bmpIzquierda">Imagen izquierda del par de imágenes que formarán el anaglifo. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmpDerecha">Imagen derecha del par de imágenes que formarán el anaglifo. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
         Public Function Anaglifo(ByVal bmpIzquierda As Bitmap, ByVal bmpDerecha As Bitmap)
             Dim bmp3 = bmpDerecha
             Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -3369,7 +5424,19 @@ Namespace Apolo
 
         'Comparador de imágenes a partir de dos bitmaps
 #Region "comparar dos imágenes"
-        Public Function CompararDosImagenes(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap)
+        ''' <summary>
+        ''' Función que compara dos imágenes píxel a píxel y canal a canal.
+        ''' <example>La llamada a la función, asignando los resultados a un arraylist, sería:
+        ''' <code>Dim resultadoComparacion As New ArrayList(Me.CompararDosImagenes(bmp1, bmp2))</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 a comparar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 a comparar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un arraylist con la información de la comparación. En las 4 primeras posiciones devuelve el porcentaje de aciertos del canal rojo, verde, azul y alfa, respectivamente. En 
+        ''' las siguientes 4 posiciones, devuelve matrices de dos dimensiones (ancho y alto más pequeño del par de imágenes), con todas las comparaciones píxel a píxel (las diferencias en valor absoluto
+        ''' entre los píxeles de la primera imagen con respecto a la segunda). Esta cuatro matrices son del canal rojo, verde, azul y alfa, respectivamente.</returns>
+        ''' <remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
+        Public Function CompararDosImagenes(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap) As ArrayList
+
             'Clonamos los bitmaps originales
             Dim bmp1clon = bmp1.Clone(New Rectangle(0, 0, bmp1.Width, bmp1.Height), Imaging.PixelFormat.DontCare)
             Dim bmp2clon = bmp2.Clone(New Rectangle(0, 0, bmp2.Width, bmp2.Height), Imaging.PixelFormat.DontCare)
@@ -3465,7 +5532,23 @@ Namespace Apolo
             'guardarImagen(bmp1, "Comparador de imágenes (local)") 'Guardamos la imagen para poder hacer retroceso
             Return resultado
         End Function
-        Public Function CompararDosImagenesVecinos(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal DistanciaVecinos As Integer = 1, Optional ByVal PasoAlto As Boolean = False, Optional ByVal Grafica As Integer = 0, Optional ComparadorRapido As Boolean = False)
+
+        ''' <summary>
+        ''' Función que comparar dos imágenes teniendo en cuenta sus vecinos más próximos y las diferencias entre ellos (los incrementos en sus valores).
+        ''' <example>La llamada a la función, asignando los resultados a un arraylist, sería:
+        ''' <code>Dim resultadoComparacion As New ArrayList(Me.CompararDosImagenes(bmp1, bmp2))</code></example>
+        ''' </summary>
+        ''' <param name="bmp1">Imagen 1 a comparar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="bmp2">Imagen 2 a comparar. Se debe pasar en formato Bitmap.</param>
+        ''' <param name="DistanciaVecinos">Variable que indica el número de vecinos que se van a utilizar para la comparación. Para saber el lado del kernel evaluado, se debe calcular (DistanciaVecinos*2+1).</param>
+        ''' <param name="PasoAlto">Si esta opción es TRUE, previamente a comparar las imágenes se aplica un filtro de paso alto para acentuar las diferencias en la imagen. En caso de ser FALSE, no se aplica filtro previo.</param>
+        ''' <param name="Grafica">Esta variable si toma valor 0, no modificará los valores de la comparación. En caso de ser 1, se aplicará a la matriz con los resultados la función math.E^x, y si es 2 se aplicará x^raiz(2).</param>
+        ''' <param name="ComparadorRapido">Si esta opción es TRUE, se reducirá el tamaño de la imagen para hacer una comparación rápida pero menos exahustiva. En caso de ser FALSE, se compararán las imágenes con su tamaño original.</param>
+        ''' <returns>Devuelve un arraylist con la información de la comparación. En las 4 primeras posiciones devuelve el porcentaje de aciertos del canal rojo, verde, azul y alfa, respectivamente. En 
+        ''' las siguientes 4 posiciones, devuelve matrices de dos dimensiones (ancho y alto más pequeño del par de imágenes), con todas las comparaciones píxel a píxel (las diferencias en valor absoluto
+        ''' entre los píxeles de la primera imagen con respecto a la segunda). Esta cuatro matrices son del canal rojo, verde, azul y alfa, respectivamente.</returns>
+        ''' <remarks>Si las imágenes son de diferentes tamaños, la imagen de salida tendrá el ancho y alto menor del par de imágenes.</remarks>
+        Public Function CompararDosImagenesVecinos(ByVal bmp1 As Bitmap, ByVal bmp2 As Bitmap, Optional ByVal DistanciaVecinos As Integer = 1, Optional ByVal PasoAlto As Boolean = False, Optional ByVal Grafica As Integer = 0, Optional ComparadorRapido As Boolean = False) As ArrayList
             'Clonamos los bitmaps originales
             Dim bmp1clon = bmp1.Clone(New Rectangle(0, 0, bmp1.Width, bmp1.Height), Imaging.PixelFormat.DontCare)
             Dim bmp2clon = bmp2.Clone(New Rectangle(0, 0, bmp2.Width, bmp2.Height), Imaging.PixelFormat.DontCare)
@@ -3488,7 +5571,7 @@ Namespace Apolo
             'Pasamos por filtro paso alto si PasoAlto=true
             Dim bmp6, bmp7 As Bitmap
             If PasoAlto = True Then
-                Dim objmascara As New TratamientoImagenes.mascaras
+                Dim objmascara As New TratamientoImagenes.Mascaras
                 Dim mascara = objmascara.HIGH1a
                 bmp6 = Me.mascara3x3RGB(bmp4, mascara)
                 bmp7 = Me.mascara3x3RGB(bmp5, mascara)
@@ -3653,6 +5736,17 @@ Namespace Apolo
 #Region "FuncionesAbrirGuardar"
 
         'Función para crear tapiz con alto/ancho y color
+        ''' <summary>
+        ''' Función que crea un rectángulo con el color y las dimensiones especificadas.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.tapiz(500,500,color.Red,"Nueva imagen como tapiz")</code></example>
+        ''' </summary>
+        ''' <param name="ancho">Variable que indica el ancho del tapiz de salida.</param>
+        ''' <param name="alto">Variable que indica el alto del tapiz de salida.</param>
+        ''' <param name="color">Variable que indica el color del tapiz de salida.</param>
+        ''' <param name="nombreTapiz">Esta variable no tiene efecto en esta función.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Para almacenar el nombre del tapiz (nombreTapiz) y que luego sea su nombre de cara a su aplicación, debe llamar al procedimiento actualizarNombreTapiz y pasarle como parámetros el nombre, ancho y alto.</remarks>
         Function tapiz(ByVal ancho As Integer, ByVal alto As Integer, ByVal color As Color, Optional ByVal nombreTapiz As String = "Nuevo tapiz")
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Creando tapiz" 'Actualizar el estado
@@ -3674,16 +5768,33 @@ Namespace Apolo
 
             Return bmp
         End Function
+
         'Procedimiento auxiliar para gestionar evento de nombre tapiz (sirve para evitar problemas al llamar desde un proceso en segundo plano
+        ''' <summary>
+        ''' Para ver su utilidad, revisar las observaciones (remarks) de la función tapiz en la documentación.
+        ''' </summary>
+        ''' <param name="nombre">Nombre del tapiz creado.</param>
+        ''' <param name="ancho">Ancho del tapiz creado.</param>
+        ''' <param name="alto">Alto del tapiz creado.</param>
+        ''' <remarks>Véase las observaciones (remarks) de la función tapiz.</remarks>
         Sub actualizarNombreTapiz(ByVal nombre As String, ByVal ancho As Integer, ByVal alto As Integer)
             RaiseEvent actualizaNombreImagen({nombre, ancho, alto, "Imagen tapiz"}) 'Generamos evento y enviamos nombre de la imagen a partir de la ruta
         End Sub
 
         'Se abre imagen desde archivo
+        ''' <summary>
+        ''' Función que muestra un cuadro de diálogo para seleccionar una imagen desde el pc y devuelve la imagen en formato bitmap.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así (haciendo una comprobación de que la imagen no está vacía):
+        ''' <code>Dim bmpArchivo as bitmap=objetoTratamiento.abrirImagen(1)
+        ''' If bmpArchivo IsNot Nothing Then Picturebox1.image=bmpArchivo</code></example>
+        ''' </summary>
+        ''' <param name="filtrado">Esta variable indica el filtro seleccionado para el formato de las imágenes que se mostrarán en el cuadro de diálogo. 1 (todos los formatos compatibles),
+        ''' 2 (BMP), 3 (GIF), 4 (JPG/JPEG), 5 (PNG), 6 (TIFF), 7 (todos los archivos). (</param>
+        ''' <returns>Devuelve un bitmap.</returns>
+        ''' <remarks>En caso de que haya algún fallo a la hora de seleccionar la imagen, la función devolverá un bitmap vacío.</remarks>
         Function abrirImagen(Optional filtrado As Integer = 1) As Bitmap
             Try
                 Dim dialogo As New OpenFileDialog
-
                 With dialogo
                     .Filter = "Todos los formatos compatibles|*.bmp;*.jpg;*.jpeg;*.gif;*.png;*.tif" & _
                               "|Ficheros BMP|*.bmp" & _
@@ -3717,7 +5828,16 @@ Namespace Apolo
             End Try
         End Function
 
-        'Se abre imagen desde una URL
+        'Se abre imagen desde una ruta loca
+        ''' <summary>
+        ''' Función que abre una imagen desde una ruta del pc.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así (haciendo una comprobación de que la imagen no está vacía):
+        ''' <code>Dim bmpWeb as bitmap=objetoTratamiento.abririmgRuta("C:/Users/Usuario/Desktop/imagen.png")
+        ''' If bmpArchivo IsNot Nothing Then Picturebox1.image=bmpWeb</code></example>
+        ''' </summary>
+        ''' <param name="ruta">Indica la ruta donde se encuentra la imagen en el pc (local).</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>En caso de que haya algún fallo a la hora buscar la imagen, la función devolverá un bitmap vacío.</remarks>
         Function abririmgRuta(ByVal ruta As String) As Bitmap
             Try
                 Dim bmpRuta As New Bitmap(ruta)
@@ -3738,6 +5858,15 @@ Namespace Apolo
         End Function
 
         'Se abre imagen desde una URL
+        ''' <summary>
+        ''' Función que abre una imagen desde una URL de internet.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así (haciendo una comprobación de que la imagen no está vacía):
+        ''' <code>Dim bmpWeb as bitmap=objetoTratamiento.abririmgRuta("www.imagenes.com/imagenEjemplo)
+        ''' If bmpArchivo IsNot Nothing Then Picturebox1.image=bmpWeb</code></example>
+        ''' </summary>
+        ''' <param name="enlace">Indica el recurso web donde se halla la imagen.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>En caso de que haya algún fallo a la hora buscar/descargar la imagen, la función devolverá un bitmap vacío.</remarks>
         Function abrirRecursoWeb(ByVal enlace As String) As Bitmap
             Try
                 Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
@@ -3761,6 +5890,15 @@ Namespace Apolo
         End Function
 
         'Se abre imagen desde archivo arrastrándola al picturebox principal
+        ''' <summary>
+        ''' Función que abre una imagen desde una ruta del pc y la guarda como si se hubiese arrastrado a la aplicación. Esta función sólo debe utilizarse para imágenes que se abren arrastrándolas a la aplicación.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así (haciendo una comprobación de que la imagen no está vacía):
+        ''' <code>Dim bmpWeb as bitmap=objetoTratamiento.abririmgRuta("C:/Users/Usuario/Desktop/imagen.png")
+        ''' If bmpArchivo IsNot Nothing Then Picturebox1.image=bmpWeb</code></example>
+        ''' </summary>
+        ''' <param name="ruta">Indica la ruta donde se encuentra la imagen en el pc (local).</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>En caso de que haya algún fallo a la hora buscar la imagen, la función devolverá un bitmap vacío.</remarks>
         Function abrirDragDrop(ByVal ruta As String) As Bitmap
             Try
                 Dim bmp As New Bitmap(ruta)
@@ -3783,6 +5921,12 @@ Namespace Apolo
         End Function
 
         'Funciones auxiliares para procesos en segundo plano problemáticos
+        ''' <summary>
+        ''' Función que abre una imagen sin dejar rastro. No guarda información en las listas de hacer/rehacer, en imágenes originales, etc.
+        ''' </summary>
+        ''' <param name="enlace">Indica el recurso web donde se halla la imagen.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>En caso de que haya algún fallo a la hora buscar/descargar la imagen, la función devolverá un bitmap vacío.</remarks>
         Function abrirRecursoWebAxu(ByVal enlace As String) As Bitmap 'Duplicamos esta función porque hay un error con la opción de abrir desde archivo
             Try
                 Dim request As System.Net.WebRequest = System.Net.WebRequest.Create(enlace)
@@ -3796,6 +5940,13 @@ Namespace Apolo
                 Return bmp
             End Try
         End Function
+
+        ''' <summary>
+        ''' Función que guarda una imagen como recurso web. No es recomendable utilizar esta función.
+        ''' </summary>
+        ''' <param name="bmp">Imagen en formato bitmap.</param>
+        ''' <param name="direccionURL">Dirección URL del recurso web.</param>
+        ''' <remarks></remarks>
         Public Sub InfoImagenPrecarga(ByVal bmp As Bitmap, ByVal direccionURL As String) 'Con esto guardamos los datos si el usuario ha activado precarga
             Try
                 guardarImagen(bmp, "Imagen original como recurso web") 'Almacenamos info y bitmap
@@ -3810,6 +5961,12 @@ Namespace Apolo
         End Sub
 
         'Hace que la imagen enviada se guarde
+        ''' <summary>
+        ''' Función que no debe utilizarse
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se ha extraido de Cloud y se quiere guardar como imagen original.</param>
+        ''' <returns>Devuelve un bitmap (la imagen enviada).</returns>
+        ''' <remarks></remarks>
         Public Function OriginalApoloCloud(ByVal bmp As Bitmap) As Bitmap
             guardarImagen(bmp, "Imagen original desde Apolo Cloud") 'Almacenamos info y bitmap
             contadorImagenes = imagenesGuardadas.Count 'Lo asignamos como el contador actual
@@ -3820,7 +5977,16 @@ Namespace Apolo
             imagenOriginalInfo = "Imagen original desde Apolo Cloud"
             Return bmp
         End Function
+
         'Función para guardar imagen
+        ''' <summary>
+        ''' Procedimiento que guarda una imagen que se le pase como bitmap, mostrando un cuadro de diálogo al usuario de dónde guardarla en su pc.
+        ''' <example>La llamada al procedimiento sería así:
+        ''' <code>objetoTratamiento.guardarcomo(bmp,4)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen que se quiere guardar. Debe pasarse en formato bitmap.</param>
+        ''' <param name="filtrado">Tipo de formato que aparecerá como predeterminado a la hora de guardar la imagen. 1 (BMP), 2 (GIF), 3 (JPG/JPEG), 4 (PNG), 5 (TIFF).</param>
+        ''' <remarks>La imagen guardada se almacena como primera imagen del hacer/deshacer.</remarks>
         Sub guardarcomo(ByVal bmp As Bitmap, Optional ByVal filtrado As Integer = 4)
             Dim salvar As New SaveFileDialog
             With salvar
@@ -3870,7 +6036,15 @@ Namespace Apolo
         'Obtener nombre de una imagen a partir de su ruta// Nombre de un recurso web a partir de su URL
         'Obtener URL de imágenes desde BING imágenes.
 #Region "Funciones extra"
-        Function nombreImagen(ByVal rutaImagen As String)
+        ''' <summary>
+        ''' Función que devuelve el nombre de una imagen a partir de una ruta local del pc.
+        ''' <example>La llamada a la función sería así:
+        ''' <code>Dim ImagenEnPC as string="C:\Users\Usuario\Desktop\ImagenEjemplo.jpg"
+        ''' Dim nombreDeImagen as string=objetoTratamiento.nombreImagen(ImagenEnPC)</code></example>
+        ''' </summary>
+        ''' <param name="rutaImagen">Variable que indica la ruta de donde se quiere extraer el nombre.</param>
+        ''' <returns>Devuelve un string con el nombre de la imagen.</returns>
+        Function nombreImagen(ByVal rutaImagen As String) As String
             Dim auxiliar, auxiliar2, nombre_imagen As String
             Dim nombre_imagen2() As String
             auxiliar = rutaImagen
@@ -3879,6 +6053,15 @@ Namespace Apolo
             nombre_imagen = nombre_imagen2(auxiliar2)
             Return nombre_imagen
         End Function 'Nombre desde archivo
+
+        ''' <summary>
+        ''' Función que devuelve el nombre de una imagen a partir de una URL.
+        ''' <example>La llamada a la función sería así:
+        ''' <code>Dim ImagenWEB as string="imagenes.com/imagenPrueba.jpg"
+        ''' Dim nombreDeImagen as string=objetoTratamiento.nombreRecursoWeb(ImagenWEB)</code></example>
+        ''' </summary>
+        ''' <param name="url">Variable que indica la ruta de donde se quiere extraer el nombre.</param>
+        ''' <returns>Devuelve un string con el nombre de la imagen.</returns>
         Function nombreRecursoWeb(ByVal url As String)
             Dim auxiliar, auxiliar2, nombre_imagen As String
             Dim nombre_imagen2() As String
@@ -3888,8 +6071,20 @@ Namespace Apolo
             nombre_imagen = nombre_imagen2(auxiliar2)
             Return nombre_imagen
         End Function 'Nombre desde URL
+
         'Se buscan imágenes en Bing
-        Public Function BuscarImagenesBing(ByVal texto As String, Optional ByVal numeroImagenes As Integer = 10, Optional ByVal tamaño As String = "", Optional Precarga As Boolean = False)
+        ''' <summary>
+        ''' Función que devuelve URLs con imágenes encontradas en BING imágenes.
+        ''' <example>Para hacer una petición a la función, sería así:</example>
+        ''' <code>Dim matrizConURL=objetoTratamiento.BuscarImagenesBing("Gatos",50,"Large",FALSE)</code>
+        ''' </summary>
+        ''' <param name="texto">Indica el texto con el que se buscarán imágenes.</param>
+        ''' <param name="numeroImagenes">Indica el número de imágenes que será devuelto. Un máximo de 50.</param>
+        ''' <param name="tamaño">Indica el tamaño de las imágenes. Si el valor es una cadena vacía se buscarán todas los tamaños. Se puede seleccionar "Small", "Medium", "Large" (sin las comillas).</param>
+        ''' <param name="Precarga">Si esta opción es TRUE, el primer resultado será la imagen original, en caso de ser false, el primer resultado será una miniatura.</param>
+        ''' <returns>Devuelve una matriz bidimensional en la que, por cada fila, los dos primeros resultados corresponden a una imagen y su miniatura. Por ejemplo, el resultado 0,0 será la miniatura, el 0,1 la imagen original, y el 1,0 será la miniatura de otro resultado y el 1,1 la original.</returns>
+        ''' <remarks>Está limitado a 5000 peticiones por mes.</remarks>
+        Public Function BuscarImagenesBing(ByVal texto As String, Optional ByVal numeroImagenes As Integer = 10, Optional ByVal tamaño As String = "", Optional Precarga As Boolean = False) As String(,)
             Dim datosVuelta(50, 50) As String
             Try
                 If tamaño <> "" Then
@@ -3966,8 +6161,19 @@ Namespace Apolo
 
             Return datosVuelta
         End Function
+
+
         'Duplicamos la función (histogramaAcumulado, histogramaAcumuladoH) para que no haya fallos con los hilos)
-        Public Function histogramaAcumulado(ByVal bmp As Bitmap)
+        ''' <summary>
+        ''' Función que devuelve el histograma acumulado de una imagen.
+        ''' <example>Para utilizar la función, se procedería así:
+        ''' <code>Dim matrizAcumulada=objetoTratamiento.histogramaAcumulado(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen de la cual se quiere obtener el histograma acumulado. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve una matriz de dimensiones (255,2) siendo 255,0 para el rojo, 255,1 para el verde y 255,2 para el azul. Dentro de cada canal
+        ''' los 256 valores indica el valor acumulado, por ejemplo, para el 0. Es decir, por ejemplo, el valor (150,1) informa del número de veces que se
+        ''' repite el valor 150 en el canal verde.</returns>
+        Public Function histogramaAcumulado(ByVal bmp As Bitmap) As ULong(,)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim NivelesHist(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
             Dim i, j As Long
@@ -3993,6 +6199,16 @@ Namespace Apolo
             Next
             Return matrizAcumulada
         End Function
+
+        ''' <summary>
+        ''' Función que devuelve el histograma acumulado de una imagen.
+        ''' <example>Para utilizar la función, se procedería así:
+        ''' <code>Dim matrizAcumulada=objetoTratamiento.histogramaAcumulado(bmp)</code></example>
+        ''' </summary>
+        ''' <param name="bmp">Imagen de la cual se quiere obtener el histograma acumulado. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve una matriz de dimensiones (255,2) siendo 255,0 para el rojo, 255,1 para el verde y 255,2 para el azul. Dentro de cada canal
+        ''' los 256 valores indica el valor acumulado, por ejemplo, para el 0. Es decir, por ejemplo, el valor (150,1) informa del número de veces que se
+        ''' repite el valor 150 en el canal verde.</returns>
         Public Function histogramaAcumuladoH(ByVal bmp As Bitmap)
             Dim bmp2 = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
             Dim NivelesHist(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
@@ -4024,6 +6240,14 @@ Namespace Apolo
             Next
             Return matrizAcumulada
         End Function
+
+        ''' <summary>
+        ''' Función que devuelve una captura de pantalla en el momento en que se llama a la función.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Picturebox1.image=objetoTratamiento.capturarPantalla(FALSE)</code></example>
+        ''' </summary>
+        ''' <param name="ControlExcepciones">Este valor siempre debe ser FALSE.</param>
+        ''' <returns>Devuelve un bitmap</returns>
         Function capturarPantalla(ByVal ControlExcepciones As Boolean)
             Dim tamaño As Size = Screen.PrimaryScreen.Bounds.Size 'Establecemos el tamaño de la captura
             Dim Bm As New Bitmap(tamaño.Width, tamaño.Height) 'Creamos un bitmap con ese tamaño
@@ -4039,6 +6263,20 @@ Namespace Apolo
             Return Bm
 
         End Function
+
+        ''' <summary>
+        ''' Función que a partir de una secuencia de operaciones las aplica a una imagen.
+        ''' <example>La llamada a la función, asignando la imagen de salida a un Picturebox sería así:
+        ''' <code>Dim PasosSecuencia(1,1) as string
+        ''' PasosSecuencia(0,0)="Blanco y negro" : PasosSecuencia(0,1)="128"
+        ''' PasosSecuencia(1,0)="Sepia"
+        ''' Picturebox1.image=objetoTratamiento.Secuencia(PasosSecuencia,bmp)</code></example>
+        ''' </summary>
+        ''' <param name="datosSecuencia">Indica la secuencia de operaciones que se van a realizar. Debe ser una matriz bidimensional y en cada fila debe estar en primer lugar 
+        ''' el nombre de la transformación y en los restantes lugares (columnas) los diferentes parámetros (si los hubiera).</param>
+        ''' <param name="bmp">Imagen que se va a transformar. Se debe pasar en formato Bitmap.</param>
+        ''' <returns>Devuelve un bitmap</returns>
+        ''' <remarks>Para ver los nombres de las diferentes funciones, revisar documentación del desarrollador.</remarks>
         Function Secuencia(ByVal datosSecuencia(,) As String, ByVal bmp As Bitmap) As Bitmap
 
             Dim bmpSalida As Bitmap = bmp.Clone(New Rectangle(0, 0, bmp.Width, bmp.Height), Imaging.PixelFormat.DontCare)
@@ -4096,7 +6334,7 @@ Namespace Apolo
                     Case "Operación lógicas - XOR"
                         bmpSalida = Me.OperXOR(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), False)
                     Case "Reflexión horizontal"
-                        bmpSalida = Me.Reflexion(bmpSalida,True,False)
+                        bmpSalida = Me.Reflexion(bmpSalida, True, False)
                     Case "Reflexión vertical"
                         bmpSalida = Me.Reflexion(bmpSalida, False, True)
                     Case "Traslación"
@@ -4122,7 +6360,7 @@ Namespace Apolo
                     Case "Desenfoque - Movimiento"
                         bmpSalida = Me.desenfoque(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2))
                     Case "Desenfoque - Blur"
-                        Dim objetoMascara As New TratamientoImagenes.mascaras
+                        Dim objetoMascara As New TratamientoImagenes.Mascaras
                         Dim mascara = objetoMascara.LOW9
                         bmpSalida = Me.mascara3x3RGB(bmp, mascara, , )
                     Case "Pixelado"
@@ -4159,13 +6397,16 @@ Namespace Apolo
                         bmpSalida = Me.EfectoAumentarLuz(bmp)
                 End Select
 
-
-
             Next
 
             Return bmpSalida
         End Function
 
+        ''' <summary>
+        ''' Función que a partir del nombre de un volteo, devuelve un RotateFlipType
+        ''' </summary>
+        ''' <param name="VolteadoSelec">Nombre del volteo.</param>
+        ''' <returns>Devuelve un RotateFlipType</returns>
         Private Function Volteado(ByVal VolteadoSelec As String) As RotateFlipType
             Select Case VolteadoSelec
                 Case "RotateNoneFlipNone"

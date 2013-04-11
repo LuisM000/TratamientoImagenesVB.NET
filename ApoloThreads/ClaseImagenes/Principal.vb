@@ -26,7 +26,7 @@ Public Class Principal
         Dim listaDearchivos As New ArrayList
         For Each file As FileInfo In folder.GetFiles() 'Comprobamos si los archivos xml
             Try
-                Kill(folder.ToString & file.ToString)
+                My.Computer.FileSystem.DeleteFile(folder.ToString & file.ToString)
             Catch
             End Try
         Next
@@ -41,7 +41,7 @@ Public Class Principal
         Dim listaDearchivos As New ArrayList
         For Each file As FileInfo In folder.GetFiles() 'Comprobamos si los archivos xml
             Try
-                Kill(folder.ToString & file.ToString)
+                My.Computer.FileSystem.DeleteFile(folder.ToString & file.ToString)
             Catch
             End Try
         Next
@@ -79,6 +79,7 @@ Public Class Principal
         Else
             ActualizacionesAutomáticasToolStripMenuItem.Checked = False
         End If
+        'objetoTratamiento.
     End Sub
 
  
@@ -103,6 +104,12 @@ Public Class Principal
     Private Sub BuscarImágenesEnLaWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnLaWebToolStripMenuItem.Click
         Bing2.Show()
     End Sub
+
+    'Abrir imágenes con BING con precarga
+    Private Sub AsdasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AsdasToolStripMenuItem.Click
+        AbrirBing.Show()
+    End Sub
+
     'Abrir imágenes con FB
     Private Sub BuscarImágenesEnFacebookToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnFacebookToolStripMenuItem.Click
         AbrirFacebook.Show()
@@ -192,6 +199,64 @@ Public Class Principal
     'Propiedades de la imagen
     Private Sub PropiedadesDeLaImagenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PropiedadesDeLaImagenToolStripMenuItem.Click
         PropImagen.Show()
+    End Sub
+    Private Sub ZoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem.Click
+        If BackgroundWorker2.IsBusy = False Then
+            BackgroundWorker2.RunWorkerAsync()
+            objetoTratamiento.Zoom += 0.1
+        End If
+    End Sub
+
+    Private Sub ZoomToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem1.Click
+        If objetoTratamiento.Zoom - 0.1 > 0 Then
+            If BackgroundWorker2.IsBusy = False Then
+                BackgroundWorker2.RunWorkerAsync()
+                objetoTratamiento.Zoom -= 0.1
+            End If
+        Else
+            MessageBox.Show("Zoom mínimo superado.", "Apolo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+    End Sub
+    'Zoom interactivo
+    Private Sub EmpezarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmpezarToolStripMenuItem.Click
+        MessageBox.Show("Pulse la tecla SHIFT y muévase por la imagen para ver la imagen ampliada." & vbCrLf & "Mueva la rueda del ratón para ampliar o disminuir el zoom.", "Zoom interactivo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    End Sub
+
+    Private Sub PropiedadesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PropiedadesToolStripMenuItem.Click
+        PropiedadesZoom.Show()
+    End Sub
+    Private Sub DeshacerZoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeshacerZoomToolStripMenuItem.Click
+        If BackgroundWorker2.IsBusy = False Then
+            objetoTratamiento.Zoom = 1
+            BackgroundWorker2.RunWorkerAsync()
+        End If
+    End Sub
+
+    Private Sub AjustarAPantallaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AjustarAPantallaToolStripMenuItem.Click
+        Dim bmpAjustado As New Bitmap(PictureBox1.Image, SplitContainer1.Panel1.Width, SplitContainer1.Panel1.Height)
+        PictureBox1.Image = bmpAjustado
+        objetoTratamiento.ActualizarImagen(bmpAjustado)
+        Panel1.AutoScroll = False 'Quitamos los scrolls para que se vea la imagen completa
+    End Sub
+    'Captura de pantalla
+    Private Sub CapturaDePantallaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CapturaDePantallaToolStripMenuItem.Click
+        If BackgroundWorker2.IsBusy = False Then
+            Dim bmpCaptura As Bitmap
+            bmpCaptura = objetoTratamiento.capturarPantalla(False)
+            PictureBox1.Image = bmpCaptura
+            refrescar()
+        End If
+    End Sub
+    'Copiar
+    Private Sub CopiarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopiarToolStripMenuItem.Click
+        My.Computer.Clipboard.SetImage(PictureBox1.Image)
+    End Sub
+    'Pegar
+    Private Sub PegarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PegarToolStripMenuItem.Click
+        If My.Computer.Clipboard.ContainsImage() Then
+            PictureBox1.Image = objetoTratamiento.ActualizarImagen(My.Computer.Clipboard.GetImage(), True)
+        End If
     End Sub
 #End Region
 
@@ -315,6 +380,10 @@ Public Class Principal
         FiltrarColores.Show()
     End Sub
 
+    Private Sub CorregirOjosRojosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CorregirOjosRojosToolStripMenuItem.Click
+        OjosRojos.Show()
+    End Sub
+
     Private Sub MatrizToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MatrizToolStripMenuItem.Click
         Matriz.Show()
     End Sub
@@ -331,6 +400,9 @@ Public Class Principal
     End Sub
     Private Sub OperacionesLógicasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperacionesLógicasToolStripMenuItem.Click
         OperacionesLogicas.Show()
+    End Sub
+    Private Sub OperacionesEstadísticasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperacionesEstadísticasToolStripMenuItem.Click
+        OperacionesEstadisticas.Show()
     End Sub
     Private Sub OperacionesMorfológicasbetaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OperacionesMorfológicasbetaToolStripMenuItem.Click
         OperadoresMorfologicos.Show()
@@ -362,7 +434,7 @@ Public Class Principal
     Private Sub PersonalizadaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PersonalizadaToolStripMenuItem.Click
         TAfinPers.Show()
     End Sub
-
+#End Region
     'Density Sciling
     Private Sub AutomáticoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutomáticoToolStripMenuItem.Click
         DensityScilingAuto.Show()
@@ -371,7 +443,7 @@ Public Class Principal
     Private Sub ManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualToolStripMenuItem.Click
         DensityScilingManual.Show()
     End Sub
-#End Region
+
 
 #End Region
 
@@ -390,6 +462,10 @@ Public Class Principal
 
     Private Sub MáscaraManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MáscaraManualToolStripMenuItem.Click
         MascaraManual.Show()
+    End Sub
+
+    Private Sub MáscaraPersonalizadaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MáscaraPersonalizadaToolStripMenuItem.Click
+        MascaraPersonal.Show()
     End Sub
     Private Sub SobelTotalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SobelTotalToolStripMenuItem.Click
         transformacion = "SobelTotal"
@@ -476,6 +552,29 @@ Public Class Principal
         transformacion = "AumentarLuz"
         transformar()
     End Sub
+    Private Sub MarcoDeCineToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles MarcoDeCineToolStripMenuItem1.Click
+        Cine.Show()
+    End Sub
+    Private Sub Marco4ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco4ToolStripMenuItem.Click
+        transformacion = "Marco4"
+        transformar()
+    End Sub
+
+    Private Sub Marco3ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco3ToolStripMenuItem.Click
+        transformacion = "Marco3"
+        transformar()
+    End Sub
+
+    Private Sub Marco2ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco2ToolStripMenuItem.Click
+        transformacion = "Marco2"
+        transformar()
+    End Sub
+
+    Private Sub Marco1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Marco1ToolStripMenuItem.Click
+        transformacion = "Marco1"
+        transformar()
+    End Sub
+
 #End Region
 
 #Region "Operaciones con dos imágenes"
@@ -517,15 +616,13 @@ Public Class Principal
     Dim HistogramasAutomáticos As Boolean = True
     'Activa/desactiva histogramas automáticos
     Private Sub HistogramasAutomáticosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HistogramasAutomáticosToolStripMenuItem.Click
-        If HistogramasAutomáticosToolStripMenuItem.Checked = False Then
-            HistogramasAutomáticosToolStripMenuItem.Checked = True
+        If HistogramasAutomáticosToolStripMenuItem.Checked = True Then
             tiempo = 0 'Para que el contador se pare
             Button1.Text = "Actualizar histograma"
             TabPage1.Text = "Histograma"
             TabPage2.Text = "Registro cambios"
             HistogramasAutomáticos = True
         Else
-            HistogramasAutomáticosToolStripMenuItem.Checked = False
             tiempo = 0 'Para que el contador se pare
             Button1.Text = "Actualizar histograma"
             TabPage1.Text = "Histograma"
@@ -546,11 +643,9 @@ Public Class Principal
     End Sub
     'Ocultar/mostrar barra de accesos rápidos
     Private Sub BarraAccesosRápidosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BarraAccesosRápidosToolStripMenuItem.Click
-        If BarraAccesosRápidosToolStripMenuItem.Checked = True Then
-            BarraAccesosRápidosToolStripMenuItem.Checked = False
+        If BarraAccesosRápidosToolStripMenuItem.Checked = False Then
             ToolStrip1.Visible = False
         Else
-            BarraAccesosRápidosToolStripMenuItem.Checked = True
             ToolStrip1.Visible = True
         End If
     End Sub
@@ -571,11 +666,9 @@ Public Class Principal
     End Sub
     'Comprobar actualizaciones automáticamente
     Private Sub ActualizacionesAutomáticasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActualizacionesAutomáticasToolStripMenuItem.Click
-        If ActualizacionesAutomáticasToolStripMenuItem.Checked = True Then
-            My.Settings.Actualizaciones_Comprobar = False
+        If ActualizacionesAutomáticasToolStripMenuItem.Checked = False Then
             ActualizacionesAutomáticasToolStripMenuItem.Checked = False
         Else
-            My.Settings.Actualizaciones_Comprobar = True
             ActualizacionesAutomáticasToolStripMenuItem.Checked = True
         End If
         My.Settings.Save()
@@ -626,6 +719,14 @@ Public Class Principal
 
     Private Sub AyudaEnLaWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AyudaEnLaWebToolStripMenuItem.Click
         System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionHTML\DocumentacionApolo.html")
+    End Sub
+
+    Private Sub ClaseImagenesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClaseImagenesToolStripMenuItem.Click
+        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionTecnica\DocumentationTecnica.chm")
+    End Sub
+
+    Private Sub ClaseImagenesEnLaWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClaseImagenesEnLaWebToolStripMenuItem.Click
+        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionTecnica\index.html")
     End Sub
     Private Sub NotificarUnErrorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotificarUnErrorToolStripMenuItem.Click
         NotificarErrorAyuda.Show()
@@ -765,6 +866,14 @@ Public Class Principal
                 PictureBox1.Image = objetoTratamiento.EfectoContornoSombreado2(bmp)
             Case "AumentarLuz"
                 PictureBox1.Image = objetoTratamiento.EfectoAumentarLuz(bmp)
+            Case "Marco1"
+                PictureBox1.Image = objetoTratamiento.marco(bmp, 0)
+            Case "Marco2"
+                PictureBox1.Image = objetoTratamiento.marco(bmp, 1)
+            Case "Marco3"
+                PictureBox1.Image = objetoTratamiento.marco(bmp, 2)
+            Case "Marco4"
+                PictureBox1.Image = objetoTratamiento.marco(bmp, 3)
         End Select
     End Sub
 
@@ -1039,7 +1148,6 @@ Public Class Principal
     End Sub
     'FIN de actualizar imagen secundaria
 #End Region
-
 
 
 #Region "DRAG&DROP"
@@ -1333,6 +1441,631 @@ Public Class Principal
         Panel1.AutoScrollMinSize = PictureBox1.Image.Size
         Panel1.AutoScroll = True
     End Sub
+    'zoom +
+    Private Sub ZoomToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem2.Click
+        If BackgroundWorker2.IsBusy = False Then
+            BackgroundWorker2.RunWorkerAsync()
+            objetoTratamiento.Zoom += 0.1
+        End If
+    End Sub
+    'zoom -
+    Private Sub ZoomToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem3.Click
+        If objetoTratamiento.Zoom - 0.1 > 0 Then
+            If BackgroundWorker2.IsBusy = False Then
+                BackgroundWorker2.RunWorkerAsync()
+                objetoTratamiento.Zoom -= 0.1
+            End If
+        Else
+            MessageBox.Show("Zoom mínimo superado.", "Apolo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+    End Sub
+    'Deshacer zoom
+    Private Sub DeshacerZoomToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DeshacerZoomToolStripMenuItem1.Click
+        If BackgroundWorker2.IsBusy = False Then
+            objetoTratamiento.Zoom = 1
+            BackgroundWorker2.RunWorkerAsync()
+        End If
+    End Sub
+    'Imagen origina
+    Private Sub ImagenOriginalToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ImagenOriginalToolStripMenuItem2.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ImagenOriginalGuardada
+        End If
+    End Sub
+
+    '*******ARCHIVO**********
+
+    Private Sub AbrirImagenToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles AbrirImagenToolStripMenuItem2.Click
+        Dim bmp As Bitmap
+        bmp = objetoTratamiento.abrirImagen()
+        If bmp IsNot Nothing Then
+            PictureBox1.Image = bmp
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+
+    Private Sub AbrirRecursoWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AbrirRecursoWebToolStripMenuItem.Click
+        AbrirRecurso.Show()
+    End Sub
+
+    Private Sub BuscarImágenesEnLaWebToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnLaWebToolStripMenuItem1.Click
+        Bing2.Show()
+    End Sub
+
+    Private Sub ToolStripMenuItem24_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem24.Click
+        AbrirBing.Show()
+    End Sub
+
+    Private Sub BuscarImágenesEnFacebookToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BuscarImágenesEnFacebookToolStripMenuItem1.Click
+        AbrirFacebook.Show()
+    End Sub
+
+    Private Sub GuardaComoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardaComoToolStripMenuItem.Click
+        Dim bmp As New Bitmap(Me.PictureBox2.Image)
+        objetoTratamiento.guardarcomo(bmp, 4)
+    End Sub
+
+    Private Sub CrearTapizToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CrearTapizToolStripMenuItem1.Click
+        Tapiz.Show()
+    End Sub
+
+    Private Sub CompartirImagenToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CompartirImagenToolStripMenuItem1.Click
+        Dim form As New Compartir()
+        form.Show()
+    End Sub
+
+    Private Sub AbrirCompiladorToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AbrirCompiladorToolStripMenuItem1.Click
+        'Abrimos el exe y guardamos la imagen actual
+        Dim bmpComp As New Bitmap(PictureBox2.Image)
+        bmpComp.Save(System.IO.Directory.GetCurrentDirectory().ToString & "\Compilador\imgforCompilador.png", System.Drawing.Imaging.ImageFormat.Png)
+        Dim Process1 As New Process
+        Process1.StartInfo.RedirectStandardOutput = True
+        Process1.StartInfo.FileName = System.IO.Directory.GetCurrentDirectory().ToString & "\Compilador\FastSharp.exe"
+        Process1.StartInfo.UseShellExecute = False
+        Process1.StartInfo.CreateNoWindow = True
+        Process1.Start()
+        'A la espera de que se cierre...
+        Process1.WaitForExit()
+        'Aquí listar todas las imágenes que se han creado
+        ImgCompilador.ShowDialog()
+    End Sub
+    '************************
+
+    '******EDICIÓN***********
+
+    Private Sub RegistroDeCambiosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RegistroDeCambiosToolStripMenuItem1.Click
+        RegistroCambio.Show()
+    End Sub
+
+    Private Sub ImagenOriginalToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ImagenOriginalToolStripMenuItem1.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ImagenOriginalGuardada
+        End If
+    End Sub
+
+    Private Sub RehacerToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RehacerToolStripMenuItem1.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ListadoImagenesAdelante
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
+            ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
+        End If
+    End Sub
+
+    Private Sub DeshacerToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DeshacerToolStripMenuItem1.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            PictureBox1.Image = objetoTratamiento.ListadoImagenesAtras
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox2.Image.Size
+            Panel1.AutoScroll = True
+            ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
+        End If
+    End Sub
+
+    Private Sub PropiedadesDeLaImagenToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PropiedadesDeLaImagenToolStripMenuItem1.Click
+        PropImagen.Show()
+    End Sub
+
+    Private Sub PegarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PegarToolStripMenuItem1.Click
+        If My.Computer.Clipboard.ContainsImage() Then
+            PictureBox1.Image = objetoTratamiento.ActualizarImagen(My.Computer.Clipboard.GetImage(), True)
+        End If
+    End Sub
+
+    Private Sub CopiarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CopiarToolStripMenuItem1.Click
+        My.Computer.Clipboard.SetImage(PictureBox1.Image)
+    End Sub
+
+    Private Sub CapturaDePantallaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CapturaDePantallaToolStripMenuItem1.Click
+        If BackgroundWorker2.IsBusy = False Then
+            Dim bmpCaptura As Bitmap
+            bmpCaptura = objetoTratamiento.capturarPantalla(False)
+            PictureBox1.Image = bmpCaptura
+            refrescar()
+        End If
+    End Sub
+
+    Private Sub RefrescarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RefrescarToolStripMenuItem1.Click
+        If BackgroundWorker1.IsBusy = False Then 'Si el hilo no está en uso
+            'Actualizamos el Panel1
+            Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+            Panel1.AutoScroll = True
+        End If
+    End Sub
+
+    Private Sub ActualizarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ActualizarToolStripMenuItem1.Click
+        Dim bmp As New Bitmap(Me.PictureBox2.Image)
+        Me.PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmp)
+        'Actualizamos el Panel1
+        Panel1.AutoScrollMinSize = PictureBox1.Image.Size
+        Panel1.AutoScroll = True
+        ToolStripStatusLabel4.Text = "Zoom: x" & objetoTratamiento.Zoom
+    End Sub
+
+    Private Sub AjustarAPantallaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AjustarAPantallaToolStripMenuItem1.Click
+        Dim bmpAjustado As New Bitmap(PictureBox1.Image, SplitContainer1.Panel1.Width, SplitContainer1.Panel1.Height)
+        PictureBox1.Image = bmpAjustado
+        objetoTratamiento.ActualizarImagen(bmpAjustado)
+        Panel1.AutoScroll = False 'Quitamos los scrolls para que se vea la imagen completa
+    End Sub
+
+    Private Sub DeshacerZoomToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles DeshacerZoomToolStripMenuItem2.Click
+        If BackgroundWorker2.IsBusy = False Then
+            objetoTratamiento.Zoom = 1
+            BackgroundWorker2.RunWorkerAsync()
+        End If
+    End Sub
+
+
+    Private Sub EmpezarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EmpezarToolStripMenuItem1.Click
+        MessageBox.Show("Pulse la tecla SHIFT y muévase por la imagen para ver la imagen ampliada." & vbCrLf & "Mueva la rueda del ratón para ampliar o disminuir el zoom.", "Zoom interactivo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub PropiedadesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PropiedadesToolStripMenuItem1.Click
+        PropiedadesZoom.Show()
+    End Sub
+
+    Private Sub ZoomToolStripMenuItem5_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem5.Click
+        If objetoTratamiento.Zoom - 0.1 > 0 Then
+            If BackgroundWorker2.IsBusy = False Then
+                BackgroundWorker2.RunWorkerAsync()
+                objetoTratamiento.Zoom -= 0.1
+            End If
+        Else
+            MessageBox.Show("Zoom mínimo superado.", "Apolo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+    End Sub
+
+    Private Sub ZoomToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem4.Click
+        If BackgroundWorker2.IsBusy = False Then
+            BackgroundWorker2.RunWorkerAsync()
+            objetoTratamiento.Zoom += 0.1
+        End If
+
+        Dim bmp As New Bitmap(PictureBox1.Image)
+    End Sub
+    '************************
+
+    '**Operaciones básicas***
+
+    Private Sub BlancoYNegroToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BlancoYNegroToolStripMenuItem1.Click
+        transformacion = "blancoNegro"
+        transformar()
+    End Sub
+
+    Private Sub EscalaDeGrisesToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles EscalaDeGrisesToolStripMenuItem3.Click
+        transformacion = "escalaGrises"
+        transformar()
+    End Sub
+
+    Private Sub RGBToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RGBToolStripMenuItem1.Click
+        transformacion = "invertir"
+        transformar()
+    End Sub
+
+    Private Sub RojoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RojoToolStripMenuItem1.Click
+        transformacion = "invertirRojo"
+        transformar()
+    End Sub
+
+    Private Sub VerdeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles VerdeToolStripMenuItem1.Click
+        transformacion = "invertirVerde"
+        transformar()
+    End Sub
+
+    Private Sub AzulToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AzulToolStripMenuItem1.Click
+        transformacion = "invertirAzul"
+        transformar()
+    End Sub
+
+    Private Sub SepiaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SepiaToolStripMenuItem1.Click
+        transformacion = "sepia"
+        transformar()
+    End Sub
+
+    Private Sub FiltroRojoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FiltroRojoToolStripMenuItem1.Click
+        transformacion = "FiltroRojo"
+        transformar()
+    End Sub
+
+    Private Sub FiltroVerdeToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FiltroVerdeToolStripMenuItem1.Click
+        transformacion = "FiltroVerde"
+        transformar()
+    End Sub
+
+    Private Sub FiltroAzulToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FiltroAzulToolStripMenuItem1.Click
+        transformacion = "FiltroAzul"
+        transformar()
+    End Sub
+
+    Private Sub BGRToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BGRToolStripMenuItem1.Click
+        transformacion = "RGBtoBGR"
+        transformar()
+    End Sub
+
+    Private Sub GRBToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GRBToolStripMenuItem1.Click
+        transformacion = "RGBtoGRB"
+        transformar()
+    End Sub
+
+    Private Sub RBGToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RBGToolStripMenuItem1.Click
+        transformacion = "RGBtoRBG"
+        transformar()
+    End Sub
+
+    Private Sub DetalladoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DetalladoToolStripMenuItem.Click
+        'Hay que crear la instancia con constructor y el valor del color
+        Dim frmHisto As New Histogramas(Color.Red)
+        frmHisto.Show()
+    End Sub
+
+    Private Sub TodosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TodosToolStripMenuItem.Click
+        TodosHistogramas.Show()
+    End Sub
+
+    Private Sub RedimensionarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RedimensionarToolStripMenuItem1.Click
+        Redimensionar.Show()
+    End Sub
+    '************************
+
+    '*Operaciones básicas personalizadas***************
+
+    Private Sub BlancoYNegroToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles BlancoYNegroToolStripMenuItem2.Click
+        BlancoYnegro.Show()
+    End Sub
+
+    Private Sub EscalaDeGrisesToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles EscalaDeGrisesToolStripMenuItem4.Click
+        EscalaDeGrises.Show()
+    End Sub
+
+    Private Sub BrilloToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BrilloToolStripMenuItem.Click
+        Brillo.Show()
+    End Sub
+
+    Private Sub Contraste1recomendadoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Contraste1recomendadoToolStripMenuItem.Click
+        Contraste1.Show()
+    End Sub
+
+    Private Sub Contraste2ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles Contraste2ToolStripMenuItem1.Click
+        Contraste2.Show()
+    End Sub
+
+    Private Sub CorrecciónDeGammaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CorrecciónDeGammaToolStripMenuItem.Click
+        Gamma.Show()
+    End Sub
+
+    Private Sub ExposiciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExposiciónToolStripMenuItem.Click
+        Exposicion.Show()
+    End Sub
+
+    Private Sub ModificarCanalesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ModificarCanalesToolStripMenuItem.Click
+        Canales.Show()
+    End Sub
+
+    Private Sub ReducirColoresToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ReducirColoresToolStripMenuItem1.Click
+        ReducirColores.Show()
+    End Sub
+
+    Private Sub FiltrarColoresToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FiltrarColoresToolStripMenuItem1.Click
+        FiltrarColores.Show()
+    End Sub
+
+    Private Sub CorregirOjosRojosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CorregirOjosRojosToolStripMenuItem1.Click
+        OjosRojos.Show()
+    End Sub
+
+    Private Sub MatrizToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles MatrizToolStripMenuItem1.Click
+        Matriz.Show()
+    End Sub
+
+    Private Sub DetectarContornosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DetectarContornosToolStripMenuItem1.Click
+        Contornos.Show()
+    End Sub
+    '**************************************************
+
+    '***********Operaciones********
+
+    Private Sub OperacionesAritméticasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OperacionesAritméticasToolStripMenuItem1.Click
+        OperacionesAritmeticas.Show()
+    End Sub
+
+    Private Sub OperacionesLógicasToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles OperacionesLógicasToolStripMenuItem2.Click
+        OperacionesLogicas.Show()
+    End Sub
+
+    Private Sub OperacionesEstadísticasToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OperacionesEstadísticasToolStripMenuItem1.Click
+        OperacionesEstadisticas.Show()
+    End Sub
+
+    Private Sub OperacionesMorfológicasbetaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles OperacionesMorfológicasbetaToolStripMenuItem1.Click
+        OperadoresMorfologicos.Show()
+    End Sub
+
+    Private Sub HorizontalToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles HorizontalToolStripMenuItem1.Click
+        transformacion = "ReflexionHori"
+        transformar()
+    End Sub
+
+    Private Sub VerticalToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles VerticalToolStripMenuItem1.Click
+        transformacion = "ReflexionVert"
+        transformar()
+    End Sub
+
+    Private Sub TraslaciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TraslaciónToolStripMenuItem.Click
+        Traslacion.Show()
+    End Sub
+
+    Private Sub VoltearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VoltearToolStripMenuItem.Click
+        Voltear.Show()
+    End Sub
+
+    Private Sub ManualsesgarImagenToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ManualsesgarImagenToolStripMenuItem1.Click
+        Afin.Show()
+    End Sub
+
+    Private Sub PersonalizadaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PersonalizadaToolStripMenuItem1.Click
+        TAfinPers.Show()
+    End Sub
+
+    Private Sub AutomáticoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AutomáticoToolStripMenuItem1.Click
+        DensityScilingAuto.Show()
+    End Sub
+
+    Private Sub ManualToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ManualToolStripMenuItem1.Click
+        DensityScilingManual.Show()
+    End Sub
+    '*************************
+
+    '******* Máscaras ********
+    Private Sub PasoAltoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PasoAltoToolStripMenuItem1.Click
+        PasoAlto.Show()
+    End Sub
+
+    Private Sub PasoBajoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PasoBajoToolStripMenuItem1.Click
+        PasoBajo.Show()
+    End Sub
+
+    Private Sub BordesYContornosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles BordesYContornosToolStripMenuItem1.Click
+        BordesYContornos.Show()
+    End Sub
+
+    Private Sub MáscaraManualToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles MáscaraManualToolStripMenuItem1.Click
+        MascaraManual.Show()
+    End Sub
+
+    Private Sub MáscaraManualmásTamañosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MáscaraManualmásTamañosToolStripMenuItem.Click
+        MascaraPersonal.Show()
+    End Sub
+
+    Private Sub SobelTotalToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SobelTotalToolStripMenuItem1.Click
+        transformacion = "SobelTotal"
+        transformar()
+    End Sub
+    '***************************
+
+    '***** Efectos *************
+    Private Sub DenfoqueDistorsiónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DenfoqueDistorsiónToolStripMenuItem.Click
+        Distorsion.Show()
+    End Sub
+
+    Private Sub DenfoqueMovimientoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DenfoqueMovimientoToolStripMenuItem.Click
+        Desenfocar.Show()
+    End Sub
+
+    Private Sub DenfoqueBlurToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DenfoqueBlurToolStripMenuItem.Click
+        transformacion = "blur"
+        transformar()
+    End Sub
+
+    Private Sub PixeladoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles PixeladoToolStripMenuItem1.Click
+        Pixelar.Show()
+    End Sub
+
+    Private Sub CuadrículaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles CuadrículaToolStripMenuItem1.Click
+        Cuadricula.Show()
+    End Sub
+
+    Private Sub SombraDeVidrioToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SombraDeVidrioToolStripMenuItem1.Click
+        SombraVidrio.Show()
+    End Sub
+
+    Private Sub TresPartesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles TresPartesToolStripMenuItem1.Click
+        transformacion = "3partes"
+        transformar()
+    End Sub
+
+    Private Sub SeisPartesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SeisPartesToolStripMenuItem1.Click
+        transformacion = "6partes"
+        transformar()
+    End Sub
+
+    Private Sub RuidoAleatorioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RuidoAleatorioToolStripMenuItem.Click
+        Ruido.Show()
+    End Sub
+
+    Private Sub RuidoDesplazadoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RuidoDesplazadoToolStripMenuItem.Click
+        RuidoDe.Show()
+    End Sub
+
+    Private Sub ÓleoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ÓleoToolStripMenuItem1.Click
+        Oleo.Show()
+    End Sub
+
+    Private Sub EfectoMarteToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EfectoMarteToolStripMenuItem1.Click
+        transformacion = "Marte"
+        transformar()
+    End Sub
+
+    Private Sub EfectoAntiguoSobreexpuestoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EfectoAntiguoSobreexpuestoToolStripMenuItem1.Click
+        transformacion = "AntiguiSobreexpu"
+        transformar()
+    End Sub
+
+    Private Sub EfectoMarinoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EfectoMarinoToolStripMenuItem1.Click
+        transformacion = "Marino"
+        transformar()
+    End Sub
+
+    Private Sub AumentarRasgosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AumentarRasgosToolStripMenuItem1.Click
+        transformacion = "AumentarRasgos"
+        transformar()
+    End Sub
+
+    Private Sub DisminuirRasgosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DisminuirRasgosToolStripMenuItem1.Click
+        transformacion = "DisminuirRasgos"
+        transformar()
+    End Sub
+
+    Private Sub ContenidoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ContenidoToolStripMenuItem1.Click
+        transformacion = "ContSombreado1"
+        transformar()
+    End Sub
+
+    Private Sub DesmedidoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles DesmedidoToolStripMenuItem1.Click
+        transformacion = "ContSombreado2"
+        transformar()
+    End Sub
+
+    Private Sub AumentarLuzToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AumentarLuzToolStripMenuItem.Click
+        transformacion = "AumentarLuz"
+        transformar()
+    End Sub
+    Private Sub Marco1ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles Marco1ToolStripMenuItem1.Click
+        transformacion = "Marco1"
+        transformar()
+    End Sub
+
+    Private Sub Marco2ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles Marco2ToolStripMenuItem1.Click
+        transformacion = "Marco2"
+        transformar()
+    End Sub
+
+    Private Sub Marco3ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles Marco3ToolStripMenuItem1.Click
+        transformacion = "Marco3"
+        transformar()
+    End Sub
+
+    Private Sub Marco4ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles Marco4ToolStripMenuItem1.Click
+        transformacion = "Marco4"
+        transformar()
+    End Sub
+
+    Private Sub MarcoDeCineToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MarcoDeCineToolStripMenuItem.Click
+        Cine.Show()
+    End Sub
+    '***************************
+
+    '****** Operaciones con dos imágenes ***
+    Private Sub OperacionesAritméticasToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles OperacionesAritméticasToolStripMenuItem2.Click
+        OperacionesAritmeticasDosImagenes.Show()
+    End Sub
+
+    Private Sub OperacionesLógicasToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles OperacionesLógicasToolStripMenuItem3.Click
+        OperacionesLogicasDosImagenes.Show()
+    End Sub
+
+    Private Sub AnaglifoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AnaglifoToolStripMenuItem1.Click
+        Anaglifo.Show()
+    End Sub
+
+    Private Sub LocalToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles LocalToolStripMenuItem1.Click
+        CompararImagenes.Show()
+    End Sub
+
+    Private Sub VecinosToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles VecinosToolStripMenuItem1.Click
+        CompararImagenesVecinos.Show()
+    End Sub
+    '***************************************
+
+    '************ CLOUD **********************
+    Private Sub CompartirImagenToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles CompartirImagenToolStripMenuItem2.Click
+        Dim form As New Compartir()
+        form.Show()
+    End Sub
+
+    Private Sub CrearCarpetaPrivadaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrearCarpetaPrivadaToolStripMenuItem.Click
+        CrearCarpetaPrivada.Show()
+    End Sub
+
+    Private Sub AccesoCarpetaPrivadaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AccesoCarpetaPrivadaToolStripMenuItem1.Click
+        AccesoPrivado.Show()
+    End Sub
+
+    '****************************************************
+
+
+    '************ Herramientas *****************
+    Private Sub LiberarMemoriaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles LiberarMemoriaToolStripMenuItem1.Click
+        Dim resultado = MessageBox.Show("Esta opción borrará todo el historial de imágenes y no podrá ser recuperado. Además, es posible que durante unos segundos se ralentice el sistema. ¿Está seguro de querer hacerlo?", "Apolo threads", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+        If resultado = Windows.Forms.DialogResult.Yes Then
+            Dim objeto As New TratamientoImagenes
+            objeto.LiberarImagenes()
+            'forzamos la actualización del tabpage 2 (registro imágenes). Los histogramas no son necesarios puesto que nos quedamos con la imagen actual
+            TabControl1_SelectedIndexChanged(sender, e)
+            ClearMemory()
+        End If
+    End Sub
+
+    Private Sub GrabarSecuenciaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles GrabarSecuenciaToolStripMenuItem1.Click
+        GrabarSecuencia.Show()
+    End Sub
+    '****************************************************
+
+
+    '************* Ayuda *****************************
+    Private Sub AyudaToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles AyudaToolStripMenuItem3.Click
+        Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\HelpApolo.chm")
+    End Sub
+
+    Private Sub AyudaEnLaWebToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AyudaEnLaWebToolStripMenuItem1.Click
+        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionHTML\DocumentacionApolo.html")
+    End Sub
+
+    Private Sub NotificarUnErrorToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles NotificarUnErrorToolStripMenuItem1.Click
+        NotificarErrorAyuda.Show()
+    End Sub
+
+    Private Sub AyúdanosAMejorarToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles AyúdanosAMejorarToolStripMenuItem1.Click
+        AyudanosAmejorar.Show()
+    End Sub
+
+    Private Sub ColaboraConElProyectoToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ColaboraConElProyectoToolStripMenuItem1.Click
+        Colabora.Show()
+    End Sub
+
+    Private Sub ComprobarActualizacionesToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ComprobarActualizacionesToolStripMenuItem1.Click
+        If BackgroundWorkerACTUALIZACION.IsBusy = False Then
+            Actualizar = Nothing
+            BackgroundWorkerACTUALIZACION.RunWorkerAsync()
+        End If
+    End Sub
+
+    Private Sub AcercaDeApoloToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AcercaDeApoloToolStripMenuItem.Click
+        AboutBox1.Show()
+    End Sub
+    '*************************************************
 #End Region
 
 
@@ -1409,13 +2142,13 @@ Public Class Principal
         Dim mouseDownLocation As New Point(e.X, e.Y) 'Situación del puntero
 
         If PíxelesToolStripMenuItem.Checked = True Then 'Si están selecionado píxeles
-            ToolStripStatusLabel2.Text = "(" & mouseDownLocation.X & "," & mouseDownLocation.Y & ") px"
+            ToolStripStatusLabel2.Text = "(" & CInt((mouseDownLocation.X / objetoTratamiento.Zoom)) & "," & CInt((mouseDownLocation.Y / objetoTratamiento.Zoom)) & ") px"
         ElseIf CentímetrosToolStripMenuItem.Checked = True Then 'Centímetros
-            ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH) * 2.54, 2) & "," & FormatNumber((mouseDownLocation.Y / dpiV) * 2.54, 2) & ") cm"
+            ToolStripStatusLabel2.Text = "(" & CInt(FormatNumber((mouseDownLocation.X / dpiH) * 2.54, 2) / objetoTratamiento.Zoom) & "," & CInt(FormatNumber((mouseDownLocation.Y / dpiV) * 2.54, 2) / objetoTratamiento.Zoom) & ") cm"
         ElseIf MilímetrosToolStripMenuItem.Checked = True Then 'Centímetros
-            ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH) * 254, 0) & "," & FormatNumber((mouseDownLocation.Y / dpiV) * 254, 0) & ") mm"
+            ToolStripStatusLabel2.Text = "(" & CInt(FormatNumber((mouseDownLocation.X / dpiH) * 254, 0) / objetoTratamiento.Zoom) & "," & CInt(FormatNumber((mouseDownLocation.Y / dpiV) * 254, 0) / objetoTratamiento.Zoom) & ") mm"
         ElseIf PulgadasToolStripMenuItem.Checked = True Then 'Pulgadas
-            ToolStripStatusLabel2.Text = "(" & FormatNumber((mouseDownLocation.X / dpiH), 2) & "," & FormatNumber((mouseDownLocation.Y / dpiV), 2) & ") in"
+            ToolStripStatusLabel2.Text = "(" & CInt(FormatNumber((mouseDownLocation.X / dpiH), 2) / objetoTratamiento.Zoom) & "," & CInt(FormatNumber((mouseDownLocation.Y / dpiV), 2) / objetoTratamiento.Zoom) & ") in"
         End If
 
         '-------------------------------------------------------
@@ -1786,9 +2519,9 @@ Public Class Principal
         'Hacer zoom
         If ModifierKeys = Keys.Control Then 'Si pulsa control al dar a la rueda
             If (objetoTratamiento.Zoom + (e.Delta / 1000)) - 0.1 > 0 Then
-                objetoTratamiento.Zoom += (e.Delta / 1000)
                 If BackgroundWorker2.IsBusy = False Then
                     BackgroundWorker2.RunWorkerAsync()
+                    objetoTratamiento.Zoom += (e.Delta / 1000)
                 End If
             Else
                 MessageBox.Show("Zoom mínimo superado.", "Apolo", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1844,64 +2577,7 @@ Public Class Principal
     End Sub
 
 
-    Private Sub ZoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem.Click
-        objetoTratamiento.Zoom += 0.1
-        If BackgroundWorker2.IsBusy = False Then
-            BackgroundWorker2.RunWorkerAsync()
-        End If
-    End Sub
-
-    Private Sub ZoomToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ZoomToolStripMenuItem1.Click
-        If objetoTratamiento.Zoom - 0.1 > 0 Then
-            objetoTratamiento.Zoom -= 0.1
-            If BackgroundWorker2.IsBusy = False Then
-                BackgroundWorker2.RunWorkerAsync()
-            End If
-        Else
-            MessageBox.Show("Zoom mínimo superado.", "Apolo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
-    End Sub
-    'Zoom interactivo
-    Private Sub EmpezarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmpezarToolStripMenuItem.Click
-        MessageBox.Show("Pulse la tecla SHIFT y muévase por la imagen para ver la imagen ampliada." & vbCrLf & "Mueva la rueda del ratón para ampliar o disminuir el zoom.", "Zoom interactivo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-    End Sub
-
-    Private Sub PropiedadesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PropiedadesToolStripMenuItem.Click
-        PropiedadesZoom.Show()
-    End Sub
-    Private Sub DeshacerZoomToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeshacerZoomToolStripMenuItem.Click
-        objetoTratamiento.Zoom = 1
-        If BackgroundWorker2.IsBusy = False Then
-            BackgroundWorker2.RunWorkerAsync()
-        End If
-    End Sub
-
-    Private Sub AjustarAPantallaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AjustarAPantallaToolStripMenuItem.Click
-        Dim bmpAjustado As New Bitmap(PictureBox1.Image, SplitContainer1.Panel1.Width, SplitContainer1.Panel1.Height)
-        PictureBox1.Image = bmpAjustado
-        objetoTratamiento.ActualizarImagen(bmpAjustado)
-        Panel1.AutoScroll = False 'Quitamos los scrolls para que se vea la imagen completa
-    End Sub
-    'Captura de pantalla
-    Private Sub CapturaDePantallaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CapturaDePantallaToolStripMenuItem.Click
-        If BackgroundWorker2.IsBusy = False Then
-            Dim bmpCaptura As Bitmap
-            bmpCaptura = objetoTratamiento.capturarPantalla(False)
-            PictureBox1.Image = bmpCaptura
-            refrescar()
-        End If
-    End Sub
-    'Copiar
-    Private Sub CopiarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopiarToolStripMenuItem.Click
-        My.Computer.Clipboard.SetImage(PictureBox1.Image)
-    End Sub
-    'Pegar
-    Private Sub PegarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PegarToolStripMenuItem.Click
-        If My.Computer.Clipboard.ContainsImage() Then
-            PictureBox1.Image = objetoTratamiento.ActualizarImagen(My.Computer.Clipboard.GetImage(), True)
-        End If
-    End Sub
+   
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorker2.DoWork
         Dim bmp As New Bitmap(PictureBox2.Image)
         Dim bmp2 As New Bitmap(bmp, bmp.Width * objetoTratamiento.Zoom, bmp.Height * objetoTratamiento.Zoom)
@@ -1960,20 +2636,10 @@ Public Class Principal
 
     End Sub
 #End Region
+ 
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 
