@@ -24,12 +24,12 @@ Partial Class Principal
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
-        Dim ChartArea7 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea8 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea9 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series9 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
@@ -184,6 +184,13 @@ Partial Class Principal
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaEnLaWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DocumentaciónTécnicaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DesarrollarConClaseImagenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ArchivoAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EnLaWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReferenciaMiembrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ArchivoDeAyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EnLaWebToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotificarUnErrorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyúdanosAMejorarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ColaboraConElProyectoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -445,9 +452,6 @@ Partial Class Principal
         Me.BackgroundWorkerACTUALIZACION = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorkerACtual_Automaticas = New System.ComponentModel.BackgroundWorker()
         Me.BackgroundWorker3 = New System.ComponentModel.BackgroundWorker()
-        Me.DocumentaciónTécnicaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClaseImagenesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClaseImagenesEnLaWebToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -1441,6 +1445,51 @@ Partial Class Principal
         Me.AyudaEnLaWebToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.AyudaEnLaWebToolStripMenuItem.Text = "Ayuda en la web"
         '
+        'DocumentaciónTécnicaToolStripMenuItem
+        '
+        Me.DocumentaciónTécnicaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DesarrollarConClaseImagenesToolStripMenuItem, Me.ReferenciaMiembrosToolStripMenuItem})
+        Me.DocumentaciónTécnicaToolStripMenuItem.Name = "DocumentaciónTécnicaToolStripMenuItem"
+        Me.DocumentaciónTécnicaToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.DocumentaciónTécnicaToolStripMenuItem.Text = "Documentación técnica"
+        '
+        'DesarrollarConClaseImagenesToolStripMenuItem
+        '
+        Me.DesarrollarConClaseImagenesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoAyudaToolStripMenuItem, Me.EnLaWebToolStripMenuItem})
+        Me.DesarrollarConClaseImagenesToolStripMenuItem.Name = "DesarrollarConClaseImagenesToolStripMenuItem"
+        Me.DesarrollarConClaseImagenesToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
+        Me.DesarrollarConClaseImagenesToolStripMenuItem.Text = "Desarrollar con ClaseImagenes"
+        '
+        'ArchivoAyudaToolStripMenuItem
+        '
+        Me.ArchivoAyudaToolStripMenuItem.Name = "ArchivoAyudaToolStripMenuItem"
+        Me.ArchivoAyudaToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.ArchivoAyudaToolStripMenuItem.Text = "Archivo de ayuda"
+        '
+        'EnLaWebToolStripMenuItem
+        '
+        Me.EnLaWebToolStripMenuItem.Name = "EnLaWebToolStripMenuItem"
+        Me.EnLaWebToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.EnLaWebToolStripMenuItem.Text = "En la web"
+        '
+        'ReferenciaMiembrosToolStripMenuItem
+        '
+        Me.ReferenciaMiembrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoDeAyudaToolStripMenuItem, Me.EnLaWebToolStripMenuItem1})
+        Me.ReferenciaMiembrosToolStripMenuItem.Name = "ReferenciaMiembrosToolStripMenuItem"
+        Me.ReferenciaMiembrosToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
+        Me.ReferenciaMiembrosToolStripMenuItem.Text = "Referencia miembros"
+        '
+        'ArchivoDeAyudaToolStripMenuItem
+        '
+        Me.ArchivoDeAyudaToolStripMenuItem.Name = "ArchivoDeAyudaToolStripMenuItem"
+        Me.ArchivoDeAyudaToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.ArchivoDeAyudaToolStripMenuItem.Text = "Archivo de ayuda"
+        '
+        'EnLaWebToolStripMenuItem1
+        '
+        Me.EnLaWebToolStripMenuItem1.Name = "EnLaWebToolStripMenuItem1"
+        Me.EnLaWebToolStripMenuItem1.Size = New System.Drawing.Size(162, 22)
+        Me.EnLaWebToolStripMenuItem1.Text = "En la web"
+        '
         'NotificarUnErrorToolStripMenuItem
         '
         Me.NotificarUnErrorToolStripMenuItem.Name = "NotificarUnErrorToolStripMenuItem"
@@ -1955,15 +2004,15 @@ Partial Class Principal
         'Chart3
         '
         Me.Chart3.BackColor = System.Drawing.SystemColors.Control
-        ChartArea7.Name = "ChartArea1"
-        Me.Chart3.ChartAreas.Add(ChartArea7)
+        ChartArea4.Name = "ChartArea1"
+        Me.Chart3.ChartAreas.Add(ChartArea4)
         Me.Chart3.Location = New System.Drawing.Point(4, 45)
         Me.Chart3.Name = "Chart3"
-        Series7.ChartArea = "ChartArea1"
-        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series7.IsVisibleInLegend = False
-        Series7.Name = "Azul"
-        Me.Chart3.Series.Add(Series7)
+        Series4.ChartArea = "ChartArea1"
+        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series4.IsVisibleInLegend = False
+        Series4.Name = "Azul"
+        Me.Chart3.Series.Add(Series4)
         Me.Chart3.Size = New System.Drawing.Size(173, 131)
         Me.Chart3.TabIndex = 9
         Me.Chart3.Text = "Histograma azul"
@@ -1972,15 +2021,15 @@ Partial Class Principal
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.SystemColors.Control
-        ChartArea8.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea8)
+        ChartArea5.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea5)
         Me.Chart2.Location = New System.Drawing.Point(4, 139)
         Me.Chart2.Name = "Chart2"
-        Series8.ChartArea = "ChartArea1"
-        Series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series8.IsVisibleInLegend = False
-        Series8.Name = "Verde"
-        Me.Chart2.Series.Add(Series8)
+        Series5.ChartArea = "ChartArea1"
+        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series5.IsVisibleInLegend = False
+        Series5.Name = "Verde"
+        Me.Chart2.Series.Add(Series5)
         Me.Chart2.Size = New System.Drawing.Size(173, 131)
         Me.Chart2.TabIndex = 8
         Me.Chart2.Text = "Histograma verde"
@@ -1989,15 +2038,15 @@ Partial Class Principal
         'Chart1
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.Control
-        ChartArea9.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea9)
+        ChartArea6.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea6)
         Me.Chart1.Location = New System.Drawing.Point(4, 247)
         Me.Chart1.Name = "Chart1"
-        Series9.ChartArea = "ChartArea1"
-        Series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
-        Series9.IsVisibleInLegend = False
-        Series9.Name = "Rojo"
-        Me.Chart1.Series.Add(Series9)
+        Series6.ChartArea = "ChartArea1"
+        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea
+        Series6.IsVisibleInLegend = False
+        Series6.Name = "Rojo"
+        Me.Chart1.Series.Add(Series6)
         Me.Chart1.Size = New System.Drawing.Size(173, 131)
         Me.Chart1.TabIndex = 7
         Me.Chart1.Text = "Histograma rojo"
@@ -3230,8 +3279,8 @@ Partial Class Principal
         'ImagenActual
         '
         Me.ImagenActual.Name = "ImagenActual"
-        Me.ImagenActual.Size = New System.Drawing.Size(76, 19)
-        Me.ImagenActual.Text = "Apolo thread"
+        Me.ImagenActual.Size = New System.Drawing.Size(57, 19)
+        Me.ImagenActual.Text = "Apolo 0.9"
         '
         'barraestado
         '
@@ -3329,25 +3378,6 @@ Partial Class Principal
         'BackgroundWorkerACtual_Automaticas
         '
         '
-        'DocumentaciónTécnicaToolStripMenuItem
-        '
-        Me.DocumentaciónTécnicaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClaseImagenesToolStripMenuItem, Me.ClaseImagenesEnLaWebToolStripMenuItem})
-        Me.DocumentaciónTécnicaToolStripMenuItem.Name = "DocumentaciónTécnicaToolStripMenuItem"
-        Me.DocumentaciónTécnicaToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
-        Me.DocumentaciónTécnicaToolStripMenuItem.Text = "Documentación técnica"
-        '
-        'ClaseImagenesToolStripMenuItem
-        '
-        Me.ClaseImagenesToolStripMenuItem.Name = "ClaseImagenesToolStripMenuItem"
-        Me.ClaseImagenesToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
-        Me.ClaseImagenesToolStripMenuItem.Text = "ClaseImagenes"
-        '
-        'ClaseImagenesEnLaWebToolStripMenuItem
-        '
-        Me.ClaseImagenesEnLaWebToolStripMenuItem.Name = "ClaseImagenesEnLaWebToolStripMenuItem"
-        Me.ClaseImagenesEnLaWebToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
-        Me.ClaseImagenesEnLaWebToolStripMenuItem.Text = "ClaseImagenes en la web"
-        '
         'Principal
         '
         Me.AllowDrop = True
@@ -3362,7 +3392,7 @@ Partial Class Principal
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Principal"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Apolo thread"
+        Me.Text = "Apolo"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
@@ -3818,7 +3848,11 @@ Partial Class Principal
     Friend WithEvents MáscaraPersonalizadaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MáscaraManualmásTamañosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DocumentaciónTécnicaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ClaseImagenesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ClaseImagenesEnLaWebToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DesarrollarConClaseImagenesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ArchivoAyudaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EnLaWebToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReferenciaMiembrosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ArchivoDeAyudaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EnLaWebToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
 
 End Class

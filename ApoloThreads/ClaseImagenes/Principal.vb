@@ -33,6 +33,7 @@ Public Class Principal
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         'Manejamos cualquier excepción no controlada
         AddHandler Application.ThreadException, AddressOf Application_ThreadException
 
@@ -79,7 +80,7 @@ Public Class Principal
         Else
             ActualizacionesAutomáticasToolStripMenuItem.Checked = False
         End If
-        'objetoTratamiento.
+
     End Sub
 
  
@@ -632,7 +633,7 @@ Public Class Principal
     End Sub
     'Liberar memoria (libera todas las imágenes guardadas para hacer retroceso)
     Private Sub LiberarMemoriaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LiberarMemoriaToolStripMenuItem.Click
-        Dim resultado = MessageBox.Show("Esta opción borrará todo el historial de imágenes y no podrá ser recuperado. Además, es posible que durante unos segundos se ralentice el sistema. ¿Está seguro de querer hacerlo?", "Apolo threads", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+        Dim resultado = MessageBox.Show("Esta opción borrará todo el historial de imágenes y no podrá ser recuperado. Además, es posible que durante unos segundos se ralentice el sistema. ¿Está seguro de querer hacerlo?", "Apolo thread", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
         If resultado = Windows.Forms.DialogResult.Yes Then
             Dim objeto As New TratamientoImagenes
             objeto.LiberarImagenes()
@@ -721,11 +722,26 @@ Public Class Principal
         System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionHTML\DocumentacionApolo.html")
     End Sub
 
-    Private Sub ClaseImagenesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClaseImagenesToolStripMenuItem.Click
+    Private Sub ArchivoAyudaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArchivoAyudaToolStripMenuItem.Click
+        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionDesarrolloClaseImagenes.chm")
+    End Sub
+
+    Private Sub EnLaWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EnLaWebToolStripMenuItem.Click
+        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionDesarrolloClaseImagenesHTML\DocumentacionDesarrolloClaseImagenes.html")
+    End Sub
+
+    Private Sub ArchivoDeAyudaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ArchivoDeAyudaToolStripMenuItem.Click
         System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionTecnica\DocumentationTecnica.chm")
     End Sub
 
-    Private Sub ClaseImagenesEnLaWebToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClaseImagenesEnLaWebToolStripMenuItem.Click
+    Private Sub EnLaWebToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EnLaWebToolStripMenuItem1.Click
+        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionTecnica\Index.html")
+    End Sub
+    Private Sub ClaseImagenesToolStripMenuItem_Click(sender As Object, e As EventArgs)
+        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionTecnica\DocumentationTecnica.chm")
+    End Sub
+
+    Private Sub ClaseImagenesEnLaWebToolStripMenuItem_Click(sender As Object, e As EventArgs)
         System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory().ToString & "\DocumentacionTecnica\index.html")
     End Sub
     Private Sub NotificarUnErrorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotificarUnErrorToolStripMenuItem.Click
@@ -910,7 +926,7 @@ Public Class Principal
 
         Catch
             tiempo = 0 'Pasamos el tiempo a cero para que no siga descontando y no estre en esta sentencia de control
-            MessageBox.Show("Lo sentimos, algo ha ocurrido. Pruebe a deshacer los cambios y desactivar el histograma automático (Herramientas/Histograma automático)", "Apolo threads", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Lo sentimos, algo ha ocurrido. Pruebe a deshacer los cambios y desactivar el histograma automático (Herramientas/Histograma automático)", "Apolo thread", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -1389,7 +1405,7 @@ Public Class Principal
     End Sub
     'Liberar memoria (libera todas las imágenes guardadas para hacer retroceso)
     Private Sub ToolStripButton29_Click(sender As Object, e As EventArgs) Handles ToolStripButton29.Click
-        Dim resultado = MessageBox.Show("Esta opción borrará todo el historial de imágenes y no podrá ser recuperado. Además, es posible que durante unos segundos se ralentice el sistema. ¿Está seguro de querer hacerlo?", "Apolo threads", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+        Dim resultado = MessageBox.Show("Esta opción borrará todo el historial de imágenes y no podrá ser recuperado. Además, es posible que durante unos segundos se ralentice el sistema. ¿Está seguro de querer hacerlo?", "Apolo thread", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
         If resultado = Windows.Forms.DialogResult.Yes Then
             Dim objeto As New TratamientoImagenes
             objeto.LiberarImagenes()
@@ -2018,7 +2034,7 @@ Public Class Principal
 
     '************ Herramientas *****************
     Private Sub LiberarMemoriaToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles LiberarMemoriaToolStripMenuItem1.Click
-        Dim resultado = MessageBox.Show("Esta opción borrará todo el historial de imágenes y no podrá ser recuperado. Además, es posible que durante unos segundos se ralentice el sistema. ¿Está seguro de querer hacerlo?", "Apolo threads", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+        Dim resultado = MessageBox.Show("Esta opción borrará todo el historial de imágenes y no podrá ser recuperado. Además, es posible que durante unos segundos se ralentice el sistema. ¿Está seguro de querer hacerlo?", "Apolo thread", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
         If resultado = Windows.Forms.DialogResult.Yes Then
             Dim objeto As New TratamientoImagenes
             objeto.LiberarImagenes()
@@ -2640,7 +2656,9 @@ Public Class Principal
   
 
   
+ 
 
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
-
+    End Sub
 End Class

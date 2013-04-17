@@ -1,0 +1,234 @@
+﻿<html>
+	
+<head>
+	<title>Anexo I. Nombres admitidos en la funci&oacute;n secuencia</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "DocumentacionDesarrolloClaseImagenes.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("AnexoINombresadmitidosenlafuncin");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Anexo I. Nombres admitidos en la funci&oacute;n secuencia</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="DocumentacintcnicaDesarrolloconl.html">Documentaci&oacute;n t&eacute;cnica. Desarrollo con la biblioteca ClaseImagenes.dll</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="DocumentacintcnicaDesarrolloconl.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Prioridadesactualesdedesarrollo.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts49">Anexo I. Nombres admitidos en la función secuencia</span></span></h1>
+<p class="rvps8"><span class="rvts34">A continuación se muestra una lista con los nombres y parámetros admitidos para la función secuencia.</span></p>
+<p class="rvps22"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Blanco y negro"</span></p>
+<p class="rvps21"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.BlancoNegro(bmpSalida, datosSecuencia(i, 1))</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Escala de grises"</span></p>
+<p class="rvps21"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.EscalaGrises(bmpSalida, datosSecuencia(i, 1))</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Brillo"</span></p>
+<p class="rvps21"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Brillo(bmpSalida, datosSecuencia(i, 1))</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Invertir colores (rojo, verde, azul)"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Invertir(bmpSalida, </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 1)), </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 2)), </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 3)))</span></p>
+<p class="rvps15"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> </span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Sepia"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.sepia(bmpSalida)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Filtros básicos (rojo, verde, azul)"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.filtrosBasicos(bmpSalida, </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 1)), </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 2)), </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 3)))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"RGB a (BGR, GRB, RBG)"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.RGBto(bmpSalida, </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 1)), </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 2)), </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 3)))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Redimensionar"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Redimensionar(bmpSalida, </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">Rectangle</span><span class="rvts23">(0, 0, datosSecuencia(i, 1), datosSecuencia(i, 2)), Drawing2D.</span><span class="rvts25">InterpolationMode</span><span class="rvts23">.HighQualityBicubic)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Contraste (recomendado)"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Contraste(bmpSalida, datosSecuencia(i, 1))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Contraste"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.ContrasteEstirar(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Correción de gamma"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Gamma(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Exposición"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Exposicion(bmpSalida, datosSecuencia(i, 1))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Modificar canales"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Canales(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Reducir colores"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.reducircolores(bmpSalida, 127 - (datosSecuencia(i, 1) / 2))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Filtrar colores (rojo)"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.filtroColoresRango(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Filtrar colores (verde)"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.filtroColoresRango(bmpSalida, 0, 0, 0, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Filtrar colores (azul)"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.filtroColoresRango(bmpSalida, 0, 0, 0, 0, 0, 0, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Detectar contornos"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.contornos(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Operación aritmética - Suma"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Suma(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), </span><span class="rvts22">False</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Operación aritmética - Resta"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Resta(bmpSalida, -datosSecuencia(i, 1), -datosSecuencia(i, 2), -datosSecuencia(i, 3), -datosSecuencia(i, 4), </span><span class="rvts22">False</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Operación aritmética - División"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Division(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), </span><span class="rvts22">False</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Operación aritmética - Multiplicación"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Multiplicacion(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), </span><span class="rvts22">False</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Operación lógicas - AND"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.OperAND(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), </span><span class="rvts22">False</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Operación lógicas - OR"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.OperOR(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), </span><span class="rvts22">False</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Operación lógicas - XOR"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.OperXOR(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2), datosSecuencia(i, 3), datosSecuencia(i, 4), </span><span class="rvts22">False</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Reflexión horizontal"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Reflexion(bmpSalida, </span><span class="rvts22">True</span><span class="rvts23">, </span><span class="rvts22">False</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Reflexión vertical"</span></p>
+<p class="rvps21"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Reflexion(bmpSalida, </span><span class="rvts22">False</span><span class="rvts23">, </span><span class="rvts22">True</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Traslación"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Traslacion(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Voltear"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Volteados(bmpSalida, Volteado(datosSecuencia(i, 1)))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Density Slicing automático"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Calculamos el número de colores</span></p>
+<p class="rvps21"><span class="rvts22">Dim</span><span class="rvts23"> matrizStringColores() </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">String</span><span class="rvts23"> = {</span><span class="rvts33">"Red"</span><span class="rvts23">, </span><span class="rvts33">"Green"</span><span class="rvts23">, </span><span class="rvts33">"Blue"</span><span class="rvts23">, </span></p>
+<p class="rvps15"><span class="rvts33">"Black"</span><span class="rvts23">, </span><span class="rvts33">"White"</span><span class="rvts23">, </span><span class="rvts33">"Yellow"</span><span class="rvts23">, </span><span class="rvts33">"Maroon"</span><span class="rvts23">, </span><span class="rvts33">"Gray"</span><span class="rvts23">, </span><span class="rvts33">"LightGreen"</span><span class="rvts23">, </span><span class="rvts33">"LightBlue"</span><span class="rvts23">, </span><span class="rvts33">"Orange"</span><span class="rvts23">, </span><span class="rvts33">"Pink"</span><span class="rvts23">, </span><span class="rvts33">"Gold"</span><span class="rvts23">, </span><span class="rvts33">"DarkBlue"</span><span class="rvts23">, </span><span class="rvts33">"DarkGreen"</span><span class="rvts23">}</span></p>
+<p class="rvps21"><span class="rvts22">Dim</span><span class="rvts23"> matrizColores(datosSecuencia(i, 1) - 1) </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">Color</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">For</span><span class="rvts23"> ii = 0 </span><span class="rvts22">To</span><span class="rvts23"> </span><span class="rvts22">CInt</span><span class="rvts23">(datosSecuencia(i, 1)) - 1</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; matrizColores(ii) = </span><span class="rvts25">Color</span><span class="rvts23">.FromName(matrizStringColores(ii).ToString)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Next</span></p>
+<p class="rvps15"><span class="rvts22">If</span><span class="rvts23"> </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 2)) = </span><span class="rvts22">True</span><span class="rvts23"> </span><span class="rvts22">Then</span><span class="rvts23"> </span><span class="rvts26">'Si es normalizada</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.DensitySlicingNormalizado(bmpSalida, datosSecuencia(i, 1), matrizColores)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Else</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.DensitySlicing(bmpSalida, datosSecuencia(i, 1), matrizColores)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">If</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Sobel total"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.sobelTotal(bmpSalida)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Desenfoque - Distorsión"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Distorsion(bmpSalida, datosSecuencia(i, 1))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Desenfoque - Movimiento"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.desenfoque(bmpSalida, datosSecuencia(i, 1), datosSecuencia(i, 2))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Desenfoque - Blur"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Dim</span><span class="rvts23"> objetoMascara </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">TratamientoImagenes</span><span class="rvts23">.</span><span class="rvts25">Mascaras</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Dim</span><span class="rvts23"> mascara = objetoMascara.LOW9</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.mascara3x3RGB(bmp, mascara, , )</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Pixelado"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Pixelar(bmp, datosSecuencia(i, 1))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Cuadrícula"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.cuadricula(bmp, </span><span class="rvts25">Color</span><span class="rvts23">.FromName(datosSecuencia(i, 2)), </span><span class="rvts25">Color</span><span class="rvts23">.FromName(datosSecuencia(i, 4)), datosSecuencia(i, 1), datosSecuencia(i, 3))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Sombra de vidrio"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.SombraVidrio(bmp, datosSecuencia(i, 1), </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 2)))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Trocear imagen - Tres partes"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.ImagenTresPartes(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Trocear imagen - Seis partes"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.ImagenSeisPartes(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Ruido aleatorio"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.RuidoAleatorio(bmp, datosSecuencia(i, 1))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Ruido desplazado"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.RuidoProgresivo(bmp, datosSecuencia(i, 1), </span><span class="rvts25">Convert</span><span class="rvts23">.ToBoolean(datosSecuencia(i, 2)))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Óleo"</span></p>
+<p class="rvps15"><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.Oleo(bmp, datosSecuencia(i, 1), 127 - (datosSecuencia(i, 2) / 2))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Efecto Marte"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.EfectoMarte(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Efecto antiguo sobreexpuesto"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.EfectoAntigSobreex(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Efecto marino"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.EfectoMarino(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Aumentar rasgos"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.EfectoAumentarRasgos(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Disminuir rasgos"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.EfectoDisminuirRasgos(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Contorno sombreado - Contenido"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.EfectoContornoSombreado(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Contorno sombreado - Desmedido"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.EfectoContornoSombreado2(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps21"><span class="rvts22">Case</span><span class="rvts23"> </span><span class="rvts33">"Aumentar luz"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23">bmpSalida = </span><span class="rvts22">Me</span><span class="rvts23">.EfectoAumentarLuz(bmp)</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p></p>
+<p class="rvps7"><span class="rvts12">Created with the Personal Edition of HelpNDoc: </span><a class="rvts13" href="http://www.helpndoc.com/help-authoring-tool">Free help authoring environment</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyleft 2013  por Luis Marcos Rivera.</div>
+		</div>
+	</body>
+	
+</html>
+

@@ -81,7 +81,7 @@ Public Class PropImagen
                 Chart3.Series("Azul").Points.AddXY(i + 1, histoAcumulado(i, 2))
             Next
         Catch
-            MessageBox.Show("Lo sentimos, algo ha ocurrido. Pruebe a deshacer los cambios y desactivar el histograma automático (Herramientas/Histograma automático)", "Apolo threads", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Lo sentimos, algo ha ocurrido. Pruebe a deshacer los cambios y desactivar el histograma automático (Herramientas/Histograma automático)", "Apolo thread", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

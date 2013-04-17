@@ -1,0 +1,79 @@
+﻿<html>
+	
+<head>
+	<title>Prioridades actuales de desarrollo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "DocumentacionDesarrolloClaseImagenes.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Prioridadesactualesdedesarrollo");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Prioridades actuales de desarrollo</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="DocumentacintcnicaDesarrolloconl.html">Documentaci&oacute;n t&eacute;cnica. Desarrollo con la biblioteca ClaseImagenes.dll</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="DocumentacintcnicaDesarrolloconl.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="CmomodificarClaseImagenes.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="AnexoINombresadmitidosenlafuncin.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts49">Prioridades actuales de desarrollo</span></span></h1>
+<p class="rvps8"><span class="rvts34">A continuación se muestra una lista con los siguientes objetivos para la clase </span><span class="rvts35">ClaseImagenes</span><span class="rvts34">:</span></p>
+<ul style="text-indent: 0px; margin-left: 47px; list-style-position: outside;">
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts34">Utilizar lo mínimo posible la función </span><span class="rvts35">nivel</span><span class="rvts34"> y leer los valores de los píxeles en el mismo bucle </span><span class="rvts35">For</span><span class="rvts34"> en el que se modifican los píxeles. Se puede hacer con función </span><span class="rvts35">GetPixel </span><span class="rvts34">de las variables </span><span class="rvts35">Bitmap</span><span class="rvts39">.</span></li>
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts34">Utilizar el método </span><span class="rvts17">Bitmap.LockBits </span><span class="rvts14">para guardar directamente en memoria los datos de los píxeles y así hacer transformaciones mucho más rápidas.</span></li>
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Modificar la clase para que se puedan hacer diferentes instancias y que cada una tenga su lista de imágenes para deshacer/rehacer independientes. Esto se puede hacer omitiendo la sentencia </span><span class="rvts17">Shared </span><span class="rvts14">en las variables asociadas a las propiedades.</span></li>
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts34">Añadir todas las funciones a la función secuencia.</span></li>
+</ul>
+<p></p>
+<p class="rvps7"><span class="rvts12">Created with the Personal Edition of HelpNDoc: </span><a class="rvts13" href="http://www.helpndoc.com/help-authoring-tool">Easy to use tool to create HTML Help files and Help web sites</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyleft 2013  por Luis Marcos Rivera.</div>
+		</div>
+	</body>
+	
+</html>
+

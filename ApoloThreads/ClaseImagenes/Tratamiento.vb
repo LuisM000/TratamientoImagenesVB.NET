@@ -353,9 +353,12 @@ Namespace Apolo
         ''' <param name="valorcontraste">Este valor reduce el número de grises utilizados (0 a 127). El 0 es toda la gama de grises y el 127 es blanco y negro.</param>
         ''' <returns>Devuelve un bitmap.</returns>
         Public Function EscalaGrises(ByVal bmp As Bitmap, Optional ByVal valorcontraste As Byte = 0) As Bitmap
-            Dim bmp2 = bmp
-            Dim Niveles(,) As System.Drawing.Color 'Almacenará los niveles digitales de la imagen
-            Niveles = nivel(bmp2) 'Obtenemos valores
+            'Copia del bitmap original
+            Dim bmp2 As Bitmap = bmp
+            'Matriz que almacenará los niveles digitales de la imagen
+            Dim Niveles(,) As System.Drawing.Color
+            'Se obtienen los valores de la imagen
+            Niveles = nivel(bmp2)
             porcentaje(0) = 0 'Actualizar el estado
             porcentaje(1) = "Transformando a escala de grises (" & valorcontraste & ")" 'Actualizar el estado
             Dim bmp3 As New Bitmap(bmp2.Width, bmp2.Height)
@@ -389,8 +392,10 @@ Namespace Apolo
             porcentaje(1) = "Finalizado" 'Actualizamos el estado
             guardarImagen(bmp3, "Escala de grises (" & valorcontraste & ")") 'Guardamos la imagen para poder hacer retroceso
             RaiseEvent actualizaBMP(bmp3) 'generamos el evento
+            'Se devuelve el bitmap pasado a escala de grises
             Return bmp3
         End Function
+
 
         ''' <summary>
         ''' Función que invierte los colores de una imagen (para los canales RGB).
@@ -1230,7 +1235,7 @@ Namespace Apolo
             For Each item In matrizMascara
                 tipoEstado = tipoEstado & item & ","
             Next
-            tipoEstado = tipoEstado.Remove(tipoEstado.Count - 1) 'Eliminamos la última coma
+            tipoEstado = tipoEstado.Remove(tipoEstado.Length - 1) 'Eliminamos la última coma
             tipoEstado = tipoEstado & ")" 'Ponemos el último cierre de paréntesis
             '*****
             porcentaje(1) = "Aplicando máscara 3x3 RGB " & tipoEstado 'Actualizar el estado
@@ -1314,7 +1319,7 @@ Namespace Apolo
             For Each item In matrizMascara
                 tipoEstado = tipoEstado & item & ","
             Next
-            tipoEstado = tipoEstado.Remove(tipoEstado.Count - 1) 'Eliminamos la última coma
+            tipoEstado = tipoEstado.Remove(tipoEstado.Length - 1) 'Eliminamos la última coma
             tipoEstado = tipoEstado & ")" 'Ponemos el último cierre de paréntesis
             '*****
             porcentaje(1) = "Aplicando máscara 3x3 Gris " & tipoEstado 'Actualizar el estado
@@ -1397,7 +1402,7 @@ Namespace Apolo
             'Creamos el estado*****
             Dim tipoEstado As String = "(" & matrizMascara.GetUpperBound(0) + 1 & "x" & matrizMascara.GetUpperBound(0) + 1 & ")"
              
-            tipoEstado = tipoEstado.Remove(tipoEstado.Count - 1) 'Eliminamos la última coma
+            tipoEstado = tipoEstado.Remove(tipoEstado.Length - 1) 'Eliminamos la última coma
             tipoEstado = tipoEstado & ")" 'Ponemos el último cierre de paréntesis
             '*****
             porcentaje(1) = "Aplicando máscara personalizada " & tipoEstado 'Actualizar el estado
@@ -3459,7 +3464,7 @@ Namespace Apolo
                     Dim rojoModa, verdeModa, azulModa As Byte
                     'Buscamos valor moda (más repetido)
                     Dim matrizAcumulada(255, 2) As ULong
-                    For si = 0 To Rojo.Count - 1 'Acumulamos los valores
+                    For si = 0 To Rojo.Length - 1 'Acumulamos los valores
                         'ACumulamos los valores
                         matrizAcumulada(Rojo(si), 0) += 1
                         matrizAcumulada(Verde(si), 1) += 1
@@ -3528,9 +3533,9 @@ Namespace Apolo
                     Array.Sort(Azul)
                     Dim rojoRango, verdeRango, azulRango As Byte
                     'Buscamos valor intermedio (mediana)
-                    rojoRango = Rojo(Rojo.Count - 1) - Rojo(0)
-                    verdeRango = Verde(Verde.Count - 1) - Verde(0)
-                    azulRango = Azul(Azul.Count - 1) - Azul(0)
+                    rojoRango = Rojo(Rojo.Length - 1) - Rojo(0)
+                    verdeRango = Verde(Verde.Length - 1) - Verde(0)
+                    azulRango = Azul(Azul.Length - 1) - Azul(0)
                     For mi = -LadoCuadrado To LadoCuadrado
                         For mj = -LadoCuadrado To LadoCuadrado
                             bmp3.SetPixel(i + mi, j + mj, Color.FromArgb(rojoRango, verdeRango, azulRango))
@@ -6445,7 +6450,9 @@ Namespace Apolo
             Return Volteado
         End Function
 #End Region
-
-
+      
     End Class
 End Namespace
+
+
+

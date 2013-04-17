@@ -60,7 +60,7 @@ Public Class AyudanosAmejorar
             Dim SMTP As New System.Net.Mail.SmtpClient 'Variable con la que se envia el correo
             envioOK = True
             Dim CORREO As New System.Net.Mail.MailMessage
-            CORREO.From = New System.Net.Mail.MailAddress("apolothreads@gmail.com", "Encuesta Apolo threads", System.Text.Encoding.UTF8)
+            CORREO.From = New System.Net.Mail.MailAddress("apolothreads@gmail.com", "Encuesta Apolo thread", System.Text.Encoding.UTF8)
 
             Dim cuerpoCorreo As String
             cuerpoCorreo = "Aspectos a mejorar: " & aspectos & " ----  "
@@ -79,7 +79,7 @@ Public Class AyudanosAmejorar
             CORREO.IsBodyHtml = True
             CORREO.AlternateViews.Add(htmlView)
 
-            CORREO.Subject = "Encuesta Apolo threads"
+            CORREO.Subject = "Encuesta Apolo thread"
             SMTP.Host = "smtp.gmail.com"
             SMTP.Port = "587"
 

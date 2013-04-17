@@ -1,0 +1,330 @@
+﻿<html>
+	
+<head>
+	<title>&iquest;C&oacute;mo modificar ClaseImagenes?</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "DocumentacionDesarrolloClaseImagenes.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("CmomodificarClaseImagenes");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>&iquest;C&oacute;mo modificar ClaseImagenes?</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="DocumentacintcnicaDesarrolloconl.html">Documentaci&oacute;n t&eacute;cnica. Desarrollo con la biblioteca ClaseImagenes.dll</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="DocumentacintcnicaDesarrolloconl.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="CmoempezarautilizarClaseImagenes.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Prioridadesactualesdedesarrollo.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts15">¿Cómo modificar ClaseImagenes?</span></span></h1>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts10">Tabla de contenidos</span></span></h1>
+<p class="rvps6"><a class="rvts9" href="CmomodificarClaseImagenes.html#¿Cómo adquirirla?">1. ¿Cómo adquirirla?</a></p>
+<p class="rvps5"><a class="rvts9" href="CmomodificarClaseImagenes.html#¿Cómo trabajar píxel a píxel?">2. ¿Cómo trabajar píxel a píxel?</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmomodificarClaseImagenes.html#Paso 1. ¿Dónde incluir la función escala de grises?">2.1. Paso 1. ¿Dónde incluir la función escala de grises?</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmomodificarClaseImagenes.html#Paso 2. Definir la función y sus parámetros.">2.2. Paso 2. Definir la función y sus parámetros</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmomodificarClaseImagenes.html#Paso 3. Clonar imagen recibida y leer los valores para cada píxel.">2.3. Paso 3. Clonar imagen recibida y leer los valores para cada píxel</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmomodificarClaseImagenes.html#Paso 4. Recorrer la imagen y calcular el nivel de gris.">2.4. Paso 4. Recorrer la imagen y calcular el nivel de gris</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmomodificarClaseImagenes.html#Paso 5. Incluir eventos y propiedades de la clase.">2.5 Paso 5. Incluir eventos y propiedades de la clase</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmomodificarClaseImagenes.html#Paso 6. Documentar función.">2.6. Paso 6. Documentar la función</a></p>
+<p class="rvps6"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmomodificarClaseImagenes.html#Paso 7. Compilar y crear la biblioteca de clase.">2.7. Paso 7. Compilar y crear la biblioteca de clases</a></p>
+<p class="rvps5"><a class="rvts9" href="CmomodificarClaseImagenes.html#Eventos y propiedades a tener en cuenta.">3. Eventos y propiedades a tener en cuenta.</a></p>
+<p class="rvps20"><a class="rvts9" href="CmomodificarClaseImagenes.html#Propiedades">3.1. Eventos</a></p>
+<p class="rvps19"><a class="rvts9" href="CmomodificarClaseImagenes.html#Propiedades">3.2. Propiedades</a></p>
+<p class="rvps5"><a class="rvts9" href="Prioridadesactualesdedesarrollo.html"><br/></a></p>
+<p class="rvps8"><span class="rvts14">En este apartado se va a mostrar las pautas para adquirir, modificar y compilar ClaseImagenes y así poder adaptarlo a sus necesidades.</span></p>
+<hr style="height: 1px; color : #000000;  background-color : #000000; border-width : 0px;"/>
+<h2 class="rvps12"><a name="¿Cómo adquirirla?"></a>
+<span class="rvts0"><span class="rvts18">¿Cómo adquirirla?</span></span></h2>
+<p class="rvps8"><span class="rvts14">Las vías de adquisición son varias para adquirir el código fuente. Descargando la aplicación Apolo (disponible en git/github y en sourceforge), o bien adquiriendo la clase. A continuación se muestran las diferentes vías para adquirirla:</span></p>
+<ul style="text-indent: 0px; margin-left: 47px; list-style-position: outside;">
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Desde sourceforge: </span><a class="rvts16" href="http://sourceforge.net/users/luis-net">http://sourceforge.net/users/luis-net</a></li>
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Accediendo a la web: </span><a class="rvts16" href="http://algoimagen.blogspot.com.es/">http://algoimagen.blogspot.com.es/</a></li>
+<li class="rvps10" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Clonando el repositorio o haciendo </span><span class="rvts17">fork </span><span class="rvts14">en Github: </span></li>
+</ul>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts14">git clone </span><a class="rvts16" href="https://github.com/LuisM000/TratamientoImagenesVB.NET.git">https://github.com/LuisM000/TratamientoImagenesVB.NET.git</a></li>
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts17">Fork </span><span class="rvts14">en </span><a class="rvts16" href="https://github.com/LuisM000/TratamientoImagenesVB.NET">https://github.com/LuisM000/TratamientoImagenesVB.NET</a></li>
+</ul></ul>
+<ul style="text-indent: 0px; margin-left: 47px; list-style-position: outside;">
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Enviando un correo a: </span><a class="rvts16" href="mailto:luis.m.r@outlook.com">luis.m.r@outlook.com</a><span class="rvts14"> // </span><a class="rvts16" href="mailto:u138568@usal.es">u138568@usal.es</a></li>
+</ul>
+<h2 class="rvps12"><a name="¿Cómo trabajar píxel a píxel?"></a>
+<span class="rvts0"><span class="rvts18">¿Cómo trabajar píxel a píxel?</span></span></h2>
+<p class="rvps8"><span class="rvts14">Una vez ha adquirido la clase y la tiene lista para usarse, ya puede empezar a modificar su código. Como puede observarse la clase está dividida en una primera zona donde están las propiedades y después tres grandes bloques:</span></p>
+<ul style="text-indent: 0px; margin-left: 47px; list-style-position: outside;">
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Funciones tratamiento: engloba todo el conjunto de funciones que transformar una imagen que se envía a dicha función. Por ejemplo, blanco y negro, sepia, contornos, etc.</span></li>
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Funciones abrir: incluye las funciones y procedimientos que se utilizan para abrir imágenes desde varias vías (recurso web, local) y guardarlas.</span></li>
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Funciones extra: están el resto de funciones que no se hallan en los apartados anteriores.</span></li>
+</ul>
+<p class="rvps16"><span class="rvts14">En esta guía se va a desarrollar una función que transforme una imagen en escala de grises.</span></p>
+<p class="rvps16"><span class="rvts14">Una imagen se compone de un número de píxeles dado por el ancho y alto, y cada píxel está compuesto por 4 canales. Esto cuatro canales (rojo, verde, azul y alfa), están a su vez compuestos por 256 valores posibles, es decir, un byte de información. Al transformar una imagen, generalmente se hacen cambios sobre esos píxeles, es decir, se altera su composición </span><span class="rvts17">ARGB </span><span class="rvts14">(alfa, rojo, verde, azul). </span></p>
+<p class="rvps8"><span class="rvts14">En el ejemplo que se va a mostrar a continuación se pasará los valores a tonos de gris. Los tonos de gris se caracterizan por tener el mismo valor en todos los canales (</span><span class="rvts17">RGB</span><span class="rvts14">), siendo el menor valor el color negro (</span><span class="rvts17">0, 0,0</span><span class="rvts14">) y el mayor en blanco (</span><span class="rvts17">255, 255,255</span><span class="rvts14">). Como puede observarse, el canal alfa (la transparencia) no se va a modificar.</span></p>
+<p class="rvps8"><span class="rvts14">Para aplicar esta función hay que calcular, para cada píxel, la media de sus tres componentes (RGB) y dicha media aplicarla a los tres canales en el píxel tratado. Si se tiene un píxel con valores; Rojo = 100, Verde = 200, Azul= 50, se debe calcular la media (</span><span class="rvts17">(100+200+50)/3</span><span class="rvts14">) y aplicar el valor resultante a los tres canales, por lo tanto, el píxel resultante tendría los siguientes valores para cada canal; Rojo = (100+200+50)/3, Verde = (100+200+50)/3, Azul = (100+200+50)/3, haciendo el cálculo sería, Rojo = 116, Verde = 116, Azul = 116.</span></p>
+<p class="rvps16"><span class="rvts14">Una vez que se conoce la teoría de cómo actuar, se va a proceder a incluir todo esto en la clase.</span></p>
+<h4 class="rvps14"><a name="Paso 1. ¿Dónde incluir la función escala de grises?"></a>
+<span class="rvts0"><span class="rvts27">Paso 1. ¿Dónde incluir la función escala de grises?</span></span></h4>
+<p class="rvps8"><span class="rvts14">Si se quiere mantener un orden, debe tener en cuenta la ubicación de la función que se vaya a crear. En este caso, la función es una transformación a escala de grises, por lo tanto su ubicación dentro de la clase estará en la región FuncionesTratamiento/Operaciones básicas. Allí se alojará la función a la que se va a denominar EscalaGrises.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">1</span><span class="rvts19">. Ubicación de la función.</span></p>
+<p class="rvps13"><img width="550" height="330" alt="" style="padding : 1px;" src="lib/NewItem326.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts21"><br/></span></p>
+<h4 class="rvps14"><a name="Paso 2. Definir la función y sus parámetros."></a>
+<span class="rvts0"><span class="rvts27">Paso 2. Definir la función y sus parámetros.</span></span></h4>
+<p class="rvps8"><span class="rvts14">Una vez se sabe dónde se va a situar, el siguiente paso es crear la función. En este caso, se ha optado por que la función sea pública (puesto que debe ser accesible desde fuera de la clase) y su nombre sea </span><span class="rvts17">EscalaGrises</span><span class="rvts14">. Esta función, recibirá un único parámetro denomida </span><span class="rvts17">bmp </span><span class="rvts14">que será un </span><span class="rvts17">System.Drawing.Bitmap</span><span class="rvts14">, y será enviado por valor. La función devuelve la imagen transformada a escala de grises, siendo un </span><span class="rvts17">Bitmap</span><span class="rvts14">. El esqueleto de la función sería así:</span></p>
+<p class="rvps8"><span class="rvts22">Public</span><span class="rvts23"> </span><span class="rvts22">Function</span><span class="rvts23"> EscalaGrises(</span><span class="rvts22">ByVal</span><span class="rvts23"> bmp </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">Bitmap</span><span class="rvts23">) </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">Bitmap</span></p>
+<p class="rvps8"><span class="rvts37">End sub</span></p>
+<h4 class="rvps14"><a name="Paso 3. Clonar imagen recibida y leer los valores para cada píxel."></a>
+<span class="rvts0"><span class="rvts27">Paso 3. Clonar imagen recibida y leer los valores para cada píxel.</span></span></h4>
+<p class="rvps8"><span class="rvts14">El siguiente paso es crear un bitmap auxiliar para no utilizar directamente el que se recibe como parámetro, que, aunque sea enviado por valor, es recomendable utilizar una copia para todo el proceso. El código sería así:</span></p>
+<p class="rvps2"><span class="rvts26">'Copia del bitmap original</span></p>
+<p class="rvps8"><span class="rvts22">Dim</span><span class="rvts23"> bmp2 </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">Bitmap</span><span class="rvts23"> = bmp</span></p>
+<p class="rvps8"><span class="rvts14">A continuación, se van a leer los valores de los píxeles del bitmap. Para ello, existe una función que se denomina </span><span class="rvts17">nivel</span><span class="rvts14">. Esta función devuelve una matriz bidimensional, donde las dimensiones son el ancho/alto del bitmap enviado, y para cada celda de la matriz (cada celda representa un píxel), están disponibles los 4 canales </span><span class="rvts17">ARGB</span><span class="rvts14">.</span></p>
+<p class="rvps2"><span class="rvts26">'Matriz que almacenará los niveles digitales de la imagen</span></p>
+<p class="rvps2"><span class="rvts22">Dim</span><span class="rvts23"> Niveles(,) </span><span class="rvts22">As</span><span class="rvts23"> System.Drawing.</span><span class="rvts25">Color</span></p>
+<p class="rvps2"><span class="rvts26">'Se obtienen los valores de la imagen</span></p>
+<p class="rvps8"><span class="rvts23">Niveles = nivel(bmp2)</span></p>
+<h4 class="rvps14"><a name="Paso 4. Recorrer la imagen y calcular el nivel de gris."></a>
+<span class="rvts0"><span class="rvts47">Paso 4. Recorrer la imagen y calcular el nivel de gris.</span></span></h4>
+<p class="rvps8"><span class="rvts14">Una vez se ha obtenido la matriz con todos los valores de cada píxel, se debe calcular la media de cada píxel para así obtener la imagen en escala de grises. Como primer paso, se van a declarar 5 variables, conteniendo 3 de ellas el valor rojo, verde y azul de cada píxel, una cuarta variable que calculará la media y la última será un bitmap que tendrá el ancho y alto de la imagen original (bmp)</span></p>
+<p class="rvps2"><span class="rvts26">'Variable para calcular la media</span></p>
+<p class="rvps2"><span class="rvts22">Dim</span><span class="rvts23"> media </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Double</span></p>
+<p class="rvps2"><span class="rvts26">'Variables auxiliares que contendrán los valores RGB</span></p>
+<p class="rvps2"><span class="rvts22">Dim</span><span class="rvts23"> rojoaux, verdeaux, azulaux </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Double</span><span class="rvts38"> </span><span class="rvts38"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts38"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts38"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts38"> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p class="rvps2"><span class="rvts26">'Variables que crea una copia de la imagen original</span></p>
+<p class="rvps8"><span class="rvts22">Dim</span><span class="rvts23"> bmpSalida </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">Bitmap</span><span class="rvts23">(bmp.Width, bmp.Height)</span></p>
+<p class="rvps8"><span class="rvts14">A continuación, se va a recorrer toda la matriz que contiene los valores de los píxeles de la imagen (niveles digitales). Se va a utilizar un doble bucle for, que recorrerá columna por columna la matriz.</span></p>
+<p class="rvps2"><span class="rvts22">For</span><span class="rvts23"> i = 0 </span><span class="rvts22">To</span><span class="rvts23"> Niveles.GetUpperBound(0) &nbsp;</span><span class="rvts26">'Se recorre cada píxel de la imagen</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">For</span><span class="rvts23"> j = 0 </span><span class="rvts22">To</span><span class="rvts23"> Niveles.GetUpperBound(1)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p class="rvps8"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Next</span></p>
+<p class="rvps8"><span class="rvts22">Next</span></p>
+<p class="rvps8"><span class="rvts34">Una vez se ha visto cómo recorrer la imagen, se va a proceder a leer los valores de la matriz que contiene los niveles digitales y a calcular su media para asignarla al bitmap de salida (</span><span class="rvts35">bmpSalida</span><span class="rvts34">).</span></p>
+<p class="rvps2"><span class="rvts22">For</span><span class="rvts23"> i = 0 </span><span class="rvts22">To</span><span class="rvts23"> Niveles.GetUpperBound(0) &nbsp;</span><span class="rvts26">'Recorremos la matriz</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">For</span><span class="rvts23"> j = 0 </span><span class="rvts22">To</span><span class="rvts23"> Niveles.GetUpperBound(1)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p class="rvps18"><span class="rvts26">'Se obtienen los valores de la matriz niveles</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;rojoaux = Niveles(i, j).R</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;verdeaux = Niveles(i, j).G</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;azulaux = Niveles(i, j).B</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps18"><span class="rvts26">'Se calcula la media</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;media = </span><span class="rvts22">CInt</span><span class="rvts23">((rojoaux + verdeaux + azulaux) / 3</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p class="rvps18"><span class="rvts26">'Se asigna la media a los tres canales RGB</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;rojoaux = media</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;verdeaux = media</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;azulaux = media</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Se incluye también el canal alfa (opcional)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;alfa = Niveles(i, j).A</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps18"><span class="rvts26">'Con el procedimiento SetPixel se asignan los colores</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bmpSalida.SetPixel(i, j, </span><span class="rvts25">Color</span><span class="rvts23">.FromArgb(alfa, rojoaux, verdeaux, azulaux))</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Next</span></p>
+<p class="rvps8"><span class="rvts22">Next</span></p>
+<p class="rvps8"><span class="rvts34">Tras realizar esto, la imagen transformada (bmpSalida) a escala de grises ya está creado. Sólo falta retornar el valor.</span></p>
+<p class="rvps2"><span class="rvts26">'Se devuelve el bitmap pasado a escala de grises</span></p>
+<p class="rvps16"><span class="rvts22">Return</span><span class="rvts23"> bmpSalida</span></p>
+<h4 class="rvps14"><a name="Paso 5. Incluir eventos y propiedades de la clase."></a>
+<span class="rvts0"><span class="rvts48">Paso 5. Incluir eventos y propiedades de la clase.</span></span></h4>
+<p class="rvps8"><span class="rvts34">La función desarrollada en los puntos anteriores ya es totalmente funcional, pero hay que tener en cuenta unos pequeños detalles que harán que la función sea completamente funcional. </span><br/><span class="rvts34">A continuación, se muestra el código fuente de 3 acciones que hay que tener en cuenta a la hora de crear una función. Una de ellas se gestionará desde la propiedad </span><span class="rvts35">progreso</span><span class="rvts34">. Esta propiedad se trata de un vector con dos posiciones, en la primera se incluirá el porcentaje de progreso de la transformación y el segundo el tipo de transformación que se llevará a cabo. Además de esta propiedad, también se debe almacenar la imagen con el método </span><span class="rvts35">guardarimagen</span><span class="rvts34"> que la almacenará para que pueda que se almacene en la lista para poder deshacer/rehacer las transformaciones. Por último, hay que generar el evento </span><span class="rvts35">actualizaBMP</span><span class="rvts34"> para que se detecte que hay un cambio en la imagen (y así poder actualizar un Picturebox que funcione como imagen miniatura. </span></p>
+<p class="rvps8"><span class="rvts34">El código fuente completo de clase con estos detalles (resaltados en color), se muestra a continuación:</span></p>
+<p class="rvps2"><span class="rvts41">Public Function EscalaGrises(ByVal bmp As Bitmap) As Bitmap</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; 'Copia del bitmap original</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; Dim bmp2 As Bitmap = bmp</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; 'Matriz que almacenará los niveles digitales de la imagen</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; Dim Niveles(,) As System.Drawing.Color</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; 'Se obtienen los valores de la imagen</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; Niveles = nivel(bmp2)</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; </span><span class="rvts26">'Se actualiza el porcentaje de transformación</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; porcentaje(0) = 0</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; </span><span class="rvts26">'Se indica la transformación que se está llevando a cabo</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; porcentaje(1) = </span><span class="rvts33">"Transformando imagen a escala de grises"</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; </span><span class="rvts41">'Variable para calcular la media</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; Dim media As Double</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; 'Variables auxiliares que contendrán los valores ARGB</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; Dim rojoaux, verdeaux, azulaux As Double</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; Dim alfa As Byte</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; 'Variables que crea una copia de la imagen original</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; Dim bmpSalida As New Bitmap(bmp.Width, bmp.Height)</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; For i = 0 To Niveles.GetUpperBound(0) &nbsp;'Recorremos la matriz</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp;For j = 0 To Niveles.GetUpperBound(1)</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; 'Se obtienen los valores de la matriz niveles</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; rojoaux = Niveles(i, j).R</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; verdeaux = Niveles(i, j).G</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; azulaux = Niveles(i, j).B</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; 'Se calcula la media</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; media = CInt((rojoaux + verdeaux + azulaux) / 3</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; 'Se asigna la media a los tres canales RGB</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; rojoaux = media</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; verdeaux = media</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; azulaux = media</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; 'Se incluye también el canal alfa (opcional)</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; alfa = Niveles(i, j).A</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; 'Con el procedimiento SetPixel se asignan los colores</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; bmpSalida.SetPixel(i, j, Color.FromArgb(alfa, rojoaux, verdeaux, azulaux))</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp; &nbsp; </span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; &nbsp; &nbsp;Next</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; </span><span class="rvts26">'Se actualiza el porcentaje a medida que se recorreo un columna de la matriz</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; porcentaje(0) = ((i * 100) / bmp2.Width)</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; Next</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; </span><span class="rvts26">'Se indica que la transformación ha finalizado</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; porcentaje(1) = </span><span class="rvts33">"Finalizado"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; </span><span class="rvts26">'Se almacena la imagen para poder hacer restroceso (deshacer)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; </span><span class="rvts26">'Se almacena la imagen y la transformación efectuada</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; guardarImagen(bmpSalida, </span><span class="rvts33">"Imagen transformada a escala de grises"</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; </span><span class="rvts26">'Se genera el evento que informa de que la imagen se ha transformado</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; </span><span class="rvts22">RaiseEvent</span><span class="rvts23"> actualizaBMP(bmpSalida)</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; 'Se devuelve el bitmap pasado a escala de grises</span></p>
+<p class="rvps2"><span class="rvts41"> &nbsp; Return bmpSalida</span></p>
+<p class="rvps2"><span class="rvts41"><br/></span></p>
+<p class="rvps8"><span class="rvts41">End Function</span></p>
+<p class="rvps16"><span class="rvts34">Tras realizar esto, la clase ya está de acuerdo con la estructura general de </span><span class="rvts35">ClaseImagenes</span><span class="rvts34">.</span></p>
+<h4 class="rvps14"><a name="Paso 6. Documentar función."></a>
+<span class="rvts0"><span class="rvts48">Paso 6. Documentar función.</span></span></h4>
+<p class="rvps8"><span class="rvts34">El último paso para completar la función es documentarla con los comentarios XML de Visual Studio. Para ello, hay que situarse encima de la función y pulsar tres veces el carácter de comentario (‘). Automáticamente aparece una pequeña estructura XML donde se podrá incluir diversa información sobre la función. Para ver todos los detalles de los comentarios, acceder a la siguiente web, </span><a class="rvts16" href="http://msdn.microsoft.com/es-es/magazine/dd722812.aspx">http://msdn.microsoft.com/es-es/magazine/dd722812.aspx</a><span class="rvts21">.</span></p>
+<p class="rvps8"><span class="rvts14">Ahora, y después de pulsar tres veces el carácter de comentario encima de la función se va a rellenar la información, y el resultado sería el siguiente.</span></p>
+<p class="rvps2"><span class="rvts26">''' </span><span class="rvts42">&lt;summary&gt;</span></p>
+<p class="rvps2"><span class="rvts26">''' Función que transforma una imagen en escala de grises.</span></p>
+<p class="rvps2"><span class="rvts26">''' </span><span class="rvts42">&lt;example&gt;</span><span class="rvts26">Asignando la salida a un Picturebox, la llamada sería así:</span></p>
+<p class="rvps2"><span class="rvts26">''' </span><span class="rvts42">&lt;code&gt;</span><span class="rvts26">Picturebox1.image=objetoTratamient.EscalaGrises(bmp)</span><span class="rvts42">&lt;/code&gt;&lt;/example&gt;</span></p>
+<p class="rvps2"><span class="rvts26">''' </span><span class="rvts42">&lt;/summary&gt;</span></p>
+<p class="rvps2"><span class="rvts26">''' </span><span class="rvts42">&lt;param name="bmp"&gt;</span><span class="rvts26">Imagen que se va a transformar en formato Bitmap.</span><span class="rvts42">&lt;/param&gt;</span></p>
+<p class="rvps8"><span class="rvts26">''' </span><span class="rvts42">&lt;returns&gt;</span><span class="rvts26">Devuelve un bitmap.</span><span class="rvts42">&lt;/returns&gt;</span></p>
+<p class="rvps8"><span class="rvts14">Una vez completado esto, la clase está lista para implementarse en la clase </span><span class="rvts17">ClaseImagenes</span><span class="rvts14">. Como se podría observar, tras incluir los comentarios XML, el examinador de objetos mostraría toda la información de la función e IntelliSense también.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">2</span><span class="rvts19">. Detalle función en IntelliSense.</span></p>
+<p class="rvps13"><img width="544" height="100" alt="" style="padding : 1px;" src="lib/NewItem325.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts40"><br/></span></p>
+<h4 class="rvps14"><a name="Paso 7. Compilar y crear la biblioteca de clase."></a>
+<span class="rvts0"><span class="rvts48">Paso 7. Compilar y crear la biblioteca de clase.</span></span></h4>
+<p class="rvps8"><span class="rvts34">Una vez se han seguido todos los pasos anteriores, la clase es totalmente funcional y está totalmente integrada con la clase </span><span class="rvts35">ClaseImagenes</span><span class="rvts34">. Ahora, si se quiere exportar la clase como </span><span class="rvts35">Biblioteca de clases</span><span class="rvts34">, hay que abrir un nuevo proyecto de Visual Basic .NET como </span><span class="rvts35">Biblioteca de clases</span><span class="rvts34">. Se le da un nombre y se acepta. En unos segundos tendrá creado un nuevo proyecto.</span></p>
+<p class="rvps8"><span class="rvts39"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">3</span><span class="rvts19">. Nuevo proyecto Biblioteca de clases.</span></p>
+<p class="rvps13"><img width="554" height="353" alt="" style="padding : 1px;" src="lib/NewItem324.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts39"><br/></span></p>
+<p class="rvps8"><span class="rvts34">Una vez realizado esto, aparecerá un único elemento denominado </span><span class="rvts35">Class1.vb</span><span class="rvts34"> el cual eliminaremos. Como siguiente paso, se busca y se agrega la clase </span><span class="rvts35">ClaseImagenes </span><span class="rvts34">modificada, y tendremos un proyecto como </span><span class="rvts35">Biblioteca de clases</span><span class="rvts34"> el cual únicamente tendrá nuestra clase. </span></p>
+<p class="rvps8"><span class="rvts34">Al agregar la clase se observará que no reconoce las variables </span><span class="rvts35">Bitmap</span><span class="rvts34">, entre otras. Para solucionar esto, basta con hacer clic con el botón derecho encima del proyecto (en el </span><span class="rvts35">Explorado de soluciones</span><span class="rvts34">) y seleccionar </span><span class="rvts35">Agregar referencia</span><span class="rvts34">. En la sección </span><span class="rvts35">Ensamblados</span><span class="rvts34">/</span><span class="rvts35">Framework </span><span class="rvts34">incluir las referencias a </span><span class="rvts35">System.Drawing</span><span class="rvts34"> y </span><span class="rvts35">System.Windows.Forms</span><span class="rvts39">.</span></p>
+<p class="rvps8"><span class="rvts39"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">4</span><span class="rvts19">. Agregar ensamblados.</span></p>
+<p class="rvps13"><img width="552" height="297" alt="" style="padding : 1px;" src="lib/NewItem323.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts39"><br/></span></p>
+<p class="rvps8"><span class="rvts34">Ahora sólo faltaría un último detalle. Como se observa en la zona que determina los errores de código, hay 6 errores referentes a que no se encuentra el recurso (</span><span class="rvts35">Resources</span><span class="rvts34">) de </span><span class="rvts35">marco</span><span class="rvts34">, </span><span class="rvts35">CineFotos</span><span class="rvts34">, </span><span class="rvts35">negativoMarco</span><span class="rvts34">, </span><span class="rvts35">marcoNegro</span><span class="rvts34">, </span><span class="rvts35">MarcoOndul</span><span class="rvts34">. Esto es debido a que la clase a la hora de crear marcos se sirve de 5 imágenes. Para solucionarlo, basta con buscar en la carpeta Resources de la clase original (</span><span class="rvts35">ClaseImagenes</span><span class="rvts34">), estos 5 archivos, y agregarlos como recurso a la biblioteca de clases que se está creando. Esto se hace desde el </span><span class="rvts35">Explorador de soluciones </span><span class="rvts34">haciendo doble clic en la sección </span><span class="rvts35">My Project </span><span class="rvts34">y en la ventana que se abre buscando la sección </span><span class="rvts35">Recursos </span><span class="rvts34">y agregando las 5 imágenes (que se encuentran como se ha dicho en la carpeta </span><span class="rvts35">Resources</span><span class="rvts34"> del proyecto original).</span></p>
+<p class="rvps8"><span class="rvts34"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">5</span><span class="rvts19">. Buscar y agregar las imágenes.</span></p>
+<p class="rvps13"><img width="550" height="330" alt="" style="padding : 1px;" src="lib/NewItem322.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts39"><br/></span></p>
+<p class="rvps8"><span class="rvts34">Una vez agregadas las imágenes, se hace clic en la barra superior en la opción </span><span class="rvts35">Compilar</span><span class="rvts34">/</span><span class="rvts35">Compilar solución</span><span class="rvts34">. En unos segundos se habrá compilado correctamente y dentro de la carpeta del proyecto, en la ruta </span><span class="rvts35">bin/Debug</span><span class="rvts34"> o </span><span class="rvts35">bin/Release </span><span class="rvts34">(depende de cómo se haya compilado), estará disponible la biblioteca lista para su uso.</span></p>
+<p class="rvps8"><span class="rvts34"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">6</span><span class="rvts19">. Ruta de la Biblioteca de clases.</span></p>
+<p class="rvps13"><img width="551" height="335" alt="" style="padding : 1px;" src="lib/NewItem321.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts39"><br/></span></p>
+<h2 class="rvps12"><a name="Eventos y propiedades a tener en cuenta."></a>
+<span class="rvts0"><span class="rvts43">Eventos y propiedades a tener en cuenta.</span></span></h2>
+<p class="rvps8"><span class="rvts34">Como se ha visto en el desarrollo anterior, hay una serie de eventos y propiedades que hay que tener en cuenta a la hora de desarrollar funciones para </span><span class="rvts35">ClaseImagenes</span><span class="rvts39">.</span></p>
+<h4 class="rvps14"><a name="Eventos"></a>
+<span class="rvts0"><span class="rvts44">Eventos</span></span></h4>
+<p class="rvps8"><span class="rvts34">Hay dos eventos en la clase, uno para indicar que se ha recibido una imagen y ésta se ha transformado y otro para indicar que se ha abierto una imagen nueva y por lo tanto, se ha modificado el nombre, tamaño y origen de la imagen original actual. El código fuente sería:</span></p>
+<p class="rvps2"><span class="rvts26">'Se genera el evento que informa de que la imagen se ha transformado</span></p>
+<p class="rvps2"><span class="rvts22">RaiseEvent</span><span class="rvts23"> actualizaBMP(bmpSalida)</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts26">'Se genera un evento que informa de que se ha abierto una imagen nueva. Se utiliza la función </span><span class="rvts45">nombreImagen</span><span class="rvts26"> para obtener el nombre de la imagen evento y enviamos nombre, ancho, alto y origen de la imagen</span></p>
+<p class="rvps2"><span class="rvts22">RaiseEvent</span><span class="rvts23"> actualizaNombreImagen({nombreImagen(</span><span class="rvts33">"C:/Users/imagenPrueba.jpg"</span><span class="rvts23">), bmp.Width, bmp.Height, </span><span class="rvts33">"Desde archivo"</span><span class="rvts23">}) </span></p>
+<p class="rvps2"><span class="rvts46"><br/></span></p>
+<h4 class="rvps14"><a name="Propiedades"></a>
+<span class="rvts0"><span class="rvts44">Propiedades</span></span></h4>
+<p class="rvps8"><span class="rvts34">También existen un conjunto de propiedades que debe utilizarse a la hora de implementar funciones dentro de la clase.</span></p>
+<p class="rvps8"><span class="rvts34">La variable porcentaje (accesible desde fuera de la clase como propiedad denominada </span><span class="rvts35">estadoCarga</span><span class="rvts34">) sirve para indicar el porcentaje realizado en una transformación y el tipo de transformación realizado. Esta variable en un vector con dos posiciones, en la primera se incluye el porcentaje y en la segunda el tipo de transformación. Esta variable es muy útil a la hora de recorrer los píxeles de una imagen. A continuación se muestra un ejemplo.</span></p>
+<p class="rvps2"><span class="rvts26">'Se actualiza el porcentaje de transformación</span></p>
+<p class="rvps2"><span class="rvts23">porcentaje(0) = 0</span></p>
+<p class="rvps2"><span class="rvts26">'Se indica la transformación que se está llevando a cabo</span></p>
+<p class="rvps2"><span class="rvts23">porcentaje(1) = </span><span class="rvts33">"Transformando imagen a escala de grises" &nbsp;</span></p>
+<p class="rvps2"><span class="rvts33"><br/></span></p>
+<p class="rvps8"><span class="rvts34">Hay otra propiedad (que realmente no se utiliza directamente, sino mediante el método </span><span class="rvts35">guardarImagen</span><span class="rvts34">) almacena una imagen cuando se ha realizado una transformación, es decir, en su función justo antes de devolver la imagen transformada se debe llamar al método de la siguiente forma.</span></p>
+<p class="rvps2"><span class="rvts26">'Se almacena la imagen y la transformación efectuada</span></p>
+<p class="rvps2"><span class="rvts23">guardarImagen(bmpSalida, </span><span class="rvts33">"Imagen transformada a escala de grises"</span><span class="rvts23">)</span></p>
+<p class="rvps8"><span class="rvts23"><br/></span></p>
+<p class="rvps8"><span class="rvts34">Por último, cuando se crea una función que abre una imagen nueva (por ejemplo gestiona la opción de abrir imágenes desde archivo), se debe almacenar esa imagen como original, es decir, no es una transformación, sino una imagen abierta desde el exterior. Para ello se utilizan dos propiedades. En el siguiente ejemplo se puede ver cómo funcionan:</span></p>
+<p class="rvps2"><span class="rvts26">'Se guarda la imagen original (en formato bitmap)</span></p>
+<p class="rvps2"><span class="rvts23">ImagenOriginalGuardada = abrirImagen</span></p>
+<p class="rvps2"><span class="rvts26">'Se incluye información sobre su origen</span></p>
+<p class="rvps8"><span class="rvts23">imagenOriginalInfo = </span><span class="rvts33">"Imagen original desde archivo"</span></p>
+<p></p>
+<p class="rvps7"><span class="rvts12">Created with the Personal Edition of HelpNDoc: </span><a class="rvts13" href="http://www.helpndoc.com/feature-tour/iphone-website-generation">iPhone web sites made easy</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyleft 2013  por Luis Marcos Rivera.</div>
+		</div>
+	</body>
+	
+</html>
+

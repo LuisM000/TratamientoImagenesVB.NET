@@ -52,7 +52,7 @@ Public Class Colabora
             Dim SMTP As New System.Net.Mail.SmtpClient 'Variable con la que se envia el correo
             envioOK = True
             Dim CORREO As New System.Net.Mail.MailMessage
-            CORREO.From = New System.Net.Mail.MailAddress("apolothreads@gmail.com", "Petición colaborar Apolo threads", System.Text.Encoding.UTF8)
+            CORREO.From = New System.Net.Mail.MailAddress("apolothreads@gmail.com", "Petición colaborar Apolo thread", System.Text.Encoding.UTF8)
 
             Dim cuerpoCorreo As String
             cuerpoCorreo = "Email: " & email & " ----  "
@@ -67,7 +67,7 @@ Public Class Colabora
             CORREO.IsBodyHtml = True
             CORREO.AlternateViews.Add(htmlView)
 
-            CORREO.Subject = "Petición colaborar Apolo threads"
+            CORREO.Subject = "Petición colaborar Apolo thread"
             SMTP.Host = "smtp.gmail.com"
             SMTP.Port = "587"
 

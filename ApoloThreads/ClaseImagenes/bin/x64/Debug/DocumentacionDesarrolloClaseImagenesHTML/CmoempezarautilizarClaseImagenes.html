@@ -1,0 +1,543 @@
+﻿<html>
+	
+<head>
+	<title>&iquest;C&oacute;mo empezar a utilizar ClaseImagenes.dll?</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "DocumentacionDesarrolloClaseImagenes.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("CmoempezarautilizarClaseImagenes");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>&iquest;C&oacute;mo empezar a utilizar ClaseImagenes.dll?</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="DocumentacintcnicaDesarrolloconl.html">Documentaci&oacute;n t&eacute;cnica. Desarrollo con la biblioteca ClaseImagenes.dll</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="DocumentacintcnicaDesarrolloconl.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="QuesClaseImagenesdll.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="CmomodificarClaseImagenes.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts15">¿Cómo empezar a utilizar ClaseImagenes.dll?</span></span></h1>
+<h1 class="rvps4"><span class="rvts0"><span class="rvts10">Tabla de contenidos</span></span></h1>
+<p class="rvps6"><a class="rvts9" href="CmoempezarautilizarClaseImagenes.html#¿Cómo adquirirla?">1. ¿Cómo adquirirla?</a></p>
+<p class="rvps5"><a class="rvts9" href="CmoempezarautilizarClaseImagenes.html#¿Cómo agregar la biblioteca de clases a un proyecto?">2. ¿Cómo agregar la biblioteca de clases a un proyecto?</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmoempezarautilizarClaseImagenes.html#Primer ejemplo">2.1. Primer ejemplo</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmoempezarautilizarClaseImagenes.html#Referencia de funciones">2.2. Referencia de funciones</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmoempezarautilizarClaseImagenes.html#Guía para crear un proyecto con ClaseImagenes">2.3. Guía para crear un proyecto con ClaseImagenes.dll</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmoempezarautilizarClaseImagenes.html#Aplicación básica">2.3.1. Aplicación básica</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmoempezarautilizarClaseImagenes.html#Añadidos a la aplicación básica">2.3.2. Añadidos a la aplicación básica</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmoempezarautilizarClaseImagenes.html#Operaciones avanzadas">2.3.3. Operaciones avanzadas</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span><a class="rvts9" href="CmoempezarautilizarClaseImagenes.html#Trabajar desde otros formularios">2.3.4. Trabajar desde otros formularios</a></p>
+<p class="rvps5"><span class="rvts36"> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<hr style="height: 1px; color : #000000;  background-color : #000000; border-width : 0px;"/>
+<h2 class="rvps12"><a name="¿Cómo adquirirla?"></a>
+<span class="rvts0"><span class="rvts18">¿Cómo adquirirla?</span></span></h2>
+<p class="rvps8"><span class="rvts14">Las vías de adquisición son varias. Usted puede encontrarla en forma de clase (con código fuente), descargando la aplicación Apolo (disponible en git/github y en sourceforge), o bien adquiriendo la biblioteca. A continuación se muestran las diferentes vías para adquirirla:</span></p>
+<ul style="text-indent: 0px; margin-left: 47px; list-style-position: outside;">
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Desde sourceforge: </span><a class="rvts16" href="http://sourceforge.net/users/luis-net">http://sourceforge.net/users/luis-net</a></li>
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Accediendo a la web: </span><a class="rvts16" href="http://algoimagen.blogspot.com.es/">http://algoimagen.blogspot.com.es/</a></li>
+<li class="rvps10" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Clonando el repositorio o haciendo </span><span class="rvts17">fork </span><span class="rvts14">en Github: </span></li>
+</ul>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps10" style="margin-left: 0; text-indent: 0px"><span class="rvts14">git clone </span><a class="rvts16" href="https://github.com/LuisM000/TratamientoImagenesVB.NET.git">https://github.com/LuisM000/TratamientoImagenesVB.NET.git</a></li>
+<li class="rvps11" style="margin-left: 0; text-indent: 0px"><span class="rvts17">Fork </span><span class="rvts14">en </span><a class="rvts16" href="https://github.com/LuisM000/TratamientoImagenesVB.NET">https://github.com/LuisM000/TratamientoImagenesVB.NET</a></li>
+</ul></ul>
+<ul style="text-indent: 0px; margin-left: 47px; list-style-position: outside;">
+<li class="rvps9" style="margin-left: 0; text-indent: 0px"><span class="rvts14">Enviando un correo a: </span><a class="rvts16" href="mailto:luis.m.r@outlook.com">luis.m.r@outlook.com</a><span class="rvts14"> // </span><a class="rvts16" href="mailto:u138568@usal.es">u138568@usal.es</a></li>
+</ul>
+<h2 class="rvps12"><a name="¿Cómo agregar la biblioteca de clases a un proyecto?"></a>
+<span class="rvts0"><span class="rvts18">¿Cómo agregar la biblioteca de clases a un proyecto?</span></span></h2>
+<p class="rvps8"><span class="rvts14">Una vez ha adquirido la clase y quiere empezar a utilizarla, abra su IDE (Visual Studio o Mono) y agréguela. En el ejemplo siguiente se va a desarrollar todo el proceso con Visual Studio 2012 Express. </span></p>
+<p class="rvps8"><span class="rvts14">Primeramente, se abre VS Express y se selecciona nuevo proyecto (</span><span class="rvts17">Archivo/Nuevo proyecto</span><span class="rvts14">), en este caso un proyecto Windows Forms, y tras darle un nombre (</span><span class="rvts17">ProyectoUsoClaseImagenes</span><span class="rvts14">) se acepta.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">1</span><span class="rvts19">. Selección de proyecto Windows Forms.</span></p>
+<p class="rvps13"><img width="550" height="328" alt="" style="padding : 1px;" src="lib/NewItem320.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Tras unos segundos tendrá el formulario principal de su proyecto. Ya sólo queda el último paso, agregar la biblioteca ClaseImagenes.dll. Lo único que tiene que hacer es, en el explorador de soluciones (</span><span class="rvts17">Ver/Explorador de soluciones</span><span class="rvts14">), pulsar encima del proyecto con el botón derecho y seleccionar agregar referencia, tal y como se muestra en la siguiente imagen.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">2</span><span class="rvts19">. Agregar referencia.</span></p>
+<p class="rvps13"><img width="550" height="328" alt="" style="padding : 1px;" src="lib/NewItem319.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Una vez realizado esto, se mostrará un cuadro de diálogo donde se pueden agregar las diferentes referencias al proyecto. Se selecciona la opción </span><span class="rvts17">Examinar </span><span class="rvts14">y busque en su pc ClaseImagenes.dll.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">3</span><span class="rvts19">. Cuadro de diálogo agregar referencias.</span></p>
+<p class="rvps13"><img width="552" height="380" alt="" style="padding : 1px;" src="lib/NewItem318.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Una vez importa la biblioteca de clases se debe pulsar en aceptar y su proyecto ya está listo para empezar a utilizar la biblioteca de clases ClaseImagenes.dll.</span></p>
+<h2 class="rvps12"><a name="Primer ejemplo"></a>
+<span class="rvts0"><span class="rvts18">Primer ejemplo</span></span></h2>
+<p class="rvps8"><span class="rvts14">En el anterior paso se ha agregado la referencia a la biblioteca de clases en un proyecto Windows Forms. Ahora sólo queda incluir en la cabecera del código la sentencia </span><span class="rvts17">Imports </span><span class="rvts14">para hacer referencia a las funciones sin necesidad de poner el espacio de nombres. Haga doble clic en una zona vacía del formulario principal y una vez se haya mostrado el código, tiene que escribir en la parte superior lo siguiente:</span></p>
+<p class="rvps8"><span class="rvts22">Imports</span><span class="rvts23"> ClaseImagenes.Apolo</span></p>
+<p class="rvps8"><span class="rvts14">En la imagen se observa el proceso.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">4</span><span class="rvts19">. Sentencia Imports.</span></p>
+<p class="rvps13"><img width="550" height="330" alt="" style="padding : 1px;" src="lib/NewItem317.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Una vez realizado esto, se va a mostrar un pequeño ejemplo de cómo transformar una imagen a tonos sepia utilizando la función </span><span class="rvts17">Sepia</span><span class="rvts14"> de la biblioteca de clases. Para ello, diríjase a la parte de diseño de su formulario y agregue dos Picturebox arrastrándolos directamente desde el Cuadro de herramientas (</span><span class="rvts17">Ver/Cuadro de herramientas</span><span class="rvts14">) y un botón. A uno de los dos Picturebox se le deberá añadir una imagen desde las propiedades del Picturebox (Ver/Ventana de Propiedades), y en la propiedad </span><span class="rvts17">Image </span><span class="rvts14">importando una imagen desde su pc.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">5</span><span class="rvts19">. Importar imagen a Picturebox.</span></p>
+<p class="rvps13"><img width="550" height="330" alt="" style="padding : 1px;" src="lib/NewItem316.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Una vez se ha importado la imagen se va a proceder a utilizar el evento clic del botón. Para hacer uso de él, se debe hacer doble clic sobre el botón (en la imagen anterior el botón se llama </span><span class="rvts17">Transformar a tonos sepia</span><span class="rvts14">) y se mostrará de nuevo el código fuente, en este caso asociado al clic del botón. Ahora, lo siguiente es crear un objeto de la clase </span><span class="rvts17">Tratamiento </span><span class="rvts14">y utilizar la función Sepia. Antes que nada, indicar que el formato de imágenes que soporta la clase en casi todas las funciones es </span><span class="rvts17">bitmap</span><span class="rvts14">, por lo que hay que transformar la imagen a </span><span class="rvts17">bitmap</span><span class="rvts24">.</span><span class="rvts14"> El código sería el siguiente:</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Button1_Click(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> Button1.Click</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Transformamos la imagen a Bitmap</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Dim</span><span class="rvts23"> ImagenBMP </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">Bitmap</span><span class="rvts23">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Instanciamos a la clase</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Dim</span><span class="rvts23"> objetoImagenes </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> TratamientoImagenes</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Asignamos al otro Picturebox el resultado de transformar a tonos sepia</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox2.Image = objetoImagenes.sepia(ImagenBMP)</span></p>
+<p class="rvps8"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps8"><span class="rvts14">Una vez realizado esto, se pulsa en Iniciar (</span><span class="rvts17">F5</span><span class="rvts14">) y se después de compilar abrirá el formulario.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">6</span><span class="rvts19">. Iniciar compilación.</span></p>
+<p class="rvps13"><img width="550" height="330" alt="" style="padding : 1px;" src="lib/NewItem315.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">El resultado es el formulario con la imagen, y tras pulsar el botón se mostrará en el Picturebox de la derecha la imagen transformada a tonos sepia.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">7</span><span class="rvts19">. Proyecto compilado.</span></p>
+<p class="rvps13"><img width="554" height="323" alt="" style="padding : 1px;" src="lib/NewItem314.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Como puede observarse el proceso es muy sencillo, simplemente hay que transformar la imagen a bitmap, crear un nuevo objeto de la clase (instanciar clase) y llamar a la función que devolverá la imagen transformada. Tenga en cuenta que, si no se hace al principio del proyecto el Imports, el código para crear el objeto sería así:</span></p>
+<p class="rvps2"><span class="rvts26">'Instancia a la clase sin sentencia Imports</span></p>
+<p class="rvps8"><span class="rvts23"> </span><span class="rvts22">Dim</span><span class="rvts23"> objetoImagenes </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> ClaseImagenes.Apolo.</span><span class="rvts25">TratamientoImagenes</span><span class="rvts14"> </span></p>
+<h2 class="rvps12"><a name="Referencia de funciones"></a>
+<span class="rvts0"><span class="rvts18">Referencia de funciones</span></span></h2>
+<p class="rvps8"><span class="rvts14">Para ver cómo funcionan las diferentes funciones, propiedades, eventos, etc., de la biblioteca </span><span class="rvts17">ClaseImagenes&nbsp;</span><span class="rvts14"> puede revisar la documentación técnica (disponible en la aplicación Apolo) o bien utilizar el examinador de objetos de Visual Studio. </span></p>
+<p class="rvps8"><span class="rvts14">Para utilizar esta última forma, simplemente y tras agregar la biblioteca a su proyecto, vaya al menú </span><span class="rvts17">Ver &nbsp;</span><span class="rvts14">y pulse la opción </span><span class="rvts17">Examinador de objetos</span><span class="rvts14">, y se mostrará todas las funcionalidades de las clases, con ejemplos, explicación de parámetros y comentarios. Y de esta forma podrá ver todos los miembros de la clase y su funcionalidad. En la siguiente imagen se muestra lo explicado.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">8</span><span class="rvts19">. Examinador de objetos.</span></p>
+<p class="rvps13"><img width="550" height="330" alt="" style="padding : 1px;" src="lib/NewItem313.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Además, como toda la biblioteca está documentada de acuerdo al procedimiento de Visual Studio y sus comentarios xml, al llamar a cualquier miembro de la clase o a sus parámetros, se muestra toda la información en IntelliSense de Visual Studio.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">9</span><span class="rvts19">. IntelliSense mostrando información de la función y parámetros.</span></p>
+<p class="rvps13"><img width="544" height="100" alt="" style="padding : 1px;" src="lib/NewItem312.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts21"><br/></span></p>
+<h2 class="rvps12"><a name="Guía para crear un proyecto con ClaseImagenes"></a>
+<span class="rvts0"><span class="rvts18">Guía para crear un proyecto con ClaseImagenes</span></span></h2>
+<p class="rvps8"><span class="rvts14">En este apartado se intentará iniciar a crear una pequeña aplicación para ver el funcionamiento básico de cómo crear un proyecto valiéndose de las funcionalidades de la biblioteca de clases desarrollada.</span></p>
+<h4 class="rvps14"><a name="Aplicación básica"></a>
+<span class="rvts0"><span class="rvts27">Aplicación básica</span></span></h4>
+<p class="rvps8"><span class="rvts14">En primer lugar, se mostrará una imagen del resultado final de la aplicación que se va a desarrollar en esta breve guía.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">10</span><span class="rvts19">. Programa de prueba.</span></p>
+<p class="rvps13"><img width="548" height="419" alt="" style="padding : 1px;" src="lib/NewItem311.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Como puede observarse el programa tiene varios botones para aplicar diferentes transformaciones, además de una imagen general (en la parte inferior derecha) y opciones para hacer/deshacer las diferentes transformaciones y abrir/guardar imágenes.</span></p>
+<p class="rvps8"><span class="rvts14">Una vez creado el formulario con los botones, se va a empezar a mostrar el código fuente. Como se había indicado anteriormente, en primer lugar se debe agregar la biblioteca dll, y después hacer la sentencia Imports.</span></p>
+<p class="rvps8"><span class="rvts28">Imports</span><span class="rvts29"> ClaseImagenes.Apolo</span></p>
+<p class="rvps8"><span class="rvts14">El siguiente paso será crear un objeto para poder gestionar todos los miembros de la clase. </span></p>
+<p class="rvps2"><span class="rvts26">'Se declara un objeto que se utilizará en todo el programa</span></p>
+<p class="rvps8"><span class="rvts22">Dim</span><span class="rvts23"> objetoTratamiento </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">TratamientoImagenes</span></p>
+<p class="rvps8"><span class="rvts14">Ahora se va a mostrar el código fuente de los diferentes botones.</span></p>
+<p class="rvps2"><span class="rvts30">'BOTÓN ABRIR IMAGEN</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button4_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button4.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Asignamos a una bitmap el resultado de la imagen abierta</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmpAbierto </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29"> = objetoTratamiento.abrirImagen()</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Si se ha seleccionado una imagen (no está vacío), se asigna al Picturebox</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">If</span><span class="rvts29"> bmpAbierto </span><span class="rvts28">IsNot</span><span class="rvts29"> </span><span class="rvts28">Nothing</span><span class="rvts29"> </span><span class="rvts28">Then</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = bmpAbierto</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">If</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN GUARDAR IMAGEN</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button5_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button5.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Mostramos cuadro de diálogo para guardar</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;objetoTratamiento.guardarcomo(PictureBox1.Image, 4)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN IMAGEN ATRÁS (DESHACER)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button1_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button1.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Se selecciona la imagen anterior</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.ListadoImagenesAtras</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN IMAGEN ADELANTE (REHACER)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button2_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button2.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Se selecciona la imagen siguiente</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.ListadoImagenesAdelante</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN DE IMAGEN ORIGINAL</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button3_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button3.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Carga la última imagen abierta como original</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.ImagenOriginalGuardada</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN BLANCO Y NEGRO</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button6_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button6.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un bitmap con la imagen actual</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmp </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Transformamos la imagen a blanco y negro (umbral 128)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.BlancoNegro(bmp, 128)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN ESCALA DE GRISES</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button7_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button7.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un bitmap con la imagen actual</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmp </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Transformamos la imagen a escala de grises</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.EscalaGrises(bmp)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN A TONOS SEPIA</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button8_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button8.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un bitmap con la imagen actual</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmp </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Transformamos la imagen a tonos sepia</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.sepia(bmp)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN INVERTIR COLORES</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button10_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button10.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un bitmap con la imagen actual</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmp </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Invertimos los colores de la imagen (para los tres canales RGB)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.Invertir(bmp, </span><span class="rvts28">True</span><span class="rvts29">, </span><span class="rvts28">True</span><span class="rvts29">, </span><span class="rvts28">True</span><span class="rvts29">)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN APLICAR MARCO</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button9_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button9.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un bitmap con la imagen actual</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmp </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Se envuelve la imagen en un marco (el número 3)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.marco(bmp, 2)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN DETECTAR CONTORNOS</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button14_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button14.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un bitmap con la imagen actual</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmp </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Se calculan los contornos</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.contornos(bmp, 15, 100, 100, 100)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN DE DISTORSIÓN</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button13_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button13.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un bitmap con la imagen actual</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmp </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Se calculan los contornos</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.Distorsion(bmp, NumericUpDown1.Value)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN PERÍMETRO (OPERACIÓN MOROFOLÓGICA)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button11_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button11.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un bitmap con la imagen actual</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmp </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un objeto que contiene elementos estructurales predefinidos</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> objetoEstructura </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">TratamientoImagenes</span><span class="rvts29">.</span><span class="rvts31">ElementoEstructural</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Se crea una matriz de dos dimensiones que alojará el elemento estructural y le damos un valor inicial</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> ElemenEstructural(,) </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Integer</span><span class="rvts29"> = objetoEstructura.Cuadrado3x3</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Select</span><span class="rvts29"> </span><span class="rvts28">Case</span><span class="rvts29"> ComboBox1.SelectedItem</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Case</span><span class="rvts29"> </span><span class="rvts32">"Cuadrado 3x3"</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ElemenEstructural = objetoEstructura.Cuadrado3x3</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Case</span><span class="rvts29"> </span><span class="rvts32">"Cuadrado 5x5"</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ElemenEstructural = objetoEstructura.Cuadrado5x5</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Case</span><span class="rvts29"> </span><span class="rvts32">"Diamante 5x5"</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ElemenEstructural = objetoEstructura.Diamante5x5</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Select</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Transformamos el bitmap calculando el perímetro mediante una operación morfológica</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.MorfologicasPerimetroDilatOrigin(bmp, ElemenEstructural)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts30">'BOTÓN MÁSCARAS</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">Private</span><span class="rvts29"> </span><span class="rvts28">Sub</span><span class="rvts29"> Button12_Click(sender </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Object</span><span class="rvts29">, e </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts31">EventArgs</span><span class="rvts29">) </span><span class="rvts28">Handles</span><span class="rvts29"> Button12.Click</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un bitmap con la imagen actual</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> bmp </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">Bitmap</span><span class="rvts29">(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Creamos un objeto que contiene elementos estructurales predefinidos</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> objetoMascara </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">New</span><span class="rvts29"> </span><span class="rvts31">TratamientoImagenes</span><span class="rvts29">.</span><span class="rvts31">Mascaras</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Se crea una matriz de dos dimensiones que alojará la máscara y le damos un valor inicial</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Dim</span><span class="rvts29"> Mascara(,) </span><span class="rvts28">As</span><span class="rvts29"> </span><span class="rvts28">Double</span><span class="rvts29"> = objetoMascara.LineasVerticales</span></p>
+<p class="rvps2"><span class="rvts29"><br/></span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Select</span><span class="rvts29"> </span><span class="rvts28">Case</span><span class="rvts29"> ComboBox2.SelectedItem</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Case</span><span class="rvts29"> </span><span class="rvts32">"Líneas verticales"</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Mascara = objetoMascara.LineasVerticales</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Case</span><span class="rvts29"> </span><span class="rvts32">"Repujado"</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Mascara = objetoMascara.Repujado</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">Case</span><span class="rvts29"> </span><span class="rvts32">"Laplaciana"</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Mascara = objetoMascara.Laplaciana1</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Select</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">'Transformamos el bitmap operando a través de una máscara</span></p>
+<p class="rvps2"><span class="rvts29"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.mascara3x3RGB(bmp, Mascara)</span></p>
+<p class="rvps8"><span class="rvts29"> &nbsp; &nbsp;</span><span class="rvts28">End</span><span class="rvts29"> </span><span class="rvts28">Sub</span></p>
+<p class="rvps8"><span class="rvts14">Se puede observar, que el código es muy sencillo, simplemente (para las transformaciones) se define el bitmap que se enviará a la clase y si los parámetros si los hubiese. Con respecto a las opciones de hacer/deshacer la sentencia es muy simple y es la propia clase quien gestiona todo.</span></p>
+<p class="rvps8"><span class="rvts14">Un último detalle para poder gestionar el evento de la imagen de detalle que está en la parte inferior, primeramente se debe incluir al manejador en el load del formulario.</span></p>
+<p class="rvps2"><span class="rvts26">'INICIO DE FORMULARIO</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Form1_Load(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> </span><span class="rvts22">MyBase</span><span class="rvts23">.Load</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Asignamos el gestor que controle cuando sale imagen</span></p>
+<p class="rvps15"><span class="rvts22">AddHandler</span><span class="rvts23"> objetoTratamiento.actualizaBMP, </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">ActualizamosImagen</span><span class="rvts23">(</span><span class="rvts22">AddressOf</span><span class="rvts23"> actualizarPicture)</span></p>
+<p class="rvps8"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps8"><span class="rvts14">Una vez creado el manejador, se incluye un procedimiento que recibirá un parámetro como bitmap y se asignará al Picturebox2, y así cuando se modifique (mediante la biblioteca ClaseImagenes) un bitmap enviado, se mostrará también el cambio en el Picturebox2.</span></p>
+<p class="rvps2"><span class="rvts22">Sub</span><span class="rvts23"> actualizarPicture(</span><span class="rvts22">ByVal</span><span class="rvts23"> bmp </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">Bitmap</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'Asignamos al Picturebox2 cuando se detecta una transformación de la imagen</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;PictureBox2.Image = bmp</span></p>
+<p class="rvps8"><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps8"><span class="rvts14">El código fuente completo de la aplicación se puede descargar en el siguiente enlace, </span><a class="rvts16" href="http://sdrv.ms/17eui2G">http://sdrv.ms/17eui2G</a><span class="rvts14">.</span></p>
+<h4 class="rvps14"><a name="Añadidos a la aplicación básica"></a>
+<span class="rvts0"><span class="rvts27">Añadidos a la aplicación básica</span></span></h4>
+<p class="rvps8"><span class="rvts14">Ahora se va a mostrar cómo gestionar diferentes opciones para utilizar miembros que dispone la clase. Como primer paso, a la aplicación se le va a añadir un </span><span class="rvts17">ToolTip</span><span class="rvts14"> que mostrará información de qué proceso se va a rehacer o deshacer. Este </span><span class="rvts17">ToolTip</span><span class="rvts14"> se muestra al situar el cursor encima delos botones </span><span class="rvts17">Deshacer</span><span class="rvts14"> o </span><span class="rvts17">Rehacer</span><span class="rvts21">.</span></p>
+<p class="rvps8"><span class="rvts14">Como primer paso, se va a añadir del cuadro de herramientas un </span><span class="rvts17">ToolTip</span><span class="rvts14"> (denominado </span><span class="rvts17">ToolTip1</span><span class="rvts14">). El siguiente paso será utilizar el evento de entrada de cursor, asociado a los dos botones.</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'GESTIONAMOS EVENTO DE ENTRADA DEL CURSO EN EL BUTTON 1 (BOTÓN DE DESHACER)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Button1_MouseEnter(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> Button1.MouseEnter</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Le damos título al tooltip</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;ToolTip1.ToolTipTitle = </span><span class="rvts33">"Deshacer:"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'ASociamos al button1 (deshacer) la información de la opción deshacer</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;ToolTip1.SetToolTip(Button1, objetoTratamiento.ListadoInfoAtras)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'GESTIONAMOS EVENTO DE ENTRADA DEL CURSO EN EL BUTTON 2 (BOTÓN DE REHACER)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Button2_MouseEnter(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> Button2.MouseEnter</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Le damos título al tooltip</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;ToolTip1.ToolTipTitle = </span><span class="rvts33">"Rehacer:"</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'ASociamos al button1 (deshacer) la información de la opción rehacer</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;ToolTip1.SetToolTip(Button2, objetoTratamiento.ListadoInfoAdelante)</span></p>
+<p class="rvps8"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps8"><span class="rvts14">Ahora se va a mostrar una imagen de qué haría este código puesto anteriormente.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">11</span><span class="rvts19">. ToolTip en botón deshacer.</span></p>
+<p class="rvps13"><img width="548" height="419" alt="" style="padding : 1px;" src="lib/NewItem310.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Ahora se incluirá en la parte superior del programa, en el nombre del formulario, el nombre y tamaño de la imagen que se abra. Para ello, hay que gestionar un evento similar al visto anteriormente que actualizaba la imagen general. Primeramente en el load del formulario se añade el manejador. </span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'INICIO DE FORMULARIO</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Form1_Load(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> </span><span class="rvts22">MyBase</span><span class="rvts23">.Load</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Cargamos la imagen en un bitmap (la imagen se ha guardado como recurso</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Dim</span><span class="rvts23"> bmpInicial </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">Bitmap</span><span class="rvts23">(</span><span class="rvts22">My</span><span class="rvts23">.Resources.remastered_lena_512x512)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'ASignamos al picturebox la imagen actualizándola (como imagen original)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = objetoTratamiento.ActualizarImagen(bmpInicial, </span><span class="rvts22">True</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Asignamos el gestor que controle cuando sale imagen</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">AddHandler</span><span class="rvts23"> objetoTratamiento.actualizaBMP, </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">ActualizamosImagen</span><span class="rvts23">(</span><span class="rvts22">AddressOf</span><span class="rvts23"> actualizarPicture)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Asignamos el gestor que controle cuando se abre una imagen nueva</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">AddHandler</span><span class="rvts23"> objetoTratamiento.actualizaNombreImagen, </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">ActualizamosNombreImagen</span><span class="rvts23">(</span><span class="rvts22">AddressOf</span><span class="rvts23"> actualizarNombrePicture)</span></p>
+<p class="rvps8"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps8"><span class="rvts14">Parte del código anterior ya había sido incluido, lo que interesa realmente es la última sentencia que hará que cuando se produzca un evento, se ejecute el procedimiento </span><span class="rvts17">actualizarNombrePicture</span><span class="rvts14">. Como siguiente paso, se deberá crear el procedimiento con el nombre indicado anteriormente.</span></p>
+<p class="rvps2"><span class="rvts26">'Realizamos esto cuando recibimos el evento de que se ha abierto nuevo imagen</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Sub</span><span class="rvts23"> actualizarNombrePicture(</span><span class="rvts22">ByVal</span><span class="rvts23"> nombre() </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">String</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Cambiamos el nombre del formulario principal, y le damos nombre, tamaño y desde dónde se ha abierto</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Me</span><span class="rvts23">.Text = </span><span class="rvts33">"["</span><span class="rvts23"> &amp; nombre(0) &amp; </span><span class="rvts33">"] &nbsp;"</span><span class="rvts23"> &amp; </span><span class="rvts33">"("</span><span class="rvts23"> &amp; nombre(1) &amp; </span><span class="rvts33">" x "</span><span class="rvts23"> &amp; nombre(2) &amp; </span><span class="rvts33">") &nbsp; "</span><span class="rvts23"> &amp; nombre(3)</span></p>
+<p class="rvps8"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps8"><span class="rvts14">Como resultado, y tras abrir una imagen se mostrará lo siguiente en la cabecera del formulario.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">12</span><span class="rvts19">. Título del formulario.</span></p>
+<p class="rvps13"><img width="548" height="419" alt="" style="padding : 1px;" src="lib/NewItem309.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<h4 class="rvps14"><a name="Operaciones avanzadas"></a>
+<span class="rvts0"><span class="rvts27">Operaciones avanzadas</span></span></h4>
+<p class="rvps8"><span class="rvts14">Si ha seguido este pequeño tutorial, ya tienes nociones básicas de cómo funciona la clase, pero, ¿no se ha dado cuenta de que mientras se efectúa una transformación el programa se queda </span><span class="rvts17">congelado</span><span class="rvts14">? &nbsp;Esto es debido a que leer todos los píxeles de la imagen y luego modificarlos es un proceso muy costoso. La solución es crear un hilo de ejecución aparte que se ejecutará al hacer alguna transformación. Para ejemplificar todo esto, se va a crear un proyecto de cero. Como se ha hecho hasta ahora, se abre Visual Studio y se agrega la referencia a de la biblioteca de clases, se hace el </span><span class="rvts17">Imports </span><span class="rvts14">y se crea un objeto de la clase para utilizarlo en todo el formulario.</span></p>
+<p class="rvps8"><span class="rvts14">Una vez hecho esto, en el formulario se va a incluir dos </span><span class="rvts17">Picturebox </span><span class="rvts14">uno de ellos mostrará la imagen original y otro la imagen transformada, además de dos botones. Para ver que realmente al hacer la transformación mediante un hilo el programa sigue activo y no se bloquea, se va a incluir un pequeño Picturebox donde se mostrará un gif de carga. El resultado sería algo así.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">13</span><span class="rvts19">. Formulario ejemplo con hilos.</span></p>
+<p class="rvps13"><img width="550" height="361" alt="" style="padding : 1px;" src="lib/NewItem308.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Como se observa, el Picturebox que mostrará un gif no se ve, realmente sólo se mostrará cuando se haga la transformación a B/N (blanco y negro).</span></p>
+<p class="rvps8"><span class="rvts14">Después de lo visto anteriormente, es fácil saber qué código se asociará al botón </span><span class="rvts17">B/N sin hilo</span><span class="rvts14">, puesto que se manejará de forma normal. El código es el siguiente.</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp;</span><span class="rvts26">'BOTÓN DE EJECUCIÓN NORMAL</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Button2_Click(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> Button2.Click</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Primeramente, se muestra el gif que debería moverse</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox3.Image = </span><span class="rvts22">My</span><span class="rvts23">.Resources.cargandogris</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Asignamos al Picturebox2 la imagen del Picturebox1 transformada a blanco y negro</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox2.Image = objetoTratamiento.BlancoNegro(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Ocultamos la imagen del gif</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox3.Image = </span><span class="rvts22">Nothing</span></p>
+<p class="rvps8"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts14"> </span></p>
+<p class="rvps8"><span class="rvts14">La única diferencia con el explicado anteriormente es que muestra un pequeño gif en el </span><span class="rvts17">Picturebox3</span><span class="rvts21">.</span></p>
+<p class="rvps8"><span class="rvts14">Ahora llega lo interesante, que es el botón que trabajará con hilos. Primeramente se debe arrastrar del cuadro de herramientas un control que se denomina BackgroundWorker. De este control se va a utilizar dos eventos, el evento que gestiona cuando el BackgroundWorker está funcionando (</span><span class="rvts34">DoWork</span><span class="rvts14">) y el que se activa justo cuando ha acabado de realizar la tarea (</span><span class="rvts34">RunWorkerCompleted</span><span class="rvts14">). Primeramente se muestra el código del botón.</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'BOTóN DE EJECUCIÓN MEDIANTE BACKGROUNDWORKER</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Button1_Click(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> Button1.Click</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Este primer condicional evalúa si el hilo de ejecución (BackgroundWorker1),</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'está ocupado. Sólo se accionará si no está en funcionamiento.</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">If</span><span class="rvts23"> BackgroundWorker1.IsBusy = </span><span class="rvts22">False</span><span class="rvts23"> </span><span class="rvts22">Then</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Primeramente, se muestra el gif que debería moverse</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PictureBox3.Image = </span><span class="rvts22">My</span><span class="rvts23">.Resources.cargandogris</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Este procedimiento activa el BackgroundWorker1 e inicia la ejecución en segundo plano</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BackgroundWorker1.RunWorkerAsync()</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">If</span></p>
+<p class="rvps8"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps8"><span class="rvts14">Lo que hace el código es, primeramente evalúa que el BackgroundWorker no esté activo, y si esto es cierto, muestra el gif y llama al BackgroundWorker para que ejecute su tarea. El último paso es introducir el código de acción del BackgroundWorker y el código cuando éste finaliza la tarea.</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp;</span><span class="rvts26">'CÓDIGO EJECUTADO EN SEGUNDO PLANO</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> BackgroundWorker1_DoWork(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> System.ComponentModel.</span><span class="rvts25">DoWorkEventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> BackgroundWorker1.DoWork</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Asignamos al Picturebox2 la imagen del Picturebox1 transformada a blanco y negro</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox2.Image = objetoTratamiento.BlancoNegro(PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'CÓDIGO CUANDO SE ACABA LA EJECUCIÓN EN SEGUNDO PLANO</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> BackgroundWorker1_RunWorkerCompleted(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> System.ComponentModel.</span><span class="rvts25">RunWorkerCompletedEventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> BackgroundWorker1.RunWorkerCompleted</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Ocultamos la imagen del gif</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox3.Image = </span><span class="rvts22">Nothing</span></p>
+<p class="rvps8"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps8"><span class="rvts14">En resumen, los pasos son 3, primeramente desde el botón se llama al proceso principal del BackgroundWorker (DoWork), éste ejecuta el proceso y por último se ejecuta el código cuando el BackgroundWorker ha finalizado (RunWorkerCompleted).</span></p>
+<p class="rvps8"><span class="rvts14">Ahora la prueba final, se ejecuta el programa y se demuestra que el gif da vueltas cuando se ejecuta el botón que funciona con un </span><span class="rvts35">BackgroundWorker</span><span class="rvts14"> y no da vueltas en el otro caso.</span></p>
+<p class="rvps8"><span class="rvts34">El código fuente se puede descargar desde aquí, </span><a class="rvts16" href="http://sdrv.ms/17euyif">http://sdrv.ms/17euyif</a><span class="rvts14">. </span></p>
+<h4 class="rvps14"><a name="Trabajar desde otros formularios"></a>
+<span class="rvts0"><span class="rvts27">Trabajar desde otros formularios</span></span></h4>
+<p class="rvps8"><span class="rvts14">Si usted quiere trabajar como se ha mostrado anteriormente (mediante BackgroundWorker) pero desde otros formularios que no son el principal tiene que tener unas consideraciones previas.</span></p>
+<p class="rvps16"><span class="rvts14">El caso en concreto es, por ejemplo, si tiene un formulario principal donde se muestra la imagen actual y otro Picturebox donde se muestra una imagen general (un ejemplo similar al visto anteriormente) y tiene un segundo formulario donde por ejemplo se muestra un </span><span class="rvts35">HScrollBar</span><span class="rvts14"> para seleccionar el umbral de blanco y negro. Si en este caso quiere trabajar con hilos deberá tener unos detalles en cuenta. Los formularios serían así.</span></p>
+<p class="rvps16"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">14</span><span class="rvts19">. Aplicación con varios formularios.</span></p>
+<p class="rvps17"><img width="547" height="432" alt="" style="padding : 1px;" src="lib/NewItem307.png"/></p>
+<p class="rvps17"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps16"><span class="rvts24"><br/></span></p>
+<p class="rvps8"><span class="rvts14">En primer lugar se va a mostrar el código del primer formulario.</span></p>
+<p class="rvps2"><span class="rvts22">Imports</span><span class="rvts23"> ClaseImagenes.Apolo</span></p>
+<p class="rvps2"><span class="rvts22">Public</span><span class="rvts23"> </span><span class="rvts22">Class</span><span class="rvts23"> </span><span class="rvts25">Form1</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'se declara un objeto que se utilizará en toda el programa</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Dim</span><span class="rvts23"> objetoTratamiento </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">TratamientoImagenes</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Form1_Load(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> </span><span class="rvts22">MyBase</span><span class="rvts23">.Load</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Asignamos el gestor que controle cuando sale imagen</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">AddHandler</span><span class="rvts23"> objetoTratamiento.actualizaBMP, </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">ActualizamosImagen</span><span class="rvts23">(</span><span class="rvts22">AddressOf</span><span class="rvts23"> actualizarPicture)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'Realizamos esto cuando recibimos el evento de que se ha modificado la imagen</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Sub</span><span class="rvts23"> actualizarPicture(</span><span class="rvts22">ByVal</span><span class="rvts23"> bmp </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">Bitmap</span><span class="rvts23">)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'Asignamos al Picturebox2 cuando se detecta una transformación de la imagen</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox2.Image = bmp</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'ASingamos al Picturebox1 cuando se detecta una transformación de la imagen</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;PictureBox1.Image = bmp</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'BOTÓN BLANCO Y NEGRO</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Button1_Click(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> Button1.Click</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Abrimos el formulario 2</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts25">BlancoNegro</span><span class="rvts23">.Show()</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps2"><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Class</span></p>
+<p class="rvps8"><span class="rvts21"><br/></span></p>
+<p class="rvps8"><span class="rvts14">El detalle que hay que tener en cuenta es que, en el procedimiento que gestiona el evento cargado en el load del form (el procedimiento se llama </span><span class="rvts35">actualizarPicture</span><span class="rvts14">), también modificamos la imagen del Picturebox1 (el principal), y esto, ¿por qué? Un poco más adelante lo veremos.</span></p>
+<p class="rvps8"><span class="rvts14">Ahora vamos con el código del segundo formulario.</span></p>
+<p class="rvps2"><span class="rvts22">Imports</span><span class="rvts23"> ClaseImagenes.Apolo</span></p>
+<p class="rvps2"><span class="rvts22">Public</span><span class="rvts23"> </span><span class="rvts22">Class</span><span class="rvts23"> </span><span class="rvts25">BlancoNegro</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'se declara un objeto que se utilizará en toda el programa</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Dim</span><span class="rvts23"> objetoTratamiento </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">TratamientoImagenes</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'Creamos un bitmap con la imagen del formulario principal</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Dim</span><span class="rvts23"> bmp </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">Bitmap</span><span class="rvts23">(Form1.PictureBox1.Image)</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> BlancoNegro_Load(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> </span><span class="rvts22">MyBase</span><span class="rvts23">.Load</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;Label1.Text = HScrollBar1.Value</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Asignamos el gestor que controle cuando sale imagen (hacemos la referencia al procediento del Formulario principal)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">AddHandler</span><span class="rvts23"> objetoTratamiento.actualizaBMP, </span><span class="rvts22">New</span><span class="rvts23"> </span><span class="rvts25">ActualizamosImagen</span><span class="rvts23">(</span><span class="rvts22">AddressOf</span><span class="rvts23"> </span><span class="rvts25">Form1</span><span class="rvts23">.actualizarPicture)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'BOTÓN DE APLICAR</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Button1_Click(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> Button1.Click</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Si el hilo (BackgroundWorker1) no está en ejecución, entonces</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">If</span><span class="rvts23"> BackgroundWorker1.IsBusy = </span><span class="rvts22">False</span><span class="rvts23"> </span><span class="rvts22">Then</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Se llama al procedimiento en segundo plano</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BackgroundWorker1.RunWorkerAsync()</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">If</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> BackgroundWorker1_DoWork(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> System.ComponentModel.</span><span class="rvts25">DoWorkEventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> BackgroundWorker1.DoWork</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'ASingamos al Picturebox1 del formulario principal la imagen transformada</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;Form1.PictureBox1.Image = objetoTratamiento.BlancoNegro(bmp, HScrollBar1.Value)</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'BOTÓN DE CERRAR</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> Button2_Click(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">EventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> Button2.Click</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Se cierra el formulario</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts22">Me</span><span class="rvts23">.Close()</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps2"><span class="rvts23"><br/></span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts26">'EVENTO DE MODIFICACIÓN DEL SCROLL</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">Private</span><span class="rvts23"> </span><span class="rvts22">Sub</span><span class="rvts23"> HScrollBar1_Scroll(sender </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts22">Object</span><span class="rvts23">, e </span><span class="rvts22">As</span><span class="rvts23"> </span><span class="rvts25">ScrollEventArgs</span><span class="rvts23">) </span><span class="rvts22">Handles</span><span class="rvts23"> HScrollBar1.Scroll</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts26">'Se pone en el label el valor actual del Hscrollbar</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp; &nbsp; &nbsp;Label1.Text = HScrollBar1.Value</span></p>
+<p class="rvps2"><span class="rvts23"> &nbsp; &nbsp;</span><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Sub</span></p>
+<p class="rvps8"><span class="rvts22">End</span><span class="rvts23"> </span><span class="rvts22">Class</span></p>
+<p class="rvps8"><span class="rvts14">Como se observa en el código anterior, también estamos gestionando el evento que hace cambiar el Picturebox1 y Picturebox2 al detectar cambio, esto va en relación con lo indicado anteriormente con respecto al procedimiento </span><span class="rvts35">actualizarPicture</span><span class="rvts14">.</span></p>
+<p class="rvps8"><span class="rvts14">Ejecutamos el programa y funciona perfectamente, es decir, se está trabajando con hilos desde otro formulario.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">15</span><span class="rvts19">. Aplicación funcionando con varios formularios.</span></p>
+<p class="rvps13"><img width="547" height="432" alt="" style="padding : 1px;" src="lib/NewItem306.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts14"><br/></span></p>
+<p class="rvps8"><span class="rvts14">Ahora se va a ver qué pasaría si, en el procedimiento </span><span class="rvts35">actualizarPicture</span><span class="rvts17"> </span><span class="rvts14">se quita la sentencia que asignaba al Picturebox1 el Bitmap recibido.</span></p>
+<p class="rvps8"><span class="rvts14"><br/></span></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps13"><span class="rvts19">Ilustración </span><span class="rvts20">16</span><span class="rvts19">. Transformación fallida.</span></p>
+<p class="rvps13"><img width="547" height="431" alt="" style="padding : 1px;" src="lib/NewItem305.png"/></p>
+<p class="rvps13"><img width="569" height="1" alt="" style="padding : 1px;" src="lib/NewItem117.png"/></p>
+<p class="rvps8"><span class="rvts14"> </span></p>
+<p class="rvps8"><span class="rvts14">¿Qué ha pasado? Como puede verse en la imagen, se ha realizado una transformación y sólo se ha actualizado la imagen secundaria. Esto es debido a que al trabajar con hilos desde otro formulario la sentencia </span><span class="rvts35">Form1.PictureBox1.Image = objetoTratamiento.BlancoNegro(bmp, HScrollBar1.Value) </span><span class="rvts34">no gestiona de forma correcta la actualización del Picturebox. La solución a este problema pasa por, en primer lugar en el procedimiento (</span><span class="rvts35">actualizarPicture</span><span class="rvts34">) del formulario principal que gestiona el evento de transformación en la imagen incluir también al Picturebox principal (</span><span class="rvts35">Picturebox1.image=bmp</span><span class="rvts34">) y en segundo lugar, en todos los formularios diferentes del principal, se debe incluir en el load al manejador (AddHandler objetoTratamiento.actualizaBMP, New ActualizamosImagen(AddressOf Form1.actualizarPicture).</span></p>
+<p class="rvps8"><span class="rvts14">El código fuente se puede descargar en la siguiente dirección, </span><a class="rvts16" href="http://sdrv.ms/17euTBJ">http://sdrv.ms/17euTBJ</a><span class="rvts14">. </span></p>
+<p></p>
+<p class="rvps7"><span class="rvts12">Created with the Personal Edition of HelpNDoc: </span><a class="rvts13" href="http://www.helpndoc.com/feature-tour/create-ebooks-for-amazon-kindle">Write eBooks for the Kindle</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyleft 2013  por Luis Marcos Rivera.</div>
+		</div>
+	</body>
+	
+</html>
+
