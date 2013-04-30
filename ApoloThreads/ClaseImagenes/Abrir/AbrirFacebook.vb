@@ -146,7 +146,7 @@ Public Class AbrirFacebook
                 fotos.Add(NodeIter.Current.Value)
             End While
             For i = 0 To fotos.Count - 1
-                fotos(i) = fotos(i).ToString.Replace("http//", "http://")
+                fotos(i) = fotos(i).ToString.Replace("https//", "https://")
             Next
             PictureBox1.Visible = True
             PictureBox2.Visible = True
