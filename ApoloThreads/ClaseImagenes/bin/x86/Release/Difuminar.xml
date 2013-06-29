@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Mascara>
+  <ValoresMatriz>
+    <Mat00>2</Mat00>
+    <Mat01>2</Mat01>
+    <Mat02>2</Mat02>
+    <Mat10>2</Mat10>
+    <Mat11>2</Mat11>
+    <Mat12>2</Mat12>
+    <Mat20>2</Mat20>
+    <Mat21>2</Mat21>
+    <Mat22>2</Mat22>
+  </ValoresMatriz>
+  <Desviacion>0</Desviacion>
+  <Factor>1</Factor>
+</Mascara>
