@@ -613,6 +613,12 @@ Public Class Principal
     End Sub
 #End Region
 
+#Region "LockBits/Scan0"
+    Private Sub IniciarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IniciarToolStripMenuItem.Click
+        InicioLockBits.ShowDialog()
+    End Sub
+#End Region
+
 #Region "Herramientas"
     Dim HistogramasAutomáticos As Boolean = True
     'Activa/desactiva histogramas automáticos
@@ -2658,7 +2664,6 @@ Public Class Principal
   
  
 
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
-    End Sub
+   
 End Class

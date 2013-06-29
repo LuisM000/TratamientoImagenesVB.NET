@@ -752,7 +752,7 @@ Namespace Apolo
 
             For i = 0 To Niveles.GetUpperBound(0)  'Recorremos la matriz
                 For j = 0 To Niveles.GetUpperBound(1)
-                    'Cambiamos el contraste creando una rampa de contraste
+                    'Cambiamos la gamma creando una rampa de contraste
                     Rojo = CByte(Math.Min(255, CInt(Math.Truncate((255.0 * Math.Pow(Niveles(i, j).R / 255.0, 1.0 / ValorGammaRojo)) + 0.5))))
                     Verde = CByte(Math.Min(255, CInt(Math.Truncate((255.0 * Math.Pow(Niveles(i, j).G / 255.0, 1.0 / ValorGammaVerde)) + 0.5))))
                     Azul = CByte(Math.Min(255, CInt(Math.Truncate((255.0 * Math.Pow(Niveles(i, j).B / 255.0, 1.0 / ValorGammaAzul)) + 0.5))))
